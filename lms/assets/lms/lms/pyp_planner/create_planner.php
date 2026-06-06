@@ -1,0 +1,216 @@
+<?php
+session_start();
+require_once("../db.php");
+
+/*echo "<pre>";
+print_r($_GET);
+print_r($_POST);
+echo "</pre>";*/
+
+$msg=$_REQUEST['msg'];
+
+if($_POST)
+{
+	
+   $id=$_POST['id'];
+   $grade=$_POST['grade'];
+   $school_division=$_POST['school_division'];
+}
+
+if($msg)
+{
+?>
+    <script language="javascript">
+	alert("<?=$msg?>");
+    </script>
+<?
+}
+
+if($_GET[Types] == "Delete")
+{
+
+    $val=$_GET['val'];  
+
+    $sql="UPDATE `pyp_planner` SET `status`='0' WHERE `id`= $val";
+  
+
+	 $result=execute($sql) or die(mysql_error());  
+	  if($result) 
+	  { 
+	  	?>
+			  <script type="text/javascript">
+				  alert("Deleted Successfully");
+			  </script>
+		  <?
+	  }
+}
+?>
+<html>
+<head>
+<script language="javascript">
+	function ReloadMe()
+	{
+		document.frm.action="create_planner.php";
+		document.frm.submit();
+	}
+	function adds_onclick()
+	{
+		document.frm.action="create_planner_edt.php?Type=Add";
+		document.frm.submit();
+	}
+
+	function Modify_onclick()
+	{
+		document.frm.action="create_planner_edt.php?Type=Mod";
+		document.frm.submit();
+	}
+	function det(del)
+    {
+		var answer = confirm("Are you sure to delete record ???")
+		if (answer)
+		{
+			document.frm.action="create_planner.php?Types=Delete&val="+del;
+			document.frm.submit();
+		}
+    }
+</script>
+<script language="javascript">
+function OpenWind2(URL, title,w,h)
+{
+
+	var left = (screen.width/2)-(w/2);
+	var top = (screen.height/2)-(h/2);
+
+var newWin = window.open (URL, title, '_blank, toolbar=no, location=no,directories=no, status=no, menubar=no, scrollbars=yes, resizable=no,copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+
+}
+</script>
+<script language="javascript" src="../js/cal2.js"></script>
+<script language="javascript" src="../js/cal_conf2.js"></script>
+<title>CREATE PLANNER</title>
+</head>
+<body>
+<FORM id="frm" NAME="frm" ACTION="" METHOD="post">
+	<br/>
+<table align='center' class=forumline width='50%' >
+  <tr height="25">
+      <td align='center' Class='head' colspan=3>CREATE PLANNER</td>
+  </tr>
+      <tr>
+          <td colspan="2" nowrap align="right"><?php echo $_SESSION['branchname']; ?>&nbsp;&nbsp;</td>
+          <td><select name="school_division"  OnChange="ReloadMe();" >
+          <option value='' >----  Select ----</option>
+          <?
+              $sqlCourse=execute("SELECT * FROM `course_m` WHERE status=1");
+              while($r=fetcharray($sqlCourse))
+              {
+                  if($school_division==$r['course_id'])
+                      echo "<option value='$r[course_id]' selected>$r[1]</option>";
+                  else
+                      echo "<option value='$r[course_id]'>$r[1]</option>";
+              }
+          ?>
+      </select></td>
+          </tr>
+          <tr>
+          	<td colspan="2" nowrap align="right"><?php echo $_SESSION['semname']; ?>&nbsp;&nbsp;</td>
+      		<td><select name="grade" OnChange="ReloadMe();">
+            <option value='' >----  Select ----</option>
+			<?php
+				$sqlCYear=execute("SELECT * FROM `course_year` WHERE `status`=1 AND `head_id`='$school_division'");
+					while($r=fetcharray($sqlCYear))
+					{
+						if($grade==$r['year_id'])
+							echo "<option value='$r[year_id]' selected>$r[year_name]</option>";
+						else
+							echo "<option value='$r[year_id]'>$r[year_name]</option>";
+					}   
+            ?> </select></td>
+          </tr>
+          <tr height="25">
+				<td colspan="2" nowrap align="right">Title&nbsp;&nbsp;</td>
+				<td width="76%"><INPUT TYPE="text"  NAME="title" value="<?=$title?>" size="40"></td>
+	      </tr>
+            <tr height="25">
+				<td colspan="2" nowrap align="right">Duration From&nbsp;&nbsp;</td>
+				<td width="76%"><INPUT TYPE="text"  NAME="adate" value="<?=$adate?>" size="10" >
+				<a href="javascript:showCal('Calendar1')"><img src="../images/calendar.jpg" align="absmiddle" ></a>
+				</td>
+			</tr>
+            <tr height="25">
+				<td colspan="2" nowrap align="right">Duration To&nbsp;&nbsp;</td>
+			    <td width="76%"><INPUT TYPE="text"  NAME="bdate" value="<?=$bdate?>" size="10" >
+				<a href="javascript:showCal('Calendar2')"><img src="../images/calendar.jpg" align="absmiddle" ></a>
+				</td>
+			</tr>
+            <tr height="25">
+				<td colspan="2" nowrap align="right">Proposed Duration&nbsp;&nbsp;</td>
+				<td><textarea name="proposed_duration" cols="46" rows="4"><?=$proposed_duration?></textarea><br></td>
+			</tr>
+	</table>
+
+        <p align="center"><input type="button"  value="&nbsp;&nbsp; Save &nbsp;&nbsp; " LANGUAGE=javascript onClick="adds_onclick()" class='bgbutton'></p>
+<?php
+
+	   $result=execute("SELECT * FROM `pyp_planner` WHERE `status`=1 ORDER BY `id`");
+	
+	   if(rowcount($result)>0)
+       {
+	   ?>
+	  <table align='center' width='90%' border="1">
+
+		<tr height='22' >
+
+		    <td Class="head" align='center'>Sl no</td>
+			<td Class="head" align='center'>School Division </td>
+			<td Class="head" align='center'>Grade</td>
+			<td Class="head" align='center'>Title</td>
+            <td Class="head" align='center'>Duration From</td>
+            <td Class="head" align='center'>Duration To</td>
+            <td Class="head" align='center'>Action</td>			
+	   </tr>
+       <?
+	   	    $i=0;
+            $rowclass=1;
+            $sno=1; 
+           while($row=fetcharray($result))
+           {
+		   			if($sno<10)
+					{
+						$sno="0".$sno;
+					}
+
+					if($i%2)
+						echo "<tr class='clsname' >";
+					else
+						echo "<tr >";
+
+						
+
+$SDivision=fetcharray(execute("SELECT `coursename` FROM `course_m` WHERE `course_id`=$row[school_division] AND status=1"));
+$grade=fetcharray(execute("SELECT `year_name` FROM `course_year` WHERE `year_id`=$row[grade] AND status=1"));				
+?>
+
+            <td align="center"><?=$sno?></td>
+            <td align='center' ><?=$SDivision[0]?></td>
+            <td align='center' ><?=$grade[0]?></td>
+            <td align='center' ><?=$row[title]?></td>
+            <td align='center' ><? print( date("d-M-Y", strtotime($row['date_from']))); ?></td>
+            <td align='center' ><? print( date("d-M-Y", strtotime($row['date_to']))); ?></td>
+            <td  align='center' >
+            <input type="button"  value="&nbsp;&nbsp;&nbsp; Edit &nbsp;&nbsp;&nbsp;" onclick ="OpenWind2('create_planner_edt.php?id=<?=$row[id]?>&Type=group_edt', 'OpenWind2',800,400)" class="bgbutton"/>
+            <input type="button" name="Delete" value="Delete" onclick ="det(<?=$row[id]?>)" class="bgbutton"/>
+	         <?
+			   $i++;
+		       $sno++;
+		       $rowclass = 1 - $rowclass;
+            }
+ ?>
+ </table>
+   <?
+    }
+?>
+</form>
+ </body>
+ </html>
+

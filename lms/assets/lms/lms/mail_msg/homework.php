@@ -1,0 +1,240 @@
+<html>
+<HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+function OpenWind2(k2)
+{
+	var finalVar ;
+	finalVar=k2 ;
+	window.open(finalVar,'Stud','width=900,height=550,status=yes,toolbar=no,scrollbars=yes,menubar=no,location=no');
+}
+function reload()
+{
+	document.frm.action='homework.php';
+	document.frm.submit();
+	
+}
+function reload1()
+{
+	document.frm.action='homework.php';
+	document.frm.submit();
+	
+}
+function selectMe()
+{
+	var i = document.frm.length;
+	for(j=0;j<i;j++)
+	{
+		if(document.frm[j].Sel != "CheckBox")
+		{
+			flag = document.frm[j].checked;
+			document.frm[j].checked = !flag;
+		}
+	}
+}	
+</SCRIPT>
+</HEAD>
+
+<body>
+<?php 
+session_start();
+require("../db.php");
+include("mail_class.php");
+$academic_year=$_SESSION['AcademicYear'];
+if(!$_POST and !$_REQUEST)
+{
+	$branch=$_SESSION['branch'];
+	$sem=$_SESSION['sem'];
+	
+}
+elseif(!$_POST and $_REQUEST)
+{
+	$branch=$_REQUEST['branch'];
+	$sem=$_REQUEST['sem'];
+	$class_section_id=$_REQUEST['class_section_id'];
+}
+else
+{
+	$branch=$_POST['branch'];
+	$sem=$_POST['sem'];
+	$examname=$_POST['examname'];
+	$class_section_id=$_POST['class_section_id'];
+}
+	$rdate=date("Y-m-d");
+	$tdate=date("d-m-Y");
+if($_POST['SendMSG'])
+{
+	$message='';
+	$message123="Home Work :- $tdate";
+	$sql3=execute("select subject_id, subject_code from subject_m where  course_id='$branch' and course_year_id='$sem' and status='1' order by sub_pre");
+	while($r3=fetcharray($sql3))
+	{
+		
+		$sql24=execute("select topic , home_work from teacher_lesson_plan where subj='$r3[0]' and  r_date='$rdate' and sec='$class_section_id' and parent_r=1");
+		while($r4=fetcharray($sql24))
+		{
+			$message.=" $r3[1]- $r4[1] ,";
+			
+		}	
+			
+	}
+			 $sql123=execute("select first_name,msgphone, id from student_m where id is not null and archive='N' and course_admitted=$branch and course_yearsem=$sem and class_section_id=$class_section_id  order by first_name");
+			while($r5=fetcharray($sql123))
+			{
+				
+				$message=$message123.$message;
+				
+				send_msg($r5[1],$message,$r5[2],$sem);
+					
+			}	
+		
+		?>
+		<SCRIPT LANGUAGE="JavaScript">
+		alert("Msg Sent Succesfully to Parent");
+		</SCRIPT>
+		<?php
+
+}
+echo '<form name="frm" action="" method="post" >';	
+	
+  ?>		<table width="50%" align="center" class="forumline" border="1" cellspacing="0" cellpadding="0">
+  <tr>
+    <td colspan="2" align="center" class="head">SEND HOME WORK  PARENT</td>
+  </tr>
+     
+  <tr>
+    <td nowrap>&nbsp;&nbsp;<?php echo $_SESSION['branchname']; ?></td>
+		<td>&nbsp;<select name="branch" onChange="reload()">
+			<option value="0">------SELECT-----</option>
+				<?php
+					$sql="select course_id,coursename from course_m";
+					$rs=execute($sql) or die(error_description());
+					for($i=0;$i<rowcount($rs);$i++)
+					{
+					  $r=fetcharray($rs);
+
+						if($branch==$r[course_id])
+						{
+							?>
+							<option value="<?=$r[course_id]?>" selected><?php echo $r[coursename] ?></option>
+							<?php
+						}
+						else
+						{
+							?>
+							<option value="<?php echo $r[course_id] ?>"><?=$r[coursename]?></option>
+							<?php
+						}
+					}
+				?>
+			</select>
+			</td>
+		
+  </tr>
+  <tr>
+   <td>&nbsp;&nbsp;<?php echo $_SESSION['semname']; ?></td>
+		<td>&nbsp;<select name="sem" onChange="reload()">
+			<option value='0'>-----SELECT----</option>
+			<?php
+				$rs=execute("SELECT a.year_name,a.year_id FROM course_year a,course_m b where a.head_id=b.head_id and b.course_id='$branch'");
+				while($r=fetcharray($rs))
+				{
+					if($sem==$r[year_id])
+					{
+						echo "<option value='$r[year_id]' selected> $r[year_name]</option>";
+					}
+					else
+					{
+						echo "<option value='$r[year_id]'> $r[year_name]</option>";
+					}
+				}
+			?>
+			</select>
+
+		</td>
+  </tr>
+
+  <tr>
+  <td height="28">&nbsp;&nbsp;Section</td><td>&nbsp;<select name='class_section_id'  onChange="reload()">
+<?
+$rs_section=execute("select * from class_section");
+echo "<option value=''>--SELECT--</option>";
+for($i=0;$i<rowcount($rs_section);$i++)
+{
+	$r_section=fetcharray($rs_section,$i);
+	if($class_section_id==$r_section[id])
+	echo "<option value='$r_section[id]' selected>$r_section[section_name]</option>";
+	else
+	echo "<option value='$r_section[id]'>$r_section[section_name]</option>";
+
+}
+?>
+</select>
+</td>
+ 
+  
+</table>
+<?php
+ if($branch=='0')
+	die();
+	if($sem=='0')
+	die();
+	if($class_section_id=='')
+	die();
+   $sql123.="select id, first_name, msgphone from student_m where id is not null and archive='N' and academic_year='$academic_year' ";
+	if($branch!=0)
+	{
+	$sql123.=" and course_admitted=$branch";
+	}
+	if($sem!=0)
+	{
+	$sql123.=" and course_yearsem=$sem";
+	}
+	if($class_section_id!='-1')
+	{
+	$sql123.=" and class_section_id=$class_section_id  ";
+	}
+	
+	$sql123.=" order by first_name";
+
+$sq1=execute($sql123);
+if(rowcount($sq1)==0)
+{
+?>
+		<SCRIPT LANGUAGE="JavaScript">
+		alert("Student record not found ");
+		</SCRIPT>
+<?php
+die();
+
+}
+$log1=1;
+	$sql3=execute("select subject_id, subject_code from subject_m where  course_id='$branch' and course_year_id='$sem' and status='1' order by sub_pre");
+	while($r3=fetcharray($sql3))
+	{
+		
+		$sql24=execute("select topic from teacher_lesson_plan where subj='$r3[0]' and  r_date='$rdate' and sec='$class_section_id' and parent_r=1");
+		while($r4=fetcharray($sql24))
+		{
+			$log1=0;			
+		}	
+			
+	}
+if($log1=1)
+{
+	?>
+			<SCRIPT LANGUAGE="JavaScript">
+			alert("No home assigned ");
+			</SCRIPT>
+	<?php
+die();
+	
+}
+
+
+?>
+<br>
+<div align="center"><input type="submit" name="SendMSG" class='bgbutton' value="SendMSG" "></div><br>
+			
+</form>	
+</body>
+</html>

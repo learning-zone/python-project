@@ -1,0 +1,17 @@
+/*
+	 CSS-Tricks Example
+	 by Chris Coyier
+	 http://css-tricks.com
+*/
+
+*					{ margin: 0; padding: 0; }
+body				{ font: 15px Cambria, Serif;
+	 				  background: url(images/bg-solid.jpg) no-repeat; }
+
+h1					{ font: 36px Georgia, Serif; }
+
+#page-wrap			{ width: 500px; margin: 40px auto;
+	 				  background: url(images/bg-blurry.jpg) no-repeat fixed;
+	 				  border: 10px solid white; padding: 30px;
+					  min-height: 600px;
+					  -moz-border-radius: 30px; -webkit-border-radius: 30px; }

@@ -1,0 +1,66 @@
+
+CREATE TABLE user_group (
+  group_name varchar(50) default NULL,
+  module varchar(30) default NULL,
+  submodule varchar(30) default NULL,
+  linkname varchar(250) default NULL,
+  id int(10) default NULL,
+  parameter varchar(250) default NULL,
+  linkpath varchar(40) default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1
+
+CREATE TABLE dept_no (
+  Dept varchar(50) NOT NULL default '',
+  dpt_id int(11) NOT NULL auto_increment,
+  status int(1) default '1',
+  dept_code varchar(5) default NULL,
+  PRIMARY KEY  (dpt_id)
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+
+CREATE TABLE class_section (
+  id int(11) NOT NULL auto_increment,
+  section_name char(2) default NULL,
+  PRIMARY KEY  (id)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+CREATE TABLE batch_master (
+  id int(11) NOT NULL auto_increment,
+  batch_name varchar(50) default NULL,
+  PRIMARY KEY  (id)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+    
+
+CREATE TABLE staff_rights (
+  id int(11) NOT NULL auto_increment,
+  staff_id int(11) default NULL,
+  course_id int(11) default NULL,
+  subject_id int(11) default NULL,
+  year_id int(11) default NULL,
+  subject_type int(11) default NULL,
+  class_section_id int(4) default NULL,
+  batch_id int(4) default NULL,
+  StaffID varchar(50) default NULL,
+  maj_id int(6) default NULL,
+  PRIMARY KEY  (id)
+) ENGINE=MyISAM AUTO_INCREMENT=133 DEFAULT CHARSET=latin1 AUTO_INCREMENT=133 ;
+
+CREATE TABLE studentmenu (
+  module char(30) default NULL,
+  submodule char(30) default NULL,
+  linkname char(250) default NULL,
+  linkpath char(250) default NULL,
+  access enum('Yes','No') default NULL,
+  parameter char(250) default NULL,
+  id int(11) default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE parentmenu (
+  module char(30) default NULL,
+  submodule char(30) default NULL,
+  linkname char(250) default NULL,
+  linkpath char(250) default NULL,
+  access enum('Yes','No') default NULL,
+  parameter char(250) default NULL,
+  id int(11) default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+    

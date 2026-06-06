@@ -1,0 +1,36 @@
+<!-- BEGIN: main -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="{templatePath}style.css" type="text/css">
+        <!-- note that set the <base> tage AFTER we include the template's stylesheet file -->
+        <base href="{BASE_HREF}">
+        <!-- you can place a link here to the stylesheet of your site to ensure that everything looks and feels the same -->
+    </head>
+    <body>
+        <table style="width:100%;height:100%">
+            <tr>
+                <td id="header">
+                    <!--<h1>customize the header from the template</h1>-->
+                </td>
+            </tr>
+            
+            <tr>
+                <td style="width:100%;height:100%" valign="top">
+                    {printContent}
+                </td>
+            </tr>
+            
+            <tr>
+                <td id="footer">
+                    <!--<span class="footer">customize the footer from the template</span>-->
+                </td>
+            </tr>
+            
+        </table>
+    </body>
+</html>
+
+<!-- END: main -->
+

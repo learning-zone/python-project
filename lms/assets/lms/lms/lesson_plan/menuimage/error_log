@@ -1,0 +1,2 @@
+[20-Jan-2013 17:46:58] PHP Warning:  filesize() [<a href='function.filesize'>function.filesize</a>]: stat failed for Array in /home/myschool/public_html/demo/renew/lesson_plan/menuimage/download.php on line 32
+[20-Jan-2013 17:46:58] PHP Warning:  readfile(Array) [<a href='function.readfile'>function.readfile</a>]: failed to open stream: No such file or directory in /home/myschool/public_html/demo/renew/lesson_plan/menuimage/download.php on line 33

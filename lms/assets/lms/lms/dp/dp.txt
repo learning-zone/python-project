@@ -1,0 +1,154 @@
+CREATE TABLE IF NOT EXISTS `dp_exam_sub_m` (
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `exam_id` int(8) DEFAULT NULL,
+  `exam_name` varchar(75) NOT NULL,
+  `exam_sub_name` varchar(50) NOT NULL,
+  `subject_id` int(8) NOT NULL,
+  `section` int(2) NOT NULL,
+  `per_info` int(3) NOT NULL,
+  `mark` int(4) NOT NULL,
+  `class` int(4) NOT NULL,
+  `status` int(1) NOT NULL,
+  `order_id` int(2) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+
+CREATE TABLE IF NOT EXISTS `dp_exam_sub_sub_m` (
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `exam_id` int(8) DEFAULT NULL,
+  `masterexam` int(8) DEFAULT NULL,
+  `exam_name` varchar(75) NOT NULL,
+  `exam_sub_name` varchar(50) NOT NULL,
+  `class` int(11) NOT NULL,
+  `sub_id` int(11) NOT NULL,
+  `per_info` int(3) NOT NULL,
+  `mark` int(4) NOT NULL,
+  `status` int(1) NOT NULL,
+  `order_id` int(2) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `dp_exam_year_m` (
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `exam_name` varchar(75) NOT NULL,
+  `exam_sub_name` varchar(50) NOT NULL,
+  `per_info` int(3) NOT NULL,
+  `mark` int(4) NOT NULL,
+  `class` int(4) NOT NULL,
+  `status` int(1) NOT NULL,
+  `order_id` int(2) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `dp_marks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `class_section` int(2) DEFAULT NULL,
+  `student_id` int(11) DEFAULT NULL,
+  `subject_id` int(8) DEFAULT NULL,
+  `sem_id` int(4) NOT NULL,
+  `int_id` int(3) NOT NULL,
+  `tst_id` int(3) NOT NULL,
+  `mark` int(3) NOT NULL,
+  `maxmark` varchar(200) NOT NULL,
+  `status` varchar(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `dp_levels` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `level` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `dp_levels`
+--
+
+INSERT INTO `dp_levels` (`id`, `level`) VALUES
+(1, 'SL'),
+(2, 'HL');
+
+
+CREATE TABLE IF NOT EXISTS `dp_grade_point` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sem` int(4) NOT NULL,
+  `exam_id` int(5) NOT NULL,
+  `level_id` int(5) NOT NULL,
+  `from_point` int(5) NOT NULL,
+  `to_point` int(5) NOT NULL,
+  `tot_point` varchar(11) NOT NULL,
+  `desc` text NOT NULL,
+  `status` int(1) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `dp_remark` (
+`id` int(10) NOT NULL AUTO_INCREMENT,
+  `class` int(3) NOT NULL,
+  `sub` int(5) NOT NULL,
+  `expect` varchar(200) NOT NULL,
+  `exam_id` int(11) NOT NULL,
+  `student_id` int(10) NOT NULL,
+  `avg_grade` int(3) NOT NULL,
+  `expct_grade` tinyint(1) NOT NULL,
+  `suggestion` text NOT NULL,
+  `submission` text NOT NULL,
+  `punctuality` tinyint(1) NOT NULL,
+  `behavior` tinyint(1) NOT NULL,
+  `attendance` tinyint(1) NOT NULL,
+  `Class_part` tinyint(1) NOT NULL,
+  `inquirer` tinyint(1) NOT NULL,
+  `knowledgeable` tinyint(1) NOT NULL,
+  `open_minded` tinyint(1) NOT NULL,
+  `caring` tinyint(1) NOT NULL,
+  `thinker` tinyint(1) NOT NULL,
+  `balanced` tinyint(1) NOT NULL,
+  `risk_taker` tinyint(1) NOT NULL,
+  `principled` tinyint(1) NOT NULL,
+  `communicator` tinyint(1) NOT NULL,
+  `reflective` tinyint(1) NOT NULL,
+    `asob` varchar(200) NOT NULL,
+  PRIMARY KEY (`id`)
+) ;
+
+CREATE TABLE IF NOT EXISTS `dp_achive` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `head` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ;
+
+CREATE TABLE IF NOT EXISTS `dp_punch` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `head` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ;
+
+CREATE TABLE IF NOT EXISTS `dp_behave` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `head` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ;
+
+
+CREATE TABLE IF NOT EXISTS `dp_attand` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `head` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ;
+
+CREATE TABLE IF NOT EXISTS `dp_class` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `head` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ;
+
+
+myschoollite@myschool.renewinfosys.com
+%s-2&7K?C7AL
+
+
+host: myschoollite.com
+username: mylite@myschoollite.com
+pwd: LP2m@_8GsAVo
+

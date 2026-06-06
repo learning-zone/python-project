@@ -1,0 +1,822 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Help</title>
+         
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+     
+  <script language="JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+// -->
+  </script>
+</head>
+ <body text="#000000" bgcolor="#e5e5e5">
+   
+<table cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+     <tr>
+      <td width="2" height="3" valign="top"><br>
+       </td>
+      <td width="1" height="3" valign="top"><br>
+       </td>
+      <td width="2" height="3" valign="top"><br>
+       </td>
+      <td width="2" height="3" valign="top"><br>
+       </td>
+      <td width="1" height="3" valign="top"><br>
+       </td>
+      <td width="1" height="3" valign="top"><br>
+       </td>
+      <td width="1" height="3" valign="top"><br>
+       </td>
+      <td width="1" height="3" valign="top"><br>
+       </td>
+      <td width="1" height="3" valign="top"><br>
+       </td>
+      <td width="1" height="3" valign="top"><br>
+       </td>
+      <td width="1" height="3" valign="top"><br>
+       </td>
+      <td width="617" height="3" valign="top"><br>
+       </td>
+      <td width="11" height="3" valign="top"><br>
+       </td>
+      <td width="2" height="3" valign="top"><br>
+       </td>
+      <td width="1" height="3" valign="top"><br>
+       </td>
+      <td width="1" height="3" valign="top"><br>
+       </td>
+      <td width="7" height="3" valign="top"><br>
+       </td>
+      <td width="1" height="3" valign="top"><br>
+       </td>
+      <td width="1" height="3" valign="top"><br>
+       </td>
+      <td width="4" height="3" valign="top"><br>
+       </td>
+    </tr>
+    <tr>
+      <td width="2" height="36" valign="top"><br>
+       </td>
+      <td width="1" height="36" valign="top"><br>
+       </td>
+      <td width="2" height="36" valign="top"><br>
+       </td>
+      <td width="2" height="36" valign="top"><br>
+       </td>
+      <td width="1" height="36" valign="top"><br>
+       </td>
+      <td width="1" height="36" valign="top"><br>
+       </td>
+      <td width="1" height="36" valign="top"><br>
+       </td>
+      <td width="1" height="36" valign="top"><br>
+       </td>
+      <td width="648" height="36" colspan="12" valign="top">          
+      <div align="center"><b><a name="top"></a><font face="Arial"
+ size="2">ADMINISTRATION</font></b></div>
+  </td>
+    </tr>
+    <tr>
+      <td width="2" height="240" valign="top"><br>
+       </td>
+      <td width="1" height="240" valign="top"><br>
+       </td>
+      <td width="2" height="240" valign="top"><br>
+       </td>
+      <td width="2" height="240" valign="top"><br>
+       </td>
+      <td width="1" height="240" valign="top"><br>
+       </td>
+      <td width="1" height="240" valign="top"><br>
+       </td>
+      <td width="1" height="240" valign="top"><br>
+       </td>
+      <td width="1" height="240" valign="top"><br>
+       </td>
+      <td width="1" height="240" valign="top"><br>
+       </td>
+      <td width="1" height="240" valign="top"><br>
+       </td>
+      <td width="1" height="240" valign="top"><br>
+       </td>
+      <td width="617" height="240" valign="top">          
+      <ul>
+      <li><a href="#addcourse"><font size="2" face="Arial">Manage School Details</font></a></li>
+      <li><a href="#addyear"><font size="2" face="Arial">Managae Curriculam</font></a></li>
+      <li><a href="#addsubject"><font size="2" face="Arial">Manage Class</font></a></li>
+      <li><a href="#adddocument"><font size="2" face="Arial">Manage Section and Intake</font></a></li>
+      <li><a href="#addcollege"><font size="2" face="Arial">Manage Subjects</font></a></li>
+      <li><a href="#viewcourse"><font size="2" face="Arial">Add Document Details</font></a></li>
+      <li><a href="#addcategory"><font size="2" face="Arial">Manage Admission Type</font></a></li>
+      <li><a href="#applyintake"><font size="2" face="Arial">Manage Religion</font></a></li>
+      <li><a href="#sanctionintake"><font size="2" face="Arial">Manage Category</font></a></li>
+      <li><a href="#addsubject"><font size="2" face="Arial">Manage Nationality</font></a></li>
+	  <li><a href="#addsubject"><font size="2" face="Arial">Manage Country</font></a></li>
+	  <li><a href="#addsubject"><font size="2" face="Arial">Manage Batch</font></a></li>
+           
+      </ul>
+  </td>
+      <td width="11" height="240" valign="top"><br>
+       </td>
+      <td width="2" height="240" valign="top"><br>
+       </td>
+      <td width="1" height="240" valign="top"><br>
+       </td>
+      <td width="1" height="240" valign="top"><br>
+       </td>
+      <td width="7" height="240" valign="top"><br>
+       </td>
+      <td width="1" height="240" valign="top"><br>
+       </td>
+      <td width="1" height="240" valign="top"><br>
+       </td>
+      <td width="4" height="240" valign="top"><br>
+       </td>
+    </tr>
+    <tr>
+      <td width="2" height="37" valign="top"><br>
+       </td>
+      <td width="1" height="37" valign="top"><br>
+       </td>
+      <td width="2" height="37" valign="top"><br>
+       </td>
+      <td width="2" height="37" valign="top"><br>
+       </td>
+      <td width="635" height="37" colspan="9" valign="top">          
+      <hr size="1" color="red"> </td>
+      <td width="2" height="37" valign="top"><br>
+       </td>
+      <td width="1" height="37" valign="top"><br>
+       </td>
+      <td width="1" height="37" valign="top"><br>
+       </td>
+      <td width="7" height="37" valign="top"><br>
+       </td>
+      <td width="1" height="37" valign="top"><br>
+       </td>
+      <td width="1" height="37" valign="top"><br>
+       </td>
+      <td width="4" height="37" valign="top"><br>
+       </td>
+    </tr>
+    <tr>
+      <td width="2" height="19" valign="top"><br>
+       </td>
+      <td width="1" height="19" valign="top"><br>
+       </td>
+      <td width="2" height="19" valign="top"><br>
+       </td>
+      <td width="2" height="19" valign="top"><br>
+       </td>
+      <td width="1" height="19" valign="top"><br>
+       </td>
+      <td width="1" height="19" valign="top"><br>
+       </td>
+      <td width="1" height="19" valign="top"><br>
+       </td>
+      <td width="1" height="19" valign="top"><br>
+       </td>
+      <td width="1" height="19" valign="top"><br>
+       </td>
+      <td width="632" height="19" colspan="5" valign="top"><a
+ name="addcourse"></a><font face="Arial" size="2"><b>Manage School Details</b></font></td>
+      <td width="1" height="19" valign="top"><br>
+       </td>
+      <td width="1" height="19" valign="top"><br>
+       </td>
+      <td width="7" height="19" valign="top"><br>
+       </td>
+      <td width="1" height="19" valign="top"><br>
+       </td>
+      <td width="1" height="19" valign="top"><br>
+       </td>
+      <td width="4" height="19" valign="top"><br>
+       </td>
+    </tr>
+    <tr>
+      <td width="2" height="152" valign="top"><br>
+       </td>
+      <td width="1" height="152" valign="top"><br>
+       </td>
+      <td width="2" height="152" valign="top"><br>
+       </td>
+      <td width="2" height="152" valign="top"><br>
+       </td>
+      <td width="1" height="152" valign="top"><br>
+       </td>
+      <td width="1" height="152" valign="top"><br>
+       </td>
+      <td width="1" height="152" valign="top"><br>
+       </td>
+      <td width="1" height="152" valign="top"><br>
+       </td>
+      <td width="1" height="152" valign="top"><br>
+       </td>
+      <td width="632" height="152" colspan="5" valign="top">          
+      <p><font size="2" face="Arial">To Add a Course into the list. </font></p>
+           
+      <ol>
+      <li><font size="2" face="Arial">Enter the Course Name and its abbreviation
+       in the text boxes at the bottom of the page under the headings Course 
+Name       and abbreviations.</font></li>
+      <li><font size="2" face="Arial">Click the Button Add. </font></li>
+      <li><font size="2" face="Arial">Ensure that the Course Name and its
+      abbreviations are displayed in the list of the text boxes above.</font></li>
+           
+      </ol>
+               
+      <p align="right">&nbsp;</p>
+  </td>
+      <td width="1" height="152" valign="top"><br>
+       </td>
+      <td width="1" height="152" valign="top"><br>
+       </td>
+      <td width="7" height="152" valign="top"><br>
+       </td>
+      <td width="1" height="152" valign="top"><br>
+       </td>
+      <td width="1" height="152" valign="top"><br>
+       </td>
+      <td width="4" height="152" valign="top"><br>
+       </td>
+    </tr>
+    <tr>
+      <td width="2" height="155" valign="top"><br>
+       </td>
+      <td width="1" height="155" valign="top"><br>
+       </td>
+      <td width="2" height="155" valign="top"><br>
+       </td>
+      <td width="2" height="155" valign="top"><br>
+       </td>
+      <td width="1" height="155" valign="top"><br>
+       </td>
+      <td width="1" height="155" valign="top"><br>
+       </td>
+      <td width="1" height="155" valign="top"><br>
+       </td>
+      <td width="1" height="155" valign="top"><br>
+       </td>
+      <td width="631" height="155" colspan="5" valign="top">            
+ 
+      <p><b><font face="Arial" size="2">Modify</font></b></p>
+               
+      <ol>
+          <li><font face="Arial" size="2">Identify the Course Name and abbreviation
+           which needs to changed/modified.</font></li>
+          <li><font face="Arial" size="2">Click the check box of the select
+           menu for the Course Name and Abbreviation to be updated.</font></li>
+          <li><font face="Arial" size="2">Edit the text in the textfields
+          of Course Name or Abbreviation.</font></li>
+          <li><font face="Arial" size="2">Click the Button Modify. (The 
+         data is updated).</font></li>
+          <li><font face="Arial" size="2">Ensure that the Course Name and
+          its abbreviations are displayed proper in the list.</font></li>
+               
+      </ol>
+               
+      <p align="right"><a href="#top"><font face="Arial" size="2">Top</font></a></p>
+      </td>
+      <td width="2" height="155" valign="top"><br>
+       </td>
+      <td width="1" height="155" valign="top"><br>
+       </td>
+      <td width="1" height="155" valign="top"><br>
+       </td>
+      <td width="7" height="155" valign="top"><br>
+       </td>
+      <td width="1" height="155" valign="top"><br>
+       </td>
+      <td width="1" height="155" valign="top"><br>
+       </td>
+      <td width="4" height="155" valign="top"><br>
+       </td>
+    </tr>
+    <tr>
+      <td width="2" height="23" valign="top"><br>
+       </td>
+      <td width="642" height="23" colspan="13" valign="top">          
+      <hr size="1" color="red"> </td>
+      <td width="1" height="23" valign="top"><br>
+       </td>
+      <td width="1" height="23" valign="top"><br>
+       </td>
+      <td width="7" height="23" valign="top"><br>
+       </td>
+      <td width="1" height="23" valign="top"><br>
+       </td>
+      <td width="1" height="23" valign="top"><br>
+       </td>
+      <td width="4" height="23" valign="top"><br>
+       </td>
+    </tr>
+    <tr>
+      <td width="2" height="331" valign="top"><br>
+      </td>
+      <td width="1" height="331" valign="top"><br>
+      </td>
+      <td width="2" height="331" valign="top"><br>
+      </td>
+      <td width="2" height="331" valign="top"><br>
+      </td>
+      <td width="1" height="331" valign="top"><br>
+      </td>
+      <td width="1" height="331" valign="top"><br>
+      </td>
+      <td width="1" height="331" valign="top"><br>
+      </td>
+      <td width="1" height="331" valign="top"><br>
+      </td>
+      <td width="1" height="331" valign="top"><br>
+      </td>
+      <td width="1" height="331" valign="top"><br>
+      </td>
+      <td width="631" height="331" colspan="4" valign="top">            
+ 
+      <p align="left"><a name="addyear"></a><font size="2" face="Arial"><b>Managae Curriculam</b></font></p>
+               
+      <p><b><font size="2" face="Arial">To Add a Year/Semester of a Course
+         into the List:</font></b></p>
+               
+      <ol>
+          <li><font size="2" face="Arial">Scroll down to the bottom of the
+           page.</font></li>
+          <li><font size="2" face="Arial">Type the text ('Semester/Year'
+          name) in the text box next to the button Addnew.</font></li>
+          <li><font size="2" face="Arial">Click the button Addnew.</font></li>
+          <li><font size="2" face="Arial">Ensure that the Year/Semester 
+         name is displayed correctly in the list above.</font></li>
+               
+      </ol>
+               
+      <p><b><font size="2" face="Arial">To Modify/Delete a Year/Semester
+        of a Course in a list.</font></b></p>
+               
+      <ol>
+          <li><font size="2" face="Arial">Identify the Year/Semester name
+          to be changed/deleted.</font></li>
+          <li><font size="2" face="Arial">Click the check box of the respective
+           Year/Semester in the select menu.</font></li>
+          <li><font size="2" face="Arial">Edit the Year/Semester name in
+          the text box and click button Modify to update the details.</font></li>
+          <li><font size="2" face="Arial">Click button Delete to the delete
+           the Year/Semester.</font></li>
+          <li><font size="2" face="Arial">Ensure that the Year/Semester 
+         name is displayed correctly in the list or been deleted.</font></li>
+               
+      </ol>
+               
+      <p align="right"><a href="#top"><font face="Arial" size="2">Top</font></a></p>
+      </td>
+      <td width="1" height="331" valign="top"><br>
+      </td>
+      <td width="1" height="331" valign="top"><br>
+      </td>
+      <td width="7" height="331" valign="top"><br>
+      </td>
+      <td width="1" height="331" valign="top"><br>
+      </td>
+      <td width="1" height="331" valign="top"><br>
+      </td>
+      <td width="4" height="331" valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td width="2" height="20" valign="top"><br>
+       </td>
+      <td width="643" height="20" colspan="14" valign="top">          
+      <hr size="1" color="red"> </td>
+      <td width="1" height="20" valign="top"><br>
+       </td>
+      <td width="7" height="20" valign="top"><br>
+       </td>
+      <td width="1" height="20" valign="top"><br>
+       </td>
+      <td width="1" height="20" valign="top"><br>
+       </td>
+      <td width="4" height="20" valign="top"><br>
+       </td>
+    </tr>
+    <tr>
+      <td width="2" height="445" valign="top"><br>
+       </td>
+      <td width="1" height="445" valign="top"><br>
+       </td>
+      <td width="2" height="445" valign="top"><br>
+       </td>
+      <td width="2" height="445" valign="top"><br>
+       </td>
+      <td width="1" height="445" valign="top"><br>
+       </td>
+      <td width="1" height="445" valign="top"><br>
+       </td>
+      <td width="1" height="445" valign="top"><br>
+       </td>
+      <td width="634" height="445" colspan="7" valign="top">            
+ 
+      <p><a name="addsubject"></a><font size="2" face="Arial"><b>Manage Class</b></font></p>
+               
+      <p><b><font size="2" face="Arial">To Add a Subject to a course.</font>
+         </b></p>
+               
+      <ol>
+          <li><font size="2" face="Arial">Select the Course Name from the
+          drop down menu just below the Add Subject Details heading.</font></li>
+          <li><font size="2" face="Arial">Select the Year/Semester.</font></li>
+          <li><font size="2" face="Arial">Click the button Get Subject.<br>
+            <br>
+            After clicking the Get Subject button you observe that all the 
+subject           of that particular course and year gets displayed. Now add
+the subject.<br>
+            <br>
+            </font></li>
+          <li><font size="2" face="Arial">Enter all the fields like Subject
+           Name etc and Click the button Add Subject.</font></li>
+          <li><font size="2" face="Arial">Ensure that the Subject is displayed
+           in the list of subjects above.<br>
+            <br>
+            To Modify/Delete a Subject of a course<br>
+            <br>
+            </font></li>
+          <li><font size="2" face="Arial">Repeat the steps 1,2,3 </font></li>
+          <li><font size="2" face="Arial">Click the check box of the respective
+           subject which has to be modified/deleted.</font></li>
+          <li><font size="2" face="Arial">Change the text in the text boxes
+           of the subject specified and click the button modify to get the 
+data           updated.</font></li>
+          <li><font size="2" face="Arial">Click the button delete to the
+          delete the subject.</font></li>
+               
+      </ol>
+               
+      <p align="right"><a href="#top"><font face="Arial" size="2">Top</font></a></p>
+               
+      <hr size="1" color="red">     </td>
+      <td width="1" height="445" valign="top"><br>
+       </td>
+      <td width="1" height="445" valign="top"><br>
+       </td>
+      <td width="7" height="445" valign="top"><br>
+       </td>
+      <td width="1" height="445" valign="top"><br>
+       </td>
+      <td width="1" height="445" valign="top"><br>
+       </td>
+      <td width="4" height="445" valign="top"><br>
+       </td>
+    </tr>
+    <tr>
+      <td width="2" height="393" valign="top"><br>
+       </td>
+      <td width="1" height="393" valign="top"><br>
+       </td>
+      <td width="2" height="393" valign="top"><br>
+       </td>
+      <td width="2" height="393" valign="top"><br>
+       </td>
+      <td width="1" height="393" valign="top"><br>
+       </td>
+      <td width="1" height="393" valign="top"><br>
+       </td>
+      <td width="1" height="393" valign="top"><br>
+       </td>
+      <td width="1" height="393" valign="top"><br>
+       </td>
+      <td width="635" height="393" colspan="8" valign="top">            
+ 
+      <p><a name="adddocument"></a><font size="2" face="Arial"><b>Mangae Section and Intake</b></font></p>
+               
+      <p><b><font size="2" face="Arial">To add the documents to the list:</font></b></p>
+               
+      <ol>
+          <li><font size="2" face="Arial">Type the document name in the 
+         text box below the Add Document Name heading and click the button 
+Add.</font></li>
+               
+      </ol>
+               
+      <p><b><font size="2" face="Arial">To Modify/Delete the documents:</font></b></p>
+               
+      <ol>
+          <li><font size="2" face="Arial">Check the check box for which 
+         the document has to be modified or deleted.</font></li>
+          <li><font size="2" face="Arial">Edit the text in the text box 
+         and click the button modify to get the data updated.</font></li>
+          <li><font size="2" face="Arial">Click the button delete to delete
+           the document.</font></li>
+               
+      </ol>
+               
+      <p><b><font size="2" face="Arial">To archieve the deleted documents:</font></b></p>
+               
+      <ol>
+          <li><font size="2" face="Arial">Check the check box for which 
+         the document has to be restored.</font></li>
+          <li><font size="2" face="Arial">Click the button Activate.</font></li>
+          <li><font size="2" face="Arial">Ensure that the document name 
+         is displayed in the document list.</font></li>
+               
+      </ol>
+               
+      <p align="right"><a href="#top"><font face="Arial" size="2">Top</font></a></p>
+               
+      <hr size="1" color="red">     </td>
+      <td width="7" height="393" valign="top"><br>
+       </td>
+      <td width="1" height="393" valign="top"><br>
+       </td>
+      <td width="1" height="393" valign="top"><br>
+       </td>
+      <td width="4" height="393" valign="top"><br>
+       </td>
+    </tr>
+    <tr>
+      <td width="2" height="119" valign="top"><br>
+       </td>
+      <td width="1" height="119" valign="top"><br>
+       </td>
+      <td width="2" height="119" valign="top"><br>
+       </td>
+      <td width="2" height="119" valign="top"><br>
+       </td>
+      <td width="1" height="119" valign="top"><br>
+       </td>
+      <td width="1" height="119" valign="top"><br>
+       </td>
+      <td width="644" height="119" colspan="11" valign="top">           
+  
+      <p><a name="addcollege"></a><font size="2" face="Arial"><b>Mangae Subject Type</b></font></p>
+               
+      <ol>
+          <li><font size="2" face="Arial">Check the check box of the college
+           and change the text fields of the college and click the modify 
+button           to update the changes.</font></li>
+               
+      </ol>
+               
+      <p align="right"><a href="#top"><font face="Arial" size="2">Top</font></a></p>
+               
+      <hr size="1" color="red">     </td>
+      <td width="1" height="119" valign="top"><br>
+       </td>
+      <td width="1" height="119" valign="top"><br>
+       </td>
+      <td width="4" height="119" valign="top"><br>
+       </td>
+    </tr>
+    <tr>
+      <td width="2" height="96" valign="top"><br>
+       </td>
+      <td width="1" height="96" valign="top"><br>
+       </td>
+      <td width="2" height="96" valign="top"><br>
+       </td>
+      <td width="2" height="96" valign="top"><br>
+       </td>
+      <td width="1" height="96" valign="top"><br>
+       </td>
+      <td width="645" height="96" colspan="12" valign="top">            
+ 
+      <p><a name="viewcourse"></a><font face="Arial" size="2"><b>Mangae Subjects</b></font></p>
+               
+      <p><font face="Arial" size="2">The page displays all the courses and
+         its abbreviations.</font></p>
+               
+      <p align="right"><a href="#top"><font face="Arial" size="2">Top</font></a></p>
+           
+      <hr size="1" color="red"> </td>
+      <td width="1" height="96" valign="top"><br>
+       </td>
+      <td width="1" height="96" valign="top"><br>
+       </td>
+      <td width="4" height="96" valign="top"><br>
+       </td>
+    </tr>
+    <tr>
+      <td width="2" height="313" valign="top"><br>
+       </td>
+      <td width="1" height="313" valign="top"><br>
+       </td>
+      <td width="2" height="313" valign="top"><br>
+       </td>
+      <td width="648" height="313" colspan="14" valign="top">           
+  
+      <p><a name="addcategory"></a><font face="Arial" size="2"><b>Mangae Religion</b></font></p>
+               
+      <p><font face="Arial" size="2">Mangae Admission Type</font></p>
+               
+      <ol>
+          <li><font face="Arial" size="2">Type the category type in the 
+         text box that is below the heading Category Type.</font></li>
+          <li><font face="Arial" size="2">Click the button Add.</font></li>
+          <li><font face="Arial" size="2">Ensure that the category type 
+         is displayed properly in the list above.</font></li>
+               
+      </ol>
+               
+      <p><b><font face="Arial" size="2">To Modify/Delete the Category    
+    type:</font></b></p>
+               
+      <ol>
+          <li><font face="Arial" size="2">Identify the field for which the
+           category type has to be modified/deleted</font></li>
+          <li><font face="Arial" size="2">Check the check box of the respective
+           field.</font></li>
+          <li><font face="Arial" size="2">Change the category type in the
+          text box and click the button modify to get the data updated.</font></li>
+          <li><font face="Arial" size="2">Click the button delete to delete
+           the category type.</font></li>
+               
+      </ol>
+               
+      <p align="right"><a href="#top"><font face="Arial" size="2">Top</font></a></p>
+               
+      <hr size="1" color="red">     </td>
+      <td width="1" height="313" valign="top"><br>
+       </td>
+      <td width="1" height="313" valign="top"><br>
+       </td>
+      <td width="4" height="313" valign="top"><br>
+       </td>
+    </tr>
+    <tr>
+      <td width="2" height="290" valign="top"><br>
+       </td>
+      <td width="1" height="290" valign="top"><br>
+       </td>
+      <td width="651" height="290" colspan="16" valign="top">           
+  
+      <p><a name="applyintake"></a><font size="2" face="Arial"><b>Mangae Category</b></font></p>
+               
+      <p><font size="2" face="Arial">To add the intake of admission types:</font></p>
+               
+      <ol>
+          <li><font size="2" face="Arial">Select the course and year/semester
+           from the drop down menus and click the button Get Intake.</font></li>
+          <li><font size="2" face="Arial">Type the Admission type and intake
+           in the text boxes below and click the button ADD.<br>
+            <br>
+            To modify/delete the Admission types:<br>
+            <br>
+            </font></li>
+          <li><font size="2" face="Arial">Follow the Step1.</font></li>
+          <li><font size="2" face="Arial">Check the check box and change
+          the intake in the textbox of the corresponding field. Click modify 
+to           update the data.</font></li>
+          <li><font size="2" face="Arial">Click the button Delete to delete
+           the admission type.</font></li>
+               
+      </ol>
+               
+      <p align="right"><a href="#top"><font face="Arial" size="2">Top</font></a></p>
+               
+      <hr size="1" color="red">     </td>
+      <td width="1" height="290" valign="top"><br>
+       </td>
+      <td width="4" height="290" valign="top"><br>
+       </td>
+    </tr>
+    <tr>
+      <td width="655" height="328" colspan="19" valign="top">           
+  
+      <p><a name="sanctionintake"></a><font size="2" face="Arial"><b>Mangae Nationality</b></font></p>
+               
+      <p><font size="2" face="Arial">To add the intake to the Semesters/Year
+         of a course.</font></p>
+               
+      <ol>
+          <li><font size="2" face="Arial">Select the Course Name and click
+           the button Get Intake.</font></li>
+          <li><font size="2" face="Arial">Select the Semester/Year from 
+         the drop down menu below and type the intake in the text box.</font></li>
+          <li><font size="2" face="Arial">Click the button Add.</font></li>
+          <li><font size="2" face="Arial">Ensure that it is displayed properly
+           in the list above.<br>
+            <br>
+            To modify/delete the intake of the Semester/Year of a course:<br>
+            <br>
+            </font></li>
+          <li><font size="2" face="Arial">Repeat the Step 1</font></li>
+          <li><font size="2" face="Arial">Check the check box of the respective
+           Year/Semester and change the intake in the text box and click
+the button           modify to update the data.</font></li>
+          <li><font size="2" face="Arial">Click delete to delete the record.</font></li>
+               
+      </ol>
+               
+      <p align="right"><a href="#top"><font face="Arial" size="2">Top</font></a></p>
+               
+      <hr size="1" color="red">     </td>
+      <td width="4" height="328" valign="top"><br>
+       </td>
+    </tr>
+    <tr>
+      <td width="2" height="265" valign="top"><br>
+       </td>
+      <td width="657" height="265" colspan="19" valign="top">           
+  
+      <p><a name="addsubject"></a><font size="2" face="Arial"><b>Mangae Country</b></font></p>
+               
+      <p><font size="2" face="Arial">To add Subject type:</font></p>
+               
+      <ol>
+          <li><font size="2" face="Arial">Type the subject type in the text
+           box next to the button AddNew.</font></li>
+          <li><font size="2" face="Arial">Click the button AddNew.</font></li>
+               
+      </ol>
+               
+      <p><font size="2" face="Arial">To modify/delete the Subject type:</font></p>
+               
+      <ol>
+          <li><font size="2" face="Arial">Check the check box of the Subject
+           type which has to be modified/deleted.</font></li>
+          <li><font size="2" face="Arial">Change the text in the text box
+          and click the button modify to get the data updated.</font></li>
+          <li><font size="2" face="Arial">Click the button delete to delete
+           the subject type.</font></li>
+               
+      </ol>
+               
+      <p align="right"><a href="#top"><font face="Arial" size="2">Top</font></a></p>
+               
+      <hr size="1" color="red">     </td>
+    </tr>
+    <tr>
+      <td width="2" height="1" valign="top"><font face="Arial"><img
+ width="2" height="1" src="transparent.gif">
+       </font></td>
+      <td width="1" height="1" valign="top"><font face="Arial"><img
+ width="1" height="1" src="transparent.gif">
+       </font></td>
+      <td width="2" height="1" valign="top"><font face="Arial"><img
+ width="2" height="1" src="transparent.gif">
+       </font></td>
+      <td width="2" height="1" valign="top"><font face="Arial"><img
+ width="2" height="1" src="transparent.gif">
+       </font></td>
+      <td width="1" height="1" valign="top"><font face="Arial"><img
+ width="1" height="1" src="transparent.gif">
+       </font></td>
+      <td width="1" height="1" valign="top"><font face="Arial"><img
+ width="1" height="1" src="transparent.gif">
+       </font></td>
+      <td width="1" height="1" valign="top"><font face="Arial"><img
+ width="1" height="1" src="transparent.gif">
+       </font></td>
+      <td width="1" height="1" valign="top"><font face="Arial"><img
+ width="1" height="1" src="transparent.gif">
+       </font></td>
+      <td width="1" height="1" valign="top"><font face="Arial"><img
+ width="1" height="1" src="transparent.gif">
+       </font></td>
+      <td width="1" height="1" valign="top"><font face="Arial"><img
+ width="1" height="1" src="transparent.gif">
+       </font></td>
+      <td width="1" height="1" valign="top"><font face="Arial"><img
+ width="1" height="1" src="transparent.gif">
+       </font></td>
+      <td width="617" height="1" valign="top"><font face="Arial"><img
+ width="617" height="1" src="transparent.gif">
+       </font></td>
+      <td width="11" height="1" valign="top"><font face="Arial"><img
+ width="11" height="1" src="transparent.gif">
+       </font></td>
+      <td width="2" height="1" valign="top"><font face="Arial"><img
+ width="2" height="1" src="transparent.gif">
+       </font></td>
+      <td width="1" height="1" valign="top"><font face="Arial"><img
+ width="1" height="1" src="transparent.gif">
+       </font></td>
+      <td width="1" height="1" valign="top"><font face="Arial"><img
+ width="1" height="1" src="transparent.gif">
+       </font></td>
+      <td width="7" height="1" valign="top"><font face="Arial"><img
+ width="7" height="1" src="transparent.gif">
+       </font></td>
+      <td width="1" height="1" valign="top"><font face="Arial"><img
+ width="1" height="1" src="transparent.gif">
+       </font></td>
+      <td width="1" height="1" valign="top"><font face="Arial"><img
+ width="1" height="1" src="transparent.gif">
+       </font></td>
+      <td width="4" height="1" valign="top"><font face="Arial"><img
+ width="4" height="1" src="transparent.gif">
+       </font></td>
+    </tr>
+     
+  </tbody> 
+</table>
+  <br>
+ 
+</body>
+</html>

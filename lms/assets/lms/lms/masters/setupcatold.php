@@ -1,0 +1,652 @@
+<?php
+session_start();
+include("../db.php");
+
+/*echo "<pre>";
+print_r($_GET);
+print_r($_POST);
+echo "</pre>";*/
+
+/*print_r($_SESSION);*/
+
+$user = $_SESSION['user'];
+$a_year = $_SESSION['AcademicYear'];
+
+if($_GET)
+{
+	$term  = $_GET['term'];
+	$msg = $_REQUEST['msg'];	
+	$Type = $_REQUEST['Type'];
+    $subject = $_REQUEST['subject'];
+	$category = $_REQUEST['category'];
+	
+	if($Type!='')
+	{
+		$category='';
+	}
+}
+
+if($_POST)
+{
+	$term = $_POST['term'];
+	$subject = $_POST['subject'];
+	$category = $_POST['category'];
+}
+if($_POST['subject']!='' and $_POST['term']!='' and $_POST['category']=='')
+{
+	$Type="summary";
+}
+
+if($msg)
+{
+?>
+<script language="javascript">
+	  //alert("<?=$msg?>");
+    </script>
+<?
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<Script language="JavaScript">
+  function OpenWind2(URL, title,w,h)
+  {
+
+	 var left = (screen.width/2)-(w/2);
+     var top = (screen.height/2)-(h/2);
+     var newWin = window.open (URL, title, '_blank, toolbar=no, location=no,directories=no, status=no, menubar=no, scrollbars=yes, resizable=no,copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+	 
+  }
+</script>
+<Script language="JavaScript">
+  function adds_onclick()
+  {
+	  document.frm.action="setupcat_edt.php?Type=Add";
+	  document.frm.submit();
+  }
+  function RefreshMe()
+  {
+	  document.frm.action="setupcat.php";
+	  document.frm.submit();
+  }
+  function Summary()
+  {
+	  document.frm.action="setupcat.php?Type=summary";
+	  document.frm.submit();
+  }
+</script>
+<Script language="JavaScript">
+  function selectMe()
+  {
+	  
+	var i = document.frm.length;
+	for(j=0;j<i;++j)
+	{
+		if(document.frm[j].Sel != "CheckBox")
+		{
+			flag = document.frm[j].checked;
+			document.frm[j].checked = !flag;
+		}
+	}
+  }
+</script>
+</head>
+<title>SETUP</title>
+<body >
+<form method="post" name="frm">
+  <table align='center' class='forumline' width='100%'>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>&nbsp;&nbsp;Category</td>
+      <td>&nbsp;&nbsp;Assignment</td>
+    </tr>
+    <tr>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;Class</td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;Term</td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;Category</td>
+      <td>&nbsp;&nbsp;</td>
+      <td>&nbsp;&nbsp;</td>
+      <td><input type="button"  value="Add"  style="width:86px; height:22px;"  href="javascript:void(0);" onClick="OpenWind2('category.php?subject=<?=$subject?>&term=<?=$term?>', 'OpenWind2', 800, 400)" class="bgbutton"></td>
+      <td><input type="button"  value="Add"  style="width:86px; height:22px;"  href="javascript:void(0);" onClick="OpenWind2('assignment.php?subject=<?=$subject?>&category=<?=$category?>&term=<?=$term?>', 'OpenWind2', 800, 400)" class="bgbutton"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;&nbsp;
+        <select name="subject" onChange="RefreshMe()">
+          <option value=""></option>
+          <?php
+          $sqlSub=execute("SELECT a.year_id, a.year_name, b.subject_id, b.subject_name FROM `course_year` a, `subject_m` b  WHERE a.year_id = b.course_year_id ORDER BY `year_id`");
+		  
+          while($r1=fetcharray($sqlSub))
+          {
+              if($subject==$r1[subject_id])
+                  echo "<option value=$r1[subject_id] selected>$r1[year_name] - $r1[subject_name]</option>";
+              else
+                  echo "<option value=$r1[subject_id]>$r1[year_name] - $r1[subject_name]</option>";
+          }
+      ?>
+        </select></td>
+     <?
+		$CURDATE=date('Y-m-d');
+
+	$termDate=fetcharray(execute("SELECT id FROM academic_term
+WHERE CURDATE() between start_date AND end_date AND `a_year`='$a_year' AND `status`=1"));
+
+		if($_POST['term']!=''){
+			$term=$_POST['term'];
+		}
+		else{
+			$term=$termDate[0];
+		}
+?>
+      <td>&nbsp;&nbsp;
+        <select name="term" onChange="RefreshMe()">
+          <option value="">--- Select ---</option>
+          <?php
+          $sql=execute("SELECT `id`, `term` FROM `academic_term` WHERE `a_year`='$a_year' AND `status`=1  ORDER BY `id`");
+		          //$term=$rermDate[0];
+          while($r2=fetcharray($sql))
+          {
+              if($term==$r2[id])
+                  echo "<option value=$r2[id] selected>$r2[term]</option>";
+              else
+                  echo "<option value=$r2[id]>$r2[term]</option>";
+          }
+      ?>
+        </select></td>
+      <td>&nbsp;&nbsp;
+        <select name="category" onChange="RefreshMe()">
+          <option value="">--- Select ---</option>
+          <?php
+$sql=execute("SELECT `id`, `title` FROM `grade_category` WHERE `a_year`='$a_year' AND `status`=1 AND `subject`='$subject' ORDER BY `id`");
+          while($r3=fetcharray($sql))
+          {
+              if($category==$r3[id])
+                  echo "<option value=$r3[id] selected>$r3[title]</option>";
+              else
+                  echo "<option value=$r3[id]>$r3[title]</option>";
+          }
+      ?>
+        </select></td>
+      <td><input type="button"  value="Summary"  style="width:86px; height:22px;" onClick="Summary()" class="bgbutton"></td>
+      <td><input type="button"  value="Set Up"  style="width:86px; height:22px;"  href="javascript:void(0);" onClick="OpenWind2('setup.php?subject=<?=$subject?>&term=<?=$term?>', 'OpenWind2', 800, 350)" class="bgbutton"></td>
+      <td><input type="button"  value="Edit" style="width:86px; height:22px"  href="javascript:void(0);" onClick="OpenWind2('category_edt.php?subject=<?=$subject?>&category=<?=$category?>', 'OpenWind2', 800, 500)" class="bgbutton"></td>
+      <td><input type="button"  value="Edit" style="width:86px; height:22px"  href="javascript:void(0);" onClick="OpenWind2('assignment_edt.php?subject=<?=$subject?>&category=<?=$category?>&term=<?=$term?>', 'OpenWind2', 800, 500)" class="bgbutton"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+  <BR>
+  <div style="overflow-x:hidden;overflow-y:scroll; height:422px">
+  <?php
+if($Type!="summary"){
+	
+	$tablename='grade_m_'.$subject.'_'.$term;
+	$rs=execute("SELECT * FROM $tablename LIMIT 1") or die('<center><blink>Please create Setup first !!!</blink></center>');
+	?>
+    <table align="left" border="1" class="forumline">
+      <tr> 
+        <td class="row3" align="center" width="300" nowrap>Student Name<BR></td>
+        <?
+       //++++++++++++++++++++++++++++++++++++++++++   TO FETCH EXSISTING COLUMN NAME  +++++++++++++++++++++++++++++++++++++++++++
+ 
+	    $resultCol=execute("SELECT `title`, `max_point`, `inserted_date`, `description`, `apply_grade`, `grade_type` FROM `grade_assessment` WHERE `subject`=$subject AND `category_id` = $category");
+		$rowCount=rowcount($resultCol);
+		
+		$resultCount=execute("SELECT `id` FROM `grade_assessment` WHERE `subject`=$subject AND `category_id` = $category AND `apply_grade`='Y'");
+		$NoRowCount=rowcount($resultCount);
+		
+		//echo "<br>RowCount :".$NoRowCount;
+		
+		while($rCol=fetcharray($resultCol))      
+		{
+			if($rCol['apply_grade']=='Y')
+			{
+				$apply_grade='Applied to Report Card';
+				$titleValue="Created Date :".date('d-M-Y', strtotime($rCol['inserted_date']))."
+Maximum Point :$rCol[max_point]
+Description :$rCol[description]
+$apply_grade";
+
+			?>
+                <td class="row3" align="center" title="<?=$titleValue?>">
+             <font color="#006600"><?=$rCol['title']?><BR><?PHP if($rCol['max_point']==0){ echo 'Letter';}else{ echo $rCol['max_point'];}?></font></td>
+            <?
+			}
+			else
+			{
+				$apply_grade='Not Applied to Report Card';
+				$titleValue="Created Date :".date('d-M-Y', strtotime($rCol['inserted_date']))."
+Maximum Point :$rCol[max_point]
+Description :$rCol[description]
+$apply_grade";
+
+			?>
+                <td class="row3" align="center" title="<?=$titleValue?>">
+                <font color="#990000"><?=$rCol['title']?><BR><?PHP if($rCol['max_point']==0){ echo 'Letter';}else{ echo $rCol['max_point'];}?></font></td>
+            <?
+			}
+				//++++++++++++++++++++++++++++++++++++++++++++++
+				if($rCol['grade_type']=='alphabet'){
+					 $flag=1;
+				}else{
+					 $flag=0;
+				}
+
+		 }
+		 if($category==''){
+		?>
+            <td class="row3" align="center" title="New Header" width="100px"></td>
+            <td class="row3" align="center" title="New Header" width="100px"></td>
+            <td class="row3" align="center" title="New Header" width="100px"></td>
+            <td class="row3" align="center" title="New Header" width="100px"></td>
+        <?
+		 }
+		 
+		
+	  if($category!=''){
+	  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	  	if($flag==0){
+	   ?>
+      	   <td class="row3" align="center" width="50">AVG<BR></td>
+          <?
+		   }
+		  ?>
+          <td class="row3" align="center" width="50">GRADE<BR></td>
+      <?
+	  }
+	  ?>
+      </tr>
+      <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+      <?
+		   $qResult = execute ("SELECT * FROM `grade_avg` WHERE `subject` = '$subject' AND `status` ='1'");
+			$itms=fetcharray($qResult);
+			
+			$subdet=fetchrow(execute("SELECT elective,course_year_id FROM subject_m WHERE subject_id='$subject'"));
+			if($subdet[0]=='N')
+			{
+				$sql=execute("SELECT student_id, first_name, last_name FROM student_m WHERE course_yearsem='$subdet[1]' and archive='N' order by first_name");
+			}
+			else
+			{
+				$sql=execute("SELECT a.student_id, a.first_name, a.last_name FROM student_m a, student_course b WHERE a.archive='N' and b.`sub`='$subject' and a.id=b.stu_id and b.acc_year=a.academic_year group by  a.student_id  order by a.first_name ");	
+			}
+	 
+	 ?>
+      
+      <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+      
+      <tr>
+        <?php
+			$sno=1;
+			$count=1;
+			$avg=0;
+            while($r=fetcharray($sql))
+			{
+				if($sno<10)
+				{
+					$sno="0".$sno;
+				}
+				
+				if($i%2)
+					echo "<tr class=''>";
+				else
+					echo "<tr>";
+					
+
+			?>
+        <input type="hidden" name="Sel[]" value="<?=$r['student_id']?>" >
+        <td align='left' >&nbsp;
+          <?=$sno?>.&nbsp;&nbsp;<?=$r['first_name']?>&nbsp;<?=$r['last_name']?></td>
+        <?
+       //++++++++++++++++++++++++++++++++++++++++++   TO FETCH EXSISTING COLUMN NAME  +++++++++++++++++++++++++++++++++++++++++++
+		
+		$resultCol=execute("SELECT `id`,`title`,`max_point` FROM `grade_assessment` WHERE `subject`='$subject' AND `category_id` ='$category'");
+		
+		$resultRow=execute("SELECT `id`,`title`,`max_point` FROM `grade_assessment` WHERE `subject`='$subject' AND `category_id` ='$category' AND `apply_grade`='Y'");
+		$newRow=rowcount($resultRow);
+	
+		
+		 $sum=0;		 
+		while($rCol=fetcharray($resultCol))      
+		{
+			
+			$string = str_replace(' ', '_', $rCol['title']);
+			$field=$string.'_'.$category;
+	        
+			$tablename='grade_m_'.$subject.'_'.$term;
+			
+			$colValue=fetcharray(execute("SELECT $field FROM `$tablename` WHERE `id`=$count AND `term`='$term'"));
+			
+		  ?>
+            <td nowrap align="center" width="5">
+            <Input Type="Text" Name="<?=$r['student_id']?><?=$rCol['title']?>" value="<?=$colValue[$field]?>" size=10 ></td>
+         <?
+		 
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++	 
+		 $resultColN=fetcharray(execute("SELECT `id`, `title`,`max_point`,`grade_type` FROM `grade_assessment` WHERE `subject`='$subject' AND `category_id` ='$category' AND `term`='$term' AND `apply_grade`='Y' AND id='$rCol[id]'"));
+	    
+	#############################################################################################################################
+						if($itms['letter1']==$colValue[$field]){				/*CONDITIONS FOR DISPALY GRADES*/
+							$gradeValue=$itms['avg1'];		
+						}else if($itms['letter2']==$colValue[$field]){
+							$gradeValue=$itms['avg2'];
+						}else if($itms['letter3']==$colValue[$field]){
+							$gradeValue=$itms['avg3'];
+						}else if($itms['letter4']==$colValue[$field]){
+							$gradeValue=$itms['avg4'];
+						}else if($itms['letter5']==$colValue[$field]){
+							$gradeValue=$itms['avg5'];
+						}else if($itms['letter6']==$colValue[$field]){
+							$gradeValue=$itms['avg6'];
+						}else if($itms['letter7']==$colValue[$field]){
+							$gradeValue=$itms['avg7'];
+						}else if($itms['letter8']==$colValue[$field]){
+							$gradeValue=$itms['avg8'];
+						}else if($itms['letter9']==$colValue[$field]){
+							$gradeValue=$itms['avg9'];
+						}else if($itms['letter10']==$colValue[$field]){
+							$gradeValue=$itms['avg10'];
+						}else if($itms['letter11']==$colValue[$field]){
+							$gradeValue=$itms['avg11'];
+						}else if($itms['letter12']==$colValue[$field]){
+							$gradeValue=$itms['avg12'];
+						}else if($itms['letter13']==$colValue[$field]){
+							$gradeValue=$itms['avg13'];
+						}else if($itms['letter14']==$colValue[$field]){
+							$gradeValue=$itms['avg14'];
+						}else if($itms['letter15']==$colValue[$field]){
+							$gradeValue=$itms['avg15'];
+						}
+							
+	
+	#############################################################################################################################	
+		
+		
+		if($resultColN['id']!='')
+		{
+			 
+		 	$stringN = str_replace(' ', '_', $resultColN['title']);
+			$fieldN=$string.'_'.$category;
+			
+			$tablename='grade_m_'.$subject.'_'.$term;
+	
+		$colValueN=fetcharray(execute("SELECT $fieldN FROM `$tablename` WHERE `id`=$count AND `term`='$term'"));
+		
+
+   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++			
+			  	if($resultColN['grade_type']=='alphabet')
+				{
+			  		 $sum = ($sum + $gradeValue);		
+				}else
+				{
+					$field_avg = ( $colValueN[$fieldN] * 100 )/$rCol['max_point'];
+			  		$sum = $sum + $field_avg;
+				}		
+		}
+	}
+		 if($category!=''){
+			        $avg=round(($sum / $NoRowCount),0);
+	  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	  			if($flag==0){
+	    	?>
+           		 <td nowrap align="center"><?=$avg?>.0</td>
+         	<?
+				}
+						if($avg <= $itms['avg1'] and $avg > $itms['avg2']){				/*CONDITIONS FOR DISPALY GRADES*/
+							$display=$itms['letter1'];		
+						}else if($avg <= $itms['avg2'] and $avg > $itms['avg3']){
+							$display=$itms['letter2'];
+						}else if($avg <= $itms['avg3'] and $avg > $itms['avg4']){
+							$display=$itms['letter3'];
+						}else if($avg <= $itms['avg4'] and $avg > $itms['avg5']){
+							$display=$itms['letter4'];
+						}else if($avg <= $itms['avg5'] and $avg > $itms['avg6']){
+							$display=$itms['letter5'];
+						}else if($avg <= $itms['avg6'] and $avg > $itms['avg7']){
+							$display=$itms['letter6'];
+						}else if($avg <= $itms['avg7'] and $avg > $itms['avg8']){
+							$display=$itms['letter7'];
+						}else if($avg <= $itms['avg8'] and $avg > $itms['avg9']){
+							$display=$itms['letter8'];
+						}else if($avg <= $itms['avg9'] and $avg > $itms['avg10']){
+							$display=$itms['letter9'];
+						}else if($avg <= $itms['avg10'] and $avg > $itms['avg11']){
+							$display=$itms['letter10'];
+						}else if($avg <= $itms['avg11'] and $avg > $itms['avg12']){
+							$display=$itms['letter11'];
+						}else if($avg <= $itms['avg12'] and $avg > $itms['avg13']){
+							$display=$itms['letter12'];
+						}else if($avg <= $itms['avg13'] and $avg > $itms['avg14']){
+							$display=$itms['letter13'];
+						}else if($avg <= $itms['avg14'] and $avg > $itms['avg15']){
+							$display=$itms['letter14'];
+						}else{
+							$display=$itms['letter15'];
+						}
+					?>
+                      <td align="left" nowrap>&nbsp;&nbsp;<?=$display?>&nbsp;</td>
+                <?
+		 }
+		if($category==''){
+		?>
+            <td  align="center" title="New field" width="100px"></td>
+            <td  align="center" title="New field" width="100px"></td>
+            <td  align="center" title="New field" width="100px"></td>
+            <td  align="center" title="New field" width="100px"></td>
+        <?
+		 }
+		 
+			if($subject!='' and $category!='' and $term!=''){
+				
+					$tablename='grade_m_'.$subject.'_'.$term;
+					$sqlUd="UPDATE `$tablename` SET `avg_$category` = '$avg' WHERE `id`= $count";
+					
+					$resultUd=execute($sqlUd) or die();
+			}
+			++$count;
+			++$sno;
+			 ++$i;
+		      
+		       $rowclass = 1 - $rowclass;
+			}
+            ?>
+      </tr>
+    </table>
+  <?
+ }
+ else{
+	
+//##############################################    GRADE SUMMARY PART   ########################################################
+
+?>
+  <table align="left" border="1" class="forumline">
+      <tr> 
+        <td  class="row3" align="center" width="300" nowrap>Student Name<BR></td>
+        <?
+       //++++++++++++++++++++++++++++++++++++++++++   TO FETCH EXSISTING COLUMN NAME  ++++++++++++++++++++++++++++++++++++++
+	 
+	  $method=fetcharray(execute("SELECT `cal_method` FROM `grade_setup` WHERE `subject`='$subject' AND `status`=1"));
+		  
+	    $resultGrade=execute("SELECT `id`,`title`,`weight` FROM `grade_category` WHERE `subject`= '$subject' AND `status`=1");
+		
+		while($rGrade=fetcharray($resultGrade))      
+		{
+   $maxPoint=fetcharray(execute("SELECT SUM(max_point) FROM grade_assessment WHERE category_id='$rGrade[id]' AND `apply_grade`='Y'"));
+		 	  ?>
+        		<td class="row3" align="center"><?=$rGrade['title']?><BR>
+				<?
+				  if($method['cal_method']==2)
+	 			  {
+					  echo $rGrade['weight']?></td>
+                    <?  
+				  }if($method['cal_method']==1){
+				       echo $maxPoint[0]?></td>
+           	  <?
+				  }
+		 }
+	  
+	  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 ?>
+     		<td class="row3" align="center">&nbsp;AVG&nbsp;<BR></td>
+            <td class="row3" align="center">GRADE<BR></td>
+      </tr>
+      <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+      <?
+			$subdet=fetchrow(execute("SELECT elective,course_year_id FROM subject_m WHERE subject_id='$subject'"));
+			if($subdet[0]=='N')
+			{
+				$sql=execute("SELECT student_id, first_name, last_name FROM student_m WHERE course_yearsem='$subdet[1]' and archive='N' order by first_name");
+			}
+			else
+			{
+				$sql=execute("SELECT a.student_id, a.first_name, a.last_name FROM student_m a, student_course b WHERE a.archive='N' and b.`sub`='$subject' and a.id=b.stu_id and b.acc_year=a.academic_year group by  a.student_id  order by a.first_name ");	
+			}
+	 
+	  ?>
+      
+      <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->      
+      <tr>
+        <?php
+			
+			$qResult = execute ("SELECT * FROM `grade_avg` WHERE `subject` = '$subject' AND `status` ='1'");
+			$itms=fetcharray($qResult);
+			
+        $method=fetcharray(execute("SELECT `cal_method` FROM `grade_setup` WHERE `subject` = '$subject' AND `status`=1"));
+		  
+				$sno=1;
+				$count=1;
+				$k = 9;
+				
+            while($r=fetcharray($sql))
+			{
+				
+				if($sno<10)
+				{
+					$sno="0".$sno;
+				}
+				
+				if($i%2)
+					echo "<tr class=''>";
+				else
+					echo "<tr>";
+					
+	  ?>
+        <td align='left' >&nbsp;
+          <?=$sno?>.&nbsp;&nbsp;<?=$r['first_name']?>&nbsp;<?=$r['last_name']?></td>
+        <?
+       //++++++++++++++++++++++++++++++++++++++++++   TO FETCH EXSISTING COLUMN NAME  +++++++++++++++++++++++++++++++++++++++++++
+			$tablename='grade_m_'.$subject.'_'.$term;
+	$SqlAvg=execute("SELECT * FROM $tablename WHERE `student_id` = '$r[student_id]' AND `status` = 1 AND `term`='$term'");
+			$avg_sum=0;
+			while($rAvg=fetcharray($SqlAvg))
+			{	
+						
+				$SqlCat=execute("SELECT `id`,`weight` FROM `grade_category` WHERE `subject` = '$subject' AND `status` = '1'");
+				$rowCountFirst=rowcount($SqlCat); 
+				
+				while($rf=fetcharray($SqlCat))
+				{		
+	
+	$SqlAssm=execute("SELECT `id` FROM `grade_assessment` WHERE `subject` = '$subject' AND `status` =1 AND category_id='$rf[id]'");
+					$rowCount=rowcount($SqlAssm); 
+				
+						$field='avg_'.$rf['id'];
+				     
+						if($method['cal_method']==1){
+							$points=$rAvg[$field] * $rowCount;
+				   ?>
+                	   <td align="center" nowrap><?=$points?></td>
+                   <?
+						}if($method['cal_method']==2){
+							
+							$avg_sum = $avg_sum + (($rAvg[$field] * $rf['weight']))/100;
+				  ?>
+                  		<td align="center" nowrap><?=$rAvg[$field]?></td>		
+                  <?
+						}
+				   		$sum = $sum + $rAvg[$field];
+						
+				}
+						$avg = round(($sum / $rowCountFirst),0);
+					if($method['cal_method']==1){
+				    ?>
+                    	<td align="center" nowrap><?=$avg?>.0</td>
+                    <?
+					}if($method['cal_method']==2){
+					?>
+                        <td align="center" nowrap><?=round($avg_sum,0)?>.0</td>
+                    <?
+					}
+
+						if($avg <= $itms['avg1'] and $avg > $itms['avg2']){				/*CONDITIONS FOR DISPALY GRADES*/
+							$display=$itms['letter1'];		
+						}else if($avg <= $itms['avg2'] and $avg > $itms['avg3']){
+							$display=$itms['letter2'];
+						}else if($avg <= $itms['avg3'] and $avg > $itms['avg4']){
+							$display=$itms['letter3'];
+						}else if($avg <= $itms['avg4'] and $avg > $itms['avg5']){
+							$display=$itms['letter4'];
+						}else if($avg <= $itms['avg5'] and $avg > $itms['avg6']){
+							$display=$itms['letter5'];
+						}else if($avg <= $itms['avg6'] and $avg > $itms['avg7']){
+							$display=$itms['letter6'];
+						}else if($avg <= $itms['avg7'] and $avg > $itms['avg8']){
+							$display=$itms['letter7'];
+						}else if($avg <= $itms['avg8'] and $avg > $itms['avg9']){
+							$display=$itms['letter8'];
+						}else if($avg <= $itms['avg9'] and $avg > $itms['avg10']){
+							$display=$itms['letter9'];
+						}else if($avg <= $itms['avg10'] and $avg > $itms['avg11']){
+							$display=$itms['letter10'];
+						}else if($avg <= $itms['avg11'] and $avg > $itms['avg12']){
+							$display=$itms['letter11'];
+						}else if($avg <= $itms['avg12'] and $avg > $itms['avg13']){
+							$display=$itms['letter12'];
+						}else if($avg <= $itms['avg13'] and $avg > $itms['avg14']){
+							$display=$itms['letter13'];
+						}else if($avg <= $itms['avg14'] and $avg > $itms['avg15']){
+							$display=$itms['letter14'];
+						}else{
+							$display=$itms['letter15'];
+						}
+					?>
+                      <td align="left" nowrap>&nbsp;&nbsp;<?=$display?>&nbsp;</td>
+                <?
+				     $sum=0;
+					 
+			}
+		
+			
+	  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+			 
+			++$count;
+			++$sno;
+			++$i;
+		      
+		    $rowclass = 1 - $rowclass;
+	}
+      ?>
+      </tr>
+    </table>
+<?
+ }
+?>
+  </div>
+  <p align="center">
+    <input type="button"  value="Save"  style="width:86px; height:22px" onClick="adds_onclick()" class="bgbutton">
+  </p>
+</form>
+</body>
+</html>

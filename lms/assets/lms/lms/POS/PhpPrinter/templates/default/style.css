@@ -1,0 +1,29 @@
+body
+{
+    font-family: arial, sans;
+    font-size: 11px;
+}
+#header
+{
+    background-color: #aabbcc;
+    border: 1px solid black;
+    padding: 5px;
+}
+h1
+{
+    font-size: 21px;
+    color: #ffffff;
+    padding: 0px;
+    margin: 0px;
+}
+.footer
+{
+    font-size: 10px;
+    color: black;
+}
+#footer
+{
+    background-color: #dedede;
+    border: 1px solid black;
+    padding: 5px;
+}

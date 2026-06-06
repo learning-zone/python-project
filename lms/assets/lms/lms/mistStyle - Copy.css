@@ -1,0 +1,786 @@
+/* baner Background */
+.baner
+{
+	//background-image: url(images/cellpic3.gif);
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+	background:#FFF;
+}
+
+
+ /* General page style. The scroll bar colours only visible in IE5.5+ */
+body {
+	
+	//background:#F1F2FA repeat-x;
+	background:#FFF;	
+	/*background-image:url('bgy.png');*/
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAIAAADZSiLoAAAAHElEQVQIHWP48+fP9+/f////zwCkgBwQC4ghAACODRqkCkEF0QAAAABJRU5ErkJggg==);
+	background-repeat:repeat-x,y;
+	border-bottom-left-radius:13px;
+	border-bottom-right-radius:13px;
+	border-top-left-radius:13px;
+	border-top-right-radius:13px;
+
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+	color:#000;
+}
+body.samplebody {
+	
+	//background:#F1F2FA repeat-x;
+	background:#000;
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAIAAADZSiLoAAAAHElEQVQIHWP48+fP9+/f////zwCkgBwQC4ghAACODRqkCkEF0QAAAABJRU5ErkJggg==);
+	background-repeat:repeat-x,y;
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+	color:#FFF;
+}
+.homebody {
+	background-color:#FFF;	
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAIAAADZSiLoAAAAHElEQVQIHWP48+fP9+/f////zwCkgBwQC4ghAACODRqkCkEF0QAAAABJRU5ErkJggg==);
+	background-repeat:repeat-x,y;
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+	color:#FFF;
+
+}
+
+td.sty
+{
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+	font-size:13px;color:#800000;
+}
+/* General font families for common tags */
+font,th,td,p { font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;font-size:13px; }
+a:active{ color : #0A2756;text-decoration: blink;font-weight:bold; }
+a:hover		{ text-decoration: underline; color : #DD6900; }
+hr	{ height: 0px; border: solid #D1D7DC 0px; border-top-width: 1px;}
+
+
+/* This is the border line & background colour round the entire page */
+.bodyline	{  border: 1px #98AAB1 ; }
+
+/* This is the border line & background colour round the entire page */
+.bodyline_new	{ background-color: #F1F2FA; border: 1px #98AAB1 ; }
+
+/* This is the outline round the main forum tables */
+table.forumline	{ 
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 13px;
+	//color: #404040;
+	//background-color: #fafafa;
+	border:thin;
+	border: 1px #6699CC solid;
+	
+	border-spacing: 50px;
+	margin-top: 0px;
+	padding-top:25px;
+	padding-bottom:25px;
+	padding-right:50px;
+	padding-left:50px;
+}
+table.body	{ 
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 13px;
+	//color: #404040;
+	//background-color: #fafafa;
+	border: 1px  solid;
+	background: url('bgy.png') repeat-y;
+	border-collapse: collapse;
+	border-spacing: 0px;
+	margin-top: 0px;
+}
+table	{ 
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 13px;
+	color: #404040;
+	//background-color: #fafafa;
+	//border: 1px #6699CC solid;
+	border-collapse: collapse;
+	border-spacing: 0px;
+	margin-top: 0px;
+}
+/*table.tablesty	{ background-color:"#E5FAFA"; border: 2px #ffffff solid;font-size:12px;color:#ff0000; }*/
+table.tablesty	{ background-color:#ffffff; border: 2px #ffffff solid; font-size:17px; color:#0A2756;}
+table.tablesty td	{ font-size:13px; color:#0A2756;border: -1px solid; }
+
+
+/* Main table cell colours and backgrounds */
+td { 
+
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;font-weight: normal;
+	font-size: 13px;
+	color: #404040;
+	background-color:#FFF;
+	padding-left: 3px;
+}
+td.cls1 {
+	text-align: center;
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+	font-size: 13px;
+	border-bottom:thick;
+}
+
+td.clsname { 
+	border-bottom:thin;
+	border-bottom-color:#999;
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #404040;
+	background-color:#CCC;
+}
+ 
+td.nor { 
+	background-color: #E5FAFA;
+	font-size:13px;
+	color:#0A2756;
+	border-bottom:thin;
+	border-bottom-color:#999;
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+	margin-left:13px;font-weight:normal;
+}
+td.norhead { 
+	background-color: #E5FAFA;font-size:13px;color:#800000;
+	border-bottom:thin;
+	border-bottom-color:#999;
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;margin-left:13px;font-weight:bold;
+}
+td.row2	{
+	border-bottom:thin;
+	border-bottom-color:#999;
+	
+	background-color: #BEC8D1;
+	font-weight:bold;
+	text-align: center;
+	background:#DFE0FC url('bg4.png') repeat-x;
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+	
+	font-size: 13px;
+	color: #404040; 
+}
+td.row3	{ 
+	border-bottom:thin;
+	border-bottom-color:#999;	
+	font-weight:600;
+	background:#E4DAF4;
+	text-align: center;
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #404040;
+}
+td.row4	{ 
+	border-bottom:thin;
+	border-bottom-color:#999;
+	background-color: #BEC8D1;
+	font-weight:bold;
+	background:#DFE0FC url('bg4.png') repeat-x;
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;	
+	font-size: 13px;
+	color: #404040;
+}
+/*
+  This is for the table cell above the Topics, Post & Last posts on the index.php page
+  By default this is the fading out gradiated silver background.
+  However, you could replace this with a bitmap specific for each forum
+*/
+td.rowpic {
+  border-bottom:thin;
+  border-bottom-color:#999;
+  background-color: #BEC8D1;
+  //text-align: center;
+  font-weight:bold;
+  background:#DFE0FC url('bg4.png') repeat-x;
+  font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+  
+  font-size: 13px;
+  color: #404040;
+		
+}
+td.back {
+  background-color: #F1E763;
+  background-image: url(images/cellpic2.jpg);
+  
+  background-repeat: repeat-y;
+}
+/* Header cells - the blue and silver gradient backgrounds */
+td.head1{
+	border-bottom:thin;
+	border-bottom-color:#999;
+	
+	background-color: #BEC8D1;
+	//text-align: center;
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+	
+	font-size: 13px;
+	color: #404040;
+}
+
+
+td.head2{
+	border-bottom:thin;
+	border-bottom-color:#999;
+	background-color: #BEC8D1;
+	//text-align: center;
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+	
+	font-size: 13px;
+	color: #404040;
+}
+td.head{
+	-moz-animation:myfirst 50s;  
+	border-bottom: 1px solid #68BBE1;
+	//text-align: center;
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000;
+	background-image: url('bg1.PNG');
+	background-repeat:repeat-x,y;
+
+}
+@-moz-keyframes myfirst /* Firefox */
+{
+from {
+	background:red;
+	}
+to {
+	background:yellow;
+	}
+
+}
+td.headc{
+	border-bottom:thin;
+	border-bottom-color:#999;
+	background-color: #0066CC;
+	background:#DFE0FC url('bgc.jpg') repeat-x;
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+	
+	font-size: 10px;
+	color: #FFFFFF;
+}
+td.headc2{
+	border-bottom:thin;
+	border-bottom-color:#999;
+	background-color: #0066CC;
+	background:#DFE0FC url('bgc.png') repeat-x;
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+	font-weight:bold;
+	
+	font-size: 14px;
+	color: #FFFFFF;
+}
+/*************************************************************************************/
+ /*.head:hover{
+    
+	color :#000;
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+    background:#CDBBE9;
+ }*/
+/*************************************************************************************/
+td.headc1{
+	border-bottom:thin;
+	border-bottom-color:#999;
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+	
+	font-size:10px;
+}
+div.newdiv{
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+
+font-size: 10px;
+color:#000;
+}
+/*td	{
+	color: #F1E763; font-size: 13px; 
+
+}*/
+
+.error_msg {
+	color: #990000; font-size: 18px; 
+}
+
+td.cat,td.catHead,td.catSides,td.catLeft,td.catRight,td.catBottom {
+  background-image: url(images/cellpic1.gif);
+  background-color:#646D7E; border-bottom:thin;
+  border-bottom-color:#999;
+  height: 28px;
+  color:#FFF;
+}
+
+td.catHead div{
+  padding:5px;
+  background-color:#98AFC7; border: #FFFFFF;  height: 18px;
+  color:#FFF;
+  font-face:bold;
+			}
+
+p.head{
+   color:blue;font-size: 28px;font-weight:bold;
+   background-image:url("C:\Bgcc.jpg");
+   }
+/*
+  Setting additional nice inner borders for the main table cells.
+  The names indicate which sides the border will be on.
+  Don't worry if you don't understand this, just ignore it :-)
+*/
+td.cat,td.catHead,td.catBottom {
+	height: 29px;
+	border-width: 0px 0px 0px 0px;
+}
+td.cat123{
+  border-bottom:thin;
+  border-bottom-color:#999;
+  font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;font-weight: normal;
+  font-size: 13px;
+  color: #FFF;
+  font-weight:;
+  background:#DFE0FC url('bg3.png') repeat-x;
+  
+  background-color: white;
+  //text-align: left;
+  padding-left: 3px;
+}
+td.submenu{
+  border-bottom: 1px dotted #6699CC;
+  font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  color: #404040;
+  background:#DFE0FC url('bg4.png') repeat-x;
+  background-color: white;
+  //text-align: left;
+  padding-left: 3px;
+}
+/*************************************************************************************/
+/*.submenu:hover{
+    background-color : #68BBE1; 
+	color :#68BBE1;
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+    font-size: 13px; font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;	
+    background:#DFE0FC url('bg5.png') repeat-x; 
+ }*/
+ 
+/*************************************************************************************/
+.active{
+    background-color : #68BBE1; 
+	color :#68BBE1;
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+    font-size: 13px; font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;	
+    background:#DFE0FC url('bg5.png') repeat-x; 
+ }
+ 
+/*************************************************************************************/
+td.thHead,td.thSides,td.thTop,td.thLeft,td.thRight,td.thBottom,td.thCornerL,td.chead,td.thCornerR {
+	 border: #FFFFFF; border-style: solid; height: 28px; }
+td.row3Right,td.spaceRow {
+	background-color: #D1D7DC; border: #FFFFFF; border-style: solid; }
+
+th.thHead,td.catHead { font-size: 13px; border-width: 1px 1px 0px 1px; }
+th.thSides,td.catSides,td.spaceRow	 { border-width: 0px 1px 0px 1px; }
+th.thRight,td.catRight,td.row3Right	 { border-width: 0px 1px 0px 0px; }
+th.thLeft,td.catLeft	  { border-width: 0px 0px 0px 1px; }
+th.thBottom,td.catBottom  { border-width: 0px 1px 1px 1px; }
+th.thTop	 { border-width: 1px 0px 0px 0px; }
+th.thCornerL { border-width: 1px 0px 0px 1px; }
+th.thCornerR { border-width: 1px 1px 0px 0px; }
+
+
+
+/* The largest text used in the index page title and toptic title etc. */
+.maintitle,h1,h2	{
+			 font-size: 22px; font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+			text-decoration: none; line-height : 120%; color : #000000;
+}
+
+/* General text */
+.gen { font-size : 13px; }
+.genmed { font-size : 11px; }
+.gensmall { font-size : 10px; }
+.gen,.genmed,.gensmall { color : #000000; }
+a.gen,a.genmed,a.gensmall { color: #0A2756; text-decoration: none; }
+a.gen:hover,a.genmed:hover,a.gensmall:hover	{ color: #F00; oration: underline; }
+
+tr.clsName td{
+   background-color:#F2F2F2;
+}
+
+/*Button Background color and fore color*/
+/*.bgbutton{
+  //background-color : #FFFFFF;
+  //color : #FFFFFF;
+  //font-weight:bold ;
+  font-size: 13px;
+  color: #000;
+  background:#DFE0FC url('bg1.png') repeat-x;
+  border-bottom-left-radius:5px;
+  border-bottom-right-radius:5px;
+  border-top-left-radius:5px;
+  border-top-right-radius:5px;
+}
+.bgbutton:hover{
+  background-color : #BEC8D1;
+  color : #030B52;
+  font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+  font-size: 13px; font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;  
+  background:#DFE0FC url('bg2.png') repeat-x;
+ }*/
+button{
+  //background-color : #FFFFFF;
+  //color : #FFFFFF;
+  //font-weight:bold ;
+  font-size: 13px;
+  color: #FFFFFF;
+  background:#DFE0FC url('bg1.png') repeat-x;
+  border-bottom-left-radius:5px;
+  border-bottom-right-radius:5px;
+  border-top-left-radius:5px;
+  border-top-right-radius:5px;
+}
+button:hover{
+  background-color : #BEC8D1;
+  color : #030B52;
+  font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+  
+  font-size: 13px; font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+  
+  background:#DFE0FC url('bg2.png') repeat-x;
+ }
+submit{
+  //background-color : #FFFFFF;
+  //color : #FFFFFF;
+  //font-weight:bold ;
+  font-size: 13px;
+  color: #FFFFFF;
+  background:#DFE0FC url('bg1.png') repeat-x;
+  border-bottom-left-radius:5px;
+  border-bottom-right-radius:5px;
+  border-top-left-radius:5px;
+  border-top-right-radius:5px;
+}
+submit:hover{
+  background-color : #BEC8D1;
+  color : #030B52;
+  font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+  //
+  font-size: 13px; font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+  
+  background:#DFE0FC url('bg2.png') repeat-x;
+ }
+/* The register, login, search etc links at the top of the page */
+.mainmenu		{ font-size : 11px; color : #000000 }
+a.mainmenu		{ text-decoration: none; color : #0A2756; 
+ }
+a.mainmenu:hover{ text-decoration: underline; color : #DD6900; }
+a.mainmenu:active{color : #000000; }
+
+
+/* Forum category titles */
+.cattitle		{  font-size: 13px ; letter-spacing: 1px; color : #0A2756;}
+a.cattitle		{ text-decoration: none; color : #0A2756; }
+a.cattitle:active{ text-decoration: none; color : #000000; }
+a.cattitle:hover{ text-decoration: underline;}
+
+
+/* Forum title: Text and link to the forums used in: index.php */
+.forumlink		{  font-size: 13px; color : #0A2756; }
+a.forumlink 	{ text-decoration: none; color : #0A2756; }
+a.forumlink :active	{ text-decoration: none; color : #000000; }
+a.forumlink:hover{ text-decoration: underline; color : #DD6900;}
+
+
+/* Used for the navigation text, (Page 1,2,3 etc) and the navigation bar when in a forum */
+.nav			{  font-size: 13px; color : #000000;}
+a.nav			{ text-decoration: none; color : #0A2756;}
+a.nav:hover		{ text-decoration: underline; }
+a.nav:active		{  color : #000000; }
+
+
+.topictitle2,td			{ font-weight: normal;  color:#036;font-size:13px; font-weight:; }
+a.topictitle2:link   { text-decoration: none; color:#009;font-size:13px; font-weight:; }
+a.topictitle2:active	{ text-decoration: underline; color :#036;font-size:13px; font-weight:;}
+a.topictitle2:hover	{ text-decoration: underline;color :#036;font-size:14px; font-weight:;}
+
+
+.topictitle1,td			{ font-weight: normal;  color:#FFF;font-size:13px; font-weight:; }
+a.topictitle1:link   { text-decoration: none; color : #FFF;font-size:13px; font-weight:; }
+a.topictitle1:active	{ text-decoration: underline; color : #FFF;font-size:13px; font-weight:;}
+a.topictitle1:hover	{ text-decoration: underline;color : #FFF;font-size:14px; font-weight:;}
+
+
+/* titles for the topics: could specify viewed link colour too */
+.topictitle,td			{ font-weight: normal;  color : #000000;font-size:13px;  }
+a.topictitle:link   { text-decoration: none; color : #0A2756;font-size:13px; font-weight:; }
+a.topictitle:active	{ text-decoration: underline; color : #000000;font-size:13px; font-weight:;}
+a.topictitle:hover	{ text-decoration: underline; color:#F00; font-size:13px; font-weight:;}
+
+.topictitle3,div	{ font-weight: normal;  color : #000000; font-size:13px;  }
+a.topictitle3:link   { text-decoration: none; color : #0A2756;font-size:13px;  }
+a.topictitle3:active	{ text-decoration: underline; color : #000000;font-size:13px; }
+a.topictitle3:hover	{ text-decoration: none; color:#000; font-size:13px; }
+
+/* Name of poster in viewmsg.php and viewtopic.php and other places */
+.name			{ font-size : 11px; color : #000000;}
+
+/* Location, number of posts, post date etc */
+.postdetails		{ font-size : 10px; color : #000000; }
+
+
+/* The content of the posts (body of text) */
+.postbody { font-size : 13px;}
+a.postlink:link	{ text-decoration: none; color : #0A2756; }
+a.postlink:active { text-decoration: none; color : #000000; font-size:13px;font-weight:bold;}
+a.postlink:hover { text-decoration: underline; color : #DD6900;}
+
+
+/* Quote & Code blocks */
+.code {
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;font-size: 13px; color: #006600;
+	background-color: #FAFAFA; border: #D1D7DC; border-style: solid;
+	border-left-width: 1px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px
+}
+
+.quote {
+	font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif; font-size: 13px; color: #444444; line-height: 135%;
+	background-color: #FAFAFA; border: #D1D7DC; border-style: solid;
+	border-left-width: 1px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px
+}
+
+
+/* Copyright and bottom info */
+.copyright		{ font-size: 13px; font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;color: #444444; letter-spacing: 1px;}
+a.copyright		{ color: #444444; text-decoration: none;}
+a.copyright:hover { color: #000000; text-decoration: underline;}
+a.copyright:active { color: #000000;}
+
+
+/* Form elements */
+input,textarea, select {
+  font-size:13px;
+  color:#000033;
+  //background:#F1F1FA;
+  border: 1px solid #B0C6EA;
+  /*border-color : #000000;*/
+}
+
+/* The text input fields background colour */
+input.post, textarea.post, select {
+  font-size:13px;
+  color:#000033;
+  //background:#F1F1FA;
+  border: 1px solid #B0C6EA;
+		
+}
+
+input { 
+text-indent : 2px;
+//text-align: center; }
+
+/* The buttons used for bbCode styling in message post */
+input.button {
+	background-color : #BEC8D1;
+	text-align: center;
+	color : #FFFFFF;
+	font-size: 13px; font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;	
+	background:#DFE0FC url('bg1.png') repeat-x;
+}
+
+/* The main submit button option */
+input.mainoption {
+	
+	background-color : #BEC8D1;
+	text-align: center;
+	color : #FFFFFF;
+	font-size: 13px; font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+}
+
+/* None-bold submit button */
+input.liteoption {
+	background-color : #BEC8D1;
+	color : #FFFFFF;
+	text-align: center;
+	font-size: 13px; font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+}
+.diva1
+{
+	font:"Courier New", Courier, monospace;
+//	background-color:#FFF;
+	font-weight:bold;	
+	color:#FFF;
+	
+}
+
+div.Divactivesss{
+  background-color : #68BBE1; 
+  color :#000;
+  font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+  font-size: 13px; 
+  background:#DFE0FC url('bg5.png') repeat-x; 
+ }
+
+
+.Divactive{
+  border-bottom: 1px dotted #6699CC;
+  background-color : #68BBE1; 
+  color :#000;
+  font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+  font-size: 13px; 
+  padding-left: 5%;
+  min-height:22px;
+ }
+.Divsubmenu{
+  border-bottom: 1px dotted #6699CC;
+  font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+  font-size: 13px;
+  color: #000;
+  background-color : #E4DAF4; 
+  padding-left: 5%;
+  min-height:22px;
+}
+.Divsubmenu:hover{
+  color :#000;
+  font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+  font-size: 13px;
+  background:#CDBBE9; /*bg5*/
+ }
+ 
+ div.menu{
+  border-bottom: 1px solid #68BBE1;
+  font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+  font-size: 13px;
+  color: #000;
+  background:#DFE0FC url('bg1.PNG') repeat-x;
+  background-color: white;
+  padding-left: 5%;
+  min-height:23px;
+  
+}
+div.menu:hover{
+  background-color : #68BBE1; 
+  color:#000;
+  font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+  font-size: 13px;
+  background:#E1E1E1; 
+ }
+
+div.submodule{
+  border-bottom:thin;
+  border-bottom-color:#999;
+  font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+  font-size: 13px;
+  color: #FFF;
+  background:#525252;
+  padding-left: 5%;
+  min-height:22px;
+   
+}
+ div.smenu{
+  border-bottom: 1px solid #68BBE1;
+  font-family: "Segoe UI", Arial, Verdana, Helvetica, sans-serif;
+  font-size: 13px;
+  color: #000;
+  background:#DFE0FC url('bg1.PNG') repeat-x;
+  background-color: white;
+  min-height:22px;
+}
+
+/********************/
+.bgbutton {
+  display: inline-block;
+  padding: 3px 6px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+       -o-user-select: none;
+          user-select: none;
+		  
+}
+.bgbutton1 {
+  display: inline-block;
+  padding: 3px 6px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+       -o-user-select: none;
+          user-select: none;
+		  
+}
+
+.bgbutton:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+.bgbutton:hover,
+.bgbutton:focus {
+  color: #333333;
+  text-decoration: none;
+}
+
+.bgbutton:active,
+.bgbutton.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.bgbutton.disabled,
+.bgbutton[disabled],
+fieldset[disabled] .bgbutton {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.bgbutton {
+  color: #333333;
+  background-color: #999999;
+  border-color: #cccccc;
+}
+
+.bgbutton1 {
+  color: #333333;
+  background-color: #DFDFDF;
+  border-color: #cccccc;
+}
+
+.bgbutton:hover,
+.bgbutton:focus,
+.bgbutton:active,
+.bgbutton.active,
+.open .dropdown-toggle.bgbutton {
+  color: #333333;
+  background-color: #ebebeb;
+  border-color: #adadad;
+}
+
+.bgbutton:active,
+.bgbutton.active,
+.open .dropdown-toggle.bgbutton {
+  background-image: none;
+}
+

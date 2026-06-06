@@ -1,0 +1,265 @@
+CREATE TABLE asset_group (
+  id int(11) NOT NULL auto_increment,
+  assetgroupname varchar(200) default NULL,
+  depreciation_rate float(10,2) default NULL,
+  ledger_id varchar(10) default NULL,
+  abbrevation varchar(10) default NULL,
+  PRIMARY KEY  (id)
+);
+CREATE TABLE `asset_master_counter` (
+  `asset_id` int(11) default NULL,
+  `counter` int(11) default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE asset_sub_group (
+  id int(11) NOT NULL auto_increment,
+  asset_subgroup_name varchar(50) default NULL,
+  asset_group_id int(11) default NULL,
+  asset_code char(3) default NULL,
+  PRIMARY KEY  (id)
+);
+
+CREATE TABLE asset_master ( id int(11) NOT NULL auto_increment, asset_name varchar(100) default NULL, asset_description text, asset_group_id int(11) default NULL, PRIMARY KEY (id) ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1; 
+CREATE TABLE location_master (
+  id int(11) NOT NULL auto_increment,
+  location varchar(50) default NULL,
+  dept_id int(11) default NULL,
+  PRIMARY KEY  (id)
+);
+CREATE TABLE tempreqindent (
+  id mediumint(9) NOT NULL auto_increment,
+  agroup int(11) NOT NULL,
+  aname int(11) NOT NULL,
+  qty int(3) NOT NULL,
+  user int(11) NOT NULL,
+  dept int(11) NOT NULL,
+  PRIMARY KEY  (id)
+);
+CREATE TABLE individual_asset_details (
+  id int(11) NOT NULL auto_increment,
+  asset_id int(11) default NULL,
+  item_code varchar(50) default NULL,
+  item_description varchar(250) default NULL,
+  unitprice float(25,2) default NULL,
+  location_id int(11) default NULL,
+  dept_id int(11) default NULL,
+  date_of_purchase date default NULL,
+  asset_purchase_id int(11) default NULL,
+  current_value float(15,2) default NULL,
+  asset_status_id int(11) default NULL,
+  `status` enum('true','false') default 'false',
+  PO_ID int(11) default NULL,
+  AssetStatus enum('New','Old') default 'New',
+  vendor int(11) default NULL,
+  conditions enum('Not Installed','Working','Return','Deputation','Breakage','Service') default 'Not Installed',
+  PRIMARY KEY  (id)
+) ENGINE=MyISAM AUTO_INCREMENT=2263 DEFAULT CHARSET=latin1;
+CREATE TABLE individual_asset_details_temp (
+  id int(11) NOT NULL auto_increment,
+  asset_code varchar(50) default NULL,
+  dept_id int(11) default NULL,
+  location_id int(11) default NULL,
+  purchase_value float(20,2) default NULL,
+  depreciated_value float(20,2) default NULL,
+  billno varchar(100) default NULL,
+  purchase_date date default NULL,
+  vendor_id int(11) default NULL,
+  asset_id int(11) default NULL,
+  PRIMARY KEY  (id)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE requirementindent (
+  id int(11) NOT NULL auto_increment,
+  RDate date default NULL,
+  RINumber varchar(20) default NULL,
+  College varchar(100) default NULL,
+  person varchar(150) default NULL,
+  asset_id int(11) default NULL,
+  quantity int(11) default NULL,
+  POStatus enum('Raised','Pending') default 'Pending',
+  dept_id int(11) default NULL,
+  processed_qty int(11) default '0',
+  quotation_status enum('YES','NO') default 'NO',
+  PRIMARY KEY  (id)
+);
+CREATE TABLE quotation (
+  id int(11) NOT NULL auto_increment,
+  QuotNo varchar(30) default NULL,
+  QuotDate date default NULL,
+  RID int(11) default NULL,
+  unitprice float(25,2) default NULL,
+  quantity int(11) default NULL,
+  total_price float(30,2) default NULL,
+  asset_id int(11) default NULL,
+  vendor_id int(11) default NULL,
+  status enum('Processed','Not Processed') default 'Not Processed',
+  POStatus enum('Raised','Pending') default 'Pending',
+  conditions text,
+  PRIMARY KEY  (id)
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+
+CREATE TABLE cons_purchaseordermaster (
+  id int(11) NOT NULL auto_increment,
+  PONumber varchar(50) default NULL,
+  PODate date default NULL,
+  additional_charges float(25,2) default NULL,
+  total_bill_amount float(25,2) default NULL,
+  raised_by varchar(100) default NULL,
+  vendor_id int(11) default NULL,
+  remarks text,
+  conditions text,
+  POType enum('NEW','REPEAT') default NULL,
+  status enum('Pending','Partly Received','Completely Received','Closed','Cancelled') default NULL,
+  bill_paid enum('YES','NO') default 'NO',
+  dept_id int(11) default NULL,
+  Recieved_status enum('Yes','No') default 'No',
+  additional_chargeshead varchar(20) default NULL,
+  PRIMARY KEY  (id)
+);
+CREATE TABLE asset_details_temp (
+  asset_id int(11) default NULL,
+  quantity int(11) default NULL,
+  location_id int(11) default NULL,
+  dept_id int(11) default NULL,
+  id int(11) NOT NULL auto_increment,
+  asset_no varchar(50) default NULL,
+  PRIMARY KEY  (id)
+);
+CREATE TABLE individual_asset_details (
+  id int(11) NOT NULL auto_increment,
+  asset_id int(11) default NULL,
+  item_code varchar(50) default NULL,
+  item_description varchar(250) default NULL,
+  unitprice float(25,2) default NULL,
+  location_id int(11) default NULL,
+  dept_id int(11) default NULL,
+  date_of_purchase date default NULL,
+  asset_purchase_id int(11) default NULL,
+  current_value float(15,2) default NULL,
+  asset_status_id int(11) default NULL,
+  status enum('true','false') default 'false',
+  PO_ID int(11) default NULL,
+  AssetStatus enum('New','Old') default 'New',
+  vendor int(11) default NULL,
+  conditions enum('Not Installed','Working','Return','Deputation','Breakage','Service') default 'Not Installed',
+  PRIMARY KEY  (id)
+);
+CREATE TABLE assetstatusmaster (
+  id int(11) NOT NULL auto_increment,
+  conditions varchar(250) default NULL,
+  PRIMARY KEY  (id)
+);
+CREATE TABLE service_gatepass_master (
+  id int(11) NOT NULL auto_increment,
+  issue_date date default NULL,
+  date_of_return date default NULL,
+  reason varchar(250) default NULL,
+  issuing_person varchar(100) default NULL,
+  dept_id int(11) default NULL,
+  fully_returned enum('YES','NO') default 'NO',
+  gatepassno varchar(5) default NULL,
+  vendor_id int(11) default NULL,
+  PRIMARY KEY  (id)
+);
+CREATE TABLE service_gatepass_details (
+  id int(11) NOT NULL auto_increment,
+  gatepass_id int(11) default NULL,
+  item_code_id int(11) default NULL,
+  location_id int(11) default NULL,
+  returned enum('YES','NO') default 'NO',
+  issue_status enum('YES','NO') default 'NO',
+  completely_received enum('YES','NO') default 'NO',
+  issuedt date default NULL,
+  issuetodept varchar(4) default 'NO',
+  PRIMARY KEY  (id)
+);
+    
+CREATE TABLE asset_movement_register (
+  id int(11) NOT NULL auto_increment,
+  asset_no varchar(50) default NULL,
+  from_location int(11) default NULL,
+  to_location int(11) default NULL,
+  date_of_movement date default NULL,
+  remarks varchar(50) default NULL,
+  PRIMARY KEY  (id)
+);
+CREATE TABLE purchaseordermaster (
+  id int(11) NOT NULL auto_increment,
+  PONumber varchar(50) default NULL,
+  PODate date default NULL,
+  additional_charges float(25,2) default NULL,
+  total_bill_amount float(25,2) default NULL,
+  raised_by varchar(100) default NULL,
+  vendor_id int(11) default NULL,
+  remarks text,
+  conditions text,
+  POType enum('NEW','REPEAT') default NULL,
+  status enum('Pending','Partly Received','Completely Received','Closed','Cancelled') default NULL,
+  bill_paid enum('YES','NO') default 'NO',
+  Recieved_status enum('Yes','No') default NULL,
+  additional_chargeshead varchar(20) default NULL,
+  recomend varchar(20) default NULL,
+  approve varchar(20) default NULL,
+  flag enum('YES','NO') default 'NO',
+  approve_remark varchar(40) default NULL,
+  work_detail varchar(40) default NULL,
+  tax_amt varchar(50) default NULL,
+  tax_per int(11) default NULL,
+  tan_no varchar(100) default NULL,
+  tin_no varchar(100) default NULL,
+  PRIMARY KEY  (id)
+);
+CREATE TABLE breakages_entry (
+  id int(11) NOT NULL auto_increment,
+  item_code_id int(11) default NULL,
+  breakage_date date default NULL,
+  reason varchar(250) default NULL,
+  status int(2) default NULL,
+  PRIMARY KEY  (id)
+);
+CREATE TABLE cons_purchaseorderdetails (
+  id int(11) NOT NULL auto_increment,
+  PO_ID int(11) default NULL,
+  RID int(11) default NULL,
+  QID int(11) default NULL,
+  asset_id int(11) default NULL,
+  unitprice float(25,2) default NULL,
+  quantity int(11) default NULL,
+  totalprice float(25,2) default NULL,
+  PRIMARY KEY  (id)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+    
+CREATE TABLE purchaseorderdetails (
+  id int(11) NOT NULL auto_increment,
+  PO_ID int(11) default NULL,
+  RID int(11) default NULL,
+  QID int(11) default NULL,
+  asset_id int(11) default NULL,
+  unitprice float(25,2) default NULL,
+  quantity int(11) default NULL,
+  totalprice float(25,2) default NULL,
+  work_detail varchar(30) default NULL,
+  PRIMARY KEY  (id)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+CREATE TABLE asset_received_details (
+  id int(11) NOT NULL auto_increment,
+  po_number int(11) default NULL,
+  received_date date default NULL,
+  asset_id int(11) default NULL,
+  received_qty int(11) default NULL,
+  PRIMARY KEY  (id)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+CREATE TABLE temp_bill_details (
+  poid int(11) default NULL,
+  total_po_amount int(11) default NULL,
+  total_amt_paid int(11) default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+CREATE TABLE vendorbilldetails (
+  id int(11) NOT NULL auto_increment,
+  billno varchar(20) default NULL,
+  billdate date default NULL,
+  billamount float(20,2) default NULL,
+  vendorid int(11) default NULL,
+  asset_id int(11) default NULL,
+  PRIMARY KEY  (id)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Simple theme example</title>
+
+<!-- TinyMCE -->
+<script type="text/javascript" src="../jscripts/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+	tinyMCE.init({
+		mode : "textareas",
+		theme : "simple"
+	});
+</script>
+<script>
+function cal()
+	 {
+	 alert("ssssssss");
+	 document.form1.action="altertype.php";
+	  var des=document.getElementById("elm1").value;
+	   alert(des);
+   	document.form1.submit();
+
+	 }
+	 </script>
+<!-- /TinyMCE -->
+
+</head>
+<body>
+
+<form method="post"  name="form1">
+
+	<!-- Gets replaced with TinyMCE, remember HTML in a textarea should be encoded -->
+	<textarea id="elm1" name="elm1" rows="15" cols="80" style="width: 80%">
+	</textarea>
+
+	<br />
+	<input type="submit" name="save" value="Submit" onClick="cal()" />
+	<input type="reset" name="reset" value="Reset" />
+</form>
+<script type="text/javascript">
+if (document.location.protocol == 'file:') {
+	alert("The examples might not work properly on the local file system due to security settings in your browser. Please use a real webserver.");
+}
+</script>
+</body>
+</html>

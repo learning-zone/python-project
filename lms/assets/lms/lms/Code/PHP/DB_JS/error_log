@@ -1,0 +1,1 @@
+[14-Aug-2013 13:44:49 Asia/Kolkata] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/myschool/public_html/mbis/renew/Code/PHP/Includes/DBConn.php on line 13

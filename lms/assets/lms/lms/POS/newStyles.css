@@ -1,0 +1,56 @@
+/** <style type=text/css> **/
+/** <!-- **/
+body,td,div,p,a,font,span {font-family: arial,sans-serif}
+body {margin-top:2}
+
+.c {width: 4; height: 0}
+
+/** .bubble {background-color:#C3D9FF; font-size:20px} **/
+.bubble {background-color:#3C74E6; font-size:35px; font-family:Colonna MT}
+/**.bubble1 {background-color:#3C74E6; font-size:35px; font-family:Footlight MT Light}**/
+.bubble1 {background-color:#3C74E6; font-size:45px; font-family:Colonna MT}
+.tl {padding: 0; width: 4; text-align: left; vertical-align: top}
+.tr {padding: 0; width: 4; text-align: right; vertical-align: top}
+.bl {padding: 0; width: 4; text-align: left; vertical-align: bottom}
+.br {padding: 0; width: 4; text-align: right; vertical-align: bottom}
+
+.caption {color:#000000; white-space:nowrap; background:#E8EEFA; text-align:center}
+
+ .form-noindent {background-color: #ffffff; border: #C3D9FF 1px solid} 
+/**.form-noindent {background-color: #ffffff; border: #3C74E6 1px solid}**/
+
+.feature-image {padding: 15 0 0 0; vertical-align: top; text-align: right; }
+.feature-description {padding: 15 0 0 10; vertical-align: top; text-align: left; }
+
+.signup_btn {cursor: pointer; margin: 10px 0 -20px 0; text-align: center; }
+.signup_btn_link {color: #000; text-align: center; text-align: center; text-decoration: none; padding: 0 7px; font-weight: bold; font-size: 14px; white-space: nowrap; }
+
+.SPRITE_signup_button_grey_l { background:no-repeat url(images/greybtn.png) 0 0; width: 14px; height: 45px }
+.SPRITE_signup_button_grey_m { background:no-repeat url(images/greybtn.png) -14px 0; height: 45px }
+.SPRITE_signup_button_grey_r { background:no-repeat url(images/greybtn.png) -365px 0; width: 15px; height: 45px }
+
+
+.SPRITE_cell {background: no-repeat url() 0 -142px; width: 42px; height: 42px; float: right }
+.SPRITE_search_new {background:no-repeat url() 0 -100px; width: 42px; height: 42px; float: right }
+.SPRITE_spam_new {background:no-repeat url() 0 -58px; width: 42px; height: 42px; float: right }
+.SPRITE_storage {background:no-repeat url() 0 0; width: 42px; height: 42px; float: right }
+.SPRITE_feed_icon {background: no-repeat url() 0 -42px; width: 16px; height: 16px }
+
+.SPRITE_corner_bl {background:no-repeat url(images/login_corners_sprite.png) 0 0; width: 4px; height: 4px; font-size:2px }
+.SPRITE_corner_br {background:no-repeat url(images/login_corners_sprite.png) -4px 0; width: 4px; height: 4px; font-size:2px }
+.SPRITE_corner_tl {background:no-repeat url(images/login_corners_sprite.png) 0 -4px; width: 4px; height: 4px; font-size:2x }
+.SPRITE_corner_tr {background:no-repeat url(images/login_corners_sprite.png) -4px -4px; width: 4px; height: 4px; font-size:2px }
+
+.bottomborder { border-bottom: 1px solid #000000; }
+.topborder { border-top: 1px solid #000000; }
+.bottomtopborder { border-bottom: 2px solid #000000; border-top: 2px solid #000000; }
+
+.boxtable {
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-left: 1px solid #000000;
+}
+
+/** // --> **/
+/** </style> **/

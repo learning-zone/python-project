@@ -1,0 +1,7 @@
+<a href="javascript:void(0)" onClick="window.open('editcatgory.php?val=<?php echo $rr[CAT_ID]; ?>'
+					,'editservices', 'resizable=yes, scrollbars=yes, height=400, width=600'); return false">
+					<font style='font:normal 9px verdana'>&nbsp;<b>Edit</b></font></a>
+					
+					
+					
+<a href="javascript:void(0)" onClick="window.open('newappointment.php?mon=<?php echo $mont?>&yer=<?php echo $yr?>&day=<?php echo $i?>','editservices', 'resizable=yes, scrollbars=yes, height=400, width=600'); return false">Appointment</a> 
