@@ -23,8 +23,8 @@ erDiagram
         varchar email
     }
 
-    college {
-        int     college_id PK
+    school {
+        int     school_id PK
         varchar col_name
         varchar col_code
         varchar col_addr
@@ -37,7 +37,7 @@ erDiagram
         varchar password
         varchar email
         int     user_group_id FK
-        int     college_id FK
+        int     school_id FK
         int     status
     }
 
@@ -79,7 +79,7 @@ erDiagram
         int     course_id PK
         varchar course_name
         varchar course_code
-        int     college_id FK
+        int     school_id FK
         int     status
     }
 
@@ -96,7 +96,7 @@ erDiagram
         int     grade
         varchar section_name
         int     acc_year FK
-        int     college_id FK
+        int     school_id FK
         int     status
     }
 
@@ -133,7 +133,7 @@ erDiagram
         char    gender
         date    dob
         varchar email
-        int     college_id FK
+        int     school_id FK
         int     acc_year FK
         int     status
     }
@@ -152,7 +152,7 @@ erDiagram
         varchar student_id FK
         int     course_admitted FK
         int     course_yearsem FK
-        int     college_id FK
+        int     school_id FK
         varchar nationality
         varchar religion
     }
@@ -192,7 +192,7 @@ erDiagram
         text    address
     }
 
-    stud_health {
+    student_health {
         int     health_id PK
         varchar student_id FK
         varchar blood_group
@@ -211,21 +211,21 @@ erDiagram
     %% ─────────────────────────────────────────
     %% STAFF / EMPLOYEE MANAGEMENT
     %% ─────────────────────────────────────────
-    staff_det {
+    employee_details {
         int     staff_id PK
         varchar first_name
         varchar last_name
         varchar username FK
-        int     emp_department_id FK
+        int     employee_department_id FK
         int     staff_des_id FK
-        int     college_id FK
+        int     school_id FK
         int     status
     }
 
-    emp_department {
-        int     emp_department_id PK
+    employee_department {
+        int     employee_department_id PK
         varchar dept_name
-        int     college_id FK
+        int     school_id FK
         int     status
     }
 
@@ -252,8 +252,8 @@ erDiagram
         int     basic_salary
     }
 
-    emp_salary {
-        int     emp_salary_id PK
+    employee_salary {
+        int     employee_salary_id PK
         int     staff_id FK
         int     acc_year FK
         varchar month
@@ -263,7 +263,7 @@ erDiagram
         numeric net_salary
     }
 
-    staff_leave {
+    employee_leave {
         int     leave_id PK
         int     staff_id FK
         int     leave_type_id FK
@@ -273,7 +273,7 @@ erDiagram
         varchar remarks
     }
 
-    staff_leave_type {
+    employee_leave_type {
         int     leave_type_id PK
         varchar leave_type_name
         int     max_days
@@ -537,7 +537,7 @@ erDiagram
         smallint status
     }
 
-    mail_det {
+    mail_details {
         int     mail_id PK
         varchar from_user FK
         varchar to_list
@@ -610,14 +610,14 @@ erDiagram
         varchar member_id
         varchar member_type
         varchar member_name
-        int     college_id FK
+        int     school_id FK
         date    valid_upto
     }
 
     library_name {
         int     library_id PK
         varchar library_name
-        int     college_id FK
+        int     school_id FK
     }
 
     lib_mediatype {
@@ -632,7 +632,7 @@ erDiagram
         int     route_id PK
         varchar route_name
         varchar route_code
-        int     college_id FK
+        int     school_id FK
         int     status
     }
 
@@ -650,7 +650,7 @@ erDiagram
         varchar driver_name
         varchar license_no
         varchar contact_no
-        int     college_id FK
+        int     school_id FK
     }
 
     tripmaster {
@@ -668,19 +668,19 @@ erDiagram
     hostel_m {
         int     hostel_id PK
         varchar hostel_name
-        int     college_id FK
+        int     school_id FK
         int     total_rooms
         int     status
     }
 
-    h_block {
+    hostel_block {
         int     block_id PK
         int     hostel_id FK
         varchar block_name
         int     status
     }
 
-    h_room_m {
+    hostel_room_m {
         int     room_id PK
         int     block_id FK
         varchar room_no
@@ -688,7 +688,7 @@ erDiagram
         int     status
     }
 
-    h_stud_m {
+    hostel_student_m {
         int     h_stud_id PK
         varchar student_id FK
         int     room_id FK
@@ -717,7 +717,7 @@ erDiagram
         int     asset_id PK
         varchar asset_name
         int     asset_sub_group_id FK
-        int     college_id FK
+        int     school_id FK
         int     status
     }
 
@@ -732,7 +732,7 @@ erDiagram
         varchar serial_no
         date    purchase_date
         int     asset_status_id FK
-        int     college_id FK
+        int     school_id FK
     }
 
     %% ─────────────────────────────────────────
@@ -746,8 +746,8 @@ erDiagram
         int     status
     }
 
-    rfid_stud {
-        int     rfid_stud_id PK
+    rfid_student {
+        int     rfid_student_id PK
         varchar student_id FK
         varchar card_no
         int     status
@@ -765,14 +765,14 @@ erDiagram
     %% ─────────────────────────────────────────
 
     %% Institution hierarchy
-    company ||--o{ college : "has"
-    college ||--o{ users : "has"
+    company ||--o{ school : "has"
+    school ||--o{ users : "has"
     user_group ||--o{ users : "belongs_to"
 
     %% Academic structure
     academic_term ||--o{ academic_exam : "contains"
     course_m ||--o{ course_year : "has"
-    college ||--o{ course_m : "offers"
+    school ||--o{ course_m : "offers"
     course_m ||--o{ subject_m : "includes"
     subjecttype ||--o{ subject_m : "categorizes"
     academic_year ||--o{ class_section : "scopes"
@@ -784,7 +784,7 @@ erDiagram
     student_m ||--|| additional_student : "extended_by"
     student_m ||--|| student_extended : "extended_by"
     student_m ||--|| student_contacts : "has"
-    student_m ||--|| stud_health : "has"
+    student_m ||--|| student_health : "has"
     student_m ||--o{ stud_sibling : "has"
     student_m ||--o{ student_class : "enrolled_in"
     student_m ||--o{ student_course : "registered_for"
@@ -792,20 +792,20 @@ erDiagram
     course_m ||--o{ student_course : "enrolled_by"
 
     %% Staff relations
-    emp_department ||--o{ staff_det : "employs"
-    staff_des ||--o{ staff_det : "designates"
-    college ||--o{ staff_det : "employs"
-    staff_det ||--o{ staff_qualification : "has"
-    staff_det ||--|| emp_details : "has"
-    staff_det ||--o{ emp_salary : "receives"
-    staff_leave_type ||--o{ staff_leave : "categorizes"
-    staff_det ||--o{ staff_leave : "applies"
+    employee_department ||--o{ employee_details : "employs"
+    staff_des ||--o{ employee_details : "designates"
+    school ||--o{ employee_details : "employs"
+    employee_details ||--o{ staff_qualification : "has"
+    employee_details ||--|| emp_details : "has"
+    employee_details ||--o{ employee_salary : "receives"
+    employee_leave_type ||--o{ employee_leave : "categorizes"
+    employee_details ||--o{ employee_leave : "applies"
 
     %% Attendance
     student_m ||--o{ attendance : "tracked_by"
     class_section ||--o{ attendance : "recorded_for"
     student_m ||--o{ attendance_points : "summarized_in"
-    staff_det ||--o{ emp_attendance : "tracked_by"
+    employee_details ||--o{ emp_attendance : "tracked_by"
 
     %% Exams & Grades
     academic_year ||--o{ exam_m : "schedules"
@@ -833,13 +833,13 @@ erDiagram
     %% Timetable
     class_section ||--o{ timetable : "scheduled_for"
     subject_m ||--o{ timetable : "scheduled_in"
-    staff_det ||--o{ timetable : "teaches_in"
+    employee_details ||--o{ timetable : "teaches_in"
     day ||--o{ timetable : "day_of"
     calendar_schedule_type ||--o{ calendar_schedule : "categorizes"
 
     %% Announcements
     announcement_class ||--o{ announcement : "scoped_from"
-    mail_det ||--o{ mail_logs : "tracked_in"
+    mail_details ||--o{ mail_logs : "tracked_in"
 
     %% Admissions
     admission_steps_master ||--o{ admission_stage_master : "has"
@@ -850,31 +850,31 @@ erDiagram
     lib_mediatype ||--o{ lib_book_details : "typed_as"
     lib_book_details ||--o{ lib_circulation_m : "circulated_via"
     lib_membership_m ||--o{ lib_circulation_m : "issued_to"
-    college ||--o{ lib_membership_m : "has"
+    school ||--o{ lib_membership_m : "has"
 
     %% Transport
-    college ||--o{ route_master : "operates"
+    school ||--o{ route_master : "operates"
     route_master ||--o{ vechile_master : "assigned_to"
     driver_master ||--o{ vechile_master : "drives"
     vechile_master ||--o{ tripmaster : "operates"
 
     %% Hostel
-    college ||--o{ hostel_m : "has"
-    hostel_m ||--o{ h_block : "contains"
-    h_block ||--o{ h_room_m : "contains"
-    h_room_m ||--o{ h_stud_m : "accommodates"
-    student_m ||--o{ h_stud_m : "stays_in"
+    school ||--o{ hostel_m : "has"
+    hostel_m ||--o{ hostel_block : "contains"
+    hostel_block ||--o{ hostel_room_m : "contains"
+    hostel_room_m ||--o{ hostel_student_m : "accommodates"
+    student_m ||--o{ hostel_student_m : "stays_in"
 
     %% Assets
     asset_group ||--o{ asset_sub_group : "contains"
     asset_sub_group ||--o{ asset_master : "categorizes"
-    college ||--o{ asset_master : "owns"
+    school ||--o{ asset_master : "owns"
     asset_master ||--o{ individual_asset_details : "detailed_by"
     assetstatusmaster ||--o{ individual_asset_details : "status_of"
 
     %% RFID
-    student_m ||--o{ rfid_stud : "has"
-    staff_det ||--o{ rfid_staff_check_in : "logs"
+    student_m ||--o{ rfid_student : "has"
+    employee_details ||--o{ rfid_staff_check_in : "logs"
 ```
 
 ---
@@ -883,19 +883,19 @@ erDiagram
 
 | Domain | Key Tables | Purpose |
 |---|---|---|
-| **Institution** | `company`, `college`, `users`, `user_group` | Multi-tenant institution hierarchy |
+| **Institution** | `company`, `school`, `users`, `user_group` | Multi-tenant institution hierarchy |
 | **Academic Structure** | `academic_year`, `academic_term`, `course_m`, `class_section`, `subject_m` | Curriculum & year structure |
-| **Students** | `student_m`, `student_class`, `academic_details`, `student_contacts`, `stud_health` | Full student lifecycle |
-| **Staff** | `staff_det`, `emp_department`, `emp_salary`, `staff_leave` | HR & payroll |
+| **Students** | `student_m`, `student_class`, `academic_details`, `student_contacts`, `student_health` | Full student lifecycle |
+| **Staff** | `employee_details`, `employee_department`, `employee_salary`, `employee_leave` | HR & payroll |
 | **Attendance** | `attendance`, `attendance_points`, `att_0`–`att_16` (partitioned) | Student & staff attendance |
 | **Examinations** | `exam_m`, `exam_sub_m`, `exam_timetable_m`, `online_exam_det` | Exams & timetables |
 | **Grades** | `grade`, `grade_summary_cache`, `grade_points`, `marks_*` | Results & grading |
 | **Fees** | `fee_head`, `fee_master`, `fee_m_collect`, `fee_payment`, `fee_discount_*` | Billing & collections |
 | **Timetable** | `timetable`, `calendar_schedule`, `day` | Scheduling |
-| **Announcements** | `announcement`, `announcement_class`, `mail_det` | Communication |
+| **Announcements** | `announcement`, `announcement_class`, `mail_details` | Communication |
 | **Admissions** | `admission_steps_master`, `admission_stage_master`, `admissiontrack` | Enrollment workflow |
 | **Library** | `lib_book_details`, `lib_circulation_m`, `lib_membership_m` | Library management |
 | **Transport** | `route_master`, `vechile_master`, `driver_master`, `tripmaster` | Fleet & routing |
-| **Hostel** | `hostel_m`, `h_block`, `h_room_m`, `h_stud_m` | Accommodation |
+| **Hostel** | `hostel_m`, `hostel_block`, `hostel_room_m`, `hostel_student_m` | Accommodation |
 | **Assets** | `asset_master`, `asset_group`, `individual_asset_details` | Inventory |
-| **RFID** | `rfid_masters`, `rfid_stud`, `rfid_staff_check_in` | Access control |
+| **RFID** | `rfid_masters`, `rfid_student`, `rfid_staff_check_in` | Access control |
