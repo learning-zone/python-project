@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
--- http://www.phpmyadmin.net
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2026 at 06:11 AM
--- Server version: 5.6.17
--- PHP Version: 5.5.12
+-- Generation Time: Jun 07, 2026 at 06:11 AM
+-- Server version: 8.0.36
+-- PHP Version: 8.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `localhost_lms`
@@ -27,32 +27,33 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `academic_details` (
-  `id` int(6) unsigned zerofill DEFAULT NULL,
-  `student_id` varchar(20) NOT NULL,
-  `12_board` varchar(25) DEFAULT NULL,
-  `12_passing` varchar(10) DEFAULT NULL,
-  `12_osub1` int(3) DEFAULT NULL,
-  `12_msub1` int(3) DEFAULT NULL,
-  `12_osub2` int(3) DEFAULT NULL,
-  `12_msub2` int(3) DEFAULT NULL,
-  `obt_sub` varchar(35) DEFAULT NULL,
-  `12_osub3` int(3) DEFAULT NULL,
-  `12_msub3` int(3) DEFAULT NULL,
-  `12_total` int(5) DEFAULT NULL,
-  `12_perc` int(3) DEFAULT NULL,
-  `rem` varchar(25) DEFAULT NULL,
-  `10_board` varchar(25) DEFAULT NULL,
-  `10_passing` varchar(10) DEFAULT NULL,
-  `10_obtmark` int(4) DEFAULT NULL,
-  `10_maxmark` int(4) DEFAULT NULL,
-  `10_totmark` int(4) DEFAULT NULL,
-  `10_perc` int(3) DEFAULT NULL,
-  `10_rem` varchar(25) DEFAULT NULL,
-  `exam_pass` varchar(25) DEFAULT NULL,
-  `puc_state` varchar(25) DEFAULT NULL,
-  `puc_totmarks` varchar(20) DEFAULT NULL,
-  `puc_totper` varchar(20) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`                      INT UNSIGNED  NOT NULL AUTO_INCREMENT,
+  `student_id`              VARCHAR(20)   NOT NULL,
+  `grade12_board`           VARCHAR(25)   DEFAULT NULL,
+  `grade12_passing`         VARCHAR(10)   DEFAULT NULL,
+  `grade12_osub1`           INT           DEFAULT NULL,
+  `grade12_msub1`           INT           DEFAULT NULL,
+  `grade12_osub2`           INT           DEFAULT NULL,
+  `grade12_msub2`           INT           DEFAULT NULL,
+  `obtained_subjects`       VARCHAR(35)   DEFAULT NULL,
+  `grade12_osub3`           INT           DEFAULT NULL,
+  `grade12_msub3`           INT           DEFAULT NULL,
+  `grade12_total`           INT           DEFAULT NULL,
+  `grade12_percentage`      INT           DEFAULT NULL,
+  `rem`                     VARCHAR(25)   DEFAULT NULL,
+  `grade10_board`           VARCHAR(25)   DEFAULT NULL,
+  `grade10_passing`         VARCHAR(10)   DEFAULT NULL,
+  `grade10_obtained_marks`  INT           DEFAULT NULL,
+  `grade10_max_marks`       INT           DEFAULT NULL,
+  `grade10_total_marks`     INT           DEFAULT NULL,
+  `grade10_percentage`      INT           DEFAULT NULL,
+  `grade10_remarks`         VARCHAR(25)   DEFAULT NULL,
+  `exam_pass`               VARCHAR(25)   DEFAULT NULL,
+  `puc_state`               VARCHAR(25)   DEFAULT NULL,
+  `puc_totmarks`            VARCHAR(20)   DEFAULT NULL,
+  `puc_totper`              VARCHAR(20)   DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -61,12 +62,12 @@ CREATE TABLE IF NOT EXISTS `academic_details` (
 --
 
 CREATE TABLE IF NOT EXISTS `academic_exam` (
-  `id` int(3) NOT NULL AUTO_INCREMENT,
-  `academic_term_id` int(3) DEFAULT NULL,
-  `exam_name` varchar(50) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`                INT          NOT NULL AUTO_INCREMENT,
+  `academic_term_id`  INT          DEFAULT NULL,
+  `exam_name`         VARCHAR(50)  DEFAULT NULL,
+  `status`            TINYINT(1)   DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `academic_exam`
@@ -85,22 +86,22 @@ INSERT INTO `academic_exam` (`id`, `academic_term_id`, `exam_name`, `status`) VA
 --
 
 CREATE TABLE IF NOT EXISTS `academic_term` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `term` varchar(100) DEFAULT NULL,
-  `a_year` varchar(10) DEFAULT NULL COMMENT 'academic year',
-  `start_date` date DEFAULT NULL,
-  `end_date` date DEFAULT NULL,
-  `inserted_date` date DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `term`           VARCHAR(100)  DEFAULT NULL,
+  `a_year`         VARCHAR(10)   DEFAULT NULL COMMENT 'academic year',
+  `start_date`     DATE          DEFAULT NULL,
+  `end_date`       DATE          DEFAULT NULL,
+  `inserted_date`  DATE          DEFAULT NULL,
+  `status`         TINYINT(1)    DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `academic_term`
 --
 
 INSERT INTO `academic_term` (`id`, `term`, `a_year`, `start_date`, `end_date`, `inserted_date`, `status`) VALUES
-(1, 'Semester One', '2026', '2026-07-01', '2026-01-05', '2026-04-16', 1),
+(1, 'Semester One', '2026', '2026-07-01', '2026-12-31', '2026-04-16', 1),
 (2, 'Semester Two', '2026', '2026-01-06', '2026-07-30', '2026-04-16', 1);
 
 -- --------------------------------------------------------
@@ -110,14 +111,14 @@ INSERT INTO `academic_term` (`id`, `term`, `a_year`, `start_date`, `end_date`, `
 --
 
 CREATE TABLE IF NOT EXISTS `academic_year` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
-  `acc_year` int(4) NOT NULL,
-  `from_date` date NOT NULL,
-  `to_date` date NOT NULL,
-  `class_div` int(2) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`         INT         NOT NULL AUTO_INCREMENT,
+  `acc_year`   INT         NOT NULL,
+  `from_date`  DATE        NOT NULL,
+  `to_date`    DATE        NOT NULL,
+  `class_div`  INT         NOT NULL,
+  `status`     TINYINT(1)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `academic_year`
@@ -127,11 +128,11 @@ INSERT INTO `academic_year` (`id`, `acc_year`, `from_date`, `to_date`, `class_di
 (1, 2026, '2026-06-01', '2026-06-30', 1, 1),
 (2, 2026, '2026-06-01', '2026-06-30', 2, 1),
 (3, 2026, '2026-06-01', '2026-06-30', 3, 1),
-(5, 2026, '2026-07-01', '2026-06-30', 4, 1),
+(5, 2026, '2026-07-01', '2027-06-30', 4, 1),
 (6, 2026, '2026-06-01', '2026-06-30', 4, 1),
-(7, 2026, '2026-07-01', '2026-06-30', 1, 1),
-(8, 2026, '2026-07-01', '2026-06-30', 2, 1),
-(9, 2026, '2026-07-01', '2026-06-30', 3, 1);
+(7, 2026, '2026-07-01', '2027-06-30', 1, 1),
+(8, 2026, '2026-07-01', '2027-06-30', 2, 1),
+(9, 2026, '2026-07-01', '2027-06-30', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -140,15 +141,15 @@ INSERT INTO `academic_year` (`id`, `acc_year`, `from_date`, `to_date`, `class_di
 --
 
 CREATE TABLE IF NOT EXISTS `additional_college` (
-  `col_id` int(11) NOT NULL AUTO_INCREMENT,
-  `col_name` varchar(100) DEFAULT NULL,
-  `col_code` varchar(10) DEFAULT NULL,
-  `col_addr` varchar(200) DEFAULT NULL,
-  `col_phone` varchar(15) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `company_id` int(11) DEFAULT NULL,
+  `col_id`      INT           NOT NULL AUTO_INCREMENT,
+  `col_name`    VARCHAR(100)  DEFAULT NULL,
+  `col_code`    VARCHAR(10)   DEFAULT NULL,
+  `col_addr`    VARCHAR(200)  DEFAULT NULL,
+  `col_phone`   VARCHAR(15)   DEFAULT NULL,
+  `email`       VARCHAR(50)   DEFAULT NULL,
+  `company_id`  INT           DEFAULT NULL,
   PRIMARY KEY (`col_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -157,34 +158,34 @@ CREATE TABLE IF NOT EXISTS `additional_college` (
 --
 
 CREATE TABLE IF NOT EXISTS `additional_student` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `tempid` int(10) DEFAULT NULL,
-  `admission_date` date DEFAULT NULL,
-  `student_id` varchar(20) DEFAULT NULL,
-  `first_name` varchar(30) DEFAULT NULL,
-  `last_name` varchar(30) DEFAULT NULL,
-  `nationality` varchar(20) DEFAULT NULL,
-  `religion` varchar(20) DEFAULT NULL,
-  `mother_tongue` varchar(20) DEFAULT NULL,
-  `gender` char(1) DEFAULT NULL,
-  `caste_id` int(11) DEFAULT NULL,
-  `marital_status` char(1) DEFAULT NULL,
-  `dob` date DEFAULT NULL,
-  `per_address` varchar(200) DEFAULT NULL,
-  `cor_address` varchar(200) DEFAULT NULL,
-  `per_country` varchar(50) DEFAULT NULL,
-  `cor_country` varchar(50) DEFAULT NULL,
-  `per_phone` varchar(15) DEFAULT NULL,
-  `cor_phone` varchar(15) DEFAULT NULL,
-  `per_state` varchar(25) DEFAULT NULL,
-  `cor_state` varchar(25) DEFAULT NULL,
-  `course_admitted` int(11) DEFAULT NULL,
-  `course_yearsem` int(11) DEFAULT NULL,
-  `academic_year` varchar(12) DEFAULT NULL,
-  `remarks` varchar(250) DEFAULT NULL,
-  `college_id` int(11) DEFAULT NULL,
+  `id`               INT           NOT NULL AUTO_INCREMENT,
+  `tempid`           INT           DEFAULT NULL,
+  `admission_date`   DATE          DEFAULT NULL,
+  `student_id`       VARCHAR(20)   DEFAULT NULL,
+  `first_name`       VARCHAR(30)   DEFAULT NULL,
+  `last_name`        VARCHAR(30)   DEFAULT NULL,
+  `nationality`      VARCHAR(20)   DEFAULT NULL,
+  `religion`         VARCHAR(20)   DEFAULT NULL,
+  `mother_tongue`    VARCHAR(20)   DEFAULT NULL,
+  `gender`           CHAR(1)       DEFAULT NULL,
+  `caste_id`         INT           DEFAULT NULL,
+  `marital_status`   CHAR(1)       DEFAULT NULL,
+  `dob`              DATE          DEFAULT NULL,
+  `per_address`      VARCHAR(200)  DEFAULT NULL,
+  `cor_address`      VARCHAR(200)  DEFAULT NULL,
+  `per_country`      VARCHAR(50)   DEFAULT NULL,
+  `cor_country`      VARCHAR(50)   DEFAULT NULL,
+  `per_phone`        VARCHAR(15)   DEFAULT NULL,
+  `cor_phone`        VARCHAR(15)   DEFAULT NULL,
+  `per_state`        VARCHAR(25)   DEFAULT NULL,
+  `cor_state`        VARCHAR(25)   DEFAULT NULL,
+  `course_admitted`  INT           DEFAULT NULL,
+  `course_yearsem`   INT           DEFAULT NULL,
+  `academic_year`    VARCHAR(12)   DEFAULT NULL,
+  `remarks`          VARCHAR(250)  DEFAULT NULL,
+  `college_id`       INT           DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -193,11 +194,11 @@ CREATE TABLE IF NOT EXISTS `additional_student` (
 --
 
 CREATE TABLE IF NOT EXISTS `admission` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL DEFAULT '',
-  `short_name` varchar(10) DEFAULT NULL,
+  `id`          INT          NOT NULL AUTO_INCREMENT,
+  `name`        VARCHAR(50)  NOT NULL DEFAULT '',
+  `short_name`  VARCHAR(10)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `admission`
@@ -214,13 +215,13 @@ INSERT INTO `admission` (`id`, `name`, `short_name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `admissiontrack` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
-  `student_id` int(10) NOT NULL,
-  `desdet` text NOT NULL,
-  `trackid` int(4) NOT NULL,
-  `mark` int(4) NOT NULL,
+  `id`          INT   NOT NULL AUTO_INCREMENT,
+  `student_id`  INT   NOT NULL,
+  `desdet`      TEXT  NOT NULL,
+  `trackid`     INT   NOT NULL,
+  `mark`        INT   NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `admissiontrack`
@@ -237,15 +238,15 @@ INSERT INTO `admissiontrack` (`id`, `student_id`, `desdet`, `trackid`, `mark`) V
 --
 
 CREATE TABLE IF NOT EXISTS `admission_stage_master` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `admission_steps_master_id` int(11) NOT NULL,
-  `main_stages` varchar(200) NOT NULL,
-  `action_1` int(2) NOT NULL DEFAULT '1',
-  `posi` varchar(100) NOT NULL,
-  `status` int(2) NOT NULL DEFAULT '1',
-  `inserted_date_time` datetime DEFAULT NULL,
+  `id`                         INT           NOT NULL AUTO_INCREMENT,
+  `admission_steps_master_id`  INT           NOT NULL,
+  `main_stages`                VARCHAR(200)  NOT NULL,
+  `action_1`                   INT           NOT NULL DEFAULT '1',
+  `posi`                       VARCHAR(100)  NOT NULL,
+  `status`                     INT           NOT NULL DEFAULT '1',
+  `inserted_date_time`         DATETIME      DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `admission_stage_master`
@@ -269,14 +270,14 @@ INSERT INTO `admission_stage_master` (`id`, `admission_steps_master_id`, `main_s
 --
 
 CREATE TABLE IF NOT EXISTS `admission_steps_master` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `main_steps` varchar(250) NOT NULL,
-  `pos` int(4) NOT NULL,
-  `status` int(2) NOT NULL DEFAULT '1',
-  `comments` varchar(100) NOT NULL,
-  `inserted_date_time` datetime DEFAULT NULL,
+  `id`                  INT           NOT NULL AUTO_INCREMENT,
+  `main_steps`          VARCHAR(250)  NOT NULL,
+  `pos`                 INT           NOT NULL,
+  `status`              INT           NOT NULL DEFAULT '1',
+  `comments`            VARCHAR(100)  NOT NULL,
+  `inserted_date_time`  DATETIME      DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `admission_steps_master`
@@ -298,20 +299,20 @@ INSERT INTO `admission_steps_master` (`id`, `main_steps`, `pos`, `status`, `comm
 --
 
 CREATE TABLE IF NOT EXISTS `album` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Albumname` varchar(70) NOT NULL,
-  `Description` text NOT NULL,
-  `Class` int(2) NOT NULL,
-  `Section` int(2) NOT NULL,
-  `Status` int(1) NOT NULL,
+  `id`           INT          NOT NULL AUTO_INCREMENT,
+  `album_name`   VARCHAR(70)  NOT NULL,
+  `description`  TEXT         NOT NULL,
+  `class`        INT          NOT NULL,
+  `section`      INT          NOT NULL,
+  `status`       TINYINT(1)   NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `album`
 --
 
-INSERT INTO `album` (`id`, `Albumname`, `Description`, `Class`, `Section`, `Status`) VALUES
+INSERT INTO `album` (`id`, `album_name`, `description`, `class`, `section`, `status`) VALUES
 (1, 'LMS ', 'School Pictures', 0, 0, 0),
 (2, 'LMS', 'LMS', 0, 0, 0),
 (3, 'LMS', 'Activities', 0, 0, 0),
@@ -325,22 +326,22 @@ INSERT INTO `album` (`id`, `Albumname`, `Description`, `Class`, `Section`, `Stat
 --
 
 CREATE TABLE IF NOT EXISTS `albumpic` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `AlbumID` int(11) NOT NULL,
-  `PicName` varchar(70) NOT NULL,
-  `Description` text NOT NULL,
-  `FullImagePath` varchar(270) NOT NULL,
-  `HalfImagepath` varchar(270) NOT NULL,
-  `Cover` int(1) NOT NULL,
-  `Status` int(1) NOT NULL,
+  `id`               INT           NOT NULL AUTO_INCREMENT,
+  `album_id`         INT           NOT NULL,
+  `pic_name`         VARCHAR(70)   NOT NULL,
+  `description`      TEXT          NOT NULL,
+  `full_image_path`  VARCHAR(270)  NOT NULL,
+  `half_image_path`  VARCHAR(270)  NOT NULL,
+  `cover`            TINYINT(1)    NOT NULL,
+  `status`           TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `albumpic`
 --
 
-INSERT INTO `albumpic` (`id`, `AlbumID`, `PicName`, `Description`, `FullImagePath`, `HalfImagepath`, `Cover`, `Status`) VALUES
+INSERT INTO `albumpic` (`id`, `album_id`, `pic_name`, `description`, `full_image_path`, `half_image_path`, `cover`, `status`) VALUES
 (1, 1, 'LMS 0', 'Main', '../PhotoGallery/images/68db0b28f5b559c0aa58475ab4fd42a9.jpg', '../PhotoGallery/images/68db0b28f5b559c0aa58475ab4fd42a9.jpg', 0, 1),
 (2, 1, 'LMS 0 0', 'Cafeteria', '../PhotoGallery/images/932656ce69ac72b747e4945dd7952144.jpg', '../PhotoGallery/images/932656ce69ac72b747e4945dd7952144.jpg', 0, 0),
 (3, 1, 'LMS 0 0 0', 'Library', '../PhotoGallery/images/8b392adea22c53b113bb84b49ef210d8.jpg', '../PhotoGallery/images/8b392adea22c53b113bb84b49ef210d8.jpg', 0, 0),
@@ -359,18 +360,20 @@ INSERT INTO `albumpic` (`id`, `AlbumID`, `PicName`, `Description`, `FullImagePat
 --
 
 CREATE TABLE IF NOT EXISTS `all_teachers` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `class` int(3) NOT NULL,
-  `user` varchar(255) NOT NULL,
-  `sub` int(8) NOT NULL,
-  `section` int(2) NOT NULL,
-  `sub_teac2` int(8) NOT NULL,
-  `sub_teac` int(8) NOT NULL,
-  `home_teac` int(8) NOT NULL,
-  `sub_type` int(11) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1012 ;
+  `id`         BIGINT        NOT NULL AUTO_INCREMENT,
+  `class`      INT           NOT NULL,
+  `user`       VARCHAR(255)  NOT NULL,
+  `sub`        INT           NOT NULL,
+  `section`    INT           NOT NULL,
+  `sub_teac2`  INT           NOT NULL,
+  `sub_teac`   INT           NOT NULL,
+  `home_teac`  INT           NOT NULL,
+  `sub_type`   INT           NOT NULL,
+  `acc_year`   INT           NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_year_class_sec` (`acc_year`, `class`, `section`),
+  INDEX `ix_user_year`      (`user`, `acc_year`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `all_teachers`
@@ -396,16 +399,16 @@ INSERT INTO `all_teachers` (`id`, `class`, `user`, `sub`, `section`, `sub_teac2`
 --
 
 CREATE TABLE IF NOT EXISTS `announcement` (
-  `id` int(14) NOT NULL AUTO_INCREMENT,
-  `acc_year` int(11) NOT NULL,
-  `type` int(1) NOT NULL,
-  `fromdate` date NOT NULL,
-  `todate` date NOT NULL,
-  `title` varchar(200) NOT NULL,
-  `description` text NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`           INT           NOT NULL AUTO_INCREMENT,
+  `acc_year`     INT           NOT NULL,
+  `type`         TINYINT(1)    NOT NULL,
+  `fromdate`     DATE          NOT NULL,
+  `todate`       DATE          NOT NULL,
+  `title`        VARCHAR(200)  NOT NULL,
+  `description`  TEXT          NOT NULL,
+  `status`       TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -414,23 +417,23 @@ CREATE TABLE IF NOT EXISTS `announcement` (
 --
 
 CREATE TABLE IF NOT EXISTS `announcement_call` (
-  `id` int(14) NOT NULL AUTO_INCREMENT,
-  `type` int(1) NOT NULL,
-  `fromdate` date NOT NULL,
-  `todate` date NOT NULL,
-  `title` varchar(200) NOT NULL,
-  `description` text NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`           INT           NOT NULL AUTO_INCREMENT,
+  `type`         TINYINT(1)    NOT NULL,
+  `fromdate`     DATE          NOT NULL,
+  `todate`       DATE          NOT NULL,
+  `title`        VARCHAR(200)  NOT NULL,
+  `description`  TEXT          NOT NULL,
+  `acc_year`     INT           NOT NULL,
+  `status`       TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `announcement_call`
 --
 
 INSERT INTO `announcement_call` (`id`, `type`, `fromdate`, `todate`, `title`, `description`, `acc_year`, `status`) VALUES
-(1, 1, '2026-08-05', '0000-00-00', 'School Reopens', 'School Reopens for the Academic year 2026-2026', 2026, 1),
+(1, 1, '2026-08-05', NULL, 'School Reopens', 'School Reopens for the Academic year 2026-2026', 2026, 1),
 (2, 2, '2026-08-22', '2026-08-27', '   School Mails Going into Spam', 'Over the past couple of months Google has made major modifications to its security settings. We have to send mass mails to our parents via a mail blaster but the security setting that Gmail users have deem these as unauthentic and they land in the spam folder. In such a case, please open the message and click on the button which says ''not spam''. Subsequent mails from the school will then be received in your inbox.', 2026, 1);
 
 -- --------------------------------------------------------
@@ -440,32 +443,34 @@ INSERT INTO `announcement_call` (`id`, `type`, `fromdate`, `todate`, `title`, `d
 --
 
 CREATE TABLE IF NOT EXISTS `announcement_class` (
-  `id` int(14) NOT NULL AUTO_INCREMENT,
-  `acc_year` int(11) NOT NULL,
-  `type` int(1) NOT NULL,
-  `class` int(4) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `fromdate` date NOT NULL,
-  `todate` date NOT NULL,
-  `title` varchar(200) NOT NULL,
-  `description` text NOT NULL,
-  `status` int(1) NOT NULL,
-  `grade` int(4) NOT NULL,
-  `section_id` int(4) NOT NULL,
-  `trg_name` varchar(255) NOT NULL,
-  `trg_path` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=114 ;
+  `id`           INT           NOT NULL AUTO_INCREMENT,
+  `acc_year`     INT           NOT NULL,
+  `type`         TINYINT(1)    NOT NULL,
+  `class`        INT           NOT NULL,
+  `username`     VARCHAR(30)   NOT NULL,
+  `fromdate`     DATE          NOT NULL,
+  `todate`       DATE          NOT NULL,
+  `title`        VARCHAR(200)  NOT NULL,
+  `description`  TEXT          NOT NULL,
+  `status`       TINYINT(1)    NOT NULL,
+  `grade`        INT           NOT NULL,
+  `section_id`   INT           NOT NULL,
+  `trg_name`     VARCHAR(255)  NOT NULL,
+  `trg_path`     VARCHAR(255)  NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_year_grade_sec` (`acc_year`, `grade`, `section_id`, `status`),
+  INDEX `ix_username_year`  (`username`, `acc_year`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `announcement_class`
 --
 
 INSERT INTO `announcement_class` (`id`, `acc_year`, `type`, `class`, `username`, `fromdate`, `todate`, `title`, `description`, `status`, `grade`, `section_id`, `trg_name`, `trg_path`) VALUES
-(1, 2026, 1, 0, 'administrator', '2026-08-01', '0000-00-00', 'School Reopens', 'School Reopens for the Academic Year 2026-14', 1, 0, 0, '', ''),
-(2, 2026, 1, 3, 'brindaa', '2026-08-01', '0000-00-00', 'Welcome Back To School', 'Dear Student,\r\nWelcome back to School wishing you a great year ahead.\r\n\r\nRegards,\r\nBrinda', 1, 10, 71, '', ''),
-(3, 2026, 1, 2, 'administrator', '2026-08-15', '0000-00-00', 'Test Homeroom', 'Testing', 1, 5, 116, '', ''),
-(4, 2026, 1, 2, 'administrator', '2026-08-30', '0000-00-00', 'Test Math', 'Math', 1, 5, 702, '', ''),
+(1, 2026, 1, 0, 'administrator', '2026-08-01', NULL, 'School Reopens', 'School Reopens for the Academic Year 2026-14', 1, 0, 0, '', ''),
+(2, 2026, 1, 3, 'brindaa', '2026-08-01', NULL, 'Welcome Back To School', 'Dear Student,\r\nWelcome back to School wishing you a great year ahead.\r\n\r\nRegards,\r\nBrinda', 1, 10, 71, '', ''),
+(3, 2026, 1, 2, 'administrator', '2026-08-15', NULL, 'Test Homeroom', 'Testing', 1, 5, 116, '', ''),
+(4, 2026, 1, 2, 'administrator', '2026-08-30', NULL, 'Test Math', 'Math', 1, 5, 702, '', ''),
 (5, 2026, 2, 0, 'administrator', '2026-08-21', '2026-08-23', 'Curriculum morning - Grade 5', 'Curriculum morning - Grade 5', 1, 0, 0, '', ''),
 (6, 2026, 2, 0, 'administrator', '2026-08-22', '2026-08-23', 'PTA Formation (attachment)    ', '\nMeet with PTA Nominees: Please find attached the PTA Grade Representative Nominee Profile. Before the Grade Representatives (GR) are elected, you can meet with them informally and get to know them better.  For this we have organized a Q&A session with the Grade Representatives on Tuesday August 27, 2026 (8am - 9am) in the Board room (Ground Floor).\n\nVoting Process: The Ballot form for voting for your GR will be emailed on Mon, August 26th 2026. Submission of votes begins Tuesday, August 27th  . Parents must vote for their own grade level ONLY. The Ballot forms must be signed and either dropped in the drop-box at the School reception or scanned and emailed it to us at saroni.ghosh@email.com\n\nYour votes must be received by August 30th , 2026. Ballot forms without name and signature will not be accepted. \n\nDeclaration of Elected Grade Representatives: The PTA body will be announced on Monday September 2, 2026.', 1, 0, 0, '', ''),
 (7, 2026, 2, 2, 'administrator', '2026-08-21', '2026-08-24', 'Curriculum morning: Grade 5', 'Curriculum morning: Grade 5', 1, 9, 141, '', ''),
@@ -481,28 +486,28 @@ INSERT INTO `announcement_class` (`id`, `acc_year`, `type`, `class`, `username`,
 --
 
 CREATE TABLE IF NOT EXISTS `announcement_class_call` (
-  `id` int(14) NOT NULL AUTO_INCREMENT,
-  `acc_year` int(11) NOT NULL,
-  `type` int(1) NOT NULL,
-  `class` int(4) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `fromdate` date NOT NULL,
-  `todate` date NOT NULL,
-  `title` varchar(200) NOT NULL,
-  `description` text NOT NULL,
-  `status` int(1) NOT NULL,
-  `grade` int(4) NOT NULL,
-  `section_id` int(4) NOT NULL,
+  `id`           INT           NOT NULL AUTO_INCREMENT,
+  `acc_year`     INT           NOT NULL,
+  `type`         TINYINT(1)    NOT NULL,
+  `class`        INT           NOT NULL,
+  `username`     VARCHAR(30)   NOT NULL,
+  `fromdate`     DATE          NOT NULL,
+  `todate`       DATE          NOT NULL,
+  `title`        VARCHAR(200)  NOT NULL,
+  `description`  TEXT          NOT NULL,
+  `status`       TINYINT(1)    NOT NULL,
+  `grade`        INT           NOT NULL,
+  `section_id`   INT           NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `announcement_class_call`
 --
 
 INSERT INTO `announcement_class_call` (`id`, `acc_year`, `type`, `class`, `username`, `fromdate`, `todate`, `title`, `description`, `status`, `grade`, `section_id`) VALUES
-(1, 2026, 1, 2, 'administrator', '2026-08-15', '0000-00-00', 'Class Test', 'test', 1, 5, 116),
-(2, 2026, 1, 3, 'brindaa', '2026-08-19', '0000-00-00', 'Attendance', '', 1, 10, 72);
+(1, 2026, 1, 2, 'administrator', '2026-08-15', NULL, 'Class Test', 'test', 1, 5, 116),
+(2, 2026, 1, 3, 'brindaa', '2026-08-19', NULL, 'Attendance', '', 1, 10, 72);
 
 -- --------------------------------------------------------
 
@@ -511,33 +516,33 @@ INSERT INTO `announcement_class_call` (`id`, `acc_year`, `type`, `class`, `usern
 --
 
 CREATE TABLE IF NOT EXISTS `announcement_class_test` (
-  `id` int(14) NOT NULL AUTO_INCREMENT,
-  `acc_year` int(11) NOT NULL,
-  `type` int(1) NOT NULL,
-  `class` int(4) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `fromdate` date NOT NULL,
-  `todate` date NOT NULL,
-  `title` varchar(200) NOT NULL,
-  `description` text NOT NULL,
-  `status` int(1) NOT NULL,
-  `grade` int(4) NOT NULL,
-  `section_id` int(4) NOT NULL,
-  `trg_name` varchar(255) NOT NULL,
-  `trg_path` varchar(255) NOT NULL,
-  `subject` varchar(200) DEFAULT NULL,
+  `id`           INT           NOT NULL AUTO_INCREMENT,
+  `acc_year`     INT           NOT NULL,
+  `type`         TINYINT(1)    NOT NULL,
+  `class`        INT           NOT NULL,
+  `username`     VARCHAR(30)   NOT NULL,
+  `fromdate`     DATE          NOT NULL,
+  `todate`       DATE          NOT NULL,
+  `title`        VARCHAR(200)  NOT NULL,
+  `description`  TEXT          NOT NULL,
+  `status`       TINYINT(1)    NOT NULL,
+  `grade`        INT           NOT NULL,
+  `section_id`   INT           NOT NULL,
+  `trg_name`     VARCHAR(255)  NOT NULL,
+  `trg_path`     VARCHAR(255)  NOT NULL,
+  `subject`      VARCHAR(200)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=76 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `announcement_class_test`
 --
 
 INSERT INTO `announcement_class_test` (`id`, `acc_year`, `type`, `class`, `username`, `fromdate`, `todate`, `title`, `description`, `status`, `grade`, `section_id`, `trg_name`, `trg_path`, `subject`) VALUES
-(69, 2026, 1, 1, 'administrator', '2026-11-19', '0000-00-00', 'Title', '<p>Description</p>', 1, 0, 0, '', '', ''),
-(70, 2026, 1, 2, 'administrator', '2026-11-19', '0000-00-00', 'Title', '<p>Description</p>', 1, 0, 0, '', '', ''),
-(71, 2026, 1, 3, 'administrator', '2026-11-19', '0000-00-00', 'Title', '<p>Description</p>', 1, 0, 0, '', '', ''),
-(72, 2026, 1, 4, 'administrator', '2026-11-19', '0000-00-00', 'Title', '<p>Description</p>', 1, 0, 0, '', '', ''),
+(69, 2026, 1, 1, 'administrator', '2026-11-19', NULL, 'Title', '<p>Description</p>', 1, 0, 0, '', '', ''),
+(70, 2026, 1, 2, 'administrator', '2026-11-19', NULL, 'Title', '<p>Description</p>', 1, 0, 0, '', '', ''),
+(71, 2026, 1, 3, 'administrator', '2026-11-19', NULL, 'Title', '<p>Description</p>', 1, 0, 0, '', '', ''),
+(72, 2026, 1, 4, 'administrator', '2026-11-19', NULL, 'Title', '<p>Description</p>', 1, 0, 0, '', '', ''),
 (73, 2026, 2, 5, 'administrator', '2026-11-20', '2026-11-21', 'test', '<p>test</p>', 1, 0, 0, '', '', ''),
 (74, 2026, 2, 6, 'administrator', '2026-11-20', '2026-11-21', 'test', '<p>test</p>', 1, 0, 0, '', '', ''),
 (75, 2026, 2, 7, 'administrator', '2026-11-20', '2026-11-21', 'test', '<p>test</p>', 1, 0, 0, '', '', '');
@@ -549,32 +554,33 @@ INSERT INTO `announcement_class_test` (`id`, `acc_year`, `type`, `class`, `usern
 --
 
 CREATE TABLE IF NOT EXISTS `announcement_class_test_docs` (
-  `id` int(14) NOT NULL DEFAULT '0',
-  `acc_year` int(11) NOT NULL,
-  `type` int(1) NOT NULL,
-  `class` int(4) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `fromdate` date NOT NULL,
-  `todate` date NOT NULL,
-  `title` varchar(200) NOT NULL,
-  `description` text NOT NULL,
-  `status` int(1) NOT NULL,
-  `grade` int(4) NOT NULL,
-  `section_id` int(4) NOT NULL,
-  `trg_name` varchar(255) NOT NULL,
-  `trg_path` varchar(255) NOT NULL,
-  `subject` varchar(200) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`           INT           NOT NULL DEFAULT '0',
+  `acc_year`     INT           NOT NULL,
+  `type`         TINYINT(1)    NOT NULL,
+  `class`        INT           NOT NULL,
+  `username`     VARCHAR(30)   NOT NULL,
+  `fromdate`     DATE          NOT NULL,
+  `todate`       DATE          NOT NULL,
+  `title`        VARCHAR(200)  NOT NULL,
+  `description`  TEXT          NOT NULL,
+  `status`       TINYINT(1)    NOT NULL,
+  `grade`        INT           NOT NULL,
+  `section_id`   INT           NOT NULL,
+  `trg_name`     VARCHAR(255)  NOT NULL,
+  `trg_path`     VARCHAR(255)  NOT NULL,
+  `subject`      VARCHAR(200)  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `announcement_class_test_docs`
 --
 
 INSERT INTO `announcement_class_test_docs` (`id`, `acc_year`, `type`, `class`, `username`, `fromdate`, `todate`, `title`, `description`, `status`, `grade`, `section_id`, `trg_name`, `trg_path`, `subject`) VALUES
-(1, 2026, 1, 0, 'administrator', '2026-08-01', '0000-00-00', 'School Reopens', 'School Reopens for the Academic Year 2026-14', 1, 0, 0, '', '', NULL),
-(2, 2026, 1, 3, 'brindaa', '2026-08-01', '0000-00-00', 'Welcome Back To School', 'Dear Student,\r\nWelcome back to School wishing you a great year ahead.\r\n\r\nRegards,\r\nBrinda', 1, 10, 71, '', '', NULL),
-(3, 2026, 1, 2, 'administrator', '2026-08-15', '0000-00-00', 'Test Homeroom', 'Testing', 1, 5, 116, '', '', NULL),
-(4, 2026, 1, 2, 'administrator', '2026-08-30', '0000-00-00', 'Test Math', 'Math', 1, 5, 702, '', '', NULL),
+(1, 2026, 1, 0, 'administrator', '2026-08-01', NULL, 'School Reopens', 'School Reopens for the Academic Year 2026-14', 1, 0, 0, '', '', NULL),
+(2, 2026, 1, 3, 'brindaa', '2026-08-01', NULL, 'Welcome Back To School', 'Dear Student,\r\nWelcome back to School wishing you a great year ahead.\r\n\r\nRegards,\r\nBrinda', 1, 10, 71, '', '', NULL),
+(3, 2026, 1, 2, 'administrator', '2026-08-15', NULL, 'Test Homeroom', 'Testing', 1, 5, 116, '', '', NULL),
+(4, 2026, 1, 2, 'administrator', '2026-08-30', NULL, 'Test Math', 'Math', 1, 5, 702, '', '', NULL),
 (5, 2026, 2, 0, 'administrator', '2026-08-21', '2026-08-23', 'Curriculum morning - Grade 5', 'Curriculum morning - Grade 5', 1, 0, 0, '', '', NULL),
 (6, 2026, 2, 0, 'administrator', '2026-08-22', '2026-08-23', 'PTA Formation (attachment)    ', '\nMeet with PTA Nominees: Please find attached the PTA Grade Representative Nominee Profile. Before the Grade Representatives (GR) are elected, you can meet with them informally and get to know them better.  For this we have organized a Q&A session with the Grade Representatives on Tuesday August 27, 2026 (8am - 9am) in the Board room (Ground Floor).\n\nVoting Process: The Ballot form for voting for your GR will be emailed on Mon, August 26th 2026. Submission of votes begins Tuesday, August 27th  . Parents must vote for their own grade level ONLY. The Ballot forms must be signed and either dropped in the drop-box at the School reception or scanned and emailed it to us at saroni.ghosh@email.com\n\nYour votes must be received by August 30th , 2026. Ballot forms without name and signature will not be accepted. \n\nDeclaration of Elected Grade Representatives: The PTA body will be announced on Monday September 2, 2026.', 1, 0, 0, '', '', NULL),
 (7, 2026, 2, 2, 'administrator', '2026-08-21', '2026-08-24', 'Curriculum morning: Grade 5', 'Curriculum morning: Grade 5', 1, 9, 141, '', '', NULL),
@@ -589,11 +595,11 @@ INSERT INTO `announcement_class_test_docs` (`id`, `acc_year`, `type`, `class`, `
 --
 
 CREATE TABLE IF NOT EXISTS `app_hod` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `courseid` int(3) DEFAULT NULL,
-  `fid` int(10) DEFAULT NULL,
+  `id`        INT  NOT NULL AUTO_INCREMENT,
+  `courseid`  INT  DEFAULT NULL,
+  `fid`       INT  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -602,98 +608,99 @@ CREATE TABLE IF NOT EXISTS `app_hod` (
 --
 
 CREATE TABLE IF NOT EXISTS `archive` (
-  `f_name` char(50) NOT NULL DEFAULT '',
-  `s_name` char(50) NOT NULL DEFAULT '',
-  `i_name` char(15) DEFAULT NULL,
-  `qual` char(150) DEFAULT NULL,
-  `cert` char(150) DEFAULT NULL,
-  `subj` int(11) NOT NULL DEFAULT '0',
-  `exp_cur` float DEFAULT NULL,
-  `exp_prev` float DEFAULT NULL,
-  `sp_assoc` char(150) DEFAULT NULL,
-  `xtra` char(150) DEFAULT NULL,
-  `father` char(50) DEFAULT NULL,
-  `doa` char(50) DEFAULT NULL,
-  `bg` char(15) NOT NULL DEFAULT '',
-  `ms` char(150) NOT NULL DEFAULT '',
-  `addr_perm` char(250) DEFAULT NULL,
-  `ct_perm` char(50) DEFAULT NULL,
-  `pin_perm` char(50) DEFAULT NULL,
-  `st_perm` char(50) DEFAULT NULL,
-  `ph_perm` char(50) DEFAULT NULL,
-  `addr_pres` char(250) DEFAULT NULL,
-  `ct_pres` char(50) DEFAULT NULL,
-  `pin_pres` char(50) DEFAULT NULL,
-  `st_pres` char(50) DEFAULT NULL,
-  `ph_pres` char(50) DEFAULT NULL,
-  `email` char(50) DEFAULT NULL,
-  `id` int(11) NOT NULL DEFAULT '0',
-  `slno` char(50) NOT NULL DEFAULT '',
-  `group_id` int(11) DEFAULT NULL,
-  `type_id` int(11) NOT NULL DEFAULT '0',
-  `offeredsal` int(11) NOT NULL DEFAULT '0',
-  `basicsal` int(11) NOT NULL DEFAULT '0',
-  `j_date` date NOT NULL DEFAULT '0000-00-00',
-  `cmts` char(250) DEFAULT NULL,
-  `status_id` int(11) DEFAULT NULL,
-  `dob` date NOT NULL DEFAULT '0000-00-00',
-  `other_facilities` char(250) DEFAULT NULL,
-  `other_responsibilities` char(250) DEFAULT NULL,
-  `prev_post` char(50) DEFAULT NULL,
-  `prev_work_place` char(50) DEFAULT NULL,
-  `prev_work_city` char(50) DEFAULT NULL,
-  `prev_work_country` char(50) DEFAULT NULL,
-  `last_date_of_work` date DEFAULT NULL,
-  `staff_status_id` int(11) DEFAULT NULL,
-  `date_of_updation` date DEFAULT NULL,
-  `expirydate` date DEFAULT NULL,
-  `gender` char(10) DEFAULT NULL,
-  `releive_date` date DEFAULT NULL,
-  `recruitment_procedure` enum('YES','NO') NOT NULL DEFAULT 'YES',
-  `pfscheme` enum('YES','NO') NOT NULL DEFAULT 'YES',
-  `active` enum('YES','NO') DEFAULT 'YES',
-  `bank_ac_no` char(20) DEFAULT NULL,
-  `pf_ac_no` char(15) DEFAULT NULL,
-  `panno` char(25) DEFAULT NULL,
-  `csal` float DEFAULT NULL,
-  `sop` char(10) DEFAULT NULL,
-  `cat` char(12) DEFAULT NULL,
-  `pno` char(15) DEFAULT NULL,
-  `vfdate` char(20) DEFAULT NULL,
-  `vtadate` char(20) DEFAULT NULL,
-  `dep` char(100) DEFAULT NULL,
-  `category` char(20) DEFAULT NULL,
-  `cat_fdate` char(20) DEFAULT NULL,
-  `cat_tdate` char(20) DEFAULT NULL,
-  `pay_scale` char(20) DEFAULT NULL,
-  `spouse_name` char(20) DEFAULT NULL,
-  `dept_name` char(100) DEFAULT NULL,
-  `dept_dob` char(20) DEFAULT NULL,
-  `dept_rel` char(20) DEFAULT NULL,
-  `dept_occu` char(20) DEFAULT NULL,
-  `dept_anualinc` float DEFAULT NULL,
-  `issue_place` char(100) DEFAULT NULL,
-  `mobileno` int(20) DEFAULT NULL,
-  `consolidated` char(20) DEFAULT NULL,
-  `col_id` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `f_name`                  CHAR(50)          NOT NULL DEFAULT '',
+  `s_name`                  CHAR(50)          NOT NULL DEFAULT '',
+  `i_name`                  CHAR(15)          DEFAULT NULL,
+  `qual`                    CHAR(150)         DEFAULT NULL,
+  `cert`                    CHAR(150)         DEFAULT NULL,
+  `subj`                    INT               NOT NULL DEFAULT '0',
+  `exp_cur`                 FLOAT             DEFAULT NULL,
+  `exp_prev`                FLOAT             DEFAULT NULL,
+  `sp_assoc`                CHAR(150)         DEFAULT NULL,
+  `xtra`                    CHAR(150)         DEFAULT NULL,
+  `father`                  CHAR(50)          DEFAULT NULL,
+  `doa`                     CHAR(50)          DEFAULT NULL,
+  `bg`                      CHAR(15)          NOT NULL DEFAULT '',
+  `ms`                      CHAR(150)         NOT NULL DEFAULT '',
+  `addr_perm`               CHAR(250)         DEFAULT NULL,
+  `ct_perm`                 CHAR(50)          DEFAULT NULL,
+  `pin_perm`                CHAR(50)          DEFAULT NULL,
+  `st_perm`                 CHAR(50)          DEFAULT NULL,
+  `ph_perm`                 CHAR(50)          DEFAULT NULL,
+  `addr_pres`               CHAR(250)         DEFAULT NULL,
+  `ct_pres`                 CHAR(50)          DEFAULT NULL,
+  `pin_pres`                CHAR(50)          DEFAULT NULL,
+  `st_pres`                 CHAR(50)          DEFAULT NULL,
+  `ph_pres`                 CHAR(50)          DEFAULT NULL,
+  `email`                   CHAR(50)          DEFAULT NULL,
+  `id`                      INT               NOT NULL DEFAULT '0',
+  `slno`                    CHAR(50)          NOT NULL DEFAULT '',
+  `group_id`                INT               DEFAULT NULL,
+  `type_id`                 INT               NOT NULL DEFAULT '0',
+  `offeredsal`              INT               NOT NULL DEFAULT '0',
+  `basicsal`                INT               NOT NULL DEFAULT '0',
+  `j_date`                  DATE              DEFAULT NULL,
+  `cmts`                    CHAR(250)         DEFAULT NULL,
+  `status_id`               INT               DEFAULT NULL,
+  `dob`                     DATE              DEFAULT NULL,
+  `other_facilities`        CHAR(250)         DEFAULT NULL,
+  `other_responsibilities`  CHAR(250)         DEFAULT NULL,
+  `prev_post`               CHAR(50)          DEFAULT NULL,
+  `prev_work_place`         CHAR(50)          DEFAULT NULL,
+  `prev_work_city`          CHAR(50)          DEFAULT NULL,
+  `prev_work_country`       CHAR(50)          DEFAULT NULL,
+  `last_date_of_work`       DATE              DEFAULT NULL,
+  `staff_status_id`         INT               DEFAULT NULL,
+  `date_of_updation`        DATE              DEFAULT NULL,
+  `expirydate`              DATE              DEFAULT NULL,
+  `gender`                  CHAR(10)          DEFAULT NULL,
+  `releive_date`            DATE              DEFAULT NULL,
+  `recruitment_procedure`   ENUM('YES','NO')  NOT NULL DEFAULT 'YES',
+  `pfscheme`                ENUM('YES','NO')  NOT NULL DEFAULT 'YES',
+  `active`                  ENUM('YES','NO')  DEFAULT 'YES',
+  `bank_ac_no`              CHAR(20)          DEFAULT NULL,
+  `pf_ac_no`                CHAR(15)          DEFAULT NULL,
+  `panno`                   CHAR(25)          DEFAULT NULL,
+  `csal`                    FLOAT             DEFAULT NULL,
+  `sop`                     CHAR(10)          DEFAULT NULL,
+  `cat`                     CHAR(12)          DEFAULT NULL,
+  `pno`                     CHAR(15)          DEFAULT NULL,
+  `vfdate`                  CHAR(20)          DEFAULT NULL,
+  `vtadate`                 CHAR(20)          DEFAULT NULL,
+  `dep`                     CHAR(100)         DEFAULT NULL,
+  `category`                CHAR(20)          DEFAULT NULL,
+  `cat_fdate`               CHAR(20)          DEFAULT NULL,
+  `cat_tdate`               CHAR(20)          DEFAULT NULL,
+  `pay_scale`               CHAR(20)          DEFAULT NULL,
+  `spouse_name`             CHAR(20)          DEFAULT NULL,
+  `dept_name`               CHAR(100)         DEFAULT NULL,
+  `dept_dob`                CHAR(20)          DEFAULT NULL,
+  `dept_rel`                CHAR(20)          DEFAULT NULL,
+  `dept_occu`               CHAR(20)          DEFAULT NULL,
+  `dept_anualinc`           FLOAT             DEFAULT NULL,
+  `issue_place`             CHAR(100)         DEFAULT NULL,
+  `mobileno`                VARCHAR(20)       DEFAULT NULL,
+  `consolidated`            CHAR(20)          DEFAULT NULL,
+  `col_id`                  INT               DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `archive`
 --
 
 INSERT INTO `archive` (`f_name`, `s_name`, `i_name`, `qual`, `cert`, `subj`, `exp_cur`, `exp_prev`, `sp_assoc`, `xtra`, `father`, `doa`, `bg`, `ms`, `addr_perm`, `ct_perm`, `pin_perm`, `st_perm`, `ph_perm`, `addr_pres`, `ct_pres`, `pin_pres`, `st_pres`, `ph_pres`, `email`, `id`, `slno`, `group_id`, `type_id`, `offeredsal`, `basicsal`, `j_date`, `cmts`, `status_id`, `dob`, `other_facilities`, `other_responsibilities`, `prev_post`, `prev_work_place`, `prev_work_city`, `prev_work_country`, `last_date_of_work`, `staff_status_id`, `date_of_updation`, `expirydate`, `gender`, `releive_date`, `recruitment_procedure`, `pfscheme`, `active`, `bank_ac_no`, `pf_ac_no`, `panno`, `csal`, `sop`, `cat`, `pno`, `vfdate`, `vtadate`, `dep`, `category`, `cat_fdate`, `cat_tdate`, `pay_scale`, `spouse_name`, `dept_name`, `dept_dob`, `dept_rel`, `dept_occu`, `dept_anualinc`, `issue_place`, `mobileno`, `consolidated`, `col_id`) VALUES
-('Faculty', 'One', NULL, '', '', 1, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 17, 'RD-S0001', NULL, 2, 0, 1000, '0000-00-00', '', 1, '0000-00-00', NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-01-07', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('Puja', 'R Srivastava', NULL, '', '', 2, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 18, 'RD-S0001', NULL, 2, 0, 1000, '0000-00-00', '', 1, '0000-00-00', NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-03-06', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('Soumendra', 'J', NULL, '', '', 2, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 19, 'RD-S0003', NULL, 5, 0, 1000, '0000-00-00', '', -1, '0000-00-00', NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-06-28', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('Matthew', 'Sipple', NULL, '', '', 18, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 182, 'RD-S0001', NULL, 70, 0, 1000, '0000-00-00', '', 1, '0000-00-00', NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-07-23', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('Curtis', 'Davis', NULL, '', '', 18, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 183, 'RD-S0002', NULL, 30, 0, 1000, '0000-00-00', '', 1, '0000-00-00', NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-07-25', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('Hideaki', 'Tokunaga', NULL, '', '', 9, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 184, 'RD-S0001', NULL, 27, 0, 1000, '0000-00-00', '', 1, '0000-00-00', NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-07-25', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('Stephen', 'Curran', NULL, '', '', 18, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 185, 'RD-S0003', NULL, 27, 0, 1000, '0000-00-00', '', 1, '0000-00-00', NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-07-26', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('Vitna', 'Bailey', NULL, '', '', 5, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 186, 'RD-S0001', NULL, 2, 0, 1000, '0000-00-00', '', 1, '0000-00-00', NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-07-27', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('Manju', 'Upadhyaya', NULL, '', '', 5, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 187, 'RD-S0002', NULL, 2, 0, 1000, '0000-00-00', '', 1, '0000-00-00', NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-07-27', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('Aarti', 'Potdar', NULL, '', '', 9, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 188, 'RD-S0002', NULL, 57, 0, 1000, '0000-00-00', '', 1, '0000-00-00', NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-07-30', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('Anshu Sharma', '', NULL, '', '', 9, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 189, 'RD-S0003', NULL, 60, 0, 1000, '0000-00-00', '', 1, '0000-00-00', NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-07-30', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+('Faculty', 'One', NULL, '', '', 1, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 17, 'RD-S0001', NULL, 2, 0, 1000, NULL, '', 1, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-01-07', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('Puja', 'R Srivastava', NULL, '', '', 2, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 18, 'RD-S0001', NULL, 2, 0, 1000, NULL, '', 1, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-03-06', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('Soumendra', 'J', NULL, '', '', 2, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 19, 'RD-S0003', NULL, 5, 0, 1000, NULL, '', -1, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-06-28', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('Matthew', 'Sipple', NULL, '', '', 18, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 182, 'RD-S0001', NULL, 70, 0, 1000, NULL, '', 1, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-07-23', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('Curtis', 'Davis', NULL, '', '', 18, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 183, 'RD-S0002', NULL, 30, 0, 1000, NULL, '', 1, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-07-25', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('Hideaki', 'Tokunaga', NULL, '', '', 9, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 184, 'RD-S0001', NULL, 27, 0, 1000, NULL, '', 1, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-07-25', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('Stephen', 'Curran', NULL, '', '', 18, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 185, 'RD-S0003', NULL, 27, 0, 1000, NULL, '', 1, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-07-26', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('Vitna', 'Bailey', NULL, '', '', 5, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 186, 'RD-S0001', NULL, 2, 0, 1000, NULL, '', 1, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-07-27', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('Manju', 'Upadhyaya', NULL, '', '', 5, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 187, 'RD-S0002', NULL, 2, 0, 1000, NULL, '', 1, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-07-27', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('Aarti', 'Potdar', NULL, '', '', 9, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 188, 'RD-S0002', NULL, 57, 0, 1000, NULL, '', 1, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-07-30', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+('Anshu Sharma', '', NULL, '', '', 9, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 189, 'RD-S0003', NULL, 60, 0, 1000, NULL, '', 1, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-07-30', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -702,89 +709,90 @@ INSERT INTO `archive` (`f_name`, `s_name`, `i_name`, `qual`, `cert`, `subj`, `ex
 --
 
 CREATE TABLE IF NOT EXISTS `archive_student` (
-  `id` int(11) NOT NULL DEFAULT '0',
-  `admission_id` varchar(20) DEFAULT NULL,
-  `admission_date` date DEFAULT NULL,
-  `student_id` varchar(20) DEFAULT NULL,
-  `usn` varchar(20) DEFAULT NULL,
-  `first_name` varchar(30) DEFAULT NULL,
-  `last_name` varchar(30) DEFAULT NULL,
-  `nationality` int(3) DEFAULT NULL,
-  `religion` int(2) DEFAULT NULL,
-  `gender` char(1) DEFAULT NULL,
-  `caste_id` varchar(50) DEFAULT NULL,
-  `dob` date DEFAULT NULL,
-  `age` varchar(10) DEFAULT NULL,
-  `per_address` varchar(250) DEFAULT NULL,
-  `per_city` varchar(100) DEFAULT NULL,
-  `per_state` varchar(50) DEFAULT NULL,
-  `per_country` varchar(50) DEFAULT NULL,
-  `per_pincode` varchar(7) DEFAULT NULL,
-  `per_phone` varchar(20) DEFAULT NULL,
-  `cor_address` varchar(250) DEFAULT NULL,
-  `cor_city` varchar(100) DEFAULT NULL,
-  `cor_state` varchar(50) DEFAULT NULL,
-  `cor_country` varchar(50) DEFAULT NULL,
-  `cor_pincode` varchar(7) DEFAULT NULL,
-  `cor_phone` varchar(20) DEFAULT NULL,
-  `parent_name` varchar(60) DEFAULT NULL,
-  `parent_occupation` varchar(30) DEFAULT NULL,
-  `parent_income` float(12,2) DEFAULT NULL,
-  `loc_address` varchar(250) DEFAULT NULL,
-  `loc_city` varchar(100) DEFAULT NULL,
-  `loc_state` varchar(50) DEFAULT NULL,
-  `loc_country` varchar(50) DEFAULT NULL,
-  `loc_pincode` varchar(7) DEFAULT NULL,
-  `loc_phone` varchar(20) DEFAULT NULL,
-  `course_admitted` int(11) DEFAULT NULL,
-  `course_yearsem` int(11) DEFAULT NULL,
-  `quota_id` int(3) DEFAULT NULL,
-  `academic_year` varchar(12) DEFAULT NULL,
-  `remarks` varchar(250) DEFAULT NULL,
-  `username` varchar(15) DEFAULT NULL,
-  `password` varchar(15) DEFAULT NULL,
-  `archive` enum('Y','N','F') DEFAULT 'N',
-  `class_section_id` int(1) NOT NULL DEFAULT '0',
-  `parent_username` varchar(15) DEFAULT NULL,
-  `parent_password` varchar(15) DEFAULT NULL,
-  `count` int(11) DEFAULT NULL,
-  `blood_group` varchar(20) DEFAULT NULL,
-  `admission_type` varchar(10) DEFAULT NULL,
-  `img_source` varchar(255) DEFAULT NULL,
-  `img_source_s` varchar(255) DEFAULT NULL,
-  `marital_status` varchar(2) NOT NULL,
-  `mentor` varchar(15) DEFAULT '',
-  `m_email` varchar(20) DEFAULT NULL,
-  `mnum` int(15) DEFAULT NULL,
-  `g_name` varchar(15) DEFAULT NULL,
-  `g_occ` varchar(15) DEFAULT NULL,
-  `g_in` int(15) DEFAULT NULL,
-  `g_num` int(15) DEFAULT NULL,
-  `g_mail` varchar(15) DEFAULT NULL,
-  `f_email` varchar(20) DEFAULT NULL,
-  `place_of_birth` varchar(30) DEFAULT NULL,
-  `f_quali` varchar(30) DEFAULT NULL,
-  `m_quali` varchar(30) DEFAULT NULL,
-  `g_quali` varchar(30) DEFAULT NULL,
-  `lang_id` varchar(200) DEFAULT NULL,
-  `State` varchar(20) DEFAULT 'Karnataka',
-  `sms_mobile` int(10) DEFAULT NULL,
-  `mother_tongue` int(2) DEFAULT NULL,
-  `birth_disct` varchar(100) DEFAULT NULL,
-  `stud_type` varchar(10) DEFAULT NULL,
-  `vdate` date DEFAULT NULL,
-  `m_name` varchar(200) DEFAULT NULL,
-  `m_occ` varchar(200) DEFAULT NULL,
-  `m_inc` varchar(15) DEFAULT NULL,
-  `foadd` varchar(255) DEFAULT NULL,
-  `moadd` varchar(255) DEFAULT NULL,
-  `goadd` varchar(255) DEFAULT NULL,
-  `adm_yr` int(4) DEFAULT NULL,
-  `tcid` int(12) NOT NULL DEFAULT '0',
-  `tcdate` date NOT NULL,
-  `msgphone` int(10) NOT NULL,
-  `rgmailid` varchar(45) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`                 INT                NOT NULL DEFAULT '0',
+  `admission_id`       VARCHAR(20)        DEFAULT NULL,
+  `admission_date`     DATE               DEFAULT NULL,
+  `student_id`         VARCHAR(20)        DEFAULT NULL,
+  `usn`                VARCHAR(20)        DEFAULT NULL,
+  `first_name`         VARCHAR(30)        DEFAULT NULL,
+  `last_name`          VARCHAR(30)        DEFAULT NULL,
+  `nationality`        SMALLINT UNSIGNED  DEFAULT NULL,
+  `religion`           TINYINT UNSIGNED   DEFAULT NULL,
+  `gender`             CHAR(1)            DEFAULT NULL,
+  `caste_id`           VARCHAR(50)        DEFAULT NULL,
+  `dob`                DATE               DEFAULT NULL,
+  `age`                VARCHAR(10)        DEFAULT NULL,
+  `per_address`        VARCHAR(250)       DEFAULT NULL,
+  `per_city`           VARCHAR(100)       DEFAULT NULL,
+  `per_state`          VARCHAR(50)        DEFAULT NULL,
+  `per_country`        VARCHAR(50)        DEFAULT NULL,
+  `per_pincode`        VARCHAR(7)         DEFAULT NULL,
+  `per_phone`          VARCHAR(20)        DEFAULT NULL,
+  `cor_address`        VARCHAR(250)       DEFAULT NULL,
+  `cor_city`           VARCHAR(100)       DEFAULT NULL,
+  `cor_state`          VARCHAR(50)        DEFAULT NULL,
+  `cor_country`        VARCHAR(50)        DEFAULT NULL,
+  `cor_pincode`        VARCHAR(7)         DEFAULT NULL,
+  `cor_phone`          VARCHAR(20)        DEFAULT NULL,
+  `parent_name`        VARCHAR(60)        DEFAULT NULL,
+  `parent_occupation`  VARCHAR(30)        DEFAULT NULL,
+  `parent_income`      FLOAT(12,2)        DEFAULT NULL,
+  `loc_address`        VARCHAR(250)       DEFAULT NULL,
+  `loc_city`           VARCHAR(100)       DEFAULT NULL,
+  `loc_state`          VARCHAR(50)        DEFAULT NULL,
+  `loc_country`        VARCHAR(50)        DEFAULT NULL,
+  `loc_pincode`        VARCHAR(7)         DEFAULT NULL,
+  `loc_phone`          VARCHAR(20)        DEFAULT NULL,
+  `course_admitted`    INT                DEFAULT NULL,
+  `course_yearsem`     INT                DEFAULT NULL,
+  `quota_id`           INT                DEFAULT NULL,
+  `academic_year`      VARCHAR(12)        DEFAULT NULL,
+  `remarks`            VARCHAR(250)       DEFAULT NULL,
+  `username`           VARCHAR(15)        DEFAULT NULL,
+  `password`           VARCHAR(255)       DEFAULT NULL,
+  `archive`            ENUM('Y','N','F')  DEFAULT 'N',
+  `class_section_id`   TINYINT(1)         NOT NULL DEFAULT '0',
+  `parent_username`    VARCHAR(15)        DEFAULT NULL,
+  `parent_password`    VARCHAR(255)       DEFAULT NULL,
+  `count`              INT                DEFAULT NULL,
+  `blood_group`        VARCHAR(20)        DEFAULT NULL,
+  `admission_type`     VARCHAR(10)        DEFAULT NULL,
+  `img_source`         VARCHAR(255)       DEFAULT NULL,
+  `img_source_s`       VARCHAR(255)       DEFAULT NULL,
+  `marital_status`     VARCHAR(2)         NOT NULL,
+  `mentor`             VARCHAR(15)        DEFAULT '',
+  `m_email`            VARCHAR(20)        DEFAULT NULL,
+  `mnum`               INT                DEFAULT NULL,
+  `g_name`             VARCHAR(15)        DEFAULT NULL,
+  `g_occ`              VARCHAR(15)        DEFAULT NULL,
+  `g_in`               INT                DEFAULT NULL,
+  `g_num`              INT                DEFAULT NULL,
+  `g_mail`             VARCHAR(15)        DEFAULT NULL,
+  `f_email`            VARCHAR(20)        DEFAULT NULL,
+  `place_of_birth`     VARCHAR(30)        DEFAULT NULL,
+  `f_quali`            VARCHAR(30)        DEFAULT NULL,
+  `m_quali`            VARCHAR(30)        DEFAULT NULL,
+  `g_quali`            VARCHAR(30)        DEFAULT NULL,
+  `lang_id`            VARCHAR(200)       DEFAULT NULL,
+  `State`              VARCHAR(20)        DEFAULT 'Karnataka',
+  `sms_mobile`         VARCHAR(15)        DEFAULT NULL,
+  `mother_tongue`      TINYINT UNSIGNED   DEFAULT NULL,
+  `birth_disct`        VARCHAR(100)       DEFAULT NULL,
+  `stud_type`          VARCHAR(10)        DEFAULT NULL,
+  `vdate`              DATE               DEFAULT NULL,
+  `m_name`             VARCHAR(200)       DEFAULT NULL,
+  `m_occ`              VARCHAR(200)       DEFAULT NULL,
+  `m_inc`              VARCHAR(15)        DEFAULT NULL,
+  `foadd`              VARCHAR(255)       DEFAULT NULL,
+  `moadd`              VARCHAR(255)       DEFAULT NULL,
+  `goadd`              VARCHAR(255)       DEFAULT NULL,
+  `adm_yr`             SMALLINT UNSIGNED  DEFAULT NULL,
+  `tcid`               INT                NOT NULL DEFAULT '0',
+  `tcdate`             DATE               NOT NULL,
+  `msgphone`           INT                NOT NULL,
+  `rgmailid`           VARCHAR(45)        NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -793,10 +801,10 @@ CREATE TABLE IF NOT EXISTS `archive_student` (
 --
 
 CREATE TABLE IF NOT EXISTS `assetstatusmaster` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `conditions` varchar(250) DEFAULT NULL,
+  `id`          INT           NOT NULL AUTO_INCREMENT,
+  `conditions`  VARCHAR(250)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -805,13 +813,13 @@ CREATE TABLE IF NOT EXISTS `assetstatusmaster` (
 --
 
 CREATE TABLE IF NOT EXISTS `asset_group` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `assetgroupname` varchar(200) DEFAULT NULL,
-  `depreciation_rate` float(10,2) DEFAULT NULL,
-  `ledger_id` varchar(10) DEFAULT NULL,
-  `abbrevation` varchar(15) DEFAULT NULL,
+  `id`                 INT           NOT NULL AUTO_INCREMENT,
+  `assetgroupname`     VARCHAR(200)  DEFAULT NULL,
+  `depreciation_rate`  FLOAT(10,2)   DEFAULT NULL,
+  `ledger_id`          VARCHAR(10)   DEFAULT NULL,
+  `abbrevation`        VARCHAR(15)   DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -820,12 +828,12 @@ CREATE TABLE IF NOT EXISTS `asset_group` (
 --
 
 CREATE TABLE IF NOT EXISTS `asset_master` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `asset_name` varchar(100) DEFAULT NULL,
-  `asset_description` text,
-  `asset_group_id` int(11) DEFAULT NULL,
+  `id`                 INT           NOT NULL AUTO_INCREMENT,
+  `asset_name`         VARCHAR(100)  DEFAULT NULL,
+  `asset_description`  TEXT,
+  `asset_group_id`     INT           DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -834,9 +842,11 @@ CREATE TABLE IF NOT EXISTS `asset_master` (
 --
 
 CREATE TABLE IF NOT EXISTS `asset_master_counter` (
-  `asset_id` int(11) DEFAULT NULL,
-  `counter` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`        INT  NOT NULL AUTO_INCREMENT,
+  `asset_id`  INT  DEFAULT NULL,
+  `counter`   INT  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -845,12 +855,12 @@ CREATE TABLE IF NOT EXISTS `asset_master_counter` (
 --
 
 CREATE TABLE IF NOT EXISTS `asset_sub_group` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `asset_subgroup_name` varchar(50) DEFAULT NULL,
-  `asset_group_id` int(11) DEFAULT NULL,
-  `asset_code` char(3) DEFAULT NULL,
+  `id`                   INT          NOT NULL AUTO_INCREMENT,
+  `asset_subgroup_name`  VARCHAR(50)  DEFAULT NULL,
+  `asset_group_id`       INT          DEFAULT NULL,
+  `asset_code`           CHAR(3)      DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -859,13 +869,13 @@ CREATE TABLE IF NOT EXISTS `asset_sub_group` (
 --
 
 CREATE TABLE IF NOT EXISTS `attendance` (
-  `id` int(2) NOT NULL AUTO_INCREMENT,
-  `class_id` int(2) NOT NULL,
-  `type` int(1) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`        INT         NOT NULL AUTO_INCREMENT,
+  `class_id`  INT         NOT NULL,
+  `type`      TINYINT(1)  NOT NULL,
+  `acc_year`  INT         NOT NULL,
+  `status`    TINYINT(1)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `attendance`
@@ -890,21 +900,21 @@ INSERT INTO `attendance` (`id`, `class_id`, `type`, `acc_year`, `status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `attendance_points` (
-  `id` int(1) NOT NULL AUTO_INCREMENT,
-  `Description` varchar(100) NOT NULL,
-  `Short_name` varchar(3) NOT NULL,
-  `Count` int(3) NOT NULL,
-  `Point` int(3) NOT NULL,
-  `Status` int(1) NOT NULL,
-  `order_id` int(1) NOT NULL,
+  `id`           TINYINT(1)    NOT NULL AUTO_INCREMENT,
+  `description`  VARCHAR(100)  NOT NULL,
+  `short_name`   VARCHAR(3)    NOT NULL,
+  `count`        INT           NOT NULL,
+  `point`        INT           NOT NULL,
+  `status`       TINYINT(1)    NOT NULL,
+  `order_id`     TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `attendance_points`
 --
 
-INSERT INTO `attendance_points` (`id`, `Description`, `Short_name`, `Count`, `Point`, `Status`, `order_id`) VALUES
+INSERT INTO `attendance_points` (`id`, `description`, `short_name`, `count`, `point`, `status`, `order_id`) VALUES
 (1, 'Present', 'P', 1, 1, 1, 1),
 (2, 'Absent', 'A', 1, 0, 1, 0),
 (3, 'Tardy', 'T', 1, 1, 1, 2),
@@ -918,17 +928,20 @@ INSERT INTO `attendance_points` (`id`, `Description`, `Short_name`, `Count`, `Po
 --
 
 CREATE TABLE IF NOT EXISTS `att_` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`          BIGINT              NOT NULL AUTO_INCREMENT,
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date`  (`stu_id`, `att_date`),
+  INDEX `ix_date_sec`  (`att_date`, `sec`),
+  INDEX `ix_subj_date` (`subject_id`, `att_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -937,17 +950,20 @@ CREATE TABLE IF NOT EXISTS `att_` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_0` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1694 ;
+  `id`          BIGINT              NOT NULL AUTO_INCREMENT,
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date`  (`stu_id`, `att_date`),
+  INDEX `ix_date_sec`  (`att_date`, `sec`),
+  INDEX `ix_subj_date` (`subject_id`, `att_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `att_0`
@@ -972,17 +988,20 @@ INSERT INTO `att_0` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `sec`
 --
 
 CREATE TABLE IF NOT EXISTS `att_1` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7856 ;
+  `id`          BIGINT              NOT NULL AUTO_INCREMENT,
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date`  (`stu_id`, `att_date`),
+  INDEX `ix_date_sec`  (`att_date`, `sec`),
+  INDEX `ix_subj_date` (`subject_id`, `att_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `att_1`
@@ -1007,14 +1026,16 @@ INSERT INTO `att_1` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `sec`
 --
 
 CREATE TABLE IF NOT EXISTS `att_1_1` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`        BIGINT             NOT NULL AUTO_INCREMENT,
+  `att_date`  DATE               NOT NULL,
+  `stu_id`    BIGINT             NOT NULL,
+  `sec`       SMALLINT UNSIGNED  NOT NULL,
+  `mor`       TINYINT(1)         NOT NULL,
+  `after`     TINYINT(1)         NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date` (`stu_id`, `att_date`),
+  INDEX `ix_date_sec` (`att_date`, `sec`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1023,17 +1044,20 @@ CREATE TABLE IF NOT EXISTS `att_1_1` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_2` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14651 ;
+  `id`          BIGINT              NOT NULL AUTO_INCREMENT,
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date`  (`stu_id`, `att_date`),
+  INDEX `ix_date_sec`  (`att_date`, `sec`),
+  INDEX `ix_subj_date` (`subject_id`, `att_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `att_2`
@@ -1058,14 +1082,16 @@ INSERT INTO `att_2` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `sec`
 --
 
 CREATE TABLE IF NOT EXISTS `att_2_2` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`        BIGINT             NOT NULL AUTO_INCREMENT,
+  `att_date`  DATE               NOT NULL,
+  `stu_id`    BIGINT             NOT NULL,
+  `sec`       SMALLINT UNSIGNED  NOT NULL,
+  `mor`       TINYINT(1)         NOT NULL,
+  `after`     TINYINT(1)         NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date` (`stu_id`, `att_date`),
+  INDEX `ix_date_sec` (`att_date`, `sec`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1074,14 +1100,16 @@ CREATE TABLE IF NOT EXISTS `att_2_2` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_2_3` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`        BIGINT             NOT NULL AUTO_INCREMENT,
+  `att_date`  DATE               NOT NULL,
+  `stu_id`    BIGINT             NOT NULL,
+  `sec`       SMALLINT UNSIGNED  NOT NULL,
+  `mor`       TINYINT(1)         NOT NULL,
+  `after`     TINYINT(1)         NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date` (`stu_id`, `att_date`),
+  INDEX `ix_date_sec` (`att_date`, `sec`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1090,14 +1118,16 @@ CREATE TABLE IF NOT EXISTS `att_2_3` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_2_4` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`        BIGINT             NOT NULL AUTO_INCREMENT,
+  `att_date`  DATE               NOT NULL,
+  `stu_id`    BIGINT             NOT NULL,
+  `sec`       SMALLINT UNSIGNED  NOT NULL,
+  `mor`       TINYINT(1)         NOT NULL,
+  `after`     TINYINT(1)         NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date` (`stu_id`, `att_date`),
+  INDEX `ix_date_sec` (`att_date`, `sec`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1106,14 +1136,16 @@ CREATE TABLE IF NOT EXISTS `att_2_4` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_2_5` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`        BIGINT             NOT NULL AUTO_INCREMENT,
+  `att_date`  DATE               NOT NULL,
+  `stu_id`    BIGINT             NOT NULL,
+  `sec`       SMALLINT UNSIGNED  NOT NULL,
+  `mor`       TINYINT(1)         NOT NULL,
+  `after`     TINYINT(1)         NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date` (`stu_id`, `att_date`),
+  INDEX `ix_date_sec` (`att_date`, `sec`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1122,14 +1154,16 @@ CREATE TABLE IF NOT EXISTS `att_2_5` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_2_6` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`        BIGINT             NOT NULL AUTO_INCREMENT,
+  `att_date`  DATE               NOT NULL,
+  `stu_id`    BIGINT             NOT NULL,
+  `sec`       SMALLINT UNSIGNED  NOT NULL,
+  `mor`       TINYINT(1)         NOT NULL,
+  `after`     TINYINT(1)         NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date` (`stu_id`, `att_date`),
+  INDEX `ix_date_sec` (`att_date`, `sec`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1138,14 +1172,16 @@ CREATE TABLE IF NOT EXISTS `att_2_6` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_2_7` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`        BIGINT             NOT NULL AUTO_INCREMENT,
+  `att_date`  DATE               NOT NULL,
+  `stu_id`    BIGINT             NOT NULL,
+  `sec`       SMALLINT UNSIGNED  NOT NULL,
+  `mor`       TINYINT(1)         NOT NULL,
+  `after`     TINYINT(1)         NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date` (`stu_id`, `att_date`),
+  INDEX `ix_date_sec` (`att_date`, `sec`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1154,14 +1190,16 @@ CREATE TABLE IF NOT EXISTS `att_2_7` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_2_8` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`        BIGINT             NOT NULL AUTO_INCREMENT,
+  `att_date`  DATE               NOT NULL,
+  `stu_id`    BIGINT             NOT NULL,
+  `sec`       SMALLINT UNSIGNED  NOT NULL,
+  `mor`       TINYINT(1)         NOT NULL,
+  `after`     TINYINT(1)         NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date` (`stu_id`, `att_date`),
+  INDEX `ix_date_sec` (`att_date`, `sec`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1170,14 +1208,16 @@ CREATE TABLE IF NOT EXISTS `att_2_8` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_2_9` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`        BIGINT             NOT NULL AUTO_INCREMENT,
+  `att_date`  DATE               NOT NULL,
+  `stu_id`    BIGINT             NOT NULL,
+  `sec`       SMALLINT UNSIGNED  NOT NULL,
+  `mor`       TINYINT(1)         NOT NULL,
+  `after`     TINYINT(1)         NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date` (`stu_id`, `att_date`),
+  INDEX `ix_date_sec` (`att_date`, `sec`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1186,17 +1226,20 @@ CREATE TABLE IF NOT EXISTS `att_2_9` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_3` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12574 ;
+  `id`          BIGINT              NOT NULL AUTO_INCREMENT,
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date`  (`stu_id`, `att_date`),
+  INDEX `ix_date_sec`  (`att_date`, `sec`),
+  INDEX `ix_subj_date` (`subject_id`, `att_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `att_3`
@@ -1221,14 +1264,16 @@ INSERT INTO `att_3` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `sec`
 --
 
 CREATE TABLE IF NOT EXISTS `att_3_10` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`        BIGINT             NOT NULL AUTO_INCREMENT,
+  `att_date`  DATE               NOT NULL,
+  `stu_id`    BIGINT             NOT NULL,
+  `sec`       SMALLINT UNSIGNED  NOT NULL,
+  `mor`       TINYINT(1)         NOT NULL,
+  `after`     TINYINT(1)         NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date` (`stu_id`, `att_date`),
+  INDEX `ix_date_sec` (`att_date`, `sec`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1237,14 +1282,16 @@ CREATE TABLE IF NOT EXISTS `att_3_10` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_3_11` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`        BIGINT             NOT NULL AUTO_INCREMENT,
+  `att_date`  DATE               NOT NULL,
+  `stu_id`    BIGINT             NOT NULL,
+  `sec`       SMALLINT UNSIGNED  NOT NULL,
+  `mor`       TINYINT(1)         NOT NULL,
+  `after`     TINYINT(1)         NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date` (`stu_id`, `att_date`),
+  INDEX `ix_date_sec` (`att_date`, `sec`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1253,14 +1300,16 @@ CREATE TABLE IF NOT EXISTS `att_3_11` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_3_12` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`        BIGINT             NOT NULL AUTO_INCREMENT,
+  `att_date`  DATE               NOT NULL,
+  `stu_id`    BIGINT             NOT NULL,
+  `sec`       SMALLINT UNSIGNED  NOT NULL,
+  `mor`       TINYINT(1)         NOT NULL,
+  `after`     TINYINT(1)         NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date` (`stu_id`, `att_date`),
+  INDEX `ix_date_sec` (`att_date`, `sec`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1269,17 +1318,20 @@ CREATE TABLE IF NOT EXISTS `att_3_12` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_4` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13922 ;
+  `id`          BIGINT              NOT NULL AUTO_INCREMENT,
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date`  (`stu_id`, `att_date`),
+  INDEX `ix_date_sec`  (`att_date`, `sec`),
+  INDEX `ix_subj_date` (`subject_id`, `att_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `att_4`
@@ -1304,14 +1356,16 @@ INSERT INTO `att_4` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `sec`
 --
 
 CREATE TABLE IF NOT EXISTS `att_4_13` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`        BIGINT             NOT NULL AUTO_INCREMENT,
+  `att_date`  DATE               NOT NULL,
+  `stu_id`    BIGINT             NOT NULL,
+  `sec`       SMALLINT UNSIGNED  NOT NULL,
+  `mor`       TINYINT(1)         NOT NULL,
+  `after`     TINYINT(1)         NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date` (`stu_id`, `att_date`),
+  INDEX `ix_date_sec` (`att_date`, `sec`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1320,14 +1374,16 @@ CREATE TABLE IF NOT EXISTS `att_4_13` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_4_14` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`        BIGINT             NOT NULL AUTO_INCREMENT,
+  `att_date`  DATE               NOT NULL,
+  `stu_id`    BIGINT             NOT NULL,
+  `sec`       SMALLINT UNSIGNED  NOT NULL,
+  `mor`       TINYINT(1)         NOT NULL,
+  `after`     TINYINT(1)         NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date` (`stu_id`, `att_date`),
+  INDEX `ix_date_sec` (`att_date`, `sec`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1336,14 +1392,16 @@ CREATE TABLE IF NOT EXISTS `att_4_14` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_4_15` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`        BIGINT             NOT NULL AUTO_INCREMENT,
+  `att_date`  DATE               NOT NULL,
+  `stu_id`    BIGINT             NOT NULL,
+  `sec`       SMALLINT UNSIGNED  NOT NULL,
+  `mor`       TINYINT(1)         NOT NULL,
+  `after`     TINYINT(1)         NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date` (`stu_id`, `att_date`),
+  INDEX `ix_date_sec` (`att_date`, `sec`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1352,14 +1410,16 @@ CREATE TABLE IF NOT EXISTS `att_4_15` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_4_16` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`        BIGINT             NOT NULL AUTO_INCREMENT,
+  `att_date`  DATE               NOT NULL,
+  `stu_id`    BIGINT             NOT NULL,
+  `sec`       SMALLINT UNSIGNED  NOT NULL,
+  `mor`       TINYINT(1)         NOT NULL,
+  `after`     TINYINT(1)         NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date` (`stu_id`, `att_date`),
+  INDEX `ix_date_sec` (`att_date`, `sec`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1368,17 +1428,20 @@ CREATE TABLE IF NOT EXISTS `att_4_16` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_5` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14999 ;
+  `id`          BIGINT              NOT NULL AUTO_INCREMENT,
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date`  (`stu_id`, `att_date`),
+  INDEX `ix_date_sec`  (`att_date`, `sec`),
+  INDEX `ix_subj_date` (`subject_id`, `att_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `att_5`
@@ -1404,17 +1467,20 @@ INSERT INTO `att_5` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `sec`
 --
 
 CREATE TABLE IF NOT EXISTS `att_6` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14596 ;
+  `id`          BIGINT              NOT NULL AUTO_INCREMENT,
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date`  (`stu_id`, `att_date`),
+  INDEX `ix_date_sec`  (`att_date`, `sec`),
+  INDEX `ix_subj_date` (`subject_id`, `att_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `att_6`
@@ -1439,17 +1505,20 @@ INSERT INTO `att_6` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `sec`
 --
 
 CREATE TABLE IF NOT EXISTS `att_7` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15004 ;
+  `id`          BIGINT              NOT NULL AUTO_INCREMENT,
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date`  (`stu_id`, `att_date`),
+  INDEX `ix_date_sec`  (`att_date`, `sec`),
+  INDEX `ix_subj_date` (`subject_id`, `att_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `att_7`
@@ -1474,17 +1543,20 @@ INSERT INTO `att_7` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `sec`
 --
 
 CREATE TABLE IF NOT EXISTS `att_8` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15718 ;
+  `id`          BIGINT              NOT NULL AUTO_INCREMENT,
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date`  (`stu_id`, `att_date`),
+  INDEX `ix_date_sec`  (`att_date`, `sec`),
+  INDEX `ix_subj_date` (`subject_id`, `att_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `att_8`
@@ -1509,17 +1581,20 @@ INSERT INTO `att_8` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `sec`
 --
 
 CREATE TABLE IF NOT EXISTS `att_9` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12664 ;
+  `id`          BIGINT              NOT NULL AUTO_INCREMENT,
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date`  (`stu_id`, `att_date`),
+  INDEX `ix_date_sec`  (`att_date`, `sec`),
+  INDEX `ix_subj_date` (`subject_id`, `att_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `att_9`
@@ -1544,17 +1619,20 @@ INSERT INTO `att_9` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `sec`
 --
 
 CREATE TABLE IF NOT EXISTS `att_10` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`          BIGINT              NOT NULL AUTO_INCREMENT,
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date`  (`stu_id`, `att_date`),
+  INDEX `ix_date_sec`  (`att_date`, `sec`),
+  INDEX `ix_subj_date` (`subject_id`, `att_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1563,17 +1641,20 @@ CREATE TABLE IF NOT EXISTS `att_10` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_11` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`          BIGINT              NOT NULL AUTO_INCREMENT,
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date`  (`stu_id`, `att_date`),
+  INDEX `ix_date_sec`  (`att_date`, `sec`),
+  INDEX `ix_subj_date` (`subject_id`, `att_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1582,17 +1663,20 @@ CREATE TABLE IF NOT EXISTS `att_11` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_12` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`          BIGINT              NOT NULL AUTO_INCREMENT,
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date`  (`stu_id`, `att_date`),
+  INDEX `ix_date_sec`  (`att_date`, `sec`),
+  INDEX `ix_subj_date` (`subject_id`, `att_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1601,17 +1685,20 @@ CREATE TABLE IF NOT EXISTS `att_12` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_13` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`          BIGINT              NOT NULL AUTO_INCREMENT,
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date`  (`stu_id`, `att_date`),
+  INDEX `ix_date_sec`  (`att_date`, `sec`),
+  INDEX `ix_subj_date` (`subject_id`, `att_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1620,17 +1707,20 @@ CREATE TABLE IF NOT EXISTS `att_13` (
 --
 
 CREATE TABLE IF NOT EXISTS `att_14` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35393 ;
+  `id`          BIGINT              NOT NULL AUTO_INCREMENT,
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date`  (`stu_id`, `att_date`),
+  INDEX `ix_date_sec`  (`att_date`, `sec`),
+  INDEX `ix_subj_date` (`subject_id`, `att_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `att_14`
@@ -1655,17 +1745,20 @@ INSERT INTO `att_14` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `sec
 --
 
 CREATE TABLE IF NOT EXISTS `att_15` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29666 ;
+  `id`          BIGINT              NOT NULL AUTO_INCREMENT,
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date`  (`stu_id`, `att_date`),
+  INDEX `ix_date_sec`  (`att_date`, `sec`),
+  INDEX `ix_subj_date` (`subject_id`, `att_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `att_15`
@@ -1690,17 +1783,20 @@ INSERT INTO `att_15` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `sec
 --
 
 CREATE TABLE IF NOT EXISTS `att_16` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19408 ;
+  `id`          BIGINT              NOT NULL AUTO_INCREMENT,
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_stu_date`  (`stu_id`, `att_date`),
+  INDEX `ix_date_sec`  (`att_date`, `sec`),
+  INDEX `ix_subj_date` (`subject_id`, `att_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `att_16`
@@ -1725,17 +1821,17 @@ INSERT INTO `att_16` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `sec
 --
 
 CREATE TABLE IF NOT EXISTS `bank_details` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `bank_name` varchar(60) DEFAULT NULL,
-  `bank_st_name` varchar(25) DEFAULT NULL,
-  `bank_address` text,
-  `telephone` int(20) DEFAULT NULL,
-  `acc_no` varchar(20) DEFAULT NULL,
-  `acc_type` varchar(20) DEFAULT NULL,
-  `ledger_id` varchar(20) DEFAULT NULL,
-  `status` int(1) NOT NULL DEFAULT '1',
+  `id`            INT          NOT NULL AUTO_INCREMENT,
+  `bank_name`     VARCHAR(60)  DEFAULT NULL,
+  `bank_st_name`  VARCHAR(25)  DEFAULT NULL,
+  `bank_address`  TEXT,
+  `telephone`     INT          DEFAULT NULL,
+  `acc_no`        VARCHAR(20)  DEFAULT NULL,
+  `acc_type`      VARCHAR(20)  DEFAULT NULL,
+  `ledger_id`     VARCHAR(20)  DEFAULT NULL,
+  `status`        TINYINT(1)   NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=88 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `bank_details`
@@ -1836,10 +1932,10 @@ INSERT INTO `bank_details` (`id`, `bank_name`, `bank_st_name`, `bank_address`, `
 --
 
 CREATE TABLE IF NOT EXISTS `batch_master` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `batch_name` varchar(50) DEFAULT NULL,
+  `id`          INT          NOT NULL AUTO_INCREMENT,
+  `batch_name`  VARCHAR(50)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1848,13 +1944,13 @@ CREATE TABLE IF NOT EXISTS `batch_master` (
 --
 
 CREATE TABLE IF NOT EXISTS `calendar_meeting` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `calendar_reason_id` int(11) DEFAULT NULL,
-  `staff_id` int(11) DEFAULT NULL,
-  `name` varchar(20) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`                  INT          NOT NULL AUTO_INCREMENT,
+  `calendar_reason_id`  INT          DEFAULT NULL,
+  `staff_id`            INT          DEFAULT NULL,
+  `name`                VARCHAR(20)  DEFAULT NULL,
+  `status`              TINYINT(1)   DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -1863,11 +1959,11 @@ CREATE TABLE IF NOT EXISTS `calendar_meeting` (
 --
 
 CREATE TABLE IF NOT EXISTS `calendar_reason` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`      INT          NOT NULL AUTO_INCREMENT,
+  `name`    VARCHAR(20)  DEFAULT NULL,
+  `status`  TINYINT(1)   DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `calendar_reason`
@@ -1886,26 +1982,26 @@ INSERT INTO `calendar_reason` (`id`, `name`, `status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `calendar_schedule` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `reason_id` int(3) DEFAULT NULL,
-  `meeting_id` int(3) DEFAULT NULL,
-  `staff_id` int(5) DEFAULT NULL,
-  `meeting_date` date DEFAULT NULL,
-  `calendar_schedule_time_id` int(11) DEFAULT NULL,
-  `meeting_from_time` time DEFAULT NULL,
-  `meeting_to_time` time DEFAULT NULL,
-  `complain` text,
-  `requested_user` varchar(50) DEFAULT NULL,
-  `requested_user_type` int(2) DEFAULT NULL,
-  `response_user` varchar(50) DEFAULT NULL,
-  `response_date` date DEFAULT NULL,
-  `response_time` time DEFAULT NULL,
-  `inserted` datetime DEFAULT NULL,
-  `meeting_status` int(2) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
-  `mail_setn` int(1) NOT NULL DEFAULT '0',
+  `id`                         INT          NOT NULL AUTO_INCREMENT,
+  `reason_id`                  INT          DEFAULT NULL,
+  `meeting_id`                 INT          DEFAULT NULL,
+  `staff_id`                   INT          DEFAULT NULL,
+  `meeting_date`               DATE         DEFAULT NULL,
+  `calendar_schedule_time_id`  INT          DEFAULT NULL,
+  `meeting_from_time`          TIME         DEFAULT NULL,
+  `meeting_to_time`            TIME         DEFAULT NULL,
+  `complain`                   TEXT,
+  `requested_user`             VARCHAR(50)  DEFAULT NULL,
+  `requested_user_type`        INT          DEFAULT NULL,
+  `response_user`              VARCHAR(50)  DEFAULT NULL,
+  `response_date`              DATE         DEFAULT NULL,
+  `response_time`              TIME         DEFAULT NULL,
+  `inserted`                   DATETIME     DEFAULT NULL,
+  `meeting_status`             INT          DEFAULT NULL,
+  `status`                     TINYINT(1)   DEFAULT '1',
+  `mail_setn`                  TINYINT(1)   NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=870 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `calendar_schedule`
@@ -1930,25 +2026,25 @@ INSERT INTO `calendar_schedule` (`id`, `reason_id`, `meeting_id`, `staff_id`, `m
 --
 
 CREATE TABLE IF NOT EXISTS `calendar_schedule_bk` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `reason_id` int(3) DEFAULT NULL,
-  `meeting_id` int(3) DEFAULT NULL,
-  `staff_id` int(5) DEFAULT NULL,
-  `meeting_date` date DEFAULT NULL,
-  `calendar_schedule_time_id` int(11) DEFAULT NULL,
-  `meeting_from_time` time DEFAULT NULL,
-  `meeting_to_time` time DEFAULT NULL,
-  `complain` text,
-  `requested_user` varchar(50) DEFAULT NULL,
-  `requested_user_type` int(2) DEFAULT NULL,
-  `response_user` varchar(50) DEFAULT NULL,
-  `response_date` date DEFAULT NULL,
-  `response_time` time DEFAULT NULL,
-  `inserted` datetime DEFAULT NULL,
-  `meeting_status` int(2) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`                         INT          NOT NULL AUTO_INCREMENT,
+  `reason_id`                  INT          DEFAULT NULL,
+  `meeting_id`                 INT          DEFAULT NULL,
+  `staff_id`                   INT          DEFAULT NULL,
+  `meeting_date`               DATE         DEFAULT NULL,
+  `calendar_schedule_time_id`  INT          DEFAULT NULL,
+  `meeting_from_time`          TIME         DEFAULT NULL,
+  `meeting_to_time`            TIME         DEFAULT NULL,
+  `complain`                   TEXT,
+  `requested_user`             VARCHAR(50)  DEFAULT NULL,
+  `requested_user_type`        INT          DEFAULT NULL,
+  `response_user`              VARCHAR(50)  DEFAULT NULL,
+  `response_date`              DATE         DEFAULT NULL,
+  `response_time`              TIME         DEFAULT NULL,
+  `inserted`                   DATETIME     DEFAULT NULL,
+  `meeting_status`             INT          DEFAULT NULL,
+  `status`                     TINYINT(1)   DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=108 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `calendar_schedule_bk`
@@ -1973,17 +2069,17 @@ INSERT INTO `calendar_schedule_bk` (`id`, `reason_id`, `meeting_id`, `staff_id`,
 --
 
 CREATE TABLE IF NOT EXISTS `calendar_schedule_setup` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `description` text,
-  `meeting_date` date DEFAULT NULL,
-  `inserted` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` int(1) DEFAULT '1',
-  `staff_id` int(5) DEFAULT NULL,
-  `nopd` int(3) DEFAULT NULL,
-  `class_id` int(11) NOT NULL,
+  `id`            INT           NOT NULL AUTO_INCREMENT,
+  `name`          VARCHAR(100)  DEFAULT NULL,
+  `description`   TEXT,
+  `meeting_date`  DATE          DEFAULT NULL,
+  `inserted`      TIMESTAMP     NULL DEFAULT CURRENT_TIMESTAMP,
+  `status`        TINYINT(1)    DEFAULT '1',
+  `staff_id`      INT           DEFAULT NULL,
+  `nopd`          INT           DEFAULT NULL,
+  `class_id`      INT           NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=59 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `calendar_schedule_setup`
@@ -2008,14 +2104,14 @@ INSERT INTO `calendar_schedule_setup` (`id`, `name`, `description`, `meeting_dat
 --
 
 CREATE TABLE IF NOT EXISTS `calendar_schedule_time` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `calendar_schedule_setup_id` int(3) DEFAULT NULL,
-  `from_time` varchar(10) DEFAULT NULL,
-  `to_time` varchar(10) DEFAULT NULL,
-  `format` int(1) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`                          BIGINT       NOT NULL AUTO_INCREMENT,
+  `calendar_schedule_setup_id`  INT          DEFAULT NULL,
+  `from_time`                   VARCHAR(10)  DEFAULT NULL,
+  `to_time`                     VARCHAR(10)  DEFAULT NULL,
+  `format`                      TINYINT(1)   DEFAULT NULL,
+  `status`                      TINYINT(1)   DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29483 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `calendar_schedule_time`
@@ -2040,14 +2136,14 @@ INSERT INTO `calendar_schedule_time` (`id`, `calendar_schedule_setup_id`, `from_
 --
 
 CREATE TABLE IF NOT EXISTS `calendar_schedule_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `description` text,
-  `meeting_date` date DEFAULT NULL,
-  `inserted` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` int(1) DEFAULT '1',
+  `id`            INT           NOT NULL AUTO_INCREMENT,
+  `name`          VARCHAR(100)  DEFAULT NULL,
+  `description`   TEXT,
+  `meeting_date`  DATE          DEFAULT NULL,
+  `inserted`      TIMESTAMP     NULL DEFAULT CURRENT_TIMESTAMP,
+  `status`        TINYINT(1)    DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -2056,12 +2152,12 @@ CREATE TABLE IF NOT EXISTS `calendar_schedule_type` (
 --
 
 CREATE TABLE IF NOT EXISTS `calendar_time` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `time` time DEFAULT NULL,
-  `format` varchar(2) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`      INT         NOT NULL AUTO_INCREMENT,
+  `time`    TIME        DEFAULT NULL,
+  `format`  VARCHAR(2)  DEFAULT NULL,
+  `status`  TINYINT(1)  DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `calendar_time`
@@ -2098,9 +2194,10 @@ INSERT INTO `calendar_time` (`id`, `time`, `format`, `status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `card` (
-  `student_id` varchar(255) DEFAULT NULL,
-  `no_series` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `student_id`  VARCHAR(255)  DEFAULT NULL,
+  `no_series`   VARCHAR(255)  DEFAULT NULL,
+  PRIMARY KEY (`student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `card`
@@ -2118,10 +2215,10 @@ INSERT INTO `card` (`student_id`, `no_series`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL DEFAULT '',
+  `id`    INT          NOT NULL AUTO_INCREMENT,
+  `name`  VARCHAR(50)  NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -2130,17 +2227,17 @@ CREATE TABLE IF NOT EXISTS `category` (
 --
 
 CREATE TABLE IF NOT EXISTS `centralideacomt_pyp` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `exam_id` int(11) NOT NULL,
-  `class` int(3) NOT NULL,
-  `idea_cmid` int(11) NOT NULL,
-  `student_id` int(10) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `idea_cm` text NOT NULL,
-  `idea_cm1` text NOT NULL,
-  `idea_cm2` text NOT NULL,
+  `id`          BIGINT  NOT NULL AUTO_INCREMENT,
+  `exam_id`     INT     NOT NULL,
+  `class`       INT     NOT NULL,
+  `idea_cmid`   INT     NOT NULL,
+  `student_id`  INT     NOT NULL,
+  `acc_year`    INT     NOT NULL,
+  `idea_cm`     TEXT    NOT NULL,
+  `idea_cm1`    TEXT    NOT NULL,
+  `idea_cm2`    TEXT    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -2149,15 +2246,15 @@ CREATE TABLE IF NOT EXISTS `centralideacomt_pyp` (
 --
 
 CREATE TABLE IF NOT EXISTS `centralidea_pyp` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `exam_id` int(11) NOT NULL,
-  `class` int(3) NOT NULL,
-  `idea_id` int(11) NOT NULL,
-  `student_id` int(10) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `g_pyp` varchar(4) NOT NULL,
+  `id`          BIGINT      NOT NULL AUTO_INCREMENT,
+  `exam_id`     INT         NOT NULL,
+  `class`       INT         NOT NULL,
+  `idea_id`     INT         NOT NULL,
+  `student_id`  INT         NOT NULL,
+  `acc_year`    INT         NOT NULL,
+  `g_pyp`       VARCHAR(4)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -2166,13 +2263,13 @@ CREATE TABLE IF NOT EXISTS `centralidea_pyp` (
 --
 
 CREATE TABLE IF NOT EXISTS `certificate_det` (
-  `id` int(6) unsigned zerofill NOT NULL AUTO_INCREMENT,
-  `new_id` int(6) unsigned zerofill DEFAULT NULL,
-  `stud_id` varchar(15) DEFAULT NULL,
-  `cert_id` int(11) DEFAULT NULL,
-  `status` enum('true','false') DEFAULT NULL,
+  `id`       INT UNSIGNED ZEROFILL  NOT NULL AUTO_INCREMENT,
+  `new_id`   INT UNSIGNED ZEROFILL  DEFAULT NULL,
+  `stud_id`  VARCHAR(15)            DEFAULT NULL,
+  `cert_id`  INT                    DEFAULT NULL,
+  `status`   ENUM('true','false')   DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -2181,11 +2278,11 @@ CREATE TABLE IF NOT EXISTS `certificate_det` (
 --
 
 CREATE TABLE IF NOT EXISTS `certificate_m` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`      INT           NOT NULL AUTO_INCREMENT,
+  `name`    VARCHAR(200)  DEFAULT NULL,
+  `status`  TINYINT(1)    DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `certificate_m`
@@ -2201,17 +2298,17 @@ INSERT INTO `certificate_m` (`id`, `name`, `status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `challan_mail_log` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `stud_id` int(11) DEFAULT NULL,
-  `sem` int(11) DEFAULT NULL,
-  `a_year` varchar(10) DEFAULT NULL,
-  `uid` varchar(50) DEFAULT NULL,
-  `term` varchar(10) DEFAULT NULL,
-  `slab_id` int(11) DEFAULT NULL,
-  `uid_new` varchar(50) DEFAULT NULL,
-  `mail_sent` int(1) DEFAULT '0',
+  `id`         INT          NOT NULL AUTO_INCREMENT,
+  `stud_id`    INT          DEFAULT NULL,
+  `sem`        INT          DEFAULT NULL,
+  `a_year`     VARCHAR(10)  DEFAULT NULL,
+  `uid`        VARCHAR(50)  DEFAULT NULL,
+  `term`       VARCHAR(10)  DEFAULT NULL,
+  `slab_id`    INT          DEFAULT NULL,
+  `uid_new`    VARCHAR(50)  DEFAULT NULL,
+  `mail_sent`  TINYINT(1)   DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -2220,10 +2317,10 @@ CREATE TABLE IF NOT EXISTS `challan_mail_log` (
 --
 
 CREATE TABLE IF NOT EXISTS `chapter_m` (
-  `id` int(3) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
+  `id`    INT          NOT NULL AUTO_INCREMENT,
+  `name`  VARCHAR(30)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -2232,15 +2329,15 @@ CREATE TABLE IF NOT EXISTS `chapter_m` (
 --
 
 CREATE TABLE IF NOT EXISTS `charges` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `charge_name` varchar(40) NOT NULL,
-  `narration` text NOT NULL,
-  `from_date` date NOT NULL,
-  `to_date` date NOT NULL,
-  `price` bigint(20) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`           INT          NOT NULL AUTO_INCREMENT,
+  `charge_name`  VARCHAR(40)  NOT NULL,
+  `narration`    TEXT         NOT NULL,
+  `from_date`    DATE         NOT NULL,
+  `to_date`      DATE         NOT NULL,
+  `price`        BIGINT       NOT NULL,
+  `status`       TINYINT(1)   NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -2249,13 +2346,13 @@ CREATE TABLE IF NOT EXISTS `charges` (
 --
 
 CREATE TABLE IF NOT EXISTS `charges_applied` (
-  `id` int(12) NOT NULL AUTO_INCREMENT,
-  `charges_id` int(12) NOT NULL,
-  `group_id` int(12) NOT NULL,
-  `status` int(1) NOT NULL,
-  `app_date` text NOT NULL,
+  `id`          INT         NOT NULL AUTO_INCREMENT,
+  `charges_id`  INT         NOT NULL,
+  `group_id`    INT         NOT NULL,
+  `status`      TINYINT(1)  NOT NULL,
+  `app_date`    TEXT        NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -2264,10 +2361,10 @@ CREATE TABLE IF NOT EXISTS `charges_applied` (
 --
 
 CREATE TABLE IF NOT EXISTS `charges_group` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(40) NOT NULL,
+  `id`    INT          NOT NULL AUTO_INCREMENT,
+  `name`  VARCHAR(40)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -2276,12 +2373,12 @@ CREATE TABLE IF NOT EXISTS `charges_group` (
 --
 
 CREATE TABLE IF NOT EXISTS `charges_student_group` (
-  `id` int(12) NOT NULL AUTO_INCREMENT,
-  `charge_group_id` int(12) NOT NULL,
-  `student_id` int(12) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`               INT         NOT NULL AUTO_INCREMENT,
+  `charge_group_id`  INT         NOT NULL,
+  `student_id`       INT         NOT NULL,
+  `status`           TINYINT(1)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -2290,17 +2387,17 @@ CREATE TABLE IF NOT EXISTS `charges_student_group` (
 --
 
 CREATE TABLE IF NOT EXISTS `cir_parameter` (
-  `id` int(4) NOT NULL AUTO_INCREMENT,
-  `member` varchar(20) DEFAULT NULL,
-  `department` varchar(25) DEFAULT NULL,
-  `media` varchar(25) DEFAULT NULL,
-  `issues` int(10) DEFAULT NULL,
-  `course` varchar(50) DEFAULT NULL,
-  `year` varchar(15) DEFAULT NULL,
-  `renewals` int(11) DEFAULT NULL,
-  `dys` int(5) DEFAULT '10',
+  `id`          INT          NOT NULL AUTO_INCREMENT,
+  `member`      VARCHAR(20)  DEFAULT NULL,
+  `department`  VARCHAR(25)  DEFAULT NULL,
+  `media`       VARCHAR(25)  DEFAULT NULL,
+  `issues`      INT          DEFAULT NULL,
+  `course`      VARCHAR(50)  DEFAULT NULL,
+  `year`        VARCHAR(15)  DEFAULT NULL,
+  `renewals`    INT          DEFAULT NULL,
+  `dys`         INT          DEFAULT '10',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -2309,86 +2406,86 @@ CREATE TABLE IF NOT EXISTS `cir_parameter` (
 --
 
 CREATE TABLE IF NOT EXISTS `classtime` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `grade` int(3) DEFAULT NULL,
-  `nopd` int(3) DEFAULT NULL,
-  `desc1` varchar(15) DEFAULT NULL,
-  `type1` int(1) DEFAULT '1',
-  `fmp1` varchar(5) DEFAULT NULL,
-  `top1` varchar(5) DEFAULT NULL,
-  `p1` int(1) DEFAULT NULL,
-  `desc2` varchar(15) DEFAULT NULL,
-  `type2` int(1) DEFAULT '1',
-  `fmp2` varchar(5) DEFAULT NULL,
-  `top2` varchar(5) DEFAULT NULL,
-  `p2` int(1) DEFAULT NULL,
-  `desc3` varchar(15) DEFAULT NULL,
-  `type3` int(1) DEFAULT '1',
-  `fmp3` varchar(5) DEFAULT NULL,
-  `top3` varchar(5) DEFAULT NULL,
-  `p3` int(1) DEFAULT NULL,
-  `desc4` varchar(15) DEFAULT NULL,
-  `type4` int(1) DEFAULT '1',
-  `fmp4` varchar(5) DEFAULT NULL,
-  `top4` varchar(5) DEFAULT NULL,
-  `p4` int(1) DEFAULT NULL,
-  `desc5` varchar(15) DEFAULT NULL,
-  `type5` int(1) DEFAULT '1',
-  `fmp5` varchar(5) DEFAULT NULL,
-  `top5` varchar(5) DEFAULT NULL,
-  `p5` int(1) DEFAULT NULL,
-  `desc6` varchar(15) DEFAULT NULL,
-  `type6` int(1) DEFAULT '1',
-  `fmp6` varchar(5) DEFAULT NULL,
-  `top6` varchar(5) DEFAULT NULL,
-  `p6` int(1) DEFAULT NULL,
-  `desc7` varchar(15) DEFAULT NULL,
-  `type7` int(1) DEFAULT '1',
-  `fmp7` varchar(5) DEFAULT NULL,
-  `top7` varchar(5) DEFAULT NULL,
-  `p7` int(1) DEFAULT NULL,
-  `desc8` varchar(15) DEFAULT NULL,
-  `type8` int(1) DEFAULT '1',
-  `fmp8` varchar(5) DEFAULT NULL,
-  `top8` varchar(5) DEFAULT NULL,
-  `p8` int(1) DEFAULT NULL,
-  `desc9` varchar(15) DEFAULT NULL,
-  `type9` int(1) DEFAULT '1',
-  `fmp9` varchar(5) DEFAULT NULL,
-  `top9` varchar(5) DEFAULT NULL,
-  `p9` int(1) DEFAULT NULL,
-  `desc10` varchar(15) DEFAULT NULL,
-  `type10` int(1) DEFAULT '1',
-  `fmp10` varchar(5) DEFAULT NULL,
-  `top10` varchar(5) DEFAULT NULL,
-  `p10` int(1) DEFAULT NULL,
-  `desc11` varchar(15) DEFAULT NULL,
-  `type11` int(1) DEFAULT '1',
-  `fmp11` varchar(5) DEFAULT NULL,
-  `top11` varchar(5) DEFAULT NULL,
-  `p11` int(1) DEFAULT NULL,
-  `desc12` varchar(15) DEFAULT NULL,
-  `type12` int(1) DEFAULT '1',
-  `fmp12` varchar(5) DEFAULT NULL,
-  `top12` varchar(5) DEFAULT NULL,
-  `p12` int(1) DEFAULT NULL,
-  `desc13` varchar(15) DEFAULT NULL,
-  `type13` int(1) DEFAULT '1',
-  `fmp13` varchar(5) DEFAULT NULL,
-  `top13` varchar(5) DEFAULT NULL,
-  `p13` int(1) DEFAULT NULL,
-  `desc14` varchar(15) DEFAULT NULL,
-  `type14` int(1) DEFAULT '1',
-  `fmp14` varchar(5) DEFAULT NULL,
-  `top14` varchar(5) DEFAULT NULL,
-  `p14` int(1) DEFAULT NULL,
-  `desc15` varchar(15) DEFAULT NULL,
-  `type15` int(1) DEFAULT '1',
-  `fmp15` varchar(5) DEFAULT NULL,
-  `top15` varchar(5) DEFAULT NULL,
-  `p15` int(1) DEFAULT NULL,
+  `id`      INT          NOT NULL AUTO_INCREMENT,
+  `grade`   INT          DEFAULT NULL,
+  `nopd`    INT          DEFAULT NULL,
+  `desc1`   VARCHAR(15)  DEFAULT NULL,
+  `type1`   TINYINT(1)   DEFAULT '1',
+  `fmp1`    VARCHAR(5)   DEFAULT NULL,
+  `top1`    VARCHAR(5)   DEFAULT NULL,
+  `p1`      TINYINT(1)   DEFAULT NULL,
+  `desc2`   VARCHAR(15)  DEFAULT NULL,
+  `type2`   TINYINT(1)   DEFAULT '1',
+  `fmp2`    VARCHAR(5)   DEFAULT NULL,
+  `top2`    VARCHAR(5)   DEFAULT NULL,
+  `p2`      TINYINT(1)   DEFAULT NULL,
+  `desc3`   VARCHAR(15)  DEFAULT NULL,
+  `type3`   TINYINT(1)   DEFAULT '1',
+  `fmp3`    VARCHAR(5)   DEFAULT NULL,
+  `top3`    VARCHAR(5)   DEFAULT NULL,
+  `p3`      TINYINT(1)   DEFAULT NULL,
+  `desc4`   VARCHAR(15)  DEFAULT NULL,
+  `type4`   TINYINT(1)   DEFAULT '1',
+  `fmp4`    VARCHAR(5)   DEFAULT NULL,
+  `top4`    VARCHAR(5)   DEFAULT NULL,
+  `p4`      TINYINT(1)   DEFAULT NULL,
+  `desc5`   VARCHAR(15)  DEFAULT NULL,
+  `type5`   TINYINT(1)   DEFAULT '1',
+  `fmp5`    VARCHAR(5)   DEFAULT NULL,
+  `top5`    VARCHAR(5)   DEFAULT NULL,
+  `p5`      TINYINT(1)   DEFAULT NULL,
+  `desc6`   VARCHAR(15)  DEFAULT NULL,
+  `type6`   TINYINT(1)   DEFAULT '1',
+  `fmp6`    VARCHAR(5)   DEFAULT NULL,
+  `top6`    VARCHAR(5)   DEFAULT NULL,
+  `p6`      TINYINT(1)   DEFAULT NULL,
+  `desc7`   VARCHAR(15)  DEFAULT NULL,
+  `type7`   TINYINT(1)   DEFAULT '1',
+  `fmp7`    VARCHAR(5)   DEFAULT NULL,
+  `top7`    VARCHAR(5)   DEFAULT NULL,
+  `p7`      TINYINT(1)   DEFAULT NULL,
+  `desc8`   VARCHAR(15)  DEFAULT NULL,
+  `type8`   TINYINT(1)   DEFAULT '1',
+  `fmp8`    VARCHAR(5)   DEFAULT NULL,
+  `top8`    VARCHAR(5)   DEFAULT NULL,
+  `p8`      TINYINT(1)   DEFAULT NULL,
+  `desc9`   VARCHAR(15)  DEFAULT NULL,
+  `type9`   TINYINT(1)   DEFAULT '1',
+  `fmp9`    VARCHAR(5)   DEFAULT NULL,
+  `top9`    VARCHAR(5)   DEFAULT NULL,
+  `p9`      TINYINT(1)   DEFAULT NULL,
+  `desc10`  VARCHAR(15)  DEFAULT NULL,
+  `type10`  TINYINT(1)   DEFAULT '1',
+  `fmp10`   VARCHAR(5)   DEFAULT NULL,
+  `top10`   VARCHAR(5)   DEFAULT NULL,
+  `p10`     TINYINT(1)   DEFAULT NULL,
+  `desc11`  VARCHAR(15)  DEFAULT NULL,
+  `type11`  TINYINT(1)   DEFAULT '1',
+  `fmp11`   VARCHAR(5)   DEFAULT NULL,
+  `top11`   VARCHAR(5)   DEFAULT NULL,
+  `p11`     TINYINT(1)   DEFAULT NULL,
+  `desc12`  VARCHAR(15)  DEFAULT NULL,
+  `type12`  TINYINT(1)   DEFAULT '1',
+  `fmp12`   VARCHAR(5)   DEFAULT NULL,
+  `top12`   VARCHAR(5)   DEFAULT NULL,
+  `p12`     TINYINT(1)   DEFAULT NULL,
+  `desc13`  VARCHAR(15)  DEFAULT NULL,
+  `type13`  TINYINT(1)   DEFAULT '1',
+  `fmp13`   VARCHAR(5)   DEFAULT NULL,
+  `top13`   VARCHAR(5)   DEFAULT NULL,
+  `p13`     TINYINT(1)   DEFAULT NULL,
+  `desc14`  VARCHAR(15)  DEFAULT NULL,
+  `type14`  TINYINT(1)   DEFAULT '1',
+  `fmp14`   VARCHAR(5)   DEFAULT NULL,
+  `top14`   VARCHAR(5)   DEFAULT NULL,
+  `p14`     TINYINT(1)   DEFAULT NULL,
+  `desc15`  VARCHAR(15)  DEFAULT NULL,
+  `type15`  TINYINT(1)   DEFAULT '1',
+  `fmp15`   VARCHAR(5)   DEFAULT NULL,
+  `top15`   VARCHAR(5)   DEFAULT NULL,
+  `p15`     TINYINT(1)   DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `classtime`
@@ -2413,13 +2510,13 @@ INSERT INTO `classtime` (`id`, `grade`, `nopd`, `desc1`, `type1`, `fmp1`, `top1`
 --
 
 CREATE TABLE IF NOT EXISTS `class_announcement_class` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
-  `class_announce_id` int(4) NOT NULL,
-  `class` int(10) NOT NULL,
-  `grade` int(10) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`                 INT         NOT NULL AUTO_INCREMENT,
+  `class_announce_id`  INT         NOT NULL,
+  `class`              INT         NOT NULL,
+  `grade`              INT         NOT NULL,
+  `status`             TINYINT(1)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=500 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `class_announcement_class`
@@ -2444,14 +2541,14 @@ INSERT INTO `class_announcement_class` (`id`, `class_announce_id`, `class`, `gra
 --
 
 CREATE TABLE IF NOT EXISTS `class_announcement_files` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `announcement_class_id` varchar(100) DEFAULT NULL,
-  `trgt_filename` varchar(250) DEFAULT NULL,
-  `trgt_filepath` varchar(250) DEFAULT NULL,
-  `inserted_date` date DEFAULT NULL,
-  `user` varchar(200) DEFAULT NULL,
+  `id`                     INT           NOT NULL AUTO_INCREMENT,
+  `announcement_class_id`  VARCHAR(100)  DEFAULT NULL,
+  `trgt_filename`          VARCHAR(250)  DEFAULT NULL,
+  `trgt_filepath`          VARCHAR(250)  DEFAULT NULL,
+  `inserted_date`          DATE          DEFAULT NULL,
+  `user`                   VARCHAR(200)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `class_announcement_files`
@@ -2467,24 +2564,24 @@ INSERT INTO `class_announcement_files` (`id`, `announcement_class_id`, `trgt_fil
 --
 
 CREATE TABLE IF NOT EXISTS `class_announcement_master` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
-  `day_type` int(4) NOT NULL,
-  `from_date` date NOT NULL,
-  `to_date` date NOT NULL,
-  `grade_type` int(4) NOT NULL,
-  `title` varchar(200) NOT NULL,
-  `Description` text NOT NULL,
-  `user` varchar(255) NOT NULL,
-  `inserted_date` date DEFAULT NULL,
-  `status` int(1) NOT NULL,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `day_type`       INT           NOT NULL,
+  `from_date`      DATE          NOT NULL,
+  `to_date`        DATE          NOT NULL,
+  `grade_type`     INT           NOT NULL,
+  `title`          VARCHAR(200)  NOT NULL,
+  `description`    TEXT          NOT NULL,
+  `user`           VARCHAR(255)  NOT NULL,
+  `inserted_date`  DATE          DEFAULT NULL,
+  `status`         TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=78 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `class_announcement_master`
 --
 
-INSERT INTO `class_announcement_master` (`id`, `day_type`, `from_date`, `to_date`, `grade_type`, `title`, `Description`, `user`, `inserted_date`, `status`) VALUES
+INSERT INTO `class_announcement_master` (`id`, `day_type`, `from_date`, `to_date`, `grade_type`, `title`, `description`, `user`, `inserted_date`, `status`) VALUES
 (6, 2, '2026-11-18', '2026-11-30', 1, ' Secondary Daily Bulletin - Mon, Nov. 18', '<div id="yui_3_7_2_1_1384872502665_3929">\r\n<div id="yui_3_7_2_1_1384872502665_3928">\r\n<div id="yui_3_7_2_1_1384872502665_4000"><strong id="yui_3_7_2_1_1384872502665_3999"><em id="yui_3_7_2_1_1384872502665_3998" style="text-decoration: underline;">From Ms. Anne</em>&nbsp;-&nbsp;</strong><strong>Very Important for Calamity Jane cast</strong></div>\r\n<div id="yui_3_7_2_1_1384872502665_3927">\r\n<div id="yui_3_7_2_1_1384872502665_3996">I will be taking cast photographs&nbsp;on Tuesday&nbsp;during lunchtime, please come to the seventh floor at some point over lunch.&nbsp; Principals, please co-ordinate with your opposite numbers so we can take paired pictures.<strong><span style="text-decoration: underline;"><br /> </span></strong></div>\r\n<br />ALL cast members should bring the shirts or blouses they are wearing for the show and change into them on the seventh floor.&nbsp; You can change back into your school shirt after you have had your photograph taken.&nbsp; There is no need to bring the bottom half of your costume.&nbsp; If you are planning on wearing a hat or anything else on your head please bring that too.<strong><br /> </strong></div>\r\n<div id="yui_3_7_2_1_1384872502665_3933"><strong><span style="text-decoration: underline;"><em>&nbsp;</em></span></strong></div>\r\n<div id="yui_3_7_2_1_1384872502665_3936">\r\n<div style="font-family: verdana, sans-serif;"><strong><span style="text-decoration: underline;"><em>From Ms. Priya</em></span><em>&nbsp;-&nbsp;</em>MS Assembly</strong></div>\r\n<div id="yui_3_7_2_1_1384872502665_3935" style="font-family: verdana, sans-serif;">MS assembly rehearsals will take place in the auditorium at the following times today and&nbsp;tomorrow. The following students must attend these rehearsals&nbsp;<strong><span style="text-decoration: underline;">today at 12:25&nbsp;and&nbsp;tomorrow at 12:45&nbsp;in the auditorium.</span></strong></div>\r\n<div id="yui_3_7_2_1_1384872502665_3938" style="font-family: verdana, sans-serif;">&nbsp;</div>\r\n<div id="yui_3_7_2_1_1384872502665_3940" style="font-family: verdana, sans-serif;">Saloni Ladha</div>\r\n<div id="yui_3_7_2_1_1384872502665_3942" style="font-family: verdana, sans-serif;">Khwaish Bedi</div>\r\n<div id="yui_3_7_2_1_1384872502665_3944" style="font-family: verdana, sans-serif;">Jennisa and Aashia</div>\r\n<div id="yui_3_7_2_1_1384872502665_3967" style="font-family: verdana, sans-serif;">Anay Khanderia</div>\r\n<div id="yui_3_7_2_1_1384872502665_4003" style="font-family: verdana, sans-serif;">Ekaadh and Kartik</div>\r\n<div id="yui_3_7_2_1_1384872502665_4005" style="font-family: verdana, sans-serif;">Mihika, Mandira, Noyyo, Gina and others in the group</div>\r\n<div id="yui_3_7_2_1_1384872502665_4007" style="font-family: verdana, sans-serif;">Isha and Mallika</div>\r\n<div id="yui_3_7_2_1_1384872502665_3946" style="font-family: verdana, sans-serif;">Anoushka Lad and Shivani P</div>\r\n<div id="yui_3_7_2_1_1384872502665_3965" style="font-family: verdana, sans-serif;">Stuti Srivatava</div>\r\n<div id="yui_3_7_2_1_1384872502665_3948" style="font-family: verdana, sans-serif;">Aditya Warrier</div>\r\n<div id="yui_3_7_2_1_1384872502665_3950" style="font-family: verdana, sans-serif;">Akansha Das</div>\r\n</div>\r\n<div id="yui_3_7_2_1_1384872502665_3952" style="font-family: verdana, sans-serif;">&nbsp;</div>\r\n<div id="yui_3_7_2_1_1384872502665_3954"><strong id="yui_3_7_2_1_1384872502665_4011"><span id="yui_3_7_2_1_1384872502665_4010" style="text-decoration: underline;"><em id="yui_3_7_2_1_1384872502665_4009">From Ms. Minal and Ms. Ulka</em></span>&nbsp;-&nbsp;</strong><strong>University Visits</strong></div>\r\n<div id="yui_3_7_2_1_1384872502665_3957"><span style="font-size: 13px;">Mon 18th Nov</span><span style="font-size: 13px;">&nbsp;</span><span id="yui_3_7_2_1_1384872502665_3956" style="font-size: 13px;">-&nbsp;Visit by York University in Toronto, Canada</span></div>\r\n<div id="yui_3_7_2_1_1384872502665_3961">\r\n<div id="yui_3_7_2_1_1384872502665_3959">Tues 19th Nov&nbsp;- Visit by Deakin University, Australia&nbsp;</div>\r\n<div id="yui_3_7_2_1_1384872502665_4013">and&nbsp;Australian National University.</div>\r\n</div>\r\n<p class="yiv752424536MsoNormal" style="margin-top: 6.6pt;">&nbsp;</p>\r\n<div>(All of these will be held in the Art room on the 6th floor between&nbsp;<span style="border-bottom-width: 1px; border-bottom-style: dashed; border-bottom-color: #cccccc;">12.25pm-1pm</span>)</div>\r\n<p class="yiv752424536MsoNormal" style="margin-top: 6.6pt;"><strong><span style="font-family: arial,helvetica,sans-serif;"><em style="text-decoration: underline;">From Ms. Anne</em>&nbsp;-&nbsp;</span>Halloween Pictures</strong></p>\r\n<div>Someone who I shared the dropbox file with has removed EVERY SINGLE PICTURE from the file.&nbsp; Can you please upload them all again as a matter of urgency.</div>\r\n<p class="yiv752424536MsoNormal" style="margin-top: 6.6pt;"><strong><span style="font-family: arial,helvetica,sans-serif;"><span style="text-decoration: underline;"><em>From Ms. Richa</em></span>&nbsp;-&nbsp;For Grade 6 to 8 students</span></strong></p>\r\n<p class="yiv752424536MsoNormal" style="margin-top: 6.6pt;"><span style="font-family: arial,helvetica,sans-serif;">Do you wish to explore space and be an astronomer ? then.. here`s the opportunity ....</span></p>\r\n<p id="yui_3_7_2_1_1384872502665_4020" class="yiv752424536MsoNormal" style="margin-top: 6.6pt;"><span id="yui_3_7_2_1_1384872502665_4019" style="font-family: arial,helvetica,sans-serif;"><strong id="yui_3_7_2_1_1384872502665_4022">NASA camp June 2026 :</strong>&nbsp;We have planned&nbsp;to take the middle school students for an experiential trip to NASA space camp in the month of June.Space School is a unique ten day trip to the USA designed to inspire, excite and motivate students about science and space research. The trip includes four days at Houston, Texas, during which students participate in educational activities at Space Center, Houston. The trip also includes four days of adventure in&nbsp; Orlando, Florida. There will an optional extension to New York and Niagara.</span></p>\r\n<p id="yui_3_7_2_1_1384872502665_4017" class="yiv752424536MsoNormal" style="margin-top: 6.6pt;"><span id="yui_3_7_2_1_1384872502665_4016" style="font-family: arial,helvetica,sans-serif;">During the educational program students will:</span></p>\r\n<ul id="yui_3_7_2_1_1384872502665_4027">\r\n<li id="yui_3_7_2_1_1384872502665_4026" style="margin-left: 15px;"><span id="yui_3_7_2_1_1384872502665_4025" style="font-family: arial, helvetica, sans-serif;">Learn about the work NASA is doing</span></li>\r\n<li id="yui_3_7_2_1_1384872502665_4030" style="margin-left: 15px;"><span id="yui_3_7_2_1_1384872502665_4029" style="font-family: arial, helvetica, sans-serif;">Undergo extensive astronaut training</span></li>\r\n<li style="margin-left: 15px;"><span style="font-family: arial, helvetica, sans-serif;">Learn to overcome challenges as they participate in a realistic simulation of a space mission</span></li>\r\n<li id="yui_3_7_2_1_1384872502665_4047" style="margin-left: 15px;"><span style="font-family: arial, helvetica, sans-serif;">Work on projects</span></li>\r\n<li id="yui_3_7_2_1_1384872502665_4045" style="margin-left: 15px;"><span id="yui_3_7_2_1_1384872502665_4044" style="font-family: arial, helvetica, sans-serif;">Participate in team building exercises</span></li>\r\n<li id="yui_3_7_2_1_1384872502665_4042" style="margin-left: 15px;"><span id="yui_3_7_2_1_1384872502665_4041" style="font-family: arial, helvetica, sans-serif;">Take exclusive tours of the facilities at NASA&rsquo;s USSRC</span></li>\r\n<li id="yui_3_7_2_1_1384872502665_4039" style="margin-left: 15px;"><span id="yui_3_7_2_1_1384872502665_4038" style="font-family: arial, helvetica, sans-serif;">Watch space shows and space movies</span></li>\r\n</ul>\r\n<p id="yui_3_7_2_1_1384872502665_4036" class="yiv752424536MsoNormal" style="margin-top: 6.6pt;"><span id="yui_3_7_2_1_1384872502665_4035" style="font-family: arial,helvetica,sans-serif;">At the end of the program, there will be a graduation ceremony in which each student will receive a certificate from NASA&rsquo;s USSRC.If you are interested in attending this camp , then please register your name with Ms.Richa by sending an email to her at&nbsp;&nbsp;<a href="mailto:richa.gupta@email.com" rel="nofollow" target="_blank">richa.gupta@email.com</a>&nbsp;by&nbsp;<strong>Friday, 22nd</strong>&nbsp;<strong id="yui_3_7_2_1_1384872502665_4034">November 2026. We will then conduct an information seminar for the interested students and their parents.</strong></span></p>\r\n</div>\r\n<div id="yui_3_7_2_1_1384872502665_4050" style="font-size: 13px;">&nbsp;</div>\r\n<div id="yui_3_7_2_1_1384872502665_4032" style="font-size: 13px;"><strong><span style="font-style: italic; text-decoration: underline;">&nbsp;</span></strong></div>\r\n<div id="yui_3_7_2_1_1384872502665_4053" style="font-size: 13px;"><strong id="yui_3_7_2_1_1384872502665_4052"><span style="font-style: italic; text-decoration: underline;">From Adventurois Editors</span>&nbsp;-&nbsp;Adventurois is calling young writers!</strong></div>\r\n<div id="yui_3_7_2_1_1384872502665_4083" style="font-size: 13px;"><strong id="yui_3_7_2_1_1384872502665_4097">(Grade 9 and 10 only)</strong></div>\r\n<div id="yui_3_7_2_1_1384872502665_4056" style="font-size: 13px;"><span id="yui_3_7_2_1_1384872502665_4055" style="font-size: 13px;">Adventurois Magazine is a student-led magazine, which is a platform for people to share ideas and opinions about the world around them. We request everyone from Grade 9 and Grade 10 to write about anything that interests them, from amazing recipes to hard wrenching fictional stories, anything which brings out the writer in you. There is also a new concept called "Agony Aunt" in which you can send in your problems anonymously and get replies from our Agony Aunts, who will give you advice.&nbsp;</span><span id="yui_3_7_2_1_1384872502665_4081" style="font-size: 13px;">The last day to submit your work is18th November, please send in your entries and/or questions to</span><span style="font-size: 13px;">&nbsp;</span><span style="font-size: 13px; text-decoration: underline;"><a href="mailto:adventurois@email.com" rel="nofollow" target="_blank">adventurois@email.com</a></span><span style="font-size: 13px;">.</span><span class="yiv752424536HOEnZb"><span style="color: #888888;"><br /> </span></span></div>\r\n<span class="yiv752424536HOEnZb"><span class="yiv752424536HOEnZb"><span style="color: #888888;"></span></span></span>\r\n<div id="yui_3_7_2_1_1384872502665_4058"><span style="font-size: 13px;">&nbsp;</span></div>\r\n<span id="yui_3_7_2_1_1384872502665_4060" class="yiv752424536HOEnZb"><span id="yui_3_7_2_1_1384872502665_4059" style="color: #888888;"></span></span></div>\r\n<p><span class="yiv752424536HOEnZb"><span class="yiv752424536HOEnZb"><span style="color: #888888;"></span></span></span></p>\r\n<div id="yui_3_7_2_1_1384872502665_4087">&nbsp;</div>\r\n<p><span class="yiv752424536HOEnZb"><span class="yiv752424536HOEnZb"><span style="color: #888888;">-- <br /></span></span></span></p>\r\n<div id="yui_3_7_2_1_1384872502665_4067" dir="ltr">\r\n<div id="yui_3_7_2_1_1384872502665_4074">\r\n<div id="yui_3_7_2_1_1384872502665_4073" style="color: #666666;">\r\n<div id="yui_3_7_2_1_1384872502665_4089"><span id="yui_3_7_2_1_1384872502665_4094" style="font-family: georgia, serif;">Eric Dyck Hilty</span></div>\r\n<div id="yui_3_7_2_1_1384872502665_4078"><span id="yui_3_7_2_1_1384872502665_4077" style="font-family: georgia, serif;">Deputy Head of Secondary for Student Life<br /><br /><em id="yui_3_7_2_1_1384872502665_4076">LMS International School<br />LMS Garden City, Off Western Express Highway,<br /></em></span></div>\r\n<span id="yui_3_7_2_1_1384872502665_4072" style="font-family: georgia, serif;"><em id="yui_3_7_2_1_1384872502665_4071">Goregaon (East), Mumbai - 400 063, India.&nbsp;<br /> </em></span></div>\r\n<span style="font-family: georgia, serif;"><span style="font-style: italic; color: #666666;">Tel: +91 22 4236 3134</span></span></div>\r\n</div>\r\n<p><span id="yui_3_7_2_1_1384872502665_4069" class="yiv752424536HOEnZb"><span id="yui_3_7_2_1_1384872502665_4068" style="color: #888888;"></span></span></p>', 'administrator', '2026-11-19', 1);
 
 -- --------------------------------------------------------
@@ -2494,16 +2591,16 @@ INSERT INTO `class_announcement_master` (`id`, `day_type`, `from_date`, `to_date
 --
 
 CREATE TABLE IF NOT EXISTS `class_section` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `section_name` varchar(20) DEFAULT NULL,
-  `class_id` int(11) NOT NULL,
-  `s_name` varchar(3) NOT NULL,
-  `codename` varchar(22) NOT NULL,
-  `grade` int(11) NOT NULL,
-  `sub` int(11) NOT NULL,
-  `status` int(11) NOT NULL,
+  `id`            INT          NOT NULL AUTO_INCREMENT,
+  `section_name`  VARCHAR(20)  DEFAULT NULL,
+  `class_id`      INT          NOT NULL,
+  `s_name`        VARCHAR(3)   NOT NULL,
+  `codename`      VARCHAR(22)  NOT NULL,
+  `grade`         INT          NOT NULL,
+  `sub`           INT          NOT NULL,
+  `status`        INT          NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1395 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `class_section`
@@ -2528,13 +2625,13 @@ INSERT INTO `class_section` (`id`, `section_name`, `class_id`, `s_name`, `codena
 --
 
 CREATE TABLE IF NOT EXISTS `class_section_sub` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `section_name` varchar(20) DEFAULT NULL,
-  `sub` int(8) NOT NULL,
-  `grade` int(8) NOT NULL,
-  `status` int(3) NOT NULL,
+  `id`            INT          NOT NULL AUTO_INCREMENT,
+  `section_name`  VARCHAR(20)  DEFAULT NULL,
+  `sub`           INT          NOT NULL,
+  `grade`         INT          NOT NULL,
+  `status`        INT          NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `class_section_sub`
@@ -2550,13 +2647,13 @@ INSERT INTO `class_section_sub` (`id`, `section_name`, `sub`, `grade`, `status`)
 --
 
 CREATE TABLE IF NOT EXISTS `class_teacher` (
-  `id` int(3) NOT NULL AUTO_INCREMENT,
-  `curri_type` int(2) DEFAULT NULL,
-  `grade` int(2) DEFAULT NULL,
-  `sect` int(2) DEFAULT NULL,
-  `teacher` int(2) DEFAULT NULL,
+  `id`          INT  NOT NULL AUTO_INCREMENT,
+  `curri_type`  INT  DEFAULT NULL,
+  `grade`       INT  DEFAULT NULL,
+  `sect`        INT  DEFAULT NULL,
+  `teacher`     INT  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `class_teacher`
@@ -2576,20 +2673,20 @@ INSERT INTO `class_teacher` (`id`, `curri_type`, `grade`, `sect`, `teacher`) VAL
 --
 
 CREATE TABLE IF NOT EXISTS `college` (
-  `col_id` int(11) NOT NULL AUTO_INCREMENT,
-  `col_name` varchar(100) DEFAULT NULL,
-  `col_code` varchar(10) NOT NULL DEFAULT '',
-  `col_addr` varchar(100) NOT NULL DEFAULT '',
-  `col_pin` varchar(20) DEFAULT NULL,
-  `col_phone` varchar(50) DEFAULT NULL,
-  `col_fax` varchar(50) DEFAULT NULL,
-  `email` varchar(30) DEFAULT NULL,
-  `company_id` varchar(50) DEFAULT NULL,
-  `col_city` varchar(40) NOT NULL,
-  `col_state` varchar(40) NOT NULL,
-  `col_tin` varchar(40) NOT NULL,
+  `col_id`      INT           NOT NULL AUTO_INCREMENT,
+  `col_name`    VARCHAR(100)  DEFAULT NULL,
+  `col_code`    VARCHAR(10)   NOT NULL DEFAULT '',
+  `col_addr`    VARCHAR(100)  NOT NULL DEFAULT '',
+  `col_pin`     VARCHAR(20)   DEFAULT NULL,
+  `col_phone`   VARCHAR(50)   DEFAULT NULL,
+  `col_fax`     VARCHAR(50)   DEFAULT NULL,
+  `email`       VARCHAR(30)   DEFAULT NULL,
+  `company_id`  VARCHAR(50)   DEFAULT NULL,
+  `col_city`    VARCHAR(40)   NOT NULL,
+  `col_state`   VARCHAR(40)   NOT NULL,
+  `col_tin`     VARCHAR(40)   NOT NULL,
   PRIMARY KEY (`col_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `college`
@@ -2605,20 +2702,20 @@ INSERT INTO `college` (`col_id`, `col_name`, `col_code`, `col_addr`, `col_pin`, 
 --
 
 CREATE TABLE IF NOT EXISTS `comments` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
-  `class` int(2) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `subject_id` int(4) NOT NULL,
-  `section_id` int(1) NOT NULL,
-  `student_id` int(8) NOT NULL,
-  `Description` text NOT NULL,
-  `score` int(4) NOT NULL,
-  `grade` varchar(4) NOT NULL,
-  `sys_date` date NOT NULL,
-  `status` int(1) NOT NULL,
-  `username` varchar(50) NOT NULL,
+  `id`           INT          NOT NULL AUTO_INCREMENT,
+  `class`        INT          NOT NULL,
+  `acc_year`     INT          NOT NULL,
+  `subject_id`   INT          NOT NULL,
+  `section_id`   TINYINT(1)   NOT NULL,
+  `student_id`   INT          NOT NULL,
+  `description`  TEXT         NOT NULL,
+  `score`        INT          NOT NULL,
+  `grade`        VARCHAR(4)   NOT NULL,
+  `sys_date`     DATE         NOT NULL,
+  `status`       TINYINT(1)   NOT NULL,
+  `username`     VARCHAR(50)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -2627,15 +2724,15 @@ CREATE TABLE IF NOT EXISTS `comments` (
 --
 
 CREATE TABLE IF NOT EXISTS `comment_kg` (
-  `id` bigint(14) NOT NULL AUTO_INCREMENT,
-  `exam_id` int(11) NOT NULL,
-  `class` int(2) NOT NULL,
-  `sec` int(2) NOT NULL,
-  `student_id` int(12) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `commt` text NOT NULL,
+  `id`          BIGINT  NOT NULL AUTO_INCREMENT,
+  `exam_id`     INT     NOT NULL,
+  `class`       INT     NOT NULL,
+  `sec`         INT     NOT NULL,
+  `student_id`  INT     NOT NULL,
+  `acc_year`    INT     NOT NULL,
+  `commt`       TEXT    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -2644,16 +2741,16 @@ CREATE TABLE IF NOT EXISTS `comment_kg` (
 --
 
 CREATE TABLE IF NOT EXISTS `comment_pyp` (
-  `id` bigint(14) NOT NULL AUTO_INCREMENT,
-  `exam_id` int(11) NOT NULL,
-  `class` int(2) NOT NULL,
-  `sec` int(2) NOT NULL,
-  `sub` int(11) NOT NULL,
-  `student_id` int(12) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `commt1` text NOT NULL,
+  `id`          BIGINT  NOT NULL AUTO_INCREMENT,
+  `exam_id`     INT     NOT NULL,
+  `class`       INT     NOT NULL,
+  `sec`         INT     NOT NULL,
+  `sub`         INT     NOT NULL,
+  `student_id`  INT     NOT NULL,
+  `acc_year`    INT     NOT NULL,
+  `commt1`      TEXT    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -2662,18 +2759,18 @@ CREATE TABLE IF NOT EXISTS `comment_pyp` (
 --
 
 CREATE TABLE IF NOT EXISTS `company` (
-  `Sl_No` int(5) NOT NULL,
-  `ID` int(5) DEFAULT NULL,
-  `Company_Name` varchar(250) DEFAULT NULL,
-  `Address` tinytext,
-  `City` varchar(50) DEFAULT NULL,
-  `State` varchar(50) DEFAULT NULL,
-  `Telephone` varchar(50) DEFAULT NULL,
-  `fax` varchar(50) DEFAULT NULL,
-  `Email` varchar(50) DEFAULT NULL,
-  `PAN_No` varchar(50) DEFAULT NULL,
+  `Sl_No`         INT           NOT NULL,
+  `ID`            INT           DEFAULT NULL,
+  `Company_Name`  VARCHAR(250)  DEFAULT NULL,
+  `Address`       TINYTEXT,
+  `City`          VARCHAR(50)   DEFAULT NULL,
+  `State`         VARCHAR(50)   DEFAULT NULL,
+  `Telephone`     VARCHAR(50)   DEFAULT NULL,
+  `fax`           VARCHAR(50)   DEFAULT NULL,
+  `Email`         VARCHAR(50)   DEFAULT NULL,
+  `PAN_No`        VARCHAR(50)   DEFAULT NULL,
   PRIMARY KEY (`Sl_No`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -2682,10 +2779,10 @@ CREATE TABLE IF NOT EXISTS `company` (
 --
 
 CREATE TABLE IF NOT EXISTS `country` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `country_name` varchar(20) DEFAULT NULL,
+  `id`            INT          NOT NULL AUTO_INCREMENT,
+  `country_name`  VARCHAR(20)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `country`
@@ -2705,11 +2802,11 @@ INSERT INTO `country` (`id`, `country_name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `coursehead` (
-  `id` int(3) NOT NULL AUTO_INCREMENT,
-  `cname` char(50) DEFAULT NULL,
-  `activation` enum('Y','N') DEFAULT 'Y',
+  `id`          INT            NOT NULL AUTO_INCREMENT,
+  `cname`       CHAR(50)       DEFAULT NULL,
+  `activation`  ENUM('Y','N')  DEFAULT 'Y',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `coursehead`
@@ -2729,16 +2826,16 @@ INSERT INTO `coursehead` (`id`, `cname`, `activation`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `course_m` (
-  `course_id` int(11) NOT NULL AUTO_INCREMENT,
-  `coursename` varchar(100) NOT NULL DEFAULT '',
-  `course_abbr` varchar(20) DEFAULT NULL,
-  `intake` int(11) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
-  `head_id` int(4) DEFAULT NULL,
-  `uni_id` varchar(11) DEFAULT NULL,
-  `cids` varchar(5) DEFAULT NULL,
+  `course_id`    INT           NOT NULL AUTO_INCREMENT,
+  `coursename`   VARCHAR(100)  NOT NULL DEFAULT '',
+  `course_abbr`  VARCHAR(20)   DEFAULT NULL,
+  `intake`       INT           DEFAULT NULL,
+  `status`       TINYINT(1)    DEFAULT '1',
+  `head_id`      INT           DEFAULT NULL,
+  `uni_id`       VARCHAR(11)   DEFAULT NULL,
+  `cids`         VARCHAR(5)    DEFAULT NULL,
   PRIMARY KEY (`course_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `course_m`
@@ -2757,14 +2854,14 @@ INSERT INTO `course_m` (`course_id`, `coursename`, `course_abbr`, `intake`, `sta
 --
 
 CREATE TABLE IF NOT EXISTS `course_year` (
-  `year_id` int(11) NOT NULL AUTO_INCREMENT,
-  `year_name` varchar(50) NOT NULL DEFAULT '',
-  `short_name` varchar(5) NOT NULL,
-  `status` int(1) DEFAULT '1',
-  `head_id` int(6) DEFAULT NULL,
-  `student_id` int(1) NOT NULL,
+  `year_id`     INT          NOT NULL AUTO_INCREMENT,
+  `year_name`   VARCHAR(50)  NOT NULL DEFAULT '',
+  `short_name`  VARCHAR(5)   NOT NULL,
+  `status`      TINYINT(1)   DEFAULT '1',
+  `head_id`     INT          DEFAULT NULL,
+  `student_id`  TINYINT(1)   NOT NULL,
   PRIMARY KEY (`year_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `course_year`
@@ -2795,11 +2892,11 @@ INSERT INTO `course_year` (`year_id`, `year_name`, `short_name`, `status`, `head
 --
 
 CREATE TABLE IF NOT EXISTS `criteria` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `head` int(3) NOT NULL,
-  `criteria` text NOT NULL,
+  `id`        BIGINT  NOT NULL AUTO_INCREMENT,
+  `head`      INT     NOT NULL,
+  `criteria`  TEXT    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -2808,16 +2905,16 @@ CREATE TABLE IF NOT EXISTS `criteria` (
 --
 
 CREATE TABLE IF NOT EXISTS `criteria_m` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `exam_id` int(11) NOT NULL,
-  `class` int(3) NOT NULL,
-  `sec` int(2) NOT NULL,
-  `student_id` int(10) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `criteria_id` int(11) NOT NULL,
-  `mark` varchar(4) NOT NULL,
+  `id`           BIGINT      NOT NULL AUTO_INCREMENT,
+  `exam_id`      INT         NOT NULL,
+  `class`        INT         NOT NULL,
+  `sec`          INT         NOT NULL,
+  `student_id`   INT         NOT NULL,
+  `acc_year`     INT         NOT NULL,
+  `criteria_id`  INT         NOT NULL,
+  `mark`         VARCHAR(4)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -2826,11 +2923,11 @@ CREATE TABLE IF NOT EXISTS `criteria_m` (
 --
 
 CREATE TABLE IF NOT EXISTS `day` (
-  `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `Name` varchar(20) NOT NULL,
-  `status` int(1) DEFAULT '1',
+  `ID`      SMALLINT UNSIGNED  NOT NULL AUTO_INCREMENT,
+  `Name`    VARCHAR(20)        NOT NULL,
+  `status`  TINYINT(1)         DEFAULT '1',
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `day`
@@ -2852,12 +2949,12 @@ INSERT INTO `day` (`ID`, `Name`, `status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `dept_no` (
-  `Dept` varchar(50) NOT NULL DEFAULT '',
-  `dpt_id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` int(1) DEFAULT '1',
-  `dept_code` varchar(5) DEFAULT NULL,
+  `Dept`       VARCHAR(50)  NOT NULL DEFAULT '',
+  `dpt_id`     INT          NOT NULL AUTO_INCREMENT,
+  `status`     TINYINT(1)   DEFAULT '1',
+  `dept_code`  VARCHAR(5)   DEFAULT NULL,
   PRIMARY KEY (`dpt_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `dept_no`
@@ -2897,84 +2994,85 @@ INSERT INTO `dept_no` (`Dept`, `dpt_id`, `status`, `dept_code`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `detain_student` (
-  `id` int(11) NOT NULL DEFAULT '0',
-  `admission_id` varchar(20) DEFAULT NULL,
-  `admission_date` date DEFAULT NULL,
-  `student_id` varchar(20) DEFAULT NULL,
-  `usn` varchar(20) DEFAULT NULL,
-  `first_name` varchar(30) DEFAULT NULL,
-  `last_name` varchar(30) DEFAULT NULL,
-  `nationality` int(3) DEFAULT NULL,
-  `religion` int(2) DEFAULT NULL,
-  `gender` char(1) DEFAULT NULL,
-  `caste_id` varchar(50) DEFAULT NULL,
-  `dob` date DEFAULT NULL,
-  `age` varchar(10) DEFAULT NULL,
-  `per_address` varchar(250) DEFAULT NULL,
-  `per_city` varchar(100) DEFAULT NULL,
-  `per_state` varchar(50) DEFAULT NULL,
-  `per_country` varchar(50) DEFAULT NULL,
-  `per_pincode` varchar(7) DEFAULT NULL,
-  `per_phone` varchar(20) DEFAULT NULL,
-  `cor_address` varchar(250) DEFAULT NULL,
-  `cor_city` varchar(100) DEFAULT NULL,
-  `cor_state` varchar(50) DEFAULT NULL,
-  `cor_country` varchar(50) DEFAULT NULL,
-  `cor_pincode` varchar(7) DEFAULT NULL,
-  `cor_phone` varchar(20) DEFAULT NULL,
-  `parent_name` varchar(60) DEFAULT NULL,
-  `parent_occupation` varchar(30) DEFAULT NULL,
-  `parent_income` float(12,2) DEFAULT NULL,
-  `loc_address` varchar(250) DEFAULT NULL,
-  `loc_city` varchar(100) DEFAULT NULL,
-  `loc_state` varchar(50) DEFAULT NULL,
-  `loc_country` varchar(50) DEFAULT NULL,
-  `loc_pincode` varchar(7) DEFAULT NULL,
-  `loc_phone` varchar(20) DEFAULT NULL,
-  `course_admitted` int(11) DEFAULT NULL,
-  `course_yearsem` int(11) DEFAULT NULL,
-  `quota_id` int(3) DEFAULT NULL,
-  `academic_year` varchar(12) DEFAULT NULL,
-  `remarks` varchar(250) DEFAULT NULL,
-  `username` varchar(15) DEFAULT NULL,
-  `password` varchar(15) DEFAULT NULL,
-  `archive` enum('Y','N','F') DEFAULT 'N',
-  `class_section_id` int(1) NOT NULL DEFAULT '0',
-  `parent_username` varchar(15) DEFAULT NULL,
-  `parent_password` varchar(15) DEFAULT NULL,
-  `count` int(11) DEFAULT NULL,
-  `blood_group` varchar(20) DEFAULT NULL,
-  `admission_type` varchar(10) DEFAULT NULL,
-  `img_source` varchar(255) DEFAULT NULL,
-  `img_source_s` varchar(255) DEFAULT NULL,
-  `marital_status` varchar(2) NOT NULL,
-  `mentor` varchar(15) DEFAULT '',
-  `m_email` varchar(20) DEFAULT NULL,
-  `mnum` int(15) DEFAULT NULL,
-  `g_name` varchar(15) DEFAULT NULL,
-  `g_occ` varchar(15) DEFAULT NULL,
-  `g_in` int(15) DEFAULT NULL,
-  `g_num` int(15) DEFAULT NULL,
-  `g_mail` varchar(15) DEFAULT NULL,
-  `f_email` varchar(20) DEFAULT NULL,
-  `place_of_birth` varchar(30) DEFAULT NULL,
-  `f_quali` varchar(30) DEFAULT NULL,
-  `m_quali` varchar(30) DEFAULT NULL,
-  `g_quali` varchar(30) DEFAULT NULL,
-  `lang_id` varchar(200) DEFAULT NULL,
-  `State` varchar(20) DEFAULT 'Karnataka',
-  `sms_mobile` int(10) DEFAULT NULL,
-  `mother_tongue` int(2) DEFAULT NULL,
-  `birth_disct` varchar(100) DEFAULT NULL,
-  `stud_type` varchar(10) DEFAULT NULL,
-  `vdate` date DEFAULT NULL,
-  `m_name` varchar(200) DEFAULT NULL,
-  `m_occ` varchar(200) DEFAULT NULL,
-  `m_inc` varchar(15) DEFAULT NULL,
-  `foadd` varchar(255) DEFAULT NULL,
-  `moadd` varchar(255) DEFAULT NULL,
-  `goadd` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`                 INT                NOT NULL DEFAULT '0',
+  `admission_id`       VARCHAR(20)        DEFAULT NULL,
+  `admission_date`     DATE               DEFAULT NULL,
+  `student_id`         VARCHAR(20)        DEFAULT NULL,
+  `usn`                VARCHAR(20)        DEFAULT NULL,
+  `first_name`         VARCHAR(30)        DEFAULT NULL,
+  `last_name`          VARCHAR(30)        DEFAULT NULL,
+  `nationality`        SMALLINT UNSIGNED  DEFAULT NULL,
+  `religion`           TINYINT UNSIGNED   DEFAULT NULL,
+  `gender`             CHAR(1)            DEFAULT NULL,
+  `caste_id`           VARCHAR(50)        DEFAULT NULL,
+  `dob`                DATE               DEFAULT NULL,
+  `age`                VARCHAR(10)        DEFAULT NULL,
+  `per_address`        VARCHAR(250)       DEFAULT NULL,
+  `per_city`           VARCHAR(100)       DEFAULT NULL,
+  `per_state`          VARCHAR(50)        DEFAULT NULL,
+  `per_country`        VARCHAR(50)        DEFAULT NULL,
+  `per_pincode`        VARCHAR(7)         DEFAULT NULL,
+  `per_phone`          VARCHAR(20)        DEFAULT NULL,
+  `cor_address`        VARCHAR(250)       DEFAULT NULL,
+  `cor_city`           VARCHAR(100)       DEFAULT NULL,
+  `cor_state`          VARCHAR(50)        DEFAULT NULL,
+  `cor_country`        VARCHAR(50)        DEFAULT NULL,
+  `cor_pincode`        VARCHAR(7)         DEFAULT NULL,
+  `cor_phone`          VARCHAR(20)        DEFAULT NULL,
+  `parent_name`        VARCHAR(60)        DEFAULT NULL,
+  `parent_occupation`  VARCHAR(30)        DEFAULT NULL,
+  `parent_income`      FLOAT(12,2)        DEFAULT NULL,
+  `loc_address`        VARCHAR(250)       DEFAULT NULL,
+  `loc_city`           VARCHAR(100)       DEFAULT NULL,
+  `loc_state`          VARCHAR(50)        DEFAULT NULL,
+  `loc_country`        VARCHAR(50)        DEFAULT NULL,
+  `loc_pincode`        VARCHAR(7)         DEFAULT NULL,
+  `loc_phone`          VARCHAR(20)        DEFAULT NULL,
+  `course_admitted`    INT                DEFAULT NULL,
+  `course_yearsem`     INT                DEFAULT NULL,
+  `quota_id`           INT                DEFAULT NULL,
+  `academic_year`      VARCHAR(12)        DEFAULT NULL,
+  `remarks`            VARCHAR(250)       DEFAULT NULL,
+  `username`           VARCHAR(15)        DEFAULT NULL,
+  `password`           VARCHAR(255)       DEFAULT NULL,
+  `archive`            ENUM('Y','N','F')  DEFAULT 'N',
+  `class_section_id`   TINYINT(1)         NOT NULL DEFAULT '0',
+  `parent_username`    VARCHAR(15)        DEFAULT NULL,
+  `parent_password`    VARCHAR(255)       DEFAULT NULL,
+  `count`              INT                DEFAULT NULL,
+  `blood_group`        VARCHAR(20)        DEFAULT NULL,
+  `admission_type`     VARCHAR(10)        DEFAULT NULL,
+  `img_source`         VARCHAR(255)       DEFAULT NULL,
+  `img_source_s`       VARCHAR(255)       DEFAULT NULL,
+  `marital_status`     VARCHAR(2)         NOT NULL,
+  `mentor`             VARCHAR(15)        DEFAULT '',
+  `m_email`            VARCHAR(20)        DEFAULT NULL,
+  `mnum`               INT                DEFAULT NULL,
+  `g_name`             VARCHAR(15)        DEFAULT NULL,
+  `g_occ`              VARCHAR(15)        DEFAULT NULL,
+  `g_in`               INT                DEFAULT NULL,
+  `g_num`              INT                DEFAULT NULL,
+  `g_mail`             VARCHAR(15)        DEFAULT NULL,
+  `f_email`            VARCHAR(20)        DEFAULT NULL,
+  `place_of_birth`     VARCHAR(30)        DEFAULT NULL,
+  `f_quali`            VARCHAR(30)        DEFAULT NULL,
+  `m_quali`            VARCHAR(30)        DEFAULT NULL,
+  `g_quali`            VARCHAR(30)        DEFAULT NULL,
+  `lang_id`            VARCHAR(200)       DEFAULT NULL,
+  `State`              VARCHAR(20)        DEFAULT 'Karnataka',
+  `sms_mobile`         VARCHAR(15)        DEFAULT NULL,
+  `mother_tongue`      TINYINT UNSIGNED   DEFAULT NULL,
+  `birth_disct`        VARCHAR(100)       DEFAULT NULL,
+  `stud_type`          VARCHAR(10)        DEFAULT NULL,
+  `vdate`              DATE               DEFAULT NULL,
+  `m_name`             VARCHAR(200)       DEFAULT NULL,
+  `m_occ`              VARCHAR(200)       DEFAULT NULL,
+  `m_inc`              VARCHAR(15)        DEFAULT NULL,
+  `foadd`              VARCHAR(255)       DEFAULT NULL,
+  `moadd`              VARCHAR(255)       DEFAULT NULL,
+  `goadd`              VARCHAR(255)       DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -2983,9 +3081,10 @@ CREATE TABLE IF NOT EXISTS `detain_student` (
 --
 
 CREATE TABLE IF NOT EXISTS `dob` (
-  `student_id` varchar(255) DEFAULT NULL,
-  `img_source_s` varchar(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `student_id`    VARCHAR(255)  DEFAULT NULL,
+  `img_source_s`  VARCHAR(11)   NOT NULL,
+  PRIMARY KEY (`student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `dob`
@@ -3010,12 +3109,12 @@ INSERT INTO `dob` (`student_id`, `img_source_s`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `doc_addnew` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `new_doc_name` varchar(200) NOT NULL,
-  `position` int(11) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
+  `id`            INT           NOT NULL AUTO_INCREMENT,
+  `new_doc_name`  VARCHAR(200)  NOT NULL,
+  `position`      INT           NOT NULL,
+  `status`        INT           NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -3024,16 +3123,16 @@ CREATE TABLE IF NOT EXISTS `doc_addnew` (
 --
 
 CREATE TABLE IF NOT EXISTS `doc_amt` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `doc_id` varchar(100) NOT NULL DEFAULT '',
-  `fee_id` int(15) NOT NULL DEFAULT '0',
-  `amt` int(15) NOT NULL DEFAULT '0',
-  `cancelled` enum('YES','NO') DEFAULT 'NO',
-  `hostel_type` enum('Y','N') DEFAULT 'N',
-  `academic_term` varchar(100) DEFAULT NULL,
-  `fee_det_id` int(11) DEFAULT NULL,
+  `id`             INT               NOT NULL AUTO_INCREMENT,
+  `doc_id`         VARCHAR(100)      NOT NULL DEFAULT '',
+  `fee_id`         INT               NOT NULL DEFAULT '0',
+  `amt`            INT               NOT NULL DEFAULT '0',
+  `cancelled`      ENUM('YES','NO')  DEFAULT 'NO',
+  `hostel_type`    ENUM('Y','N')     DEFAULT 'N',
+  `academic_term`  VARCHAR(100)      DEFAULT NULL,
+  `fee_det_id`     INT               DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -3042,42 +3141,42 @@ CREATE TABLE IF NOT EXISTS `doc_amt` (
 --
 
 CREATE TABLE IF NOT EXISTS `doc_detail` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `course_id` int(11) DEFAULT NULL,
-  `age` int(11) DEFAULT NULL,
-  `sex` varchar(10) DEFAULT NULL,
-  `adm_type` int(11) DEFAULT NULL,
-  `acc_year` varchar(10) DEFAULT NULL,
-  `doc_name` varchar(30) DEFAULT NULL,
-  `d_date` date DEFAULT NULL,
-  `complaints` text,
-  `treatment` text,
-  `remarks` text,
-  `stud_id` varchar(20) DEFAULT NULL,
-  `time` varchar(20) DEFAULT NULL,
-  `time_1` varchar(20) DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL,
-  `place` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `uploadedfile` varchar(255) DEFAULT NULL,
-  `healthspring` varchar(200) DEFAULT NULL,
-  `parents` varchar(200) DEFAULT NULL,
-  `called` varchar(200) DEFAULT NULL,
-  `emailed` varchar(200) DEFAULT NULL,
-  `met_the_child` varchar(200) DEFAULT NULL,
-  `none` varchar(200) DEFAULT NULL,
-  `p_called` varchar(200) DEFAULT NULL,
-  `p_emailed` varchar(200) DEFAULT NULL,
-  `pick_child` varchar(200) DEFAULT NULL,
-  `p_none` varchar(200) DEFAULT NULL,
-  `student_id` varchar(200) DEFAULT NULL,
-  `user` varchar(200) DEFAULT NULL,
-  `date_entered` date DEFAULT NULL,
-  `date_modified` date DEFAULT NULL,
-  `sent_by` varchar(150) DEFAULT NULL,
-  `outcome` text,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `course_id`      INT           DEFAULT NULL,
+  `age`            INT           DEFAULT NULL,
+  `sex`            VARCHAR(10)   DEFAULT NULL,
+  `adm_type`       INT           DEFAULT NULL,
+  `acc_year`       VARCHAR(10)   DEFAULT NULL,
+  `doc_name`       VARCHAR(30)   DEFAULT NULL,
+  `d_date`         DATE          DEFAULT NULL,
+  `complaints`     TEXT,
+  `treatment`      TEXT,
+  `remarks`        TEXT,
+  `stud_id`        VARCHAR(20)   DEFAULT NULL,
+  `time`           VARCHAR(20)   DEFAULT NULL,
+  `time_1`         VARCHAR(20)   DEFAULT NULL,
+  `type`           VARCHAR(255)  DEFAULT NULL,
+  `place`          VARCHAR(255)  DEFAULT NULL,
+  `name`           VARCHAR(255)  DEFAULT NULL,
+  `uploadedfile`   VARCHAR(255)  DEFAULT NULL,
+  `healthspring`   VARCHAR(200)  DEFAULT NULL,
+  `parents`        VARCHAR(200)  DEFAULT NULL,
+  `called`         VARCHAR(200)  DEFAULT NULL,
+  `emailed`        VARCHAR(200)  DEFAULT NULL,
+  `met_the_child`  VARCHAR(200)  DEFAULT NULL,
+  `none`           VARCHAR(200)  DEFAULT NULL,
+  `p_called`       VARCHAR(200)  DEFAULT NULL,
+  `p_emailed`      VARCHAR(200)  DEFAULT NULL,
+  `pick_child`     VARCHAR(200)  DEFAULT NULL,
+  `p_none`         VARCHAR(200)  DEFAULT NULL,
+  `student_id`     VARCHAR(200)  DEFAULT NULL,
+  `user`           VARCHAR(200)  DEFAULT NULL,
+  `date_entered`   DATE          DEFAULT NULL,
+  `date_modified`  DATE          DEFAULT NULL,
+  `sent_by`        VARCHAR(150)  DEFAULT NULL,
+  `outcome`        TEXT,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8360 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `doc_detail`
@@ -3102,36 +3201,37 @@ INSERT INTO `doc_detail` (`id`, `course_id`, `age`, `sex`, `adm_type`, `acc_year
 --
 
 CREATE TABLE IF NOT EXISTS `doc_detail_backup` (
-  `id` int(11) NOT NULL DEFAULT '0',
-  `course_id` int(11) DEFAULT NULL,
-  `age` int(11) DEFAULT NULL,
-  `sex` varchar(10) DEFAULT NULL,
-  `adm_type` int(11) DEFAULT NULL,
-  `acc_year` varchar(10) DEFAULT NULL,
-  `doc_name` varchar(30) DEFAULT NULL,
-  `d_date` date DEFAULT NULL,
-  `complaints` text,
-  `treatment` text,
-  `remarks` text,
-  `stud_id` varchar(20) DEFAULT NULL,
-  `time` varchar(20) DEFAULT NULL,
-  `time_1` varchar(20) DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL,
-  `place` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `uploadedfile` varchar(255) DEFAULT NULL,
-  `healthspring` varchar(200) DEFAULT NULL,
-  `parents` varchar(200) DEFAULT NULL,
-  `called` varchar(200) DEFAULT NULL,
-  `emailed` varchar(200) DEFAULT NULL,
-  `met_the_child` varchar(200) DEFAULT NULL,
-  `none` varchar(200) DEFAULT NULL,
-  `p_called` varchar(200) DEFAULT NULL,
-  `p_emailed` varchar(200) DEFAULT NULL,
-  `pick_child` varchar(200) DEFAULT NULL,
-  `p_none` varchar(200) DEFAULT NULL,
-  `student_id` varchar(200) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`             INT           NOT NULL DEFAULT '0',
+  `course_id`      INT           DEFAULT NULL,
+  `age`            INT           DEFAULT NULL,
+  `sex`            VARCHAR(10)   DEFAULT NULL,
+  `adm_type`       INT           DEFAULT NULL,
+  `acc_year`       VARCHAR(10)   DEFAULT NULL,
+  `doc_name`       VARCHAR(30)   DEFAULT NULL,
+  `d_date`         DATE          DEFAULT NULL,
+  `complaints`     TEXT,
+  `treatment`      TEXT,
+  `remarks`        TEXT,
+  `stud_id`        VARCHAR(20)   DEFAULT NULL,
+  `time`           VARCHAR(20)   DEFAULT NULL,
+  `time_1`         VARCHAR(20)   DEFAULT NULL,
+  `type`           VARCHAR(255)  DEFAULT NULL,
+  `place`          VARCHAR(255)  DEFAULT NULL,
+  `name`           VARCHAR(255)  DEFAULT NULL,
+  `uploadedfile`   VARCHAR(255)  DEFAULT NULL,
+  `healthspring`   VARCHAR(200)  DEFAULT NULL,
+  `parents`        VARCHAR(200)  DEFAULT NULL,
+  `called`         VARCHAR(200)  DEFAULT NULL,
+  `emailed`        VARCHAR(200)  DEFAULT NULL,
+  `met_the_child`  VARCHAR(200)  DEFAULT NULL,
+  `none`           VARCHAR(200)  DEFAULT NULL,
+  `p_called`       VARCHAR(200)  DEFAULT NULL,
+  `p_emailed`      VARCHAR(200)  DEFAULT NULL,
+  `pick_child`     VARCHAR(200)  DEFAULT NULL,
+  `p_none`         VARCHAR(200)  DEFAULT NULL,
+  `student_id`     VARCHAR(200)  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `doc_detail_backup`
@@ -3156,17 +3256,17 @@ INSERT INTO `doc_detail_backup` (`id`, `course_id`, `age`, `sex`, `adm_type`, `a
 --
 
 CREATE TABLE IF NOT EXISTS `doc_instr` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `doc_id` varchar(50) NOT NULL DEFAULT '',
-  `instr_id` int(11) NOT NULL DEFAULT '0',
-  `instr_no` int(11) NOT NULL DEFAULT '0',
-  `instr_dt` varchar(50) NOT NULL DEFAULT '',
-  `amt` int(11) NOT NULL DEFAULT '0',
-  `status` varchar(10) NOT NULL DEFAULT '',
-  `bank_name` varchar(50) NOT NULL DEFAULT '',
-  `branch_name` varchar(50) NOT NULL DEFAULT '',
+  `id`           INT          NOT NULL AUTO_INCREMENT,
+  `doc_id`       VARCHAR(50)  NOT NULL DEFAULT '',
+  `instr_id`     INT          NOT NULL DEFAULT '0',
+  `instr_no`     INT          NOT NULL DEFAULT '0',
+  `instr_dt`     VARCHAR(50)  NOT NULL DEFAULT '',
+  `amt`          INT          NOT NULL DEFAULT '0',
+  `status`       VARCHAR(10)  NOT NULL DEFAULT '',
+  `bank_name`    VARCHAR(50)  NOT NULL DEFAULT '',
+  `branch_name`  VARCHAR(50)  NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -3175,16 +3275,17 @@ CREATE TABLE IF NOT EXISTS `doc_instr` (
 --
 
 CREATE TABLE IF NOT EXISTS `doc_instr1` (
-  `id` int(11) NOT NULL DEFAULT '0',
-  `doc_id` char(50) NOT NULL DEFAULT '',
-  `instr_id` int(11) NOT NULL DEFAULT '0',
-  `instr_no` int(11) NOT NULL DEFAULT '0',
-  `instr_dt` char(50) NOT NULL DEFAULT '',
-  `amt` int(11) NOT NULL DEFAULT '0',
-  `status` char(10) NOT NULL DEFAULT '',
-  `bank_name` char(50) NOT NULL DEFAULT '',
-  `branch_name` char(50) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`           INT       NOT NULL DEFAULT '0',
+  `doc_id`       CHAR(50)  NOT NULL DEFAULT '',
+  `instr_id`     INT       NOT NULL DEFAULT '0',
+  `instr_no`     INT       NOT NULL DEFAULT '0',
+  `instr_dt`     CHAR(50)  NOT NULL DEFAULT '',
+  `amt`          INT       NOT NULL DEFAULT '0',
+  `status`       CHAR(10)  NOT NULL DEFAULT '',
+  `bank_name`    CHAR(50)  NOT NULL DEFAULT '',
+  `branch_name`  CHAR(50)  NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -3193,13 +3294,13 @@ CREATE TABLE IF NOT EXISTS `doc_instr1` (
 --
 
 CREATE TABLE IF NOT EXISTS `doc_lno` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `reciept_no` int(15) NOT NULL DEFAULT '0',
-  `payorder_no` int(15) NOT NULL DEFAULT '0',
-  `transfer_no` int(11) NOT NULL DEFAULT '0',
-  `payslip_no` int(11) NOT NULL DEFAULT '0',
+  `id`           INT  NOT NULL AUTO_INCREMENT,
+  `reciept_no`   INT  NOT NULL DEFAULT '0',
+  `payorder_no`  INT  NOT NULL DEFAULT '0',
+  `transfer_no`  INT  NOT NULL DEFAULT '0',
+  `payslip_no`   INT  NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -3208,26 +3309,26 @@ CREATE TABLE IF NOT EXISTS `doc_lno` (
 --
 
 CREATE TABLE IF NOT EXISTS `doc_m` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `doc_id` varchar(50) NOT NULL DEFAULT '',
-  `doc_date` date DEFAULT NULL,
-  `doc_status` varchar(50) NOT NULL DEFAULT '',
-  `mode_id` int(11) NOT NULL DEFAULT '0',
-  `doc_amt` int(15) NOT NULL DEFAULT '0',
-  `cashier_id` varchar(50) NOT NULL DEFAULT '',
-  `stud_id` varchar(50) NOT NULL DEFAULT '',
-  `print_org` int(15) NOT NULL DEFAULT '0',
-  `print_dup` int(11) NOT NULL DEFAULT '0',
-  `remark` varchar(50) DEFAULT NULL,
-  `doc_type` varchar(50) NOT NULL DEFAULT '',
-  `isfine` int(15) NOT NULL DEFAULT '0',
-  `cancelled` enum('YES','NO') DEFAULT 'NO',
-  `accno` varchar(25) DEFAULT NULL,
-  `comp_no` varchar(25) DEFAULT NULL,
-  `course_id` int(11) DEFAULT '0',
-  `year_id` int(11) DEFAULT '0',
+  `id`          INT               NOT NULL AUTO_INCREMENT,
+  `doc_id`      VARCHAR(50)       NOT NULL DEFAULT '',
+  `doc_date`    DATE              DEFAULT NULL,
+  `doc_status`  VARCHAR(50)       NOT NULL DEFAULT '',
+  `mode_id`     INT               NOT NULL DEFAULT '0',
+  `doc_amt`     INT               NOT NULL DEFAULT '0',
+  `cashier_id`  VARCHAR(50)       NOT NULL DEFAULT '',
+  `stud_id`     VARCHAR(50)       NOT NULL DEFAULT '',
+  `print_org`   INT               NOT NULL DEFAULT '0',
+  `print_dup`   INT               NOT NULL DEFAULT '0',
+  `remark`      VARCHAR(50)       DEFAULT NULL,
+  `doc_type`    VARCHAR(50)       NOT NULL DEFAULT '',
+  `isfine`      INT               NOT NULL DEFAULT '0',
+  `cancelled`   ENUM('YES','NO')  DEFAULT 'NO',
+  `accno`       VARCHAR(25)       DEFAULT NULL,
+  `comp_no`     VARCHAR(25)       DEFAULT NULL,
+  `course_id`   INT               DEFAULT '0',
+  `year_id`     INT               DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -3236,25 +3337,26 @@ CREATE TABLE IF NOT EXISTS `doc_m` (
 --
 
 CREATE TABLE IF NOT EXISTS `doc_m1` (
-  `id` int(11) NOT NULL DEFAULT '0',
-  `doc_id` char(50) NOT NULL DEFAULT '',
-  `doc_date` date DEFAULT NULL,
-  `doc_status` char(50) NOT NULL DEFAULT '',
-  `mode_id` int(11) NOT NULL DEFAULT '0',
-  `doc_amt` int(15) NOT NULL DEFAULT '0',
-  `cashier_id` char(50) NOT NULL DEFAULT '',
-  `stud_id` char(50) NOT NULL DEFAULT '',
-  `print_org` int(15) NOT NULL DEFAULT '0',
-  `print_dup` int(11) NOT NULL DEFAULT '0',
-  `remark` char(50) DEFAULT NULL,
-  `doc_type` char(50) NOT NULL DEFAULT '',
-  `isfine` int(15) NOT NULL DEFAULT '0',
-  `cancelled` enum('YES','NO') DEFAULT 'NO',
-  `accno` char(25) DEFAULT NULL,
-  `comp_no` char(25) DEFAULT NULL,
-  `course_id` int(11) DEFAULT '0',
-  `year_id` int(11) DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`          INT               NOT NULL DEFAULT '0',
+  `doc_id`      CHAR(50)          NOT NULL DEFAULT '',
+  `doc_date`    DATE              DEFAULT NULL,
+  `doc_status`  CHAR(50)          NOT NULL DEFAULT '',
+  `mode_id`     INT               NOT NULL DEFAULT '0',
+  `doc_amt`     INT               NOT NULL DEFAULT '0',
+  `cashier_id`  CHAR(50)          NOT NULL DEFAULT '',
+  `stud_id`     CHAR(50)          NOT NULL DEFAULT '',
+  `print_org`   INT               NOT NULL DEFAULT '0',
+  `print_dup`   INT               NOT NULL DEFAULT '0',
+  `remark`      CHAR(50)          DEFAULT NULL,
+  `doc_type`    CHAR(50)          NOT NULL DEFAULT '',
+  `isfine`      INT               NOT NULL DEFAULT '0',
+  `cancelled`   ENUM('YES','NO')  DEFAULT 'NO',
+  `accno`       CHAR(25)          DEFAULT NULL,
+  `comp_no`     CHAR(25)          DEFAULT NULL,
+  `course_id`   INT               DEFAULT '0',
+  `year_id`     INT               DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -3263,18 +3365,18 @@ CREATE TABLE IF NOT EXISTS `doc_m1` (
 --
 
 CREATE TABLE IF NOT EXISTS `doc_other` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `doc_name` varchar(30) DEFAULT NULL,
-  `d_date` date DEFAULT NULL,
-  `complaints` text,
-  `treatment` text,
-  `remarks` text,
-  `slno` varchar(20) DEFAULT NULL,
-  `time` varchar(20) DEFAULT NULL,
-  `name` varchar(30) DEFAULT NULL,
-  `designation` varchar(30) DEFAULT NULL,
+  `id`           INT          NOT NULL AUTO_INCREMENT,
+  `doc_name`     VARCHAR(30)  DEFAULT NULL,
+  `d_date`       DATE         DEFAULT NULL,
+  `complaints`   TEXT,
+  `treatment`    TEXT,
+  `remarks`      TEXT,
+  `slno`         VARCHAR(20)  DEFAULT NULL,
+  `time`         VARCHAR(20)  DEFAULT NULL,
+  `name`         VARCHAR(30)  DEFAULT NULL,
+  `designation`  VARCHAR(30)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -3283,20 +3385,20 @@ CREATE TABLE IF NOT EXISTS `doc_other` (
 --
 
 CREATE TABLE IF NOT EXISTS `doc_staff` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sex` varchar(10) DEFAULT NULL,
-  `acc_year` varchar(10) DEFAULT NULL,
-  `doc_name` varchar(30) DEFAULT NULL,
-  `d_date` date DEFAULT NULL,
-  `complaints` text,
-  `treatment` text,
-  `remarks` text,
-  `slno` varchar(20) DEFAULT NULL,
-  `time` varchar(20) DEFAULT NULL,
-  `group_id` int(11) DEFAULT NULL,
-  `des_id` int(11) DEFAULT NULL,
+  `id`          INT          NOT NULL AUTO_INCREMENT,
+  `sex`         VARCHAR(10)  DEFAULT NULL,
+  `acc_year`    VARCHAR(10)  DEFAULT NULL,
+  `doc_name`    VARCHAR(30)  DEFAULT NULL,
+  `d_date`      DATE         DEFAULT NULL,
+  `complaints`  TEXT,
+  `treatment`   TEXT,
+  `remarks`     TEXT,
+  `slno`        VARCHAR(20)  DEFAULT NULL,
+  `time`        VARCHAR(20)  DEFAULT NULL,
+  `group_id`    INT          DEFAULT NULL,
+  `des_id`      INT          DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -3305,42 +3407,42 @@ CREATE TABLE IF NOT EXISTS `doc_staff` (
 --
 
 CREATE TABLE IF NOT EXISTS `doc_visit` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `course_id` int(11) DEFAULT NULL,
-  `age` int(11) DEFAULT NULL,
-  `sex` varchar(10) DEFAULT NULL,
-  `adm_type` int(11) DEFAULT NULL,
-  `acc_year` varchar(10) DEFAULT NULL,
-  `doc_name` varchar(30) DEFAULT NULL,
-  `d_date` date DEFAULT NULL,
-  `complaints` text,
-  `treatment` text,
-  `remarks` text,
-  `stud_id` varchar(20) DEFAULT NULL,
-  `time` varchar(20) DEFAULT NULL,
-  `time_1` varchar(20) DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL,
-  `place` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `uploadedfile` varchar(255) DEFAULT NULL,
-  `healthspring` varchar(200) DEFAULT NULL,
-  `parents` varchar(200) DEFAULT NULL,
-  `called` varchar(200) DEFAULT NULL,
-  `emailed` varchar(200) DEFAULT NULL,
-  `met_the_child` varchar(200) DEFAULT NULL,
-  `none` varchar(200) DEFAULT NULL,
-  `p_called` varchar(200) DEFAULT NULL,
-  `p_emailed` varchar(200) DEFAULT NULL,
-  `pick_child` varchar(200) DEFAULT NULL,
-  `p_none` varchar(200) DEFAULT NULL,
-  `student_id` varchar(200) DEFAULT NULL,
-  `user` varchar(200) DEFAULT NULL,
-  `date_entered` date DEFAULT NULL,
-  `date_modified` date DEFAULT NULL,
-  `sent_by` varchar(150) DEFAULT NULL,
-  `outcome` text,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `course_id`      INT           DEFAULT NULL,
+  `age`            INT           DEFAULT NULL,
+  `sex`            VARCHAR(10)   DEFAULT NULL,
+  `adm_type`       INT           DEFAULT NULL,
+  `acc_year`       VARCHAR(10)   DEFAULT NULL,
+  `doc_name`       VARCHAR(30)   DEFAULT NULL,
+  `d_date`         DATE          DEFAULT NULL,
+  `complaints`     TEXT,
+  `treatment`      TEXT,
+  `remarks`        TEXT,
+  `stud_id`        VARCHAR(20)   DEFAULT NULL,
+  `time`           VARCHAR(20)   DEFAULT NULL,
+  `time_1`         VARCHAR(20)   DEFAULT NULL,
+  `type`           VARCHAR(255)  DEFAULT NULL,
+  `place`          VARCHAR(255)  DEFAULT NULL,
+  `name`           VARCHAR(255)  DEFAULT NULL,
+  `uploadedfile`   VARCHAR(255)  DEFAULT NULL,
+  `healthspring`   VARCHAR(200)  DEFAULT NULL,
+  `parents`        VARCHAR(200)  DEFAULT NULL,
+  `called`         VARCHAR(200)  DEFAULT NULL,
+  `emailed`        VARCHAR(200)  DEFAULT NULL,
+  `met_the_child`  VARCHAR(200)  DEFAULT NULL,
+  `none`           VARCHAR(200)  DEFAULT NULL,
+  `p_called`       VARCHAR(200)  DEFAULT NULL,
+  `p_emailed`      VARCHAR(200)  DEFAULT NULL,
+  `pick_child`     VARCHAR(200)  DEFAULT NULL,
+  `p_none`         VARCHAR(200)  DEFAULT NULL,
+  `student_id`     VARCHAR(200)  DEFAULT NULL,
+  `user`           VARCHAR(200)  DEFAULT NULL,
+  `date_entered`   DATE          DEFAULT NULL,
+  `date_modified`  DATE          DEFAULT NULL,
+  `sent_by`        VARCHAR(150)  DEFAULT NULL,
+  `outcome`        TEXT,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -3349,24 +3451,24 @@ CREATE TABLE IF NOT EXISTS `doc_visit` (
 --
 
 CREATE TABLE IF NOT EXISTS `dp_exam_sub_m` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
-  `exam_id` int(8) DEFAULT NULL,
-  `exam_name` varchar(75) NOT NULL,
-  `from` date NOT NULL,
-  `to` date NOT NULL,
-  `examtype` int(11) NOT NULL,
-  `exam_sub_name` varchar(50) NOT NULL,
-  `subject_id` int(8) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `section` int(2) NOT NULL,
-  `weight` int(3) NOT NULL,
-  `mark` int(4) NOT NULL,
-  `class` int(4) NOT NULL,
-  `status` int(1) NOT NULL,
-  `order_id` int(2) NOT NULL,
-  `per_info` int(11) NOT NULL,
+  `id`             INT          NOT NULL AUTO_INCREMENT,
+  `exam_id`        INT          DEFAULT NULL,
+  `exam_name`      VARCHAR(75)  NOT NULL,
+  `from`           DATE         NOT NULL,
+  `to`             DATE         NOT NULL,
+  `examtype`       INT          NOT NULL,
+  `exam_sub_name`  VARCHAR(50)  NOT NULL,
+  `subject_id`     INT          NOT NULL,
+  `acc_year`       INT          NOT NULL,
+  `section`        INT          NOT NULL,
+  `weight`         INT          NOT NULL,
+  `mark`           INT          NOT NULL,
+  `class`          INT          NOT NULL,
+  `status`         TINYINT(1)   NOT NULL,
+  `order_id`       INT          NOT NULL,
+  `per_info`       INT          NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `dp_exam_sub_m`
@@ -3392,16 +3494,16 @@ INSERT INTO `dp_exam_sub_m` (`id`, `exam_id`, `exam_name`, `from`, `to`, `examty
 --
 
 CREATE TABLE IF NOT EXISTS `driver_master` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `driver_name` varchar(50) DEFAULT NULL,
-  `personal_details` varchar(50) DEFAULT NULL,
-  `date_of_join` date DEFAULT NULL,
-  `address` varchar(200) DEFAULT NULL,
-  `experiance_yrs` int(5) DEFAULT NULL,
-  `licence_det` varchar(50) DEFAULT NULL,
-  `reneval_det` varchar(50) DEFAULT NULL,
+  `id`                INT           NOT NULL AUTO_INCREMENT,
+  `driver_name`       VARCHAR(50)   DEFAULT NULL,
+  `personal_details`  VARCHAR(50)   DEFAULT NULL,
+  `date_of_join`      DATE          DEFAULT NULL,
+  `address`           VARCHAR(200)  DEFAULT NULL,
+  `experiance_yrs`    INT           DEFAULT NULL,
+  `licence_det`       VARCHAR(50)   DEFAULT NULL,
+  `reneval_det`       VARCHAR(50)   DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -3410,16 +3512,17 @@ CREATE TABLE IF NOT EXISTS `driver_master` (
 --
 
 CREATE TABLE IF NOT EXISTS `d_att_0` (
-  `id` bigint(20) NOT NULL DEFAULT '0',
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`          BIGINT              NOT NULL DEFAULT '0',
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `d_att_0`
@@ -3437,16 +3540,17 @@ INSERT INTO `d_att_0` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `se
 --
 
 CREATE TABLE IF NOT EXISTS `d_att_1` (
-  `id` bigint(20) NOT NULL DEFAULT '0',
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`          BIGINT              NOT NULL DEFAULT '0',
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `d_att_1`
@@ -3471,16 +3575,17 @@ INSERT INTO `d_att_1` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `se
 --
 
 CREATE TABLE IF NOT EXISTS `d_att_2` (
-  `id` bigint(20) NOT NULL DEFAULT '0',
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`          BIGINT              NOT NULL DEFAULT '0',
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `d_att_2`
@@ -3505,16 +3610,17 @@ INSERT INTO `d_att_2` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `se
 --
 
 CREATE TABLE IF NOT EXISTS `d_att_3` (
-  `id` bigint(20) NOT NULL DEFAULT '0',
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`          BIGINT              NOT NULL DEFAULT '0',
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `d_att_3`
@@ -3539,16 +3645,17 @@ INSERT INTO `d_att_3` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `se
 --
 
 CREATE TABLE IF NOT EXISTS `d_att_4` (
-  `id` bigint(20) NOT NULL DEFAULT '0',
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`          BIGINT              NOT NULL DEFAULT '0',
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `d_att_4`
@@ -3565,16 +3672,17 @@ INSERT INTO `d_att_4` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `se
 --
 
 CREATE TABLE IF NOT EXISTS `d_att_5` (
-  `id` bigint(20) NOT NULL DEFAULT '0',
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`          BIGINT              NOT NULL DEFAULT '0',
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `d_att_5`
@@ -3599,16 +3707,17 @@ INSERT INTO `d_att_5` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `se
 --
 
 CREATE TABLE IF NOT EXISTS `d_att_7` (
-  `id` bigint(20) NOT NULL DEFAULT '0',
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`          BIGINT              NOT NULL DEFAULT '0',
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `d_att_7`
@@ -3626,16 +3735,17 @@ INSERT INTO `d_att_7` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `se
 --
 
 CREATE TABLE IF NOT EXISTS `d_att_8` (
-  `id` bigint(20) NOT NULL DEFAULT '0',
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`          BIGINT              NOT NULL DEFAULT '0',
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `d_att_8`
@@ -3660,16 +3770,17 @@ INSERT INTO `d_att_8` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `se
 --
 
 CREATE TABLE IF NOT EXISTS `d_att_9` (
-  `id` bigint(20) NOT NULL DEFAULT '0',
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`          BIGINT              NOT NULL DEFAULT '0',
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `d_att_9`
@@ -3693,16 +3804,17 @@ INSERT INTO `d_att_9` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `se
 --
 
 CREATE TABLE IF NOT EXISTS `d_att_10` (
-  `id` bigint(20) NOT NULL DEFAULT '0',
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`          BIGINT              NOT NULL DEFAULT '0',
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `d_att_10`
@@ -3727,16 +3839,17 @@ INSERT INTO `d_att_10` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `s
 --
 
 CREATE TABLE IF NOT EXISTS `d_att_11` (
-  `id` bigint(20) NOT NULL DEFAULT '0',
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`          BIGINT              NOT NULL DEFAULT '0',
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `d_att_11`
@@ -3762,16 +3875,17 @@ INSERT INTO `d_att_11` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `s
 --
 
 CREATE TABLE IF NOT EXISTS `d_att_12` (
-  `id` bigint(20) NOT NULL DEFAULT '0',
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`          BIGINT              NOT NULL DEFAULT '0',
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `d_att_12`
@@ -3796,16 +3910,17 @@ INSERT INTO `d_att_12` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `s
 --
 
 CREATE TABLE IF NOT EXISTS `d_att_13` (
-  `id` bigint(20) NOT NULL DEFAULT '0',
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`          BIGINT              NOT NULL DEFAULT '0',
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `d_att_13`
@@ -3833,16 +3948,17 @@ INSERT INTO `d_att_13` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `s
 --
 
 CREATE TABLE IF NOT EXISTS `d_att_14` (
-  `id` bigint(20) NOT NULL DEFAULT '0',
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`          BIGINT              NOT NULL DEFAULT '0',
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `d_att_14`
@@ -3867,16 +3983,17 @@ INSERT INTO `d_att_14` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `s
 --
 
 CREATE TABLE IF NOT EXISTS `d_att_15` (
-  `id` bigint(20) NOT NULL DEFAULT '0',
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`          BIGINT              NOT NULL DEFAULT '0',
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `d_att_15`
@@ -3904,16 +4021,17 @@ INSERT INTO `d_att_15` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `s
 --
 
 CREATE TABLE IF NOT EXISTS `d_att_16` (
-  `id` bigint(20) NOT NULL DEFAULT '0',
-  `subject_id` int(2) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `att_date` date NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
-  `sec` int(1) NOT NULL,
-  `mor` int(1) NOT NULL,
-  `after` int(1) NOT NULL,
-  `att_desc` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`          BIGINT              NOT NULL DEFAULT '0',
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL,
+  `username`    VARCHAR(100)        NOT NULL,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      BIGINT              NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL,
+  `after`       TINYINT(1)          NOT NULL,
+  `att_desc`    VARCHAR(250)        NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `d_att_16`
@@ -3940,15 +4058,15 @@ INSERT INTO `d_att_16` (`id`, `subject_id`, `username`, `att_date`, `stu_id`, `s
 --
 
 CREATE TABLE IF NOT EXISTS `eca_fee_apply` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` int(1) NOT NULL,
-  `subject_id` int(11) NOT NULL,
-  `taxid` int(2) NOT NULL,
-  `apply_date` date NOT NULL,
-  `applyAmt1` double(18,2) NOT NULL,
-  `applyAmt2` double(18,2) NOT NULL,
+  `id`          INT           NOT NULL AUTO_INCREMENT,
+  `status`      TINYINT(1)    NOT NULL,
+  `subject_id`  INT           NOT NULL,
+  `taxid`       INT           NOT NULL,
+  `apply_date`  DATE          NOT NULL,
+  `applyAmt1`   DOUBLE(18,2)  NOT NULL,
+  `applyAmt2`   DOUBLE(18,2)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=500 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `eca_fee_apply`
@@ -3976,15 +4094,15 @@ INSERT INTO `eca_fee_apply` (`id`, `status`, `subject_id`, `taxid`, `apply_date`
 --
 
 CREATE TABLE IF NOT EXISTS `eca_fee_invoice` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `invoce_id` varchar(11) NOT NULL,
-  `invoice_date` date NOT NULL,
-  `student_id` int(11) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `user` varchar(100) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`            INT           NOT NULL AUTO_INCREMENT,
+  `invoce_id`     VARCHAR(11)   NOT NULL,
+  `invoice_date`  DATE          NOT NULL,
+  `student_id`    INT           NOT NULL,
+  `acc_year`      INT           NOT NULL,
+  `user`          VARCHAR(100)  NOT NULL,
+  `status`        TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=88 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `eca_fee_invoice`
@@ -4007,15 +4125,15 @@ INSERT INTO `eca_fee_invoice` (`id`, `invoce_id`, `invoice_date`, `student_id`, 
 --
 
 CREATE TABLE IF NOT EXISTS `eca_fee_invoice_det` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `invoice_id` int(11) NOT NULL,
-  `fee_head` int(4) NOT NULL,
-  `amount` double(18,2) NOT NULL,
-  `tax_amount` double(18,2) NOT NULL,
-  `tot_amount` double(18,2) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`          INT           NOT NULL AUTO_INCREMENT,
+  `invoice_id`  INT           NOT NULL,
+  `fee_head`    INT           NOT NULL,
+  `amount`      DOUBLE(18,2)  NOT NULL,
+  `tax_amount`  DOUBLE(18,2)  NOT NULL,
+  `tot_amount`  DOUBLE(18,2)  NOT NULL,
+  `status`      TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=144 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `eca_fee_invoice_det`
@@ -4042,16 +4160,16 @@ INSERT INTO `eca_fee_invoice_det` (`id`, `invoice_id`, `fee_head`, `amount`, `ta
 --
 
 CREATE TABLE IF NOT EXISTS `eca_type` (
-  `fee_id` int(11) NOT NULL AUTO_INCREMENT,
-  `fee_name` varchar(100) NOT NULL DEFAULT '',
-  `catid` double(18,2) DEFAULT '0.00',
-  `catidtype` varchar(200) NOT NULL,
-  `price` double(18,2) NOT NULL,
-  `refund` int(11) DEFAULT '1',
-  `status` int(11) DEFAULT '1',
-  `ftype` int(1) DEFAULT '1',
+  `fee_id`     INT           NOT NULL AUTO_INCREMENT,
+  `fee_name`   VARCHAR(100)  NOT NULL DEFAULT '',
+  `catid`      DOUBLE(18,2)  DEFAULT '0.00',
+  `catidtype`  VARCHAR(200)  NOT NULL,
+  `price`      DOUBLE(18,2)  NOT NULL,
+  `refund`     INT           DEFAULT '1',
+  `status`     INT           DEFAULT '1',
+  `ftype`      TINYINT(1)    DEFAULT '1',
   PRIMARY KEY (`fee_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=122 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `eca_type`
@@ -4076,14 +4194,14 @@ INSERT INTO `eca_type` (`fee_id`, `fee_name`, `catid`, `catidtype`, `price`, `re
 --
 
 CREATE TABLE IF NOT EXISTS `empallowances` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
-  `empid` int(11) DEFAULT NULL,
-  `allowance_id` int(5) DEFAULT NULL,
-  `percent` float DEFAULT NULL,
-  `amt` float DEFAULT NULL,
-  `col_id` int(11) DEFAULT NULL,
+  `id`            INT    NOT NULL AUTO_INCREMENT,
+  `empid`         INT    DEFAULT NULL,
+  `allowance_id`  INT    DEFAULT NULL,
+  `percent`       FLOAT  DEFAULT NULL,
+  `amt`           FLOAT  DEFAULT NULL,
+  `col_id`        INT    DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=163 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `empallowances`
@@ -4108,17 +4226,17 @@ INSERT INTO `empallowances` (`id`, `empid`, `allowance_id`, `percent`, `amt`, `c
 --
 
 CREATE TABLE IF NOT EXISTS `emp_attendance` (
-  `iId_att` bigint(20) NOT NULL AUTO_INCREMENT,
-  `iIdx_organization` bigint(20) NOT NULL,
-  `att_date` date NOT NULL,
-  `att_shift` bigint(20) NOT NULL,
-  `att_department` bigint(20) NOT NULL,
-  `att_empid` varchar(250) NOT NULL,
-  `att_status` text NOT NULL,
-  `ihalf` varchar(250) NOT NULL,
-  `itt` varchar(250) NOT NULL,
+  `iId_att`            BIGINT        NOT NULL AUTO_INCREMENT,
+  `iIdx_organization`  BIGINT        NOT NULL,
+  `att_date`           DATE          NOT NULL,
+  `att_shift`          BIGINT        NOT NULL,
+  `att_department`     BIGINT        NOT NULL,
+  `att_empid`          VARCHAR(250)  NOT NULL,
+  `att_status`         TEXT          NOT NULL,
+  `ihalf`              VARCHAR(250)  NOT NULL,
+  `itt`                VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`iId_att`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4127,11 +4245,11 @@ CREATE TABLE IF NOT EXISTS `emp_attendance` (
 --
 
 CREATE TABLE IF NOT EXISTS `emp_department` (
-  `iId_department` bigint(20) NOT NULL AUTO_INCREMENT,
-  `iIdx_institution` bigint(20) NOT NULL,
-  `vdepartmentname` varchar(250) NOT NULL,
+  `iId_department`    BIGINT        NOT NULL AUTO_INCREMENT,
+  `iIdx_institution`  BIGINT        NOT NULL,
+  `vdepartmentname`   VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`iId_department`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4140,27 +4258,27 @@ CREATE TABLE IF NOT EXISTS `emp_department` (
 --
 
 CREATE TABLE IF NOT EXISTS `emp_details` (
-  `iId_emp` bigint(20) NOT NULL AUTO_INCREMENT,
-  `vemp_id` varchar(250) NOT NULL,
-  `demp_jdate` date NOT NULL,
-  `vemp_name` varchar(250) NOT NULL,
-  `vemp_address` varchar(250) NOT NULL,
-  `iemp_cno` bigint(20) NOT NULL,
-  `vemp_email` varchar(250) NOT NULL,
-  `demp_dob` date NOT NULL,
-  `vemp_gender` varchar(250) NOT NULL,
-  `iemp_age` bigint(20) NOT NULL,
-  `vemp_religion` varchar(250) NOT NULL,
-  `vemp_cast` varchar(250) NOT NULL,
-  `vemp_designation` bigint(20) NOT NULL,
-  `iemp_jposition` bigint(20) NOT NULL,
-  `vemp_jtype` bigint(20) NOT NULL,
-  `femp_bp` double(18,2) NOT NULL,
-  `femp_ta` double(18,2) NOT NULL,
-  `femp_da` double(18,2) NOT NULL,
-  `femp_hra` double(18,2) NOT NULL,
+  `iId_emp`           BIGINT        NOT NULL AUTO_INCREMENT,
+  `vemp_id`           VARCHAR(250)  NOT NULL,
+  `demp_jdate`        DATE          NOT NULL,
+  `vemp_name`         VARCHAR(250)  NOT NULL,
+  `vemp_address`      VARCHAR(250)  NOT NULL,
+  `iemp_cno`          BIGINT        NOT NULL,
+  `vemp_email`        VARCHAR(250)  NOT NULL,
+  `demp_dob`          DATE          NOT NULL,
+  `vemp_gender`       VARCHAR(250)  NOT NULL,
+  `iemp_age`          BIGINT        NOT NULL,
+  `vemp_religion`     VARCHAR(250)  NOT NULL,
+  `vemp_cast`         VARCHAR(250)  NOT NULL,
+  `vemp_designation`  BIGINT        NOT NULL,
+  `iemp_jposition`    BIGINT        NOT NULL,
+  `vemp_jtype`        BIGINT        NOT NULL,
+  `femp_bp`           DOUBLE(18,2)  NOT NULL,
+  `femp_ta`           DOUBLE(18,2)  NOT NULL,
+  `femp_da`           DOUBLE(18,2)  NOT NULL,
+  `femp_hra`          DOUBLE(18,2)  NOT NULL,
   PRIMARY KEY (`iId_emp`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4169,32 +4287,32 @@ CREATE TABLE IF NOT EXISTS `emp_details` (
 --
 
 CREATE TABLE IF NOT EXISTS `emp_details1` (
-  `iId_emp` bigint(20) NOT NULL AUTO_INCREMENT,
-  `iIdx_institution` bigint(20) NOT NULL,
-  `iIdx_department` bigint(20) NOT NULL,
-  `vemp_id` varchar(250) NOT NULL,
-  `iemp_designation` bigint(20) NOT NULL,
-  `demp_jdate` date NOT NULL,
-  `femp_bpay` double(18,2) NOT NULL,
-  `pda` double(18,2) NOT NULL,
-  `phra` double(18,2) NOT NULL,
-  `pcca` double(18,2) NOT NULL,
-  `potherear` double(18,2) NOT NULL,
-  `pf` float(18,2) NOT NULL,
-  `loans` double(18,2) NOT NULL,
-  `otherded` double(18,2) NOT NULL,
-  `vemp_name` varchar(250) NOT NULL,
-  `vemp_qualification` varchar(250) NOT NULL,
-  `demp_dob` date NOT NULL,
-  `vemp_gender` varchar(250) NOT NULL,
-  `vemp_address` varchar(250) NOT NULL,
-  `iemp_cno` bigint(20) NOT NULL,
-  `vemp_email` varchar(250) NOT NULL,
-  `vemp_comments` varchar(250) NOT NULL,
-  `vaccount` varchar(250) NOT NULL,
-  `ptype` varchar(250) NOT NULL,
+  `iId_emp`             BIGINT        NOT NULL AUTO_INCREMENT,
+  `iIdx_institution`    BIGINT        NOT NULL,
+  `iIdx_department`     BIGINT        NOT NULL,
+  `vemp_id`             VARCHAR(250)  NOT NULL,
+  `iemp_designation`    BIGINT        NOT NULL,
+  `demp_jdate`          DATE          NOT NULL,
+  `femp_bpay`           DOUBLE(18,2)  NOT NULL,
+  `pda`                 DOUBLE(18,2)  NOT NULL,
+  `phra`                DOUBLE(18,2)  NOT NULL,
+  `pcca`                DOUBLE(18,2)  NOT NULL,
+  `potherear`           DOUBLE(18,2)  NOT NULL,
+  `pf`                  FLOAT(18,2)   NOT NULL,
+  `loans`               DOUBLE(18,2)  NOT NULL,
+  `otherded`            DOUBLE(18,2)  NOT NULL,
+  `vemp_name`           VARCHAR(250)  NOT NULL,
+  `vemp_qualification`  VARCHAR(250)  NOT NULL,
+  `demp_dob`            DATE          NOT NULL,
+  `vemp_gender`         VARCHAR(250)  NOT NULL,
+  `vemp_address`        VARCHAR(250)  NOT NULL,
+  `iemp_cno`            BIGINT        NOT NULL,
+  `vemp_email`          VARCHAR(250)  NOT NULL,
+  `vemp_comments`       VARCHAR(250)  NOT NULL,
+  `vaccount`            VARCHAR(250)  NOT NULL,
+  `ptype`               VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`iId_emp`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4203,11 +4321,11 @@ CREATE TABLE IF NOT EXISTS `emp_details1` (
 --
 
 CREATE TABLE IF NOT EXISTS `emp_job` (
-  `iId_job` bigint(20) NOT NULL AUTO_INCREMENT,
-  `iIdx_institution` bigint(20) NOT NULL,
-  `vjob` varchar(250) NOT NULL,
+  `iId_job`           BIGINT        NOT NULL AUTO_INCREMENT,
+  `iIdx_institution`  BIGINT        NOT NULL,
+  `vjob`              VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`iId_job`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4216,16 +4334,16 @@ CREATE TABLE IF NOT EXISTS `emp_job` (
 --
 
 CREATE TABLE IF NOT EXISTS `emp_loan` (
-  `iIdx_loan` bigint(20) NOT NULL AUTO_INCREMENT,
-  `iIdx_organization` bigint(20) NOT NULL,
-  `iIdx_department` bigint(20) NOT NULL,
-  `emp_id` varchar(250) NOT NULL,
-  `floantamount` double(18,2) NOT NULL,
-  `finstallment` double(18,2) NOT NULL,
-  `dfdate` date NOT NULL,
-  `dtdate` date NOT NULL,
-  UNIQUE KEY `iIdx_loan` (`iIdx_loan`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `iIdx_loan`          BIGINT        NOT NULL AUTO_INCREMENT,
+  `iIdx_organization`  BIGINT        NOT NULL,
+  `iIdx_department`    BIGINT        NOT NULL,
+  `emp_id`             VARCHAR(250)  NOT NULL,
+  `floantamount`       DOUBLE(18,2)  NOT NULL,
+  `finstallment`       DOUBLE(18,2)  NOT NULL,
+  `dfdate`             DATE          NOT NULL,
+  `dtdate`             DATE          NOT NULL,
+  PRIMARY KEY (`iIdx_loan`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4234,30 +4352,30 @@ CREATE TABLE IF NOT EXISTS `emp_loan` (
 --
 
 CREATE TABLE IF NOT EXISTS `emp_salary` (
-  `iId_salary` bigint(20) NOT NULL AUTO_INCREMENT,
-  `iIdx_organization` bigint(20) NOT NULL,
-  `iIdx_department` bigint(20) NOT NULL,
-  `vId_emp` varchar(250) NOT NULL,
-  `ddate` date NOT NULL,
-  `iyear` bigint(20) NOT NULL,
-  `vmonth` varchar(250) NOT NULL,
-  `iwordays` bigint(20) NOT NULL,
-  `ipresent` bigint(20) NOT NULL,
-  `fda` double(18,2) NOT NULL,
-  `fhra` double(18,2) NOT NULL,
-  `fcca` double(18,2) NOT NULL,
-  `fotherear` double(18,2) NOT NULL,
-  `flop` double(18,2) NOT NULL,
-  `fpf` double(18,2) NOT NULL,
-  `fpt` double(18,2) NOT NULL,
-  `floans` double(18,2) NOT NULL,
-  `fotherded` double(18,2) NOT NULL,
-  `fgrosssal` double(18,2) NOT NULL,
-  `ftotded` double(18,2) NOT NULL,
-  `fnetsal` double(18,2) NOT NULL,
-  `ptype` varchar(250) NOT NULL,
+  `iId_salary`         BIGINT        NOT NULL AUTO_INCREMENT,
+  `iIdx_organization`  BIGINT        NOT NULL,
+  `iIdx_department`    BIGINT        NOT NULL,
+  `vId_emp`            VARCHAR(250)  NOT NULL,
+  `ddate`              DATE          NOT NULL,
+  `iyear`              BIGINT        NOT NULL,
+  `vmonth`             VARCHAR(250)  NOT NULL,
+  `iwordays`           BIGINT        NOT NULL,
+  `ipresent`           BIGINT        NOT NULL,
+  `fda`                DOUBLE(18,2)  NOT NULL,
+  `fhra`               DOUBLE(18,2)  NOT NULL,
+  `fcca`               DOUBLE(18,2)  NOT NULL,
+  `fotherear`          DOUBLE(18,2)  NOT NULL,
+  `flop`               DOUBLE(18,2)  NOT NULL,
+  `fpf`                DOUBLE(18,2)  NOT NULL,
+  `fpt`                DOUBLE(18,2)  NOT NULL,
+  `floans`             DOUBLE(18,2)  NOT NULL,
+  `fotherded`          DOUBLE(18,2)  NOT NULL,
+  `fgrosssal`          DOUBLE(18,2)  NOT NULL,
+  `ftotded`            DOUBLE(18,2)  NOT NULL,
+  `fnetsal`            DOUBLE(18,2)  NOT NULL,
+  `ptype`              VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`iId_salary`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4266,8 +4384,10 @@ CREATE TABLE IF NOT EXISTS `emp_salary` (
 --
 
 CREATE TABLE IF NOT EXISTS `enter_date` (
-  `Date` date DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`    INT   NOT NULL AUTO_INCREMENT,
+  `Date`  DATE  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4276,17 +4396,17 @@ CREATE TABLE IF NOT EXISTS `enter_date` (
 --
 
 CREATE TABLE IF NOT EXISTS `exam_detention` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `acc_year` int(4) NOT NULL,
-  `sem` int(11) NOT NULL,
-  `exam_sem` int(11) NOT NULL,
-  `section` int(11) NOT NULL,
-  `int_id` int(11) NOT NULL,
-  `tst_id` int(11) NOT NULL,
-  `status` int(1) NOT NULL,
-  `count` int(2) NOT NULL,
+  `id`        INT         NOT NULL AUTO_INCREMENT,
+  `acc_year`  INT         NOT NULL,
+  `sem`       INT         NOT NULL,
+  `exam_sem`  INT         NOT NULL,
+  `section`   INT         NOT NULL,
+  `int_id`    INT         NOT NULL,
+  `tst_id`    INT         NOT NULL,
+  `status`    TINYINT(1)  NOT NULL,
+  `count`     INT         NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4295,18 +4415,18 @@ CREATE TABLE IF NOT EXISTS `exam_detention` (
 --
 
 CREATE TABLE IF NOT EXISTS `exam_grade_point` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sem` int(4) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `exam_id` int(5) NOT NULL,
-  `subject_id` int(5) NOT NULL,
-  `from_point` int(5) NOT NULL,
-  `to_point` int(5) NOT NULL,
-  `tot_point` varchar(11) NOT NULL,
-  `desc` text NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`          INT          NOT NULL AUTO_INCREMENT,
+  `sem`         INT          NOT NULL,
+  `acc_year`    INT          NOT NULL,
+  `exam_id`     INT          NOT NULL,
+  `subject_id`  INT          NOT NULL,
+  `from_point`  INT          NOT NULL,
+  `to_point`    INT          NOT NULL,
+  `tot_point`   VARCHAR(11)  NOT NULL,
+  `desc`        TEXT         NOT NULL,
+  `status`      TINYINT(1)   NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4315,9 +4435,11 @@ CREATE TABLE IF NOT EXISTS `exam_grade_point` (
 --
 
 CREATE TABLE IF NOT EXISTS `exam_links` (
-  `sem` int(5) NOT NULL,
-  `linkname` varchar(200) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`        INT           NOT NULL AUTO_INCREMENT,
+  `sem`       INT           NOT NULL,
+  `linkname`  VARCHAR(200)  NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4326,22 +4448,22 @@ CREATE TABLE IF NOT EXISTS `exam_links` (
 --
 
 CREATE TABLE IF NOT EXISTS `exam_m` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `curriculam` int(3) NOT NULL,
-  `class` int(3) NOT NULL,
-  `f_date` date NOT NULL,
-  `t_date` date NOT NULL,
-  `vct` int(5) DEFAULT '0',
-  `exam_name` varchar(30) NOT NULL,
-  `max_mark` text,
-  `flag` int(1) NOT NULL DEFAULT '0',
-  `accyear` year(4) NOT NULL,
-  `exam_count` int(11) NOT NULL,
-  `sub_id` text NOT NULL,
-  `descr` varchar(22) NOT NULL DEFAULT '0',
-  `sts` int(1) DEFAULT '0',
+  `id`          INT          NOT NULL AUTO_INCREMENT,
+  `curriculam`  INT          NOT NULL,
+  `class`       INT          NOT NULL,
+  `f_date`      DATE         NOT NULL,
+  `t_date`      DATE         NOT NULL,
+  `vct`         INT          DEFAULT '0',
+  `exam_name`   VARCHAR(30)  NOT NULL,
+  `max_mark`    TEXT,
+  `flag`        TINYINT(1)   NOT NULL DEFAULT '0',
+  `accyear`     YEAR(4)      NOT NULL,
+  `exam_count`  INT          NOT NULL,
+  `sub_id`      TEXT         NOT NULL,
+  `descr`       VARCHAR(22)  NOT NULL DEFAULT '0',
+  `sts`         TINYINT(1)   DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4350,21 +4472,21 @@ CREATE TABLE IF NOT EXISTS `exam_m` (
 --
 
 CREATE TABLE IF NOT EXISTS `exam_remarks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `acc_year` int(4) NOT NULL,
-  `sem` int(11) NOT NULL,
-  `section` int(11) NOT NULL,
-  `student_id` int(11) NOT NULL,
-  `exam_sem` int(11) NOT NULL,
-  `int_id` int(11) NOT NULL,
-  `tst_id` int(11) NOT NULL,
-  `status` int(1) NOT NULL,
-  `remarks1` text NOT NULL,
-  `remarks2` text NOT NULL,
-  `remarks3` text NOT NULL,
-  `remarks4` text NOT NULL,
+  `id`          INT         NOT NULL AUTO_INCREMENT,
+  `acc_year`    INT         NOT NULL,
+  `sem`         INT         NOT NULL,
+  `section`     INT         NOT NULL,
+  `student_id`  INT         NOT NULL,
+  `exam_sem`    INT         NOT NULL,
+  `int_id`      INT         NOT NULL,
+  `tst_id`      INT         NOT NULL,
+  `status`      TINYINT(1)  NOT NULL,
+  `remarks1`    TEXT        NOT NULL,
+  `remarks2`    TEXT        NOT NULL,
+  `remarks3`    TEXT        NOT NULL,
+  `remarks4`    TEXT        NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4373,20 +4495,20 @@ CREATE TABLE IF NOT EXISTS `exam_remarks` (
 --
 
 CREATE TABLE IF NOT EXISTS `exam_sub_m` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
-  `exam_id` int(8) DEFAULT NULL,
-  `exam_name` varchar(75) NOT NULL,
-  `exam_sub_name` varchar(50) NOT NULL,
-  `subject_id` int(8) NOT NULL,
-  `section` int(2) NOT NULL,
-  `per_info` int(3) NOT NULL,
-  `mark` int(4) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `class` int(4) NOT NULL,
-  `status` int(1) NOT NULL,
-  `order_id` int(2) NOT NULL,
+  `id`             INT          NOT NULL AUTO_INCREMENT,
+  `exam_id`        INT          DEFAULT NULL,
+  `exam_name`      VARCHAR(75)  NOT NULL,
+  `exam_sub_name`  VARCHAR(50)  NOT NULL,
+  `subject_id`     INT          NOT NULL,
+  `section`        INT          NOT NULL,
+  `per_info`       INT          NOT NULL,
+  `mark`           INT          NOT NULL,
+  `acc_year`       INT          NOT NULL,
+  `class`          INT          NOT NULL,
+  `status`         TINYINT(1)   NOT NULL,
+  `order_id`       INT          NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `exam_sub_m`
@@ -4403,16 +4525,16 @@ INSERT INTO `exam_sub_m` (`id`, `exam_id`, `exam_name`, `exam_sub_name`, `subjec
 --
 
 CREATE TABLE IF NOT EXISTS `exam_sub_sub_m` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
-  `exam_id` int(8) DEFAULT NULL,
-  `exam_name` varchar(75) NOT NULL,
-  `exam_sub_name` varchar(50) NOT NULL,
-  `per_info` int(3) NOT NULL,
-  `mark` int(4) NOT NULL,
-  `status` int(1) NOT NULL,
-  `order_id` int(2) NOT NULL,
+  `id`             INT          NOT NULL AUTO_INCREMENT,
+  `exam_id`        INT          DEFAULT NULL,
+  `exam_name`      VARCHAR(75)  NOT NULL,
+  `exam_sub_name`  VARCHAR(50)  NOT NULL,
+  `per_info`       INT          NOT NULL,
+  `mark`           INT          NOT NULL,
+  `status`         TINYINT(1)   NOT NULL,
+  `order_id`       INT          NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `exam_sub_sub_m`
@@ -4429,13 +4551,13 @@ INSERT INTO `exam_sub_sub_m` (`id`, `exam_id`, `exam_name`, `exam_sub_name`, `pe
 --
 
 CREATE TABLE IF NOT EXISTS `exam_timetable_m` (
-  `id` int(15) NOT NULL AUTO_INCREMENT,
-  `exam_id` int(15) NOT NULL,
-  `subject_id` int(15) NOT NULL,
-  `exam_date` date NOT NULL,
-  `exam_time` varchar(20) NOT NULL,
+  `id`          INT          NOT NULL AUTO_INCREMENT,
+  `exam_id`     INT          NOT NULL,
+  `subject_id`  INT          NOT NULL,
+  `exam_date`   DATE         NOT NULL,
+  `exam_time`   VARCHAR(20)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4444,19 +4566,19 @@ CREATE TABLE IF NOT EXISTS `exam_timetable_m` (
 --
 
 CREATE TABLE IF NOT EXISTS `exam_topers` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `exam_id` int(10) NOT NULL,
-  `stud_id` int(15) NOT NULL,
-  `posi` int(3) NOT NULL,
-  `total_mark` int(4) NOT NULL,
-  `descr` varchar(22) NOT NULL DEFAULT '0',
-  `sec_id` int(2) NOT NULL,
-  `rfg` varchar(2) DEFAULT NULL,
-  `cc` int(11) DEFAULT '0',
-  `ca` int(11) DEFAULT '0',
-  `sub_remks` text,
+  `id`          INT          NOT NULL AUTO_INCREMENT,
+  `exam_id`     INT          NOT NULL,
+  `stud_id`     INT          NOT NULL,
+  `posi`        INT          NOT NULL,
+  `total_mark`  INT          NOT NULL,
+  `descr`       VARCHAR(22)  NOT NULL DEFAULT '0',
+  `sec_id`      INT          NOT NULL,
+  `rfg`         VARCHAR(2)   DEFAULT NULL,
+  `cc`          INT          DEFAULT '0',
+  `ca`          INT          DEFAULT '0',
+  `sub_remks`   TEXT,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4465,17 +4587,17 @@ CREATE TABLE IF NOT EXISTS `exam_topers` (
 --
 
 CREATE TABLE IF NOT EXISTS `exam_year_m` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
-  `exam_name` varchar(75) NOT NULL,
-  `exam_sub_name` varchar(50) NOT NULL,
-  `per_info` int(3) NOT NULL,
-  `mark` int(4) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `class` int(4) NOT NULL,
-  `status` int(1) NOT NULL,
-  `order_id` int(2) NOT NULL,
+  `id`             INT          NOT NULL AUTO_INCREMENT,
+  `exam_name`      VARCHAR(75)  NOT NULL,
+  `exam_sub_name`  VARCHAR(50)  NOT NULL,
+  `per_info`       INT          NOT NULL,
+  `mark`           INT          NOT NULL,
+  `acc_year`       INT          NOT NULL,
+  `class`          INT          NOT NULL,
+  `status`         TINYINT(1)   NOT NULL,
+  `order_id`       INT          NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `exam_year_m`
@@ -4492,16 +4614,16 @@ INSERT INTO `exam_year_m` (`id`, `exam_name`, `exam_sub_name`, `per_info`, `mark
 --
 
 CREATE TABLE IF NOT EXISTS `fee_apply_fee_student` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_id` int(11) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `status` int(1) NOT NULL,
-  `division` int(2) NOT NULL,
-  `comment` text NOT NULL,
-  `generalComment` int(1) NOT NULL DEFAULT '1',
-  `hidePDC` int(1) NOT NULL DEFAULT '1',
+  `id`              INT         NOT NULL AUTO_INCREMENT,
+  `student_id`      INT         NOT NULL,
+  `acc_year`        INT         NOT NULL,
+  `status`          TINYINT(1)  NOT NULL,
+  `division`        INT         NOT NULL,
+  `comment`         TEXT        NOT NULL,
+  `generalComment`  TINYINT(1)  NOT NULL DEFAULT '1',
+  `hidePDC`         TINYINT(1)  NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4047 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_apply_fee_student`
@@ -4526,11 +4648,11 @@ INSERT INTO `fee_apply_fee_student` (`id`, `student_id`, `acc_year`, `status`, `
 --
 
 CREATE TABLE IF NOT EXISTS `fee_cat` (
-  `catid` int(11) NOT NULL AUTO_INCREMENT,
-  `cat_name` varchar(100) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `catid`     INT           NOT NULL AUTO_INCREMENT,
+  `cat_name`  VARCHAR(100)  DEFAULT NULL,
+  `status`    TINYINT(1)    DEFAULT '1',
   PRIMARY KEY (`catid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4539,21 +4661,21 @@ CREATE TABLE IF NOT EXISTS `fee_cat` (
 --
 
 CREATE TABLE IF NOT EXISTS `fee_challan_mail_log` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `stud_id` int(11) DEFAULT NULL,
-  `sem` int(11) DEFAULT NULL,
-  `a_year` varchar(10) DEFAULT NULL,
-  `uid` varchar(50) DEFAULT NULL,
-  `term` varchar(10) DEFAULT NULL,
-  `slab_id` int(11) DEFAULT NULL,
-  `uid_new` varchar(50) DEFAULT NULL,
-  `mail_sent` int(1) DEFAULT '0',
-  `inserted_datetime` datetime DEFAULT NULL,
-  `user` varchar(50) DEFAULT NULL,
-  `view_count` int(11) DEFAULT NULL,
-  `sent_details` varchar(200) DEFAULT NULL,
+  `id`                 INT           NOT NULL AUTO_INCREMENT,
+  `stud_id`            INT           DEFAULT NULL,
+  `sem`                INT           DEFAULT NULL,
+  `a_year`             VARCHAR(10)   DEFAULT NULL,
+  `uid`                VARCHAR(50)   DEFAULT NULL,
+  `term`               VARCHAR(10)   DEFAULT NULL,
+  `slab_id`            INT           DEFAULT NULL,
+  `uid_new`            VARCHAR(50)   DEFAULT NULL,
+  `mail_sent`          TINYINT(1)    DEFAULT '0',
+  `inserted_datetime`  DATETIME      DEFAULT NULL,
+  `user`               VARCHAR(50)   DEFAULT NULL,
+  `view_count`         INT           DEFAULT NULL,
+  `sent_details`       VARCHAR(200)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1816 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_challan_mail_log`
@@ -4578,16 +4700,16 @@ INSERT INTO `fee_challan_mail_log` (`id`, `stud_id`, `sem`, `a_year`, `uid`, `te
 --
 
 CREATE TABLE IF NOT EXISTS `fee_discount_det` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `admissionType` int(2) NOT NULL,
-  `currencyType` int(2) NOT NULL,
-  `disscountType` int(3) NOT NULL,
-  `feeHead` int(3) NOT NULL,
-  `discountAmt` int(11) NOT NULL,
-  `curType` int(1) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`             INT         NOT NULL AUTO_INCREMENT,
+  `admissionType`  INT         NOT NULL,
+  `currencyType`   INT         NOT NULL,
+  `disscountType`  INT         NOT NULL,
+  `feeHead`        INT         NOT NULL,
+  `discountAmt`    INT         NOT NULL,
+  `curType`        TINYINT(1)  NOT NULL,
+  `status`         TINYINT(1)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_discount_det`
@@ -4605,12 +4727,12 @@ INSERT INTO `fee_discount_det` (`id`, `admissionType`, `currencyType`, `disscoun
 --
 
 CREATE TABLE IF NOT EXISTS `fee_discount_head` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  `desc` text NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`      INT          NOT NULL AUTO_INCREMENT,
+  `name`    VARCHAR(50)  NOT NULL,
+  `desc`    TEXT         NOT NULL,
+  `status`  TINYINT(1)   NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_discount_head`
@@ -4626,12 +4748,12 @@ INSERT INTO `fee_discount_head` (`id`, `name`, `desc`, `status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `fee_discount_slab` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  `desc` text NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`      INT          NOT NULL AUTO_INCREMENT,
+  `name`    VARCHAR(50)  NOT NULL,
+  `desc`    TEXT         NOT NULL,
+  `status`  TINYINT(1)   NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_discount_slab`
@@ -4655,13 +4777,13 @@ INSERT INTO `fee_discount_slab` (`id`, `name`, `desc`, `status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `fee_discount_student` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_id` int(11) NOT NULL,
-  `discount_id` int(4) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`           INT         NOT NULL AUTO_INCREMENT,
+  `student_id`   INT         NOT NULL,
+  `discount_id`  INT         NOT NULL,
+  `acc_year`     INT         NOT NULL,
+  `status`       TINYINT(1)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_discount_student`
@@ -4679,44 +4801,44 @@ INSERT INTO `fee_discount_student` (`id`, `student_id`, `discount_id`, `acc_year
 --
 
 CREATE TABLE IF NOT EXISTS `fee_dmd` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studid` int(10) DEFAULT NULL,
-  `pid` int(3) DEFAULT NULL,
-  `sid` int(3) DEFAULT NULL,
-  `admid` int(3) DEFAULT NULL,
-  `ins_dt` date DEFAULT NULL,
-  `dmdsts` int(1) DEFAULT '0',
-  `uid` int(11) DEFAULT NULL,
-  `accyr` int(4) DEFAULT NULL,
-  `T1dmd1` int(10) DEFAULT '0',
-  `T2dmd1` int(10) DEFAULT '0',
-  `T3dmd1` int(10) DEFAULT '0',
-  `T1dmd2` int(10) DEFAULT '0',
-  `T2dmd2` int(10) DEFAULT '0',
-  `T3dmd2` int(10) DEFAULT '0',
-  `T1dmd3` int(10) DEFAULT '0',
-  `T2dmd3` int(10) DEFAULT '0',
-  `T3dmd3` int(10) DEFAULT '0',
-  `T1dmd4` int(10) DEFAULT '0',
-  `T2dmd4` int(10) DEFAULT '0',
-  `T3dmd4` int(10) DEFAULT '0',
-  `T1dmd5` int(10) DEFAULT '0',
-  `T2dmd5` int(10) DEFAULT '0',
-  `T3dmd5` int(10) DEFAULT '0',
-  `T1dmd6` int(10) DEFAULT '0',
-  `T2dmd6` int(10) DEFAULT '0',
-  `T3dmd6` int(10) DEFAULT '0',
-  `T1dmd7` int(10) DEFAULT '0',
-  `T2dmd7` int(10) DEFAULT '0',
-  `T3dmd7` int(10) DEFAULT '0',
-  `T1dmd8` int(10) DEFAULT '0',
-  `T2dmd8` int(10) DEFAULT '0',
-  `T3dmd8` int(10) DEFAULT '0',
-  `T1dmd9` int(10) DEFAULT '0',
-  `T2dmd9` int(10) DEFAULT '0',
-  `T3dmd9` int(10) DEFAULT '0',
+  `id`      INT         NOT NULL AUTO_INCREMENT,
+  `studid`  INT         DEFAULT NULL,
+  `pid`     INT         DEFAULT NULL,
+  `sid`     INT         DEFAULT NULL,
+  `admid`   INT         DEFAULT NULL,
+  `ins_dt`  DATE        DEFAULT NULL,
+  `dmdsts`  TINYINT(1)  DEFAULT '0',
+  `uid`     INT         DEFAULT NULL,
+  `accyr`   INT         DEFAULT NULL,
+  `T1dmd1`  INT         DEFAULT '0',
+  `T2dmd1`  INT         DEFAULT '0',
+  `T3dmd1`  INT         DEFAULT '0',
+  `T1dmd2`  INT         DEFAULT '0',
+  `T2dmd2`  INT         DEFAULT '0',
+  `T3dmd2`  INT         DEFAULT '0',
+  `T1dmd3`  INT         DEFAULT '0',
+  `T2dmd3`  INT         DEFAULT '0',
+  `T3dmd3`  INT         DEFAULT '0',
+  `T1dmd4`  INT         DEFAULT '0',
+  `T2dmd4`  INT         DEFAULT '0',
+  `T3dmd4`  INT         DEFAULT '0',
+  `T1dmd5`  INT         DEFAULT '0',
+  `T2dmd5`  INT         DEFAULT '0',
+  `T3dmd5`  INT         DEFAULT '0',
+  `T1dmd6`  INT         DEFAULT '0',
+  `T2dmd6`  INT         DEFAULT '0',
+  `T3dmd6`  INT         DEFAULT '0',
+  `T1dmd7`  INT         DEFAULT '0',
+  `T2dmd7`  INT         DEFAULT '0',
+  `T3dmd7`  INT         DEFAULT '0',
+  `T1dmd8`  INT         DEFAULT '0',
+  `T2dmd8`  INT         DEFAULT '0',
+  `T3dmd8`  INT         DEFAULT '0',
+  `T1dmd9`  INT         DEFAULT '0',
+  `T2dmd9`  INT         DEFAULT '0',
+  `T3dmd9`  INT         DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4725,15 +4847,17 @@ CREATE TABLE IF NOT EXISTS `fee_dmd` (
 --
 
 CREATE TABLE IF NOT EXISTS `fee_financial_year` (
-  `statrtM` int(2) NOT NULL,
-  `greater` varchar(4) NOT NULL,
-  `lessthen` varchar(4) NOT NULL,
-  `equals` varchar(4) NOT NULL,
-  `startdate` int(2) NOT NULL,
-  `endm` int(2) NOT NULL,
-  `enddate` int(2) NOT NULL,
-  `nextyear` varchar(4) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`         INT         NOT NULL AUTO_INCREMENT,
+  `statrtM`    INT         NOT NULL,
+  `greater`    VARCHAR(4)  NOT NULL,
+  `lessthen`   VARCHAR(4)  NOT NULL,
+  `equals`     VARCHAR(4)  NOT NULL,
+  `startdate`  INT         NOT NULL,
+  `endm`       INT         NOT NULL,
+  `enddate`    INT         NOT NULL,
+  `nextyear`   VARCHAR(4)  NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4742,21 +4866,21 @@ CREATE TABLE IF NOT EXISTS `fee_financial_year` (
 --
 
 CREATE TABLE IF NOT EXISTS `fee_head` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `course_id` int(11) DEFAULT NULL,
-  `year_id` int(3) NOT NULL DEFAULT '0',
-  `admission_type` int(3) NOT NULL DEFAULT '0',
-  `amount1` int(10) DEFAULT NULL,
-  `amount2` int(10) DEFAULT NULL,
-  `amount3` int(10) DEFAULT NULL,
-  `amount` int(10) DEFAULT NULL,
-  `fid` int(2) DEFAULT NULL,
-  `accyr` int(4) DEFAULT NULL,
-  `status` int(1) NOT NULL DEFAULT '1',
-  `catid` int(11) DEFAULT NULL,
-  `ftype` int(1) DEFAULT NULL,
+  `id`              INT         NOT NULL AUTO_INCREMENT,
+  `course_id`       INT         DEFAULT NULL,
+  `year_id`         INT         NOT NULL DEFAULT '0',
+  `admission_type`  INT         NOT NULL DEFAULT '0',
+  `amount1`         INT         DEFAULT NULL,
+  `amount2`         INT         DEFAULT NULL,
+  `amount3`         INT         DEFAULT NULL,
+  `amount`          INT         DEFAULT NULL,
+  `fid`             INT         DEFAULT NULL,
+  `accyr`           INT         DEFAULT NULL,
+  `status`          TINYINT(1)  NOT NULL DEFAULT '1',
+  `catid`           INT         DEFAULT NULL,
+  `ftype`           TINYINT(1)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4765,19 +4889,19 @@ CREATE TABLE IF NOT EXISTS `fee_head` (
 --
 
 CREATE TABLE IF NOT EXISTS `fee_h_det` (
-  `id` int(15) NOT NULL AUTO_INCREMENT,
-  `stud_id` int(6) unsigned zerofill NOT NULL,
-  `fee_id` int(15) DEFAULT NULL,
-  `installment` int(10) DEFAULT NULL,
-  `amt` float(9,2) DEFAULT '0.00',
-  `due_date` date DEFAULT NULL,
-  `fee_amount` float(9,2) DEFAULT '0.00',
-  `paid` enum('Yes','No') DEFAULT 'No',
-  `hostel_type` enum('Y','N') DEFAULT 'N',
-  `academic_term` varchar(10) DEFAULT NULL,
-  `doc_id` int(10) DEFAULT NULL,
+  `id`             INT                    NOT NULL AUTO_INCREMENT,
+  `stud_id`        INT UNSIGNED ZEROFILL  NOT NULL,
+  `fee_id`         INT                    DEFAULT NULL,
+  `installment`    INT                    DEFAULT NULL,
+  `amt`            FLOAT(9,2)             DEFAULT '0.00',
+  `due_date`       DATE                   DEFAULT NULL,
+  `fee_amount`     FLOAT(9,2)             DEFAULT '0.00',
+  `paid`           ENUM('Yes','No')       DEFAULT 'No',
+  `hostel_type`    ENUM('Y','N')          DEFAULT 'N',
+  `academic_term`  VARCHAR(10)            DEFAULT NULL,
+  `doc_id`         INT                    DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4786,26 +4910,28 @@ CREATE TABLE IF NOT EXISTS `fee_h_det` (
 --
 
 CREATE TABLE IF NOT EXISTS `fee_import` (
-  `accYear` text NOT NULL,
-  `receipt` text NOT NULL,
-  `studentId` text NOT NULL,
-  `feeHead_id` text NOT NULL,
-  `totalAmount` text NOT NULL,
-  `totalAmountDet` text NOT NULL,
-  `totalDisAmount` text NOT NULL,
-  `totalConverted` text NOT NULL,
-  `discountType` text NOT NULL,
-  `currency` text NOT NULL,
-  `status` text NOT NULL,
-  `paymentDate` text NOT NULL,
-  `modeofpayment` text NOT NULL,
-  `Chq_no` text NOT NULL,
-  `Chq_date` text NOT NULL,
-  `bank_id` text NOT NULL,
-  `amountCleared` text NOT NULL,
-  `clearedDate` text NOT NULL,
-  `remarks` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`              INT   NOT NULL AUTO_INCREMENT,
+  `accYear`         TEXT  NOT NULL,
+  `receipt`         TEXT  NOT NULL,
+  `studentId`       TEXT  NOT NULL,
+  `feeHead_id`      TEXT  NOT NULL,
+  `totalAmount`     TEXT  NOT NULL,
+  `totalAmountDet`  TEXT  NOT NULL,
+  `totalDisAmount`  TEXT  NOT NULL,
+  `totalConverted`  TEXT  NOT NULL,
+  `discountType`    TEXT  NOT NULL,
+  `currency`        TEXT  NOT NULL,
+  `status`          TEXT  NOT NULL,
+  `paymentDate`     TEXT  NOT NULL,
+  `modeofpayment`   TEXT  NOT NULL,
+  `Chq_no`          TEXT  NOT NULL,
+  `Chq_date`        TEXT  NOT NULL,
+  `bank_id`         TEXT  NOT NULL,
+  `amountCleared`   TEXT  NOT NULL,
+  `clearedDate`     TEXT  NOT NULL,
+  `remarks`         TEXT  NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -4814,14 +4940,15 @@ CREATE TABLE IF NOT EXISTS `fee_import` (
 --
 
 CREATE TABLE IF NOT EXISTS `fee_imprest` (
-  `enrollment_no` varchar(255) DEFAULT NULL,
-  `student_ name` varchar(255) DEFAULT NULL,
-  `tuition_fee_1` varchar(255) DEFAULT NULL,
-  `tuition_fee_2` varchar(255) DEFAULT NULL,
-  `Imprest` varchar(255) DEFAULT NULL,
-  `graduation_fees` varchar(255) DEFAULT NULL,
-  `Excess_tuition_fee` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `enrollment_no`       VARCHAR(255)  DEFAULT NULL,
+  `student_ name`       VARCHAR(255)  DEFAULT NULL,
+  `tuition_fee_1`       VARCHAR(255)  DEFAULT NULL,
+  `tuition_fee_2`       VARCHAR(255)  DEFAULT NULL,
+  `Imprest`             VARCHAR(255)  DEFAULT NULL,
+  `graduation_fees`     VARCHAR(255)  DEFAULT NULL,
+  `Excess_tuition_fee`  VARCHAR(255)  DEFAULT NULL,
+  PRIMARY KEY (`enrollment_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_imprest`
@@ -4847,15 +4974,16 @@ INSERT INTO `fee_imprest` (`enrollment_no`, `student_ name`, `tuition_fee_1`, `t
 --
 
 CREATE TABLE IF NOT EXISTS `fee_imprest_new` (
-  `enrollment_no` varchar(255) DEFAULT NULL,
-  `next_grade` varchar(255) DEFAULT NULL,
-  `student_name` varchar(255) DEFAULT NULL,
-  `tution_fees1` varchar(255) DEFAULT NULL,
-  `tution_fees2` varchar(255) DEFAULT NULL,
-  `imprest` double DEFAULT NULL,
-  `graduation_fees` double DEFAULT NULL,
-  `less_execution_fees` double DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `enrollment_no`        VARCHAR(255)  DEFAULT NULL,
+  `next_grade`           VARCHAR(255)  DEFAULT NULL,
+  `student_name`         VARCHAR(255)  DEFAULT NULL,
+  `tution_fees1`         VARCHAR(255)  DEFAULT NULL,
+  `tution_fees2`         VARCHAR(255)  DEFAULT NULL,
+  `imprest`              DOUBLE        DEFAULT NULL,
+  `graduation_fees`      DOUBLE        DEFAULT NULL,
+  `less_execution_fees`  DOUBLE        DEFAULT NULL,
+  PRIMARY KEY (`enrollment_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_imprest_new`
@@ -4883,33 +5011,33 @@ INSERT INTO `fee_imprest_new` (`enrollment_no`, `next_grade`, `student_name`, `t
 --
 
 CREATE TABLE IF NOT EXISTS `fee_invoice_settings` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `invoicedate` date NOT NULL,
-  `duedate` date NOT NULL,
-  `sem` int(11) NOT NULL,
-  `ctype` int(11) NOT NULL,
-  `remark1` text NOT NULL,
-  `remark2` text NOT NULL,
-  `remark3` text NOT NULL,
-  `accyear` int(4) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`           INT         NOT NULL AUTO_INCREMENT,
+  `invoicedate`  DATE        NOT NULL,
+  `duedate`      DATE        NOT NULL,
+  `sem`          INT         NOT NULL,
+  `ctype`        INT         NOT NULL,
+  `remark1`      TEXT        NOT NULL,
+  `remark2`      TEXT        NOT NULL,
+  `remark3`      TEXT        NOT NULL,
+  `accyear`      INT         NOT NULL,
+  `status`       TINYINT(1)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_invoice_settings`
 --
 
 INSERT INTO `fee_invoice_settings` (`id`, `invoicedate`, `duedate`, `sem`, `ctype`, `remark1`, `remark2`, `remark3`, `accyear`, `status`) VALUES
-(2, '0000-00-00', '0000-00-00', 0, 1, '', '', '* This is a system generated receipt and hence does not require a signature. ', 2026, 1),
-(3, '0000-00-00', '0000-00-00', 0, 1, '', '', '*This is a system generated invoice and hence does not require a signature.\r\n\r\n*All the cheques must be handed over to the MAC by April 15th, 2026.', 2026, 1),
-(5, '0000-00-00', '0000-00-00', 2, 2, '', '', 'DISCLAIMER: This is a provisional promotion for the next academic year, which may be subject to change based on the PTM results. If there is any change in the result, the difference in the fees would be refunded by Oberoi International Early Years (Playschool to SKG).', 2026, 1),
-(4, '0000-00-00', '0000-00-00', 1, 2, '', '', 'grade playschool General Comment', 2026, 1),
-(6, '0000-00-00', '0000-00-00', 3, 2, '', '', 'DISCLAIMER: This is a provisional promotion for the next academic year, which may be subject to change based on the PTM results. If there is any change in the result, the difference in the fees would be refunded by Oberoi International Early Years (Playschool to SKG).', 2026, 1),
-(7, '0000-00-00', '0000-00-00', 4, 2, '', '', 'DISCLAIMER: This is a provisional promotion for the next academic year, which may be subject to change based on the PTM results. If there is any change in the result, the difference in the fees would be refunded by Oberoi International Early Years (Playschool to SKG).', 2026, 1),
-(8, '0000-00-00', '0000-00-00', 5, 2, '', '', 'DISCLAIMER: This is a provisional promotion for the next academic year, which may be subject to change based on the PTM results. If there is any change in the result, the difference in the fees would be refunded by Oberoi International School (Grade 1 to 10).', 2026, 1),
-(9, '0000-00-00', '0000-00-00', 6, 2, '', '', 'DISCLAIMER: This is a provisional promotion for the next academic year, which may be subject to change based on the PTM results. If there is any change in the result, the difference in the fees would be refunded by Oberoi International School (Grade 1 to 10).', 2026, 1),
-(10, '0000-00-00', '0000-00-00', 7, 2, '', '', 'DISCLAIMER: This is a provisional promotion for the next academic year, which may be subject to change based on the PTM results. If there is any change in the result, the difference in the fees would be refunded by Oberoi International School (Grade 1 to 10).', 2026, 1);
+(2, NULL, NULL, 0, 1, '', '', '* This is a system generated receipt and hence does not require a signature. ', 2026, 1),
+(3, NULL, NULL, 0, 1, '', '', '*This is a system generated invoice and hence does not require a signature.\r\n\r\n*All the cheques must be handed over to the MAC by April 15th, 2026.', 2026, 1),
+(5, NULL, NULL, 2, 2, '', '', 'DISCLAIMER: This is a provisional promotion for the next academic year, which may be subject to change based on the PTM results. If there is any change in the result, the difference in the fees would be refunded by Oberoi International Early Years (Playschool to SKG).', 2026, 1),
+(4, NULL, NULL, 1, 2, '', '', 'grade playschool General Comment', 2026, 1),
+(6, NULL, NULL, 3, 2, '', '', 'DISCLAIMER: This is a provisional promotion for the next academic year, which may be subject to change based on the PTM results. If there is any change in the result, the difference in the fees would be refunded by Oberoi International Early Years (Playschool to SKG).', 2026, 1),
+(7, NULL, NULL, 4, 2, '', '', 'DISCLAIMER: This is a provisional promotion for the next academic year, which may be subject to change based on the PTM results. If there is any change in the result, the difference in the fees would be refunded by Oberoi International Early Years (Playschool to SKG).', 2026, 1),
+(8, NULL, NULL, 5, 2, '', '', 'DISCLAIMER: This is a provisional promotion for the next academic year, which may be subject to change based on the PTM results. If there is any change in the result, the difference in the fees would be refunded by Oberoi International School (Grade 1 to 10).', 2026, 1),
+(9, NULL, NULL, 6, 2, '', '', 'DISCLAIMER: This is a provisional promotion for the next academic year, which may be subject to change based on the PTM results. If there is any change in the result, the difference in the fees would be refunded by Oberoi International School (Grade 1 to 10).', 2026, 1),
+(10, NULL, NULL, 7, 2, '', '', 'DISCLAIMER: This is a provisional promotion for the next academic year, which may be subject to change based on the PTM results. If there is any change in the result, the difference in the fees would be refunded by Oberoi International School (Grade 1 to 10).', 2026, 1);
 
 -- --------------------------------------------------------
 
@@ -4918,16 +5046,16 @@ INSERT INTO `fee_invoice_settings` (`id`, `invoicedate`, `duedate`, `sem`, `ctyp
 --
 
 CREATE TABLE IF NOT EXISTS `fee_logo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `class_id` int(3) NOT NULL,
-  `path` varchar(240) NOT NULL,
-  `name_det` varchar(200) NOT NULL,
-  `status` int(1) NOT NULL,
-  `eca` varchar(250) NOT NULL,
-  `reportcard` varchar(250) NOT NULL,
-  `s_name` varchar(10) NOT NULL,
+  `id`          INT           NOT NULL AUTO_INCREMENT,
+  `class_id`    INT           NOT NULL,
+  `path`        VARCHAR(240)  NOT NULL,
+  `name_det`    VARCHAR(200)  NOT NULL,
+  `status`      TINYINT(1)    NOT NULL,
+  `eca`         VARCHAR(250)  NOT NULL,
+  `reportcard`  VARCHAR(250)  NOT NULL,
+  `s_name`      VARCHAR(10)   NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_logo`
@@ -4952,35 +5080,35 @@ INSERT INTO `fee_logo` (`id`, `class_id`, `path`, `name_det`, `status`, `eca`, `
 --
 
 CREATE TABLE IF NOT EXISTS `fee_mail_log` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` varchar(100) NOT NULL,
-  `user` varchar(200) NOT NULL,
-  `mail_date` date NOT NULL,
-  `status` int(1) NOT NULL,
-  `mail_sentdate` date NOT NULL,
-  `mail_senttime` time NOT NULL,
-  `sentdet` varchar(250) NOT NULL,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `uid`            VARCHAR(100)  NOT NULL,
+  `user`           VARCHAR(200)  NOT NULL,
+  `mail_date`      DATE          NOT NULL,
+  `status`         TINYINT(1)    NOT NULL,
+  `mail_sentdate`  DATE          NOT NULL,
+  `mail_senttime`  TIME          NOT NULL,
+  `sentdet`        VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2616 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_mail_log`
 --
 
 INSERT INTO `fee_mail_log` (`id`, `uid`, `user`, `mail_date`, `status`, `mail_sentdate`, `mail_senttime`, `sentdet`) VALUES
-(88, '1becf26e9f32353e30870060538746e7', 'receipts', '2026-12-13', 1, '0000-00-00', '00:00:00', 'Mail sent to ruchiarora79@mail.com  <br>\n'),
-(87, '9f655cc8884fda7ad6d8a6fb15cc001e', 'receipts', '2026-12-13', 1, '0000-00-00', '00:00:00', 'Mail sent to sapanachandgothia@email.in  <br>\n'),
-(86, 'eebe038e47780c96e2762b5e2003cef7', 'receipts', '2026-12-13', 1, '0000-00-00', '00:00:00', 'Mail sent to tanejanidhi@email.com  <br>\n'),
-(85, 'cacad2aec9f4371413f91805dcea928e', 'receipts', '2026-12-13', 1, '0000-00-00', '00:00:00', 'Mail sent to sharmilakarnad@email.com  <br>\n'),
-(84, '342c472b95d00421be10e9512b532866', 'receipts', '2026-12-13', 1, '0000-00-00', '00:00:00', 'Mail sent to hemangi47@email.com  <br>\n'),
-(83, '1b742ae215adf18b75449c6e272fd92d', 'receipts', '2026-12-13', 1, '0000-00-00', '00:00:00', 'Mail sent to rekhahiran@email.com  <br>\n'),
-(82, 'a440a3d316c5614c7a9310e902f4a43e', 'receipts', '2026-12-13', 1, '0000-00-00', '00:00:00', 'Mail sent to anujagoenka@email.com  <br>\n'),
-(81, '01ce84968c6969bdd5d51c5eeaa3946a', 'receipts', '2026-12-13', 1, '0000-00-00', '00:00:00', 'Mail sent to baileyvn@email.com  <br>\n'),
-(80, 'e0a0a422a9069a4cb2b91211a451da4b', 'receipts', '2026-12-13', 1, '0000-00-00', '00:00:00', 'Mail sent to narvekar.meera@email.com  <br>\n'),
-(79, '1872e3d47e965d2e64f63ca01dd937f9', 'receipts', '2026-12-13', 1, '0000-00-00', '00:00:00', 'Mail sent to saloni1610@email.com  <br>\n'),
-(78, 'e382f91e2c82c3853aeb0d3948275232', 'receipts', '2026-12-13', 1, '0000-00-00', '00:00:00', 'Mail sent to bhavna.banerjee@mail.co.uk  <br>\n'),
-(77, 'e334ea177458f7e0c7e6815079acf967', 'receipts', '2026-12-13', 1, '0000-00-00', '00:00:00', 'Mail sent to agkhush@email.com  <br>\n'),
-(76, 'c61aed648da48aa3893fb3eaadd88a7f', 'receipts', '2026-12-13', 1, '0000-00-00', '00:00:00', 'Mail sent to priya@email.com  <br>\n'),
+(88, '1becf26e9f32353e30870060538746e7', 'receipts', '2026-12-13', 1, NULL, '00:00:00', 'Mail sent to ruchiarora79@mail.com  <br>\n'),
+(87, '9f655cc8884fda7ad6d8a6fb15cc001e', 'receipts', '2026-12-13', 1, NULL, '00:00:00', 'Mail sent to sapanachandgothia@email.in  <br>\n'),
+(86, 'eebe038e47780c96e2762b5e2003cef7', 'receipts', '2026-12-13', 1, NULL, '00:00:00', 'Mail sent to tanejanidhi@email.com  <br>\n'),
+(85, 'cacad2aec9f4371413f91805dcea928e', 'receipts', '2026-12-13', 1, NULL, '00:00:00', 'Mail sent to sharmilakarnad@email.com  <br>\n'),
+(84, '342c472b95d00421be10e9512b532866', 'receipts', '2026-12-13', 1, NULL, '00:00:00', 'Mail sent to hemangi47@email.com  <br>\n'),
+(83, '1b742ae215adf18b75449c6e272fd92d', 'receipts', '2026-12-13', 1, NULL, '00:00:00', 'Mail sent to rekhahiran@email.com  <br>\n'),
+(82, 'a440a3d316c5614c7a9310e902f4a43e', 'receipts', '2026-12-13', 1, NULL, '00:00:00', 'Mail sent to anujagoenka@email.com  <br>\n'),
+(81, '01ce84968c6969bdd5d51c5eeaa3946a', 'receipts', '2026-12-13', 1, NULL, '00:00:00', 'Mail sent to baileyvn@email.com  <br>\n'),
+(80, 'e0a0a422a9069a4cb2b91211a451da4b', 'receipts', '2026-12-13', 1, NULL, '00:00:00', 'Mail sent to narvekar.meera@email.com  <br>\n'),
+(79, '1872e3d47e965d2e64f63ca01dd937f9', 'receipts', '2026-12-13', 1, NULL, '00:00:00', 'Mail sent to saloni1610@email.com  <br>\n'),
+(78, 'e382f91e2c82c3853aeb0d3948275232', 'receipts', '2026-12-13', 1, NULL, '00:00:00', 'Mail sent to bhavna.banerjee@mail.co.uk  <br>\n'),
+(77, 'e334ea177458f7e0c7e6815079acf967', 'receipts', '2026-12-13', 1, NULL, '00:00:00', 'Mail sent to agkhush@email.com  <br>\n'),
+(76, 'c61aed648da48aa3893fb3eaadd88a7f', 'receipts', '2026-12-13', 1, NULL, '00:00:00', 'Mail sent to priya@email.com  <br>\n'),
 
 -- --------------------------------------------------------
 
@@ -4989,39 +5117,39 @@ INSERT INTO `fee_mail_log` (`id`, `uid`, `user`, `mail_date`, `status`, `mail_se
 --
 
 CREATE TABLE IF NOT EXISTS `fee_master` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `dmdid` int(11) DEFAULT NULL,
-  `studid` int(10) DEFAULT NULL,
-  `pid` int(3) DEFAULT NULL,
-  `sid` int(3) DEFAULT NULL,
-  `admid` int(3) DEFAULT NULL,
-  `bfbalamt` int(10) DEFAULT '0',
-  `bfexeamt` int(10) DEFAULT '0',
-  `fnamt` int(10) DEFAULT '0',
-  `cenamt` int(10) DEFAULT '0',
-  `balamt` int(10) DEFAULT '0',
-  `exeamt` int(10) DEFAULT '0',
-  `accyr` int(4) DEFAULT NULL,
-  `pstatus` int(1) DEFAULT NULL,
-  `sclamt` int(11) DEFAULT '0',
-  `lsclamt` int(11) DEFAULT '0',
-  `refundsts` int(1) DEFAULT '0',
-  `status` int(1) DEFAULT '0',
-  `scl_st` int(1) DEFAULT '0',
-  `dtfee1` int(11) DEFAULT '0',
-  `ptfee1` int(11) DEFAULT '0',
-  `dtfee2` int(11) DEFAULT '0',
-  `ptfee2` int(11) DEFAULT '0',
-  `dtfee3` int(11) DEFAULT '0',
-  `ptfee3` int(11) DEFAULT '0',
-  `dtptfee1` int(11) DEFAULT '0',
-  `ptptfee1` int(11) DEFAULT '0',
-  `dtptfee2` int(11) DEFAULT '0',
-  `ptptfee2` int(11) DEFAULT '0',
-  `dtptfee3` int(11) DEFAULT '0',
-  `ptptfee3` int(11) DEFAULT '0',
+  `id`         INT         NOT NULL AUTO_INCREMENT,
+  `dmdid`      INT         DEFAULT NULL,
+  `studid`     INT         DEFAULT NULL,
+  `pid`        INT         DEFAULT NULL,
+  `sid`        INT         DEFAULT NULL,
+  `admid`      INT         DEFAULT NULL,
+  `bfbalamt`   INT         DEFAULT '0',
+  `bfexeamt`   INT         DEFAULT '0',
+  `fnamt`      INT         DEFAULT '0',
+  `cenamt`     INT         DEFAULT '0',
+  `balamt`     INT         DEFAULT '0',
+  `exeamt`     INT         DEFAULT '0',
+  `accyr`      INT         DEFAULT NULL,
+  `pstatus`    TINYINT(1)  DEFAULT NULL,
+  `sclamt`     INT         DEFAULT '0',
+  `lsclamt`    INT         DEFAULT '0',
+  `refundsts`  TINYINT(1)  DEFAULT '0',
+  `status`     TINYINT(1)  DEFAULT '0',
+  `scl_st`     TINYINT(1)  DEFAULT '0',
+  `dtfee1`     INT         DEFAULT '0',
+  `ptfee1`     INT         DEFAULT '0',
+  `dtfee2`     INT         DEFAULT '0',
+  `ptfee2`     INT         DEFAULT '0',
+  `dtfee3`     INT         DEFAULT '0',
+  `ptfee3`     INT         DEFAULT '0',
+  `dtptfee1`   INT         DEFAULT '0',
+  `ptptfee1`   INT         DEFAULT '0',
+  `dtptfee2`   INT         DEFAULT '0',
+  `ptptfee2`   INT         DEFAULT '0',
+  `dtptfee3`   INT         DEFAULT '0',
+  `ptptfee3`   INT         DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -5030,27 +5158,27 @@ CREATE TABLE IF NOT EXISTS `fee_master` (
 --
 
 CREATE TABLE IF NOT EXISTS `fee_m_canceled` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `accYear` int(4) NOT NULL,
-  `studentId` int(11) NOT NULL,
-  `admissionCat` int(2) NOT NULL,
-  `currencyType` int(2) NOT NULL,
-  `installmentId` int(2) NOT NULL,
-  `amount` double(18,2) NOT NULL,
-  `fine` double NOT NULL,
-  `paymentDate` date NOT NULL,
-  `modeOfPament` int(1) NOT NULL,
-  `bankName` int(2) NOT NULL,
-  `bankDetails` varchar(250) NOT NULL,
-  `ddChequeNo` varchar(30) NOT NULL,
-  `ddChequeDate` date NOT NULL,
-  `clearedDate` date NOT NULL,
-  `amountCleared` double(18,2) NOT NULL,
-  `remarks` text NOT NULL,
-  `receipt` varchar(20) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`               INT           NOT NULL AUTO_INCREMENT,
+  `accYear`          INT           NOT NULL,
+  `studentId`        INT           NOT NULL,
+  `admissionCat`     INT           NOT NULL,
+  `currencyType`     INT           NOT NULL,
+  `installmentId`    INT           NOT NULL,
+  `amount`           DOUBLE(18,2)  NOT NULL,
+  `fine`             DOUBLE        NOT NULL,
+  `paymentDate`      DATE          NOT NULL,
+  `mode_of_payment`  TINYINT(1)    NOT NULL,
+  `bankName`         INT           NOT NULL,
+  `bankDetails`      VARCHAR(250)  NOT NULL,
+  `ddChequeNo`       VARCHAR(30)   NOT NULL,
+  `ddChequeDate`     DATE          NOT NULL,
+  `clearedDate`      DATE          NOT NULL,
+  `amountCleared`    DOUBLE(18,2)  NOT NULL,
+  `remarks`          TEXT          NOT NULL,
+  `receipt`          VARCHAR(20)   NOT NULL,
+  `status`           TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -5059,28 +5187,28 @@ CREATE TABLE IF NOT EXISTS `fee_m_canceled` (
 --
 
 CREATE TABLE IF NOT EXISTS `fee_m_cheque_det` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `receiptId` int(11) NOT NULL,
-  `receiptDet` varchar(20) NOT NULL,
-  `bankName` int(3) NOT NULL,
-  `amount` double(18,2) NOT NULL,
-  `ddChequeNo` varchar(50) NOT NULL,
-  `ddChequeDate` date NOT NULL,
-  `clearedDate` date NOT NULL,
-  `cleared` double(18,2) NOT NULL,
-  `remarks` text NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`            INT           NOT NULL AUTO_INCREMENT,
+  `receiptId`     INT           NOT NULL,
+  `receiptDet`    VARCHAR(20)   NOT NULL,
+  `bankName`      INT           NOT NULL,
+  `amount`        DOUBLE(18,2)  NOT NULL,
+  `ddChequeNo`    VARCHAR(50)   NOT NULL,
+  `ddChequeDate`  DATE          NOT NULL,
+  `clearedDate`   DATE          NOT NULL,
+  `cleared`       DOUBLE(18,2)  NOT NULL,
+  `remarks`       TEXT          NOT NULL,
+  `status`        TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1093 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_m_cheque_det`
 --
 
 INSERT INTO `fee_m_cheque_det` (`id`, `receiptId`, `receiptDet`, `bankName`, `amount`, `ddChequeNo`, `ddChequeDate`, `clearedDate`, `cleared`, `remarks`, `status`) VALUES
-(1090, 626, 'EM/FR/2026/1', 51, 89500.00, '12345', '2026-04-16', '0000-00-00', 0.00, '', 1),
-(1091, 627, 'EM/FR/2026/2', 19, 89500.00, '12345', '2026-04-15', '0000-00-00', 0.00, '', 1),
-(1092, 629, 'EM/FR/2026/4', 0, 0.00, '', '2026-01-01', '0000-00-00', 0.00, '', 1);
+(1090, 626, 'EM/FR/2026/1', 51, 89500.00, '12345', '2026-04-16', NULL, 0.00, '', 1),
+(1091, 627, 'EM/FR/2026/2', 19, 89500.00, '12345', '2026-04-15', NULL, 0.00, '', 1),
+(1092, 629, 'EM/FR/2026/4', 0, 0.00, '', '2026-01-01', NULL, 0.00, '', 1);
 
 -- --------------------------------------------------------
 
@@ -5089,40 +5217,40 @@ INSERT INTO `fee_m_cheque_det` (`id`, `receiptId`, `receiptDet`, `bankName`, `am
 --
 
 CREATE TABLE IF NOT EXISTS `fee_m_collect` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `accYear` int(4) NOT NULL,
-  `studentId` int(11) NOT NULL,
-  `admissionCat` int(2) NOT NULL,
-  `currencyType` int(2) NOT NULL,
-  `installmentId` int(2) NOT NULL,
-  `amount` double(18,2) NOT NULL,
-  `totalAmount` double(18,2) NOT NULL,
-  `totalDisAmount` double(18,2) NOT NULL,
-  `discountType` int(3) NOT NULL,
-  `fine` double(18,2) NOT NULL,
-  `paymentDate` date NOT NULL,
-  `modeOfPament` int(1) NOT NULL,
-  `userDetails` text NOT NULL,
-  `noOfddCheque` varchar(30) NOT NULL,
-  `amountCleared` double(18,2) NOT NULL,
-  `clearedDate` date NOT NULL,
-  `remarks` text NOT NULL,
-  `receipt` varchar(20) NOT NULL,
-  `status` int(1) NOT NULL,
-  `remarks_cancel` text NOT NULL,
-  `date_cancel` date NOT NULL,
+  `id`               INT           NOT NULL AUTO_INCREMENT,
+  `accYear`          INT           NOT NULL,
+  `studentId`        INT           NOT NULL,
+  `admissionCat`     INT           NOT NULL,
+  `currencyType`     INT           NOT NULL,
+  `installmentId`    INT           NOT NULL,
+  `amount`           DOUBLE(18,2)  NOT NULL,
+  `totalAmount`      DOUBLE(18,2)  NOT NULL,
+  `totalDisAmount`   DOUBLE(18,2)  NOT NULL,
+  `discountType`     INT           NOT NULL,
+  `fine`             DOUBLE(18,2)  NOT NULL,
+  `paymentDate`      DATE          NOT NULL,
+  `mode_of_payment`  TINYINT(1)    NOT NULL,
+  `userDetails`      TEXT          NOT NULL,
+  `noOfddCheque`     VARCHAR(30)   NOT NULL,
+  `amountCleared`    DOUBLE(18,2)  NOT NULL,
+  `clearedDate`      DATE          NOT NULL,
+  `remarks`          TEXT          NOT NULL,
+  `receipt`          VARCHAR(20)   NOT NULL,
+  `status`           TINYINT(1)    NOT NULL,
+  `remarks_cancel`   TEXT          NOT NULL,
+  `date_cancel`      DATE          NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=630 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_m_collect`
 --
 
-INSERT INTO `fee_m_collect` (`id`, `accYear`, `studentId`, `admissionCat`, `currencyType`, `installmentId`, `amount`, `totalAmount`, `totalDisAmount`, `discountType`, `fine`, `paymentDate`, `modeOfPament`, `userDetails`, `noOfddCheque`, `amountCleared`, `clearedDate`, `remarks`, `receipt`, `status`, `remarks_cancel`, `date_cancel`) VALUES
-(626, 2026, 650, 1, 1, 1, 89500.00, 89500.00, 0.00, 0, 0.00, '2026-04-17', 3, 'administrator 17-04-2026 17:34:42', '1', 0.00, '0000-00-00', 'Payment for 1st installment made', 'EM/FR/2026/1', 1, '', '0000-00-00'),
-(627, 2026, 726, 1, 1, 1, 89500.00, 89500.00, 0.00, 0, 0.00, '2026-04-17', 3, 'administrator 17-04-2026 17:51:16', '1', 0.00, '0000-00-00', 'Testing description', 'EM/FR/2026/2', 1, '', '0000-00-00'),
-(628, 2026, 841, 1, 1, 1, 89500.00, 89500.00, 0.00, 0, 0.00, '2026-05-30', 1, 'administrator 30-05-2026 10:21:44', '0', 89500.00, '2026-05-30', '', 'EM/FR/2026/3', 1, '', '0000-00-00'),
-(629, 2026, 841, 1, 1, 2, 89500.00, 89500.00, 0.00, 0, 0.00, '2026-05-31', 3, 'administrator 31-05-2026 09:24:28', '1', 0.00, '0000-00-00', '', 'EM/FR/2026/4', 1, '', '0000-00-00');
+INSERT INTO `fee_m_collect` (`id`, `accYear`, `studentId`, `admissionCat`, `currencyType`, `installmentId`, `amount`, `totalAmount`, `totalDisAmount`, `discountType`, `fine`, `paymentDate`, `mode_of_payment`, `userDetails`, `noOfddCheque`, `amountCleared`, `clearedDate`, `remarks`, `receipt`, `status`, `remarks_cancel`, `date_cancel`) VALUES
+(626, 2026, 650, 1, 1, 1, 89500.00, 89500.00, 0.00, 0, 0.00, '2026-04-17', 3, 'administrator 17-04-2026 17:34:42', '1', 0.00, NULL, 'Payment for 1st installment made', 'EM/FR/2026/1', 1, '', NULL),
+(627, 2026, 726, 1, 1, 1, 89500.00, 89500.00, 0.00, 0, 0.00, '2026-04-17', 3, 'administrator 17-04-2026 17:51:16', '1', 0.00, NULL, 'Testing description', 'EM/FR/2026/2', 1, '', NULL),
+(628, 2026, 841, 1, 1, 1, 89500.00, 89500.00, 0.00, 0, 0.00, '2026-05-30', 1, 'administrator 30-05-2026 10:21:44', '0', 89500.00, '2026-05-30', '', 'EM/FR/2026/3', 1, '', NULL),
+(629, 2026, 841, 1, 1, 2, 89500.00, 89500.00, 0.00, 0, 0.00, '2026-05-31', 3, 'administrator 31-05-2026 09:24:28', '1', 0.00, NULL, '', 'EM/FR/2026/4', 1, '', NULL);
 
 -- --------------------------------------------------------
 
@@ -5131,23 +5259,23 @@ INSERT INTO `fee_m_collect` (`id`, `accYear`, `studentId`, `admissionCat`, `curr
 --
 
 CREATE TABLE IF NOT EXISTS `fee_m_collect_admission` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studentId` int(11) NOT NULL,
-  `currencyType` int(2) NOT NULL,
-  `amount` double(18,2) NOT NULL,
-  `paymentDate` date NOT NULL,
-  `modeOfPament` int(1) NOT NULL,
-  `userDetails` text NOT NULL,
-  `noOfddCheque` varchar(30) NOT NULL,
-  `amountCleared` double(18,2) NOT NULL,
-  `clearedDate` date NOT NULL,
-  `remarks` text NOT NULL,
-  `receipt` varchar(20) NOT NULL,
-  `status` int(1) NOT NULL,
-  `remarks_cancel` text NOT NULL,
-  `date_cancel` date NOT NULL,
+  `id`               INT           NOT NULL AUTO_INCREMENT,
+  `studentId`        INT           NOT NULL,
+  `currencyType`     INT           NOT NULL,
+  `amount`           DOUBLE(18,2)  NOT NULL,
+  `paymentDate`      DATE          NOT NULL,
+  `mode_of_payment`  TINYINT(1)    NOT NULL,
+  `userDetails`      TEXT          NOT NULL,
+  `noOfddCheque`     VARCHAR(30)   NOT NULL,
+  `amountCleared`    DOUBLE(18,2)  NOT NULL,
+  `clearedDate`      DATE          NOT NULL,
+  `remarks`          TEXT          NOT NULL,
+  `receipt`          VARCHAR(20)   NOT NULL,
+  `status`           TINYINT(1)    NOT NULL,
+  `remarks_cancel`   TEXT          NOT NULL,
+  `date_cancel`      DATE          NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -5156,16 +5284,16 @@ CREATE TABLE IF NOT EXISTS `fee_m_collect_admission` (
 --
 
 CREATE TABLE IF NOT EXISTS `fee_m_conversion_rate` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `c_date` date NOT NULL,
-  `native_currency` int(2) NOT NULL,
-  `currency` int(2) NOT NULL,
-  `conversion_rate` double NOT NULL,
-  `bankCharges` double NOT NULL,
-  `remarks` text NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`               INT         NOT NULL AUTO_INCREMENT,
+  `c_date`           DATE        NOT NULL,
+  `native_currency`  INT         NOT NULL,
+  `currency`         INT         NOT NULL,
+  `conversion_rate`  DOUBLE      NOT NULL,
+  `bankCharges`      DOUBLE      NOT NULL,
+  `remarks`          TEXT        NOT NULL,
+  `status`           TINYINT(1)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -5174,13 +5302,13 @@ CREATE TABLE IF NOT EXISTS `fee_m_conversion_rate` (
 --
 
 CREATE TABLE IF NOT EXISTS `fee_m_currency_code` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(10) NOT NULL,
-  `description` varchar(50) NOT NULL,
-  `code` varchar(350) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`           INT           NOT NULL AUTO_INCREMENT,
+  `name`         VARCHAR(10)   NOT NULL,
+  `description`  VARCHAR(50)   NOT NULL,
+  `code`         VARCHAR(350)  NOT NULL,
+  `status`       TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_m_currency_code`
@@ -5199,18 +5327,18 @@ INSERT INTO `fee_m_currency_code` (`id`, `name`, `description`, `code`, `status`
 --
 
 CREATE TABLE IF NOT EXISTS `fee_m_descrption` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `uid` varchar(35) NOT NULL,
-  `accyear` int(4) NOT NULL COMMENT 'slab',
-  `academicYear` int(4) NOT NULL,
-  `class` int(3) NOT NULL,
-  `adm_cat` int(3) NOT NULL,
-  `no_of_instal` int(2) DEFAULT '0',
-  `currency` int(2) NOT NULL,
-  `no_of_student` int(4) DEFAULT '0',
-  `status` int(1) DEFAULT '0',
+  `id`             INT          NOT NULL AUTO_INCREMENT,
+  `uid`            VARCHAR(35)  NOT NULL,
+  `accyear`        INT          NOT NULL COMMENT 'slab',
+  `academicYear`   INT          NOT NULL,
+  `class`          INT          NOT NULL,
+  `adm_cat`        INT          NOT NULL,
+  `no_of_instal`   INT          DEFAULT '0',
+  `currency`       INT          NOT NULL,
+  `no_of_student`  INT          DEFAULT '0',
+  `status`         TINYINT(1)   DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=343 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_m_descrption`
@@ -5236,14 +5364,14 @@ INSERT INTO `fee_m_descrption` (`id`, `uid`, `accyear`, `academicYear`, `class`,
 --
 
 CREATE TABLE IF NOT EXISTS `fee_m_descrption_head_total` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `uid` varchar(35) NOT NULL,
-  `head_id` int(2) NOT NULL,
-  `amount` float(18,2) NOT NULL,
-  `sts` int(1) DEFAULT '0',
-  `discomment` varchar(250) NOT NULL,
+  `id`          INT           NOT NULL AUTO_INCREMENT,
+  `uid`         VARCHAR(35)   NOT NULL,
+  `head_id`     INT           NOT NULL,
+  `amount`      FLOAT(18,2)   NOT NULL,
+  `sts`         TINYINT(1)    DEFAULT '0',
+  `discomment`  VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1705 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_m_descrption_head_total`
@@ -5268,16 +5396,16 @@ INSERT INTO `fee_m_descrption_head_total` (`id`, `uid`, `head_id`, `amount`, `st
 --
 
 CREATE TABLE IF NOT EXISTS `fee_m_descrption_inst_total` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `uid` varchar(35) NOT NULL,
-  `inst_id` int(2) NOT NULL,
-  `amount` float(18,2) NOT NULL,
-  `f_due_date` date NOT NULL,
-  `t_due_date` date NOT NULL,
-  `no_of_student` int(11) NOT NULL,
-  `sts` int(1) DEFAULT '0',
+  `id`             INT          NOT NULL AUTO_INCREMENT,
+  `uid`            VARCHAR(35)  NOT NULL,
+  `inst_id`        INT          NOT NULL,
+  `amount`         FLOAT(18,2)  NOT NULL,
+  `f_due_date`     DATE         NOT NULL,
+  `t_due_date`     DATE         NOT NULL,
+  `no_of_student`  INT          NOT NULL,
+  `sts`            TINYINT(1)   DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=383 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_m_descrption_inst_total`
@@ -5286,18 +5414,18 @@ CREATE TABLE IF NOT EXISTS `fee_m_descrption_inst_total` (
 INSERT INTO `fee_m_descrption_inst_total` (`id`, `uid`, `inst_id`, `amount`, `f_due_date`, `t_due_date`, `no_of_student`, `sts`) VALUES
 (256, '26259f55dce251b7f48b2d6dde83cc49', 1, 89500.00, '2026-04-01', '2026-05-31', 1, 1),
 (257, '26259f55dce251b7f48b2d6dde83cc49', 2, 89500.00, '2026-08-01', '2026-08-31', 1, 1),
-(258, '30b69beef45b642cddad80fd5a7f1d21', 1, 250000.00, '0000-00-00', '0000-00-00', 2, 1),
+(258, '30b69beef45b642cddad80fd5a7f1d21', 1, 250000.00, NULL, NULL, 2, 1),
 (259, '30b69beef45b642cddad80fd5a7f1d21', 2, 89500.00, '2026-08-01', '2026-08-31', 0, 1),
-(340, '6d832a595895fc44e17dfe611b3064a5', 1, 600000.00, '0000-00-00', '0000-00-00', 0, 1),
-(260, '6c3ccaa50629ecff340b6677b02eb8a8', 1, 440000.00, '0000-00-00', '0000-00-00', 0, 1),
+(340, '6d832a595895fc44e17dfe611b3064a5', 1, 600000.00, NULL, NULL, 0, 1),
+(260, '6c3ccaa50629ecff340b6677b02eb8a8', 1, 440000.00, NULL, NULL, 0, 1),
 (261, '6c3ccaa50629ecff340b6677b02eb8a8', 2, 182500.00, '2026-05-01', '2026-11-30', 0, 1),
-(262, 'b3bd01d9ed5978c100e982face61f002', 1, 220000.00, '0000-00-00', '0000-00-00', 0, 1),
+(262, 'b3bd01d9ed5978c100e982face61f002', 1, 220000.00, NULL, NULL, 0, 1),
 (263, 'b3bd01d9ed5978c100e982face61f002', 2, 91250.00, '2026-05-01', '2026-11-30', 0, 1),
-(264, '9501c36a7759e56ae61f37c33821b9a9', 1, 475000.00, '0000-00-00', '0000-00-00', 0, 1),
+(264, '9501c36a7759e56ae61f37c33821b9a9', 1, 475000.00, NULL, NULL, 0, 1),
 (265, '9501c36a7759e56ae61f37c33821b9a9', 2, 182500.00, '2026-05-01', '2026-11-30', 0, 1),
-(266, '3ea652d37d7e198a1900f77adcadb388', 1, 237500.00, '0000-00-00', '0000-00-00', 0, 1),
+(266, '3ea652d37d7e198a1900f77adcadb388', 1, 237500.00, NULL, NULL, 0, 1),
 (267, '3ea652d37d7e198a1900f77adcadb388', 2, 91250.00, '2026-05-01', '2026-11-30', 0, 1),
-(268, '2abbc2245a417536ad5bebb010f72aa8', 1, 495000.00, '0000-00-00', '0000-00-00', 0, 1);
+(268, '2abbc2245a417536ad5bebb010f72aa8', 1, 495000.00, NULL, NULL, 0, 1);
 
 
 -- --------------------------------------------------------
@@ -5307,19 +5435,19 @@ INSERT INTO `fee_m_descrption_inst_total` (`id`, `uid`, `inst_id`, `amount`, `f_
 --
 
 CREATE TABLE IF NOT EXISTS `fee_m_descrption_invoice` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `uid` varchar(35) NOT NULL,
-  `academicYear` int(4) NOT NULL,
-  `studentId` int(11) NOT NULL,
-  `invId` int(11) NOT NULL,
-  `class` int(3) NOT NULL,
-  `adm_cat` int(3) NOT NULL,
-  `no_of_instal` int(2) DEFAULT '0',
-  `invoiceid` varchar(20) NOT NULL,
-  `invoiceDate` date NOT NULL,
-  `status` int(1) DEFAULT '0',
+  `id`            INT          NOT NULL AUTO_INCREMENT,
+  `uid`           VARCHAR(35)  NOT NULL,
+  `academicYear`  INT          NOT NULL,
+  `studentId`     INT          NOT NULL,
+  `invId`         INT          NOT NULL,
+  `class`         INT          NOT NULL,
+  `adm_cat`       INT          NOT NULL,
+  `no_of_instal`  INT          DEFAULT '0',
+  `invoiceid`     VARCHAR(20)  NOT NULL,
+  `invoiceDate`   DATE         NOT NULL,
+  `status`        TINYINT(1)   DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4167 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_m_descrption_invoice`
@@ -5344,18 +5472,19 @@ INSERT INTO `fee_m_descrption_invoice` (`id`, `uid`, `academicYear`, `studentId`
 --
 
 CREATE TABLE IF NOT EXISTS `fee_m_descrption_invoice_eca` (
-  `id` int(10) NOT NULL DEFAULT '0',
-  `uid` varchar(35) NOT NULL,
-  `academicYear` int(4) NOT NULL,
-  `studentId` int(11) NOT NULL,
-  `invId` int(11) NOT NULL,
-  `class` int(3) NOT NULL,
-  `adm_cat` int(3) NOT NULL,
-  `no_of_instal` int(2) DEFAULT '0',
-  `invoiceid` varchar(20) NOT NULL,
-  `invoiceDate` date NOT NULL,
-  `status` int(1) DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`            INT          NOT NULL DEFAULT '0',
+  `uid`           VARCHAR(35)  NOT NULL,
+  `academicYear`  INT          NOT NULL,
+  `studentId`     INT          NOT NULL,
+  `invId`         INT          NOT NULL,
+  `class`         INT          NOT NULL,
+  `adm_cat`       INT          NOT NULL,
+  `no_of_instal`  INT          DEFAULT '0',
+  `invoiceid`     VARCHAR(20)  NOT NULL,
+  `invoiceDate`   DATE         NOT NULL,
+  `status`        TINYINT(1)   DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -5364,15 +5493,15 @@ CREATE TABLE IF NOT EXISTS `fee_m_descrption_invoice_eca` (
 --
 
 CREATE TABLE IF NOT EXISTS `fee_m_descrption_invoice_head` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `invoice_id` int(11) NOT NULL,
-  `requestedAmt` double(18,2) NOT NULL,
-  `discountAmt` double(18,2) NOT NULL,
-  `recivedAmt` double(18,2) NOT NULL,
-  `status` int(1) NOT NULL DEFAULT '1',
-  `fee_head` int(11) NOT NULL,
+  `id`            INT           NOT NULL AUTO_INCREMENT,
+  `invoice_id`    INT           NOT NULL,
+  `requestedAmt`  DOUBLE(18,2)  NOT NULL,
+  `discountAmt`   DOUBLE(18,2)  NOT NULL,
+  `recivedAmt`    DOUBLE(18,2)  NOT NULL,
+  `status`        TINYINT(1)    NOT NULL DEFAULT '1',
+  `fee_head`      INT           NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10679 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_m_descrption_invoice_head`
@@ -5397,22 +5526,22 @@ INSERT INTO `fee_m_descrption_invoice_head` (`id`, `invoice_id`, `requestedAmt`,
 --
 
 CREATE TABLE IF NOT EXISTS `fee_m_head_inst_collected` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` varchar(50) NOT NULL,
-  `accYear` int(4) NOT NULL,
-  `instId` int(2) NOT NULL,
-  `receipt` varchar(20) NOT NULL,
-  `studentId` int(11) NOT NULL,
-  `feeHead` int(2) NOT NULL,
-  `totalAmount` double(18,2) NOT NULL,
-  `totalAmountDet` double(18,2) NOT NULL,
-  `totalDisAmount` double(18,2) NOT NULL,
-  `discountType` int(3) NOT NULL,
-  `totalConverted` double(18,2) NOT NULL,
-  `currency` int(2) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`              INT           NOT NULL AUTO_INCREMENT,
+  `uid`             VARCHAR(50)   NOT NULL,
+  `accYear`         INT           NOT NULL,
+  `instId`          INT           NOT NULL,
+  `receipt`         VARCHAR(20)   NOT NULL,
+  `studentId`       INT           NOT NULL,
+  `feeHead`         INT           NOT NULL,
+  `totalAmount`     DOUBLE(18,2)  NOT NULL,
+  `totalAmountDet`  DOUBLE(18,2)  NOT NULL,
+  `totalDisAmount`  DOUBLE(18,2)  NOT NULL,
+  `discountType`    INT           NOT NULL,
+  `totalConverted`  DOUBLE(18,2)  NOT NULL,
+  `currency`        INT           NOT NULL,
+  `status`          TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1137 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -5421,19 +5550,19 @@ CREATE TABLE IF NOT EXISTS `fee_m_head_inst_collected` (
 --
 
 CREATE TABLE IF NOT EXISTS `fee_m_head_total` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` varchar(50) NOT NULL,
-  `accYear` int(4) NOT NULL,
-  `studentId` int(11) NOT NULL,
-  `feeHead` int(2) NOT NULL,
-  `oneTime` int(1) NOT NULL,
-  `totalCollected` double(18,2) NOT NULL,
-  `refund` int(1) NOT NULL,
-  `refundAmount` double(18,2) NOT NULL,
-  `cleared` int(1) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`              INT           NOT NULL AUTO_INCREMENT,
+  `uid`             VARCHAR(50)   NOT NULL,
+  `accYear`         INT           NOT NULL,
+  `studentId`       INT           NOT NULL,
+  `feeHead`         INT           NOT NULL,
+  `oneTime`         TINYINT(1)    NOT NULL,
+  `totalCollected`  DOUBLE(18,2)  NOT NULL,
+  `refund`          TINYINT(1)    NOT NULL,
+  `refundAmount`    DOUBLE(18,2)  NOT NULL,
+  `cleared`         TINYINT(1)    NOT NULL,
+  `status`          TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=161 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_m_head_total`
@@ -5451,46 +5580,46 @@ INSERT INTO `fee_m_head_total` (`id`, `uid`, `accYear`, `studentId`, `feeHead`, 
 --
 
 CREATE TABLE IF NOT EXISTS `fee_payment` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fmid` int(11) DEFAULT NULL,
-  `studid` int(10) DEFAULT NULL,
-  `pid` int(3) DEFAULT NULL,
-  `sid` int(3) DEFAULT NULL,
-  `tmid` int(1) DEFAULT NULL,
-  `admid` int(3) DEFAULT NULL,
-  `docid` varchar(25) DEFAULT NULL,
-  `bfexeamt` int(11) DEFAULT NULL,
-  `bfbalamt` int(11) DEFAULT '0',
-  `pdamt` int(11) DEFAULT NULL,
-  `docamt` int(11) DEFAULT NULL,
-  `mop` int(1) DEFAULT NULL,
-  `pay_dt` date DEFAULT NULL,
-  `bkid` int(3) DEFAULT NULL,
-  `brchdet` varchar(255) DEFAULT NULL,
-  `ddno` varchar(25) DEFAULT NULL,
-  `dddt` date DEFAULT NULL,
-  `fnamt` int(10) DEFAULT NULL,
-  `cenamt` int(10) DEFAULT NULL,
-  `balamt` int(10) DEFAULT NULL,
-  `exeamt` int(10) DEFAULT NULL,
-  `ins_dt` date DEFAULT NULL,
-  `remks` varchar(255) DEFAULT NULL,
-  `recptstatus` int(1) DEFAULT '0',
-  `uid` int(11) DEFAULT NULL,
-  `accyr` int(4) DEFAULT NULL,
-  `canuid` int(11) DEFAULT NULL,
-  `pdtptfee` int(10) DEFAULT NULL,
-  `pd1` int(10) NOT NULL,
-  `pd2` int(10) NOT NULL,
-  `pd3` int(10) NOT NULL,
-  `pd4` int(10) DEFAULT '0',
-  `pd5` int(10) DEFAULT '0',
-  `pd6` int(10) DEFAULT '0',
-  `pd7` int(10) DEFAULT '0',
-  `pd8` int(10) DEFAULT '0',
-  `pd9` int(10) DEFAULT '0',
+  `id`           INT           NOT NULL AUTO_INCREMENT,
+  `fmid`         INT           DEFAULT NULL,
+  `studid`       INT           DEFAULT NULL,
+  `pid`          INT           DEFAULT NULL,
+  `sid`          INT           DEFAULT NULL,
+  `tmid`         TINYINT(1)    DEFAULT NULL,
+  `admid`        INT           DEFAULT NULL,
+  `docid`        VARCHAR(25)   DEFAULT NULL,
+  `bfexeamt`     INT           DEFAULT NULL,
+  `bfbalamt`     INT           DEFAULT '0',
+  `pdamt`        INT           DEFAULT NULL,
+  `docamt`       INT           DEFAULT NULL,
+  `mop`          TINYINT(1)    DEFAULT NULL,
+  `pay_dt`       DATE          DEFAULT NULL,
+  `bkid`         INT           DEFAULT NULL,
+  `brchdet`      VARCHAR(255)  DEFAULT NULL,
+  `ddno`         VARCHAR(25)   DEFAULT NULL,
+  `dddt`         DATE          DEFAULT NULL,
+  `fnamt`        INT           DEFAULT NULL,
+  `cenamt`       INT           DEFAULT NULL,
+  `balamt`       INT           DEFAULT NULL,
+  `exeamt`       INT           DEFAULT NULL,
+  `ins_dt`       DATE          DEFAULT NULL,
+  `remks`        VARCHAR(255)  DEFAULT NULL,
+  `recptstatus`  TINYINT(1)    DEFAULT '0',
+  `uid`          INT           DEFAULT NULL,
+  `accyr`        INT           DEFAULT NULL,
+  `canuid`       INT           DEFAULT NULL,
+  `pdtptfee`     INT           DEFAULT NULL,
+  `pd1`          INT           NOT NULL,
+  `pd2`          INT           NOT NULL,
+  `pd3`          INT           NOT NULL,
+  `pd4`          INT           DEFAULT '0',
+  `pd5`          INT           DEFAULT '0',
+  `pd6`          INT           DEFAULT '0',
+  `pd7`          INT           DEFAULT '0',
+  `pd8`          INT           DEFAULT '0',
+  `pd9`          INT           DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -5499,13 +5628,13 @@ CREATE TABLE IF NOT EXISTS `fee_payment` (
 --
 
 CREATE TABLE IF NOT EXISTS `fee_slab_student` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_id` int(11) NOT NULL,
-  `slab_id` int(4) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`          INT         NOT NULL AUTO_INCREMENT,
+  `student_id`  INT         NOT NULL,
+  `slab_id`     INT         NOT NULL,
+  `acc_year`    INT         NOT NULL,
+  `status`      TINYINT(1)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3968 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_slab_student`
@@ -5531,14 +5660,14 @@ INSERT INTO `fee_slab_student` (`id`, `student_id`, `slab_id`, `acc_year`, `stat
 --
 
 CREATE TABLE IF NOT EXISTS `fee_tax` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tax_name` varchar(100) NOT NULL,
-  `value` double(18,2) NOT NULL,
-  `fdate` date NOT NULL,
-  `tdate` date NOT NULL,
-  `typeid` int(11) NOT NULL,
+  `id`        INT           NOT NULL AUTO_INCREMENT,
+  `tax_name`  VARCHAR(100)  NOT NULL,
+  `value`     DOUBLE(18,2)  NOT NULL,
+  `fdate`     DATE          NOT NULL,
+  `tdate`     DATE          NOT NULL,
+  `typeid`    INT           NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_tax`
@@ -5556,15 +5685,15 @@ INSERT INTO `fee_tax` (`id`, `tax_name`, `value`, `fdate`, `tdate`, `typeid`) VA
 --
 
 CREATE TABLE IF NOT EXISTS `fee_type` (
-  `fee_id` int(11) NOT NULL AUTO_INCREMENT,
-  `fee_name` varchar(100) NOT NULL DEFAULT '',
-  `catid` double(18,2) DEFAULT '0.00',
-  `refund` int(11) DEFAULT '1',
-  `status` int(11) DEFAULT '1',
-  `ftype` int(1) DEFAULT '1',
-  `fee_order` int(2) NOT NULL,
+  `fee_id`     INT           NOT NULL AUTO_INCREMENT,
+  `fee_name`   VARCHAR(100)  NOT NULL DEFAULT '',
+  `catid`      DOUBLE(18,2)  DEFAULT '0.00',
+  `refund`     INT           DEFAULT '1',
+  `status`     INT           DEFAULT '1',
+  `ftype`      TINYINT(1)    DEFAULT '1',
+  `fee_order`  INT           NOT NULL,
   PRIMARY KEY (`fee_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_type`
@@ -5588,64 +5717,64 @@ INSERT INTO `fee_type` (`fee_id`, `fee_name`, `catid`, `refund`, `status`, `ftyp
 --
 
 CREATE TABLE IF NOT EXISTS `fee_upload` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `feeDate` varchar(20) NOT NULL,
-  `receitNo` varchar(100) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `enrollmentNo` varchar(100) NOT NULL,
-  `grade` varchar(100) NOT NULL,
-  `category` varchar(100) NOT NULL,
-  `bank` varchar(100) NOT NULL,
-  `chqno` varchar(100) NOT NULL,
-  `total` double(18,2) NOT NULL,
-  `penaltyCharges` varchar(100) NOT NULL,
-  `inword` text NOT NULL,
-  `comment` text NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `fee_head` varchar(200) NOT NULL,
-  `feedet1` varchar(200) NOT NULL,
-  `amt1` double(18,2) NOT NULL,
-  `feedet2` varchar(200) NOT NULL,
-  `amt2` double(18,2) NOT NULL,
-  `feedet3` varchar(200) NOT NULL,
-  `amt3` double(18,2) NOT NULL,
-  `feedet4` varchar(200) NOT NULL,
-  `amt4` double(18,2) NOT NULL,
-  `feedet5` varchar(200) NOT NULL,
-  `amt5` double(18,2) NOT NULL,
-  `feedet6` varchar(200) NOT NULL,
-  `amt6` double(18,2) NOT NULL,
-  `feedet7` varchar(200) NOT NULL,
-  `amt7` double(18,2) NOT NULL,
-  `feedet8` varchar(200) NOT NULL,
-  `amt8` double(18,2) NOT NULL,
-  `feedet9` varchar(200) NOT NULL,
-  `amt9` double(18,2) NOT NULL,
-  `feedet10` varchar(200) NOT NULL,
-  `amt10` double(18,2) NOT NULL,
-  `fee_rec_type` int(1) NOT NULL,
-  `fee_uploade_date` date NOT NULL,
-  `fee_uploade_user` varchar(200) NOT NULL,
-  `fee_deleted_date` date NOT NULL,
-  `fee_deleted_user` varchar(200) NOT NULL,
-  `publish` int(1) NOT NULL DEFAULT '0',
-  `uid` varchar(70) NOT NULL,
+  `id`                INT           NOT NULL AUTO_INCREMENT,
+  `feeDate`           VARCHAR(20)   NOT NULL,
+  `receitNo`          VARCHAR(100)  NOT NULL,
+  `name`              VARCHAR(100)  NOT NULL,
+  `enrollmentNo`      VARCHAR(100)  NOT NULL,
+  `grade`             VARCHAR(100)  NOT NULL,
+  `category`          VARCHAR(100)  NOT NULL,
+  `bank`              VARCHAR(100)  NOT NULL,
+  `chqno`             VARCHAR(100)  NOT NULL,
+  `total`             DOUBLE(18,2)  NOT NULL,
+  `penaltyCharges`    VARCHAR(100)  NOT NULL,
+  `inword`            TEXT          NOT NULL,
+  `comment`           TEXT          NOT NULL,
+  `acc_year`          INT           NOT NULL,
+  `fee_head`          VARCHAR(200)  NOT NULL,
+  `feedet1`           VARCHAR(200)  NOT NULL,
+  `amt1`              DOUBLE(18,2)  NOT NULL,
+  `feedet2`           VARCHAR(200)  NOT NULL,
+  `amt2`              DOUBLE(18,2)  NOT NULL,
+  `feedet3`           VARCHAR(200)  NOT NULL,
+  `amt3`              DOUBLE(18,2)  NOT NULL,
+  `feedet4`           VARCHAR(200)  NOT NULL,
+  `amt4`              DOUBLE(18,2)  NOT NULL,
+  `feedet5`           VARCHAR(200)  NOT NULL,
+  `amt5`              DOUBLE(18,2)  NOT NULL,
+  `feedet6`           VARCHAR(200)  NOT NULL,
+  `amt6`              DOUBLE(18,2)  NOT NULL,
+  `feedet7`           VARCHAR(200)  NOT NULL,
+  `amt7`              DOUBLE(18,2)  NOT NULL,
+  `feedet8`           VARCHAR(200)  NOT NULL,
+  `amt8`              DOUBLE(18,2)  NOT NULL,
+  `feedet9`           VARCHAR(200)  NOT NULL,
+  `amt9`              DOUBLE(18,2)  NOT NULL,
+  `feedet10`          VARCHAR(200)  NOT NULL,
+  `amt10`             DOUBLE(18,2)  NOT NULL,
+  `fee_rec_type`      TINYINT(1)    NOT NULL,
+  `fee_uploade_date`  DATE          NOT NULL,
+  `fee_uploade_user`  VARCHAR(200)  NOT NULL,
+  `fee_deleted_date`  DATE          NOT NULL,
+  `fee_deleted_user`  VARCHAR(200)  NOT NULL,
+  `publish`           TINYINT(1)    NOT NULL DEFAULT '0',
+  `uid`               VARCHAR(70)   NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12641 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_upload`
 --
 
 INSERT INTO `fee_upload` (`id`, `feeDate`, `receitNo`, `name`, `enrollmentNo`, `grade`, `category`, `bank`, `chqno`, `total`, `penaltyCharges`, `inword`, `comment`, `acc_year`, `fee_head`, `feedet1`, `amt1`, `feedet2`, `amt2`, `feedet3`, `amt3`, `feedet4`, `amt4`, `feedet5`, `amt5`, `feedet6`, `amt6`, `feedet7`, `amt7`, `feedet8`, `amt8`, `feedet9`, `amt9`, `feedet10`, `amt10`, `fee_rec_type`, `fee_uploade_date`, `fee_uploade_user`, `fee_deleted_date`, `fee_deleted_user`, `publish`, `uid`) VALUES
-(9905, '30/11/2026', 'TFII/OIS/1742', 'Sarthak Darekar', 'A106', 'VI', 'Cheque', 'State Bank of India', 'Cheque No. 014557', 299750.00, '', 'Rupees Two Lakhs Ninety Nine Thousand Seven Hundred Fifty  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 299750.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-11', 'administrator', '0000-00-00', '', 1, '36ae77db7915835abc105f631f0391f8'),
-(9906, '30/11/2026', 'TFII/OIS/1743', 'Selina Ranchal', 'A407', 'VII', 'Cheque', 'State Bank of India', 'Cheque No. 004782', 299750.00, '', 'Rupees Two Lakhs Ninety Nine Thousand Seven Hundred Fifty  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 299750.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-11', 'administrator', '0000-00-00', '', 1, 'c5383525e91474a4e5d7dcfee92c054f'),
-(9907, '30/11/2026', 'TFII/OIS/1744', 'Varun Sivakumar', 'A459', 'VIII', 'Cheque', 'State Bank of India', 'Cheque No. 676392', 299750.00, '', 'Rupees Two Lakhs Ninety Nine Thousand Seven Hundred Fifty  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 299750.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-11', 'administrator', '0000-00-00', '', 1, '4d289c150fc83d36f5158512246e3bfe'),
-(9908, '30/11/2026', 'TFII/OIS/1745', 'Aaryan Shetty', 'A056', 'VI', 'Cheque', 'State Bank of India', 'Cheque No. 274431', 258750.00, '', 'Rupees Two Lakhs Fifty Eight Thousand Seven Hundred Fifty  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 258750.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-11', 'administrator', '0000-00-00', '', 1, '515b9d40500ef7d05007b5668991fc7c'),
-(9909, '30/11/2026', 'TFII/OIS/1746', 'Anushka Gupta', 'A793', 'V', 'Cheque', 'State Bank of India', 'Cheque No. 034414', 122625.00, '', 'Rupees  One Lakh Twenty Two Thousand Six Hundred Twenty Five and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 122625.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-11', 'administrator', '0000-00-00', '', 1, '1980fa3bbff704c8bec1b7196cf7dfbc'),
-(9976, '28/11/2026', 'TFI/OIS/991', 'Shreeya Bidawatka', 'A112', 'III', 'RTGS', 'Direct Credit', '', 200000.00, '', 'Rupees Two Lakhs Zero and Paise Zero Only', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 200000.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-11', 'administrator', '0000-00-00', '', 1, '4800deb3f3be382f97782401f775184a'),
-(9974, '25/11/2026', 'AFSD/OIS/168', 'Vishesh Khakhar', 'A12569', 'IX', 'Cheque', 'State Bank of India', 'Cheque No. 238818', 150000.00, '', 'Rupees One Lakh Fifty Thousand and Paise Zero Only', '', 2026, 'School fees for AY 2026-14', 'Admission Fees', 100000.00, 'Security Deposit', 50000.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-11', 'administrator', '0000-00-00', '', 1, 'fced4f35799409dd854ebeaea7db546d'),
-(9972, '22/11/2026', 'TFI/OIS/988', 'Phoung Duc', 'A12553', 'I', 'RTGS', 'Direct Credit', '', 245250.00, '', 'Rupees Two Lakhs Forty Five Thousand Two Hundred Fifty and Paise Zero Only', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 245250.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-11', 'administrator', '0000-00-00', '', 1, '35675fd71a153bf3baab29b904e525c8');
+(9905, '30/11/2026', 'TFII/OIS/1742', 'Sarthak Darekar', 'A106', 'VI', 'Cheque', 'State Bank of India', 'Cheque No. 014557', 299750.00, '', 'Rupees Two Lakhs Ninety Nine Thousand Seven Hundred Fifty  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 299750.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-11', 'administrator', NULL, '', 1, '36ae77db7915835abc105f631f0391f8'),
+(9906, '30/11/2026', 'TFII/OIS/1743', 'Selina Ranchal', 'A407', 'VII', 'Cheque', 'State Bank of India', 'Cheque No. 004782', 299750.00, '', 'Rupees Two Lakhs Ninety Nine Thousand Seven Hundred Fifty  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 299750.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-11', 'administrator', NULL, '', 1, 'c5383525e91474a4e5d7dcfee92c054f'),
+(9907, '30/11/2026', 'TFII/OIS/1744', 'Varun Sivakumar', 'A459', 'VIII', 'Cheque', 'State Bank of India', 'Cheque No. 676392', 299750.00, '', 'Rupees Two Lakhs Ninety Nine Thousand Seven Hundred Fifty  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 299750.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-11', 'administrator', NULL, '', 1, '4d289c150fc83d36f5158512246e3bfe'),
+(9908, '30/11/2026', 'TFII/OIS/1745', 'Aaryan Shetty', 'A056', 'VI', 'Cheque', 'State Bank of India', 'Cheque No. 274431', 258750.00, '', 'Rupees Two Lakhs Fifty Eight Thousand Seven Hundred Fifty  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 258750.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-11', 'administrator', NULL, '', 1, '515b9d40500ef7d05007b5668991fc7c'),
+(9909, '30/11/2026', 'TFII/OIS/1746', 'Anushka Gupta', 'A793', 'V', 'Cheque', 'State Bank of India', 'Cheque No. 034414', 122625.00, '', 'Rupees  One Lakh Twenty Two Thousand Six Hundred Twenty Five and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 122625.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-11', 'administrator', NULL, '', 1, '1980fa3bbff704c8bec1b7196cf7dfbc'),
+(9976, '28/11/2026', 'TFI/OIS/991', 'Shreeya Bidawatka', 'A112', 'III', 'RTGS', 'Direct Credit', '', 200000.00, '', 'Rupees Two Lakhs Zero and Paise Zero Only', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 200000.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-11', 'administrator', NULL, '', 1, '4800deb3f3be382f97782401f775184a'),
+(9974, '25/11/2026', 'AFSD/OIS/168', 'Vishesh Khakhar', 'A12569', 'IX', 'Cheque', 'State Bank of India', 'Cheque No. 238818', 150000.00, '', 'Rupees One Lakh Fifty Thousand and Paise Zero Only', '', 2026, 'School fees for AY 2026-14', 'Admission Fees', 100000.00, 'Security Deposit', 50000.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-11', 'administrator', NULL, '', 1, 'fced4f35799409dd854ebeaea7db546d'),
+(9972, '22/11/2026', 'TFI/OIS/988', 'Phoung Duc', 'A12553', 'I', 'RTGS', 'Direct Credit', '', 245250.00, '', 'Rupees Two Lakhs Forty Five Thousand Two Hundred Fifty and Paise Zero Only', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 245250.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-11', 'administrator', NULL, '', 1, '35675fd71a153bf3baab29b904e525c8');
 
 -- --------------------------------------------------------
 
@@ -5654,66 +5783,66 @@ INSERT INTO `fee_upload` (`id`, `feeDate`, `receitNo`, `name`, `enrollmentNo`, `
 --
 
 CREATE TABLE IF NOT EXISTS `fee_upload_deleted` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `feeDate` varchar(20) NOT NULL,
-  `receitNo` varchar(100) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `enrollmentNo` varchar(100) NOT NULL,
-  `grade` varchar(100) NOT NULL,
-  `category` varchar(100) NOT NULL,
-  `bank` varchar(100) NOT NULL,
-  `chqno` varchar(100) NOT NULL,
-  `total` double(18,2) NOT NULL,
-  `penaltyCharges` varchar(100) NOT NULL,
-  `inword` text NOT NULL,
-  `comment` text NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `fee_head` varchar(200) NOT NULL,
-  `feedet1` varchar(200) NOT NULL,
-  `amt1` double(18,2) NOT NULL,
-  `feedet2` varchar(200) NOT NULL,
-  `amt2` double(18,2) NOT NULL,
-  `feedet3` varchar(200) NOT NULL,
-  `amt3` double(18,2) NOT NULL,
-  `feedet4` varchar(200) NOT NULL,
-  `amt4` double(18,2) NOT NULL,
-  `feedet5` varchar(200) NOT NULL,
-  `amt5` double(18,2) NOT NULL,
-  `feedet6` varchar(200) NOT NULL,
-  `amt6` double(18,2) NOT NULL,
-  `feedet7` varchar(200) NOT NULL,
-  `amt7` double(18,2) NOT NULL,
-  `feedet8` varchar(200) NOT NULL,
-  `amt8` double(18,2) NOT NULL,
-  `feedet9` varchar(200) NOT NULL,
-  `amt9` double(18,2) NOT NULL,
-  `feedet10` varchar(200) NOT NULL,
-  `amt10` double(18,2) NOT NULL,
-  `fee_rec_type` int(1) NOT NULL,
-  `fee_uploade_date` date NOT NULL,
-  `fee_uploade_user` varchar(200) NOT NULL,
-  `fee_deleted_date` date NOT NULL,
-  `fee_deleted_user` varchar(200) NOT NULL,
-  `publish` int(1) NOT NULL DEFAULT '0',
-  `uid` varchar(70) NOT NULL,
+  `id`                INT           NOT NULL AUTO_INCREMENT,
+  `feeDate`           VARCHAR(20)   NOT NULL,
+  `receitNo`          VARCHAR(100)  NOT NULL,
+  `name`              VARCHAR(100)  NOT NULL,
+  `enrollmentNo`      VARCHAR(100)  NOT NULL,
+  `grade`             VARCHAR(100)  NOT NULL,
+  `category`          VARCHAR(100)  NOT NULL,
+  `bank`              VARCHAR(100)  NOT NULL,
+  `chqno`             VARCHAR(100)  NOT NULL,
+  `total`             DOUBLE(18,2)  NOT NULL,
+  `penaltyCharges`    VARCHAR(100)  NOT NULL,
+  `inword`            TEXT          NOT NULL,
+  `comment`           TEXT          NOT NULL,
+  `acc_year`          INT           NOT NULL,
+  `fee_head`          VARCHAR(200)  NOT NULL,
+  `feedet1`           VARCHAR(200)  NOT NULL,
+  `amt1`              DOUBLE(18,2)  NOT NULL,
+  `feedet2`           VARCHAR(200)  NOT NULL,
+  `amt2`              DOUBLE(18,2)  NOT NULL,
+  `feedet3`           VARCHAR(200)  NOT NULL,
+  `amt3`              DOUBLE(18,2)  NOT NULL,
+  `feedet4`           VARCHAR(200)  NOT NULL,
+  `amt4`              DOUBLE(18,2)  NOT NULL,
+  `feedet5`           VARCHAR(200)  NOT NULL,
+  `amt5`              DOUBLE(18,2)  NOT NULL,
+  `feedet6`           VARCHAR(200)  NOT NULL,
+  `amt6`              DOUBLE(18,2)  NOT NULL,
+  `feedet7`           VARCHAR(200)  NOT NULL,
+  `amt7`              DOUBLE(18,2)  NOT NULL,
+  `feedet8`           VARCHAR(200)  NOT NULL,
+  `amt8`              DOUBLE(18,2)  NOT NULL,
+  `feedet9`           VARCHAR(200)  NOT NULL,
+  `amt9`              DOUBLE(18,2)  NOT NULL,
+  `feedet10`          VARCHAR(200)  NOT NULL,
+  `amt10`             DOUBLE(18,2)  NOT NULL,
+  `fee_rec_type`      TINYINT(1)    NOT NULL,
+  `fee_uploade_date`  DATE          NOT NULL,
+  `fee_uploade_user`  VARCHAR(200)  NOT NULL,
+  `fee_deleted_date`  DATE          NOT NULL,
+  `fee_deleted_user`  VARCHAR(200)  NOT NULL,
+  `publish`           TINYINT(1)    NOT NULL DEFAULT '0',
+  `uid`               VARCHAR(70)   NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12639 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fee_upload_deleted`
 --
 
 INSERT INTO `fee_upload_deleted` (`id`, `feeDate`, `receitNo`, `name`, `enrollmentNo`, `grade`, `category`, `bank`, `chqno`, `total`, `penaltyCharges`, `inword`, `comment`, `acc_year`, `fee_head`, `feedet1`, `amt1`, `feedet2`, `amt2`, `feedet3`, `amt3`, `feedet4`, `amt4`, `feedet5`, `amt5`, `feedet6`, `amt6`, `feedet7`, `amt7`, `feedet8`, `amt8`, `feedet9`, `amt9`, `feedet10`, `amt10`, `fee_rec_type`, `fee_uploade_date`, `fee_uploade_user`, `fee_deleted_date`, `fee_deleted_user`, `publish`, `uid`) VALUES
-(6930, '30/11/2026', 'TFII/OIEY/515', 'Abhyudaya Singh', 'A12183', 'PLAYSCHOOL', 'Cheque', 'HDFC Bank', 'Cheque No.  290808', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', '0000-00-00', '', 0, '2f254e66097fd653a5ca4cfdb33be358'),
-(6932, '30/11/2026', 'TFII/OIEY/517', 'Ahaan Anand', 'A12217', 'PLAYSCHOOL', 'Cheque', 'HDFC Bank', 'Cheque No.  419926', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', '0000-00-00', '', 0, ''),
-(7113, '30/11/2026', 'TFII/OIEY/698', 'Akshata Singh', 'A12166', 'PLAYSCHOOL', 'Cheque', 'Axis Bank', 'Cheque No.  027355', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', '0000-00-00', '', 0, ''),
-(7046, '30/11/2026', 'TFII/OIEY/631', 'Arssh Gupta', 'A12190', 'PLAYSCHOOL', 'Cheque', 'ICICI Bank', 'Cheque No.  690753', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', '0000-00-00', '', 0, ''),
-(7081, '30/11/2026', 'TFII/OIEY/666', 'Ashvath Karnad', 'A12205', 'PLAYSCHOOL', 'Cheque', 'Standard Chartered Bank', 'Cheque No.  000156', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', '0000-00-00', '', 0, ''),
-(6989, '30/11/2026', 'TFII/OIEY/574', 'Ridhaan Kachwala', 'A12186', 'PLAYSCHOOL', 'Cheque', 'HDFC Bank', 'Cheque No.  974973', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', '0000-00-00', '', 0, ''),
-(6992, '30/11/2026', 'TFII/OIEY/577', 'Rudra Dhawan', 'A12214', 'PLAYSCHOOL', 'Cheque', 'HDFC Bank', 'Cheque No.  255671', 179000.00, '', 'Rupees  One Lakh Seventy Nine Thousand  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 179000.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', '0000-00-00', '', 0, ''),
-(7111, '30/11/2026', 'TFII/OIEY/696', 'Samaira Khan', 'A12176', 'PLAYSCHOOL', 'Cheque', 'Axis Bank', 'Cheque No.  564433', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', '0000-00-00', '', 0, ''),
-(6852, '30/11/2026', 'TFII/OIEY/437', 'Sanaya Kanakia', 'A12180', 'PLAYSCHOOL', 'Cheque', 'OBC', 'Cheque No.  116902', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', '0000-00-00', '', 0, ''),
-(7089, '30/11/2026', 'TFII/OIEY/674', 'Shhaurya Gupta', 'A12199', 'PLAYSCHOOL', 'Cheque', 'Standard Chartered Bank', 'Cheque No.  000005', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', '0000-00-00', '', 0, '');
+(6930, '30/11/2026', 'TFII/OIEY/515', 'Abhyudaya Singh', 'A12183', 'PLAYSCHOOL', 'Cheque', 'HDFC Bank', 'Cheque No.  290808', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', NULL, '', 0, '2f254e66097fd653a5ca4cfdb33be358'),
+(6932, '30/11/2026', 'TFII/OIEY/517', 'Ahaan Anand', 'A12217', 'PLAYSCHOOL', 'Cheque', 'HDFC Bank', 'Cheque No.  419926', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', NULL, '', 0, ''),
+(7113, '30/11/2026', 'TFII/OIEY/698', 'Akshata Singh', 'A12166', 'PLAYSCHOOL', 'Cheque', 'Axis Bank', 'Cheque No.  027355', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', NULL, '', 0, ''),
+(7046, '30/11/2026', 'TFII/OIEY/631', 'Arssh Gupta', 'A12190', 'PLAYSCHOOL', 'Cheque', 'ICICI Bank', 'Cheque No.  690753', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', NULL, '', 0, ''),
+(7081, '30/11/2026', 'TFII/OIEY/666', 'Ashvath Karnad', 'A12205', 'PLAYSCHOOL', 'Cheque', 'Standard Chartered Bank', 'Cheque No.  000156', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', NULL, '', 0, ''),
+(6989, '30/11/2026', 'TFII/OIEY/574', 'Ridhaan Kachwala', 'A12186', 'PLAYSCHOOL', 'Cheque', 'HDFC Bank', 'Cheque No.  974973', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', NULL, '', 0, ''),
+(6992, '30/11/2026', 'TFII/OIEY/577', 'Rudra Dhawan', 'A12214', 'PLAYSCHOOL', 'Cheque', 'HDFC Bank', 'Cheque No.  255671', 179000.00, '', 'Rupees  One Lakh Seventy Nine Thousand  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 179000.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', NULL, '', 0, ''),
+(7111, '30/11/2026', 'TFII/OIEY/696', 'Samaira Khan', 'A12176', 'PLAYSCHOOL', 'Cheque', 'Axis Bank', 'Cheque No.  564433', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', NULL, '', 0, ''),
+(6852, '30/11/2026', 'TFII/OIEY/437', 'Sanaya Kanakia', 'A12180', 'PLAYSCHOOL', 'Cheque', 'OBC', 'Cheque No.  116902', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', NULL, '', 0, ''),
+(7089, '30/11/2026', 'TFII/OIEY/674', 'Shhaurya Gupta', 'A12199', 'PLAYSCHOOL', 'Cheque', 'Standard Chartered Bank', 'Cheque No.  000005', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', NULL, '', 0, '');
 
 -- --------------------------------------------------------
 
@@ -5722,15 +5851,15 @@ INSERT INTO `fee_upload_deleted` (`id`, `feeDate`, `receitNo`, `name`, `enrollme
 --
 
 CREATE TABLE IF NOT EXISTS `field_info` (
-  `f_id` int(11) NOT NULL AUTO_INCREMENT,
-  `f_name` varchar(50) NOT NULL,
-  `tab_id` int(11) NOT NULL,
-  `field_type` varchar(20) DEFAULT NULL,
-  `field_edit_type` varchar(10) DEFAULT NULL,
-  `field_code` varchar(60) DEFAULT NULL,
-  `field_visibility` int(2) DEFAULT '0',
+  `f_id`              INT          NOT NULL AUTO_INCREMENT,
+  `f_name`            VARCHAR(50)  NOT NULL,
+  `tab_id`            INT          NOT NULL,
+  `field_type`        VARCHAR(20)  DEFAULT NULL,
+  `field_edit_type`   VARCHAR(10)  DEFAULT NULL,
+  `field_code`        VARCHAR(60)  DEFAULT NULL,
+  `field_visibility`  INT          DEFAULT '0',
   PRIMARY KEY (`f_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=139 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `field_info`
@@ -5839,17 +5968,20 @@ INSERT INTO `field_info` (`f_id`, `f_name`, `tab_id`, `field_type`, `field_edit_
 --
 
 CREATE TABLE IF NOT EXISTS `fresh_contact_list` (
-  `school_ID` varchar(255) DEFAULT NULL,
-  `father_mail` varchar(255) DEFAULT NULL,
-  `mother_mail` varchar(255) DEFAULT NULL,
-  `F8` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`           INT UNSIGNED  NOT NULL AUTO_INCREMENT,
+  `school_id`    VARCHAR(100)  NOT NULL DEFAULT '',
+  `father_mail`  VARCHAR(150)  DEFAULT NULL,
+  `mother_mail`  VARCHAR(150)  DEFAULT NULL,
+  `F8`           VARCHAR(255)  DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `ux_school_id` (`school_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `fresh_contact_list`
 --
 
-INSERT INTO `fresh_contact_list` (`school_ID`, `father_mail`, `mother_mail`, `F8`) VALUES
+INSERT INTO `fresh_contact_list` (`school_id`, `father_mail`, `mother_mail`, `F8`) VALUES
 ('A043', 'info@biosagri.com', 'nazina44@email.com', NULL),
 ('A051', 'w_pinto1@hotmail.com', 'jyotipinto1@email.com', NULL),
 ('A071', 'parmar.dipak@email.com', 'pannaparmar@email.com', NULL),
@@ -5864,31 +5996,31 @@ INSERT INTO `fresh_contact_list` (`school_ID`, `father_mail`, `mother_mail`, `F8
 -- --------------------------------------------------------
 
 --
--- Table structure for table `general_doc_detials`
+-- Table structure for table `general_doc_details`
 --
 
-CREATE TABLE IF NOT EXISTS `general_doc_detials` (
-  `id` int(255) NOT NULL AUTO_INCREMENT,
-  `student_id` varchar(200) NOT NULL,
-  `docname` varchar(255) NOT NULL,
-  `docphone` varchar(255) NOT NULL,
-  `docaddress` text NOT NULL,
-  `denname` varchar(255) NOT NULL,
-  `denphone` varchar(255) NOT NULL,
-  `denaddress` text NOT NULL,
-  `allergies` text NOT NULL,
-  `notification` text NOT NULL,
-  `status` int(1) NOT NULL DEFAULT '1',
-  `hospname` varchar(255) NOT NULL,
-  `ddv` date NOT NULL,
+CREATE TABLE IF NOT EXISTS `general_doc_details` (
+  `id`            MEDIUMINT UNSIGNED  NOT NULL AUTO_INCREMENT,
+  `student_id`    VARCHAR(200)        NOT NULL,
+  `docname`       VARCHAR(255)        NOT NULL,
+  `docphone`      VARCHAR(255)        NOT NULL,
+  `docaddress`    TEXT                NOT NULL,
+  `denname`       VARCHAR(255)        NOT NULL,
+  `denphone`      VARCHAR(255)        NOT NULL,
+  `denaddress`    TEXT                NOT NULL,
+  `allergies`     TEXT                NOT NULL,
+  `notification`  TEXT                NOT NULL,
+  `status`        TINYINT(1)          NOT NULL DEFAULT '1',
+  `hospname`      VARCHAR(255)        NOT NULL,
+  `ddv`           DATE                NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=348 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
--- Dumping data for table `general_doc_detials`
+-- Dumping data for table `general_doc_details`
 --
 
-INSERT INTO `general_doc_detials` (`id`, `student_id`, `docname`, `docphone`, `docaddress`, `denname`, `denphone`, `denaddress`, `allergies`, `notification`, `status`, `hospname`, `ddv`) VALUES
+INSERT INTO `general_doc_details` (`id`, `student_id`, `docname`, `docphone`, `docaddress`, `denname`, `denphone`, `denaddress`, `allergies`, `notification`, `status`, `hospname`, `ddv`) VALUES
 (10, '39', '', '', '', '', '', '', '', 'Frequent abdominal pain, Frequent headaches, Motion sickness', 1, '', '2026-09-26'),
 (11, '48', '', '', '', '', '', '', '', 'Motion sickness', 1, '', '2026-09-26'),
 (12, '50', '', '', '', '', '', '', '', 'Motion sickness', 1, '', '2026-09-26'),
@@ -5908,13 +6040,13 @@ INSERT INTO `general_doc_detials` (`id`, `student_id`, `docname`, `docphone`, `d
 --
 
 CREATE TABLE IF NOT EXISTS `grade` (
-  `id` int(4) NOT NULL AUTO_INCREMENT,
-  `name` varchar(22) NOT NULL,
-  `g_from` float NOT NULL,
-  `g_to` float NOT NULL,
-  `remarks` text NOT NULL,
+  `id`       INT          NOT NULL AUTO_INCREMENT,
+  `name`     VARCHAR(22)  NOT NULL,
+  `g_from`   FLOAT        NOT NULL,
+  `g_to`     FLOAT        NOT NULL,
+  `remarks`  TEXT         NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -5923,16 +6055,16 @@ CREATE TABLE IF NOT EXISTS `grade` (
 --
 
 CREATE TABLE IF NOT EXISTS `gradekg` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `exam_id` int(11) NOT NULL,
-  `class` int(3) NOT NULL,
-  `sec` int(2) NOT NULL,
-  `skill` int(11) NOT NULL,
-  `student_id` int(10) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `g_kg` varchar(4) NOT NULL,
+  `id`           BIGINT      NOT NULL AUTO_INCREMENT,
+  `exam_id`      INT         NOT NULL,
+  `class`        INT         NOT NULL,
+  `sec`          INT         NOT NULL,
+  `skill`        INT         NOT NULL,
+  `student_id`   INT         NOT NULL,
+  `acc_year`     INT         NOT NULL,
+  `grade_value`  VARCHAR(4)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -5941,16 +6073,16 @@ CREATE TABLE IF NOT EXISTS `gradekg` (
 --
 
 CREATE TABLE IF NOT EXISTS `gradepyp` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `exam_id` int(11) NOT NULL,
-  `class` int(3) NOT NULL,
-  `sec` int(2) NOT NULL,
-  `skill` int(11) NOT NULL,
-  `student_id` int(10) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `g_kg` varchar(4) NOT NULL,
+  `id`           BIGINT      NOT NULL AUTO_INCREMENT,
+  `exam_id`      INT         NOT NULL,
+  `class`        INT         NOT NULL,
+  `sec`          INT         NOT NULL,
+  `skill`        INT         NOT NULL,
+  `student_id`   INT         NOT NULL,
+  `acc_year`     INT         NOT NULL,
+  `grade_value`  VARCHAR(4)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -5959,23 +6091,25 @@ CREATE TABLE IF NOT EXISTS `gradepyp` (
 --
 
 CREATE TABLE IF NOT EXISTS `grade_assessment` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `category_id` int(2) DEFAULT NULL COMMENT 'Master id of grade_category',
-  `subject` int(5) DEFAULT NULL,
-  `term` int(2) DEFAULT NULL,
-  `title` varchar(100) DEFAULT NULL,
-  `description` text,
-  `assign_date` date DEFAULT NULL,
-  `due_date` date DEFAULT NULL,
-  `max_point` int(3) DEFAULT NULL,
-  `apply_grade` varchar(1) DEFAULT 'Y' COMMENT 'if ''Y'' will be applicable for Report Card',
-  `grade_type` varchar(10) DEFAULT NULL,
-  `course_objective` text,
-  `a_year` int(4) DEFAULT NULL,
-  `inserted_date` date DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5346 ;
+  `id`                INT           NOT NULL AUTO_INCREMENT,
+  `category_id`       INT           DEFAULT NULL COMMENT 'Master id of grade_category',
+  `subject`           INT           DEFAULT NULL,
+  `term`              INT           DEFAULT NULL,
+  `title`             VARCHAR(100)  DEFAULT NULL,
+  `description`       TEXT,
+  `assign_date`       DATE          DEFAULT NULL,
+  `due_date`          DATE          DEFAULT NULL,
+  `max_point`         INT           DEFAULT NULL,
+  `apply_grade`       VARCHAR(1)    DEFAULT 'Y' COMMENT 'if ''Y'' will be applicable for Report Card',
+  `grade_type`        VARCHAR(10)   DEFAULT NULL,
+  `course_objective`  TEXT,
+  `a_year`            INT           DEFAULT NULL,
+  `inserted_date`     DATE          DEFAULT NULL,
+  `status`            TINYINT(1)    DEFAULT '1',
+  PRIMARY KEY (`id`),
+  INDEX `ix_subj_term_year` (`subject`, `term`, `a_year`, `status`),
+  INDEX `ix_category_year`  (`category_id`, `a_year`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `grade_assessment`
@@ -5988,7 +6122,7 @@ INSERT INTO `grade_assessment` (`id`, `category_id`, `subject`, `term`, `title`,
 (4, 16, 188, 1, 'WWI Glogster', 'WWI', '2026-08-16', '2026-08-23', 50, 'N', 'alphabet', '', 2026, '2026-08-16', 1),
 (5, 19, 160, 1, 'MAIN reason WWI', '', '2026-08-16', '2026-08-19', 0, 'Y', 'alphabet', '', 2026, '2026-08-16', 1),
 (6, 28, 331, 1, 'Conflict in ME 1&2', '', '2026-08-19', '2026-08-19', 0, 'Y', 'alphabet', '', 2026, '2026-08-16', 0),
-(133, 1041, 162, 1, 'Chekhov Scene', '', '2026-09-26', '0000-00-00', 0, 'Y', 'alphabet', '', 2026, '2026-09-13', 1),
+(133, 1041, 162, 1, 'Chekhov Scene', '', '2026-09-26', NULL, 0, 'Y', 'alphabet', '', 2026, '2026-09-13', 1),
 (7, 17, 188, 1, 'Mock Paper 2', '', '2026-08-21', '2026-08-22', 0, 'Y', 'alphabet', '', 2026, '2026-08-21', 0),
 (8, 32, 188, 1, 'Glog WWI', 'Test 1', '2026-08-21', '2026-08-28', 0, 'Y', 'alphabet', '', 2026, '2026-08-21', 1),
 (142, 905, 270, 1, 'TT Quiz', 'Quiz on Table Tennis', '2026-08-30', '2026-08-30', 0, 'Y', 'alphabet', 'To understand and apply the basic rules as it relates to table tennis (singles and doubles)', 2026, '2026-09-16', 0),
@@ -6001,42 +6135,42 @@ INSERT INTO `grade_assessment` (`id`, `category_id`, `subject`, `term`, `title`,
 --
 
 CREATE TABLE IF NOT EXISTS `grade_avg` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `subject` int(5) DEFAULT NULL,
-  `letter1` varchar(5) DEFAULT NULL,
-  `letter2` varchar(5) DEFAULT NULL,
-  `letter3` varchar(5) DEFAULT NULL,
-  `letter4` varchar(5) DEFAULT NULL,
-  `letter5` varchar(5) DEFAULT NULL,
-  `letter6` varchar(5) DEFAULT NULL,
-  `letter7` varchar(5) DEFAULT NULL,
-  `letter8` varchar(5) DEFAULT NULL,
-  `letter9` varchar(5) DEFAULT NULL,
-  `letter10` varchar(5) DEFAULT NULL,
-  `letter11` varchar(5) DEFAULT NULL,
-  `letter12` varchar(5) DEFAULT NULL,
-  `letter13` varchar(5) DEFAULT NULL,
-  `letter14` varchar(5) DEFAULT NULL,
-  `letter15` varchar(5) DEFAULT NULL,
-  `avg1` varchar(5) DEFAULT NULL,
-  `avg2` varchar(5) DEFAULT NULL,
-  `avg3` varchar(5) DEFAULT NULL,
-  `avg4` varchar(5) DEFAULT NULL,
-  `avg5` varchar(5) DEFAULT NULL,
-  `avg6` varchar(5) DEFAULT NULL,
-  `avg7` varchar(5) DEFAULT NULL,
-  `avg8` varchar(5) DEFAULT NULL,
-  `avg9` varchar(5) DEFAULT NULL,
-  `avg10` varchar(5) DEFAULT NULL,
-  `avg11` varchar(5) DEFAULT NULL,
-  `avg12` varchar(5) DEFAULT NULL,
-  `avg13` varchar(5) DEFAULT NULL,
-  `avg14` varchar(5) DEFAULT NULL,
-  `avg15` varchar(5) DEFAULT NULL,
-  `inserted_date` date DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`             INT         NOT NULL AUTO_INCREMENT,
+  `subject`        INT         DEFAULT NULL,
+  `letter1`        VARCHAR(5)  DEFAULT NULL,
+  `letter2`        VARCHAR(5)  DEFAULT NULL,
+  `letter3`        VARCHAR(5)  DEFAULT NULL,
+  `letter4`        VARCHAR(5)  DEFAULT NULL,
+  `letter5`        VARCHAR(5)  DEFAULT NULL,
+  `letter6`        VARCHAR(5)  DEFAULT NULL,
+  `letter7`        VARCHAR(5)  DEFAULT NULL,
+  `letter8`        VARCHAR(5)  DEFAULT NULL,
+  `letter9`        VARCHAR(5)  DEFAULT NULL,
+  `letter10`       VARCHAR(5)  DEFAULT NULL,
+  `letter11`       VARCHAR(5)  DEFAULT NULL,
+  `letter12`       VARCHAR(5)  DEFAULT NULL,
+  `letter13`       VARCHAR(5)  DEFAULT NULL,
+  `letter14`       VARCHAR(5)  DEFAULT NULL,
+  `letter15`       VARCHAR(5)  DEFAULT NULL,
+  `avg1`           VARCHAR(5)  DEFAULT NULL,
+  `avg2`           VARCHAR(5)  DEFAULT NULL,
+  `avg3`           VARCHAR(5)  DEFAULT NULL,
+  `avg4`           VARCHAR(5)  DEFAULT NULL,
+  `avg5`           VARCHAR(5)  DEFAULT NULL,
+  `avg6`           VARCHAR(5)  DEFAULT NULL,
+  `avg7`           VARCHAR(5)  DEFAULT NULL,
+  `avg8`           VARCHAR(5)  DEFAULT NULL,
+  `avg9`           VARCHAR(5)  DEFAULT NULL,
+  `avg10`          VARCHAR(5)  DEFAULT NULL,
+  `avg11`          VARCHAR(5)  DEFAULT NULL,
+  `avg12`          VARCHAR(5)  DEFAULT NULL,
+  `avg13`          VARCHAR(5)  DEFAULT NULL,
+  `avg14`          VARCHAR(5)  DEFAULT NULL,
+  `avg15`          VARCHAR(5)  DEFAULT NULL,
+  `inserted_date`  DATE        DEFAULT NULL,
+  `status`         TINYINT(1)  DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=308 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `grade_avg`
@@ -6061,17 +6195,18 @@ INSERT INTO `grade_avg` (`id`, `subject`, `letter1`, `letter2`, `letter3`, `lett
 --
 
 CREATE TABLE IF NOT EXISTS `grade_category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `subject` int(5) DEFAULT NULL,
-  `title` varchar(50) DEFAULT NULL,
-  `description` text,
-  `a_year` int(4) DEFAULT NULL,
-  `term_id` int(2) DEFAULT NULL,
-  `term` varchar(255) DEFAULT NULL,
-  `weight` int(3) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1264 ;
+  `id`           INT           NOT NULL AUTO_INCREMENT,
+  `subject`      INT           DEFAULT NULL,
+  `title`        VARCHAR(50)   DEFAULT NULL,
+  `description`  TEXT,
+  `a_year`       INT           DEFAULT NULL,
+  `term_id`      INT           DEFAULT NULL,
+  `term`         VARCHAR(255)  DEFAULT NULL,
+  `weight`       INT           DEFAULT NULL,
+  `status`       TINYINT(1)    DEFAULT '1',
+  PRIMARY KEY (`id`),
+  INDEX `ix_subj_year_term` (`subject`, `a_year`, `term_id`, `status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `grade_category`
@@ -6096,11 +6231,11 @@ INSERT INTO `grade_category` (`id`, `subject`, `title`, `description`, `a_year`,
 --
 
 CREATE TABLE IF NOT EXISTS `grade_grace` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `letter` varchar(5) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`      INT         NOT NULL AUTO_INCREMENT,
+  `letter`  VARCHAR(5)  DEFAULT NULL,
+  `status`  TINYINT(1)  DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `grade_grace`
@@ -6125,23 +6260,23 @@ INSERT INTO `grade_grace` (`id`, `letter`, `status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `grade_m_64_1` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` varchar(70) DEFAULT NULL,
-  `a_year` int(4) DEFAULT NULL,
-  `student_id` int(5) DEFAULT NULL,
-  `term` int(5) DEFAULT NULL,
-  `subject` int(5) DEFAULT NULL,
-  `category` int(5) DEFAULT NULL,
-  `category1` int(2) DEFAULT NULL,
-  `category2` int(2) DEFAULT NULL,
-  `inserted_date` date DEFAULT NULL,
-  `comments` text,
-  `status` int(1) DEFAULT '1',
-  `avg_1` varchar(5) DEFAULT NULL,
-  `HW_Assign_1` varchar(5) DEFAULT NULL,
-  `HW_Assign_2_1` varchar(5) DEFAULT NULL,
+  `id`             INT          NOT NULL AUTO_INCREMENT,
+  `user`           VARCHAR(70)  DEFAULT NULL,
+  `a_year`         INT          DEFAULT NULL,
+  `student_id`     INT          DEFAULT NULL,
+  `term`           INT          DEFAULT NULL,
+  `subject`        INT          DEFAULT NULL,
+  `category`       INT          DEFAULT NULL,
+  `category1`      INT          DEFAULT NULL,
+  `category2`      INT          DEFAULT NULL,
+  `inserted_date`  DATE         DEFAULT NULL,
+  `comments`       TEXT,
+  `status`         TINYINT(1)   DEFAULT '1',
+  `avg_1`          VARCHAR(5)   DEFAULT NULL,
+  `HW_Assign_1`    VARCHAR(5)   DEFAULT NULL,
+  `HW_Assign_2_1`  VARCHAR(5)   DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `grade_m_64_1`
@@ -6171,42 +6306,42 @@ INSERT INTO `grade_m_64_1` (`id`, `user`, `a_year`, `student_id`, `term`, `subje
 --
 
 CREATE TABLE IF NOT EXISTS `grade_m_64_2` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` varchar(70) DEFAULT NULL,
-  `a_year` int(4) DEFAULT NULL,
-  `student_id` int(5) DEFAULT NULL,
-  `term` int(5) DEFAULT NULL,
-  `subject` int(5) DEFAULT NULL,
-  `category` int(5) DEFAULT NULL,
-  `category1` int(2) DEFAULT NULL,
-  `category2` int(2) DEFAULT NULL,
-  `inserted_date` date DEFAULT NULL,
-  `comments` text,
-  `status` int(1) DEFAULT '1',
-  `avg_1` varchar(5) DEFAULT NULL,
+  `id`             INT          NOT NULL AUTO_INCREMENT,
+  `user`           VARCHAR(70)  DEFAULT NULL,
+  `a_year`         INT          DEFAULT NULL,
+  `student_id`     INT          DEFAULT NULL,
+  `term`           INT          DEFAULT NULL,
+  `subject`        INT          DEFAULT NULL,
+  `category`       INT          DEFAULT NULL,
+  `category1`      INT          DEFAULT NULL,
+  `category2`      INT          DEFAULT NULL,
+  `inserted_date`  DATE         DEFAULT NULL,
+  `comments`       TEXT,
+  `status`         TINYINT(1)   DEFAULT '1',
+  `avg_1`          VARCHAR(5)   DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `grade_m_64_2`
 --
 
 INSERT INTO `grade_m_64_2` (`id`, `user`, `a_year`, `student_id`, `term`, `subject`, `category`, `category1`, `category2`, `inserted_date`, `comments`, `status`, `avg_1`) VALUES
-(1, NULL, NULL, 464, 2, 64, 0, 0, NULL, '0000-00-00', '', 1, '99'),
-(2, 'Abhyudaya', NULL, 1132, 2, 64, 0, 0, NULL, '0000-00-00', '', 1, '100'),
-(3, 'Adi', NULL, 892, 2, 64, 0, 0, NULL, '0000-00-00', '', 1, '98'),
-(4, 'Ashvath', NULL, 580, 2, 64, 0, 0, NULL, '0000-00-00', '', 1, '97'),
-(5, NULL, NULL, 92, 2, 64, 0, 0, NULL, '0000-00-00', '', 1, '93'),
-(6, 'Kiaan', NULL, 220, 2, 64, 0, 0, NULL, '0000-00-00', '', 1, '99'),
-(7, 'Ridhaan', NULL, 545, 2, 64, 0, 0, NULL, '0000-00-00', '', 1, '90'),
-(8, 'Saiesha', NULL, 7, 2, 64, 0, 0, NULL, '0000-00-00', '', 1, '96'),
-(9, 'Samaira', NULL, 523, 2, 64, 0, 0, NULL, '0000-00-00', '', 1, '92'),
-(10, NULL, NULL, 601, 2, 64, 0, 0, NULL, '0000-00-00', '', 1, '93'),
-(11, NULL, NULL, 975, 2, 64, 0, 0, NULL, '0000-00-00', '', 1, '94'),
-(12, 'Shaurya', NULL, 1151, 2, 64, 0, 0, NULL, '0000-00-00', '', 1, '95'),
-(13, 'Sonia', NULL, 356, 2, 64, 0, 0, NULL, '0000-00-00', '', 1, '96'),
-(14, 'Vidush', NULL, 958, 2, 64, 0, 0, NULL, '0000-00-00', '', 1, '97'),
-(15, 'Zenishka', NULL, 1005, 2, 64, 0, 0, NULL, '0000-00-00', '', 1, '98'),
+(1, NULL, NULL, 464, 2, 64, 0, 0, NULL, NULL, '', 1, '99'),
+(2, 'Abhyudaya', NULL, 1132, 2, 64, 0, 0, NULL, NULL, '', 1, '100'),
+(3, 'Adi', NULL, 892, 2, 64, 0, 0, NULL, NULL, '', 1, '98'),
+(4, 'Ashvath', NULL, 580, 2, 64, 0, 0, NULL, NULL, '', 1, '97'),
+(5, NULL, NULL, 92, 2, 64, 0, 0, NULL, NULL, '', 1, '93'),
+(6, 'Kiaan', NULL, 220, 2, 64, 0, 0, NULL, NULL, '', 1, '99'),
+(7, 'Ridhaan', NULL, 545, 2, 64, 0, 0, NULL, NULL, '', 1, '90'),
+(8, 'Saiesha', NULL, 7, 2, 64, 0, 0, NULL, NULL, '', 1, '96'),
+(9, 'Samaira', NULL, 523, 2, 64, 0, 0, NULL, NULL, '', 1, '92'),
+(10, NULL, NULL, 601, 2, 64, 0, 0, NULL, NULL, '', 1, '93'),
+(11, NULL, NULL, 975, 2, 64, 0, 0, NULL, NULL, '', 1, '94'),
+(12, 'Shaurya', NULL, 1151, 2, 64, 0, 0, NULL, NULL, '', 1, '95'),
+(13, 'Sonia', NULL, 356, 2, 64, 0, 0, NULL, NULL, '', 1, '96'),
+(14, 'Vidush', NULL, 958, 2, 64, 0, 0, NULL, NULL, '', 1, '97'),
+(15, 'Zenishka', NULL, 1005, 2, 64, 0, 0, NULL, NULL, '', 1, '98'),
 (16, NULL, NULL, 465, 2, 64, NULL, NULL, NULL, NULL, NULL, 1, NULL),
 (17, NULL, NULL, 1314, 2, 64, NULL, NULL, NULL, NULL, NULL, 1, NULL),
 (18, NULL, NULL, 522, 2, 64, NULL, NULL, NULL, NULL, NULL, 1, NULL),
@@ -6219,20 +6354,20 @@ INSERT INTO `grade_m_64_2` (`id`, `user`, `a_year`, `student_id`, `term`, `subje
 --
 
 CREATE TABLE IF NOT EXISTS `grade_m_68_1` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` varchar(70) DEFAULT NULL,
-  `a_year` int(4) DEFAULT NULL,
-  `student_id` int(5) DEFAULT NULL,
-  `term` int(5) DEFAULT NULL,
-  `subject` int(5) DEFAULT NULL,
-  `category` int(5) DEFAULT NULL,
-  `category1` int(2) DEFAULT NULL,
-  `category2` int(2) DEFAULT NULL,
-  `inserted_date` date DEFAULT NULL,
-  `comments` text,
-  `status` int(1) DEFAULT '1',
+  `id`             INT          NOT NULL AUTO_INCREMENT,
+  `user`           VARCHAR(70)  DEFAULT NULL,
+  `a_year`         INT          DEFAULT NULL,
+  `student_id`     INT          DEFAULT NULL,
+  `term`           INT          DEFAULT NULL,
+  `subject`        INT          DEFAULT NULL,
+  `category`       INT          DEFAULT NULL,
+  `category1`      INT          DEFAULT NULL,
+  `category2`      INT          DEFAULT NULL,
+  `inserted_date`  DATE         DEFAULT NULL,
+  `comments`       TEXT,
+  `status`         TINYINT(1)   DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6241,20 +6376,20 @@ CREATE TABLE IF NOT EXISTS `grade_m_68_1` (
 --
 
 CREATE TABLE IF NOT EXISTS `grade_m_68_2` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` varchar(70) DEFAULT NULL,
-  `a_year` int(4) DEFAULT NULL,
-  `student_id` int(5) DEFAULT NULL,
-  `term` int(5) DEFAULT NULL,
-  `subject` int(5) DEFAULT NULL,
-  `category` int(5) DEFAULT NULL,
-  `category1` int(2) DEFAULT NULL,
-  `category2` int(2) DEFAULT NULL,
-  `inserted_date` date DEFAULT NULL,
-  `comments` text,
-  `status` int(1) DEFAULT '1',
+  `id`             INT          NOT NULL AUTO_INCREMENT,
+  `user`           VARCHAR(70)  DEFAULT NULL,
+  `a_year`         INT          DEFAULT NULL,
+  `student_id`     INT          DEFAULT NULL,
+  `term`           INT          DEFAULT NULL,
+  `subject`        INT          DEFAULT NULL,
+  `category`       INT          DEFAULT NULL,
+  `category1`      INT          DEFAULT NULL,
+  `category2`      INT          DEFAULT NULL,
+  `inserted_date`  DATE         DEFAULT NULL,
+  `comments`       TEXT,
+  `status`         TINYINT(1)   DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6263,20 +6398,20 @@ CREATE TABLE IF NOT EXISTS `grade_m_68_2` (
 --
 
 CREATE TABLE IF NOT EXISTS `grade_m_71_1` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` varchar(70) DEFAULT NULL,
-  `a_year` int(4) DEFAULT NULL,
-  `student_id` int(5) DEFAULT NULL,
-  `term` int(5) DEFAULT NULL,
-  `subject` int(5) DEFAULT NULL,
-  `category` int(5) DEFAULT NULL,
-  `category1` int(2) DEFAULT NULL,
-  `category2` int(2) DEFAULT NULL,
-  `inserted_date` date DEFAULT NULL,
-  `comments` text,
-  `status` int(1) DEFAULT '1',
+  `id`             INT          NOT NULL AUTO_INCREMENT,
+  `user`           VARCHAR(70)  DEFAULT NULL,
+  `a_year`         INT          DEFAULT NULL,
+  `student_id`     INT          DEFAULT NULL,
+  `term`           INT          DEFAULT NULL,
+  `subject`        INT          DEFAULT NULL,
+  `category`       INT          DEFAULT NULL,
+  `category1`      INT          DEFAULT NULL,
+  `category2`      INT          DEFAULT NULL,
+  `inserted_date`  DATE         DEFAULT NULL,
+  `comments`       TEXT,
+  `status`         TINYINT(1)   DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `grade_m_71_1`
@@ -6301,36 +6436,36 @@ INSERT INTO `grade_m_71_1` (`id`, `user`, `a_year`, `student_id`, `term`, `subje
 --
 
 CREATE TABLE IF NOT EXISTS `grade_m_71_2` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` varchar(70) DEFAULT NULL,
-  `a_year` int(4) DEFAULT NULL,
-  `student_id` int(5) DEFAULT NULL,
-  `term` int(5) DEFAULT NULL,
-  `subject` int(5) DEFAULT NULL,
-  `category` int(5) DEFAULT NULL,
-  `category1` int(2) DEFAULT NULL,
-  `category2` int(2) DEFAULT NULL,
-  `inserted_date` date DEFAULT NULL,
-  `comments` text,
-  `status` int(1) DEFAULT '1',
+  `id`             INT          NOT NULL AUTO_INCREMENT,
+  `user`           VARCHAR(70)  DEFAULT NULL,
+  `a_year`         INT          DEFAULT NULL,
+  `student_id`     INT          DEFAULT NULL,
+  `term`           INT          DEFAULT NULL,
+  `subject`        INT          DEFAULT NULL,
+  `category`       INT          DEFAULT NULL,
+  `category1`      INT          DEFAULT NULL,
+  `category2`      INT          DEFAULT NULL,
+  `inserted_date`  DATE         DEFAULT NULL,
+  `comments`       TEXT,
+  `status`         TINYINT(1)   DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `grade_m_71_2`
 --
 
 INSERT INTO `grade_m_71_2` (`id`, `user`, `a_year`, `student_id`, `term`, `subject`, `category`, `category1`, `category2`, `inserted_date`, `comments`, `status`) VALUES
-(1, 'Aaditya', NULL, 1277, 2, 71, 0, 0, NULL, '0000-00-00', 'Aaditya has been a welcome addition to 6B this year.  He excels at sharing his thinking and ideas with the class.  He can often see things from multiple perspectives.  I would encourage him to try to be on time to class next year.  I would also encourage him to work on his tolerance of others and on communicating with kindness.', 1),
-(2, 'Alizeh', NULL, 746, 2, 71, 0, 0, NULL, '0000-00-00', 'Alizeh has been an integral part of 6B.  She is has a knack for getting along wtih others, she shows tolarance of classmates that are different than she and often has unique ideas to share with the class.  Next year she can work on being on time (rather than standing outside socializing)and on keeping her locker neatly organized.  ', 1),
-(3, 'Aryan', NULL, 976, 2, 71, 0, 0, NULL, '0000-00-00', 'Aryan has demonstrated resinience, patience and tolerance this year.  He is always willing to participate and is enthusiastic in all he does.  He comes prepared to class and is always on time.  He can continue to work on communicating with kindness and listening to others.', 1),
-(4, 'Ayushi', NULL, 1008, 2, 71, 0, 0, NULL, '0000-00-00', 'Ayushi is a pleasure to have in class.  She listens, follows directions and treats her fellow classmates with respect.  When she choses to focus on her academics, she understands concepts with ease.  I would encourage her to stay focused on her academics, balancing her friendships with her studies.  I would also encourage her to speak up more in class as she has valuable contributions to make to our class.', 1),
-(5, 'Disha', NULL, 1123, 2, 71, 0, 0, NULL, '0000-00-00', 'Disha is an enthusiastic learner and in all she does.  She is always on time, organized and willing to help out others.  In fact she has shown much patience when working with other students to help them understand a concept.  She is very good at explaining her ideas clearly.  This year she has learned to be a better listener to her classmates.  She can continue to work on being open to her fellow classmates\\'' ideas.', 1),
-(6, 'Jahnavi', NULL, 239, 2, 71, 0, 0, NULL, '0000-00-00', 'Jahnavi has been an integral part of our class this year.  She is always laughing and gets along with her peers well.  She comes to class on time.  I would encourage Jahnavi to focus on her studies a bit more and to practice speaking up in class, to share her ideas.', 1),
-(7, 'Jasmit', NULL, 313, 2, 71, 0, 0, NULL, '0000-00-00', 'Jasmit is a quiet but important member of our class.  He gets along with his classmates well in spite of not always thinking in the same way they do.  He comes to class on time, keeps his locker organized and is well prepared for class.  I would encourage him to speak up more in class as he has valuable ideas to share that we could all benefit from.', 1),
-(8, 'Kanksha', NULL, 180, 2, 71, 0, 0, NULL, '0000-00-00', 'Kanksha has been a pleasure to have in our class this year.  She works hard and does her best at everything.  She comes to class on time and is always prepared.  I would encourage her to work on her communication and teamwork skills.  I wish her all the best at her new school next year.  I am sure she will adjust there very well.', 1),
-(9, 'Mridul', NULL, 17, 2, 71, 0, 0, NULL, '0000-00-00', 'Mridul is a quiet and thoughful member of our class.  He treats everyone with kindness, listens to others\\'' ideas and demonstrates warmth and self confidence.  I would encourage him to continue to work on his teamwork and communication skills.', 1),
-(10, 'Nandita', NULL, 305, 2, 71, 0, 0, NULL, '0000-00-00', 'Nandita has been an integral member of our class this year.  She comes to class ontime and is always willing to help out.  She has made improvements in speaking up.  However she can continue to work on this in her classes as the more we participate the more we learn.  ', 1);
+(1, 'Aaditya', NULL, 1277, 2, 71, 0, 0, NULL, NULL, 'Aaditya has been a welcome addition to 6B this year.  He excels at sharing his thinking and ideas with the class.  He can often see things from multiple perspectives.  I would encourage him to try to be on time to class next year.  I would also encourage him to work on his tolerance of others and on communicating with kindness.', 1),
+(2, 'Alizeh', NULL, 746, 2, 71, 0, 0, NULL, NULL, 'Alizeh has been an integral part of 6B.  She is has a knack for getting along wtih others, she shows tolarance of classmates that are different than she and often has unique ideas to share with the class.  Next year she can work on being on time (rather than standing outside socializing)and on keeping her locker neatly organized.  ', 1),
+(3, 'Aryan', NULL, 976, 2, 71, 0, 0, NULL, NULL, 'Aryan has demonstrated resinience, patience and tolerance this year.  He is always willing to participate and is enthusiastic in all he does.  He comes prepared to class and is always on time.  He can continue to work on communicating with kindness and listening to others.', 1),
+(4, 'Ayushi', NULL, 1008, 2, 71, 0, 0, NULL, NULL, 'Ayushi is a pleasure to have in class.  She listens, follows directions and treats her fellow classmates with respect.  When she choses to focus on her academics, she understands concepts with ease.  I would encourage her to stay focused on her academics, balancing her friendships with her studies.  I would also encourage her to speak up more in class as she has valuable contributions to make to our class.', 1),
+(5, 'Disha', NULL, 1123, 2, 71, 0, 0, NULL, NULL, 'Disha is an enthusiastic learner and in all she does.  She is always on time, organized and willing to help out others.  In fact she has shown much patience when working with other students to help them understand a concept.  She is very good at explaining her ideas clearly.  This year she has learned to be a better listener to her classmates.  She can continue to work on being open to her fellow classmates\\'' ideas.', 1),
+(6, 'Jahnavi', NULL, 239, 2, 71, 0, 0, NULL, NULL, 'Jahnavi has been an integral part of our class this year.  She is always laughing and gets along with her peers well.  She comes to class on time.  I would encourage Jahnavi to focus on her studies a bit more and to practice speaking up in class, to share her ideas.', 1),
+(7, 'Jasmit', NULL, 313, 2, 71, 0, 0, NULL, NULL, 'Jasmit is a quiet but important member of our class.  He gets along with his classmates well in spite of not always thinking in the same way they do.  He comes to class on time, keeps his locker organized and is well prepared for class.  I would encourage him to speak up more in class as he has valuable ideas to share that we could all benefit from.', 1),
+(8, 'Kanksha', NULL, 180, 2, 71, 0, 0, NULL, NULL, 'Kanksha has been a pleasure to have in our class this year.  She works hard and does her best at everything.  She comes to class on time and is always prepared.  I would encourage her to work on her communication and teamwork skills.  I wish her all the best at her new school next year.  I am sure she will adjust there very well.', 1),
+(9, 'Mridul', NULL, 17, 2, 71, 0, 0, NULL, NULL, 'Mridul is a quiet and thoughful member of our class.  He treats everyone with kindness, listens to others\\'' ideas and demonstrates warmth and self confidence.  I would encourage him to continue to work on his teamwork and communication skills.', 1),
+(10, 'Nandita', NULL, 305, 2, 71, 0, 0, NULL, NULL, 'Nandita has been an integral member of our class this year.  She comes to class ontime and is always willing to help out.  She has made improvements in speaking up.  However she can continue to work on this in her classes as the more we participate the more we learn.  ', 1);
 
 
 --
@@ -6338,13 +6473,13 @@ INSERT INTO `grade_m_71_2` (`id`, `user`, `a_year`, `student_id`, `term`, `subje
 --
 
 CREATE TABLE IF NOT EXISTS `grade_m_exception` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `exception` varchar(5) NOT NULL,
-  `description` varchar(100) NOT NULL,
-  `marks` int(3) DEFAULT NULL,
-  `status` int(1) NOT NULL DEFAULT '1',
+  `id`           INT           NOT NULL AUTO_INCREMENT,
+  `exception`    VARCHAR(5)    NOT NULL,
+  `description`  VARCHAR(100)  NOT NULL,
+  `marks`        INT           DEFAULT NULL,
+  `status`       TINYINT(1)    NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `grade_m_exception`
@@ -6364,11 +6499,11 @@ INSERT INTO `grade_m_exception` (`id`, `exception`, `description`, `marks`, `sta
 --
 
 CREATE TABLE IF NOT EXISTS `grade_points` (
-  `id` int(2) NOT NULL AUTO_INCREMENT,
-  `achievement` varchar(3) NOT NULL,
-  `effort` varchar(3) NOT NULL,
+  `id`           INT         NOT NULL AUTO_INCREMENT,
+  `achievement`  VARCHAR(3)  NOT NULL,
+  `effort`       VARCHAR(3)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `grade_points`
@@ -6388,11 +6523,11 @@ INSERT INTO `grade_points` (`id`, `achievement`, `effort`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `grade_points_eal` (
-  `id` int(2) NOT NULL AUTO_INCREMENT,
-  `achievement` varchar(50) NOT NULL,
-  `effort` varchar(3) NOT NULL,
+  `id`           INT          NOT NULL AUTO_INCREMENT,
+  `achievement`  VARCHAR(50)  NOT NULL,
+  `effort`       VARCHAR(3)   NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `grade_points_eal`
@@ -6412,12 +6547,12 @@ INSERT INTO `grade_points_eal` (`id`, `achievement`, `effort`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `grade_points_eal_assessment_key` (
-  `id` int(2) NOT NULL AUTO_INCREMENT,
-  `fname` varchar(50) NOT NULL,
-  `sname` varchar(50) NOT NULL,
-  `desc` text NOT NULL,
+  `id`     INT          NOT NULL AUTO_INCREMENT,
+  `fname`  VARCHAR(50)  NOT NULL,
+  `sname`  VARCHAR(50)  NOT NULL,
+  `desc`   TEXT         NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `grade_points_eal_assessment_key`
@@ -6436,19 +6571,19 @@ INSERT INTO `grade_points_eal_assessment_key` (`id`, `fname`, `sname`, `desc`) V
 --
 
 CREATE TABLE IF NOT EXISTS `grade_setup` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `grade_id` int(5) DEFAULT NULL COMMENT 'Master id of grade_avg',
-  `subject` int(5) DEFAULT NULL,
-  `term` int(2) DEFAULT NULL,
-  `category_grade` varchar(1) DEFAULT 'N' COMMENT 'Cap Categroy grade at 100',
-  `term_grade` varchar(1) DEFAULT 'N' COMMENT 'Cap Term grade at 100',
-  `assignment_sorting` varchar(20) DEFAULT NULL,
-  `copy_class` int(5) DEFAULT NULL COMMENT 'Copy setup to another class',
-  `cal_method` int(1) DEFAULT NULL,
-  `grade_type` varchar(10) DEFAULT 'alphabet',
-  `status` int(1) DEFAULT '1',
+  `id`                  INT          NOT NULL AUTO_INCREMENT,
+  `grade_id`            INT          DEFAULT NULL COMMENT 'Master id of grade_avg',
+  `subject`             INT          DEFAULT NULL,
+  `term`                INT          DEFAULT NULL,
+  `category_grade`      VARCHAR(1)   DEFAULT 'N' COMMENT 'Cap Categroy grade at 100',
+  `term_grade`          VARCHAR(1)   DEFAULT 'N' COMMENT 'Cap Term grade at 100',
+  `assignment_sorting`  VARCHAR(20)  DEFAULT NULL,
+  `copy_class`          INT          DEFAULT NULL COMMENT 'Copy setup to another class',
+  `cal_method`          TINYINT(1)   DEFAULT NULL,
+  `grade_type`          VARCHAR(10)  DEFAULT 'alphabet',
+  `status`              TINYINT(1)   DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=308 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `grade_setup`
@@ -6473,17 +6608,17 @@ INSERT INTO `grade_setup` (`id`, `grade_id`, `subject`, `term`, `category_grade`
 --
 
 CREATE TABLE IF NOT EXISTS `grade_skill_comments` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sub` int(11) NOT NULL,
-  `student` int(11) NOT NULL,
-  `skill` int(11) NOT NULL,
-  `sem1` text NOT NULL,
-  `sem2` text NOT NULL,
-  `user` varchar(100) NOT NULL,
-  `ent_date` date NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`        INT           NOT NULL AUTO_INCREMENT,
+  `sub`       INT           NOT NULL,
+  `student`   INT           NOT NULL,
+  `skill`     INT           NOT NULL,
+  `sem1`      TEXT          NOT NULL,
+  `sem2`      TEXT          NOT NULL,
+  `user`      VARCHAR(100)  NOT NULL,
+  `ent_date`  DATE          NOT NULL,
+  `status`    TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6492,20 +6627,20 @@ CREATE TABLE IF NOT EXISTS `grade_skill_comments` (
 --
 
 CREATE TABLE IF NOT EXISTS `grade_skill_ponts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sub` int(11) NOT NULL,
-  `student` int(11) NOT NULL,
-  `skill` int(11) NOT NULL,
-  `sub_skil` int(11) NOT NULL,
-  `sem1_ach` varchar(3) NOT NULL,
-  `sem1_eff` varchar(3) NOT NULL,
-  `sem2_ach` varchar(3) NOT NULL,
-  `sem2_eff` varchar(3) NOT NULL,
-  `user` varchar(100) NOT NULL,
-  `ent_date` date NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`        INT           NOT NULL AUTO_INCREMENT,
+  `sub`       INT           NOT NULL,
+  `student`   INT           NOT NULL,
+  `skill`     INT           NOT NULL,
+  `sub_skil`  INT           NOT NULL,
+  `sem1_ach`  VARCHAR(3)    NOT NULL,
+  `sem1_eff`  VARCHAR(3)    NOT NULL,
+  `sem2_ach`  VARCHAR(3)    NOT NULL,
+  `sem2_eff`  VARCHAR(3)    NOT NULL,
+  `user`      VARCHAR(100)  NOT NULL,
+  `ent_date`  DATE          NOT NULL,
+  `status`    TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6514,12 +6649,12 @@ CREATE TABLE IF NOT EXISTS `grade_skill_ponts` (
 --
 
 CREATE TABLE IF NOT EXISTS `hallno` (
-  `id` int(4) NOT NULL AUTO_INCREMENT,
-  `hall_no` varchar(30) DEFAULT NULL,
-  `college` varchar(60) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`       INT          NOT NULL AUTO_INCREMENT,
+  `hall_no`  VARCHAR(30)  DEFAULT NULL,
+  `college`  VARCHAR(60)  DEFAULT NULL,
+  `status`   TINYINT(1)   DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=118 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `hallno`
@@ -6544,36 +6679,36 @@ INSERT INTO `hallno` (`id`, `hall_no`, `college`, `status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `hospital_det` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `doc_name` varchar(200) DEFAULT NULL,
-  `treatment_date` date DEFAULT NULL,
-  `time_in` varchar(200) DEFAULT NULL,
-  `time_out` varchar(200) DEFAULT NULL,
-  `diagnosis` text,
-  `treatment` text,
-  `report` text,
-  `returned` varchar(100) DEFAULT NULL,
-  `picked` text,
-  `doc_detail_id` varchar(200) DEFAULT NULL,
-  `hospital_name` varchar(200) DEFAULT NULL,
+  `id`              INT           NOT NULL AUTO_INCREMENT,
+  `doc_name`        VARCHAR(200)  DEFAULT NULL,
+  `treatment_date`  DATE          DEFAULT NULL,
+  `time_in`         VARCHAR(200)  DEFAULT NULL,
+  `time_out`        VARCHAR(200)  DEFAULT NULL,
+  `diagnosis`       TEXT,
+  `treatment`       TEXT,
+  `report`          TEXT,
+  `returned`        VARCHAR(100)  DEFAULT NULL,
+  `picked`          TEXT,
+  `doc_detail_id`   VARCHAR(200)  DEFAULT NULL,
+  `hospital_name`   VARCHAR(200)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `hospital_det`
 --
 
 INSERT INTO `hospital_det` (`id`, `doc_name`, `treatment_date`, `time_in`, `time_out`, `diagnosis`, `treatment`, `report`, `returned`, `picked`, `doc_detail_id`, `hospital_name`) VALUES
-(1, '14july', '0000-00-00', '12-59-AM', '12-59-AM', '14july', '14july', '14july', 'on', '14july', '', '0'),
-(2, 'Doctor''s Name', '0000-00-00', '12-59-AM', '12-59-AM', 'Diagnosis', 'Treatment', 'Report', 'on', 'Picked By', '', '1'),
-(3, 'Doctor''s Name', '0000-00-00', '12-59-AM', '12-59-AM', 'Diagnosis', 'Treatment', 'Report', 'on', 'Picked By', '', '1'),
-(4, 'Testing', '0000-00-00', '12-59-AM', '12-59-AM', 'Testing', 'Testing', 'Testing', 'on', 'Testing', '', '1'),
-(5, 'Test', '0000-00-00', '12-59-AM', '12-59-AM', 'Test', 'Test', 'Test', 'on', 'Test', '', '1'),
-(6, 'Test', '0000-00-00', '12-59-AM', '12-59-AM', 'Test', 'Test', 'Test', 'on', 'Test', '', '1'),
-(7, 'Test', '0000-00-00', '12-59-AM', '12-59-AM', 'Test', 'Test', 'Test', 'on', 'Test', '4341', '1'),
-(8, '', '0000-00-00', '12-00-AM', '12-00-AM', '', '', '', 'no', '', '41', ''),
-(9, '', '0000-00-00', '12-00-AM', '12-00-AM', '', '', '', 'no', '', '42', ''),
-(10, '', '0000-00-00', '12-00-AM', '12-00-AM', '', '', '', 'no', '', '634', '');
+(1, '14july', NULL, '12-59-AM', '12-59-AM', '14july', '14july', '14july', 'on', '14july', '', '0'),
+(2, 'Doctor''s Name', NULL, '12-59-AM', '12-59-AM', 'Diagnosis', 'Treatment', 'Report', 'on', 'Picked By', '', '1'),
+(3, 'Doctor''s Name', NULL, '12-59-AM', '12-59-AM', 'Diagnosis', 'Treatment', 'Report', 'on', 'Picked By', '', '1'),
+(4, 'Testing', NULL, '12-59-AM', '12-59-AM', 'Testing', 'Testing', 'Testing', 'on', 'Testing', '', '1'),
+(5, 'Test', NULL, '12-59-AM', '12-59-AM', 'Test', 'Test', 'Test', 'on', 'Test', '', '1'),
+(6, 'Test', NULL, '12-59-AM', '12-59-AM', 'Test', 'Test', 'Test', 'on', 'Test', '', '1'),
+(7, 'Test', NULL, '12-59-AM', '12-59-AM', 'Test', 'Test', 'Test', 'on', 'Test', '4341', '1'),
+(8, '', NULL, '12-00-AM', '12-00-AM', '', '', '', 'no', '', '41', ''),
+(9, '', NULL, '12-00-AM', '12-00-AM', '', '', '', 'no', '', '42', ''),
+(10, '', NULL, '12-00-AM', '12-00-AM', '', '', '', 'no', '', '634', '');
 
 -- --------------------------------------------------------
 
@@ -6582,10 +6717,10 @@ INSERT INTO `hospital_det` (`id`, `doc_name`, `treatment_date`, `time_in`, `time
 --
 
 CREATE TABLE IF NOT EXISTS `hospital_tab` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `hospital_name` varchar(250) DEFAULT NULL,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `hospital_name`  VARCHAR(250)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `hospital_tab`
@@ -6601,16 +6736,16 @@ INSERT INTO `hospital_tab` (`id`, `hospital_name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `hostel_fee_m` (
-  `id` int(15) NOT NULL AUTO_INCREMENT,
-  `fee_id` int(15) NOT NULL DEFAULT '0',
-  `amt` int(15) NOT NULL DEFAULT '0',
-  `installment` int(11) DEFAULT '0',
-  `due_date` date NOT NULL DEFAULT '0000-00-00',
-  `hostel_id` int(11) DEFAULT NULL,
-  `academic_term` varchar(200) DEFAULT NULL,
-  `refund` varchar(10) DEFAULT NULL,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `fee_id`         INT           NOT NULL DEFAULT '0',
+  `amt`            INT           NOT NULL DEFAULT '0',
+  `installment`    INT           DEFAULT '0',
+  `due_date`       DATE          DEFAULT NULL,
+  `hostel_id`      INT           DEFAULT NULL,
+  `academic_term`  VARCHAR(200)  DEFAULT NULL,
+  `refund`         VARCHAR(10)   DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6619,11 +6754,11 @@ CREATE TABLE IF NOT EXISTS `hostel_fee_m` (
 --
 
 CREATE TABLE IF NOT EXISTS `hostel_fee_type` (
-  `fee_id` int(11) NOT NULL AUTO_INCREMENT,
-  `fee_name` varchar(100) NOT NULL DEFAULT '',
-  `status` int(2) NOT NULL DEFAULT '1',
+  `fee_id`    INT           NOT NULL AUTO_INCREMENT,
+  `fee_name`  VARCHAR(100)  NOT NULL DEFAULT '',
+  `status`    INT           NOT NULL DEFAULT '1',
   PRIMARY KEY (`fee_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6632,20 +6767,20 @@ CREATE TABLE IF NOT EXISTS `hostel_fee_type` (
 --
 
 CREATE TABLE IF NOT EXISTS `hostel_m` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
-  `hostel_id` varchar(25) DEFAULT NULL,
-  `hostel_name` varchar(255) DEFAULT NULL,
-  `hostel_type` enum('B','G') DEFAULT 'B',
-  `address` text,
-  `phone_no` varchar(50) DEFAULT NULL,
-  `no_floors` int(8) DEFAULT NULL,
-  `no_rooms` int(8) DEFAULT NULL,
-  `warden_name` varchar(50) DEFAULT NULL,
-  `no_attender` int(8) DEFAULT NULL,
-  `hostel_rent` float(8,2) DEFAULT NULL,
-  `mess_charge` float(8,2) DEFAULT NULL,
+  `id`           INT            NOT NULL AUTO_INCREMENT,
+  `hostel_id`    VARCHAR(25)    DEFAULT NULL,
+  `hostel_name`  VARCHAR(255)   DEFAULT NULL,
+  `hostel_type`  ENUM('B','G')  DEFAULT 'B',
+  `address`      TEXT,
+  `phone_no`     VARCHAR(50)    DEFAULT NULL,
+  `no_floors`    INT            DEFAULT NULL,
+  `no_rooms`     INT            DEFAULT NULL,
+  `warden_name`  VARCHAR(50)    DEFAULT NULL,
+  `no_attender`  INT            DEFAULT NULL,
+  `hostel_rent`  FLOAT(8,2)     DEFAULT NULL,
+  `mess_charge`  FLOAT(8,2)     DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6654,27 +6789,28 @@ CREATE TABLE IF NOT EXISTS `hostel_m` (
 --
 
 CREATE TABLE IF NOT EXISTS `h_archive_m` (
-  `id` int(11) NOT NULL DEFAULT '0',
-  `s_id` varchar(50) NOT NULL DEFAULT '',
-  `h_id` int(11) NOT NULL DEFAULT '0',
-  `lg_name` varchar(50) NOT NULL DEFAULT '',
-  `relation` varchar(50) NOT NULL DEFAULT '',
-  `lg_add` varchar(50) NOT NULL DEFAULT '',
-  `phone` varchar(50) DEFAULT NULL,
-  `food` int(11) NOT NULL DEFAULT '0',
-  `room_no` int(11) DEFAULT NULL,
-  `old_s_name` varchar(50) DEFAULT NULL,
-  `year1` varchar(50) DEFAULT NULL,
-  `emp_n` varchar(50) DEFAULT NULL,
-  `dept` varchar(50) DEFAULT NULL,
-  `ex_activity` varchar(50) DEFAULT NULL,
-  `j_date` datetime DEFAULT NULL,
-  `weight` int(11) DEFAULT NULL,
-  `bid` varchar(50) DEFAULT NULL,
-  `date_of_updation` date DEFAULT NULL,
-  `domain` varchar(25) DEFAULT NULL,
-  `l_date` date DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`                INT          NOT NULL DEFAULT '0',
+  `s_id`              VARCHAR(50)  NOT NULL DEFAULT '',
+  `h_id`              INT          NOT NULL DEFAULT '0',
+  `lg_name`           VARCHAR(50)  NOT NULL DEFAULT '',
+  `relation`          VARCHAR(50)  NOT NULL DEFAULT '',
+  `lg_add`            VARCHAR(50)  NOT NULL DEFAULT '',
+  `phone`             VARCHAR(50)  DEFAULT NULL,
+  `food`              INT          NOT NULL DEFAULT '0',
+  `room_no`           INT          DEFAULT NULL,
+  `old_s_name`        VARCHAR(50)  DEFAULT NULL,
+  `year1`             VARCHAR(50)  DEFAULT NULL,
+  `emp_n`             VARCHAR(50)  DEFAULT NULL,
+  `dept`              VARCHAR(50)  DEFAULT NULL,
+  `ex_activity`       VARCHAR(50)  DEFAULT NULL,
+  `j_date`            DATETIME     DEFAULT NULL,
+  `weight`            INT          DEFAULT NULL,
+  `bid`               VARCHAR(50)  DEFAULT NULL,
+  `date_of_updation`  DATE         DEFAULT NULL,
+  `domain`            VARCHAR(25)  DEFAULT NULL,
+  `l_date`            DATE         DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6683,12 +6819,12 @@ CREATE TABLE IF NOT EXISTS `h_archive_m` (
 --
 
 CREATE TABLE IF NOT EXISTS `h_block` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `blockname` varchar(50) NOT NULL DEFAULT '',
-  `hostel_no` int(4) DEFAULT NULL,
-  `status` enum('1','0') DEFAULT '1',
+  `id`         INT            NOT NULL AUTO_INCREMENT,
+  `blockname`  VARCHAR(50)    NOT NULL DEFAULT '',
+  `hostel_no`  INT            DEFAULT NULL,
+  `status`     ENUM('1','0')  DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6697,15 +6833,15 @@ CREATE TABLE IF NOT EXISTS `h_block` (
 --
 
 CREATE TABLE IF NOT EXISTS `h_cons_purchase_det` (
-  `id_det` int(11) NOT NULL AUTO_INCREMENT,
-  `id_m` int(11) NOT NULL DEFAULT '0',
-  `itemname_id` int(11) NOT NULL DEFAULT '0',
-  `quantity` varchar(45) DEFAULT NULL,
-  `quantity_type` varchar(45) DEFAULT NULL,
-  `unit_price` varchar(45) DEFAULT '0',
-  `amount` varchar(250) DEFAULT '0',
+  `id_det`         INT           NOT NULL AUTO_INCREMENT,
+  `id_m`           INT           NOT NULL DEFAULT '0',
+  `itemname_id`    INT           NOT NULL DEFAULT '0',
+  `quantity`       VARCHAR(45)   DEFAULT NULL,
+  `quantity_type`  VARCHAR(45)   DEFAULT NULL,
+  `unit_price`     VARCHAR(45)   DEFAULT '0',
+  `amount`         VARCHAR(250)  DEFAULT '0',
   PRIMARY KEY (`id_det`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6714,18 +6850,18 @@ CREATE TABLE IF NOT EXISTS `h_cons_purchase_det` (
 --
 
 CREATE TABLE IF NOT EXISTS `h_cons_purchase_m` (
-  `id_m` int(11) NOT NULL AUTO_INCREMENT,
-  `date_of_entry` date DEFAULT '0000-00-00',
-  `supplier_id` int(11) DEFAULT '0',
-  `bill_no` varchar(45) DEFAULT NULL,
-  `bill_date` date DEFAULT '0000-00-00',
-  `no_of_items` varchar(50) DEFAULT NULL,
-  `tax` varchar(45) DEFAULT NULL,
-  `total_amount` varchar(50) DEFAULT NULL,
-  `comments` varchar(250) DEFAULT NULL,
-  `user_id` int(45) DEFAULT NULL,
+  `id_m`           INT           NOT NULL AUTO_INCREMENT,
+  `date_of_entry`  DATE          DEFAULT NULL,
+  `supplier_id`    INT           DEFAULT '0',
+  `bill_no`        VARCHAR(45)   DEFAULT NULL,
+  `bill_date`      DATE          DEFAULT NULL,
+  `no_of_items`    VARCHAR(50)   DEFAULT NULL,
+  `tax`            VARCHAR(45)   DEFAULT NULL,
+  `total_amount`   VARCHAR(50)   DEFAULT NULL,
+  `comments`       VARCHAR(250)  DEFAULT NULL,
+  `user_id`        INT           DEFAULT NULL,
   PRIMARY KEY (`id_m`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6734,17 +6870,17 @@ CREATE TABLE IF NOT EXISTS `h_cons_purchase_m` (
 --
 
 CREATE TABLE IF NOT EXISTS `h_issue_consumable` (
-  `issue_id` int(11) NOT NULL AUTO_INCREMENT,
-  `college_id` int(11) DEFAULT NULL,
-  `department_id` int(11) DEFAULT NULL,
-  `issued_date` date DEFAULT '0000-00-00',
-  `itemname` varchar(250) DEFAULT NULL,
-  `issued_qty` varchar(45) DEFAULT NULL,
-  `issued_by` varchar(250) DEFAULT NULL,
-  `issued_to` varchar(250) DEFAULT NULL,
-  `comments` varchar(250) DEFAULT NULL,
+  `issue_id`       INT           NOT NULL AUTO_INCREMENT,
+  `college_id`     INT           DEFAULT NULL,
+  `department_id`  INT           DEFAULT NULL,
+  `issued_date`    DATE          DEFAULT NULL,
+  `itemname`       VARCHAR(250)  DEFAULT NULL,
+  `issued_qty`     VARCHAR(45)   DEFAULT NULL,
+  `issued_by`      VARCHAR(250)  DEFAULT NULL,
+  `issued_to`      VARCHAR(250)  DEFAULT NULL,
+  `comments`       VARCHAR(250)  DEFAULT NULL,
   PRIMARY KEY (`issue_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6753,12 +6889,12 @@ CREATE TABLE IF NOT EXISTS `h_issue_consumable` (
 --
 
 CREATE TABLE IF NOT EXISTS `h_item_master` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `item_name` varchar(250) DEFAULT NULL,
-  `quantity_type` varchar(250) DEFAULT NULL,
-  `stock` varchar(250) DEFAULT '0',
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `item_name`      VARCHAR(250)  DEFAULT NULL,
+  `quantity_type`  VARCHAR(250)  DEFAULT NULL,
+  `stock`          VARCHAR(250)  DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6767,15 +6903,15 @@ CREATE TABLE IF NOT EXISTS `h_item_master` (
 --
 
 CREATE TABLE IF NOT EXISTS `h_room_m` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `h_id` int(11) NOT NULL DEFAULT '0',
-  `room_no` varchar(50) NOT NULL DEFAULT '',
-  `capacity` int(11) NOT NULL DEFAULT '0',
-  `occupant` int(11) NOT NULL DEFAULT '0',
-  `bid` int(11) NOT NULL DEFAULT '0',
-  `ext_no` int(11) DEFAULT '0',
+  `id`        INT          NOT NULL AUTO_INCREMENT,
+  `h_id`      INT          NOT NULL DEFAULT '0',
+  `room_no`   VARCHAR(50)  NOT NULL DEFAULT '',
+  `capacity`  INT          NOT NULL DEFAULT '0',
+  `occupant`  INT          NOT NULL DEFAULT '0',
+  `bid`       INT          NOT NULL DEFAULT '0',
+  `ext_no`    INT          DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6784,28 +6920,28 @@ CREATE TABLE IF NOT EXISTS `h_room_m` (
 --
 
 CREATE TABLE IF NOT EXISTS `h_stud_m` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `s_id` int(6) unsigned zerofill DEFAULT NULL,
-  `h_id` int(11) NOT NULL DEFAULT '0',
-  `lg_name` varchar(50) NOT NULL DEFAULT '',
-  `relation` varchar(50) NOT NULL DEFAULT '',
-  `lg_add` varchar(50) NOT NULL DEFAULT '',
-  `phone` varchar(50) DEFAULT NULL,
-  `room_no` int(11) DEFAULT NULL,
-  `emp_n` varchar(50) DEFAULT NULL,
-  `dept` varchar(50) DEFAULT NULL,
-  `j_date` date DEFAULT NULL,
-  `bid` varchar(50) DEFAULT NULL,
-  `domain` varchar(10) DEFAULT NULL,
-  `archive` char(1) DEFAULT NULL,
-  `l_date` date DEFAULT NULL,
-  `p_add` varchar(255) DEFAULT NULL,
-  `p_phone` varchar(20) DEFAULT NULL,
-  `blood` varchar(20) DEFAULT NULL,
-  `last_name` varchar(50) DEFAULT NULL,
-  `first_name` varchar(50) DEFAULT NULL,
+  `id`          INT                    NOT NULL AUTO_INCREMENT,
+  `s_id`        INT UNSIGNED ZEROFILL  DEFAULT NULL,
+  `h_id`        INT                    NOT NULL DEFAULT '0',
+  `lg_name`     VARCHAR(50)            NOT NULL DEFAULT '',
+  `relation`    VARCHAR(50)            NOT NULL DEFAULT '',
+  `lg_add`      VARCHAR(50)            NOT NULL DEFAULT '',
+  `phone`       VARCHAR(50)            DEFAULT NULL,
+  `room_no`     INT                    DEFAULT NULL,
+  `emp_n`       VARCHAR(50)            DEFAULT NULL,
+  `dept`        VARCHAR(50)            DEFAULT NULL,
+  `j_date`      DATE                   DEFAULT NULL,
+  `bid`         VARCHAR(50)            DEFAULT NULL,
+  `domain`      VARCHAR(10)            DEFAULT NULL,
+  `archive`     CHAR(1)                DEFAULT NULL,
+  `l_date`      DATE                   DEFAULT NULL,
+  `p_add`       VARCHAR(255)           DEFAULT NULL,
+  `p_phone`     VARCHAR(20)            DEFAULT NULL,
+  `blood`       VARCHAR(20)            DEFAULT NULL,
+  `last_name`   VARCHAR(50)            DEFAULT NULL,
+  `first_name`  VARCHAR(50)            DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6814,18 +6950,18 @@ CREATE TABLE IF NOT EXISTS `h_stud_m` (
 --
 
 CREATE TABLE IF NOT EXISTS `h_suplier_master` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(250) DEFAULT NULL,
-  `contact_person` varchar(100) DEFAULT NULL,
-  `phone` varchar(30) DEFAULT NULL,
-  `fax` varchar(30) DEFAULT NULL,
-  `email` varchar(30) DEFAULT NULL,
-  `black_listed` enum('YES','NO') DEFAULT 'NO',
-  `address` varchar(255) DEFAULT NULL,
-  `remarks` varchar(255) DEFAULT NULL,
-  `ledger_id` varchar(10) DEFAULT NULL,
+  `id`              INT               NOT NULL AUTO_INCREMENT,
+  `name`            VARCHAR(250)      DEFAULT NULL,
+  `contact_person`  VARCHAR(100)      DEFAULT NULL,
+  `phone`           VARCHAR(30)       DEFAULT NULL,
+  `fax`             VARCHAR(30)       DEFAULT NULL,
+  `email`           VARCHAR(30)       DEFAULT NULL,
+  `black_listed`    ENUM('YES','NO')  DEFAULT 'NO',
+  `address`         VARCHAR(255)      DEFAULT NULL,
+  `remarks`         VARCHAR(255)      DEFAULT NULL,
+  `ledger_id`       VARCHAR(10)       DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6834,15 +6970,15 @@ CREATE TABLE IF NOT EXISTS `h_suplier_master` (
 --
 
 CREATE TABLE IF NOT EXISTS `h_temp_cons_purchase_det` (
-  `id_det` int(11) NOT NULL AUTO_INCREMENT,
-  `id_m` int(11) NOT NULL DEFAULT '0',
-  `itemname_id` int(11) NOT NULL DEFAULT '0',
-  `quantity` varchar(45) DEFAULT NULL,
-  `quantity_type` varchar(45) DEFAULT NULL,
-  `unit_price` varchar(45) DEFAULT '0',
-  `amount` varchar(250) DEFAULT '0',
+  `id_det`         INT           NOT NULL AUTO_INCREMENT,
+  `id_m`           INT           NOT NULL DEFAULT '0',
+  `itemname_id`    INT           NOT NULL DEFAULT '0',
+  `quantity`       VARCHAR(45)   DEFAULT NULL,
+  `quantity_type`  VARCHAR(45)   DEFAULT NULL,
+  `unit_price`     VARCHAR(45)   DEFAULT '0',
+  `amount`         VARCHAR(250)  DEFAULT '0',
   PRIMARY KEY (`id_det`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6851,12 +6987,12 @@ CREATE TABLE IF NOT EXISTS `h_temp_cons_purchase_det` (
 --
 
 CREATE TABLE IF NOT EXISTS `h_temp_issue_consumable` (
-  `issue_id` int(11) NOT NULL AUTO_INCREMENT,
-  `itemname_id` int(11) NOT NULL DEFAULT '0',
-  `issued_qty` varchar(45) DEFAULT NULL,
-  `issued_to` varchar(250) DEFAULT NULL,
+  `issue_id`     INT           NOT NULL AUTO_INCREMENT,
+  `itemname_id`  INT           NOT NULL DEFAULT '0',
+  `issued_qty`   VARCHAR(45)   DEFAULT NULL,
+  `issued_to`    VARCHAR(250)  DEFAULT NULL,
   PRIMARY KEY (`issue_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6865,9 +7001,10 @@ CREATE TABLE IF NOT EXISTS `h_temp_issue_consumable` (
 --
 
 CREATE TABLE IF NOT EXISTS `id` (
-  `student_id` varchar(255) DEFAULT NULL,
-  `no_series` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `student_id`  VARCHAR(255)  DEFAULT NULL,
+  `no_series`   VARCHAR(255)  DEFAULT NULL,
+  PRIMARY KEY (`student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `id`
@@ -6894,16 +7031,16 @@ INSERT INTO `id` (`student_id`, `no_series`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `ideas` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `class` int(3) NOT NULL,
-  `exam_id` int(11) NOT NULL,
-  `idea` text NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `theme` text NOT NULL,
-  `keyconc` text NOT NULL,
-  `unit` int(11) NOT NULL,
+  `id`        INT   NOT NULL AUTO_INCREMENT,
+  `class`     INT   NOT NULL,
+  `exam_id`   INT   NOT NULL,
+  `idea`      TEXT  NOT NULL,
+  `acc_year`  INT   NOT NULL,
+  `theme`     TEXT  NOT NULL,
+  `keyconc`   TEXT  NOT NULL,
+  `unit`      INT   NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `ideas`
@@ -6928,14 +7065,14 @@ INSERT INTO `ideas` (`id`, `class`, `exam_id`, `idea`, `acc_year`, `theme`, `key
 --
 
 CREATE TABLE IF NOT EXISTS `ideas_1` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `class` int(3) NOT NULL,
-  `master_ideas` int(10) NOT NULL,
-  `idea` text NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `posi` int(2) NOT NULL,
+  `id`            INT   NOT NULL AUTO_INCREMENT,
+  `class`         INT   NOT NULL,
+  `master_ideas`  INT   NOT NULL,
+  `idea`          TEXT  NOT NULL,
+  `acc_year`      INT   NOT NULL,
+  `posi`          INT   NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6944,20 +7081,20 @@ CREATE TABLE IF NOT EXISTS `ideas_1` (
 --
 
 CREATE TABLE IF NOT EXISTS `igc_2026_1` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `class_section` int(2) DEFAULT NULL,
-  `student_id` int(11) DEFAULT NULL,
-  `subject_id` int(8) DEFAULT NULL,
-  `status` varchar(4) DEFAULT NULL,
-  `sem_id` int(8) DEFAULT NULL,
-  `int_id` int(8) DEFAULT NULL,
-  `tst_id` int(8) DEFAULT NULL,
-  `mark` float DEFAULT NULL,
-  `grade` varchar(4) DEFAULT NULL,
-  `remarks` text NOT NULL,
-  `grade_rem` varchar(250) NOT NULL,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `class_section`  INT           DEFAULT NULL,
+  `student_id`     INT           DEFAULT NULL,
+  `subject_id`     INT           DEFAULT NULL,
+  `status`         VARCHAR(4)    DEFAULT NULL,
+  `sem_id`         INT           DEFAULT NULL,
+  `int_id`         INT           DEFAULT NULL,
+  `tst_id`         INT           DEFAULT NULL,
+  `mark`           FLOAT         DEFAULT NULL,
+  `grade`          VARCHAR(4)    DEFAULT NULL,
+  `remarks`        TEXT          NOT NULL,
+  `grade_rem`      VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6966,20 +7103,20 @@ CREATE TABLE IF NOT EXISTS `igc_2026_1` (
 --
 
 CREATE TABLE IF NOT EXISTS `igc_2026_2` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `class_section` int(2) DEFAULT NULL,
-  `student_id` int(11) DEFAULT NULL,
-  `subject_id` int(8) DEFAULT NULL,
-  `status` varchar(4) DEFAULT NULL,
-  `sem_id` int(8) DEFAULT NULL,
-  `int_id` int(8) DEFAULT NULL,
-  `tst_id` int(8) DEFAULT NULL,
-  `mark` float DEFAULT NULL,
-  `grade` varchar(4) DEFAULT NULL,
-  `remarks` text NOT NULL,
-  `grade_rem` varchar(250) NOT NULL,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `class_section`  INT           DEFAULT NULL,
+  `student_id`     INT           DEFAULT NULL,
+  `subject_id`     INT           DEFAULT NULL,
+  `status`         VARCHAR(4)    DEFAULT NULL,
+  `sem_id`         INT           DEFAULT NULL,
+  `int_id`         INT           DEFAULT NULL,
+  `tst_id`         INT           DEFAULT NULL,
+  `mark`           FLOAT         DEFAULT NULL,
+  `grade`          VARCHAR(4)    DEFAULT NULL,
+  `remarks`        TEXT          NOT NULL,
+  `grade_rem`      VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -6988,20 +7125,20 @@ CREATE TABLE IF NOT EXISTS `igc_2026_2` (
 --
 
 CREATE TABLE IF NOT EXISTS `igc_2026_3` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `class_section` int(2) DEFAULT NULL,
-  `student_id` int(11) DEFAULT NULL,
-  `subject_id` int(8) DEFAULT NULL,
-  `status` varchar(4) DEFAULT NULL,
-  `sem_id` int(8) DEFAULT NULL,
-  `int_id` int(8) DEFAULT NULL,
-  `tst_id` int(8) DEFAULT NULL,
-  `mark` float DEFAULT NULL,
-  `grade` varchar(4) DEFAULT NULL,
-  `remarks` text NOT NULL,
-  `grade_rem` varchar(250) NOT NULL,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `class_section`  INT           DEFAULT NULL,
+  `student_id`     INT           DEFAULT NULL,
+  `subject_id`     INT           DEFAULT NULL,
+  `status`         VARCHAR(4)    DEFAULT NULL,
+  `sem_id`         INT           DEFAULT NULL,
+  `int_id`         INT           DEFAULT NULL,
+  `tst_id`         INT           DEFAULT NULL,
+  `mark`           FLOAT         DEFAULT NULL,
+  `grade`          VARCHAR(4)    DEFAULT NULL,
+  `remarks`        TEXT          NOT NULL,
+  `grade_rem`      VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7010,20 +7147,20 @@ CREATE TABLE IF NOT EXISTS `igc_2026_3` (
 --
 
 CREATE TABLE IF NOT EXISTS `igc_2026_4` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `class_section` int(2) DEFAULT NULL,
-  `student_id` int(11) DEFAULT NULL,
-  `subject_id` int(8) DEFAULT NULL,
-  `status` varchar(4) DEFAULT NULL,
-  `sem_id` int(8) DEFAULT NULL,
-  `int_id` int(8) DEFAULT NULL,
-  `tst_id` int(8) DEFAULT NULL,
-  `mark` float DEFAULT NULL,
-  `grade` varchar(4) DEFAULT NULL,
-  `remarks` text NOT NULL,
-  `grade_rem` varchar(250) NOT NULL,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `class_section`  INT           DEFAULT NULL,
+  `student_id`     INT           DEFAULT NULL,
+  `subject_id`     INT           DEFAULT NULL,
+  `status`         VARCHAR(4)    DEFAULT NULL,
+  `sem_id`         INT           DEFAULT NULL,
+  `int_id`         INT           DEFAULT NULL,
+  `tst_id`         INT           DEFAULT NULL,
+  `mark`           FLOAT         DEFAULT NULL,
+  `grade`          VARCHAR(4)    DEFAULT NULL,
+  `remarks`        TEXT          NOT NULL,
+  `grade_rem`      VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7032,20 +7169,20 @@ CREATE TABLE IF NOT EXISTS `igc_2026_4` (
 --
 
 CREATE TABLE IF NOT EXISTS `igc_2026_5` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `class_section` int(2) DEFAULT NULL,
-  `student_id` int(11) DEFAULT NULL,
-  `subject_id` int(8) DEFAULT NULL,
-  `status` varchar(4) DEFAULT NULL,
-  `sem_id` int(8) DEFAULT NULL,
-  `int_id` int(8) DEFAULT NULL,
-  `tst_id` int(8) DEFAULT NULL,
-  `mark` float DEFAULT NULL,
-  `grade` varchar(4) DEFAULT NULL,
-  `remarks` text NOT NULL,
-  `grade_rem` varchar(250) NOT NULL,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `class_section`  INT           DEFAULT NULL,
+  `student_id`     INT           DEFAULT NULL,
+  `subject_id`     INT           DEFAULT NULL,
+  `status`         VARCHAR(4)    DEFAULT NULL,
+  `sem_id`         INT           DEFAULT NULL,
+  `int_id`         INT           DEFAULT NULL,
+  `tst_id`         INT           DEFAULT NULL,
+  `mark`           FLOAT         DEFAULT NULL,
+  `grade`          VARCHAR(4)    DEFAULT NULL,
+  `remarks`        TEXT          NOT NULL,
+  `grade_rem`      VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7054,20 +7191,20 @@ CREATE TABLE IF NOT EXISTS `igc_2026_5` (
 --
 
 CREATE TABLE IF NOT EXISTS `igc_2026_6` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `class_section` int(2) DEFAULT NULL,
-  `student_id` int(11) DEFAULT NULL,
-  `subject_id` int(8) DEFAULT NULL,
-  `status` varchar(4) DEFAULT NULL,
-  `sem_id` int(8) DEFAULT NULL,
-  `int_id` int(8) DEFAULT NULL,
-  `tst_id` int(8) DEFAULT NULL,
-  `mark` float DEFAULT NULL,
-  `grade` varchar(4) DEFAULT NULL,
-  `remarks` text NOT NULL,
-  `grade_rem` varchar(250) NOT NULL,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `class_section`  INT           DEFAULT NULL,
+  `student_id`     INT           DEFAULT NULL,
+  `subject_id`     INT           DEFAULT NULL,
+  `status`         VARCHAR(4)    DEFAULT NULL,
+  `sem_id`         INT           DEFAULT NULL,
+  `int_id`         INT           DEFAULT NULL,
+  `tst_id`         INT           DEFAULT NULL,
+  `mark`           FLOAT         DEFAULT NULL,
+  `grade`          VARCHAR(4)    DEFAULT NULL,
+  `remarks`        TEXT          NOT NULL,
+  `grade_rem`      VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7076,20 +7213,20 @@ CREATE TABLE IF NOT EXISTS `igc_2026_6` (
 --
 
 CREATE TABLE IF NOT EXISTS `igc_2026_7` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `class_section` int(2) DEFAULT NULL,
-  `student_id` int(11) DEFAULT NULL,
-  `subject_id` int(8) DEFAULT NULL,
-  `status` varchar(4) DEFAULT NULL,
-  `sem_id` int(8) DEFAULT NULL,
-  `int_id` int(8) DEFAULT NULL,
-  `tst_id` int(8) DEFAULT NULL,
-  `mark` float DEFAULT NULL,
-  `grade` varchar(4) DEFAULT NULL,
-  `remarks` text NOT NULL,
-  `grade_rem` varchar(250) NOT NULL,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `class_section`  INT           DEFAULT NULL,
+  `student_id`     INT           DEFAULT NULL,
+  `subject_id`     INT           DEFAULT NULL,
+  `status`         VARCHAR(4)    DEFAULT NULL,
+  `sem_id`         INT           DEFAULT NULL,
+  `int_id`         INT           DEFAULT NULL,
+  `tst_id`         INT           DEFAULT NULL,
+  `mark`           FLOAT         DEFAULT NULL,
+  `grade`          VARCHAR(4)    DEFAULT NULL,
+  `remarks`        TEXT          NOT NULL,
+  `grade_rem`      VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7098,20 +7235,20 @@ CREATE TABLE IF NOT EXISTS `igc_2026_7` (
 --
 
 CREATE TABLE IF NOT EXISTS `igc_2026_8` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `class_section` int(2) DEFAULT NULL,
-  `student_id` int(11) DEFAULT NULL,
-  `subject_id` int(8) DEFAULT NULL,
-  `status` varchar(4) DEFAULT NULL,
-  `sem_id` int(8) DEFAULT NULL,
-  `int_id` int(8) DEFAULT NULL,
-  `tst_id` int(8) DEFAULT NULL,
-  `mark` float DEFAULT NULL,
-  `grade` varchar(4) DEFAULT NULL,
-  `remarks` text NOT NULL,
-  `grade_rem` varchar(250) NOT NULL,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `class_section`  INT           DEFAULT NULL,
+  `student_id`     INT           DEFAULT NULL,
+  `subject_id`     INT           DEFAULT NULL,
+  `status`         VARCHAR(4)    DEFAULT NULL,
+  `sem_id`         INT           DEFAULT NULL,
+  `int_id`         INT           DEFAULT NULL,
+  `tst_id`         INT           DEFAULT NULL,
+  `mark`           FLOAT         DEFAULT NULL,
+  `grade`          VARCHAR(4)    DEFAULT NULL,
+  `remarks`        TEXT          NOT NULL,
+  `grade_rem`      VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7120,20 +7257,20 @@ CREATE TABLE IF NOT EXISTS `igc_2026_8` (
 --
 
 CREATE TABLE IF NOT EXISTS `igc_2026_9` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `class_section` int(2) DEFAULT NULL,
-  `student_id` int(11) DEFAULT NULL,
-  `subject_id` int(8) DEFAULT NULL,
-  `status` varchar(4) DEFAULT NULL,
-  `sem_id` int(8) DEFAULT NULL,
-  `int_id` int(8) DEFAULT NULL,
-  `tst_id` int(8) DEFAULT NULL,
-  `mark` float DEFAULT NULL,
-  `grade` varchar(4) DEFAULT NULL,
-  `remarks` text NOT NULL,
-  `grade_rem` varchar(250) NOT NULL,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `class_section`  INT           DEFAULT NULL,
+  `student_id`     INT           DEFAULT NULL,
+  `subject_id`     INT           DEFAULT NULL,
+  `status`         VARCHAR(4)    DEFAULT NULL,
+  `sem_id`         INT           DEFAULT NULL,
+  `int_id`         INT           DEFAULT NULL,
+  `tst_id`         INT           DEFAULT NULL,
+  `mark`           FLOAT         DEFAULT NULL,
+  `grade`          VARCHAR(4)    DEFAULT NULL,
+  `remarks`        TEXT          NOT NULL,
+  `grade_rem`      VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7142,17 +7279,17 @@ CREATE TABLE IF NOT EXISTS `igc_2026_9` (
 --
 
 CREATE TABLE IF NOT EXISTS `igc_exam_year_m` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
-  `exam_name` varchar(75) NOT NULL,
-  `exam_sub_name` varchar(50) NOT NULL,
-  `per_info` int(3) NOT NULL,
-  `mark` int(4) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `class` int(4) NOT NULL,
-  `status` int(1) NOT NULL,
-  `order_id` int(2) NOT NULL,
+  `id`             INT          NOT NULL AUTO_INCREMENT,
+  `exam_name`      VARCHAR(75)  NOT NULL,
+  `exam_sub_name`  VARCHAR(50)  NOT NULL,
+  `per_info`       INT          NOT NULL,
+  `mark`           INT          NOT NULL,
+  `acc_year`       INT          NOT NULL,
+  `class`          INT          NOT NULL,
+  `status`         TINYINT(1)   NOT NULL,
+  `order_id`       INT          NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `igc_exam_year_m`
@@ -7186,25 +7323,25 @@ INSERT INTO `igc_exam_year_m` (`id`, `exam_name`, `exam_sub_name`, `per_info`, `
 --
 
 CREATE TABLE IF NOT EXISTS `individual_asset_details` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `asset_id` int(11) DEFAULT NULL,
-  `item_code` varchar(50) DEFAULT NULL,
-  `item_description` varchar(250) DEFAULT NULL,
-  `unitprice` float(25,2) DEFAULT NULL,
-  `location_id` int(11) DEFAULT NULL,
-  `dept_id` int(11) DEFAULT NULL,
-  `date_of_purchase` date DEFAULT NULL,
-  `asset_purchase_id` int(11) DEFAULT NULL,
-  `current_value` float(15,2) DEFAULT NULL,
-  `asset_status_id` int(11) DEFAULT NULL,
-  `status` enum('true','false') DEFAULT 'false',
-  `PO_ID` int(11) DEFAULT NULL,
-  `AssetStatus` enum('New','Old') DEFAULT 'New',
-  `vendor` int(11) DEFAULT NULL,
-  `conditions` enum('Not Installed','Working','Return','Deputation','Breakage','Service') DEFAULT 'Not Installed',
-  `billno` varchar(24) NOT NULL,
+  `id`                 INT                                                                         NOT NULL AUTO_INCREMENT,
+  `asset_id`           INT                                                                         DEFAULT NULL,
+  `item_code`          VARCHAR(50)                                                                 DEFAULT NULL,
+  `item_description`   VARCHAR(250)                                                                DEFAULT NULL,
+  `unitprice`          FLOAT(25,2)                                                                 DEFAULT NULL,
+  `location_id`        INT                                                                         DEFAULT NULL,
+  `dept_id`            INT                                                                         DEFAULT NULL,
+  `date_of_purchase`   DATE                                                                        DEFAULT NULL,
+  `asset_purchase_id`  INT                                                                         DEFAULT NULL,
+  `current_value`      FLOAT(15,2)                                                                 DEFAULT NULL,
+  `asset_status_id`    INT                                                                         DEFAULT NULL,
+  `status`             ENUM('true','false')                                                        DEFAULT 'false',
+  `PO_ID`              INT                                                                         DEFAULT NULL,
+  `AssetStatus`        ENUM('New','Old')                                                           DEFAULT 'New',
+  `vendor`             INT                                                                         DEFAULT NULL,
+  `conditions`         ENUM('Not Installed','Working','Return','Deputation','Breakage','Service')  DEFAULT 'Not Installed',
+  `billno`             VARCHAR(24)                                                                 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7213,14 +7350,14 @@ CREATE TABLE IF NOT EXISTS `individual_asset_details` (
 --
 
 CREATE TABLE IF NOT EXISTS `intake` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `adm_type` int(11) DEFAULT NULL,
-  `intake` int(11) DEFAULT NULL,
-  `course_id` int(11) DEFAULT NULL,
-  `course_year_id` int(11) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`              INT         NOT NULL AUTO_INCREMENT,
+  `adm_type`        INT         DEFAULT NULL,
+  `intake`          INT         DEFAULT NULL,
+  `course_id`       INT         DEFAULT NULL,
+  `course_year_id`  INT         DEFAULT NULL,
+  `status`          TINYINT(1)  DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7229,15 +7366,15 @@ CREATE TABLE IF NOT EXISTS `intake` (
 --
 
 CREATE TABLE IF NOT EXISTS `interview` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
-  `class` int(4) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `description` text NOT NULL,
-  `status` int(1) NOT NULL,
-  `mark` int(8) NOT NULL,
+  `id`           INT          NOT NULL AUTO_INCREMENT,
+  `class`        INT          NOT NULL,
+  `acc_year`     INT          NOT NULL,
+  `name`         VARCHAR(50)  NOT NULL,
+  `description`  TEXT         NOT NULL,
+  `status`       TINYINT(1)   NOT NULL,
+  `mark`         INT          NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `interview`
@@ -7257,15 +7394,15 @@ INSERT INTO `interview` (`id`, `class`, `acc_year`, `name`, `description`, `stat
 --
 
 CREATE TABLE IF NOT EXISTS `kgskills` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `class` int(3) NOT NULL,
-  `sub` int(5) NOT NULL,
-  `skill` varchar(250) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `posi` int(2) NOT NULL,
-  `exam_id` int(11) NOT NULL,
+  `id`        INT           NOT NULL AUTO_INCREMENT,
+  `class`     INT           NOT NULL,
+  `sub`       INT           NOT NULL,
+  `skill`     VARCHAR(250)  NOT NULL,
+  `acc_year`  INT           NOT NULL,
+  `posi`      INT           NOT NULL,
+  `exam_id`   INT           NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7274,15 +7411,15 @@ CREATE TABLE IF NOT EXISTS `kgskills` (
 --
 
 CREATE TABLE IF NOT EXISTS `kg_subskills` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `class` int(3) NOT NULL,
-  `sub` int(5) NOT NULL,
-  `master_skill` int(10) NOT NULL,
-  `sub_skill` text NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `posi` int(2) NOT NULL,
+  `id`            INT   NOT NULL AUTO_INCREMENT,
+  `class`         INT   NOT NULL,
+  `sub`           INT   NOT NULL,
+  `master_skill`  INT   NOT NULL,
+  `sub_skill`     TEXT  NOT NULL,
+  `acc_year`      INT   NOT NULL,
+  `posi`          INT   NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7291,10 +7428,10 @@ CREATE TABLE IF NOT EXISTS `kg_subskills` (
 --
 
 CREATE TABLE IF NOT EXISTS `language` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lang` varchar(20) NOT NULL,
+  `id`    INT          NOT NULL AUTO_INCREMENT,
+  `lang`  VARCHAR(20)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `language`
@@ -7342,18 +7479,18 @@ INSERT INTO `language` (`id`, `lang`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `ld` (
-  `Sl_No` int(10) NOT NULL DEFAULT '0',
-  `LID` varchar(7) DEFAULT NULL,
-  `Name` varchar(200) DEFAULT NULL,
-  `ID` varchar(5) DEFAULT NULL,
-  `SGID` varchar(5) DEFAULT NULL,
-  `Opening_Balance` double(20,2) NOT NULL DEFAULT '0.00',
-  `Closing_Balance` double(20,2) NOT NULL DEFAULT '0.00',
-  `OBType` char(2) DEFAULT NULL,
-  `Member_ID` varchar(6) DEFAULT NULL,
-  `Opening_Type` char(2) DEFAULT NULL,
+  `Sl_No`            INT           NOT NULL DEFAULT '0',
+  `LID`              VARCHAR(7)    DEFAULT NULL,
+  `Name`             VARCHAR(200)  DEFAULT NULL,
+  `ID`               VARCHAR(5)    DEFAULT NULL,
+  `SGID`             VARCHAR(5)    DEFAULT NULL,
+  `Opening_Balance`  DOUBLE(20,2)  NOT NULL DEFAULT '0.00',
+  `Closing_Balance`  DOUBLE(20,2)  NOT NULL DEFAULT '0.00',
+  `OBType`           CHAR(2)       DEFAULT NULL,
+  `Member_ID`        VARCHAR(6)    DEFAULT NULL,
+  `Opening_Type`     CHAR(2)       DEFAULT NULL,
   PRIMARY KEY (`Sl_No`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7362,12 +7499,12 @@ CREATE TABLE IF NOT EXISTS `ld` (
 --
 
 CREATE TABLE IF NOT EXISTS `leave_acc_year` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `acc_name` varchar(50) NOT NULL,
-  `acc_year` varchar(50) NOT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`        INT          NOT NULL AUTO_INCREMENT,
+  `acc_name`  VARCHAR(50)  NOT NULL,
+  `acc_year`  VARCHAR(50)  NOT NULL,
+  `status`    TINYINT(1)   DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `leave_acc_year`
@@ -7388,17 +7525,17 @@ INSERT INTO `leave_acc_year` (`id`, `acc_name`, `acc_year`, `status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `leave_att_point` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `point_att` varchar(50) NOT NULL,
-  `update_points` varchar(200) NOT NULL,
-  `att_colors` varchar(255) NOT NULL,
-  `full_name` varchar(255) NOT NULL,
-  `name` varchar(50) DEFAULT NULL,
-  `status` int(4) NOT NULL,
-  `staff_date_time` datetime NOT NULL,
-  `username` varchar(255) NOT NULL,
+  `id`               INT           NOT NULL AUTO_INCREMENT,
+  `point_att`        VARCHAR(50)   NOT NULL,
+  `update_points`    VARCHAR(200)  NOT NULL,
+  `att_colors`       VARCHAR(255)  NOT NULL,
+  `full_name`        VARCHAR(255)  NOT NULL,
+  `name`             VARCHAR(50)   DEFAULT NULL,
+  `status`           INT           NOT NULL,
+  `staff_date_time`  DATETIME      NOT NULL,
+  `username`         VARCHAR(255)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `leave_att_point`
@@ -7424,24 +7561,24 @@ INSERT INTO `leave_att_point` (`id`, `point_att`, `update_points`, `att_colors`,
 --
 
 CREATE TABLE IF NOT EXISTS `leave_data_m20` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `staff_id` int(11) NOT NULL,
-  `E_Code` varchar(255) NOT NULL,
-  `Employee_Name` varchar(255) NOT NULL,
-  `Apr_13` varchar(255) NOT NULL,
-  `May_13` varchar(255) NOT NULL,
-  `June_13` varchar(255) NOT NULL,
-  `July_13` varchar(255) NOT NULL,
-  `Aug_13` varchar(255) NOT NULL,
-  `Sep_13` varchar(255) NOT NULL,
-  `Oct_13` varchar(255) NOT NULL,
-  `Nov_13` varchar(255) NOT NULL,
-  `Dec_13` varchar(255) NOT NULL,
-  `Jan_14` varchar(255) NOT NULL,
-  `Feb_14` varchar(255) NOT NULL,
-  `March_14` varchar(255) NOT NULL,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `staff_id`       INT           NOT NULL,
+  `E_Code`         VARCHAR(255)  NOT NULL,
+  `Employee_Name`  VARCHAR(255)  NOT NULL,
+  `Apr_13`         VARCHAR(255)  NOT NULL,
+  `May_13`         VARCHAR(255)  NOT NULL,
+  `June_13`        VARCHAR(255)  NOT NULL,
+  `July_13`        VARCHAR(255)  NOT NULL,
+  `Aug_13`         VARCHAR(255)  NOT NULL,
+  `Sep_13`         VARCHAR(255)  NOT NULL,
+  `Oct_13`         VARCHAR(255)  NOT NULL,
+  `Nov_13`         VARCHAR(255)  NOT NULL,
+  `Dec_13`         VARCHAR(255)  NOT NULL,
+  `Jan_14`         VARCHAR(255)  NOT NULL,
+  `Feb_14`         VARCHAR(255)  NOT NULL,
+  `March_14`       VARCHAR(255)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=272 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `leave_data_m20`
@@ -7466,20 +7603,20 @@ INSERT INTO `leave_data_m20` (`id`, `staff_id`, `E_Code`, `Employee_Name`, `Apr_
 --
 
 CREATE TABLE IF NOT EXISTS `leave_staff_attand` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `staff_id` varchar(100) NOT NULL,
-  `a_year` varchar(10) NOT NULL COMMENT 'academic year',
-  `rfid_date` varchar(100) NOT NULL,
-  `expect_rfid_in` varchar(100) NOT NULL,
-  `rfid_in` varchar(100) NOT NULL,
-  `expect_rfid_out` varchar(100) NOT NULL,
-  `rfid_out` varchar(100) NOT NULL,
-  `att_code_rfid` varchar(100) NOT NULL,
-  `att_point_rfid` varchar(100) NOT NULL,
-  `rfid_number` varchar(250) NOT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`               INT           NOT NULL AUTO_INCREMENT,
+  `staff_id`         VARCHAR(100)  NOT NULL,
+  `a_year`           VARCHAR(10)   NOT NULL COMMENT 'academic year',
+  `rfid_date`        VARCHAR(100)  NOT NULL,
+  `expect_rfid_in`   VARCHAR(100)  NOT NULL,
+  `rfid_in`          VARCHAR(100)  NOT NULL,
+  `expect_rfid_out`  VARCHAR(100)  NOT NULL,
+  `rfid_out`         VARCHAR(100)  NOT NULL,
+  `att_code_rfid`    VARCHAR(100)  NOT NULL,
+  `att_point_rfid`   VARCHAR(100)  NOT NULL,
+  `rfid_number`      VARCHAR(250)  NOT NULL,
+  `status`           TINYINT(1)    DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2941 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `leave_staff_attand`
@@ -7504,13 +7641,13 @@ INSERT INTO `leave_staff_attand` (`id`, `staff_id`, `a_year`, `rfid_date`, `expe
 --
 
 CREATE TABLE IF NOT EXISTS `leave_staff_day` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `days` int(11) NOT NULL,
-  `leave_type` int(11) NOT NULL,
-  `staff_type` int(11) NOT NULL,
-  `status` int(11) NOT NULL,
+  `id`          INT  NOT NULL AUTO_INCREMENT,
+  `days`        INT  NOT NULL,
+  `leave_type`  INT  NOT NULL,
+  `staff_type`  INT  NOT NULL,
+  `status`      INT  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `leave_staff_day`
@@ -7530,36 +7667,36 @@ INSERT INTO `leave_staff_day` (`id`, `days`, `leave_type`, `staff_type`, `status
 --
 
 CREATE TABLE IF NOT EXISTS `leave_staff_paid_tot_acc` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `staff_name` varchar(250) NOT NULL DEFAULT '',
-  `staff_id` int(10) DEFAULT NULL,
-  `group_id` int(10) DEFAULT NULL,
-  `ins_date` datetime NOT NULL,
-  `acc_1` varchar(250) NOT NULL DEFAULT '',
-  `acc_2` varchar(250) NOT NULL DEFAULT '',
-  `acc_3` varchar(250) NOT NULL DEFAULT '',
-  `acc_4` varchar(250) NOT NULL DEFAULT '',
-  `acc_5` varchar(250) NOT NULL DEFAULT '',
-  `acc_6` varchar(250) NOT NULL DEFAULT '',
-  `status` int(1) DEFAULT '1',
+  `id`          INT           NOT NULL AUTO_INCREMENT,
+  `staff_name`  VARCHAR(250)  NOT NULL DEFAULT '',
+  `staff_id`    INT           DEFAULT NULL,
+  `group_id`    INT           DEFAULT NULL,
+  `ins_date`    DATETIME      NOT NULL,
+  `acc_1`       VARCHAR(250)  NOT NULL DEFAULT '',
+  `acc_2`       VARCHAR(250)  NOT NULL DEFAULT '',
+  `acc_3`       VARCHAR(250)  NOT NULL DEFAULT '',
+  `acc_4`       VARCHAR(250)  NOT NULL DEFAULT '',
+  `acc_5`       VARCHAR(250)  NOT NULL DEFAULT '',
+  `acc_6`       VARCHAR(250)  NOT NULL DEFAULT '',
+  `status`      TINYINT(1)    DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=267 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `leave_staff_paid_tot_acc`
 --
 
 INSERT INTO `leave_staff_paid_tot_acc` (`id`, `staff_name`, `staff_id`, `group_id`, `ins_date`, `acc_1`, `acc_2`, `acc_3`, `acc_4`, `acc_5`, `acc_6`, `status`) VALUES
-(1, 'Alexander Johnson ', 69, 1, '0000-00-00 00:00:00', '', '', '', '', '', '25', 1),
-(2, 'Natasha Khanna ', 70, 1, '0000-00-00 00:00:00', '', '', '', '', '', '25', 1),
-(3, 'Neha Thoria ', 71, 1, '0000-00-00 00:00:00', '', '', '', '', '', '25', 1),
-(4, 'Adam Meier ', 66, 1, '0000-00-00 00:00:00', '', '', '', '', '', '25', 1),
-(5, 'Pascal Fuzier ', 67, 1, '0000-00-00 00:00:00', '', '', '', '', '', '25', 1),
-(6, 'Michael Bailey ', 68, 1, '0000-00-00 00:00:00', '', '', '', '', '', '25', 1),
-(7, 'Robert Mullins ', 63, 1, '0000-00-00 00:00:00', '', '', '', '', '', '25', 1),
-(8, 'Carrie Tokunaga ', 64, 3, '0000-00-00 00:00:00', '', '', '', '', '', '25', 1),
-(9, 'Vitna Bailey ', 65, 1, '0000-00-00 00:00:00', '', '', '', '', '', '25', 1),
-(10, 'Erika Mullins ', 62, 1, '0000-00-00 00:00:00', '', '', '', '', '', '25', 1);
+(1, 'Alexander Johnson ', 69, 1, NULL, '', '', '', '', '', '25', 1),
+(2, 'Natasha Khanna ', 70, 1, NULL, '', '', '', '', '', '25', 1),
+(3, 'Neha Thoria ', 71, 1, NULL, '', '', '', '', '', '25', 1),
+(4, 'Adam Meier ', 66, 1, NULL, '', '', '', '', '', '25', 1),
+(5, 'Pascal Fuzier ', 67, 1, NULL, '', '', '', '', '', '25', 1),
+(6, 'Michael Bailey ', 68, 1, NULL, '', '', '', '', '', '25', 1),
+(7, 'Robert Mullins ', 63, 1, NULL, '', '', '', '', '', '25', 1),
+(8, 'Carrie Tokunaga ', 64, 3, NULL, '', '', '', '', '', '25', 1),
+(9, 'Vitna Bailey ', 65, 1, NULL, '', '', '', '', '', '25', 1),
+(10, 'Erika Mullins ', 62, 1, NULL, '', '', '', '', '', '25', 1);
 
 -- --------------------------------------------------------
 
@@ -7568,16 +7705,16 @@ INSERT INTO `leave_staff_paid_tot_acc` (`id`, `staff_name`, `staff_id`, `group_i
 --
 
 CREATE TABLE IF NOT EXISTS `leave_staff_paid_tot_acc_temp` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `staff_id` int(10) DEFAULT NULL,
-  `acc_id` varchar(250) NOT NULL DEFAULT '',
-  `tot_paid` varchar(200) NOT NULL,
-  `paid_vat` varchar(250) NOT NULL DEFAULT '',
-  `cur_balance` varchar(255) NOT NULL,
-  `un_paid` varchar(200) NOT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`           INT           NOT NULL AUTO_INCREMENT,
+  `staff_id`     INT           DEFAULT NULL,
+  `acc_id`       VARCHAR(250)  NOT NULL DEFAULT '',
+  `tot_paid`     VARCHAR(200)  NOT NULL,
+  `paid_vat`     VARCHAR(250)  NOT NULL DEFAULT '',
+  `cur_balance`  VARCHAR(255)  NOT NULL,
+  `un_paid`      VARCHAR(200)  NOT NULL,
+  `status`       TINYINT(1)    DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=759 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `leave_staff_paid_tot_acc_temp`
@@ -7602,15 +7739,15 @@ INSERT INTO `leave_staff_paid_tot_acc_temp` (`id`, `staff_id`, `acc_id`, `tot_pa
 --
 
 CREATE TABLE IF NOT EXISTS `leave_staff_paid_tot_backup` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `staff_id` int(10) DEFAULT NULL,
-  `acc_id` varchar(250) NOT NULL DEFAULT '',
-  `tot_paid` varchar(200) NOT NULL,
-  `paid_vat` varchar(250) NOT NULL DEFAULT '',
-  `un_paid` varchar(200) NOT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`        INT           NOT NULL AUTO_INCREMENT,
+  `staff_id`  INT           DEFAULT NULL,
+  `acc_id`    VARCHAR(250)  NOT NULL DEFAULT '',
+  `tot_paid`  VARCHAR(200)  NOT NULL,
+  `paid_vat`  VARCHAR(250)  NOT NULL DEFAULT '',
+  `un_paid`   VARCHAR(200)  NOT NULL,
+  `status`    TINYINT(1)    DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=740 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `leave_staff_paid_tot_backup`
@@ -7635,12 +7772,12 @@ INSERT INTO `leave_staff_paid_tot_backup` (`id`, `staff_id`, `acc_id`, `tot_paid
 --
 
 CREATE TABLE IF NOT EXISTS `lesson_chapter` (
-  `id` int(13) NOT NULL AUTO_INCREMENT,
-  `class` int(3) NOT NULL,
-  `subj` int(10) NOT NULL,
-  `chapter` varchar(250) NOT NULL,
+  `id`       INT           NOT NULL AUTO_INCREMENT,
+  `class`    INT           NOT NULL,
+  `subj`     INT           NOT NULL,
+  `chapter`  VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `lesson_chapter`
@@ -7688,13 +7825,14 @@ INSERT INTO `lesson_chapter` (`id`, `class`, `subj`, `chapter`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `lesson_plan_documents` (
-  `id` int(8) NOT NULL,
-  `teacher_lesson_plan_id` int(8) NOT NULL,
-  `titel` varchar(100) NOT NULL,
-  `description` text NOT NULL,
-  `file_path` varchar(250) NOT NULL,
-  `status` int(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`                      INT           NOT NULL,
+  `teacher_lesson_plan_id`  INT           NOT NULL,
+  `titel`                   VARCHAR(100)  NOT NULL,
+  `description`             TEXT          NOT NULL,
+  `file_path`               VARCHAR(250)  NOT NULL,
+  `status`                  TINYINT(1)    NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7703,14 +7841,14 @@ CREATE TABLE IF NOT EXISTS `lesson_plan_documents` (
 --
 
 CREATE TABLE IF NOT EXISTS `library_name` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL DEFAULT '',
-  `address` varchar(250) DEFAULT NULL,
-  `phone` varchar(50) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `remark` text,
+  `id`       INT           NOT NULL AUTO_INCREMENT,
+  `name`     VARCHAR(100)  NOT NULL DEFAULT '',
+  `address`  VARCHAR(250)  DEFAULT NULL,
+  `phone`    VARCHAR(50)   DEFAULT NULL,
+  `email`    VARCHAR(50)   DEFAULT NULL,
+  `remark`   TEXT,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7719,19 +7857,19 @@ CREATE TABLE IF NOT EXISTS `library_name` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_acc_details` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `master_id` int(11) DEFAULT NULL,
-  `media_type` int(11) NOT NULL DEFAULT '0',
-  `acc_no` int(6) unsigned zerofill DEFAULT NULL,
-  `mode` varchar(50) DEFAULT 'D',
-  `book_status` varchar(50) DEFAULT NULL,
-  `book_type` varchar(50) DEFAULT NULL,
-  `library` int(11) NOT NULL DEFAULT '0',
-  `register` int(11) NOT NULL DEFAULT '0',
-  `flag` int(11) DEFAULT '0',
-  `call_no` varchar(50) DEFAULT NULL,
+  `id`           INT                    NOT NULL AUTO_INCREMENT,
+  `master_id`    INT                    DEFAULT NULL,
+  `media_type`   INT                    NOT NULL DEFAULT '0',
+  `acc_no`       INT UNSIGNED ZEROFILL  DEFAULT NULL,
+  `mode`         VARCHAR(50)            DEFAULT 'D',
+  `book_status`  VARCHAR(50)            DEFAULT NULL,
+  `book_type`    VARCHAR(50)            DEFAULT NULL,
+  `library`      INT                    NOT NULL DEFAULT '0',
+  `register`     INT                    NOT NULL DEFAULT '0',
+  `flag`         INT                    DEFAULT '0',
+  `call_no`      VARCHAR(50)            DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7740,15 +7878,15 @@ CREATE TABLE IF NOT EXISTS `lib_acc_details` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_book_binding` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
-  `acc_no` varchar(10) DEFAULT NULL,
-  `library` int(3) DEFAULT NULL,
-  `binding_date` date DEFAULT NULL,
-  `return_date` date DEFAULT NULL,
-  `status` enum('S','R') DEFAULT 'S',
-  `descr` varchar(255) DEFAULT NULL,
+  `id`            INT            NOT NULL AUTO_INCREMENT,
+  `acc_no`        VARCHAR(10)    DEFAULT NULL,
+  `library`       INT            DEFAULT NULL,
+  `binding_date`  DATE           DEFAULT NULL,
+  `return_date`   DATE           DEFAULT NULL,
+  `status`        ENUM('S','R')  DEFAULT 'S',
+  `descr`         VARCHAR(255)   DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7757,37 +7895,37 @@ CREATE TABLE IF NOT EXISTS `lib_book_binding` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_book_details` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL,
-  `class_no` varchar(255) DEFAULT NULL,
-  `classification_no` varchar(20) DEFAULT NULL,
-  `book_no` varchar(50) DEFAULT NULL,
-  `author` varchar(255) DEFAULT NULL,
-  `author_details` varchar(255) DEFAULT NULL,
-  `publisher` varchar(255) DEFAULT NULL,
-  `edition` varchar(255) DEFAULT NULL,
-  `year` varchar(255) DEFAULT NULL,
-  `rack` varchar(255) DEFAULT NULL,
-  `purchase_type` varchar(255) DEFAULT NULL,
-  `supplier` varchar(255) DEFAULT NULL,
-  `no_of_pages` varchar(10) DEFAULT '0',
-  `pyment_type` varchar(255) DEFAULT NULL,
-  `payment_details` varchar(255) DEFAULT NULL,
-  `bill_no` varchar(50) DEFAULT NULL,
-  `bill_date` date DEFAULT NULL,
-  `date_of_acquiring` date DEFAULT NULL,
-  `price_type` varchar(255) DEFAULT NULL,
-  `price` varchar(50) DEFAULT NULL,
-  `isbn` varchar(50) DEFAULT NULL,
-  `subject` varchar(255) DEFAULT NULL,
-  `key_word1` varchar(255) DEFAULT NULL,
-  `key_word2` varchar(255) DEFAULT NULL,
-  `key_word3` varchar(255) DEFAULT NULL,
-  `key_word4` varchar(255) DEFAULT NULL,
-  `key_word5` varchar(255) DEFAULT NULL,
-  `remarks` text,
+  `id`                 INT           NOT NULL AUTO_INCREMENT,
+  `title`              VARCHAR(255)  DEFAULT NULL,
+  `class_no`           VARCHAR(255)  DEFAULT NULL,
+  `classification_no`  VARCHAR(20)   DEFAULT NULL,
+  `book_no`            VARCHAR(50)   DEFAULT NULL,
+  `author`             VARCHAR(255)  DEFAULT NULL,
+  `author_details`     VARCHAR(255)  DEFAULT NULL,
+  `publisher`          VARCHAR(255)  DEFAULT NULL,
+  `edition`            VARCHAR(255)  DEFAULT NULL,
+  `year`               VARCHAR(255)  DEFAULT NULL,
+  `rack`               VARCHAR(255)  DEFAULT NULL,
+  `purchase_type`      VARCHAR(255)  DEFAULT NULL,
+  `supplier`           VARCHAR(255)  DEFAULT NULL,
+  `no_of_pages`        VARCHAR(10)   DEFAULT '0',
+  `pyment_type`        VARCHAR(255)  DEFAULT NULL,
+  `payment_details`    VARCHAR(255)  DEFAULT NULL,
+  `bill_no`            VARCHAR(50)   DEFAULT NULL,
+  `bill_date`          DATE          DEFAULT NULL,
+  `date_of_acquiring`  DATE          DEFAULT NULL,
+  `price_type`         VARCHAR(255)  DEFAULT NULL,
+  `price`              VARCHAR(50)   DEFAULT NULL,
+  `isbn`               VARCHAR(50)   DEFAULT NULL,
+  `subject`            VARCHAR(255)  DEFAULT NULL,
+  `key_word1`          VARCHAR(255)  DEFAULT NULL,
+  `key_word2`          VARCHAR(255)  DEFAULT NULL,
+  `key_word3`          VARCHAR(255)  DEFAULT NULL,
+  `key_word4`          VARCHAR(255)  DEFAULT NULL,
+  `key_word5`          VARCHAR(255)  DEFAULT NULL,
+  `remarks`            TEXT,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7796,19 +7934,19 @@ CREATE TABLE IF NOT EXISTS `lib_book_details` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_bound_acc_det` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `master_id` int(11) DEFAULT NULL,
-  `mag_acc_no` varchar(50) DEFAULT NULL,
-  `volume` varchar(50) DEFAULT NULL,
-  `issue` varchar(50) DEFAULT NULL,
-  `mode` varchar(50) DEFAULT 'D',
-  `bound_status` varchar(50) DEFAULT NULL,
-  `bound_type` varchar(50) DEFAULT NULL,
-  `library` int(11) NOT NULL DEFAULT '0',
-  `register` int(11) NOT NULL DEFAULT '0',
-  `flag` int(11) DEFAULT '0',
+  `id`            INT          NOT NULL AUTO_INCREMENT,
+  `master_id`     INT          DEFAULT NULL,
+  `mag_acc_no`    VARCHAR(50)  DEFAULT NULL,
+  `volume`        VARCHAR(50)  DEFAULT NULL,
+  `issue`         VARCHAR(50)  DEFAULT NULL,
+  `mode`          VARCHAR(50)  DEFAULT 'D',
+  `bound_status`  VARCHAR(50)  DEFAULT NULL,
+  `bound_type`    VARCHAR(50)  DEFAULT NULL,
+  `library`       INT          NOT NULL DEFAULT '0',
+  `register`      INT          NOT NULL DEFAULT '0',
+  `flag`          INT          DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7817,22 +7955,22 @@ CREATE TABLE IF NOT EXISTS `lib_bound_acc_det` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_bound_media_det` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `acc_no` varchar(50) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `month` int(2) unsigned zerofill DEFAULT NULL,
-  `year` int(4) DEFAULT NULL,
-  `periodicity` varchar(4) DEFAULT NULL,
-  `key_word1` varchar(255) DEFAULT NULL,
-  `key_word2` varchar(255) DEFAULT NULL,
-  `key_word3` varchar(255) DEFAULT NULL,
-  `key_word4` varchar(255) DEFAULT NULL,
-  `key_word5` varchar(255) DEFAULT NULL,
-  `remarks` text,
-  `flag` int(4) DEFAULT NULL,
-  `date_of_acquiring` date DEFAULT NULL,
+  `id`                 INT                    NOT NULL AUTO_INCREMENT,
+  `acc_no`             VARCHAR(50)            DEFAULT NULL,
+  `title`              VARCHAR(255)           DEFAULT NULL,
+  `month`              INT UNSIGNED ZEROFILL  DEFAULT NULL,
+  `year`               INT                    DEFAULT NULL,
+  `periodicity`        VARCHAR(4)             DEFAULT NULL,
+  `key_word1`          VARCHAR(255)           DEFAULT NULL,
+  `key_word2`          VARCHAR(255)           DEFAULT NULL,
+  `key_word3`          VARCHAR(255)           DEFAULT NULL,
+  `key_word4`          VARCHAR(255)           DEFAULT NULL,
+  `key_word5`          VARCHAR(255)           DEFAULT NULL,
+  `remarks`            TEXT,
+  `flag`               INT                    DEFAULT NULL,
+  `date_of_acquiring`  DATE                   DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7841,13 +7979,13 @@ CREATE TABLE IF NOT EXISTS `lib_bound_media_det` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_budget_m` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `year_from` date NOT NULL DEFAULT '0000-00-00',
-  `year_to` date NOT NULL DEFAULT '0000-00-00',
-  `amt` int(11) NOT NULL DEFAULT '0',
-  `library` int(11) NOT NULL DEFAULT '0',
+  `id`         INT   NOT NULL AUTO_INCREMENT,
+  `year_from`  DATE  DEFAULT NULL,
+  `year_to`    DATE  DEFAULT NULL,
+  `amt`        INT   NOT NULL DEFAULT '0',
+  `library`    INT   NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7856,19 +7994,19 @@ CREATE TABLE IF NOT EXISTS `lib_budget_m` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_cd_acc_det` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `master_id` int(11) DEFAULT NULL,
-  `media_type` int(11) NOT NULL DEFAULT '0',
-  `acc_no` varchar(50) NOT NULL DEFAULT '',
-  `mode` varchar(50) NOT NULL DEFAULT '',
-  `cd_status` varchar(50) DEFAULT NULL,
-  `cd_type` varchar(50) DEFAULT NULL,
-  `library` int(11) NOT NULL DEFAULT '0',
-  `register` int(11) NOT NULL DEFAULT '0',
-  `flag` int(11) DEFAULT '0',
-  `call_no` int(11) DEFAULT NULL,
+  `id`          INT          NOT NULL AUTO_INCREMENT,
+  `master_id`   INT          DEFAULT NULL,
+  `media_type`  INT          NOT NULL DEFAULT '0',
+  `acc_no`      VARCHAR(50)  NOT NULL DEFAULT '',
+  `mode`        VARCHAR(50)  NOT NULL DEFAULT '',
+  `cd_status`   VARCHAR(50)  DEFAULT NULL,
+  `cd_type`     VARCHAR(50)  DEFAULT NULL,
+  `library`     INT          NOT NULL DEFAULT '0',
+  `register`    INT          NOT NULL DEFAULT '0',
+  `flag`        INT          DEFAULT '0',
+  `call_no`     INT          DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7877,29 +8015,29 @@ CREATE TABLE IF NOT EXISTS `lib_cd_acc_det` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_cd_det` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL,
-  `call_no` varchar(100) DEFAULT NULL,
-  `author` varchar(255) DEFAULT NULL,
-  `rack` varchar(255) DEFAULT NULL,
-  `date_of_acquiring` date DEFAULT NULL,
-  `key_word1` varchar(255) DEFAULT NULL,
-  `key_word2` varchar(255) DEFAULT NULL,
-  `key_word3` varchar(255) DEFAULT NULL,
-  `key_word4` varchar(255) DEFAULT NULL,
-  `key_word5` varchar(255) DEFAULT NULL,
-  `publication_date` date DEFAULT NULL,
-  `price` float(8,2) DEFAULT NULL,
-  `source_acc_no` varchar(15) DEFAULT NULL,
-  `month` int(2) unsigned zerofill DEFAULT NULL,
-  `year` int(4) DEFAULT NULL,
-  `volume` varchar(15) DEFAULT NULL,
-  `issue` varchar(15) DEFAULT NULL,
-  `source` varchar(255) DEFAULT NULL,
-  `remarks` text,
-  `class_no` varchar(255) DEFAULT NULL,
+  `id`                 INT                    NOT NULL AUTO_INCREMENT,
+  `title`              VARCHAR(255)           DEFAULT NULL,
+  `call_no`            VARCHAR(100)           DEFAULT NULL,
+  `author`             VARCHAR(255)           DEFAULT NULL,
+  `rack`               VARCHAR(255)           DEFAULT NULL,
+  `date_of_acquiring`  DATE                   DEFAULT NULL,
+  `key_word1`          VARCHAR(255)           DEFAULT NULL,
+  `key_word2`          VARCHAR(255)           DEFAULT NULL,
+  `key_word3`          VARCHAR(255)           DEFAULT NULL,
+  `key_word4`          VARCHAR(255)           DEFAULT NULL,
+  `key_word5`          VARCHAR(255)           DEFAULT NULL,
+  `publication_date`   DATE                   DEFAULT NULL,
+  `price`              FLOAT(8,2)             DEFAULT NULL,
+  `source_acc_no`      VARCHAR(15)            DEFAULT NULL,
+  `month`              INT UNSIGNED ZEROFILL  DEFAULT NULL,
+  `year`               INT                    DEFAULT NULL,
+  `volume`             VARCHAR(15)            DEFAULT NULL,
+  `issue`              VARCHAR(15)            DEFAULT NULL,
+  `source`             VARCHAR(255)           DEFAULT NULL,
+  `remarks`            TEXT,
+  `class_no`           VARCHAR(255)           DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7908,27 +8046,27 @@ CREATE TABLE IF NOT EXISTS `lib_cd_det` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_circulation_m` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `m_id` int(11) NOT NULL DEFAULT '0',
-  `acc_id` int(6) unsigned zerofill DEFAULT NULL,
-  `library` int(3) DEFAULT NULL,
-  `issue_date` date NOT NULL DEFAULT '0000-00-00',
-  `due_date` date NOT NULL DEFAULT '0000-00-00',
-  `return_date` date DEFAULT '0000-00-00',
-  `renews` int(2) DEFAULT '0',
-  `remarks` varchar(250) DEFAULT NULL,
-  `status` char(1) NOT NULL DEFAULT '',
-  `cno` varchar(20) DEFAULT NULL,
-  `media_type` varchar(5) DEFAULT NULL,
-  `name` varchar(30) DEFAULT NULL,
-  `returned` varchar(30) DEFAULT NULL,
-  `issue_time` time DEFAULT '00:00:00',
-  `due_time` time DEFAULT '00:00:00',
-  `par_count` int(11) DEFAULT '0',
-  `ret_to` varchar(30) DEFAULT NULL,
-  `fineamt` float(7,2) DEFAULT NULL,
+  `id`           INT                    NOT NULL AUTO_INCREMENT,
+  `m_id`         INT                    NOT NULL DEFAULT '0',
+  `acc_id`       INT UNSIGNED ZEROFILL  DEFAULT NULL,
+  `library`      INT                    DEFAULT NULL,
+  `issue_date`   DATE                   DEFAULT NULL,
+  `due_date`     DATE                   DEFAULT NULL,
+  `return_date`  DATE                   DEFAULT NULL,
+  `renews`       INT                    DEFAULT '0',
+  `remarks`      VARCHAR(250)           DEFAULT NULL,
+  `status`       CHAR(1)                NOT NULL DEFAULT '',
+  `cno`          VARCHAR(20)            DEFAULT NULL,
+  `media_type`   VARCHAR(5)             DEFAULT NULL,
+  `name`         VARCHAR(30)            DEFAULT NULL,
+  `returned`     VARCHAR(30)            DEFAULT NULL,
+  `issue_time`   TIME                   DEFAULT '00:00:00',
+  `due_time`     TIME                   DEFAULT '00:00:00',
+  `par_count`    INT                    DEFAULT '0',
+  `ret_to`       VARCHAR(30)            DEFAULT NULL,
+  `fineamt`      FLOAT(7,2)             DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7937,14 +8075,14 @@ CREATE TABLE IF NOT EXISTS `lib_circulation_m` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_finedtls` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `daysfrom` int(11) DEFAULT NULL,
-  `daysto` int(11) DEFAULT NULL,
-  `fine1` float(5,2) DEFAULT NULL,
-  `fine2` float(5,2) DEFAULT NULL,
-  `fine3` float(5,2) DEFAULT NULL,
+  `id`        INT         NOT NULL AUTO_INCREMENT,
+  `daysfrom`  INT         DEFAULT NULL,
+  `daysto`    INT         DEFAULT NULL,
+  `fine1`     FLOAT(5,2)  DEFAULT NULL,
+  `fine2`     FLOAT(5,2)  DEFAULT NULL,
+  `fine3`     FLOAT(5,2)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7953,19 +8091,19 @@ CREATE TABLE IF NOT EXISTS `lib_finedtls` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_floppy_acc_det` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `master_id` int(11) DEFAULT NULL,
-  `media_type` int(11) DEFAULT NULL,
-  `acc_no` varchar(50) DEFAULT NULL,
-  `mode` varchar(50) DEFAULT NULL,
-  `floppy_status` varchar(50) DEFAULT NULL,
-  `floppy_type` varchar(50) DEFAULT NULL,
-  `library` int(11) DEFAULT NULL,
-  `register` int(11) DEFAULT NULL,
-  `flag` int(11) DEFAULT NULL,
-  `call_no` int(11) DEFAULT NULL,
+  `id`             INT          NOT NULL AUTO_INCREMENT,
+  `master_id`      INT          DEFAULT NULL,
+  `media_type`     INT          DEFAULT NULL,
+  `acc_no`         VARCHAR(50)  DEFAULT NULL,
+  `mode`           VARCHAR(50)  DEFAULT NULL,
+  `floppy_status`  VARCHAR(50)  DEFAULT NULL,
+  `floppy_type`    VARCHAR(50)  DEFAULT NULL,
+  `library`        INT          DEFAULT NULL,
+  `register`       INT          DEFAULT NULL,
+  `flag`           INT          DEFAULT NULL,
+  `call_no`        INT          DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -7974,37 +8112,37 @@ CREATE TABLE IF NOT EXISTS `lib_floppy_acc_det` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_magazine` (
-  `title` varchar(200) NOT NULL DEFAULT '',
-  `rack` varchar(15) DEFAULT NULL,
-  `magazine_sub_no` varchar(50) DEFAULT NULL,
-  `source` varchar(20) DEFAULT NULL,
-  `magazine_date` date DEFAULT NULL,
-  `year` varchar(4) DEFAULT NULL,
-  `issue` varchar(8) DEFAULT NULL,
-  `volume` varchar(8) DEFAULT NULL,
-  `issn` varchar(8) DEFAULT NULL,
-  `keywords` varchar(50) DEFAULT NULL,
-  `no_of_pages` int(11) DEFAULT NULL,
-  `language` varchar(15) DEFAULT NULL,
-  `amount_type` varchar(15) DEFAULT NULL,
-  `amount` float(10,2) DEFAULT NULL,
-  `bill_no` varchar(50) DEFAULT NULL,
-  `bank_details` varchar(100) DEFAULT NULL,
-  `status` char(1) DEFAULT NULL,
-  `register` int(11) NOT NULL DEFAULT '0',
-  `library` int(4) DEFAULT NULL,
-  `subject` varchar(100) DEFAULT NULL,
-  `magazine_no` varchar(9) DEFAULT NULL,
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `month` int(2) unsigned zerofill DEFAULT NULL,
-  `remarks` text,
-  `articles1` varchar(255) DEFAULT NULL,
-  `articles2` varchar(255) DEFAULT NULL,
-  `bound` enum('Y','N') DEFAULT 'N',
-  `ssp_type` int(3) DEFAULT NULL,
-  `stts` int(3) DEFAULT '1',
+  `title`            VARCHAR(200)           NOT NULL DEFAULT '',
+  `rack`             VARCHAR(15)            DEFAULT NULL,
+  `magazine_sub_no`  VARCHAR(50)            DEFAULT NULL,
+  `source`           VARCHAR(20)            DEFAULT NULL,
+  `magazine_date`    DATE                   DEFAULT NULL,
+  `year`             VARCHAR(4)             DEFAULT NULL,
+  `issue`            VARCHAR(8)             DEFAULT NULL,
+  `volume`           VARCHAR(8)             DEFAULT NULL,
+  `issn`             VARCHAR(8)             DEFAULT NULL,
+  `keywords`         VARCHAR(50)            DEFAULT NULL,
+  `no_of_pages`      INT                    DEFAULT NULL,
+  `language`         VARCHAR(15)            DEFAULT NULL,
+  `amount_type`      VARCHAR(15)            DEFAULT NULL,
+  `amount`           FLOAT(10,2)            DEFAULT NULL,
+  `bill_no`          VARCHAR(50)            DEFAULT NULL,
+  `bank_details`     VARCHAR(100)           DEFAULT NULL,
+  `status`           CHAR(1)                DEFAULT NULL,
+  `register`         INT                    NOT NULL DEFAULT '0',
+  `library`          INT                    DEFAULT NULL,
+  `subject`          VARCHAR(100)           DEFAULT NULL,
+  `magazine_no`      VARCHAR(9)             DEFAULT NULL,
+  `id`               INT                    NOT NULL AUTO_INCREMENT,
+  `month`            INT UNSIGNED ZEROFILL  DEFAULT NULL,
+  `remarks`          TEXT,
+  `articles1`        VARCHAR(255)           DEFAULT NULL,
+  `articles2`        VARCHAR(255)           DEFAULT NULL,
+  `bound`            ENUM('Y','N')          DEFAULT 'N',
+  `ssp_type`         INT                    DEFAULT NULL,
+  `stts`             INT                    DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8013,25 +8151,25 @@ CREATE TABLE IF NOT EXISTS `lib_magazine` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_magazine_subscription` (
-  `id` int(8) unsigned zerofill NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) NOT NULL DEFAULT '',
-  `language` varchar(20) DEFAULT NULL,
-  `periodicity` varchar(15) DEFAULT NULL,
-  `due_date` date DEFAULT NULL,
-  `supplier` varchar(100) DEFAULT NULL,
-  `subscription_date` date DEFAULT NULL,
-  `bill_no` varchar(6) DEFAULT NULL,
-  `amount_type` varchar(15) DEFAULT NULL,
-  `amount` float(10,2) DEFAULT NULL,
-  `bank_details` varchar(100) DEFAULT NULL,
-  `a_sub_no` varchar(15) DEFAULT NULL,
-  `source` varchar(50) DEFAULT NULL,
-  `library` int(3) DEFAULT NULL,
-  `register` int(3) DEFAULT NULL,
-  `ssp_type` int(3) DEFAULT NULL,
-  `stts` int(3) DEFAULT '1',
+  `id`                 INT UNSIGNED ZEROFILL  NOT NULL AUTO_INCREMENT,
+  `title`              VARCHAR(200)           NOT NULL DEFAULT '',
+  `language`           VARCHAR(20)            DEFAULT NULL,
+  `periodicity`        VARCHAR(15)            DEFAULT NULL,
+  `due_date`           DATE                   DEFAULT NULL,
+  `supplier`           VARCHAR(100)           DEFAULT NULL,
+  `subscription_date`  DATE                   DEFAULT NULL,
+  `bill_no`            VARCHAR(6)             DEFAULT NULL,
+  `amount_type`        VARCHAR(15)            DEFAULT NULL,
+  `amount`             FLOAT(10,2)            DEFAULT NULL,
+  `bank_details`       VARCHAR(100)           DEFAULT NULL,
+  `a_sub_no`           VARCHAR(15)            DEFAULT NULL,
+  `source`             VARCHAR(50)            DEFAULT NULL,
+  `library`            INT                    DEFAULT NULL,
+  `register`           INT                    DEFAULT NULL,
+  `ssp_type`           INT                    DEFAULT NULL,
+  `stts`               INT                    DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8040,10 +8178,10 @@ CREATE TABLE IF NOT EXISTS `lib_magazine_subscription` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_mediatype` (
-  `id` int(11) NOT NULL DEFAULT '0',
-  `name` varchar(50) NOT NULL DEFAULT '',
+  `id`    INT          NOT NULL DEFAULT '0',
+  `name`  VARCHAR(50)  NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8052,11 +8190,12 @@ CREATE TABLE IF NOT EXISTS `lib_mediatype` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_membership_det` (
-  `mbno` varchar(50) NOT NULL DEFAULT '',
-  `m_id` varchar(50) NOT NULL DEFAULT '',
-  `library` varchar(50) NOT NULL DEFAULT '',
-  `deposit` enum('Y','N') DEFAULT 'N'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `mbno`     VARCHAR(50)    NOT NULL DEFAULT '',
+  `m_id`     VARCHAR(50)    NOT NULL DEFAULT '',
+  `library`  VARCHAR(50)    NOT NULL DEFAULT '',
+  `deposit`  ENUM('Y','N')  DEFAULT 'N',
+  PRIMARY KEY (`mbno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8065,21 +8204,21 @@ CREATE TABLE IF NOT EXISTS `lib_membership_det` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_membership_m` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `issued_on` date DEFAULT '0000-00-00',
-  `valid_till` date DEFAULT '0000-00-00',
-  `cancelled_on` date DEFAULT NULL,
-  `s_id` varchar(10) DEFAULT NULL,
-  `type` int(11) NOT NULL DEFAULT '0',
-  `m_no` varchar(50) NOT NULL,
-  `usn` varchar(50) DEFAULT NULL,
-  `status` char(1) NOT NULL DEFAULT '',
-  `pwd` varchar(50) DEFAULT NULL,
-  `MemberName` varchar(100) NOT NULL DEFAULT '',
-  `totalCards` int(11) NOT NULL DEFAULT '0',
-  `domain` varchar(10) DEFAULT NULL,
+  `id`            INT           NOT NULL AUTO_INCREMENT,
+  `issued_on`     DATE          DEFAULT NULL,
+  `valid_till`    DATE          DEFAULT NULL,
+  `cancelled_on`  DATE          DEFAULT NULL,
+  `s_id`          VARCHAR(10)   DEFAULT NULL,
+  `type`          INT           NOT NULL DEFAULT '0',
+  `m_no`          VARCHAR(50)   NOT NULL,
+  `usn`           VARCHAR(50)   DEFAULT NULL,
+  `status`        CHAR(1)       NOT NULL DEFAULT '',
+  `pwd`           VARCHAR(50)   DEFAULT NULL,
+  `MemberName`    VARCHAR(100)  NOT NULL DEFAULT '',
+  `totalCards`    INT           NOT NULL DEFAULT '0',
+  `domain`        VARCHAR(10)   DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8088,35 +8227,35 @@ CREATE TABLE IF NOT EXISTS `lib_membership_m` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_newmagazine` (
-  `title` varchar(200) NOT NULL DEFAULT '',
-  `rack` varchar(15) DEFAULT NULL,
-  `magazine_sub_no` varchar(50) DEFAULT NULL,
-  `source` varchar(20) DEFAULT NULL,
-  `magazine_date` date DEFAULT NULL,
-  `year` varchar(4) DEFAULT NULL,
-  `issue` varchar(8) DEFAULT NULL,
-  `volume` varchar(8) DEFAULT NULL,
-  `issn` varchar(8) DEFAULT NULL,
-  `keywords` varchar(50) DEFAULT NULL,
-  `no_of_pages` int(11) DEFAULT NULL,
-  `language` varchar(15) DEFAULT NULL,
-  `amount_type` varchar(15) DEFAULT NULL,
-  `amount` float(5,2) DEFAULT NULL,
-  `bill_no` varchar(50) DEFAULT NULL,
-  `bank_details` varchar(100) DEFAULT NULL,
-  `status` char(1) DEFAULT NULL,
-  `register` int(11) NOT NULL DEFAULT '0',
-  `library` int(4) DEFAULT NULL,
-  `subject` varchar(100) DEFAULT NULL,
-  `magazine_no` varchar(9) DEFAULT NULL,
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `month` int(2) unsigned zerofill DEFAULT NULL,
-  `remarks` text,
-  `articles1` varchar(255) DEFAULT NULL,
-  `articles2` varchar(255) DEFAULT NULL,
-  `bound` enum('Y','N') DEFAULT 'N',
+  `title`            VARCHAR(200)           NOT NULL DEFAULT '',
+  `rack`             VARCHAR(15)            DEFAULT NULL,
+  `magazine_sub_no`  VARCHAR(50)            DEFAULT NULL,
+  `source`           VARCHAR(20)            DEFAULT NULL,
+  `magazine_date`    DATE                   DEFAULT NULL,
+  `year`             VARCHAR(4)             DEFAULT NULL,
+  `issue`            VARCHAR(8)             DEFAULT NULL,
+  `volume`           VARCHAR(8)             DEFAULT NULL,
+  `issn`             VARCHAR(8)             DEFAULT NULL,
+  `keywords`         VARCHAR(50)            DEFAULT NULL,
+  `no_of_pages`      INT                    DEFAULT NULL,
+  `language`         VARCHAR(15)            DEFAULT NULL,
+  `amount_type`      VARCHAR(15)            DEFAULT NULL,
+  `amount`           FLOAT(5,2)             DEFAULT NULL,
+  `bill_no`          VARCHAR(50)            DEFAULT NULL,
+  `bank_details`     VARCHAR(100)           DEFAULT NULL,
+  `status`           CHAR(1)                DEFAULT NULL,
+  `register`         INT                    NOT NULL DEFAULT '0',
+  `library`          INT                    DEFAULT NULL,
+  `subject`          VARCHAR(100)           DEFAULT NULL,
+  `magazine_no`      VARCHAR(9)             DEFAULT NULL,
+  `id`               INT                    NOT NULL AUTO_INCREMENT,
+  `month`            INT UNSIGNED ZEROFILL  DEFAULT NULL,
+  `remarks`          TEXT,
+  `articles1`        VARCHAR(255)           DEFAULT NULL,
+  `articles2`        VARCHAR(255)           DEFAULT NULL,
+  `bound`            ENUM('Y','N')          DEFAULT 'N',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8125,19 +8264,19 @@ CREATE TABLE IF NOT EXISTS `lib_newmagazine` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_newspaper_det` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `newspaper_no` varchar(10) DEFAULT NULL,
-  `title` varchar(150) DEFAULT NULL,
-  `language` varchar(50) DEFAULT NULL,
-  `newspaper_date` date DEFAULT NULL,
-  `amount` float(10,2) DEFAULT NULL,
-  `remarks` text,
-  `library` int(4) DEFAULT NULL,
-  `register` int(4) DEFAULT NULL,
-  `stts` int(1) DEFAULT '1',
-  `nofcp` int(5) DEFAULT '0',
+  `id`              INT           NOT NULL AUTO_INCREMENT,
+  `newspaper_no`    VARCHAR(10)   DEFAULT NULL,
+  `title`           VARCHAR(150)  DEFAULT NULL,
+  `language`        VARCHAR(50)   DEFAULT NULL,
+  `newspaper_date`  DATE          DEFAULT NULL,
+  `amount`          FLOAT(10,2)   DEFAULT NULL,
+  `remarks`         TEXT,
+  `library`         INT           DEFAULT NULL,
+  `register`        INT           DEFAULT NULL,
+  `stts`            TINYINT(1)    DEFAULT '1',
+  `nofcp`           INT           DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8146,16 +8285,16 @@ CREATE TABLE IF NOT EXISTS `lib_newspaper_det` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_order_det` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `order_id` int(11) NOT NULL DEFAULT '0',
-  `title` text,
-  `copies` int(11) NOT NULL DEFAULT '0',
-  `author` text,
-  `publisher` text,
-  `apprate` int(12) DEFAULT NULL,
-  `received_copies` int(4) DEFAULT '0',
+  `id`               INT   NOT NULL AUTO_INCREMENT,
+  `order_id`         INT   NOT NULL DEFAULT '0',
+  `title`            TEXT,
+  `copies`           INT   NOT NULL DEFAULT '0',
+  `author`           TEXT,
+  `publisher`        TEXT,
+  `apprate`          INT   DEFAULT NULL,
+  `received_copies`  INT   DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8164,15 +8303,15 @@ CREATE TABLE IF NOT EXISTS `lib_order_det` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_order_m` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `order_no` varchar(50) NOT NULL DEFAULT '',
-  `order_date` date NOT NULL DEFAULT '0000-00-00',
-  `order_copies` int(11) NOT NULL DEFAULT '0',
-  `order_amt` double(8,2) DEFAULT NULL,
-  `vendor_id` int(11) NOT NULL DEFAULT '0',
-  `library` int(11) NOT NULL DEFAULT '0',
+  `id`            INT          NOT NULL AUTO_INCREMENT,
+  `order_no`      VARCHAR(50)  NOT NULL DEFAULT '',
+  `order_date`    DATE         DEFAULT NULL,
+  `order_copies`  INT          NOT NULL DEFAULT '0',
+  `order_amt`     DOUBLE(8,2)  DEFAULT NULL,
+  `vendor_id`     INT          NOT NULL DEFAULT '0',
+  `library`       INT          NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8181,21 +8320,21 @@ CREATE TABLE IF NOT EXISTS `lib_order_m` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_phy_stkrep` (
-  `id` int(3) NOT NULL AUTO_INCREMENT,
-  `mat_acc` text NOT NULL,
-  `mis_acc` text NOT NULL,
-  `ext_acc` text NOT NULL,
-  `iss_acc` text NOT NULL,
-  `dam_acc` text NOT NULL,
-  `sdate` varchar(150) NOT NULL,
-  `matc` int(11) NOT NULL,
-  `misc` int(11) NOT NULL,
-  `extc` int(11) NOT NULL,
-  `issc` int(11) NOT NULL,
-  `damc` int(11) NOT NULL,
-  `media` int(11) DEFAULT NULL,
+  `id`       INT           NOT NULL AUTO_INCREMENT,
+  `mat_acc`  TEXT          NOT NULL,
+  `mis_acc`  TEXT          NOT NULL,
+  `ext_acc`  TEXT          NOT NULL,
+  `iss_acc`  TEXT          NOT NULL,
+  `dam_acc`  TEXT          NOT NULL,
+  `sdate`    VARCHAR(150)  NOT NULL,
+  `matc`     INT           NOT NULL,
+  `misc`     INT           NOT NULL,
+  `extc`     INT           NOT NULL,
+  `issc`     INT           NOT NULL,
+  `damc`     INT           NOT NULL,
+  `media`    INT           DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8204,26 +8343,26 @@ CREATE TABLE IF NOT EXISTS `lib_phy_stkrep` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_project_report_det` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL,
-  `call_no` varchar(100) DEFAULT NULL,
-  `author` varchar(255) DEFAULT NULL,
-  `college` varchar(20) DEFAULT NULL,
-  `year` varchar(255) DEFAULT NULL,
-  `rack` varchar(255) DEFAULT NULL,
-  `no_of_pages` varchar(10) DEFAULT '0',
-  `date_of_acquiring` date DEFAULT NULL,
-  `key_word1` varchar(255) DEFAULT NULL,
-  `key_word2` varchar(255) DEFAULT NULL,
-  `key_word3` varchar(255) DEFAULT NULL,
-  `key_word4` varchar(255) DEFAULT NULL,
-  `key_word5` varchar(255) DEFAULT NULL,
-  `guide_name` varchar(100) DEFAULT NULL,
-  `class_name` varchar(100) DEFAULT NULL,
-  `course` varchar(50) DEFAULT NULL,
-  `remarks` text,
+  `id`                 INT           NOT NULL AUTO_INCREMENT,
+  `title`              VARCHAR(255)  DEFAULT NULL,
+  `call_no`            VARCHAR(100)  DEFAULT NULL,
+  `author`             VARCHAR(255)  DEFAULT NULL,
+  `college`            VARCHAR(20)   DEFAULT NULL,
+  `year`               VARCHAR(255)  DEFAULT NULL,
+  `rack`               VARCHAR(255)  DEFAULT NULL,
+  `no_of_pages`        VARCHAR(10)   DEFAULT '0',
+  `date_of_acquiring`  DATE          DEFAULT NULL,
+  `key_word1`          VARCHAR(255)  DEFAULT NULL,
+  `key_word2`          VARCHAR(255)  DEFAULT NULL,
+  `key_word3`          VARCHAR(255)  DEFAULT NULL,
+  `key_word4`          VARCHAR(255)  DEFAULT NULL,
+  `key_word5`          VARCHAR(255)  DEFAULT NULL,
+  `guide_name`         VARCHAR(100)  DEFAULT NULL,
+  `class_name`         VARCHAR(100)  DEFAULT NULL,
+  `course`             VARCHAR(50)   DEFAULT NULL,
+  `remarks`            TEXT,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8232,19 +8371,19 @@ CREATE TABLE IF NOT EXISTS `lib_project_report_det` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_proj_acc_det` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `master_id` int(11) DEFAULT NULL,
-  `media_type` int(11) NOT NULL DEFAULT '0',
-  `acc_no` char(50) NOT NULL DEFAULT '',
-  `mode` char(50) NOT NULL DEFAULT '',
-  `book_status` char(50) DEFAULT NULL,
-  `book_type` char(50) DEFAULT NULL,
-  `library` int(11) NOT NULL DEFAULT '0',
-  `register` int(11) NOT NULL DEFAULT '0',
-  `flag` int(11) DEFAULT '0',
-  `call_no` int(11) DEFAULT NULL,
+  `id`           INT       NOT NULL AUTO_INCREMENT,
+  `master_id`    INT       DEFAULT NULL,
+  `media_type`   INT       NOT NULL DEFAULT '0',
+  `acc_no`       CHAR(50)  NOT NULL DEFAULT '',
+  `mode`         CHAR(50)  NOT NULL DEFAULT '',
+  `book_status`  CHAR(50)  DEFAULT NULL,
+  `book_type`    CHAR(50)  DEFAULT NULL,
+  `library`      INT       NOT NULL DEFAULT '0',
+  `register`     INT       NOT NULL DEFAULT '0',
+  `flag`         INT       DEFAULT '0',
+  `call_no`      INT       DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8253,17 +8392,17 @@ CREATE TABLE IF NOT EXISTS `lib_proj_acc_det` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_purchase_det` (
-  `p_det_id` int(4) NOT NULL AUTO_INCREMENT,
-  `purchase_id` int(4) DEFAULT NULL,
-  `title` varchar(200) DEFAULT NULL,
-  `copies` int(4) DEFAULT NULL,
-  `author` varchar(200) DEFAULT NULL,
-  `publisher` varchar(200) DEFAULT NULL,
-  `apprate` double(8,2) DEFAULT NULL,
-  `received` int(4) DEFAULT NULL,
-  `balance` int(4) DEFAULT NULL,
+  `p_det_id`     INT           NOT NULL AUTO_INCREMENT,
+  `purchase_id`  INT           DEFAULT NULL,
+  `title`        VARCHAR(200)  DEFAULT NULL,
+  `copies`       INT           DEFAULT NULL,
+  `author`       VARCHAR(200)  DEFAULT NULL,
+  `publisher`    VARCHAR(200)  DEFAULT NULL,
+  `apprate`      DOUBLE(8,2)   DEFAULT NULL,
+  `received`     INT           DEFAULT NULL,
+  `balance`      INT           DEFAULT NULL,
   PRIMARY KEY (`p_det_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8272,17 +8411,17 @@ CREATE TABLE IF NOT EXISTS `lib_purchase_det` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_purchase_m` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `order_id` varchar(50) DEFAULT NULL,
-  `purchaseNo` varchar(50) NOT NULL DEFAULT '',
-  `copies` int(11) NOT NULL DEFAULT '0',
-  `delivery_date` date DEFAULT NULL,
-  `amt` double(8,2) DEFAULT NULL,
-  `library` int(11) NOT NULL DEFAULT '0',
-  `duedate` date DEFAULT NULL,
-  `ptype` varchar(10) DEFAULT NULL,
+  `id`             INT          NOT NULL AUTO_INCREMENT,
+  `order_id`       VARCHAR(50)  DEFAULT NULL,
+  `purchaseNo`     VARCHAR(50)  NOT NULL DEFAULT '',
+  `copies`         INT          NOT NULL DEFAULT '0',
+  `delivery_date`  DATE         DEFAULT NULL,
+  `amt`            DOUBLE(8,2)  DEFAULT NULL,
+  `library`        INT          NOT NULL DEFAULT '0',
+  `duedate`        DATE         DEFAULT NULL,
+  `ptype`          VARCHAR(10)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8291,23 +8430,23 @@ CREATE TABLE IF NOT EXISTS `lib_purchase_m` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_question_paper_det` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `question_paper_no` varchar(255) DEFAULT NULL,
-  `college` varchar(10) DEFAULT NULL,
-  `course` int(5) DEFAULT NULL,
-  `sem` int(5) DEFAULT NULL,
-  `subject` int(5) DEFAULT NULL,
-  `month` varchar(5) DEFAULT NULL,
-  `year` varchar(5) DEFAULT NULL,
-  `scheme` varchar(10) DEFAULT NULL,
-  `remarks` text,
-  `library` int(4) DEFAULT NULL,
-  `register` int(4) DEFAULT NULL,
-  `flag` int(5) NOT NULL DEFAULT '0',
-  `noupld` int(5) DEFAULT '0',
-  `upldfiles` varchar(255) DEFAULT NULL,
+  `id`                 INT           NOT NULL AUTO_INCREMENT,
+  `question_paper_no`  VARCHAR(255)  DEFAULT NULL,
+  `college`            VARCHAR(10)   DEFAULT NULL,
+  `course`             INT           DEFAULT NULL,
+  `sem`                INT           DEFAULT NULL,
+  `subject`            INT           DEFAULT NULL,
+  `month`              VARCHAR(5)    DEFAULT NULL,
+  `year`               VARCHAR(5)    DEFAULT NULL,
+  `scheme`             VARCHAR(10)   DEFAULT NULL,
+  `remarks`            TEXT,
+  `library`            INT           DEFAULT NULL,
+  `register`           INT           DEFAULT NULL,
+  `flag`               INT           NOT NULL DEFAULT '0',
+  `noupld`             INT           DEFAULT '0',
+  `upldfiles`          VARCHAR(255)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8316,12 +8455,12 @@ CREATE TABLE IF NOT EXISTS `lib_question_paper_det` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_quotation` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `library` int(11) DEFAULT NULL,
-  `quot_date` date DEFAULT NULL,
-  `vendor` int(11) DEFAULT NULL,
+  `id`         INT   NOT NULL AUTO_INCREMENT,
+  `library`    INT   DEFAULT NULL,
+  `quot_date`  DATE  DEFAULT NULL,
+  `vendor`     INT   DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8330,12 +8469,12 @@ CREATE TABLE IF NOT EXISTS `lib_quotation` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_register` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `library` int(11) DEFAULT NULL,
-  `register` varchar(100) DEFAULT NULL,
-  `collage_name` text,
+  `id`            INT           NOT NULL AUTO_INCREMENT,
+  `library`       INT           DEFAULT NULL,
+  `register`      VARCHAR(100)  DEFAULT NULL,
+  `collage_name`  TEXT,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8344,15 +8483,15 @@ CREATE TABLE IF NOT EXISTS `lib_register` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_reservation_m` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `l_id` int(11) DEFAULT NULL,
-  `resdate` date DEFAULT NULL,
-  `m_id` varchar(15) DEFAULT NULL,
-  `end_date` date DEFAULT NULL,
-  `medid` int(3) DEFAULT NULL,
-  `accno` varchar(50) DEFAULT NULL,
+  `id`        INT          NOT NULL AUTO_INCREMENT,
+  `l_id`      INT          DEFAULT NULL,
+  `resdate`   DATE         DEFAULT NULL,
+  `m_id`      VARCHAR(15)  DEFAULT NULL,
+  `end_date`  DATE         DEFAULT NULL,
+  `medid`     INT          DEFAULT NULL,
+  `accno`     VARCHAR(50)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8361,16 +8500,16 @@ CREATE TABLE IF NOT EXISTS `lib_reservation_m` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_reservation_temp` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `l_id` varchar(20) DEFAULT NULL,
-  `resdate` date DEFAULT NULL,
-  `m_id` varchar(20) DEFAULT NULL,
-  `accno` int(6) unsigned zerofill DEFAULT NULL,
-  `end_date` date DEFAULT NULL,
-  `media_type` int(2) DEFAULT NULL,
-  `stts` int(1) DEFAULT '0',
+  `id`          INT                    NOT NULL AUTO_INCREMENT,
+  `l_id`        VARCHAR(20)            DEFAULT NULL,
+  `resdate`     DATE                   DEFAULT NULL,
+  `m_id`        VARCHAR(20)            DEFAULT NULL,
+  `accno`       INT UNSIGNED ZEROFILL  DEFAULT NULL,
+  `end_date`    DATE                   DEFAULT NULL,
+  `media_type`  INT                    DEFAULT NULL,
+  `stts`        TINYINT(1)             DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8379,15 +8518,15 @@ CREATE TABLE IF NOT EXISTS `lib_reservation_temp` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_temp_quotation_trans` (
-  `id` int(4) NOT NULL AUTO_INCREMENT,
-  `author` varchar(100) DEFAULT NULL,
-  `publisher` varchar(100) DEFAULT NULL,
-  `title` varchar(100) DEFAULT NULL,
-  `copies` int(4) DEFAULT NULL,
-  `library` int(4) DEFAULT NULL,
-  `vendor` int(4) DEFAULT NULL,
+  `id`         INT           NOT NULL AUTO_INCREMENT,
+  `author`     VARCHAR(100)  DEFAULT NULL,
+  `publisher`  VARCHAR(100)  DEFAULT NULL,
+  `title`      VARCHAR(100)  DEFAULT NULL,
+  `copies`     INT           DEFAULT NULL,
+  `library`    INT           DEFAULT NULL,
+  `vendor`     INT           DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8396,16 +8535,16 @@ CREATE TABLE IF NOT EXISTS `lib_temp_quotation_trans` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_vendor_m` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` int(11) NOT NULL DEFAULT '0',
-  `Name` varchar(100) NOT NULL DEFAULT '',
-  `address` text,
-  `telephone` varchar(50) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `url` varchar(50) DEFAULT NULL,
-  `remark` text,
+  `id`         INT           NOT NULL AUTO_INCREMENT,
+  `type`       INT           NOT NULL DEFAULT '0',
+  `Name`       VARCHAR(100)  NOT NULL DEFAULT '',
+  `address`    TEXT,
+  `telephone`  VARCHAR(50)   DEFAULT NULL,
+  `email`      VARCHAR(50)   DEFAULT NULL,
+  `url`        VARCHAR(50)   DEFAULT NULL,
+  `remark`     TEXT,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8414,10 +8553,10 @@ CREATE TABLE IF NOT EXISTS `lib_vendor_m` (
 --
 
 CREATE TABLE IF NOT EXISTS `lib_vendor_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(50) NOT NULL DEFAULT '',
+  `id`    INT          NOT NULL AUTO_INCREMENT,
+  `type`  VARCHAR(50)  NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8426,17 +8565,17 @@ CREATE TABLE IF NOT EXISTS `lib_vendor_type` (
 --
 
 CREATE TABLE IF NOT EXISTS `links` (
-  `module` varchar(50) DEFAULT NULL,
-  `submodule` varchar(50) DEFAULT NULL,
-  `linkname` varchar(250) DEFAULT NULL,
-  `linkpath` varchar(250) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parameter` varchar(250) DEFAULT NULL,
-  `Display_name` varchar(250) NOT NULL,
-  `help` text NOT NULL,
-  `imgpath` varchar(250) NOT NULL,
+  `module`        VARCHAR(50)   DEFAULT NULL,
+  `submodule`     VARCHAR(50)   DEFAULT NULL,
+  `linkname`      VARCHAR(250)  DEFAULT NULL,
+  `linkpath`      VARCHAR(250)  DEFAULT NULL,
+  `id`            INT           NOT NULL AUTO_INCREMENT,
+  `parameter`     VARCHAR(250)  DEFAULT NULL,
+  `Display_name`  VARCHAR(250)  NOT NULL,
+  `help`          TEXT          NOT NULL,
+  `imgpath`       VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=562 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `links`
@@ -8905,16 +9044,16 @@ INSERT INTO `links` (`module`, `submodule`, `linkname`, `linkpath`, `id`, `param
 --
 
 CREATE TABLE IF NOT EXISTS `links_p` (
-  `module` varchar(50) DEFAULT NULL,
-  `submodule` varchar(50) DEFAULT NULL,
-  `linkname` varchar(250) DEFAULT NULL,
-  `linkpath` varchar(250) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parameter` varchar(250) DEFAULT NULL,
-  `Display_name` varchar(250) NOT NULL,
-  `help` text NOT NULL,
+  `module`        VARCHAR(50)   DEFAULT NULL,
+  `submodule`     VARCHAR(50)   DEFAULT NULL,
+  `linkname`      VARCHAR(250)  DEFAULT NULL,
+  `linkpath`      VARCHAR(250)  DEFAULT NULL,
+  `id`            INT           NOT NULL AUTO_INCREMENT,
+  `parameter`     VARCHAR(250)  DEFAULT NULL,
+  `Display_name`  VARCHAR(250)  NOT NULL,
+  `help`          TEXT          NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=556 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `links_p`
@@ -8955,11 +9094,11 @@ INSERT INTO `links_p` (`module`, `submodule`, `linkname`, `linkpath`, `id`, `par
 --
 
 CREATE TABLE IF NOT EXISTS `location_master` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `location` varchar(50) DEFAULT NULL,
-  `dept_id` int(11) DEFAULT NULL,
+  `id`        INT          NOT NULL AUTO_INCREMENT,
+  `location`  VARCHAR(50)  DEFAULT NULL,
+  `dept_id`   INT          DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -8968,16 +9107,16 @@ CREATE TABLE IF NOT EXISTS `location_master` (
 --
 
 CREATE TABLE IF NOT EXISTS `log` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `username` text,
-  `address` text,
-  `accessdate` datetime DEFAULT NULL,
-  `urladdress` text,
-  `linkname` text,
-  `module` varchar(250) DEFAULT NULL,
-  `trans_date` date DEFAULT NULL,
+  `id`          BIGINT        NOT NULL AUTO_INCREMENT,
+  `username`    TEXT,
+  `address`     TEXT,
+  `accessdate`  DATETIME      DEFAULT NULL,
+  `urladdress`  TEXT,
+  `linkname`    TEXT,
+  `module`      VARCHAR(250)  DEFAULT NULL,
+  `trans_date`  DATE          DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1273 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `log`
@@ -9002,14 +9141,14 @@ INSERT INTO `log` (`id`, `username`, `address`, `accessdate`, `urladdress`, `lin
 --
 
 CREATE TABLE IF NOT EXISTS `lunch_menu_master` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `day_det` varchar(11) NOT NULL,
-  `menu_date` date NOT NULL,
-  `order_id` int(4) NOT NULL,
-  `Breakfast_Menu` varchar(250) NOT NULL,
-  `Lunch_Menu` varchar(250) NOT NULL,
+  `id`              INT           NOT NULL AUTO_INCREMENT,
+  `day_det`         VARCHAR(11)   NOT NULL,
+  `menu_date`       DATE          NOT NULL,
+  `order_id`        INT           NOT NULL,
+  `Breakfast_Menu`  VARCHAR(250)  NOT NULL,
+  `Lunch_Menu`      VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17341 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `lunch_menu_master`
@@ -9029,12 +9168,13 @@ INSERT INTO `lunch_menu_master` (`id`, `day_det`, `menu_date`, `order_id`, `Brea
 --
 
 CREATE TABLE IF NOT EXISTS `lunch_menu_master_temp` (
-  `sr_number` varchar(10) NOT NULL,
-  `date_det` varchar(15) NOT NULL,
-  `day` varchar(10) NOT NULL,
-  `Breakfast_Menu` varchar(200) NOT NULL,
-  `Lunch_Menu` varchar(200) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `sr_number`       VARCHAR(10)   NOT NULL,
+  `date_det`        VARCHAR(15)   NOT NULL,
+  `day`             VARCHAR(10)   NOT NULL,
+  `Breakfast_Menu`  VARCHAR(200)  NOT NULL,
+  `Lunch_Menu`      VARCHAR(200)  NOT NULL,
+  PRIMARY KEY (`sr_number`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `lunch_menu_master_temp`
@@ -9068,11 +9208,11 @@ INSERT INTO `lunch_menu_master_temp` (`sr_number`, `date_det`, `day`, `Breakfast
 --
 
 CREATE TABLE IF NOT EXISTS `mailinsert` (
-  `id` int(14) NOT NULL AUTO_INCREMENT,
-  `user` varchar(80) NOT NULL,
-  `mail2` varchar(80) NOT NULL,
+  `id`     INT          NOT NULL AUTO_INCREMENT,
+  `user`   VARCHAR(80)  NOT NULL,
+  `mail2`  VARCHAR(80)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2513 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `mailinsert`
@@ -9098,15 +9238,15 @@ INSERT INTO `mailinsert` (`id`, `user`, `mail2`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `mail_attachments` (
-  `id` int(14) NOT NULL AUTO_INCREMENT,
-  `str_id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `link` varchar(200) NOT NULL,
-  `adate` date NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`        INT           NOT NULL AUTO_INCREMENT,
+  `str_id`    INT           NOT NULL,
+  `name`      VARCHAR(50)   NOT NULL,
+  `link`      VARCHAR(200)  NOT NULL,
+  `adate`     DATE          NOT NULL,
+  `username`  VARCHAR(255)  NOT NULL,
+  `status`    TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1188 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `mail_attachments`
@@ -9131,15 +9271,15 @@ INSERT INTO `mail_attachments` (`id`, `str_id`, `name`, `link`, `adate`, `userna
 --
 
 CREATE TABLE IF NOT EXISTS `mail_det` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `mail_subject` varchar(70) NOT NULL,
-  `mail_content` mediumtext NOT NULL,
-  `status` int(1) NOT NULL,
-  `mail_date` date NOT NULL,
-  `username` varchar(40) NOT NULL,
-  `count` int(3) NOT NULL,
+  `id`            INT          NOT NULL AUTO_INCREMENT,
+  `mail_subject`  VARCHAR(70)  NOT NULL,
+  `mail_content`  MEDIUMTEXT   NOT NULL,
+  `status`        TINYINT(1)   NOT NULL,
+  `mail_date`     DATE         NOT NULL,
+  `username`      VARCHAR(40)  NOT NULL,
+  `count`         INT          NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `mail_det`
@@ -9157,12 +9297,12 @@ INSERT INTO `mail_det` (`id`, `mail_subject`, `mail_content`, `status`, `mail_da
 --
 
 CREATE TABLE IF NOT EXISTS `mail_group` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `group_name` varchar(100) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `status` int(1) DEFAULT '0',
+  `id`           INT           NOT NULL AUTO_INCREMENT,
+  `group_name`   VARCHAR(100)  DEFAULT NULL,
+  `description`  VARCHAR(255)  DEFAULT NULL,
+  `status`       TINYINT(1)    DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `mail_group`
@@ -9179,22 +9319,22 @@ INSERT INTO `mail_group` (`id`, `group_name`, `description`, `status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `mail_logs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `mail_sent_id` int(11) NOT NULL,
-  `mail_det` text NOT NULL,
-  `response` text NOT NULL,
-  `status` int(1) NOT NULL,
-  `mail_date` date NOT NULL,
-  `mail_time` time NOT NULL,
-  `user` varchar(250) NOT NULL,
-  `from_mail` varchar(250) NOT NULL,
-  `to_mail` varchar(250) NOT NULL,
-  `subject` varchar(250) NOT NULL,
-  `valid` int(1) NOT NULL DEFAULT '1',
-  `viewed` int(1) NOT NULL DEFAULT '0',
-  `mail_att` text NOT NULL,
+  `id`            INT           NOT NULL AUTO_INCREMENT,
+  `mail_sent_id`  INT           NOT NULL,
+  `mail_det`      TEXT          NOT NULL,
+  `response`      TEXT          NOT NULL,
+  `status`        TINYINT(1)    NOT NULL,
+  `mail_date`     DATE          NOT NULL,
+  `mail_time`     TIME          NOT NULL,
+  `user`          VARCHAR(250)  NOT NULL,
+  `from_mail`     VARCHAR(250)  NOT NULL,
+  `to_mail`       VARCHAR(250)  NOT NULL,
+  `subject`       VARCHAR(250)  NOT NULL,
+  `valid`         TINYINT(1)    NOT NULL DEFAULT '1',
+  `viewed`        TINYINT(1)    NOT NULL DEFAULT '0',
+  `mail_att`      TEXT          NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9203,20 +9343,20 @@ CREATE TABLE IF NOT EXISTS `mail_logs` (
 --
 
 CREATE TABLE IF NOT EXISTS `mail_logs_system` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `mail_sent_id` int(11) NOT NULL,
-  `mail_det` text NOT NULL,
-  `response` text NOT NULL,
-  `status` int(1) NOT NULL,
-  `mail_date` date NOT NULL,
-  `mail_time` time NOT NULL,
-  `user` varchar(250) NOT NULL,
-  `from_mail` varchar(250) NOT NULL,
-  `to_mail` varchar(250) NOT NULL,
-  `subject` varchar(250) NOT NULL,
-  `stud` int(11) NOT NULL,
+  `id`            INT           NOT NULL AUTO_INCREMENT,
+  `mail_sent_id`  INT           NOT NULL,
+  `mail_det`      TEXT          NOT NULL,
+  `response`      TEXT          NOT NULL,
+  `status`        TINYINT(1)    NOT NULL,
+  `mail_date`     DATE          NOT NULL,
+  `mail_time`     TIME          NOT NULL,
+  `user`          VARCHAR(250)  NOT NULL,
+  `from_mail`     VARCHAR(250)  NOT NULL,
+  `to_mail`       VARCHAR(250)  NOT NULL,
+  `subject`       VARCHAR(250)  NOT NULL,
+  `stud`          INT           NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9225,13 +9365,13 @@ CREATE TABLE IF NOT EXISTS `mail_logs_system` (
 --
 
 CREATE TABLE IF NOT EXISTS `mail_member` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `group_name` varchar(10) DEFAULT NULL,
-  `stud_id` varchar(100) DEFAULT NULL,
-  `member_type` varchar(10) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
+  `id`           INT           NOT NULL AUTO_INCREMENT,
+  `group_name`   VARCHAR(10)   DEFAULT NULL,
+  `stud_id`      VARCHAR(100)  DEFAULT NULL,
+  `member_type`  VARCHAR(10)   DEFAULT NULL,
+  `status`       TINYINT(1)    DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9240,16 +9380,16 @@ CREATE TABLE IF NOT EXISTS `mail_member` (
 --
 
 CREATE TABLE IF NOT EXISTS `mail_member_field` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `name_field` varchar(100) DEFAULT NULL,
-  `mail_field` varchar(100) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
-  `status` int(1) DEFAULT '0',
-  `table_name` varchar(50) NOT NULL,
-  `where_id` varchar(50) NOT NULL,
+  `id`          INT           NOT NULL AUTO_INCREMENT,
+  `name`        VARCHAR(100)  DEFAULT NULL,
+  `name_field`  VARCHAR(100)  DEFAULT NULL,
+  `mail_field`  VARCHAR(100)  DEFAULT NULL,
+  `phone`       VARCHAR(20)   DEFAULT NULL,
+  `status`      TINYINT(1)    DEFAULT '0',
+  `table_name`  VARCHAR(50)   NOT NULL,
+  `where_id`    VARCHAR(50)   NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9258,17 +9398,17 @@ CREATE TABLE IF NOT EXISTS `mail_member_field` (
 --
 
 CREATE TABLE IF NOT EXISTS `mail_sent_count` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `username` varchar(30) NOT NULL,
-  `mail_det_id` varchar(70) NOT NULL,
-  `from_mail_id` varchar(70) NOT NULL,
-  `to_mail_id` varchar(70) NOT NULL,
-  `student_id` int(10) NOT NULL,
-  `mail_date` date NOT NULL,
-  `mail_time` time NOT NULL,
-  `mail_count` int(2) NOT NULL,
+  `id`            INT          NOT NULL AUTO_INCREMENT,
+  `username`      VARCHAR(30)  NOT NULL,
+  `mail_det_id`   VARCHAR(70)  NOT NULL,
+  `from_mail_id`  VARCHAR(70)  NOT NULL,
+  `to_mail_id`    VARCHAR(70)  NOT NULL,
+  `student_id`    INT          NOT NULL,
+  `mail_date`     DATE         NOT NULL,
+  `mail_time`     TIME         NOT NULL,
+  `mail_count`    INT          NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9277,33 +9417,33 @@ CREATE TABLE IF NOT EXISTS `mail_sent_count` (
 --
 
 CREATE TABLE IF NOT EXISTS `mail_settings` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(80) NOT NULL,
-  `status` int(1) NOT NULL,
-  `From_name` varchar(80) NOT NULL,
-  `From_address` varchar(80) NOT NULL,
-  `Domain_name` varchar(80) NOT NULL,
-  `SMTP` varchar(80) NOT NULL,
-  `SMTP_Port` int(4) NOT NULL,
-  `Username` varchar(80) NOT NULL,
-  `Password` varchar(80) NOT NULL,
-  `Signatore` text NOT NULL,
-  `Count` int(10) NOT NULL,
+  `id`            INT          NOT NULL AUTO_INCREMENT,
+  `user_id`       VARCHAR(80)  NOT NULL,
+  `status`        TINYINT(1)   NOT NULL,
+  `from_name`     VARCHAR(80)  NOT NULL,
+  `from_address`  VARCHAR(80)  NOT NULL,
+  `domain_name`   VARCHAR(80)  NOT NULL,
+  `smtp_host`     VARCHAR(80)  NOT NULL,
+  `smtp_port`     INT          NOT NULL,
+  `username`      VARCHAR(80)  NOT NULL,
+  `password`      VARCHAR(80)  NOT NULL,
+  `signature`     TEXT         NOT NULL,
+  `count`         INT          NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=105 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `mail_settings`
 --
 
-INSERT INTO `mail_settings` (`id`, `user_id`, `status`, `From_name`, `From_address`, `Domain_name`, `SMTP`, `SMTP_Port`, `Username`, `Password`, `Signatore`, `Count`) VALUES
+INSERT INTO `mail_settings` (`id`, `user_id`, `status`, `from_name`, `from_address`, `domain_name`, `smtp_host`, `smtp_port`, `username`, `password`, `signature`, `count`) VALUES
 (1, 'administrator', 1, 'Soumendra Nath De', 'soumendranath.de@email.com', 'email.com', 'smtp.gmail.com', 465, 'soumendranath.de', 'xxxxxx', '', 0),
 (2, 'faculty', 1, 'Roshan', 'sureshduggaladka@email.com', 'email.com', 'smtp.gmail.com', 465, 'sureshduggaladka', 'xxxxxx', 'Thanks and Kind Regards', 0),
 (3, 'nehata', 1, 'MySchool', 'neha.thakar@email.com', 'email.com', 'smtp.gmail.com', 465, 'neha.thakar', 'xxxxxx', '', 0),
 (4, 'dianar', 1, 'Diana Roy', 'diana.roy@email.com', 'email.com', 'smtp.gmail.com', 465, 'diana.roy', 'xxxxxx', 'Ms Diana Roy', 0),
 (5, 'jaikalap', 1, 'Jaikala Prasad', 'LMS International School', 'gmail.com', 'smtp.gmail.com', 465, 'xxxxxx', 'xxxxxx', 'Regards,\r\nJaikala Prasad\r\nIGCSE and IBDP Physics Faculty\r\nGr-12A Homeroom Tr.\r\n', 0),
 (6, 'oisinfo', 1, 'OIS INFO', 'oisinfo@email.com', 'email.com', 'smtp.gmail.com', 465, 'oisinfo', 'xxxxxx', '', 0),
-(7, 'sudhar', 1, 'Sudha Rakesh ', 'sudha.rakesh@email.com', 'email.com', 'smtp.gmail.com', 465, 'sudha.rakesh', 'oberoi10', '', 0),
+(7, 'sudhar', 1, 'Sudha Rakesh ', 'sudha.rakesh@email.com', 'email.com', 'smtp.gmail.com', 465, 'sudha.rakesh', 'xxxxxx', '', 0),
 (8, 'florinad', 1, 'Florina D''Souza ', 'florina.dsouza@email.com', 'email.com', 'smtp.gmail.com', 465, 'florina.dsouza', 'xxxxxx', '', 0),
 (9, 'matthews', 1, 'Matthew Sipple', 'matthew.sipple@email.com', 'email.com', 'smtp.gmail.com', 465, 'matthew.sipple', 'xxxxxx', '', 0),
 (10, 'eyinfo', 1, 'EY INFO', 'eyinfo@email.com', 'email.com', 'smtp.gmail.com', 465, 'eyinfo', 'xxxxxx', '', 0);
@@ -9315,12 +9455,12 @@ INSERT INTO `mail_settings` (`id`, `user_id`, `status`, `From_name`, `From_addre
 --
 
 CREATE TABLE IF NOT EXISTS `major_master` (
-  `id` int(6) NOT NULL AUTO_INCREMENT,
-  `section_id` int(6) DEFAULT NULL,
-  `sem_id` int(6) DEFAULT NULL,
-  `maj_id` int(6) DEFAULT NULL,
+  `id`          INT  NOT NULL AUTO_INCREMENT,
+  `section_id`  INT  DEFAULT NULL,
+  `sem_id`      INT  DEFAULT NULL,
+  `maj_id`      INT  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9329,34 +9469,34 @@ CREATE TABLE IF NOT EXISTS `major_master` (
 --
 
 CREATE TABLE IF NOT EXISTS `marks_1_1` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studid` int(20) DEFAULT NULL,
-  `secid` int(2) DEFAULT NULL,
-  `bid` int(2) DEFAULT NULL,
-  `subid` int(3) NOT NULL DEFAULT '0',
-  `assmk1` int(11) DEFAULT NULL,
-  `ba1` int(3) NOT NULL DEFAULT '0',
-  `assmk2` int(11) DEFAULT NULL,
-  `ba2` int(3) NOT NULL DEFAULT '0',
-  `assmk3` int(11) DEFAULT NULL,
-  `ba3` int(3) NOT NULL DEFAULT '0',
-  `assmk4` int(11) DEFAULT NULL,
-  `ba4` int(3) NOT NULL DEFAULT '0',
-  `assmk5` int(11) DEFAULT NULL,
-  `ba5` int(3) NOT NULL DEFAULT '0',
-  `assmk6` int(11) DEFAULT NULL,
-  `ba6` int(3) NOT NULL DEFAULT '0',
-  `assmk7` int(11) DEFAULT NULL,
-  `ba7` int(3) NOT NULL DEFAULT '0',
-  `assmk8` int(11) DEFAULT NULL,
-  `ba8` int(3) NOT NULL DEFAULT '0',
-  `assmk9` int(11) DEFAULT NULL,
-  `ba9` int(3) NOT NULL DEFAULT '0',
-  `assmk10` int(11) DEFAULT NULL,
-  `ba10` int(3) NOT NULL DEFAULT '0',
-  `accyr` int(4) DEFAULT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`       INT  NOT NULL AUTO_INCREMENT,
+  `studid`   INT  DEFAULT NULL,
+  `secid`    INT  DEFAULT NULL,
+  `bid`      INT  DEFAULT NULL,
+  `subid`    INT  NOT NULL DEFAULT '0',
+  `assmk1`   INT  DEFAULT NULL,
+  `ba1`      INT  NOT NULL DEFAULT '0',
+  `assmk2`   INT  DEFAULT NULL,
+  `ba2`      INT  NOT NULL DEFAULT '0',
+  `assmk3`   INT  DEFAULT NULL,
+  `ba3`      INT  NOT NULL DEFAULT '0',
+  `assmk4`   INT  DEFAULT NULL,
+  `ba4`      INT  NOT NULL DEFAULT '0',
+  `assmk5`   INT  DEFAULT NULL,
+  `ba5`      INT  NOT NULL DEFAULT '0',
+  `assmk6`   INT  DEFAULT NULL,
+  `ba6`      INT  NOT NULL DEFAULT '0',
+  `assmk7`   INT  DEFAULT NULL,
+  `ba7`      INT  NOT NULL DEFAULT '0',
+  `assmk8`   INT  DEFAULT NULL,
+  `ba8`      INT  NOT NULL DEFAULT '0',
+  `assmk9`   INT  DEFAULT NULL,
+  `ba9`      INT  NOT NULL DEFAULT '0',
+  `assmk10`  INT  DEFAULT NULL,
+  `ba10`     INT  NOT NULL DEFAULT '0',
+  `accyr`    INT  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9365,34 +9505,34 @@ CREATE TABLE IF NOT EXISTS `marks_1_1` (
 --
 
 CREATE TABLE IF NOT EXISTS `marks_2_2` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studid` int(20) DEFAULT NULL,
-  `secid` int(2) DEFAULT NULL,
-  `bid` int(2) DEFAULT NULL,
-  `subid` int(3) NOT NULL DEFAULT '0',
-  `assmk1` int(11) DEFAULT NULL,
-  `ba1` int(3) NOT NULL DEFAULT '0',
-  `assmk2` int(11) DEFAULT NULL,
-  `ba2` int(3) NOT NULL DEFAULT '0',
-  `assmk3` int(11) DEFAULT NULL,
-  `ba3` int(3) NOT NULL DEFAULT '0',
-  `assmk4` int(11) DEFAULT NULL,
-  `ba4` int(3) NOT NULL DEFAULT '0',
-  `assmk5` int(11) DEFAULT NULL,
-  `ba5` int(3) NOT NULL DEFAULT '0',
-  `assmk6` int(11) DEFAULT NULL,
-  `ba6` int(3) NOT NULL DEFAULT '0',
-  `assmk7` int(11) DEFAULT NULL,
-  `ba7` int(3) NOT NULL DEFAULT '0',
-  `assmk8` int(11) DEFAULT NULL,
-  `ba8` int(3) NOT NULL DEFAULT '0',
-  `assmk9` int(11) DEFAULT NULL,
-  `ba9` int(3) NOT NULL DEFAULT '0',
-  `assmk10` int(11) DEFAULT NULL,
-  `ba10` int(3) NOT NULL DEFAULT '0',
-  `accyr` int(4) DEFAULT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`       INT  NOT NULL AUTO_INCREMENT,
+  `studid`   INT  DEFAULT NULL,
+  `secid`    INT  DEFAULT NULL,
+  `bid`      INT  DEFAULT NULL,
+  `subid`    INT  NOT NULL DEFAULT '0',
+  `assmk1`   INT  DEFAULT NULL,
+  `ba1`      INT  NOT NULL DEFAULT '0',
+  `assmk2`   INT  DEFAULT NULL,
+  `ba2`      INT  NOT NULL DEFAULT '0',
+  `assmk3`   INT  DEFAULT NULL,
+  `ba3`      INT  NOT NULL DEFAULT '0',
+  `assmk4`   INT  DEFAULT NULL,
+  `ba4`      INT  NOT NULL DEFAULT '0',
+  `assmk5`   INT  DEFAULT NULL,
+  `ba5`      INT  NOT NULL DEFAULT '0',
+  `assmk6`   INT  DEFAULT NULL,
+  `ba6`      INT  NOT NULL DEFAULT '0',
+  `assmk7`   INT  DEFAULT NULL,
+  `ba7`      INT  NOT NULL DEFAULT '0',
+  `assmk8`   INT  DEFAULT NULL,
+  `ba8`      INT  NOT NULL DEFAULT '0',
+  `assmk9`   INT  DEFAULT NULL,
+  `ba9`      INT  NOT NULL DEFAULT '0',
+  `assmk10`  INT  DEFAULT NULL,
+  `ba10`     INT  NOT NULL DEFAULT '0',
+  `accyr`    INT  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9401,34 +9541,34 @@ CREATE TABLE IF NOT EXISTS `marks_2_2` (
 --
 
 CREATE TABLE IF NOT EXISTS `marks_2_3` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studid` int(20) DEFAULT NULL,
-  `secid` int(2) DEFAULT NULL,
-  `bid` int(2) DEFAULT NULL,
-  `subid` int(3) NOT NULL DEFAULT '0',
-  `assmk1` int(11) DEFAULT NULL,
-  `ba1` int(3) NOT NULL DEFAULT '0',
-  `assmk2` int(11) DEFAULT NULL,
-  `ba2` int(3) NOT NULL DEFAULT '0',
-  `assmk3` int(11) DEFAULT NULL,
-  `ba3` int(3) NOT NULL DEFAULT '0',
-  `assmk4` int(11) DEFAULT NULL,
-  `ba4` int(3) NOT NULL DEFAULT '0',
-  `assmk5` int(11) DEFAULT NULL,
-  `ba5` int(3) NOT NULL DEFAULT '0',
-  `assmk6` int(11) DEFAULT NULL,
-  `ba6` int(3) NOT NULL DEFAULT '0',
-  `assmk7` int(11) DEFAULT NULL,
-  `ba7` int(3) NOT NULL DEFAULT '0',
-  `assmk8` int(11) DEFAULT NULL,
-  `ba8` int(3) NOT NULL DEFAULT '0',
-  `assmk9` int(11) DEFAULT NULL,
-  `ba9` int(3) NOT NULL DEFAULT '0',
-  `assmk10` int(11) DEFAULT NULL,
-  `ba10` int(3) NOT NULL DEFAULT '0',
-  `accyr` int(4) DEFAULT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`       INT  NOT NULL AUTO_INCREMENT,
+  `studid`   INT  DEFAULT NULL,
+  `secid`    INT  DEFAULT NULL,
+  `bid`      INT  DEFAULT NULL,
+  `subid`    INT  NOT NULL DEFAULT '0',
+  `assmk1`   INT  DEFAULT NULL,
+  `ba1`      INT  NOT NULL DEFAULT '0',
+  `assmk2`   INT  DEFAULT NULL,
+  `ba2`      INT  NOT NULL DEFAULT '0',
+  `assmk3`   INT  DEFAULT NULL,
+  `ba3`      INT  NOT NULL DEFAULT '0',
+  `assmk4`   INT  DEFAULT NULL,
+  `ba4`      INT  NOT NULL DEFAULT '0',
+  `assmk5`   INT  DEFAULT NULL,
+  `ba5`      INT  NOT NULL DEFAULT '0',
+  `assmk6`   INT  DEFAULT NULL,
+  `ba6`      INT  NOT NULL DEFAULT '0',
+  `assmk7`   INT  DEFAULT NULL,
+  `ba7`      INT  NOT NULL DEFAULT '0',
+  `assmk8`   INT  DEFAULT NULL,
+  `ba8`      INT  NOT NULL DEFAULT '0',
+  `assmk9`   INT  DEFAULT NULL,
+  `ba9`      INT  NOT NULL DEFAULT '0',
+  `assmk10`  INT  DEFAULT NULL,
+  `ba10`     INT  NOT NULL DEFAULT '0',
+  `accyr`    INT  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9437,34 +9577,34 @@ CREATE TABLE IF NOT EXISTS `marks_2_3` (
 --
 
 CREATE TABLE IF NOT EXISTS `marks_2_4` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studid` int(20) DEFAULT NULL,
-  `secid` int(2) DEFAULT NULL,
-  `bid` int(2) DEFAULT NULL,
-  `subid` int(3) NOT NULL DEFAULT '0',
-  `assmk1` int(11) DEFAULT NULL,
-  `ba1` int(3) NOT NULL DEFAULT '0',
-  `assmk2` int(11) DEFAULT NULL,
-  `ba2` int(3) NOT NULL DEFAULT '0',
-  `assmk3` int(11) DEFAULT NULL,
-  `ba3` int(3) NOT NULL DEFAULT '0',
-  `assmk4` int(11) DEFAULT NULL,
-  `ba4` int(3) NOT NULL DEFAULT '0',
-  `assmk5` int(11) DEFAULT NULL,
-  `ba5` int(3) NOT NULL DEFAULT '0',
-  `assmk6` int(11) DEFAULT NULL,
-  `ba6` int(3) NOT NULL DEFAULT '0',
-  `assmk7` int(11) DEFAULT NULL,
-  `ba7` int(3) NOT NULL DEFAULT '0',
-  `assmk8` int(11) DEFAULT NULL,
-  `ba8` int(3) NOT NULL DEFAULT '0',
-  `assmk9` int(11) DEFAULT NULL,
-  `ba9` int(3) NOT NULL DEFAULT '0',
-  `assmk10` int(11) DEFAULT NULL,
-  `ba10` int(3) NOT NULL DEFAULT '0',
-  `accyr` int(4) DEFAULT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`       INT  NOT NULL AUTO_INCREMENT,
+  `studid`   INT  DEFAULT NULL,
+  `secid`    INT  DEFAULT NULL,
+  `bid`      INT  DEFAULT NULL,
+  `subid`    INT  NOT NULL DEFAULT '0',
+  `assmk1`   INT  DEFAULT NULL,
+  `ba1`      INT  NOT NULL DEFAULT '0',
+  `assmk2`   INT  DEFAULT NULL,
+  `ba2`      INT  NOT NULL DEFAULT '0',
+  `assmk3`   INT  DEFAULT NULL,
+  `ba3`      INT  NOT NULL DEFAULT '0',
+  `assmk4`   INT  DEFAULT NULL,
+  `ba4`      INT  NOT NULL DEFAULT '0',
+  `assmk5`   INT  DEFAULT NULL,
+  `ba5`      INT  NOT NULL DEFAULT '0',
+  `assmk6`   INT  DEFAULT NULL,
+  `ba6`      INT  NOT NULL DEFAULT '0',
+  `assmk7`   INT  DEFAULT NULL,
+  `ba7`      INT  NOT NULL DEFAULT '0',
+  `assmk8`   INT  DEFAULT NULL,
+  `ba8`      INT  NOT NULL DEFAULT '0',
+  `assmk9`   INT  DEFAULT NULL,
+  `ba9`      INT  NOT NULL DEFAULT '0',
+  `assmk10`  INT  DEFAULT NULL,
+  `ba10`     INT  NOT NULL DEFAULT '0',
+  `accyr`    INT  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9473,34 +9613,34 @@ CREATE TABLE IF NOT EXISTS `marks_2_4` (
 --
 
 CREATE TABLE IF NOT EXISTS `marks_2_5` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studid` int(20) DEFAULT NULL,
-  `secid` int(2) DEFAULT NULL,
-  `bid` int(2) DEFAULT NULL,
-  `subid` int(3) NOT NULL DEFAULT '0',
-  `assmk1` int(11) DEFAULT NULL,
-  `ba1` int(3) NOT NULL DEFAULT '0',
-  `assmk2` int(11) DEFAULT NULL,
-  `ba2` int(3) NOT NULL DEFAULT '0',
-  `assmk3` int(11) DEFAULT NULL,
-  `ba3` int(3) NOT NULL DEFAULT '0',
-  `assmk4` int(11) DEFAULT NULL,
-  `ba4` int(3) NOT NULL DEFAULT '0',
-  `assmk5` int(11) DEFAULT NULL,
-  `ba5` int(3) NOT NULL DEFAULT '0',
-  `assmk6` int(11) DEFAULT NULL,
-  `ba6` int(3) NOT NULL DEFAULT '0',
-  `assmk7` int(11) DEFAULT NULL,
-  `ba7` int(3) NOT NULL DEFAULT '0',
-  `assmk8` int(11) DEFAULT NULL,
-  `ba8` int(3) NOT NULL DEFAULT '0',
-  `assmk9` int(11) DEFAULT NULL,
-  `ba9` int(3) NOT NULL DEFAULT '0',
-  `assmk10` int(11) DEFAULT NULL,
-  `ba10` int(3) NOT NULL DEFAULT '0',
-  `accyr` int(4) DEFAULT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`       INT  NOT NULL AUTO_INCREMENT,
+  `studid`   INT  DEFAULT NULL,
+  `secid`    INT  DEFAULT NULL,
+  `bid`      INT  DEFAULT NULL,
+  `subid`    INT  NOT NULL DEFAULT '0',
+  `assmk1`   INT  DEFAULT NULL,
+  `ba1`      INT  NOT NULL DEFAULT '0',
+  `assmk2`   INT  DEFAULT NULL,
+  `ba2`      INT  NOT NULL DEFAULT '0',
+  `assmk3`   INT  DEFAULT NULL,
+  `ba3`      INT  NOT NULL DEFAULT '0',
+  `assmk4`   INT  DEFAULT NULL,
+  `ba4`      INT  NOT NULL DEFAULT '0',
+  `assmk5`   INT  DEFAULT NULL,
+  `ba5`      INT  NOT NULL DEFAULT '0',
+  `assmk6`   INT  DEFAULT NULL,
+  `ba6`      INT  NOT NULL DEFAULT '0',
+  `assmk7`   INT  DEFAULT NULL,
+  `ba7`      INT  NOT NULL DEFAULT '0',
+  `assmk8`   INT  DEFAULT NULL,
+  `ba8`      INT  NOT NULL DEFAULT '0',
+  `assmk9`   INT  DEFAULT NULL,
+  `ba9`      INT  NOT NULL DEFAULT '0',
+  `assmk10`  INT  DEFAULT NULL,
+  `ba10`     INT  NOT NULL DEFAULT '0',
+  `accyr`    INT  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9509,34 +9649,34 @@ CREATE TABLE IF NOT EXISTS `marks_2_5` (
 --
 
 CREATE TABLE IF NOT EXISTS `marks_2_6` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studid` int(20) DEFAULT NULL,
-  `secid` int(2) DEFAULT NULL,
-  `bid` int(2) DEFAULT NULL,
-  `subid` int(3) NOT NULL DEFAULT '0',
-  `assmk1` int(11) DEFAULT NULL,
-  `ba1` int(3) NOT NULL DEFAULT '0',
-  `assmk2` int(11) DEFAULT NULL,
-  `ba2` int(3) NOT NULL DEFAULT '0',
-  `assmk3` int(11) DEFAULT NULL,
-  `ba3` int(3) NOT NULL DEFAULT '0',
-  `assmk4` int(11) DEFAULT NULL,
-  `ba4` int(3) NOT NULL DEFAULT '0',
-  `assmk5` int(11) DEFAULT NULL,
-  `ba5` int(3) NOT NULL DEFAULT '0',
-  `assmk6` int(11) DEFAULT NULL,
-  `ba6` int(3) NOT NULL DEFAULT '0',
-  `assmk7` int(11) DEFAULT NULL,
-  `ba7` int(3) NOT NULL DEFAULT '0',
-  `assmk8` int(11) DEFAULT NULL,
-  `ba8` int(3) NOT NULL DEFAULT '0',
-  `assmk9` int(11) DEFAULT NULL,
-  `ba9` int(3) NOT NULL DEFAULT '0',
-  `assmk10` int(11) DEFAULT NULL,
-  `ba10` int(3) NOT NULL DEFAULT '0',
-  `accyr` int(4) DEFAULT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`       INT  NOT NULL AUTO_INCREMENT,
+  `studid`   INT  DEFAULT NULL,
+  `secid`    INT  DEFAULT NULL,
+  `bid`      INT  DEFAULT NULL,
+  `subid`    INT  NOT NULL DEFAULT '0',
+  `assmk1`   INT  DEFAULT NULL,
+  `ba1`      INT  NOT NULL DEFAULT '0',
+  `assmk2`   INT  DEFAULT NULL,
+  `ba2`      INT  NOT NULL DEFAULT '0',
+  `assmk3`   INT  DEFAULT NULL,
+  `ba3`      INT  NOT NULL DEFAULT '0',
+  `assmk4`   INT  DEFAULT NULL,
+  `ba4`      INT  NOT NULL DEFAULT '0',
+  `assmk5`   INT  DEFAULT NULL,
+  `ba5`      INT  NOT NULL DEFAULT '0',
+  `assmk6`   INT  DEFAULT NULL,
+  `ba6`      INT  NOT NULL DEFAULT '0',
+  `assmk7`   INT  DEFAULT NULL,
+  `ba7`      INT  NOT NULL DEFAULT '0',
+  `assmk8`   INT  DEFAULT NULL,
+  `ba8`      INT  NOT NULL DEFAULT '0',
+  `assmk9`   INT  DEFAULT NULL,
+  `ba9`      INT  NOT NULL DEFAULT '0',
+  `assmk10`  INT  DEFAULT NULL,
+  `ba10`     INT  NOT NULL DEFAULT '0',
+  `accyr`    INT  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9545,34 +9685,34 @@ CREATE TABLE IF NOT EXISTS `marks_2_6` (
 --
 
 CREATE TABLE IF NOT EXISTS `marks_2_7` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studid` int(20) DEFAULT NULL,
-  `secid` int(2) DEFAULT NULL,
-  `bid` int(2) DEFAULT NULL,
-  `subid` int(3) NOT NULL DEFAULT '0',
-  `assmk1` int(11) DEFAULT NULL,
-  `ba1` int(3) NOT NULL DEFAULT '0',
-  `assmk2` int(11) DEFAULT NULL,
-  `ba2` int(3) NOT NULL DEFAULT '0',
-  `assmk3` int(11) DEFAULT NULL,
-  `ba3` int(3) NOT NULL DEFAULT '0',
-  `assmk4` int(11) DEFAULT NULL,
-  `ba4` int(3) NOT NULL DEFAULT '0',
-  `assmk5` int(11) DEFAULT NULL,
-  `ba5` int(3) NOT NULL DEFAULT '0',
-  `assmk6` int(11) DEFAULT NULL,
-  `ba6` int(3) NOT NULL DEFAULT '0',
-  `assmk7` int(11) DEFAULT NULL,
-  `ba7` int(3) NOT NULL DEFAULT '0',
-  `assmk8` int(11) DEFAULT NULL,
-  `ba8` int(3) NOT NULL DEFAULT '0',
-  `assmk9` int(11) DEFAULT NULL,
-  `ba9` int(3) NOT NULL DEFAULT '0',
-  `assmk10` int(11) DEFAULT NULL,
-  `ba10` int(3) NOT NULL DEFAULT '0',
-  `accyr` int(4) DEFAULT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`       INT  NOT NULL AUTO_INCREMENT,
+  `studid`   INT  DEFAULT NULL,
+  `secid`    INT  DEFAULT NULL,
+  `bid`      INT  DEFAULT NULL,
+  `subid`    INT  NOT NULL DEFAULT '0',
+  `assmk1`   INT  DEFAULT NULL,
+  `ba1`      INT  NOT NULL DEFAULT '0',
+  `assmk2`   INT  DEFAULT NULL,
+  `ba2`      INT  NOT NULL DEFAULT '0',
+  `assmk3`   INT  DEFAULT NULL,
+  `ba3`      INT  NOT NULL DEFAULT '0',
+  `assmk4`   INT  DEFAULT NULL,
+  `ba4`      INT  NOT NULL DEFAULT '0',
+  `assmk5`   INT  DEFAULT NULL,
+  `ba5`      INT  NOT NULL DEFAULT '0',
+  `assmk6`   INT  DEFAULT NULL,
+  `ba6`      INT  NOT NULL DEFAULT '0',
+  `assmk7`   INT  DEFAULT NULL,
+  `ba7`      INT  NOT NULL DEFAULT '0',
+  `assmk8`   INT  DEFAULT NULL,
+  `ba8`      INT  NOT NULL DEFAULT '0',
+  `assmk9`   INT  DEFAULT NULL,
+  `ba9`      INT  NOT NULL DEFAULT '0',
+  `assmk10`  INT  DEFAULT NULL,
+  `ba10`     INT  NOT NULL DEFAULT '0',
+  `accyr`    INT  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9581,34 +9721,34 @@ CREATE TABLE IF NOT EXISTS `marks_2_7` (
 --
 
 CREATE TABLE IF NOT EXISTS `marks_2_8` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studid` int(20) DEFAULT NULL,
-  `secid` int(2) DEFAULT NULL,
-  `bid` int(2) DEFAULT NULL,
-  `subid` int(3) NOT NULL DEFAULT '0',
-  `assmk1` int(11) DEFAULT NULL,
-  `ba1` int(3) NOT NULL DEFAULT '0',
-  `assmk2` int(11) DEFAULT NULL,
-  `ba2` int(3) NOT NULL DEFAULT '0',
-  `assmk3` int(11) DEFAULT NULL,
-  `ba3` int(3) NOT NULL DEFAULT '0',
-  `assmk4` int(11) DEFAULT NULL,
-  `ba4` int(3) NOT NULL DEFAULT '0',
-  `assmk5` int(11) DEFAULT NULL,
-  `ba5` int(3) NOT NULL DEFAULT '0',
-  `assmk6` int(11) DEFAULT NULL,
-  `ba6` int(3) NOT NULL DEFAULT '0',
-  `assmk7` int(11) DEFAULT NULL,
-  `ba7` int(3) NOT NULL DEFAULT '0',
-  `assmk8` int(11) DEFAULT NULL,
-  `ba8` int(3) NOT NULL DEFAULT '0',
-  `assmk9` int(11) DEFAULT NULL,
-  `ba9` int(3) NOT NULL DEFAULT '0',
-  `assmk10` int(11) DEFAULT NULL,
-  `ba10` int(3) NOT NULL DEFAULT '0',
-  `accyr` int(4) DEFAULT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`       INT  NOT NULL AUTO_INCREMENT,
+  `studid`   INT  DEFAULT NULL,
+  `secid`    INT  DEFAULT NULL,
+  `bid`      INT  DEFAULT NULL,
+  `subid`    INT  NOT NULL DEFAULT '0',
+  `assmk1`   INT  DEFAULT NULL,
+  `ba1`      INT  NOT NULL DEFAULT '0',
+  `assmk2`   INT  DEFAULT NULL,
+  `ba2`      INT  NOT NULL DEFAULT '0',
+  `assmk3`   INT  DEFAULT NULL,
+  `ba3`      INT  NOT NULL DEFAULT '0',
+  `assmk4`   INT  DEFAULT NULL,
+  `ba4`      INT  NOT NULL DEFAULT '0',
+  `assmk5`   INT  DEFAULT NULL,
+  `ba5`      INT  NOT NULL DEFAULT '0',
+  `assmk6`   INT  DEFAULT NULL,
+  `ba6`      INT  NOT NULL DEFAULT '0',
+  `assmk7`   INT  DEFAULT NULL,
+  `ba7`      INT  NOT NULL DEFAULT '0',
+  `assmk8`   INT  DEFAULT NULL,
+  `ba8`      INT  NOT NULL DEFAULT '0',
+  `assmk9`   INT  DEFAULT NULL,
+  `ba9`      INT  NOT NULL DEFAULT '0',
+  `assmk10`  INT  DEFAULT NULL,
+  `ba10`     INT  NOT NULL DEFAULT '0',
+  `accyr`    INT  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9617,34 +9757,34 @@ CREATE TABLE IF NOT EXISTS `marks_2_8` (
 --
 
 CREATE TABLE IF NOT EXISTS `marks_2_9` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studid` int(20) DEFAULT NULL,
-  `secid` int(2) DEFAULT NULL,
-  `bid` int(2) DEFAULT NULL,
-  `subid` int(3) NOT NULL DEFAULT '0',
-  `assmk1` int(11) DEFAULT NULL,
-  `ba1` int(3) NOT NULL DEFAULT '0',
-  `assmk2` int(11) DEFAULT NULL,
-  `ba2` int(3) NOT NULL DEFAULT '0',
-  `assmk3` int(11) DEFAULT NULL,
-  `ba3` int(3) NOT NULL DEFAULT '0',
-  `assmk4` int(11) DEFAULT NULL,
-  `ba4` int(3) NOT NULL DEFAULT '0',
-  `assmk5` int(11) DEFAULT NULL,
-  `ba5` int(3) NOT NULL DEFAULT '0',
-  `assmk6` int(11) DEFAULT NULL,
-  `ba6` int(3) NOT NULL DEFAULT '0',
-  `assmk7` int(11) DEFAULT NULL,
-  `ba7` int(3) NOT NULL DEFAULT '0',
-  `assmk8` int(11) DEFAULT NULL,
-  `ba8` int(3) NOT NULL DEFAULT '0',
-  `assmk9` int(11) DEFAULT NULL,
-  `ba9` int(3) NOT NULL DEFAULT '0',
-  `assmk10` int(11) DEFAULT NULL,
-  `ba10` int(3) NOT NULL DEFAULT '0',
-  `accyr` int(4) DEFAULT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`       INT  NOT NULL AUTO_INCREMENT,
+  `studid`   INT  DEFAULT NULL,
+  `secid`    INT  DEFAULT NULL,
+  `bid`      INT  DEFAULT NULL,
+  `subid`    INT  NOT NULL DEFAULT '0',
+  `assmk1`   INT  DEFAULT NULL,
+  `ba1`      INT  NOT NULL DEFAULT '0',
+  `assmk2`   INT  DEFAULT NULL,
+  `ba2`      INT  NOT NULL DEFAULT '0',
+  `assmk3`   INT  DEFAULT NULL,
+  `ba3`      INT  NOT NULL DEFAULT '0',
+  `assmk4`   INT  DEFAULT NULL,
+  `ba4`      INT  NOT NULL DEFAULT '0',
+  `assmk5`   INT  DEFAULT NULL,
+  `ba5`      INT  NOT NULL DEFAULT '0',
+  `assmk6`   INT  DEFAULT NULL,
+  `ba6`      INT  NOT NULL DEFAULT '0',
+  `assmk7`   INT  DEFAULT NULL,
+  `ba7`      INT  NOT NULL DEFAULT '0',
+  `assmk8`   INT  DEFAULT NULL,
+  `ba8`      INT  NOT NULL DEFAULT '0',
+  `assmk9`   INT  DEFAULT NULL,
+  `ba9`      INT  NOT NULL DEFAULT '0',
+  `assmk10`  INT  DEFAULT NULL,
+  `ba10`     INT  NOT NULL DEFAULT '0',
+  `accyr`    INT  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9653,34 +9793,34 @@ CREATE TABLE IF NOT EXISTS `marks_2_9` (
 --
 
 CREATE TABLE IF NOT EXISTS `marks_3_10` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studid` int(20) DEFAULT NULL,
-  `secid` int(2) DEFAULT NULL,
-  `bid` int(2) DEFAULT NULL,
-  `subid` int(3) NOT NULL DEFAULT '0',
-  `assmk1` int(11) DEFAULT NULL,
-  `ba1` int(3) NOT NULL DEFAULT '0',
-  `assmk2` int(11) DEFAULT NULL,
-  `ba2` int(3) NOT NULL DEFAULT '0',
-  `assmk3` int(11) DEFAULT NULL,
-  `ba3` int(3) NOT NULL DEFAULT '0',
-  `assmk4` int(11) DEFAULT NULL,
-  `ba4` int(3) NOT NULL DEFAULT '0',
-  `assmk5` int(11) DEFAULT NULL,
-  `ba5` int(3) NOT NULL DEFAULT '0',
-  `assmk6` int(11) DEFAULT NULL,
-  `ba6` int(3) NOT NULL DEFAULT '0',
-  `assmk7` int(11) DEFAULT NULL,
-  `ba7` int(3) NOT NULL DEFAULT '0',
-  `assmk8` int(11) DEFAULT NULL,
-  `ba8` int(3) NOT NULL DEFAULT '0',
-  `assmk9` int(11) DEFAULT NULL,
-  `ba9` int(3) NOT NULL DEFAULT '0',
-  `assmk10` int(11) DEFAULT NULL,
-  `ba10` int(3) NOT NULL DEFAULT '0',
-  `accyr` int(4) DEFAULT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`       INT  NOT NULL AUTO_INCREMENT,
+  `studid`   INT  DEFAULT NULL,
+  `secid`    INT  DEFAULT NULL,
+  `bid`      INT  DEFAULT NULL,
+  `subid`    INT  NOT NULL DEFAULT '0',
+  `assmk1`   INT  DEFAULT NULL,
+  `ba1`      INT  NOT NULL DEFAULT '0',
+  `assmk2`   INT  DEFAULT NULL,
+  `ba2`      INT  NOT NULL DEFAULT '0',
+  `assmk3`   INT  DEFAULT NULL,
+  `ba3`      INT  NOT NULL DEFAULT '0',
+  `assmk4`   INT  DEFAULT NULL,
+  `ba4`      INT  NOT NULL DEFAULT '0',
+  `assmk5`   INT  DEFAULT NULL,
+  `ba5`      INT  NOT NULL DEFAULT '0',
+  `assmk6`   INT  DEFAULT NULL,
+  `ba6`      INT  NOT NULL DEFAULT '0',
+  `assmk7`   INT  DEFAULT NULL,
+  `ba7`      INT  NOT NULL DEFAULT '0',
+  `assmk8`   INT  DEFAULT NULL,
+  `ba8`      INT  NOT NULL DEFAULT '0',
+  `assmk9`   INT  DEFAULT NULL,
+  `ba9`      INT  NOT NULL DEFAULT '0',
+  `assmk10`  INT  DEFAULT NULL,
+  `ba10`     INT  NOT NULL DEFAULT '0',
+  `accyr`    INT  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9689,34 +9829,34 @@ CREATE TABLE IF NOT EXISTS `marks_3_10` (
 --
 
 CREATE TABLE IF NOT EXISTS `marks_3_11` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studid` int(20) DEFAULT NULL,
-  `secid` int(2) DEFAULT NULL,
-  `bid` int(2) DEFAULT NULL,
-  `subid` int(3) NOT NULL DEFAULT '0',
-  `assmk1` int(11) DEFAULT NULL,
-  `ba1` int(3) NOT NULL DEFAULT '0',
-  `assmk2` int(11) DEFAULT NULL,
-  `ba2` int(3) NOT NULL DEFAULT '0',
-  `assmk3` int(11) DEFAULT NULL,
-  `ba3` int(3) NOT NULL DEFAULT '0',
-  `assmk4` int(11) DEFAULT NULL,
-  `ba4` int(3) NOT NULL DEFAULT '0',
-  `assmk5` int(11) DEFAULT NULL,
-  `ba5` int(3) NOT NULL DEFAULT '0',
-  `assmk6` int(11) DEFAULT NULL,
-  `ba6` int(3) NOT NULL DEFAULT '0',
-  `assmk7` int(11) DEFAULT NULL,
-  `ba7` int(3) NOT NULL DEFAULT '0',
-  `assmk8` int(11) DEFAULT NULL,
-  `ba8` int(3) NOT NULL DEFAULT '0',
-  `assmk9` int(11) DEFAULT NULL,
-  `ba9` int(3) NOT NULL DEFAULT '0',
-  `assmk10` int(11) DEFAULT NULL,
-  `ba10` int(3) NOT NULL DEFAULT '0',
-  `accyr` int(4) DEFAULT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`       INT  NOT NULL AUTO_INCREMENT,
+  `studid`   INT  DEFAULT NULL,
+  `secid`    INT  DEFAULT NULL,
+  `bid`      INT  DEFAULT NULL,
+  `subid`    INT  NOT NULL DEFAULT '0',
+  `assmk1`   INT  DEFAULT NULL,
+  `ba1`      INT  NOT NULL DEFAULT '0',
+  `assmk2`   INT  DEFAULT NULL,
+  `ba2`      INT  NOT NULL DEFAULT '0',
+  `assmk3`   INT  DEFAULT NULL,
+  `ba3`      INT  NOT NULL DEFAULT '0',
+  `assmk4`   INT  DEFAULT NULL,
+  `ba4`      INT  NOT NULL DEFAULT '0',
+  `assmk5`   INT  DEFAULT NULL,
+  `ba5`      INT  NOT NULL DEFAULT '0',
+  `assmk6`   INT  DEFAULT NULL,
+  `ba6`      INT  NOT NULL DEFAULT '0',
+  `assmk7`   INT  DEFAULT NULL,
+  `ba7`      INT  NOT NULL DEFAULT '0',
+  `assmk8`   INT  DEFAULT NULL,
+  `ba8`      INT  NOT NULL DEFAULT '0',
+  `assmk9`   INT  DEFAULT NULL,
+  `ba9`      INT  NOT NULL DEFAULT '0',
+  `assmk10`  INT  DEFAULT NULL,
+  `ba10`     INT  NOT NULL DEFAULT '0',
+  `accyr`    INT  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9725,34 +9865,34 @@ CREATE TABLE IF NOT EXISTS `marks_3_11` (
 --
 
 CREATE TABLE IF NOT EXISTS `marks_3_12` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studid` int(20) DEFAULT NULL,
-  `secid` int(2) DEFAULT NULL,
-  `bid` int(2) DEFAULT NULL,
-  `subid` int(3) NOT NULL DEFAULT '0',
-  `assmk1` int(11) DEFAULT NULL,
-  `ba1` int(3) NOT NULL DEFAULT '0',
-  `assmk2` int(11) DEFAULT NULL,
-  `ba2` int(3) NOT NULL DEFAULT '0',
-  `assmk3` int(11) DEFAULT NULL,
-  `ba3` int(3) NOT NULL DEFAULT '0',
-  `assmk4` int(11) DEFAULT NULL,
-  `ba4` int(3) NOT NULL DEFAULT '0',
-  `assmk5` int(11) DEFAULT NULL,
-  `ba5` int(3) NOT NULL DEFAULT '0',
-  `assmk6` int(11) DEFAULT NULL,
-  `ba6` int(3) NOT NULL DEFAULT '0',
-  `assmk7` int(11) DEFAULT NULL,
-  `ba7` int(3) NOT NULL DEFAULT '0',
-  `assmk8` int(11) DEFAULT NULL,
-  `ba8` int(3) NOT NULL DEFAULT '0',
-  `assmk9` int(11) DEFAULT NULL,
-  `ba9` int(3) NOT NULL DEFAULT '0',
-  `assmk10` int(11) DEFAULT NULL,
-  `ba10` int(3) NOT NULL DEFAULT '0',
-  `accyr` int(4) DEFAULT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`       INT  NOT NULL AUTO_INCREMENT,
+  `studid`   INT  DEFAULT NULL,
+  `secid`    INT  DEFAULT NULL,
+  `bid`      INT  DEFAULT NULL,
+  `subid`    INT  NOT NULL DEFAULT '0',
+  `assmk1`   INT  DEFAULT NULL,
+  `ba1`      INT  NOT NULL DEFAULT '0',
+  `assmk2`   INT  DEFAULT NULL,
+  `ba2`      INT  NOT NULL DEFAULT '0',
+  `assmk3`   INT  DEFAULT NULL,
+  `ba3`      INT  NOT NULL DEFAULT '0',
+  `assmk4`   INT  DEFAULT NULL,
+  `ba4`      INT  NOT NULL DEFAULT '0',
+  `assmk5`   INT  DEFAULT NULL,
+  `ba5`      INT  NOT NULL DEFAULT '0',
+  `assmk6`   INT  DEFAULT NULL,
+  `ba6`      INT  NOT NULL DEFAULT '0',
+  `assmk7`   INT  DEFAULT NULL,
+  `ba7`      INT  NOT NULL DEFAULT '0',
+  `assmk8`   INT  DEFAULT NULL,
+  `ba8`      INT  NOT NULL DEFAULT '0',
+  `assmk9`   INT  DEFAULT NULL,
+  `ba9`      INT  NOT NULL DEFAULT '0',
+  `assmk10`  INT  DEFAULT NULL,
+  `ba10`     INT  NOT NULL DEFAULT '0',
+  `accyr`    INT  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9761,34 +9901,34 @@ CREATE TABLE IF NOT EXISTS `marks_3_12` (
 --
 
 CREATE TABLE IF NOT EXISTS `marks_4_13` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studid` int(20) DEFAULT NULL,
-  `secid` int(2) DEFAULT NULL,
-  `bid` int(2) DEFAULT NULL,
-  `subid` int(3) NOT NULL DEFAULT '0',
-  `assmk1` int(11) DEFAULT NULL,
-  `ba1` int(3) NOT NULL DEFAULT '0',
-  `assmk2` int(11) DEFAULT NULL,
-  `ba2` int(3) NOT NULL DEFAULT '0',
-  `assmk3` int(11) DEFAULT NULL,
-  `ba3` int(3) NOT NULL DEFAULT '0',
-  `assmk4` int(11) DEFAULT NULL,
-  `ba4` int(3) NOT NULL DEFAULT '0',
-  `assmk5` int(11) DEFAULT NULL,
-  `ba5` int(3) NOT NULL DEFAULT '0',
-  `assmk6` int(11) DEFAULT NULL,
-  `ba6` int(3) NOT NULL DEFAULT '0',
-  `assmk7` int(11) DEFAULT NULL,
-  `ba7` int(3) NOT NULL DEFAULT '0',
-  `assmk8` int(11) DEFAULT NULL,
-  `ba8` int(3) NOT NULL DEFAULT '0',
-  `assmk9` int(11) DEFAULT NULL,
-  `ba9` int(3) NOT NULL DEFAULT '0',
-  `assmk10` int(11) DEFAULT NULL,
-  `ba10` int(3) NOT NULL DEFAULT '0',
-  `accyr` int(4) DEFAULT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`       INT  NOT NULL AUTO_INCREMENT,
+  `studid`   INT  DEFAULT NULL,
+  `secid`    INT  DEFAULT NULL,
+  `bid`      INT  DEFAULT NULL,
+  `subid`    INT  NOT NULL DEFAULT '0',
+  `assmk1`   INT  DEFAULT NULL,
+  `ba1`      INT  NOT NULL DEFAULT '0',
+  `assmk2`   INT  DEFAULT NULL,
+  `ba2`      INT  NOT NULL DEFAULT '0',
+  `assmk3`   INT  DEFAULT NULL,
+  `ba3`      INT  NOT NULL DEFAULT '0',
+  `assmk4`   INT  DEFAULT NULL,
+  `ba4`      INT  NOT NULL DEFAULT '0',
+  `assmk5`   INT  DEFAULT NULL,
+  `ba5`      INT  NOT NULL DEFAULT '0',
+  `assmk6`   INT  DEFAULT NULL,
+  `ba6`      INT  NOT NULL DEFAULT '0',
+  `assmk7`   INT  DEFAULT NULL,
+  `ba7`      INT  NOT NULL DEFAULT '0',
+  `assmk8`   INT  DEFAULT NULL,
+  `ba8`      INT  NOT NULL DEFAULT '0',
+  `assmk9`   INT  DEFAULT NULL,
+  `ba9`      INT  NOT NULL DEFAULT '0',
+  `assmk10`  INT  DEFAULT NULL,
+  `ba10`     INT  NOT NULL DEFAULT '0',
+  `accyr`    INT  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9797,34 +9937,34 @@ CREATE TABLE IF NOT EXISTS `marks_4_13` (
 --
 
 CREATE TABLE IF NOT EXISTS `marks_4_14` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studid` int(20) DEFAULT NULL,
-  `secid` int(2) DEFAULT NULL,
-  `bid` int(2) DEFAULT NULL,
-  `subid` int(3) NOT NULL DEFAULT '0',
-  `assmk1` int(11) DEFAULT NULL,
-  `ba1` int(3) NOT NULL DEFAULT '0',
-  `assmk2` int(11) DEFAULT NULL,
-  `ba2` int(3) NOT NULL DEFAULT '0',
-  `assmk3` int(11) DEFAULT NULL,
-  `ba3` int(3) NOT NULL DEFAULT '0',
-  `assmk4` int(11) DEFAULT NULL,
-  `ba4` int(3) NOT NULL DEFAULT '0',
-  `assmk5` int(11) DEFAULT NULL,
-  `ba5` int(3) NOT NULL DEFAULT '0',
-  `assmk6` int(11) DEFAULT NULL,
-  `ba6` int(3) NOT NULL DEFAULT '0',
-  `assmk7` int(11) DEFAULT NULL,
-  `ba7` int(3) NOT NULL DEFAULT '0',
-  `assmk8` int(11) DEFAULT NULL,
-  `ba8` int(3) NOT NULL DEFAULT '0',
-  `assmk9` int(11) DEFAULT NULL,
-  `ba9` int(3) NOT NULL DEFAULT '0',
-  `assmk10` int(11) DEFAULT NULL,
-  `ba10` int(3) NOT NULL DEFAULT '0',
-  `accyr` int(4) DEFAULT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`       INT  NOT NULL AUTO_INCREMENT,
+  `studid`   INT  DEFAULT NULL,
+  `secid`    INT  DEFAULT NULL,
+  `bid`      INT  DEFAULT NULL,
+  `subid`    INT  NOT NULL DEFAULT '0',
+  `assmk1`   INT  DEFAULT NULL,
+  `ba1`      INT  NOT NULL DEFAULT '0',
+  `assmk2`   INT  DEFAULT NULL,
+  `ba2`      INT  NOT NULL DEFAULT '0',
+  `assmk3`   INT  DEFAULT NULL,
+  `ba3`      INT  NOT NULL DEFAULT '0',
+  `assmk4`   INT  DEFAULT NULL,
+  `ba4`      INT  NOT NULL DEFAULT '0',
+  `assmk5`   INT  DEFAULT NULL,
+  `ba5`      INT  NOT NULL DEFAULT '0',
+  `assmk6`   INT  DEFAULT NULL,
+  `ba6`      INT  NOT NULL DEFAULT '0',
+  `assmk7`   INT  DEFAULT NULL,
+  `ba7`      INT  NOT NULL DEFAULT '0',
+  `assmk8`   INT  DEFAULT NULL,
+  `ba8`      INT  NOT NULL DEFAULT '0',
+  `assmk9`   INT  DEFAULT NULL,
+  `ba9`      INT  NOT NULL DEFAULT '0',
+  `assmk10`  INT  DEFAULT NULL,
+  `ba10`     INT  NOT NULL DEFAULT '0',
+  `accyr`    INT  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9833,34 +9973,34 @@ CREATE TABLE IF NOT EXISTS `marks_4_14` (
 --
 
 CREATE TABLE IF NOT EXISTS `marks_4_15` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studid` int(20) DEFAULT NULL,
-  `secid` int(2) DEFAULT NULL,
-  `bid` int(2) DEFAULT NULL,
-  `subid` int(3) NOT NULL DEFAULT '0',
-  `assmk1` int(11) DEFAULT NULL,
-  `ba1` int(3) NOT NULL DEFAULT '0',
-  `assmk2` int(11) DEFAULT NULL,
-  `ba2` int(3) NOT NULL DEFAULT '0',
-  `assmk3` int(11) DEFAULT NULL,
-  `ba3` int(3) NOT NULL DEFAULT '0',
-  `assmk4` int(11) DEFAULT NULL,
-  `ba4` int(3) NOT NULL DEFAULT '0',
-  `assmk5` int(11) DEFAULT NULL,
-  `ba5` int(3) NOT NULL DEFAULT '0',
-  `assmk6` int(11) DEFAULT NULL,
-  `ba6` int(3) NOT NULL DEFAULT '0',
-  `assmk7` int(11) DEFAULT NULL,
-  `ba7` int(3) NOT NULL DEFAULT '0',
-  `assmk8` int(11) DEFAULT NULL,
-  `ba8` int(3) NOT NULL DEFAULT '0',
-  `assmk9` int(11) DEFAULT NULL,
-  `ba9` int(3) NOT NULL DEFAULT '0',
-  `assmk10` int(11) DEFAULT NULL,
-  `ba10` int(3) NOT NULL DEFAULT '0',
-  `accyr` int(4) DEFAULT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`       INT  NOT NULL AUTO_INCREMENT,
+  `studid`   INT  DEFAULT NULL,
+  `secid`    INT  DEFAULT NULL,
+  `bid`      INT  DEFAULT NULL,
+  `subid`    INT  NOT NULL DEFAULT '0',
+  `assmk1`   INT  DEFAULT NULL,
+  `ba1`      INT  NOT NULL DEFAULT '0',
+  `assmk2`   INT  DEFAULT NULL,
+  `ba2`      INT  NOT NULL DEFAULT '0',
+  `assmk3`   INT  DEFAULT NULL,
+  `ba3`      INT  NOT NULL DEFAULT '0',
+  `assmk4`   INT  DEFAULT NULL,
+  `ba4`      INT  NOT NULL DEFAULT '0',
+  `assmk5`   INT  DEFAULT NULL,
+  `ba5`      INT  NOT NULL DEFAULT '0',
+  `assmk6`   INT  DEFAULT NULL,
+  `ba6`      INT  NOT NULL DEFAULT '0',
+  `assmk7`   INT  DEFAULT NULL,
+  `ba7`      INT  NOT NULL DEFAULT '0',
+  `assmk8`   INT  DEFAULT NULL,
+  `ba8`      INT  NOT NULL DEFAULT '0',
+  `assmk9`   INT  DEFAULT NULL,
+  `ba9`      INT  NOT NULL DEFAULT '0',
+  `assmk10`  INT  DEFAULT NULL,
+  `ba10`     INT  NOT NULL DEFAULT '0',
+  `accyr`    INT  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9869,34 +10009,34 @@ CREATE TABLE IF NOT EXISTS `marks_4_15` (
 --
 
 CREATE TABLE IF NOT EXISTS `marks_4_16` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studid` int(20) DEFAULT NULL,
-  `secid` int(2) DEFAULT NULL,
-  `bid` int(2) DEFAULT NULL,
-  `subid` int(3) NOT NULL DEFAULT '0',
-  `assmk1` int(11) DEFAULT NULL,
-  `ba1` int(3) NOT NULL DEFAULT '0',
-  `assmk2` int(11) DEFAULT NULL,
-  `ba2` int(3) NOT NULL DEFAULT '0',
-  `assmk3` int(11) DEFAULT NULL,
-  `ba3` int(3) NOT NULL DEFAULT '0',
-  `assmk4` int(11) DEFAULT NULL,
-  `ba4` int(3) NOT NULL DEFAULT '0',
-  `assmk5` int(11) DEFAULT NULL,
-  `ba5` int(3) NOT NULL DEFAULT '0',
-  `assmk6` int(11) DEFAULT NULL,
-  `ba6` int(3) NOT NULL DEFAULT '0',
-  `assmk7` int(11) DEFAULT NULL,
-  `ba7` int(3) NOT NULL DEFAULT '0',
-  `assmk8` int(11) DEFAULT NULL,
-  `ba8` int(3) NOT NULL DEFAULT '0',
-  `assmk9` int(11) DEFAULT NULL,
-  `ba9` int(3) NOT NULL DEFAULT '0',
-  `assmk10` int(11) DEFAULT NULL,
-  `ba10` int(3) NOT NULL DEFAULT '0',
-  `accyr` int(4) DEFAULT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id`       INT  NOT NULL AUTO_INCREMENT,
+  `studid`   INT  DEFAULT NULL,
+  `secid`    INT  DEFAULT NULL,
+  `bid`      INT  DEFAULT NULL,
+  `subid`    INT  NOT NULL DEFAULT '0',
+  `assmk1`   INT  DEFAULT NULL,
+  `ba1`      INT  NOT NULL DEFAULT '0',
+  `assmk2`   INT  DEFAULT NULL,
+  `ba2`      INT  NOT NULL DEFAULT '0',
+  `assmk3`   INT  DEFAULT NULL,
+  `ba3`      INT  NOT NULL DEFAULT '0',
+  `assmk4`   INT  DEFAULT NULL,
+  `ba4`      INT  NOT NULL DEFAULT '0',
+  `assmk5`   INT  DEFAULT NULL,
+  `ba5`      INT  NOT NULL DEFAULT '0',
+  `assmk6`   INT  DEFAULT NULL,
+  `ba6`      INT  NOT NULL DEFAULT '0',
+  `assmk7`   INT  DEFAULT NULL,
+  `ba7`      INT  NOT NULL DEFAULT '0',
+  `assmk8`   INT  DEFAULT NULL,
+  `ba8`      INT  NOT NULL DEFAULT '0',
+  `assmk9`   INT  DEFAULT NULL,
+  `ba9`      INT  NOT NULL DEFAULT '0',
+  `assmk10`  INT  DEFAULT NULL,
+  `ba10`     INT  NOT NULL DEFAULT '0',
+  `accyr`    INT  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9905,20 +10045,20 @@ CREATE TABLE IF NOT EXISTS `marks_4_16` (
 --
 
 CREATE TABLE IF NOT EXISTS `marks_2026_5` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `class_section` int(2) DEFAULT NULL,
-  `student_id` int(11) DEFAULT NULL,
-  `subject_id` int(8) DEFAULT NULL,
-  `status` varchar(4) DEFAULT NULL,
-  `sem_id` int(8) DEFAULT NULL,
-  `int_id` int(8) DEFAULT NULL,
-  `tst_id` int(8) DEFAULT NULL,
-  `mark` float DEFAULT NULL,
-  `grade` varchar(4) DEFAULT NULL,
-  `remarks` text NOT NULL,
-  `grade_rem` varchar(250) NOT NULL,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `class_section`  INT           DEFAULT NULL,
+  `student_id`     INT           DEFAULT NULL,
+  `subject_id`     INT           DEFAULT NULL,
+  `status`         VARCHAR(4)    DEFAULT NULL,
+  `sem_id`         INT           DEFAULT NULL,
+  `int_id`         INT           DEFAULT NULL,
+  `tst_id`         INT           DEFAULT NULL,
+  `mark`           FLOAT         DEFAULT NULL,
+  `grade`          VARCHAR(4)    DEFAULT NULL,
+  `remarks`        TEXT          NOT NULL,
+  `grade_rem`      VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9927,20 +10067,20 @@ CREATE TABLE IF NOT EXISTS `marks_2026_5` (
 --
 
 CREATE TABLE IF NOT EXISTS `marks_2026_9` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `class_section` int(2) DEFAULT NULL,
-  `student_id` int(11) DEFAULT NULL,
-  `subject_id` int(8) DEFAULT NULL,
-  `status` varchar(4) DEFAULT NULL,
-  `sem_id` int(8) DEFAULT NULL,
-  `int_id` int(8) DEFAULT NULL,
-  `tst_id` int(8) DEFAULT NULL,
-  `mark` float DEFAULT NULL,
-  `grade` varchar(4) DEFAULT NULL,
-  `remarks` text NOT NULL,
-  `grade_rem` varchar(250) NOT NULL,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `class_section`  INT           DEFAULT NULL,
+  `student_id`     INT           DEFAULT NULL,
+  `subject_id`     INT           DEFAULT NULL,
+  `status`         VARCHAR(4)    DEFAULT NULL,
+  `sem_id`         INT           DEFAULT NULL,
+  `int_id`         INT           DEFAULT NULL,
+  `tst_id`         INT           DEFAULT NULL,
+  `mark`           FLOAT         DEFAULT NULL,
+  `grade`          VARCHAR(4)    DEFAULT NULL,
+  `remarks`        TEXT          NOT NULL,
+  `grade_rem`      VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9949,14 +10089,14 @@ CREATE TABLE IF NOT EXISTS `marks_2026_9` (
 --
 
 CREATE TABLE IF NOT EXISTS `master_approaches` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `divi` int(3) NOT NULL,
-  `class` int(3) NOT NULL,
-  `sub` int(5) NOT NULL,
-  `skill` varchar(250) NOT NULL,
-  `posi` int(2) NOT NULL,
+  `id`     INT           NOT NULL AUTO_INCREMENT,
+  `divi`   INT           NOT NULL,
+  `class`  INT           NOT NULL,
+  `sub`    INT           NOT NULL,
+  `skill`  VARCHAR(250)  NOT NULL,
+  `posi`   INT           NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -9965,20 +10105,20 @@ CREATE TABLE IF NOT EXISTS `master_approaches` (
 --
 
 CREATE TABLE IF NOT EXISTS `master_lesson_plan` (
-  `id` int(13) NOT NULL AUTO_INCREMENT,
-  `divi` int(3) NOT NULL,
-  `class` int(3) NOT NULL,
-  `subj` int(10) NOT NULL,
-  `chapter` varchar(250) NOT NULL,
-  `topic` varchar(40) NOT NULL,
-  `description` text NOT NULL,
-  `home_work` text NOT NULL,
-  `notes` text NOT NULL,
-  `details` text NOT NULL,
-  `reso` varchar(250) NOT NULL,
-  `status` int(1) NOT NULL DEFAULT '1',
+  `id`           INT           NOT NULL AUTO_INCREMENT,
+  `divi`         INT           NOT NULL,
+  `class`        INT           NOT NULL,
+  `subj`         INT           NOT NULL,
+  `chapter`      VARCHAR(250)  NOT NULL,
+  `topic`        VARCHAR(40)   NOT NULL,
+  `description`  TEXT          NOT NULL,
+  `home_work`    TEXT          NOT NULL,
+  `notes`        TEXT          NOT NULL,
+  `details`      TEXT          NOT NULL,
+  `reso`         VARCHAR(250)  NOT NULL,
+  `status`       TINYINT(1)    NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `master_lesson_plan`
@@ -10003,16 +10143,16 @@ INSERT INTO `master_lesson_plan` (`id`, `divi`, `class`, `subj`, `chapter`, `top
 --
 
 CREATE TABLE IF NOT EXISTS `master_skills` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `divi` int(3) NOT NULL,
-  `class` int(3) NOT NULL,
-  `sub` int(5) NOT NULL,
-  `skill` varchar(250) NOT NULL,
-  `posi` int(2) NOT NULL,
-  `mark` int(4) NOT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`      INT           NOT NULL AUTO_INCREMENT,
+  `divi`    INT           NOT NULL,
+  `class`   INT           NOT NULL,
+  `sub`     INT           NOT NULL,
+  `skill`   VARCHAR(250)  NOT NULL,
+  `posi`    INT           NOT NULL,
+  `mark`    INT           NOT NULL,
+  `status`  TINYINT(1)    DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=146 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `master_skills`
@@ -10047,11 +10187,11 @@ INSERT INTO `master_skills` (`id`, `divi`, `class`, `sub`, `skill`, `posi`, `mar
 --
 
 CREATE TABLE IF NOT EXISTS `modules` (
-  `module` varchar(50) NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `module`  VARCHAR(50)  NOT NULL,
+  `id`      INT          NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`module`),
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `modules`
@@ -10091,11 +10231,11 @@ INSERT INTO `modules` (`module`, `id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `modules_p` (
-  `module` varchar(50) NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `module`  VARCHAR(50)  NOT NULL,
+  `id`      INT          NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`module`),
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `modules_p`
@@ -10121,10 +10261,10 @@ INSERT INTO `modules_p` (`module`, `id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `module_info` (
-  `mod_id` int(11) NOT NULL AUTO_INCREMENT,
-  `module_name` varchar(50) NOT NULL,
+  `mod_id`       INT          NOT NULL AUTO_INCREMENT,
+  `module_name`  VARCHAR(50)  NOT NULL,
   PRIMARY KEY (`mod_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `module_info`
@@ -10143,19 +10283,19 @@ INSERT INTO `module_info` (`mod_id`, `module_name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `msg` (
-  `id` int(14) NOT NULL AUTO_INCREMENT,
-  `username` varchar(30) DEFAULT NULL,
-  `student_id` int(12) DEFAULT NULL,
-  `mobile_number` varchar(30) DEFAULT NULL,
-  `msg` text,
-  `class_det` int(8) NOT NULL,
-  `msg_date` date NOT NULL,
-  `msg_time` time NOT NULL,
-  `guid` varchar(50) NOT NULL,
-  `errorcode` int(2) NOT NULL,
-  `seqno` varchar(20) NOT NULL,
+  `id`             INT          NOT NULL AUTO_INCREMENT,
+  `username`       VARCHAR(30)  DEFAULT NULL,
+  `student_id`     INT          DEFAULT NULL,
+  `mobile_number`  VARCHAR(30)  DEFAULT NULL,
+  `msg`            TEXT,
+  `class_det`      INT          NOT NULL,
+  `msg_date`       DATE         NOT NULL,
+  `msg_time`       TIME         NOT NULL,
+  `guid`           VARCHAR(50)  NOT NULL,
+  `errorcode`      INT          NOT NULL,
+  `seqno`          VARCHAR(20)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `msg`
@@ -10175,16 +10315,16 @@ INSERT INTO `msg` (`id`, `username`, `student_id`, `mobile_number`, `msg`, `clas
 --
 
 CREATE TABLE IF NOT EXISTS `msg_not_sent` (
-  `id` int(14) NOT NULL AUTO_INCREMENT,
-  `username` varchar(30) DEFAULT NULL,
-  `student_id` int(12) DEFAULT NULL,
-  `mobile_number` varchar(30) DEFAULT NULL,
-  `msg` text,
-  `class_det` int(8) NOT NULL,
-  `msg_date` date NOT NULL,
-  `msg_time` time NOT NULL,
+  `id`             INT          NOT NULL AUTO_INCREMENT,
+  `username`       VARCHAR(30)  DEFAULT NULL,
+  `student_id`     INT          DEFAULT NULL,
+  `mobile_number`  VARCHAR(30)  DEFAULT NULL,
+  `msg`            TEXT,
+  `class_det`      INT          NOT NULL,
+  `msg_date`       DATE         NOT NULL,
+  `msg_time`       TIME         NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -10193,29 +10333,29 @@ CREATE TABLE IF NOT EXISTS `msg_not_sent` (
 --
 
 CREATE TABLE IF NOT EXISTS `msp_unit` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `class` int(3) NOT NULL,
-  `exam_id` int(11) NOT NULL,
-  `sub` int(5) NOT NULL,
-  `unit` varchar(250) NOT NULL,
-  `unit_s` varchar(255) NOT NULL,
-  `mark_m` int(11) NOT NULL,
-  `acc_year` int(2) NOT NULL,
-  `posi` int(11) NOT NULL,
-  `un_type` int(11) NOT NULL,
-  `status` int(3) NOT NULL,
-  `exam_date` date NOT NULL,
+  `id`         INT           NOT NULL AUTO_INCREMENT,
+  `class`      INT           NOT NULL,
+  `exam_id`    INT           NOT NULL,
+  `sub`        INT           NOT NULL,
+  `unit`       VARCHAR(250)  NOT NULL,
+  `unit_s`     VARCHAR(255)  NOT NULL,
+  `mark_m`     INT           NOT NULL,
+  `acc_year`   INT           NOT NULL,
+  `posi`       INT           NOT NULL,
+  `un_type`    INT           NOT NULL,
+  `status`     INT           NOT NULL,
+  `exam_date`  DATE          NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `msp_unit`
 --
 
 INSERT INTO `msp_unit` (`id`, `class`, `exam_id`, `sub`, `unit`, `unit_s`, `mark_m`, `acc_year`, `posi`, `un_type`, `status`, `exam_date`) VALUES
-(1, 1, 1, 0, 'Unit 1 Art', '', 0, 2026, 0, 0, 1, '0000-00-00'),
+(1, 1, 1, 0, 'Unit 1 Art', '', 0, 2026, 0, 0, 1, NULL),
 (2, 3, 2, 0, 'Unit 1- Relationships', '', 0, 2026, 0, 0, 1, '2026-10-04'),
-(3, 3, 2, 0, 'Unit 1 - Relationship', '', 0, 2026, 0, 0, 0, '0000-00-00'),
+(3, 3, 2, 0, 'Unit 1 - Relationship', '', 0, 2026, 0, 0, 0, NULL),
 (4, 2, 4, 0, 'Unit 2 - Celebrations', '', 0, 2026, 0, 0, 1, '2026-12-19'),
 (5, 2, 4, 0, 'Unit 1 - Amazing me', '', 0, 2026, 0, 0, 1, '2026-10-11'),
 (6, 4, 6, 0, 'Unit 1 - Our actions ', '', 0, 2026, 0, 0, 1, '2026-09-20'),
@@ -10224,7 +10364,7 @@ INSERT INTO `msp_unit` (`id`, `class`, `exam_id`, `sub`, `unit`, `unit_s`, `mark
 (9, 7, 9, 0, 'Unit 1 - Role models ', '', 0, 2026, 0, 0, 1, '2026-09-20'),
 (10, 8, 10, 0, 'Unit 1 - Migration', '', 0, 2026, 0, 0, 1, '2026-09-20'),
 (11, 9, 11, 0, 'Unit 1 - Mythology', '', 0, 2026, 0, 0, 1, '2026-09-13'),
-(12, 3, 2, 0, 'Unit 2', '', 0, 2026, 0, 0, 0, '0000-00-00'),
+(12, 3, 2, 0, 'Unit 2', '', 0, 2026, 0, 0, 0, NULL),
 (14, 3, 2, 0, 'Unit 2 - Stories', '', 0, 2026, 0, 0, 1, '2026-12-19'),
 (15, 4, 6, 0, 'Unit 2 - Signs and symbols', '', 0, 2026, 0, 0, 1, '2026-10-24'),
 (16, 5, 7, 0, 'Unit 2 - Field to table ', '', 0, 2026, 0, 0, 1, '2026-10-31'),
@@ -10255,11 +10395,11 @@ INSERT INTO `msp_unit` (`id`, `class`, `exam_id`, `sub`, `unit`, `unit_s`, `mark
 --
 
 CREATE TABLE IF NOT EXISTS `nationality` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nation` varchar(50) DEFAULT NULL,
-  `short_nation` varchar(10) DEFAULT NULL,
+  `id`            INT          NOT NULL AUTO_INCREMENT,
+  `nation`        VARCHAR(50)  DEFAULT NULL,
+  `short_nation`  VARCHAR(10)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=57 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `nationality`
@@ -10330,9 +10470,10 @@ INSERT INTO `nationality` (`id`, `nation`, `short_nation`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `obemail` (
-  `student_id` varchar(255) DEFAULT NULL,
-  `img_source_s` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `student_id`    VARCHAR(255)  DEFAULT NULL,
+  `img_source_s`  VARCHAR(255)  DEFAULT NULL,
+  PRIMARY KEY (`student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `obemail`
@@ -10358,21 +10499,21 @@ INSERT INTO `obemail` (`student_id`, `img_source_s`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `obe_skill_mark` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `class_section` int(2) DEFAULT NULL,
-  `student_id` int(11) DEFAULT NULL,
-  `subject_id` int(8) DEFAULT NULL,
-  `status` varchar(4) DEFAULT NULL,
-  `sem_id` int(8) DEFAULT NULL,
-  `unit` int(11) NOT NULL,
-  `int_id` int(8) DEFAULT NULL,
-  `tst_id` int(8) DEFAULT NULL,
-  `mark` varchar(4) DEFAULT NULL,
-  `grade` text,
-  `remarks` text,
-  `grade_rem` varchar(250) NOT NULL,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `class_section`  INT           DEFAULT NULL,
+  `student_id`     INT           DEFAULT NULL,
+  `subject_id`     INT           DEFAULT NULL,
+  `status`         VARCHAR(4)    DEFAULT NULL,
+  `sem_id`         INT           DEFAULT NULL,
+  `unit`           INT           NOT NULL,
+  `int_id`         INT           DEFAULT NULL,
+  `tst_id`         INT           DEFAULT NULL,
+  `mark`           VARCHAR(4)    DEFAULT NULL,
+  `grade`          TEXT,
+  `remarks`        TEXT,
+  `grade_rem`      VARCHAR(250)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -10381,9 +10522,10 @@ CREATE TABLE IF NOT EXISTS `obe_skill_mark` (
 --
 
 CREATE TABLE IF NOT EXISTS `obnat` (
-  `student_id` varchar(255) DEFAULT NULL,
-  `nationality` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `student_id`   VARCHAR(255)  DEFAULT NULL,
+  `nationality`  VARCHAR(255)  DEFAULT NULL,
+  PRIMARY KEY (`student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `obnat`
@@ -10408,9 +10550,10 @@ INSERT INTO `obnat` (`student_id`, `nationality`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `ois_data` (
-  `stu_id` varchar(255) DEFAULT NULL,
-  `stu_rfid` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `stu_id`    VARCHAR(255)  DEFAULT NULL,
+  `stu_rfid`  VARCHAR(255)  DEFAULT NULL,
+  PRIMARY KEY (`stu_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `ois_data`
@@ -10435,15 +10578,15 @@ INSERT INTO `ois_data` (`stu_id`, `stu_rfid`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `online_exam_des_mark` (
-  `student_id` int(8) NOT NULL,
-  `id` int(8) NOT NULL AUTO_INCREMENT,
-  `exam_id` int(8) NOT NULL,
-  `ques_id` int(11) DEFAULT NULL,
-  `Description` text NOT NULL,
-  `score` int(4) NOT NULL,
-  `status` int(1) NOT NULL,
+  `student_id`   INT         NOT NULL,
+  `id`           INT         NOT NULL AUTO_INCREMENT,
+  `exam_id`      INT         NOT NULL,
+  `ques_id`      INT         DEFAULT NULL,
+  `description`  TEXT        NOT NULL,
+  `score`        INT         NOT NULL,
+  `status`       TINYINT(1)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -10452,13 +10595,13 @@ CREATE TABLE IF NOT EXISTS `online_exam_des_mark` (
 --
 
 CREATE TABLE IF NOT EXISTS `online_exam_des_questions` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
-  `exam_id` int(8) NOT NULL,
-  `Description` text NOT NULL,
-  `score` int(4) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`           INT         NOT NULL AUTO_INCREMENT,
+  `exam_id`      INT         NOT NULL,
+  `description`  TEXT        NOT NULL,
+  `score`        INT         NOT NULL,
+  `status`       TINYINT(1)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -10467,20 +10610,20 @@ CREATE TABLE IF NOT EXISTS `online_exam_des_questions` (
 --
 
 CREATE TABLE IF NOT EXISTS `online_exam_det` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
-  `class_id` int(2) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `section_id` varchar(3) NOT NULL,
-  `exam_name` varchar(80) NOT NULL,
-  `exam_short_name` varchar(8) NOT NULL,
-  `subject_id` int(4) NOT NULL,
-  `exam_type` int(1) NOT NULL,
-  `score` int(4) NOT NULL,
-  `exam_date` date NOT NULL,
-  `status` int(1) NOT NULL,
-  `time_limit` varchar(10) NOT NULL,
+  `id`               INT          NOT NULL AUTO_INCREMENT,
+  `class_id`         INT          NOT NULL,
+  `acc_year`         INT          NOT NULL,
+  `section_id`       VARCHAR(3)   NOT NULL,
+  `exam_name`        VARCHAR(80)  NOT NULL,
+  `exam_short_name`  VARCHAR(8)   NOT NULL,
+  `subject_id`       INT          NOT NULL,
+  `exam_type`        TINYINT(1)   NOT NULL,
+  `score`            INT          NOT NULL,
+  `exam_date`        DATE         NOT NULL,
+  `status`           TINYINT(1)   NOT NULL,
+  `time_limit`       VARCHAR(10)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `online_exam_det`
@@ -10496,14 +10639,14 @@ INSERT INTO `online_exam_det` (`id`, `class_id`, `acc_year`, `section_id`, `exam
 --
 
 CREATE TABLE IF NOT EXISTS `online_exam_sel_mark` (
-  `student_id` int(8) NOT NULL,
-  `id` int(8) NOT NULL AUTO_INCREMENT,
-  `exam_id` int(8) NOT NULL,
-  `ans` int(1) NOT NULL,
-  `score` int(4) NOT NULL,
-  `status` int(1) NOT NULL,
+  `student_id`  INT         NOT NULL,
+  `id`          INT         NOT NULL AUTO_INCREMENT,
+  `exam_id`     INT         NOT NULL,
+  `ans`         TINYINT(1)  NOT NULL,
+  `score`       INT         NOT NULL,
+  `status`      TINYINT(1)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -10512,20 +10655,20 @@ CREATE TABLE IF NOT EXISTS `online_exam_sel_mark` (
 --
 
 CREATE TABLE IF NOT EXISTS `online_exam_sel_questions` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
-  `exam_id` int(8) NOT NULL,
-  `no_of_option` int(1) NOT NULL,
-  `que` text NOT NULL,
-  `option1` text NOT NULL,
-  `option2` text NOT NULL,
-  `option3` text NOT NULL,
-  `option4` text NOT NULL,
-  `option5` text NOT NULL,
-  `right_ans` int(1) NOT NULL,
-  `score` int(3) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`            INT         NOT NULL AUTO_INCREMENT,
+  `exam_id`       INT         NOT NULL,
+  `no_of_option`  TINYINT(1)  NOT NULL,
+  `que`           TEXT        NOT NULL,
+  `option1`       TEXT        NOT NULL,
+  `option2`       TEXT        NOT NULL,
+  `option3`       TEXT        NOT NULL,
+  `option4`       TEXT        NOT NULL,
+  `option5`       TEXT        NOT NULL,
+  `right_ans`     TINYINT(1)  NOT NULL,
+  `score`         INT         NOT NULL,
+  `status`        TINYINT(1)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `online_exam_sel_questions`
@@ -10542,14 +10685,16 @@ INSERT INTO `online_exam_sel_questions` (`id`, `exam_id`, `no_of_option`, `que`,
 --
 
 CREATE TABLE IF NOT EXISTS `parentmenu` (
-  `module` char(50) DEFAULT NULL,
-  `submodule` char(50) DEFAULT NULL,
-  `linkname` char(250) DEFAULT NULL,
-  `linkpath` char(250) DEFAULT NULL,
-  `access` enum('Yes','No') DEFAULT NULL,
-  `parameter` char(250) DEFAULT NULL,
-  `id` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `row_id`     INT               NOT NULL AUTO_INCREMENT,
+  `module`     CHAR(50)          DEFAULT NULL,
+  `submodule`  CHAR(50)          DEFAULT NULL,
+  `linkname`   CHAR(250)         DEFAULT NULL,
+  `linkpath`   CHAR(250)         DEFAULT NULL,
+  `access`     ENUM('Yes','No')  DEFAULT NULL,
+  `parameter`  CHAR(250)         DEFAULT NULL,
+  `id`         INT               DEFAULT NULL,
+  PRIMARY KEY (`row_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `parentmenu`
@@ -10656,19 +10801,19 @@ INSERT INTO `parentmenu` (`module`, `submodule`, `linkname`, `linkpath`, `access
 --
 
 CREATE TABLE IF NOT EXISTS `pasng_route_master` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `p_type` int(2) DEFAULT NULL,
-  `pasng_id` varchar(20) DEFAULT NULL,
-  `route_id` int(11) DEFAULT NULL,
-  `source_pt` int(11) DEFAULT NULL,
-  `trip_id` int(11) DEFAULT NULL,
-  `val_mon` varchar(10) NOT NULL,
-  `val_yr` varchar(10) NOT NULL,
-  `rec_no` varchar(25) DEFAULT NULL,
-  `sts` int(1) DEFAULT '0',
-  `wefdt` date DEFAULT NULL,
+  `id`         INT          NOT NULL AUTO_INCREMENT,
+  `p_type`     INT          DEFAULT NULL,
+  `pasng_id`   VARCHAR(20)  DEFAULT NULL,
+  `route_id`   INT          DEFAULT NULL,
+  `source_pt`  INT          DEFAULT NULL,
+  `trip_id`    INT          DEFAULT NULL,
+  `val_mon`    VARCHAR(10)  NOT NULL,
+  `val_yr`     VARCHAR(10)  NOT NULL,
+  `rec_no`     VARCHAR(25)  DEFAULT NULL,
+  `sts`        TINYINT(1)   DEFAULT '0',
+  `wefdt`      DATE         DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -10677,9 +10822,10 @@ CREATE TABLE IF NOT EXISTS `pasng_route_master` (
 --
 
 CREATE TABLE IF NOT EXISTS `phy_lib_stock` (
-  `acc_no` varchar(30) DEFAULT NULL,
-  `mtype` varchar(100) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `acc_no`  VARCHAR(30)   DEFAULT NULL,
+  `mtype`   VARCHAR(100)  DEFAULT NULL,
+  PRIMARY KEY (`acc_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -10688,13 +10834,13 @@ CREATE TABLE IF NOT EXISTS `phy_lib_stock` (
 --
 
 CREATE TABLE IF NOT EXISTS `point_details` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `route_id` int(11) DEFAULT NULL,
-  `point_id` int(11) DEFAULT NULL,
-  `pick_t` varchar(25) NOT NULL,
-  `drop_t` varchar(25) NOT NULL,
+  `id`        INT          NOT NULL AUTO_INCREMENT,
+  `route_id`  INT          DEFAULT NULL,
+  `point_id`  INT          DEFAULT NULL,
+  `pick_t`    VARCHAR(25)  NOT NULL,
+  `drop_t`    VARCHAR(25)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -10703,14 +10849,14 @@ CREATE TABLE IF NOT EXISTS `point_details` (
 --
 
 CREATE TABLE IF NOT EXISTS `point_master` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `point_name` varchar(50) DEFAULT NULL,
-  `details` varchar(50) DEFAULT NULL,
-  `dist` float(5,1) DEFAULT NULL,
-  `oneway` varchar(20) DEFAULT NULL COMMENT 'One-way cost per month',
-  `twoway` varchar(20) DEFAULT NULL COMMENT 'two-way cost per month',
+  `id`          INT          NOT NULL AUTO_INCREMENT,
+  `point_name`  VARCHAR(50)  DEFAULT NULL,
+  `details`     VARCHAR(50)  DEFAULT NULL,
+  `dist`        FLOAT(5,1)   DEFAULT NULL,
+  `oneway`      VARCHAR(20)  DEFAULT NULL COMMENT 'One-way cost per month',
+  `twoway`      VARCHAR(20)  DEFAULT NULL COMMENT 'two-way cost per month',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `point_master`
@@ -10726,19 +10872,19 @@ INSERT INTO `point_master` (`id`, `point_name`, `details`, `dist`, `oneway`, `tw
 --
 
 CREATE TABLE IF NOT EXISTS `previous_job` (
-  `id` int(6) NOT NULL AUTO_INCREMENT,
-  `staff_id` int(6) DEFAULT NULL,
-  `prev_post` varchar(200) DEFAULT NULL,
-  `prev_work_place` varchar(200) DEFAULT NULL,
-  `prev_work_city` varchar(200) DEFAULT NULL,
-  `prev_work_country` varchar(200) DEFAULT NULL,
-  `last_date_work` varchar(25) DEFAULT NULL,
-  `from_date` varchar(25) DEFAULT NULL,
-  `col_id` int(11) DEFAULT NULL,
-  `exp_type` varchar(100) DEFAULT NULL,
-  `years` varchar(25) DEFAULT NULL,
+  `id`                 INT           NOT NULL AUTO_INCREMENT,
+  `staff_id`           INT           DEFAULT NULL,
+  `prev_post`          VARCHAR(200)  DEFAULT NULL,
+  `prev_work_place`    VARCHAR(200)  DEFAULT NULL,
+  `prev_work_city`     VARCHAR(200)  DEFAULT NULL,
+  `prev_work_country`  VARCHAR(200)  DEFAULT NULL,
+  `last_date_work`     VARCHAR(25)   DEFAULT NULL,
+  `from_date`          VARCHAR(25)   DEFAULT NULL,
+  `col_id`             INT           DEFAULT NULL,
+  `exp_type`           VARCHAR(100)  DEFAULT NULL,
+  `years`              VARCHAR(25)   DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -10747,17 +10893,17 @@ CREATE TABLE IF NOT EXISTS `previous_job` (
 --
 
 CREATE TABLE IF NOT EXISTS `products` (
-  `PRODUCT_ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `PRODUCT_NAME` varchar(200) NOT NULL,
-  `AMOUNT` bigint(20) unsigned DEFAULT NULL,
-  `PRODUCT_CODE` varchar(20) NOT NULL,
-  `QUANTITY` bigint(20) DEFAULT '1',
-  `CATEGORY` int(10) unsigned DEFAULT NULL,
-  `REORDERLEVEL` int(18) NOT NULL,
-  `BAR_CODE` int(15) NOT NULL,
+  `PRODUCT_ID`    BIGINT UNSIGNED  NOT NULL AUTO_INCREMENT,
+  `PRODUCT_NAME`  VARCHAR(200)     NOT NULL,
+  `AMOUNT`        BIGINT UNSIGNED  DEFAULT NULL,
+  `PRODUCT_CODE`  VARCHAR(20)      NOT NULL,
+  `QUANTITY`      BIGINT           DEFAULT '1',
+  `CATEGORY`      INT UNSIGNED     DEFAULT NULL,
+  `REORDERLEVEL`  INT              NOT NULL,
+  `BAR_CODE`      INT              NOT NULL,
   PRIMARY KEY (`PRODUCT_ID`),
   UNIQUE KEY `PRODUCT_ID` (`PRODUCT_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -10766,15 +10912,15 @@ CREATE TABLE IF NOT EXISTS `products` (
 --
 
 CREATE TABLE IF NOT EXISTS `pypskills` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `class` int(3) NOT NULL,
-  `sub` int(5) NOT NULL,
-  `exam_id` int(11) NOT NULL,
-  `skill` varchar(250) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `posi` int(2) NOT NULL,
+  `id`        INT           NOT NULL AUTO_INCREMENT,
+  `class`     INT           NOT NULL,
+  `sub`       INT           NOT NULL,
+  `exam_id`   INT           NOT NULL,
+  `skill`     VARCHAR(250)  NOT NULL,
+  `acc_year`  INT           NOT NULL,
+  `posi`      INT           NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -10783,17 +10929,17 @@ CREATE TABLE IF NOT EXISTS `pypskills` (
 --
 
 CREATE TABLE IF NOT EXISTS `pyp_subskills` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `class` int(3) NOT NULL,
-  `sub` int(5) NOT NULL,
-  `master_skill` int(10) NOT NULL,
-  `sub_skill` text NOT NULL,
-  `examid` int(11) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `posi` int(2) NOT NULL,
-  `unit` int(11) NOT NULL,
+  `id`            INT   NOT NULL AUTO_INCREMENT,
+  `class`         INT   NOT NULL,
+  `sub`           INT   NOT NULL,
+  `master_skill`  INT   NOT NULL,
+  `sub_skill`     TEXT  NOT NULL,
+  `examid`        INT   NOT NULL,
+  `acc_year`      INT   NOT NULL,
+  `posi`          INT   NOT NULL,
+  `unit`          INT   NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=94 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `pyp_subskills`
@@ -10901,20 +11047,20 @@ INSERT INTO `pyp_subskills` (`id`, `class`, `sub`, `master_skill`, `sub_skill`, 
 --
 
 CREATE TABLE IF NOT EXISTS `quotation` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `QuotNo` varchar(30) DEFAULT NULL,
-  `QuotDate` date DEFAULT NULL,
-  `RID` int(11) DEFAULT NULL,
-  `unitprice` float(25,2) DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL,
-  `total_price` float(30,2) DEFAULT NULL,
-  `asset_id` int(11) DEFAULT NULL,
-  `vendor_id` int(11) DEFAULT NULL,
-  `status` enum('Processed','Not Processed') DEFAULT 'Not Processed',
-  `POStatus` enum('Raised','Pending') DEFAULT 'Pending',
-  `conditions` text,
+  `id`           INT                                NOT NULL AUTO_INCREMENT,
+  `QuotNo`       VARCHAR(30)                        DEFAULT NULL,
+  `QuotDate`     DATE                               DEFAULT NULL,
+  `RID`          INT                                DEFAULT NULL,
+  `unitprice`    FLOAT(25,2)                        DEFAULT NULL,
+  `quantity`     INT                                DEFAULT NULL,
+  `total_price`  FLOAT(30,2)                        DEFAULT NULL,
+  `asset_id`     INT                                DEFAULT NULL,
+  `vendor_id`    INT                                DEFAULT NULL,
+  `status`       ENUM('Processed','Not Processed')  DEFAULT 'Not Processed',
+  `POStatus`     ENUM('Raised','Pending')           DEFAULT 'Pending',
+  `conditions`   TEXT,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -10923,14 +11069,14 @@ CREATE TABLE IF NOT EXISTS `quotation` (
 --
 
 CREATE TABLE IF NOT EXISTS `quotation_trans` (
-  `id` int(11) DEFAULT NULL,
-  `author` varchar(250) DEFAULT NULL,
-  `publisher` varchar(250) DEFAULT NULL,
-  `title` varchar(250) DEFAULT NULL,
-  `copies` int(11) DEFAULT NULL,
-  `tid` int(11) NOT NULL AUTO_INCREMENT,
+  `id`         INT           DEFAULT NULL,
+  `author`     VARCHAR(250)  DEFAULT NULL,
+  `publisher`  VARCHAR(250)  DEFAULT NULL,
+  `title`      VARCHAR(250)  DEFAULT NULL,
+  `copies`     INT           DEFAULT NULL,
+  `tid`        INT           NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`tid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -10939,19 +11085,20 @@ CREATE TABLE IF NOT EXISTS `quotation_trans` (
 --
 
 CREATE TABLE IF NOT EXISTS `receipt_details` (
-  `RECEIPT_ID` bigint(20) DEFAULT '0',
-  `SL_NO` bigint(20) DEFAULT NULL,
-  `PRODUCT_ID` bigint(10) DEFAULT NULL,
-  `PRODUCT_NAME` varchar(100) DEFAULT NULL,
-  `QUANTITY` int(10) unsigned DEFAULT NULL,
-  `AMOUNT` bigint(20) DEFAULT NULL,
-  `TAX` float DEFAULT NULL,
-  `DISCOUNT` float DEFAULT NULL,
-  `PAYABLE` float DEFAULT NULL,
-  `USER_NAME` varchar(50) DEFAULT NULL,
-  `DATE_OF_PURCHASE` date DEFAULT NULL,
-  `TIME_OF_PURCHASE` time NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `RECEIPT_ID`        BIGINT        NOT NULL,
+  `SL_NO`             BIGINT        DEFAULT NULL,
+  `PRODUCT_ID`        BIGINT        DEFAULT NULL,
+  `PRODUCT_NAME`      VARCHAR(100)  DEFAULT NULL,
+  `QUANTITY`          INT UNSIGNED  DEFAULT NULL,
+  `AMOUNT`            BIGINT        DEFAULT NULL,
+  `TAX`               FLOAT         DEFAULT NULL,
+  `DISCOUNT`          FLOAT         DEFAULT NULL,
+  `PAYABLE`           FLOAT         DEFAULT NULL,
+  `USER_NAME`         VARCHAR(50)   DEFAULT NULL,
+  `DATE_OF_PURCHASE`  DATE          DEFAULT NULL,
+  `TIME_OF_PURCHASE`  TIME          NOT NULL,
+  PRIMARY KEY (`RECEIPT_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -10960,17 +11107,17 @@ CREATE TABLE IF NOT EXISTS `receipt_details` (
 --
 
 CREATE TABLE IF NOT EXISTS `receipt_totals` (
-  `RECEIPT_ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `TOTAL_QUANTITY` bigint(20) DEFAULT NULL,
-  `TOTAL_AMOUNT` float DEFAULT NULL,
-  `TOTAL_TAX` float DEFAULT NULL,
-  `TOTAL_DISCOUNT` float DEFAULT NULL,
-  `TOTAL_PAYABLE` float DEFAULT NULL,
-  `USER_NAME` varchar(50) DEFAULT NULL,
-  `DATE_OF_PURCHASE` date DEFAULT NULL,
-  `TIME_OF_PURCHASE` time NOT NULL,
+  `RECEIPT_ID`        BIGINT       NOT NULL AUTO_INCREMENT,
+  `TOTAL_QUANTITY`    BIGINT       DEFAULT NULL,
+  `TOTAL_AMOUNT`      FLOAT        DEFAULT NULL,
+  `TOTAL_TAX`         FLOAT        DEFAULT NULL,
+  `TOTAL_DISCOUNT`    FLOAT        DEFAULT NULL,
+  `TOTAL_PAYABLE`     FLOAT        DEFAULT NULL,
+  `USER_NAME`         VARCHAR(50)  DEFAULT NULL,
+  `DATE_OF_PURCHASE`  DATE         DEFAULT NULL,
+  `TIME_OF_PURCHASE`  TIME         NOT NULL,
   PRIMARY KEY (`RECEIPT_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -10979,68 +11126,68 @@ CREATE TABLE IF NOT EXISTS `receipt_totals` (
 --
 
 CREATE TABLE IF NOT EXISTS `register` (
-  `reg_no` int(11) NOT NULL AUTO_INCREMENT,
-  `ish_start_date` date DEFAULT NULL,
-  `student_id` int(11) DEFAULT NULL,
-  `us_grade_level` varchar(55) DEFAULT NULL,
-  `student_email` varchar(55) DEFAULT NULL,
-  `passport_no` varchar(22) DEFAULT NULL,
-  `date_of_issue` date DEFAULT NULL,
-  `date_of_expiration` date DEFAULT NULL,
-  `visa_type` varchar(10) DEFAULT NULL,
-  `other_type` varchar(100) DEFAULT NULL,
-  `other_type_x` varchar(100) DEFAULT NULL,
-  `pre_school_name` varchar(100) DEFAULT NULL,
-  `pre_school_language` varchar(22) DEFAULT NULL,
-  `pre_school_address` varchar(255) DEFAULT NULL,
-  `pre_school_city` varchar(22) DEFAULT NULL,
-  `pre_school_state` varchar(22) DEFAULT NULL,
-  `pre_school_country` varchar(22) DEFAULT NULL,
-  `pre_school_doj` date DEFAULT NULL,
-  `pre_school_ldate` date DEFAULT NULL,
-  `pre_school_grade_from` varchar(22) DEFAULT NULL,
-  `pre_school_grade_to` varchar(22) DEFAULT NULL,
-  `pre_school_cur_type` varchar(100) DEFAULT NULL,
-  `pre_school_year_begin` date DEFAULT NULL,
-  `pre_school_name2` varchar(100) DEFAULT NULL,
-  `pre_school_language2` varchar(22) DEFAULT NULL,
-  `pre_school_address2` varchar(255) DEFAULT NULL,
-  `pre_school_city2` varchar(22) DEFAULT NULL,
-  `pre_school_state2` varchar(22) DEFAULT NULL,
-  `pre_school_country2` varchar(22) DEFAULT NULL,
-  `pre_school_doj2` date DEFAULT NULL,
-  `pre_school_ldate2` date DEFAULT NULL,
-  `pre_school_grade_from2` varchar(22) DEFAULT NULL,
-  `pre_school_grade_to2` varchar(22) DEFAULT NULL,
-  `pre_school_cur_type2` varchar(55) DEFAULT NULL,
-  `pre_school_year_begin2` date DEFAULT NULL,
-  `ish_student` varchar(11) DEFAULT NULL,
-  `ish_student_from` date DEFAULT NULL,
-  `ish_student_to` date DEFAULT NULL,
-  `pre_ish_student` varchar(22) DEFAULT NULL,
-  `pre_ish_student_doj` date DEFAULT NULL,
-  `student_native_lang` varchar(22) DEFAULT NULL,
-  `student_native_language2` varchar(22) DEFAULT NULL,
-  `student_home_lang` varchar(22) DEFAULT NULL,
-  `father_native_lang` varchar(22) DEFAULT NULL,
-  `father_native_language2` varchar(22) DEFAULT NULL,
-  `father_home_lang` varchar(22) DEFAULT NULL,
-  `mother_native_lang` varchar(22) DEFAULT NULL,
-  `mother_native_language2` varchar(22) DEFAULT NULL,
-  `mother_home_lang` varchar(22) DEFAULT NULL,
-  `eng_exp` varchar(11) DEFAULT NULL,
-  `esl` varchar(11) DEFAULT NULL,
-  `rem_inst` varchar(11) DEFAULT NULL,
-  `retained` varchar(11) DEFAULT NULL,
-  `ses` varchar(11) DEFAULT NULL,
-  `award` varchar(11) DEFAULT NULL,
-  `psy` varchar(11) DEFAULT NULL,
-  `susp` varchar(11) DEFAULT NULL,
-  `medication` varchar(11) DEFAULT NULL,
-  `phl` varchar(11) DEFAULT NULL,
-  `cause` varchar(255) DEFAULT NULL,
+  `reg_no`                    INT           NOT NULL AUTO_INCREMENT,
+  `ish_start_date`            DATE          DEFAULT NULL,
+  `student_id`                INT           DEFAULT NULL,
+  `us_grade_level`            VARCHAR(55)   DEFAULT NULL,
+  `student_email`             VARCHAR(55)   DEFAULT NULL,
+  `passport_no`               VARCHAR(22)   DEFAULT NULL,
+  `date_of_issue`             DATE          DEFAULT NULL,
+  `date_of_expiration`        DATE          DEFAULT NULL,
+  `visa_type`                 VARCHAR(10)   DEFAULT NULL,
+  `other_type`                VARCHAR(100)  DEFAULT NULL,
+  `other_type_x`              VARCHAR(100)  DEFAULT NULL,
+  `pre_school_name`           VARCHAR(100)  DEFAULT NULL,
+  `pre_school_language`       VARCHAR(22)   DEFAULT NULL,
+  `pre_school_address`        VARCHAR(255)  DEFAULT NULL,
+  `pre_school_city`           VARCHAR(22)   DEFAULT NULL,
+  `pre_school_state`          VARCHAR(22)   DEFAULT NULL,
+  `pre_school_country`        VARCHAR(22)   DEFAULT NULL,
+  `pre_school_doj`            DATE          DEFAULT NULL,
+  `pre_school_ldate`          DATE          DEFAULT NULL,
+  `pre_school_grade_from`     VARCHAR(22)   DEFAULT NULL,
+  `pre_school_grade_to`       VARCHAR(22)   DEFAULT NULL,
+  `pre_school_cur_type`       VARCHAR(100)  DEFAULT NULL,
+  `pre_school_year_begin`     DATE          DEFAULT NULL,
+  `pre_school_name2`          VARCHAR(100)  DEFAULT NULL,
+  `pre_school_language2`      VARCHAR(22)   DEFAULT NULL,
+  `pre_school_address2`       VARCHAR(255)  DEFAULT NULL,
+  `pre_school_city2`          VARCHAR(22)   DEFAULT NULL,
+  `pre_school_state2`         VARCHAR(22)   DEFAULT NULL,
+  `pre_school_country2`       VARCHAR(22)   DEFAULT NULL,
+  `pre_school_doj2`           DATE          DEFAULT NULL,
+  `pre_school_ldate2`         DATE          DEFAULT NULL,
+  `pre_school_grade_from2`    VARCHAR(22)   DEFAULT NULL,
+  `pre_school_grade_to2`      VARCHAR(22)   DEFAULT NULL,
+  `pre_school_cur_type2`      VARCHAR(55)   DEFAULT NULL,
+  `pre_school_year_begin2`    DATE          DEFAULT NULL,
+  `ish_student`               VARCHAR(11)   DEFAULT NULL,
+  `ish_student_from`          DATE          DEFAULT NULL,
+  `ish_student_to`            DATE          DEFAULT NULL,
+  `pre_ish_student`           VARCHAR(22)   DEFAULT NULL,
+  `pre_ish_student_doj`       DATE          DEFAULT NULL,
+  `student_native_lang`       VARCHAR(22)   DEFAULT NULL,
+  `student_native_language2`  VARCHAR(22)   DEFAULT NULL,
+  `student_home_lang`         VARCHAR(22)   DEFAULT NULL,
+  `father_native_lang`        VARCHAR(22)   DEFAULT NULL,
+  `father_native_language2`   VARCHAR(22)   DEFAULT NULL,
+  `father_home_lang`          VARCHAR(22)   DEFAULT NULL,
+  `mother_native_lang`        VARCHAR(22)   DEFAULT NULL,
+  `mother_native_language2`   VARCHAR(22)   DEFAULT NULL,
+  `mother_home_lang`          VARCHAR(22)   DEFAULT NULL,
+  `eng_exp`                   VARCHAR(11)   DEFAULT NULL,
+  `esl`                       VARCHAR(11)   DEFAULT NULL,
+  `rem_inst`                  VARCHAR(11)   DEFAULT NULL,
+  `retained`                  VARCHAR(11)   DEFAULT NULL,
+  `ses`                       VARCHAR(11)   DEFAULT NULL,
+  `award`                     VARCHAR(11)   DEFAULT NULL,
+  `psy`                       VARCHAR(11)   DEFAULT NULL,
+  `susp`                      VARCHAR(11)   DEFAULT NULL,
+  `medication`                VARCHAR(11)   DEFAULT NULL,
+  `phl`                       VARCHAR(11)   DEFAULT NULL,
+  `cause`                     VARCHAR(255)  DEFAULT NULL,
   PRIMARY KEY (`reg_no`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11049,10 +11196,10 @@ CREATE TABLE IF NOT EXISTS `register` (
 --
 
 CREATE TABLE IF NOT EXISTS `religion` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
+  `id`    INT           NOT NULL AUTO_INCREMENT,
+  `name`  VARCHAR(100)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11061,20 +11208,20 @@ CREATE TABLE IF NOT EXISTS `religion` (
 --
 
 CREATE TABLE IF NOT EXISTS `requirementindent` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `RDate` date DEFAULT NULL,
-  `RINumber` varchar(20) DEFAULT NULL,
-  `College` varchar(100) DEFAULT NULL,
-  `person` varchar(150) DEFAULT NULL,
-  `asset_id` int(11) DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL,
-  `POStatus` enum('Raised','Pending') DEFAULT 'Pending',
-  `dept_id` int(11) DEFAULT NULL,
-  `processed_qty` int(11) DEFAULT '0',
-  `quotation_status` enum('YES','NO') DEFAULT 'NO',
-  `asgroup_id` varchar(10) NOT NULL,
+  `id`                INT                       NOT NULL AUTO_INCREMENT,
+  `RDate`             DATE                      DEFAULT NULL,
+  `RINumber`          VARCHAR(20)               DEFAULT NULL,
+  `College`           VARCHAR(100)              DEFAULT NULL,
+  `person`            VARCHAR(150)              DEFAULT NULL,
+  `asset_id`          INT                       DEFAULT NULL,
+  `quantity`          INT                       DEFAULT NULL,
+  `POStatus`          ENUM('Raised','Pending')  DEFAULT 'Pending',
+  `dept_id`           INT                       DEFAULT NULL,
+  `processed_qty`     INT                       DEFAULT '0',
+  `quotation_status`  ENUM('YES','NO')          DEFAULT 'NO',
+  `asgroup_id`        VARCHAR(10)               NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11083,9 +11230,10 @@ CREATE TABLE IF NOT EXISTS `requirementindent` (
 --
 
 CREATE TABLE IF NOT EXISTS `rfidois` (
-  `strudentid` varchar(255) DEFAULT NULL,
-  `rfid` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `strudentid`  VARCHAR(255)  DEFAULT NULL,
+  `rfid`        VARCHAR(255)  DEFAULT NULL,
+  PRIMARY KEY (`strudentid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `rfidois`
@@ -11110,11 +11258,11 @@ INSERT INTO `rfidois` (`strudentid`, `rfid`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `rfid_card_type` (
-  `id` int(3) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`      INT           NOT NULL AUTO_INCREMENT,
+  `name`    VARCHAR(100)  NOT NULL,
+  `status`  TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11123,34 +11271,34 @@ CREATE TABLE IF NOT EXISTS `rfid_card_type` (
 --
 
 CREATE TABLE IF NOT EXISTS `rfid_enrolment_user` (
-  `id` int(12) NOT NULL AUTO_INCREMENT,
-  `rfid` varchar(50) NOT NULL,
-  `user` varchar(50) NOT NULL,
-  `user_type` int(1) NOT NULL,
-  `add_date` date NOT NULL,
-  `end_date` date NOT NULL,
-  `status` int(1) NOT NULL,
-  `active` varchar(1) NOT NULL DEFAULT 'Y',
-  `rfidAccess` varchar(1) NOT NULL DEFAULT 'N',
-  `desc` text NOT NULL,
+  `id`          INT          NOT NULL AUTO_INCREMENT,
+  `rfid`        VARCHAR(50)  NOT NULL,
+  `user`        VARCHAR(50)  NOT NULL,
+  `user_type`   TINYINT(1)   NOT NULL,
+  `add_date`    DATE         NOT NULL,
+  `end_date`    DATE         NOT NULL,
+  `status`      TINYINT(1)   NOT NULL,
+  `active`      VARCHAR(1)   NOT NULL DEFAULT 'Y',
+  `rfidAccess`  VARCHAR(1)   NOT NULL DEFAULT 'N',
+  `desc`        TEXT         NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=375 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `rfid_enrolment_user`
 --
 
 INSERT INTO `rfid_enrolment_user` (`id`, `rfid`, `user`, `user_type`, `add_date`, `end_date`, `status`, `active`, `rfidAccess`, `desc`) VALUES
-(1, 'C4B7A30E000000000000000000000000', '240', 2, '0000-00-00', '0000-00-00', 1, 'Y', 'Y', ''),
-(2, 'DC080817000000000000000000000000', '192', 2, '0000-00-00', '0000-00-00', 1, 'Y', 'Y', ''),
-(3, '55FD7617000000000000000000000000', '203', 2, '0000-00-00', '0000-00-00', 1, 'Y', 'Y', ''),
-(4, 'F85B4892000000000000000000000000', '326', 2, '0000-00-00', '0000-00-00', 1, 'Y', 'Y', ''),
-(5, 'F8FDB8F2000000000000000000000000', '325', 2, '0000-00-00', '0000-00-00', 1, 'Y', 'Y', ''),
-(6, 'D0772717000000000000000000000000', '264', 2, '0000-00-00', '0000-00-00', 1, 'Y', 'Y', ''),
-(7, '5D927C17000000000000000000000000', '208', 2, '0000-00-00', '0000-00-00', 1, 'Y', 'Y', ''),
-(8, 'C4B74CDE000000000000000000000000', '231', 2, '0000-00-00', '0000-00-00', 1, 'Y', 'Y', ''),
-(9, '6A9B7917000000000000000000000000', '238', 2, '0000-00-00', '0000-00-00', 1, 'Y', 'Y', ''),
-(10, '52CC7917000000000000000000000000', '242', 2, '0000-00-00', '0000-00-00', 1, 'Y', 'Y', '');
+(1, 'C4B7A30E000000000000000000000000', '240', 2, NULL, NULL, 1, 'Y', 'Y', ''),
+(2, 'DC080817000000000000000000000000', '192', 2, NULL, NULL, 1, 'Y', 'Y', ''),
+(3, '55FD7617000000000000000000000000', '203', 2, NULL, NULL, 1, 'Y', 'Y', ''),
+(4, 'F85B4892000000000000000000000000', '326', 2, NULL, NULL, 1, 'Y', 'Y', ''),
+(5, 'F8FDB8F2000000000000000000000000', '325', 2, NULL, NULL, 1, 'Y', 'Y', ''),
+(6, 'D0772717000000000000000000000000', '264', 2, NULL, NULL, 1, 'Y', 'Y', ''),
+(7, '5D927C17000000000000000000000000', '208', 2, NULL, NULL, 1, 'Y', 'Y', ''),
+(8, 'C4B74CDE000000000000000000000000', '231', 2, NULL, NULL, 1, 'Y', 'Y', ''),
+(9, '6A9B7917000000000000000000000000', '238', 2, NULL, NULL, 1, 'Y', 'Y', ''),
+(10, '52CC7917000000000000000000000000', '242', 2, NULL, NULL, 1, 'Y', 'Y', '');
 
 -- --------------------------------------------------------
 
@@ -11159,12 +11307,12 @@ INSERT INTO `rfid_enrolment_user` (`id`, `rfid`, `user`, `user_type`, `add_date`
 --
 
 CREATE TABLE IF NOT EXISTS `rfid_mac_det` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `mac_id` varchar(50) NOT NULL,
-  `desc` varchar(250) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`      INT           NOT NULL AUTO_INCREMENT,
+  `mac_id`  VARCHAR(50)   NOT NULL,
+  `desc`    VARCHAR(250)  NOT NULL,
+  `status`  TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11173,12 +11321,12 @@ CREATE TABLE IF NOT EXISTS `rfid_mac_det` (
 --
 
 CREATE TABLE IF NOT EXISTS `rfid_masters` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  `desc` varchar(250) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`      INT           NOT NULL AUTO_INCREMENT,
+  `name`    VARCHAR(50)   NOT NULL,
+  `desc`    VARCHAR(250)  NOT NULL,
+  `status`  TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11187,12 +11335,14 @@ CREATE TABLE IF NOT EXISTS `rfid_masters` (
 --
 
 CREATE TABLE IF NOT EXISTS `rfid_new_aug15` (
-  `GRNumber` varchar(255) DEFAULT NULL,
-  `CardUID` varchar(255) DEFAULT NULL,
-  `Checked` varchar(255) DEFAULT NULL,
-  `cardid` varchar(255) DEFAULT NULL,
-  `color` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`        INT           NOT NULL AUTO_INCREMENT,
+  `GRNumber`  VARCHAR(255)  DEFAULT NULL,
+  `CardUID`   VARCHAR(255)  DEFAULT NULL,
+  `Checked`   VARCHAR(255)  DEFAULT NULL,
+  `cardid`    VARCHAR(255)  DEFAULT NULL,
+  `color`     VARCHAR(255)  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `rfid_new_aug15`
@@ -11217,15 +11367,15 @@ INSERT INTO `rfid_new_aug15` (`GRNumber`, `CardUID`, `Checked`, `cardid`, `color
 --
 
 CREATE TABLE IF NOT EXISTS `rfid_reader_master` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `readerName` varchar(50) NOT NULL,
-  `readerip` varchar(50) NOT NULL,
-  `turnstile` varchar(50) NOT NULL,
-  `type` int(2) NOT NULL,
-  `desc` text NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`          INT          NOT NULL AUTO_INCREMENT,
+  `readerName`  VARCHAR(50)  NOT NULL,
+  `readerip`    VARCHAR(50)  NOT NULL,
+  `turnstile`   VARCHAR(50)  NOT NULL,
+  `type`        INT          NOT NULL,
+  `desc`        TEXT         NOT NULL,
+  `status`      TINYINT(1)   NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11234,17 +11384,17 @@ CREATE TABLE IF NOT EXISTS `rfid_reader_master` (
 --
 
 CREATE TABLE IF NOT EXISTS `rfid_staff_check_in` (
-  `id` int(15) NOT NULL AUTO_INCREMENT,
-  `controllerip` varchar(40) NOT NULL,
-  `readerno` varchar(40) NOT NULL,
-  `rfidno` varchar(40) NOT NULL,
-  `att_date` date NOT NULL,
-  `att_time` time NOT NULL,
-  `user` int(5) NOT NULL DEFAULT '0',
-  `type` int(2) NOT NULL DEFAULT '2',
-  `status` int(3) NOT NULL DEFAULT '0',
+  `id`            INT          NOT NULL AUTO_INCREMENT,
+  `controllerip`  VARCHAR(40)  NOT NULL,
+  `readerno`      VARCHAR(40)  NOT NULL,
+  `rfidno`        VARCHAR(40)  NOT NULL,
+  `att_date`      DATE         NOT NULL,
+  `att_time`      TIME         NOT NULL,
+  `user`          INT          NOT NULL DEFAULT '0',
+  `type`          INT          NOT NULL DEFAULT '2',
+  `status`        INT          NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11253,17 +11403,17 @@ CREATE TABLE IF NOT EXISTS `rfid_staff_check_in` (
 --
 
 CREATE TABLE IF NOT EXISTS `rfid_staff_check_out` (
-  `id` int(15) NOT NULL AUTO_INCREMENT,
-  `controllerip` varchar(40) NOT NULL,
-  `readerno` varchar(40) NOT NULL,
-  `rfidno` varchar(40) NOT NULL,
-  `att_date` date NOT NULL,
-  `att_time` time NOT NULL,
-  `user` int(5) NOT NULL DEFAULT '0',
-  `type` int(2) NOT NULL DEFAULT '2',
-  `status` int(3) NOT NULL DEFAULT '0',
+  `id`            INT          NOT NULL AUTO_INCREMENT,
+  `controllerip`  VARCHAR(40)  NOT NULL,
+  `readerno`      VARCHAR(40)  NOT NULL,
+  `rfidno`        VARCHAR(40)  NOT NULL,
+  `att_date`      DATE         NOT NULL,
+  `att_time`      TIME         NOT NULL,
+  `user`          INT          NOT NULL DEFAULT '0',
+  `type`          INT          NOT NULL DEFAULT '2',
+  `status`        INT          NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11272,18 +11422,18 @@ CREATE TABLE IF NOT EXISTS `rfid_staff_check_out` (
 --
 
 CREATE TABLE IF NOT EXISTS `rfid_stud` (
-  `id` int(15) NOT NULL AUTO_INCREMENT,
-  `to_day_date` date NOT NULL,
-  `controllerip` varchar(40) NOT NULL,
-  `readerno` varchar(40) NOT NULL,
-  `rfidno` varchar(40) NOT NULL,
-  `att_date` date NOT NULL,
-  `att_time` time NOT NULL,
-  `studid` int(11) NOT NULL,
-  `status` int(3) NOT NULL DEFAULT '1',
-  `delt` varchar(2) NOT NULL,
+  `id`            INT          NOT NULL AUTO_INCREMENT,
+  `to_day_date`   DATE         NOT NULL,
+  `controllerip`  VARCHAR(40)  NOT NULL,
+  `readerno`      VARCHAR(40)  NOT NULL,
+  `rfidno`        VARCHAR(40)  NOT NULL,
+  `att_date`      DATE         NOT NULL,
+  `att_time`      TIME         NOT NULL,
+  `studid`        INT          NOT NULL,
+  `status`        INT          NOT NULL DEFAULT '1',
+  `delt`          VARCHAR(2)   NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11292,14 +11442,14 @@ CREATE TABLE IF NOT EXISTS `rfid_stud` (
 --
 
 CREATE TABLE IF NOT EXISTS `rfid_user_access` (
-  `id` int(15) NOT NULL AUTO_INCREMENT,
-  `user_type` int(2) NOT NULL,
-  `userid` int(10) NOT NULL,
-  `food` int(1) NOT NULL,
-  `trans` int(1) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`         INT         NOT NULL AUTO_INCREMENT,
+  `user_type`  INT         NOT NULL,
+  `userid`     INT         NOT NULL,
+  `food`       TINYINT(1)  NOT NULL,
+  `trans`      TINYINT(1)  NOT NULL,
+  `status`     TINYINT(1)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11308,11 +11458,11 @@ CREATE TABLE IF NOT EXISTS `rfid_user_access` (
 --
 
 CREATE TABLE IF NOT EXISTS `route_master` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `route_code` varchar(25) DEFAULT NULL,
-  `route_name` varchar(50) DEFAULT NULL,
+  `id`          INT          NOT NULL AUTO_INCREMENT,
+  `route_code`  VARCHAR(25)  DEFAULT NULL,
+  `route_name`  VARCHAR(50)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11321,12 +11471,12 @@ CREATE TABLE IF NOT EXISTS `route_master` (
 --
 
 CREATE TABLE IF NOT EXISTS `route_vechile_details` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `vechile_id` int(11) DEFAULT NULL,
-  `route_id` int(11) DEFAULT NULL,
-  `driver_id` int(11) DEFAULT NULL,
+  `id`          INT  NOT NULL AUTO_INCREMENT,
+  `vechile_id`  INT  DEFAULT NULL,
+  `route_id`    INT  DEFAULT NULL,
+  `driver_id`   INT  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11335,14 +11485,14 @@ CREATE TABLE IF NOT EXISTS `route_vechile_details` (
 --
 
 CREATE TABLE IF NOT EXISTS `sal_head` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL DEFAULT '',
-  `type` int(11) NOT NULL DEFAULT '0',
-  `col_id` int(11) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
-  `ledger_id` varchar(20) DEFAULT NULL,
+  `id`         INT          NOT NULL AUTO_INCREMENT,
+  `name`       VARCHAR(50)  NOT NULL DEFAULT '',
+  `type`       INT          NOT NULL DEFAULT '0',
+  `col_id`     INT          DEFAULT NULL,
+  `status`     TINYINT(1)   DEFAULT '1',
+  `ledger_id`  VARCHAR(20)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11351,35 +11501,37 @@ CREATE TABLE IF NOT EXISTS `sal_head` (
 --
 
 CREATE TABLE IF NOT EXISTS `sanction_intake` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
-  `course_id` int(5) DEFAULT NULL,
-  `course_year_id` int(5) DEFAULT NULL,
-  `intake` int(5) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`              INT         NOT NULL AUTO_INCREMENT,
+  `course_id`       INT         DEFAULT NULL,
+  `course_year_id`  INT         DEFAULT NULL,
+  `intake`          INT         DEFAULT NULL,
+  `status`          TINYINT(1)  DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `satff_lv_data_feb19`
+-- Table structure for table `staff_lv_data_feb19`
 --
 
-CREATE TABLE IF NOT EXISTS `satff_lv_data_feb19` (
-  `Sr_No` varchar(255) DEFAULT NULL,
-  `Employee_Code` varchar(255) DEFAULT NULL,
-  `MySchoo_Staff_ID` varchar(255) DEFAULT NULL,
-  `Employee_Name` varchar(255) DEFAULT NULL,
-  `Category` varchar(255) DEFAULT NULL,
-  `Official_Email` varchar(255) DEFAULT NULL,
-  `UD_ID_no` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `staff_lv_data_feb19` (
+  `id`                INT           NOT NULL AUTO_INCREMENT,
+  `Sr_No`             VARCHAR(255)  DEFAULT NULL,
+  `Employee_Code`     VARCHAR(255)  DEFAULT NULL,
+  `MySchoo_Staff_ID`  VARCHAR(255)  DEFAULT NULL,
+  `Employee_Name`     VARCHAR(255)  DEFAULT NULL,
+  `Category`          VARCHAR(255)  DEFAULT NULL,
+  `Official_Email`    VARCHAR(255)  DEFAULT NULL,
+  `UD_ID_no`          VARCHAR(255)  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
--- Dumping data for table `satff_lv_data_feb19`
+-- Dumping data for table `staff_lv_data_feb19`
 --
 
-INSERT INTO `satff_lv_data_feb19` (`Sr_No`, `Employee_Code`, `MySchoo_Staff_ID`, `Employee_Name`, `Category`, `Official_Email`, `UD_ID_no`) VALUES
+INSERT INTO `staff_lv_data_feb19` (`Sr_No`, `Employee_Code`, `MySchoo_Staff_ID`, `Employee_Name`, `Category`, `Official_Email`, `UD_ID_no`) VALUES
 ('1', '8730', 'RD-S46010', 'Radhakrishna Suvarna', 'Non Teaching', 'radhakrishna.suvarna@email.com', 'CB560717000000000000000000000000'),
 ('2', '8834', 'RD-S460013', 'Suhas Jadhav', 'Non Teaching', 'suhas.jadhav@email.com', 'C4BB1E4E000000000000000000000000'),
 ('3', '8007', 'RD-S20268', 'Agnel  Waz', 'Non Teaching', 'agnel.waz@email.com', 'C4B7A30E000000000000000000000000'),
@@ -11398,12 +11550,12 @@ INSERT INTO `satff_lv_data_feb19` (`Sr_No`, `Employee_Code`, `MySchoo_Staff_ID`,
 --
 
 CREATE TABLE IF NOT EXISTS `sec_hospital` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `hos_name` varchar(11) NOT NULL,
-  `position` int(11) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
+  `id`        INT          NOT NULL AUTO_INCREMENT,
+  `hos_name`  VARCHAR(11)  NOT NULL,
+  `position`  INT          NOT NULL,
+  `status`    INT          NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11412,15 +11564,15 @@ CREATE TABLE IF NOT EXISTS `sec_hospital` (
 --
 
 CREATE TABLE IF NOT EXISTS `services` (
-  `SERVICE_ID` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `SERVICE_NAME` varchar(200) NOT NULL,
-  `AMOUNT` bigint(20) unsigned DEFAULT NULL,
-  `SERVICE_CODE` varchar(20) NOT NULL,
-  `QUANTITY` bigint(20) unsigned DEFAULT NULL,
-  `CATEGORY` int(10) unsigned DEFAULT NULL,
+  `SERVICE_ID`    BIGINT UNSIGNED  NOT NULL AUTO_INCREMENT,
+  `SERVICE_NAME`  VARCHAR(200)     NOT NULL,
+  `AMOUNT`        BIGINT UNSIGNED  DEFAULT NULL,
+  `SERVICE_CODE`  VARCHAR(20)      NOT NULL,
+  `QUANTITY`      BIGINT UNSIGNED  DEFAULT NULL,
+  `CATEGORY`      INT UNSIGNED     DEFAULT NULL,
   PRIMARY KEY (`SERVICE_ID`),
   UNIQUE KEY `SERVICE_ID` (`SERVICE_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11429,17 +11581,17 @@ CREATE TABLE IF NOT EXISTS `services` (
 --
 
 CREATE TABLE IF NOT EXISTS `service_gatepass_details` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `gatepass_id` int(11) DEFAULT NULL,
-  `item_code_id` int(11) DEFAULT NULL,
-  `location_id` int(11) DEFAULT NULL,
-  `returned` enum('YES','NO') DEFAULT 'NO',
-  `issue_status` enum('YES','NO') DEFAULT 'NO',
-  `completely_received` enum('YES','NO') DEFAULT 'NO',
-  `issuedt` date DEFAULT NULL,
-  `issuetodept` varchar(4) DEFAULT 'NO',
+  `id`                   INT               NOT NULL AUTO_INCREMENT,
+  `gatepass_id`          INT               DEFAULT NULL,
+  `item_code_id`         INT               DEFAULT NULL,
+  `location_id`          INT               DEFAULT NULL,
+  `returned`             ENUM('YES','NO')  DEFAULT 'NO',
+  `issue_status`         ENUM('YES','NO')  DEFAULT 'NO',
+  `completely_received`  ENUM('YES','NO')  DEFAULT 'NO',
+  `issuedt`              DATE              DEFAULT NULL,
+  `issuetodept`          VARCHAR(4)        DEFAULT 'NO',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11448,17 +11600,17 @@ CREATE TABLE IF NOT EXISTS `service_gatepass_details` (
 --
 
 CREATE TABLE IF NOT EXISTS `sessional_master` (
-  `Sl_No` int(11) NOT NULL AUTO_INCREMENT,
-  `Sessional_ID` varchar(10) DEFAULT NULL,
-  `Sessional_Name` varchar(20) DEFAULT NULL,
-  `Course_ID` varchar(20) DEFAULT NULL,
-  `Course_Year_ID` varchar(10) DEFAULT NULL,
-  `Activated` enum('On','Off') DEFAULT 'On',
-  `Academic_Year` int(4) DEFAULT '0',
-  `From_Date` date DEFAULT NULL,
-  `To_Date` date DEFAULT NULL,
+  `Sl_No`           INT               NOT NULL AUTO_INCREMENT,
+  `Sessional_ID`    VARCHAR(10)       DEFAULT NULL,
+  `Sessional_Name`  VARCHAR(20)       DEFAULT NULL,
+  `Course_ID`       VARCHAR(20)       DEFAULT NULL,
+  `Course_Year_ID`  VARCHAR(10)       DEFAULT NULL,
+  `activated`       ENUM('On','Off')  DEFAULT 'On',
+  `Academic_Year`   INT               DEFAULT '0',
+  `From_Date`       DATE              DEFAULT NULL,
+  `To_Date`         DATE              DEFAULT NULL,
   PRIMARY KEY (`Sl_No`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11467,12 +11619,12 @@ CREATE TABLE IF NOT EXISTS `sessional_master` (
 --
 
 CREATE TABLE IF NOT EXISTS `settings` (
-  `SETTING_ID` int(3) unsigned NOT NULL AUTO_INCREMENT,
-  `SETTING_NAME` varchar(50) NOT NULL DEFAULT '0',
-  `SETTING_VALUE` float DEFAULT '0',
+  `SETTING_ID`     INT UNSIGNED  NOT NULL AUTO_INCREMENT,
+  `SETTING_NAME`   VARCHAR(50)   NOT NULL DEFAULT '0',
+  `SETTING_VALUE`  FLOAT         DEFAULT '0',
   PRIMARY KEY (`SETTING_ID`),
   UNIQUE KEY `SETTING_ID` (`SETTING_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 
 -- --------------------------------------------------------
@@ -11482,18 +11634,18 @@ CREATE TABLE IF NOT EXISTS `settings` (
 --
 
 CREATE TABLE IF NOT EXISTS `skill_grade` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `divi` int(3) NOT NULL,
-  `class` int(3) NOT NULL,
-  `sec` int(2) NOT NULL,
-  `student_id` int(10) NOT NULL,
-  `skill` int(10) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `eval1` varchar(4) NOT NULL,
-  `eval2` varchar(4) NOT NULL,
-  `eval3` varchar(4) NOT NULL,
+  `id`          BIGINT      NOT NULL AUTO_INCREMENT,
+  `divi`        INT         NOT NULL,
+  `class`       INT         NOT NULL,
+  `sec`         INT         NOT NULL,
+  `student_id`  INT         NOT NULL,
+  `skill`       INT         NOT NULL,
+  `acc_year`    INT         NOT NULL,
+  `eval1`       VARCHAR(4)  NOT NULL,
+  `eval2`       VARCHAR(4)  NOT NULL,
+  `eval3`       VARCHAR(4)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `skill_grade`
@@ -11534,16 +11686,16 @@ INSERT INTO `skill_grade` (`id`, `divi`, `class`, `sec`, `student_id`, `skill`, 
 --
 
 CREATE TABLE IF NOT EXISTS `skill_grade_desc` (
-  `id` bigint(14) NOT NULL AUTO_INCREMENT,
-  `exam_id` int(11) NOT NULL,
-  `class` int(2) NOT NULL,
-  `sec` int(2) NOT NULL,
-  `sub` int(11) NOT NULL,
-  `student_id` int(12) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `desc1` text NOT NULL,
+  `id`          BIGINT  NOT NULL AUTO_INCREMENT,
+  `exam_id`     INT     NOT NULL,
+  `class`       INT     NOT NULL,
+  `sec`         INT     NOT NULL,
+  `sub`         INT     NOT NULL,
+  `student_id`  INT     NOT NULL,
+  `acc_year`    INT     NOT NULL,
+  `desc1`       TEXT    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11552,38 +11704,38 @@ CREATE TABLE IF NOT EXISTS `skill_grade_desc` (
 --
 
 CREATE TABLE IF NOT EXISTS `skill_grade_ib` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `divi` int(3) NOT NULL,
-  `class` int(3) NOT NULL,
-  `exam` int(2) NOT NULL,
-  `student_id` int(10) NOT NULL,
-  `subject` int(10) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `skill1` int(4) NOT NULL,
-  `skill2` int(4) NOT NULL,
-  `skill3` int(4) NOT NULL,
-  `skill4` int(4) NOT NULL,
-  `skill5` int(4) NOT NULL,
-  `skill6` int(4) NOT NULL,
-  `skill7` int(4) NOT NULL,
-  `skill8` int(4) NOT NULL,
-  `skill9` int(4) NOT NULL,
-  `skill10` int(4) NOT NULL,
-  `totalmark` int(4) NOT NULL,
-  `ibgrade` int(4) NOT NULL,
-  `aproach1` int(1) NOT NULL,
-  `aproach2` int(1) NOT NULL,
-  `aproach3` int(1) NOT NULL,
-  `aproach4` int(1) NOT NULL,
-  `aproach5` int(1) NOT NULL,
-  `aproach6` int(1) NOT NULL,
-  `aproach7` int(1) NOT NULL,
-  `aproach8` int(1) NOT NULL,
-  `aproach9` int(1) NOT NULL,
-  `aproach10` int(1) NOT NULL,
-  `comments` text NOT NULL,
+  `id`          BIGINT      NOT NULL AUTO_INCREMENT,
+  `divi`        INT         NOT NULL,
+  `class`       INT         NOT NULL,
+  `exam`        INT         NOT NULL,
+  `student_id`  INT         NOT NULL,
+  `subject`     INT         NOT NULL,
+  `acc_year`    INT         NOT NULL,
+  `skill1`      INT         NOT NULL,
+  `skill2`      INT         NOT NULL,
+  `skill3`      INT         NOT NULL,
+  `skill4`      INT         NOT NULL,
+  `skill5`      INT         NOT NULL,
+  `skill6`      INT         NOT NULL,
+  `skill7`      INT         NOT NULL,
+  `skill8`      INT         NOT NULL,
+  `skill9`      INT         NOT NULL,
+  `skill10`     INT         NOT NULL,
+  `totalmark`   INT         NOT NULL,
+  `ibgrade`     INT         NOT NULL,
+  `aproach1`    TINYINT(1)  NOT NULL,
+  `aproach2`    TINYINT(1)  NOT NULL,
+  `aproach3`    TINYINT(1)  NOT NULL,
+  `aproach4`    TINYINT(1)  NOT NULL,
+  `aproach5`    TINYINT(1)  NOT NULL,
+  `aproach6`    TINYINT(1)  NOT NULL,
+  `aproach7`    TINYINT(1)  NOT NULL,
+  `aproach8`    TINYINT(1)  NOT NULL,
+  `aproach9`    TINYINT(1)  NOT NULL,
+  `aproach10`   TINYINT(1)  NOT NULL,
+  `comments`    TEXT        NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11592,17 +11744,17 @@ CREATE TABLE IF NOT EXISTS `skill_grade_ib` (
 --
 
 CREATE TABLE IF NOT EXISTS `special_trip_entry` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `req_given_by` varchar(60) DEFAULT NULL,
-  `trip_details` varchar(100) DEFAULT NULL,
-  `pick_up_time` varchar(10) DEFAULT NULL,
-  `departure_time` varchar(10) DEFAULT NULL,
-  `vechile_name` int(10) DEFAULT NULL,
-  `Driver_name` varchar(100) DEFAULT NULL,
-  `helper_name` varchar(100) DEFAULT NULL,
-  `date` date DEFAULT NULL,
+  `id`              INT           NOT NULL AUTO_INCREMENT,
+  `req_given_by`    VARCHAR(60)   DEFAULT NULL,
+  `trip_details`    VARCHAR(100)  DEFAULT NULL,
+  `pick_up_time`    VARCHAR(10)   DEFAULT NULL,
+  `departure_time`  VARCHAR(10)   DEFAULT NULL,
+  `vechile_name`    INT           DEFAULT NULL,
+  `Driver_name`     VARCHAR(100)  DEFAULT NULL,
+  `helper_name`     VARCHAR(100)  DEFAULT NULL,
+  `date`            DATE          DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11611,14 +11763,14 @@ CREATE TABLE IF NOT EXISTS `special_trip_entry` (
 --
 
 CREATE TABLE IF NOT EXISTS `spl_advances` (
-  `id` int(9) NOT NULL AUTO_INCREMENT,
-  `div` int(4) NOT NULL,
-  `class` int(4) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `price` bigint(18) NOT NULL,
-  `status` int(2) NOT NULL,
+  `id`        INT     NOT NULL AUTO_INCREMENT,
+  `div`       INT     NOT NULL,
+  `class`     INT     NOT NULL,
+  `acc_year`  INT     NOT NULL,
+  `price`     BIGINT  NOT NULL,
+  `status`    INT     NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11627,19 +11779,19 @@ CREATE TABLE IF NOT EXISTS `spl_advances` (
 --
 
 CREATE TABLE IF NOT EXISTS `spl_advances_coll` (
-  `id` bigint(19) NOT NULL AUTO_INCREMENT,
-  `div` int(4) NOT NULL,
-  `class` int(4) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `student_id` bigint(12) NOT NULL,
-  `col_amount` double(18,2) NOT NULL,
-  `spent_amount` double(18,2) NOT NULL,
-  `bal_amount` double(18,2) NOT NULL,
-  `col_date` date NOT NULL,
-  `desc` text NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`            BIGINT        NOT NULL AUTO_INCREMENT,
+  `div`           INT           NOT NULL,
+  `class`         INT           NOT NULL,
+  `acc_year`      INT           NOT NULL,
+  `student_id`    BIGINT        NOT NULL,
+  `col_amount`    DOUBLE(18,2)  NOT NULL,
+  `spent_amount`  DOUBLE(18,2)  NOT NULL,
+  `bal_amount`    DOUBLE(18,2)  NOT NULL,
+  `col_date`      DATE          NOT NULL,
+  `desc`          TEXT          NOT NULL,
+  `status`        TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11648,15 +11800,17 @@ CREATE TABLE IF NOT EXISTS `spl_advances_coll` (
 --
 
 CREATE TABLE IF NOT EXISTS `sta` (
-  `srno` varchar(255) DEFAULT NULL,
-  `employeecode` varchar(255) DEFAULT NULL,
-  `employeename` varchar(255) DEFAULT NULL,
-  `carduid` varchar(255) DEFAULT NULL,
-  `employeetype` varchar(255) DEFAULT NULL,
-  `category` varchar(255) DEFAULT NULL,
-  `department` varchar(255) DEFAULT NULL,
-  `emailid` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`            INT           NOT NULL AUTO_INCREMENT,
+  `srno`          VARCHAR(255)  DEFAULT NULL,
+  `employeecode`  VARCHAR(255)  DEFAULT NULL,
+  `employeename`  VARCHAR(255)  DEFAULT NULL,
+  `carduid`       VARCHAR(255)  DEFAULT NULL,
+  `employeetype`  VARCHAR(255)  DEFAULT NULL,
+  `category`      VARCHAR(255)  DEFAULT NULL,
+  `department`    VARCHAR(255)  DEFAULT NULL,
+  `emailid`       VARCHAR(255)  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `sta`
@@ -11681,10 +11835,10 @@ INSERT INTO `sta` (`srno`, `employeecode`, `employeename`, `carduid`, `employeet
 --
 
 CREATE TABLE IF NOT EXISTS `staff_archive_status` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` varchar(30) DEFAULT NULL,
+  `id`      INT          NOT NULL AUTO_INCREMENT,
+  `status`  VARCHAR(30)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11693,75 +11847,75 @@ CREATE TABLE IF NOT EXISTS `staff_archive_status` (
 --
 
 CREATE TABLE IF NOT EXISTS `staff_att` (
-  `id` int(17) NOT NULL AUTO_INCREMENT,
-  `staff_id` int(17) NOT NULL,
-  `bio_id` int(17) NOT NULL,
-  `amonth` int(2) NOT NULL,
-  `ayear` int(4) NOT NULL,
-  `m01` varchar(2) NOT NULL,
-  `a01` varchar(2) NOT NULL,
-  `m02` varchar(2) NOT NULL,
-  `a02` varchar(2) NOT NULL,
-  `m03` varchar(2) NOT NULL,
-  `a03` varchar(2) NOT NULL,
-  `m04` varchar(2) NOT NULL,
-  `a04` varchar(2) NOT NULL,
-  `m05` varchar(2) NOT NULL,
-  `a05` varchar(2) NOT NULL,
-  `m06` varchar(2) NOT NULL,
-  `a06` varchar(2) NOT NULL,
-  `m07` varchar(2) NOT NULL,
-  `a07` varchar(2) NOT NULL,
-  `m08` varchar(2) NOT NULL,
-  `a08` varchar(2) NOT NULL,
-  `m09` varchar(2) NOT NULL,
-  `a09` varchar(2) NOT NULL,
-  `m10` varchar(2) NOT NULL,
-  `a10` varchar(2) NOT NULL,
-  `m11` varchar(2) NOT NULL,
-  `a11` varchar(2) NOT NULL,
-  `m12` varchar(2) NOT NULL,
-  `a12` varchar(2) NOT NULL,
-  `m13` varchar(2) NOT NULL,
-  `a13` varchar(2) NOT NULL,
-  `m14` varchar(2) NOT NULL,
-  `a14` varchar(2) NOT NULL,
-  `m15` varchar(2) NOT NULL,
-  `a15` varchar(2) NOT NULL,
-  `m16` varchar(2) NOT NULL,
-  `a16` varchar(2) NOT NULL,
-  `m17` varchar(2) NOT NULL,
-  `a17` varchar(2) NOT NULL,
-  `m18` varchar(2) NOT NULL,
-  `a18` varchar(2) NOT NULL,
-  `m19` varchar(2) NOT NULL,
-  `a19` varchar(2) NOT NULL,
-  `m20` varchar(2) NOT NULL,
-  `a20` varchar(2) NOT NULL,
-  `m21` varchar(2) NOT NULL,
-  `a21` varchar(2) NOT NULL,
-  `m22` varchar(2) NOT NULL,
-  `a22` varchar(2) NOT NULL,
-  `m23` varchar(2) NOT NULL,
-  `a23` varchar(2) NOT NULL,
-  `m24` varchar(2) NOT NULL,
-  `a24` varchar(2) NOT NULL,
-  `m25` varchar(2) NOT NULL,
-  `a25` varchar(2) NOT NULL,
-  `m26` varchar(2) NOT NULL,
-  `a26` varchar(2) NOT NULL,
-  `m27` varchar(2) NOT NULL,
-  `a27` varchar(2) NOT NULL,
-  `m28` varchar(2) NOT NULL,
-  `a28` varchar(2) NOT NULL,
-  `m29` varchar(2) NOT NULL,
-  `a29` varchar(2) NOT NULL,
-  `m30` varchar(2) NOT NULL,
-  `a30` varchar(2) NOT NULL,
-  `m31` varchar(2) NOT NULL,
-  `a31` varchar(2) NOT NULL,
+  `id`        INT         NOT NULL AUTO_INCREMENT,
+  `staff_id`  INT         NOT NULL,
+  `bio_id`    INT         NOT NULL,
+  `amonth`    INT         NOT NULL,
+  `ayear`     INT         NOT NULL,
+  `m01`       VARCHAR(2)  NOT NULL,
+  `a01`       VARCHAR(2)  NOT NULL,
+  `m02`       VARCHAR(2)  NOT NULL,
+  `a02`       VARCHAR(2)  NOT NULL,
+  `m03`       VARCHAR(2)  NOT NULL,
+  `a03`       VARCHAR(2)  NOT NULL,
+  `m04`       VARCHAR(2)  NOT NULL,
+  `a04`       VARCHAR(2)  NOT NULL,
+  `m05`       VARCHAR(2)  NOT NULL,
+  `a05`       VARCHAR(2)  NOT NULL,
+  `m06`       VARCHAR(2)  NOT NULL,
+  `a06`       VARCHAR(2)  NOT NULL,
+  `m07`       VARCHAR(2)  NOT NULL,
+  `a07`       VARCHAR(2)  NOT NULL,
+  `m08`       VARCHAR(2)  NOT NULL,
+  `a08`       VARCHAR(2)  NOT NULL,
+  `m09`       VARCHAR(2)  NOT NULL,
+  `a09`       VARCHAR(2)  NOT NULL,
+  `m10`       VARCHAR(2)  NOT NULL,
+  `a10`       VARCHAR(2)  NOT NULL,
+  `m11`       VARCHAR(2)  NOT NULL,
+  `a11`       VARCHAR(2)  NOT NULL,
+  `m12`       VARCHAR(2)  NOT NULL,
+  `a12`       VARCHAR(2)  NOT NULL,
+  `m13`       VARCHAR(2)  NOT NULL,
+  `a13`       VARCHAR(2)  NOT NULL,
+  `m14`       VARCHAR(2)  NOT NULL,
+  `a14`       VARCHAR(2)  NOT NULL,
+  `m15`       VARCHAR(2)  NOT NULL,
+  `a15`       VARCHAR(2)  NOT NULL,
+  `m16`       VARCHAR(2)  NOT NULL,
+  `a16`       VARCHAR(2)  NOT NULL,
+  `m17`       VARCHAR(2)  NOT NULL,
+  `a17`       VARCHAR(2)  NOT NULL,
+  `m18`       VARCHAR(2)  NOT NULL,
+  `a18`       VARCHAR(2)  NOT NULL,
+  `m19`       VARCHAR(2)  NOT NULL,
+  `a19`       VARCHAR(2)  NOT NULL,
+  `m20`       VARCHAR(2)  NOT NULL,
+  `a20`       VARCHAR(2)  NOT NULL,
+  `m21`       VARCHAR(2)  NOT NULL,
+  `a21`       VARCHAR(2)  NOT NULL,
+  `m22`       VARCHAR(2)  NOT NULL,
+  `a22`       VARCHAR(2)  NOT NULL,
+  `m23`       VARCHAR(2)  NOT NULL,
+  `a23`       VARCHAR(2)  NOT NULL,
+  `m24`       VARCHAR(2)  NOT NULL,
+  `a24`       VARCHAR(2)  NOT NULL,
+  `m25`       VARCHAR(2)  NOT NULL,
+  `a25`       VARCHAR(2)  NOT NULL,
+  `m26`       VARCHAR(2)  NOT NULL,
+  `a26`       VARCHAR(2)  NOT NULL,
+  `m27`       VARCHAR(2)  NOT NULL,
+  `a27`       VARCHAR(2)  NOT NULL,
+  `m28`       VARCHAR(2)  NOT NULL,
+  `a28`       VARCHAR(2)  NOT NULL,
+  `m29`       VARCHAR(2)  NOT NULL,
+  `a29`       VARCHAR(2)  NOT NULL,
+  `m30`       VARCHAR(2)  NOT NULL,
+  `a30`       VARCHAR(2)  NOT NULL,
+  `m31`       VARCHAR(2)  NOT NULL,
+  `a31`       VARCHAR(2)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -11770,15 +11924,15 @@ CREATE TABLE IF NOT EXISTS `staff_att` (
 --
 
 CREATE TABLE IF NOT EXISTS `staff_att_updt` (
-  `id` int(15) NOT NULL AUTO_INCREMENT,
-  `leave_approval` int(11) NOT NULL,
-  `staff_id` int(11) NOT NULL,
-  `user` varchar(255) NOT NULL,
-  `toddate` date NOT NULL,
-  `todtime` time NOT NULL,
-  `type` varchar(255) NOT NULL,
+  `id`              INT           NOT NULL AUTO_INCREMENT,
+  `leave_approval`  INT           NOT NULL,
+  `staff_id`        INT           NOT NULL,
+  `user`            VARCHAR(255)  NOT NULL,
+  `toddate`         DATE          NOT NULL,
+  `todtime`         TIME          NOT NULL,
+  `type`            VARCHAR(255)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=86 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `staff_att_updt`
@@ -11803,16 +11957,16 @@ INSERT INTO `staff_att_updt` (`id`, `leave_approval`, `staff_id`, `user`, `todda
 --
 
 CREATE TABLE IF NOT EXISTS `staff_calenders` (
-  `id` int(14) NOT NULL AUTO_INCREMENT,
-  `acc_year` int(11) NOT NULL,
-  `staff_typ` int(4) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `fromdate` date NOT NULL,
-  `title` varchar(200) NOT NULL,
-  `description` text NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`           INT           NOT NULL AUTO_INCREMENT,
+  `acc_year`     INT           NOT NULL,
+  `staff_typ`    INT           NOT NULL,
+  `username`     VARCHAR(30)   NOT NULL,
+  `fromdate`     DATE          NOT NULL,
+  `title`        VARCHAR(200)  NOT NULL,
+  `description`  TEXT          NOT NULL,
+  `status`       TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2142 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `staff_calenders`
@@ -11838,17 +11992,17 @@ INSERT INTO `staff_calenders` (`id`, `acc_year`, `staff_typ`, `username`, `fromd
 --
 
 CREATE TABLE IF NOT EXISTS `staff_class_group` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `group_id` int(11) NOT NULL,
-  `section` int(11) NOT NULL,
-  `grade` int(11) NOT NULL,
-  `sub` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `store_ids` int(11) NOT NULL,
-  `staff_id` int(11) NOT NULL,
-  `status` int(11) NOT NULL,
+  `id`         INT           NOT NULL AUTO_INCREMENT,
+  `group_id`   INT           NOT NULL,
+  `section`    INT           NOT NULL,
+  `grade`      INT           NOT NULL,
+  `sub`        INT           NOT NULL,
+  `username`   VARCHAR(255)  NOT NULL,
+  `store_ids`  INT           NOT NULL,
+  `staff_id`   INT           NOT NULL,
+  `status`     INT           NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24077 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `staff_class_group`
@@ -11873,17 +12027,17 @@ INSERT INTO `staff_class_group` (`id`, `group_id`, `section`, `grade`, `sub`, `u
 --
 
 CREATE TABLE IF NOT EXISTS `staff_default` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `status` int(11) NOT NULL,
-  `reason` text NOT NULL,
-  `time_in` varchar(255) DEFAULT NULL,
-  `time_out` varchar(255) DEFAULT NULL,
-  `d_date` varchar(255) DEFAULT NULL,
-  `user` varchar(255) DEFAULT NULL,
-  `staff_id` int(5) NOT NULL,
-  `ins_date` varchar(255) DEFAULT NULL,
+  `id`        INT           NOT NULL AUTO_INCREMENT,
+  `status`    INT           NOT NULL,
+  `reason`    TEXT          NOT NULL,
+  `time_in`   VARCHAR(255)  DEFAULT NULL,
+  `time_out`  VARCHAR(255)  DEFAULT NULL,
+  `d_date`    VARCHAR(255)  DEFAULT NULL,
+  `user`      VARCHAR(255)  DEFAULT NULL,
+  `staff_id`  INT           NOT NULL,
+  `ins_date`  VARCHAR(255)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `staff_default`
@@ -11937,56 +12091,56 @@ INSERT INTO `staff_default` (`id`, `status`, `reason`, `time_in`, `time_out`, `d
 --
 
 CREATE TABLE IF NOT EXISTS `staff_default_status` (
-  `id` int(15) NOT NULL AUTO_INCREMENT,
-  `user` varchar(255) NOT NULL,
-  `inserted_date` datetime NOT NULL,
-  `staff_id_ins` int(11) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `in_time` varchar(255) NOT NULL,
-  `in_edit_time` varchar(255) NOT NULL,
-  `out_time` varchar(255) NOT NULL,
-  `out_edit_time` varchar(255) NOT NULL,
-  `manager_id` varchar(255) NOT NULL,
-  `default_date` date NOT NULL,
-  `default_id` int(11) NOT NULL,
-  `approved` int(11) NOT NULL DEFAULT '0',
-  `reject` int(11) NOT NULL DEFAULT '0',
-  `acc_year` int(4) NOT NULL,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `user`           VARCHAR(255)  NOT NULL,
+  `inserted_date`  DATETIME      NOT NULL,
+  `staff_id_ins`   INT           NOT NULL,
+  `type`           VARCHAR(255)  NOT NULL,
+  `in_time`        VARCHAR(255)  NOT NULL,
+  `in_edit_time`   VARCHAR(255)  NOT NULL,
+  `out_time`       VARCHAR(255)  NOT NULL,
+  `out_edit_time`  VARCHAR(255)  NOT NULL,
+  `manager_id`     VARCHAR(255)  NOT NULL,
+  `default_date`   DATE          NOT NULL,
+  `default_id`     INT           NOT NULL,
+  `approved`       INT           NOT NULL DEFAULT '0',
+  `reject`         INT           NOT NULL DEFAULT '0',
+  `acc_year`       INT           NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `staff_default_status`
 --
 
 INSERT INTO `staff_default_status` (`id`, `user`, `inserted_date`, `staff_id_ins`, `type`, `in_time`, `in_edit_time`, `out_time`, `out_edit_time`, `manager_id`, `default_date`, `default_id`, `approved`, `reject`, `acc_year`) VALUES
-(1, 'pujas', '2026-02-25 12:29:02', 1, 'D', '', '', '', '', '250', '0000-00-00', 0, 0, 1, 2026),
-(2, 'pujas', '2026-02-20 00:46:02', 2, 'D', '', '', '', '', '250', '0000-00-00', 0, 0, 1, 2026),
-(3, 'michaelb', '2026-03-07 15:15:03', 4, 'D', '', '', '', '', '68', '0000-00-00', 0, 1, 0, 2026),
-(4, 'michaelb', '2026-03-07 15:15:03', 5, 'D', '', '', '', '', '68', '0000-00-00', 0, 1, 0, 2026),
-(5, 'vladimirk', '2026-03-07 16:39:03', 6, 'D', '', '', '', '', '251', '0000-00-00', 0, 1, 0, 2026),
-(6, 'vladimirk', '2026-03-07 16:44:03', 7, 'D', '', '', '', '', '251', '0000-00-00', 0, 1, 0, 2026),
-(7, 'saronig', '2026-03-10 10:07:03', 8, 'D', '', '', '', '', '193', '0000-00-00', 0, 1, 0, 2026),
-(8, 'shannac', '2026-03-10 10:18:03', 9, 'D', '', '', '', '', '3', '0000-00-00', 0, 1, 0, 2026),
-(9, 'shannac', '2026-03-15 16:45:03', 10, 'D', '', '', '', '', '3', '0000-00-00', 0, 1, 0, 2026),
-(10, 'shannac', '2026-03-10 10:27:03', 11, 'D', '', '', '', '', '3', '0000-00-00', 0, 1, 0, 2026),
-(11, 'deepakm', '2026-03-10 10:33:03', 12, 'D', '', '', '', '', '271', '0000-00-00', 0, 1, 0, 2026),
-(12, 'shannac', '2026-03-10 10:36:03', 13, 'D', '', '', '', '', '3', '0000-00-00', 0, 1, 0, 2026),
-(13, 'michaelb', '2026-03-10 10:54:03', 14, 'D', '', '', '', '', '68', '0000-00-00', 0, 1, 0, 2026),
-(14, 'michaelb', '2026-03-10 13:56:03', 15, 'D', '', '', '', '', '68', '0000-00-00', 0, 1, 0, 2026),
-(15, 'michaelb', '2026-03-10 14:06:03', 16, 'D', '', '', '', '', '68', '0000-00-00', 0, 1, 0, 2026),
-(16, 'pujas', '2026-03-10 16:09:03', 17, 'D', '', '', '', '', '250', '0000-00-00', 0, 1, 0, 2026),
-(17, 'chaitalig', '2026-03-11 15:57:03', 19, 'D', '', '', '', '', '247', '0000-00-00', 0, 1, 0, 2026),
-(18, 'binduo', '2026-03-13 10:57:03', 20, 'D', '', '', '', '', '252', '0000-00-00', 0, 1, 0, 2026),
-(19, 'vladimirk', '2026-03-15 15:59:03', 21, 'D', '', '', '', '', '251', '0000-00-00', 0, 1, 0, 2026),
-(20, 'vladimirk', '2026-03-15 16:00:03', 22, 'D', '', '', '', '', '251', '0000-00-00', 0, 1, 0, 2026),
-(21, 'vladimirk', '2026-03-15 16:02:03', 23, 'D', '', '', '', '', '251', '0000-00-00', 0, 1, 0, 2026),
-(22, 'vladimirk', '2026-03-15 16:02:03', 24, 'D', '', '', '', '', '251', '0000-00-00', 0, 1, 0, 2026),
-(23, 'matthews', '2026-03-15 16:26:03', 25, 'D', '', '', '', '', '182', '0000-00-00', 0, 1, 0, 2026),
-(24, 'matthews', '2026-03-15 16:26:03', 26, 'D', '', '', '', '', '182', '0000-00-00', 0, 1, 0, 2026),
-(25, 'matthews', '2026-03-15 16:26:03', 27, 'D', '', '', '', '', '182', '0000-00-00', 0, 1, 0, 2026),
-(26, 'shannac', '2026-03-15 16:44:03', 28, 'D', '', '', '', '', '3', '0000-00-00', 0, 1, 0, 2026),
-(27, 'shannac', '2026-03-19 10:19:03', 29, 'D', '', '', '', '', '3', '0000-00-00', 0, 1, 0, 2026);
+(1, 'pujas', '2026-02-25 12:29:02', 1, 'D', '', '', '', '', '250', NULL, 0, 0, 1, 2026),
+(2, 'pujas', '2026-02-20 00:46:02', 2, 'D', '', '', '', '', '250', NULL, 0, 0, 1, 2026),
+(3, 'michaelb', '2026-03-07 15:15:03', 4, 'D', '', '', '', '', '68', NULL, 0, 1, 0, 2026),
+(4, 'michaelb', '2026-03-07 15:15:03', 5, 'D', '', '', '', '', '68', NULL, 0, 1, 0, 2026),
+(5, 'vladimirk', '2026-03-07 16:39:03', 6, 'D', '', '', '', '', '251', NULL, 0, 1, 0, 2026),
+(6, 'vladimirk', '2026-03-07 16:44:03', 7, 'D', '', '', '', '', '251', NULL, 0, 1, 0, 2026),
+(7, 'saronig', '2026-03-10 10:07:03', 8, 'D', '', '', '', '', '193', NULL, 0, 1, 0, 2026),
+(8, 'shannac', '2026-03-10 10:18:03', 9, 'D', '', '', '', '', '3', NULL, 0, 1, 0, 2026),
+(9, 'shannac', '2026-03-15 16:45:03', 10, 'D', '', '', '', '', '3', NULL, 0, 1, 0, 2026),
+(10, 'shannac', '2026-03-10 10:27:03', 11, 'D', '', '', '', '', '3', NULL, 0, 1, 0, 2026),
+(11, 'deepakm', '2026-03-10 10:33:03', 12, 'D', '', '', '', '', '271', NULL, 0, 1, 0, 2026),
+(12, 'shannac', '2026-03-10 10:36:03', 13, 'D', '', '', '', '', '3', NULL, 0, 1, 0, 2026),
+(13, 'michaelb', '2026-03-10 10:54:03', 14, 'D', '', '', '', '', '68', NULL, 0, 1, 0, 2026),
+(14, 'michaelb', '2026-03-10 13:56:03', 15, 'D', '', '', '', '', '68', NULL, 0, 1, 0, 2026),
+(15, 'michaelb', '2026-03-10 14:06:03', 16, 'D', '', '', '', '', '68', NULL, 0, 1, 0, 2026),
+(16, 'pujas', '2026-03-10 16:09:03', 17, 'D', '', '', '', '', '250', NULL, 0, 1, 0, 2026),
+(17, 'chaitalig', '2026-03-11 15:57:03', 19, 'D', '', '', '', '', '247', NULL, 0, 1, 0, 2026),
+(18, 'binduo', '2026-03-13 10:57:03', 20, 'D', '', '', '', '', '252', NULL, 0, 1, 0, 2026),
+(19, 'vladimirk', '2026-03-15 15:59:03', 21, 'D', '', '', '', '', '251', NULL, 0, 1, 0, 2026),
+(20, 'vladimirk', '2026-03-15 16:00:03', 22, 'D', '', '', '', '', '251', NULL, 0, 1, 0, 2026),
+(21, 'vladimirk', '2026-03-15 16:02:03', 23, 'D', '', '', '', '', '251', NULL, 0, 1, 0, 2026),
+(22, 'vladimirk', '2026-03-15 16:02:03', 24, 'D', '', '', '', '', '251', NULL, 0, 1, 0, 2026),
+(23, 'matthews', '2026-03-15 16:26:03', 25, 'D', '', '', '', '', '182', NULL, 0, 1, 0, 2026),
+(24, 'matthews', '2026-03-15 16:26:03', 26, 'D', '', '', '', '', '182', NULL, 0, 1, 0, 2026),
+(25, 'matthews', '2026-03-15 16:26:03', 27, 'D', '', '', '', '', '182', NULL, 0, 1, 0, 2026),
+(26, 'shannac', '2026-03-15 16:44:03', 28, 'D', '', '', '', '', '3', NULL, 0, 1, 0, 2026),
+(27, 'shannac', '2026-03-19 10:19:03', 29, 'D', '', '', '', '', '3', NULL, 0, 1, 0, 2026);
 
 -- --------------------------------------------------------
 
@@ -11995,18 +12149,18 @@ INSERT INTO `staff_default_status` (`id`, `user`, `inserted_date`, `staff_id_ins
 --
 
 CREATE TABLE IF NOT EXISTS `staff_dependents` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `dname` varchar(100) DEFAULT NULL,
-  `ddob` varchar(100) DEFAULT NULL,
-  `drel` varchar(50) DEFAULT NULL,
-  `doccu` varchar(50) DEFAULT NULL,
-  `d_addr` varchar(255) DEFAULT NULL,
-  `username` varchar(100) DEFAULT NULL,
-  `staff_id` int(100) DEFAULT NULL,
-  `col_id` int(11) DEFAULT NULL,
-  `d_phone` varchar(100) DEFAULT NULL,
+  `id`        INT           NOT NULL AUTO_INCREMENT,
+  `dname`     VARCHAR(100)  DEFAULT NULL,
+  `ddob`      VARCHAR(100)  DEFAULT NULL,
+  `drel`      VARCHAR(50)   DEFAULT NULL,
+  `doccu`     VARCHAR(50)   DEFAULT NULL,
+  `d_addr`    VARCHAR(255)  DEFAULT NULL,
+  `username`  VARCHAR(100)  DEFAULT NULL,
+  `staff_id`  INT           DEFAULT NULL,
+  `col_id`    INT           DEFAULT NULL,
+  `d_phone`   VARCHAR(100)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -12015,14 +12169,14 @@ CREATE TABLE IF NOT EXISTS `staff_dependents` (
 --
 
 CREATE TABLE IF NOT EXISTS `staff_des` (
-  `d_name` varchar(50) NOT NULL DEFAULT '',
-  `d_id` int(11) NOT NULL AUTO_INCREMENT,
-  `group_id` int(11) DEFAULT NULL,
-  `d_code` varchar(100) DEFAULT NULL,
-  `col_id` int(10) DEFAULT NULL,
-  `priority` int(5) DEFAULT NULL,
+  `d_name`    VARCHAR(50)   NOT NULL DEFAULT '',
+  `d_id`      INT           NOT NULL AUTO_INCREMENT,
+  `group_id`  INT           DEFAULT NULL,
+  `d_code`    VARCHAR(100)  DEFAULT NULL,
+  `col_id`    INT           DEFAULT NULL,
+  `priority`  INT           DEFAULT NULL,
   PRIMARY KEY (`d_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=80 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `staff_des`
@@ -12116,223 +12270,127 @@ INSERT INTO `staff_des` (`d_name`, `d_id`, `group_id`, `d_code`, `col_id`, `prio
 --
 
 CREATE TABLE IF NOT EXISTS `staff_det` (
-  `f_name` varchar(50) NOT NULL DEFAULT '',
-  `s_name` varchar(50) NOT NULL DEFAULT '',
-  `i_name` varchar(15) DEFAULT NULL,
-  `qual` varchar(150) DEFAULT NULL,
-  `cert` varchar(150) DEFAULT NULL,
-  `subj` int(11) NOT NULL DEFAULT '0',
-  `exp_cur` varchar(50) DEFAULT NULL,
-  `exp_prev` varchar(50) DEFAULT NULL,
-  `sp_assoc` varchar(150) DEFAULT NULL,
-  `xtra` varchar(150) DEFAULT NULL,
-  `father` varchar(50) DEFAULT NULL,
-  `doa` varchar(50) DEFAULT NULL,
-  `bg` varchar(15) NOT NULL DEFAULT '',
-  `ms` varchar(150) NOT NULL DEFAULT '',
-  `addr_perm` varchar(250) DEFAULT NULL,
-  `ct_perm` varchar(50) DEFAULT NULL,
-  `pin_perm` varchar(50) DEFAULT NULL,
-  `st_perm` varchar(50) DEFAULT NULL,
-  `ph_perm` varchar(50) DEFAULT NULL,
-  `addr_pres` varchar(250) DEFAULT NULL,
-  `ct_pres` varchar(50) DEFAULT NULL,
-  `pin_pres` varchar(50) DEFAULT NULL,
-  `st_pres` varchar(50) DEFAULT NULL,
-  `ph_pres` varchar(50) DEFAULT NULL,
-  `email` varchar(250) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `slno` varchar(50) NOT NULL DEFAULT '',
-  `group_id` int(11) DEFAULT NULL,
-  `appnt_des` int(11) DEFAULT '0',
-  `offeredsal` int(11) NOT NULL DEFAULT '0',
-  `basicsal` int(11) NOT NULL DEFAULT '0',
-  `j_date` date NOT NULL DEFAULT '0000-00-00',
-  `cmts` varchar(250) DEFAULT NULL,
-  `status_id` int(11) DEFAULT NULL,
-  `dob` date NOT NULL DEFAULT '0000-00-00',
-  `other_facilities` varchar(250) DEFAULT NULL,
-  `other_responsibilities` varchar(250) DEFAULT NULL,
-  `prev_post` varchar(50) DEFAULT NULL,
-  `prev_work_place` varchar(50) DEFAULT NULL,
-  `prev_work_city` varchar(50) DEFAULT NULL,
-  `prev_work_country` varchar(50) DEFAULT NULL,
-  `last_date_of_work` date DEFAULT NULL,
-  `staff_status_id` int(11) DEFAULT NULL,
-  `date_of_updation` date DEFAULT NULL,
-  `expirydate` date DEFAULT NULL,
-  `gender` varchar(10) DEFAULT NULL,
-  `releive_date` date DEFAULT NULL,
-  `recruitment_procedure` varchar(255) NOT NULL,
-  `pfscheme` enum('YES','NO') NOT NULL DEFAULT 'YES',
-  `active` enum('YES','NO') DEFAULT 'YES',
-  `bank_ac_no` varchar(20) DEFAULT NULL,
-  `pf_ac_no` varchar(15) DEFAULT NULL,
-  `panno` varchar(25) DEFAULT NULL,
-  `csal` varchar(25) DEFAULT NULL,
-  `sop` varchar(40) DEFAULT NULL,
-  `cat` varchar(12) DEFAULT NULL,
-  `pno` varchar(15) DEFAULT NULL,
-  `vfdate` varchar(20) DEFAULT NULL,
-  `vtadate` varchar(20) DEFAULT NULL,
-  `dep` varchar(100) DEFAULT NULL,
-  `category` varchar(20) DEFAULT NULL,
-  `cat_fdate` varchar(20) DEFAULT NULL,
-  `cat_tdate` varchar(20) DEFAULT NULL,
-  `pay_scale` varchar(20) DEFAULT NULL,
-  `spouse_name` varchar(20) DEFAULT NULL,
-  `dept_name` varchar(100) DEFAULT NULL,
-  `dept_dob` varchar(20) DEFAULT NULL,
-  `dept_rel` varchar(20) DEFAULT NULL,
-  `dept_occu` varchar(20) DEFAULT NULL,
-  `dept_anualinc` varchar(15) DEFAULT NULL,
-  `issue_place` varchar(100) DEFAULT NULL,
-  `mobileno` double DEFAULT NULL,
-  `col_id` int(11) DEFAULT NULL,
-  `height` varchar(100) DEFAULT NULL,
-  `id_mark` varchar(255) DEFAULT NULL,
-  `religion` int(10) DEFAULT NULL,
-  `appnt_date` date DEFAULT '0000-00-00',
-  `type_id` int(10) DEFAULT NULL,
-  `aicte_scale` varchar(100) DEFAULT NULL,
-  `payscale` varchar(15) DEFAULT NULL,
-  `payrange` varchar(15) DEFAULT NULL,
-  `substantive` varchar(20) DEFAULT NULL,
-  `tanno` varchar(20) DEFAULT NULL,
-  `bank` varchar(255) DEFAULT NULL,
-  `joined_as` varchar(100) DEFAULT NULL,
-  `officiating_pay` int(10) DEFAULT NULL,
-  `app_no` varchar(25) DEFAULT NULL,
-  `staff_group_id` int(11) DEFAULT NULL,
-  `img_col` varchar(255) DEFAULT NULL,
-  `nationality` varchar(25) DEFAULT NULL,
-  `mother_tongue` varchar(25) DEFAULT NULL,
-  `membership` varchar(25) DEFAULT NULL,
-  `empexc` varchar(25) DEFAULT NULL,
-  `extraact` varchar(25) DEFAULT NULL,
-  `addinfo` varchar(25) DEFAULT NULL,
-  `kannada` char(1) DEFAULT NULL,
-  `english` char(1) DEFAULT NULL,
-  `hindi` char(1) DEFAULT NULL,
-  `husband` varchar(50) DEFAULT NULL,
-  `scard` varchar(15) DEFAULT NULL,
-  `EmployeeCode` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=341 ;
+  `f_name`                  VARCHAR(50)       NOT NULL DEFAULT '',
+  `s_name`                  VARCHAR(50)       NOT NULL DEFAULT '',
+  `i_name`                  VARCHAR(15)       DEFAULT NULL,
+  `qual`                    VARCHAR(150)      DEFAULT NULL,
+  `cert`                    VARCHAR(150)      DEFAULT NULL,
+  `subj`                    INT               NOT NULL DEFAULT '0',
+  `exp_cur`                 VARCHAR(50)       DEFAULT NULL,
+  `exp_prev`                VARCHAR(50)       DEFAULT NULL,
+  `sp_assoc`                VARCHAR(150)      DEFAULT NULL,
+  `xtra`                    VARCHAR(150)      DEFAULT NULL,
+  `father`                  VARCHAR(50)       DEFAULT NULL,
+  `doa`                     VARCHAR(50)       DEFAULT NULL,
+  `bg`                      VARCHAR(15)       NOT NULL DEFAULT '',
+  `ms`                      VARCHAR(150)      NOT NULL DEFAULT '',
+  `addr_perm`               VARCHAR(250)      DEFAULT NULL,
+  `ct_perm`                 VARCHAR(50)       DEFAULT NULL,
+  `pin_perm`                VARCHAR(50)       DEFAULT NULL,
+  `st_perm`                 VARCHAR(50)       DEFAULT NULL,
+  `ph_perm`                 VARCHAR(50)       DEFAULT NULL,
+  `addr_pres`               VARCHAR(250)      DEFAULT NULL,
+  `ct_pres`                 VARCHAR(50)       DEFAULT NULL,
+  `pin_pres`                VARCHAR(50)       DEFAULT NULL,
+  `st_pres`                 VARCHAR(50)       DEFAULT NULL,
+  `ph_pres`                 VARCHAR(50)       DEFAULT NULL,
+  `email`                   VARCHAR(250)      DEFAULT NULL,
+  `id`                      INT               NOT NULL AUTO_INCREMENT,
+  `slno`                    VARCHAR(50)       NOT NULL DEFAULT '',
+  `group_id`                INT               DEFAULT NULL,
+  `appnt_des`               INT               DEFAULT '0',
+  `offeredsal`              INT               NOT NULL DEFAULT '0',
+  `basicsal`                INT               NOT NULL DEFAULT '0',
+  `j_date`                  DATE              DEFAULT NULL,
+  `cmts`                    VARCHAR(250)      DEFAULT NULL,
+  `status_id`               INT               DEFAULT NULL,
+  `dob`                     DATE              DEFAULT NULL,
+  `other_facilities`        VARCHAR(250)      DEFAULT NULL,
+  `other_responsibilities`  VARCHAR(250)      DEFAULT NULL,
+  `prev_post`               VARCHAR(50)       DEFAULT NULL,
+  `prev_work_place`         VARCHAR(50)       DEFAULT NULL,
+  `prev_work_city`          VARCHAR(50)       DEFAULT NULL,
+  `prev_work_country`       VARCHAR(50)       DEFAULT NULL,
+  `last_date_of_work`       DATE              DEFAULT NULL,
+  `staff_status_id`         INT               DEFAULT NULL,
+  `date_of_updation`        DATE              DEFAULT NULL,
+  `expirydate`              DATE              DEFAULT NULL,
+  `gender`                  VARCHAR(10)       DEFAULT NULL,
+  `releive_date`            DATE              DEFAULT NULL,
+  `recruitment_procedure`   VARCHAR(255)      NOT NULL,
+  `pfscheme`                ENUM('YES','NO')  NOT NULL DEFAULT 'YES',
+  `active`                  ENUM('YES','NO')  DEFAULT 'YES',
+  `bank_ac_no`              VARCHAR(20)       DEFAULT NULL,
+  `pf_ac_no`                VARCHAR(15)       DEFAULT NULL,
+  `panno`                   VARCHAR(25)       DEFAULT NULL,
+  `csal`                    VARCHAR(25)       DEFAULT NULL,
+  `sop`                     VARCHAR(40)       DEFAULT NULL,
+  `cat`                     VARCHAR(12)       DEFAULT NULL,
+  `pno`                     VARCHAR(15)       DEFAULT NULL,
+  `vfdate`                  VARCHAR(20)       DEFAULT NULL,
+  `vtadate`                 VARCHAR(20)       DEFAULT NULL,
+  `dep`                     VARCHAR(100)      DEFAULT NULL,
+  `category`                VARCHAR(20)       DEFAULT NULL,
+  `cat_fdate`               VARCHAR(20)       DEFAULT NULL,
+  `cat_tdate`               VARCHAR(20)       DEFAULT NULL,
+  `pay_scale`               VARCHAR(20)       DEFAULT NULL,
+  `spouse_name`             VARCHAR(20)       DEFAULT NULL,
+  `dept_name`               VARCHAR(100)      DEFAULT NULL,
+  `dept_dob`                VARCHAR(20)       DEFAULT NULL,
+  `dept_rel`                VARCHAR(20)       DEFAULT NULL,
+  `dept_occu`               VARCHAR(20)       DEFAULT NULL,
+  `dept_anualinc`           VARCHAR(15)       DEFAULT NULL,
+  `issue_place`             VARCHAR(100)      DEFAULT NULL,
+  `mobileno`                VARCHAR(20)       DEFAULT NULL,
+  `col_id`                  INT               DEFAULT NULL,
+  `height`                  VARCHAR(100)      DEFAULT NULL,
+  `id_mark`                 VARCHAR(255)      DEFAULT NULL,
+  `religion`                INT               DEFAULT NULL,
+  `appnt_date`              DATE              DEFAULT NULL,
+  `type_id`                 INT               DEFAULT NULL,
+  `aicte_scale`             VARCHAR(100)      DEFAULT NULL,
+  `payscale`                VARCHAR(15)       DEFAULT NULL,
+  `payrange`                VARCHAR(15)       DEFAULT NULL,
+  `substantive`             VARCHAR(20)       DEFAULT NULL,
+  `tanno`                   VARCHAR(20)       DEFAULT NULL,
+  `bank`                    VARCHAR(255)      DEFAULT NULL,
+  `joined_as`               VARCHAR(100)      DEFAULT NULL,
+  `officiating_pay`         INT               DEFAULT NULL,
+  `app_no`                  VARCHAR(25)       DEFAULT NULL,
+  `staff_group_id`          INT               DEFAULT NULL,
+  `img_col`                 VARCHAR(255)      DEFAULT NULL,
+  `nationality`             VARCHAR(25)       DEFAULT NULL,
+  `mother_tongue`           VARCHAR(25)       DEFAULT NULL,
+  `membership`              VARCHAR(25)       DEFAULT NULL,
+  `empexc`                  VARCHAR(25)       DEFAULT NULL,
+  `extraact`                VARCHAR(25)       DEFAULT NULL,
+  `addinfo`                 VARCHAR(25)       DEFAULT NULL,
+  `kannada`                 CHAR(1)           DEFAULT NULL,
+  `english`                 CHAR(1)           DEFAULT NULL,
+  `hindi`                   CHAR(1)           DEFAULT NULL,
+  `husband`                 VARCHAR(50)       DEFAULT NULL,
+  `scard`                   VARCHAR(15)       DEFAULT NULL,
+  `employee_code`           VARCHAR(20)       NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `ux_employee_code` (`employee_code`),
+  INDEX        `ix_group_active`  (`group_id`, `active`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `staff_det`
 --
 
-INSERT INTO `staff_det` (`f_name`, `s_name`, `i_name`, `qual`, `cert`, `subj`, `exp_cur`, `exp_prev`, `sp_assoc`, `xtra`, `father`, `doa`, `bg`, `ms`, `addr_perm`, `ct_perm`, `pin_perm`, `st_perm`, `ph_perm`, `addr_pres`, `ct_pres`, `pin_pres`, `st_pres`, `ph_pres`, `email`, `id`, `slno`, `group_id`, `appnt_des`, `offeredsal`, `basicsal`, `j_date`, `cmts`, `status_id`, `dob`, `other_facilities`, `other_responsibilities`, `prev_post`, `prev_work_place`, `prev_work_city`, `prev_work_country`, `last_date_of_work`, `staff_status_id`, `date_of_updation`, `expirydate`, `gender`, `releive_date`, `recruitment_procedure`, `pfscheme`, `active`, `bank_ac_no`, `pf_ac_no`, `panno`, `csal`, `sop`, `cat`, `pno`, `vfdate`, `vtadate`, `dep`, `category`, `cat_fdate`, `cat_tdate`, `pay_scale`, `spouse_name`, `dept_name`, `dept_dob`, `dept_rel`, `dept_occu`, `dept_anualinc`, `issue_place`, `mobileno`, `col_id`, `height`, `id_mark`, `religion`, `appnt_date`, `type_id`, `aicte_scale`, `payscale`, `payrange`, `substantive`, `tanno`, `bank`, `joined_as`, `officiating_pay`, `app_no`, `staff_group_id`, `img_col`, `nationality`, `mother_tongue`, `membership`, `empexc`, `extraact`, `addinfo`, `kannada`, `english`, `hindi`, `husband`, `scard`, `EmployeeCode`) VALUES
-('Alexander Johnson', '', NULL, '', NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'alexander.johnson@email.com', 69, '8327', 1, NULL, 0, 0, '0000-00-00', NULL, 1, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, '0000-00-00', '0000-00-00', 'MALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 31, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8327'),
-('Natasha Khanna', '', NULL, '', NULL, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'natasha.khanna@email.com', 70, '8244', 1, NULL, 0, 0, '0000-00-00', NULL, 1, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, '0000-00-00', '0000-00-00', 'FEMALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 34, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8244'),
-('Neha Thoria', '', NULL, '', NULL, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'neha.thoria@email.com', 71, '8269', 1, NULL, 0, 0, '0000-00-00', NULL, 1, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, '0000-00-00', '0000-00-00', 'MALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 34, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8269'),
-('Adam Meier', '', NULL, '', NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'adam.meier@email.com', 66, '8271', 1, NULL, 0, 0, '0000-00-00', NULL, 1, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', 2, '0000-00-00', '0000-00-00', 'MALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 38, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8271'),
-('Pascal Fuzier', '', NULL, '', NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'pascal.fuzier@email.com', 67, '8262', 1, NULL, 0, 0, '0000-00-00', NULL, 1, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, '0000-00-00', '0000-00-00', 'MALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 33, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8262'),
-('Michael Bailey', '', NULL, '', NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'michael.bailey@email.com', 68, '8251', 1, NULL, 0, 0, '0000-00-00', NULL, 1, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, '0000-00-00', '0000-00-00', 'MALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 17, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8251'),
-('Robert Mullins  ', '', NULL, '', NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'robert.mullins@email.com', 63, '8248', 1, NULL, 0, 0, '0000-00-00', NULL, 1, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, '0000-00-00', '0000-00-00', 'MALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 34, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8248'),
-('Carrie Tokunaga', '', NULL, '', NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'carrie.tokunaga@email.com', 64, '8263', 3, NULL, 0, 0, '0000-00-00', NULL, 1, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, '0000-00-00', '0000-00-00', 'MALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 34, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8263'),
-('Vitna Bailey ', '', NULL, '', NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'vitna.bailey@email.com', 65, '8315', 1, NULL, 0, 0, '0000-00-00', NULL, 1, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', 2, '0000-00-00', '0000-00-00', 'FEMALE', NULL, 'User', '', 'NO', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 25, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8315'),
-('Erika Mullins ', '', NULL, '', NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'erika.mullins@email.com', 62, '8249', 1, NULL, 0, 0, '0000-00-00', NULL, 1, '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00', 2, '0000-00-00', '0000-00-00', 'MALE', NULL, '', '', 'NO', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 40, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8249');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `staff_details_temp`
---
-
-CREATE TABLE IF NOT EXISTS `staff_details_temp` (
-  `f_name` varchar(50) NOT NULL DEFAULT '',
-  `s_name` varchar(50) NOT NULL DEFAULT '',
-  `i_name` varchar(15) DEFAULT NULL,
-  `qual` varchar(150) NOT NULL DEFAULT '',
-  `cert` varchar(200) DEFAULT NULL,
-  `subj` int(11) NOT NULL DEFAULT '0',
-  `exp_cur` float DEFAULT NULL,
-  `exp_prev` float DEFAULT NULL,
-  `sp_assoc` varchar(150) DEFAULT NULL,
-  `xtra` varchar(150) DEFAULT NULL,
-  `father` varchar(50) DEFAULT NULL,
-  `doa` varchar(50) DEFAULT NULL,
-  `bg` varchar(15) NOT NULL DEFAULT '',
-  `ms` varchar(150) NOT NULL DEFAULT '',
-  `addr_perm` varchar(250) DEFAULT NULL,
-  `ct_perm` varchar(50) DEFAULT NULL,
-  `pin_perm` varchar(50) DEFAULT NULL,
-  `st_perm` varchar(50) DEFAULT NULL,
-  `ph_perm` varchar(50) DEFAULT NULL,
-  `addr_pres` varchar(250) NOT NULL DEFAULT '',
-  `ct_pres` varchar(50) NOT NULL DEFAULT '',
-  `pin_pres` varchar(50) DEFAULT NULL,
-  `st_pres` varchar(50) NOT NULL DEFAULT '',
-  `ph_pres` varchar(50) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `id` int(11) NOT NULL DEFAULT '0',
-  `slno` varchar(50) NOT NULL DEFAULT '',
-  `group_id` int(11) DEFAULT NULL,
-  `type_id` int(11) NOT NULL DEFAULT '0',
-  `offeredsal` int(11) NOT NULL DEFAULT '0',
-  `basicsal` int(11) NOT NULL DEFAULT '0',
-  `j_date` date NOT NULL DEFAULT '0000-00-00',
-  `cmts` varchar(250) DEFAULT NULL,
-  `status_id` int(11) DEFAULT NULL,
-  `dob` date NOT NULL DEFAULT '0000-00-00',
-  `other_facilities` varchar(250) DEFAULT NULL,
-  `other_responsibilities` varchar(250) DEFAULT NULL,
-  `prev_post` varchar(50) DEFAULT NULL,
-  `prev_work_place` varchar(50) DEFAULT NULL,
-  `prev_work_city` varchar(50) DEFAULT NULL,
-  `prev_work_country` varchar(50) DEFAULT NULL,
-  `last_date_of_work` date DEFAULT NULL,
-  `staff_status_id` int(11) DEFAULT NULL,
-  `date_of_updation` date DEFAULT NULL,
-  `expirydate` date DEFAULT NULL,
-  `gender` varchar(10) DEFAULT NULL,
-  `recruitment_procedure` enum('YES','NO') NOT NULL DEFAULT 'YES',
-  `pfscheme` enum('YES','NO') NOT NULL DEFAULT 'YES',
-  `bank_ac_no` varchar(20) DEFAULT NULL,
-  `pf_ac_no` varchar(15) DEFAULT NULL,
-  `height` varchar(100) DEFAULT NULL,
-  `id_mark` varchar(255) DEFAULT NULL,
-  `category` int(25) DEFAULT NULL,
-  `religion` int(20) DEFAULT NULL,
-  `bank` varchar(100) DEFAULT NULL,
-  `appnt_date` varchar(100) DEFAULT NULL,
-  `appnt_des` int(10) DEFAULT NULL,
-  `aicte_scale` varchar(100) DEFAULT NULL,
-  `tanno` varchar(20) DEFAULT NULL,
-  `panno` varchar(20) DEFAULT NULL,
-  `payscale` varchar(50) DEFAULT NULL,
-  `payrange` varchar(50) DEFAULT NULL,
-  `substantive` varchar(50) DEFAULT NULL,
-  `staff_group` int(10) DEFAULT NULL,
-  `husband` varchar(50) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `staff_details_temp`
---
-
-INSERT INTO `staff_details_temp` (`f_name`, `s_name`, `i_name`, `qual`, `cert`, `subj`, `exp_cur`, `exp_prev`, `sp_assoc`, `xtra`, `father`, `doa`, `bg`, `ms`, `addr_perm`, `ct_perm`, `pin_perm`, `st_perm`, `ph_perm`, `addr_pres`, `ct_pres`, `pin_pres`, `st_pres`, `ph_pres`, `email`, `id`, `slno`, `group_id`, `type_id`, `offeredsal`, `basicsal`, `j_date`, `cmts`, `status_id`, `dob`, `other_facilities`, `other_responsibilities`, `prev_post`, `prev_work_place`, `prev_work_city`, `prev_work_country`, `last_date_of_work`, `staff_status_id`, `date_of_updation`, `expirydate`, `gender`, `recruitment_procedure`, `pfscheme`, `bank_ac_no`, `pf_ac_no`, `height`, `id_mark`, `category`, `religion`, `bank`, `appnt_date`, `appnt_des`, `aicte_scale`, `tanno`, `panno`, `payscale`, `payrange`, `substantive`, `staff_group`, `husband`) VALUES
-('vinayak', '', NULL, '', NULL, 1, NULL, NULL, NULL, '      ', NULL, '--', '0', 'Unmarried', '		  		  		  ', NULL, NULL, NULL, NULL, '		  		  		  ', '', '', '', NULL, NULL, 1, '', 1, 2, 0, 0, '2026-05-09', '      ', 1, '2026-05-09', '      ', NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, NULL, '0000-00-00', '0', 'YES', '', '', NULL, '', '', 1, 0, NULL, '2026-5-9', 2, '', '', '', '', '', '', NULL, NULL),
-('vinayak', '', NULL, '', NULL, 1, NULL, NULL, NULL, '      ', NULL, '--', '0', 'Unmarried', '		  		  		  ', NULL, NULL, NULL, NULL, '		  		  		  ', '', '', '', NULL, NULL, 2, '', 1, 2, 0, 0, '2026-05-09', '      ', 1, '2026-05-09', '      ', NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, NULL, '0000-00-00', '0', 'YES', '', '', NULL, '', '', 1, 0, NULL, '2026-5-9', 2, '', '', '', '', '', '', NULL, NULL),
-('dsds', '', NULL, '', NULL, 1, NULL, NULL, NULL, '      ', NULL, '--', '0', 'Unmarried', '		  		  		  ', NULL, NULL, NULL, NULL, '		  		  		  ', '', '', '', NULL, NULL, 3, '', 1, 2, 0, 0, '2026-05-09', '      ', -1, '2026-05-09', '      ', NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, NULL, '0000-00-00', '0', 'YES', '', '', NULL, '', '', 1, 0, NULL, '2026-5-9', 2, '', '', '', '', '', '', NULL, NULL),
-('Testing Rk', '', NULL, '', NULL, 1, NULL, NULL, NULL, '      ', NULL, '--', '0', 'Unmarried', '		  		  		  ', NULL, NULL, NULL, NULL, '		  		  		  ', '', '', '', NULL, NULL, 4, '', 1, 2, 0, 0, '2026-05-09', '      ', 1, '2026-05-09', '      ', NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, NULL, '0000-00-00', '0', 'YES', '', '', NULL, '', '', 1, 0, NULL, '2026-5-9', 2, '', '', '', '', '', '', NULL, NULL),
-('tttsetta', '', NULL, '', NULL, 1, NULL, NULL, NULL, '      ', NULL, '--', '0', 'Unmarried', '		  		  		  ', NULL, NULL, NULL, NULL, '		  		  		  ', '', '', '', NULL, NULL, 5, '', 1, 2, 0, 0, '2026-05-09', '      ', 1, '2026-05-09', '      ', NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, NULL, '0000-00-00', '0', 'YES', '', '', NULL, '', '', 0, 0, NULL, '2026-5-9', 2, '', '', '', '', '', '', NULL, NULL),
-('testadstock', '', NULL, '', NULL, 1, NULL, NULL, NULL, '      ', NULL, '--', '0', 'Unmarried', '		  		  		  ', NULL, NULL, NULL, NULL, '		  		  		  ', '', '', '', NULL, NULL, 6, '', 1, 2, 0, 0, '2026-05-09', '      ', -1, '2026-05-09', '      ', NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, NULL, '0000-00-00', '0', 'YES', '', '', NULL, '', '', 0, 0, NULL, '2026-5-9', 2, '', '', '', '', '', '', NULL, NULL),
-('testeeradstweqeadad', '', NULL, '', NULL, 1, NULL, NULL, NULL, '      ', NULL, '--', '0', 'Unmarried', '		  		  		  ', NULL, NULL, NULL, NULL, '		  		  		  ', '', '', '', NULL, NULL, 7, '', 1, 2, 0, 0, '2026-05-09', '      ', 1, '2026-05-09', '      ', NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, NULL, '0000-00-00', '0', 'YES', '', '', NULL, '', '', 0, 0, NULL, '2026-5-9', 2, '', '', '', '', '', '', NULL, NULL),
-('Vinayak Testing', '', NULL, '', NULL, 1, NULL, NULL, NULL, '      ', NULL, '--', '0', 'Unmarried', '		  		  		  ', NULL, NULL, NULL, NULL, '		  		  		  ', '', '', '', NULL, NULL, 8, '', 1, 2, 0, 0, '2026-05-09', '      ', 1, '2026-05-09', '      ', NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, NULL, '0000-00-00', '0', 'YES', '', '', NULL, '', '', 0, 0, NULL, '2026-5-9', 2, '', '', '', '', '', '', NULL, NULL),
-('Vinayak Testing', '', NULL, '', NULL, 1, NULL, NULL, NULL, '      ', NULL, '--', '0', 'Unmarried', '		  		  		  ', NULL, NULL, NULL, NULL, '		  		  		  ', '', '', '', NULL, NULL, 9, '', 1, 2, 0, 0, '2026-05-09', '      ', 1, '2026-05-09', '      ', NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, NULL, '0000-00-00', '0', 'YES', '', '', NULL, '', '', 0, 0, NULL, '2026-5-9', 2, '', '', '', '', '', '', NULL, NULL),
-('Vinayak Testing', '', NULL, '', NULL, 1, NULL, NULL, NULL, '      ', NULL, '--', '0', 'Unmarried', '		  		  		  ', NULL, NULL, NULL, NULL, '		  		  		  ', '', '', '', NULL, NULL, 10, '', 1, 2, 0, 0, '2026-05-09', '      ', 1, '2026-05-09', '      ', NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, NULL, '0000-00-00', '0', 'YES', '', '', NULL, '', '', 0, 0, NULL, '2026-5-9', 2, '', '', '', '', '', '', NULL, NULL),
-('test radha', '', NULL, '', NULL, 1, NULL, NULL, NULL, '      ', NULL, '--', '0', 'Unmarried', '		  		  		  ', NULL, NULL, NULL, NULL, '		  		  		  ', '', '', '', NULL, NULL, 11, '', 1, 2, 0, 0, '2026-05-09', '      ', 1, '2026-05-09', '      ', NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, NULL, '0000-00-00', '0', 'YES', '', '', NULL, '', '', 0, 0, NULL, '2026-5-9', 2, '', '', '', '', '', '', NULL, NULL),
-('aabbcc', '', NULL, '', NULL, 1, NULL, NULL, NULL, '      ', NULL, '--', '0', 'Unmarried', '		  		  		  ', NULL, NULL, NULL, NULL, '		  		  		  ', '', '', '', NULL, NULL, 12, '', 1, 2, 0, 0, '2026-05-09', '      ', 1, '2026-05-09', '      ', NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, NULL, '0000-00-00', '0', 'YES', '', '', NULL, '', '', 0, 0, NULL, '2026-5-9', 2, '', '', '', '', '', '', NULL, NULL),
-('dsds', '', NULL, '', NULL, 1, NULL, NULL, NULL, '      ', NULL, '--', '0', 'Unmarried', '		  		  		  ', NULL, NULL, NULL, NULL, '		  		  		  ', '', '', '', NULL, NULL, 13, '', 1, 2, 0, 0, '2026-05-09', '      ', -1, '2026-05-09', '      ', NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, NULL, '0000-00-00', '0', 'YES', '', '', NULL, '', '', 1, 0, NULL, '2026-5-9', 2, '', '', '', '', '', '', NULL, NULL),
-('ewdwddd', '', NULL, '', NULL, 1, NULL, NULL, NULL, '      ', NULL, '--', '0', 'Unmarried', '		  		  		  ', NULL, NULL, NULL, NULL, '		  		  		  ', '', '', '', NULL, NULL, 14, '', 1, 2, 0, 0, '2026-05-10', '      ', -1, '2026-05-10', '      ', NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, NULL, '0000-00-00', '0', 'YES', '', '', NULL, '', '', 0, 0, NULL, '2026-5-10', 2, '', '', '', '', '', '', NULL, NULL),
-('dadada', '', NULL, '', NULL, 1, NULL, NULL, NULL, '      ', NULL, '--', '0', 'Unmarried', '		  		  		  ', NULL, NULL, NULL, NULL, '		  		  		  ', '', '', '', NULL, NULL, 15, '', 1, 2, 0, 0, '2026-05-10', '      ', -1, '2026-05-10', '      ', NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, NULL, '0000-00-00', '0', 'YES', '', '', NULL, '', '', 1, 0, NULL, '2026-5-10', 2, '', '', '', '', '', '', NULL, NULL),
-('dadada', '', NULL, '', NULL, 1, NULL, NULL, NULL, '      ', NULL, '--', '0', 'Unmarried', '		  		  		  ', NULL, NULL, NULL, NULL, '		  		  		  ', '', '', '', NULL, NULL, 16, '', 1, 2, 0, 0, '2026-05-10', '      ', -1, '2026-05-10', '      ', NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, NULL, '0000-00-00', '0', 'YES', '', '', NULL, '', '', 0, 0, NULL, '2026-5-10', 2, '', '', '', '', '', '', NULL, NULL),
-('fff', '', NULL, '', NULL, 1, NULL, NULL, NULL, '      ', NULL, '--', 'NA', 'Unmarried', '		  		  		  ', NULL, NULL, NULL, NULL, '		  		  		  ', '', '', '', NULL, NULL, 17, '', 1, 2, 0, 0, '2026-05-10', '      ', -1, '2026-05-10', '      ', NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, NULL, '0000-00-00', 'MALE', 'YES', '', '', NULL, '', '', 0, 0, NULL, '2026-5-10', 2, '', '', '', '', '', '', NULL, NULL),
-('Chaithya', '', NULL, '', NULL, 1, NULL, NULL, NULL, '      ', NULL, '--', '0', 'Unmarried', '		  		  		  ', NULL, NULL, NULL, NULL, '		  		  		  ', '', '', '', NULL, NULL, 18, '', 1, 2, 0, 0, '2026-05-11', '      ', -1, '2026-05-11', '      ', NULL, NULL, NULL, NULL, NULL, '0000-00-00', 0, NULL, '0000-00-00', '0', 'YES', '', '', NULL, '', '', 0, 0, NULL, '2026-5-11', 2, '', '', '', '', '', '', NULL, NULL);
+INSERT INTO `staff_det` (`f_name`, `s_name`, `i_name`, `qual`, `cert`, `subj`, `exp_cur`, `exp_prev`, `sp_assoc`, `xtra`, `father`, `doa`, `bg`, `ms`, `addr_perm`, `ct_perm`, `pin_perm`, `st_perm`, `ph_perm`, `addr_pres`, `ct_pres`, `pin_pres`, `st_pres`, `ph_pres`, `email`, `id`, `slno`, `group_id`, `appnt_des`, `offeredsal`, `basicsal`, `j_date`, `cmts`, `status_id`, `dob`, `other_facilities`, `other_responsibilities`, `prev_post`, `prev_work_place`, `prev_work_city`, `prev_work_country`, `last_date_of_work`, `staff_status_id`, `date_of_updation`, `expirydate`, `gender`, `releive_date`, `recruitment_procedure`, `pfscheme`, `active`, `bank_ac_no`, `pf_ac_no`, `panno`, `csal`, `sop`, `cat`, `pno`, `vfdate`, `vtadate`, `dep`, `category`, `cat_fdate`, `cat_tdate`, `pay_scale`, `spouse_name`, `dept_name`, `dept_dob`, `dept_rel`, `dept_occu`, `dept_anualinc`, `issue_place`, `mobileno`, `col_id`, `height`, `id_mark`, `religion`, `appnt_date`, `type_id`, `aicte_scale`, `payscale`, `payrange`, `substantive`, `tanno`, `bank`, `joined_as`, `officiating_pay`, `app_no`, `staff_group_id`, `img_col`, `nationality`, `mother_tongue`, `membership`, `empexc`, `extraact`, `addinfo`, `kannada`, `english`, `hindi`, `husband`, `scard`, `employee_code`) VALUES
+('Alexander Johnson', '', NULL, '', NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'alexander.johnson@email.com', 69, '8327', 1, NULL, 0, 0, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 31, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8327'),
+('Natasha Khanna', '', NULL, '', NULL, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'natasha.khanna@email.com', 70, '8244', 1, NULL, 0, 0, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FEMALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 34, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8244'),
+('Neha Thoria', '', NULL, '', NULL, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'neha.thoria@email.com', 71, '8269', 1, NULL, 0, 0, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 34, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8269'),
+('Adam Meier', '', NULL, '', NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'adam.meier@email.com', 66, '8271', 1, NULL, 0, 0, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, 'MALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 38, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8271'),
+('Pascal Fuzier', '', NULL, '', NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'pascal.fuzier@email.com', 67, '8262', 1, NULL, 0, 0, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 33, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8262'),
+('Michael Bailey', '', NULL, '', NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'michael.bailey@email.com', 68, '8251', 1, NULL, 0, 0, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 17, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8251'),
+('Robert Mullins  ', '', NULL, '', NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'robert.mullins@email.com', 63, '8248', 1, NULL, 0, 0, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 34, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8248'),
+('Carrie Tokunaga', '', NULL, '', NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'carrie.tokunaga@email.com', 64, '8263', 3, NULL, 0, 0, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 34, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8263'),
+('Vitna Bailey ', '', NULL, '', NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'vitna.bailey@email.com', 65, '8315', 1, NULL, 0, 0, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, 'FEMALE', NULL, 'User', '', 'NO', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 25, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8315'),
+('Erika Mullins ', '', NULL, '', NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'erika.mullins@email.com', 62, '8249', 1, NULL, 0, 0, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, 'MALE', NULL, '', '', 'NO', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 40, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8249');
 
 -- --------------------------------------------------------
 
@@ -12341,12 +12399,12 @@ INSERT INTO `staff_details_temp` (`f_name`, `s_name`, `i_name`, `qual`, `cert`, 
 --
 
 CREATE TABLE IF NOT EXISTS `staff_group` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL DEFAULT '',
-  `status` int(1) DEFAULT '1',
-  `col_id` int(10) DEFAULT NULL,
+  `id`      INT          NOT NULL AUTO_INCREMENT,
+  `name`    VARCHAR(50)  NOT NULL DEFAULT '',
+  `status`  TINYINT(1)   DEFAULT '1',
+  `col_id`  INT          DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `staff_group`
@@ -12373,11 +12431,11 @@ INSERT INTO `staff_group` (`id`, `name`, `status`, `col_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `staff_groupnames` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `grupname` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL,
+  `id`        INT           NOT NULL AUTO_INCREMENT,
+  `grupname`  VARCHAR(255)  NOT NULL,
+  `status`    INT           NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `staff_groupnames`
@@ -12428,15 +12486,15 @@ INSERT INTO `staff_groupnames` (`id`, `grupname`, `status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `staff_hr_grup` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` varchar(255) NOT NULL,
-  `hr_id` int(11) DEFAULT NULL,
-  `mng_id` int(11) DEFAULT NULL,
-  `staff_id` int(11) NOT NULL,
-  `acc_year` int(4) DEFAULT NULL,
-  `status` int(1) NOT NULL,
+  `id`        INT           NOT NULL AUTO_INCREMENT,
+  `user`      VARCHAR(255)  NOT NULL,
+  `hr_id`     INT           DEFAULT NULL,
+  `mng_id`    INT           DEFAULT NULL,
+  `staff_id`  INT           NOT NULL,
+  `acc_year`  INT           DEFAULT NULL,
+  `status`    TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=339 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `staff_hr_grup`
@@ -12461,62 +12519,62 @@ INSERT INTO `staff_hr_grup` (`id`, `user`, `hr_id`, `mng_id`, `staff_id`, `acc_y
 --
 
 CREATE TABLE IF NOT EXISTS `staff_leave` (
-  `id` int(15) NOT NULL AUTO_INCREMENT COMMENT 'HD= Half day, EE = Early Exit',
-  `staff_att_approve` int(11) NOT NULL COMMENT 'staff attendance approved in date wise update (1 is approved 0 nt )',
-  `user` varchar(255) NOT NULL COMMENT 'applied staff name',
-  `user_manager` varchar(255) NOT NULL COMMENT 'manger name ',
-  `inserted_date` datetime NOT NULL COMMENT 'Date on which staff applied leave',
-  `updated_date` datetime NOT NULL COMMENT 'Date on which manager approved/rejected  leave',
-  `user_id` int(11) NOT NULL COMMENT 'Manger id (Approved or rejected )',
-  `avl` int(11) NOT NULL,
-  `type` varchar(255) NOT NULL COMMENT 'leave type id (eg - paid leave)',
-  `in_time` varchar(255) NOT NULL COMMENT 'this only for HD,EE,Default',
-  `out_time` varchar(255) NOT NULL COMMENT 'this only for HD,EE,Default',
-  `hd_ee_da_date` date NOT NULL COMMENT 'this only for HD,EE,Default date',
-  `reason` text NOT NULL COMMENT 'reason of leave',
-  `manager` varchar(255) NOT NULL COMMENT 'withdrawn manger  id',
-  `submit_with` int(11) NOT NULL COMMENT 'submited leave withdrawn 1 & color code 2',
-  `f_date` date NOT NULL COMMENT 'leave from date',
-  `f_time` varchar(255) NOT NULL COMMENT 'start date time',
-  `t_date` date NOT NULL COMMENT 'leave to date',
-  `to_time` varchar(255) NOT NULL COMMENT 'to date time',
-  `half_time_in` varchar(255) NOT NULL COMMENT 'this for half day leave nt for HD,EE,Default',
-  `backup` varchar(255) NOT NULL COMMENT 'backup resourse',
-  `notify` varchar(255) NOT NULL COMMENT 'inform to other i m taking leave',
-  `days` varchar(155) NOT NULL COMMENT 'no of leave taken',
-  `contact` varchar(20) NOT NULL COMMENT 'contact no of leave taken staff',
-  `approved` int(11) NOT NULL DEFAULT '0' COMMENT 'approved means 1',
-  `reject` int(11) NOT NULL DEFAULT '0' COMMENT 'rejected means 1',
-  `acc_year` int(4) NOT NULL COMMENT 'acc_year',
-  `status` int(3) NOT NULL DEFAULT '1',
-  `status_reason` int(11) NOT NULL COMMENT 'default=1 and withdrawn =0 and withdrawn =2 approve and withdrawn=3 reject',
-  `withd_commt` text NOT NULL COMMENT 'comment for withdrawing (Staff or user) nt manger',
-  `with_color` varchar(255) NOT NULL COMMENT 'color code for withdrawn after approve and past date',
-  `status_approve` int(11) NOT NULL DEFAULT '1' COMMENT 'withdrawn 2 /not withdrawn 1',
-  `status_approve_manger` datetime NOT NULL COMMENT 'withdrawn date of manger',
-  `status_with_staff` datetime NOT NULL COMMENT 'withdrawn date of staff',
-  `staff_id` int(11) NOT NULL COMMENT 'leave Submitted staff id ',
-  `approve_reason` text NOT NULL COMMENT 'manger give the reason for approving',
-  `reject_reason` text NOT NULL COMMENT 'manger give the reason for rejecting',
+  `id`                     INT           NOT NULL AUTO_INCREMENT COMMENT 'HD= Half day, EE = Early Exit',
+  `staff_att_approve`      INT           NOT NULL COMMENT 'staff attendance approved in date wise update (1 is approved 0 nt )',
+  `user`                   VARCHAR(255)  NOT NULL COMMENT 'applied staff name',
+  `user_manager`           VARCHAR(255)  NOT NULL COMMENT 'manger name ',
+  `inserted_date`          DATETIME      NOT NULL COMMENT 'Date on which staff applied leave',
+  `updated_date`           DATETIME      NOT NULL COMMENT 'Date on which manager approved/rejected  leave',
+  `user_id`                INT           NOT NULL COMMENT 'Manger id (Approved or rejected )',
+  `avl`                    INT           NOT NULL,
+  `type`                   VARCHAR(255)  NOT NULL COMMENT 'leave type id (eg - paid leave)',
+  `in_time`                VARCHAR(255)  NOT NULL COMMENT 'this only for HD,EE,Default',
+  `out_time`               VARCHAR(255)  NOT NULL COMMENT 'this only for HD,EE,Default',
+  `hd_ee_da_date`          DATE          NOT NULL COMMENT 'this only for HD,EE,Default date',
+  `reason`                 TEXT          NOT NULL COMMENT 'reason of leave',
+  `manager`                VARCHAR(255)  NOT NULL COMMENT 'withdrawn manger  id',
+  `submit_with`            INT           NOT NULL COMMENT 'submited leave withdrawn 1 & color code 2',
+  `f_date`                 DATE          NOT NULL COMMENT 'leave from date',
+  `f_time`                 VARCHAR(255)  NOT NULL COMMENT 'start date time',
+  `t_date`                 DATE          NOT NULL COMMENT 'leave to date',
+  `to_time`                VARCHAR(255)  NOT NULL COMMENT 'to date time',
+  `half_time_in`           VARCHAR(255)  NOT NULL COMMENT 'this for half day leave nt for HD,EE,Default',
+  `backup`                 VARCHAR(255)  NOT NULL COMMENT 'backup resourse',
+  `notify`                 VARCHAR(255)  NOT NULL COMMENT 'inform to other i m taking leave',
+  `days`                   VARCHAR(155)  NOT NULL COMMENT 'no of leave taken',
+  `contact`                VARCHAR(20)   NOT NULL COMMENT 'contact no of leave taken staff',
+  `approved`               INT           NOT NULL DEFAULT '0' COMMENT 'approved means 1',
+  `reject`                 INT           NOT NULL DEFAULT '0' COMMENT 'rejected means 1',
+  `acc_year`               INT           NOT NULL COMMENT 'acc_year',
+  `status`                 INT           NOT NULL DEFAULT '1',
+  `status_reason`          INT           NOT NULL COMMENT 'default=1 and withdrawn =0 and withdrawn =2 approve and withdrawn=3 reject',
+  `withd_commt`            TEXT          NOT NULL COMMENT 'comment for withdrawing (Staff or user) nt manger',
+  `with_color`             VARCHAR(255)  NOT NULL COMMENT 'color code for withdrawn after approve and past date',
+  `status_approve`         INT           NOT NULL DEFAULT '1' COMMENT 'withdrawn 2 /not withdrawn 1',
+  `status_approve_manger`  DATETIME      NOT NULL COMMENT 'withdrawn date of manger',
+  `status_with_staff`      DATETIME      NOT NULL COMMENT 'withdrawn date of staff',
+  `staff_id`               INT           NOT NULL COMMENT 'leave Submitted staff id ',
+  `approve_reason`         TEXT          NOT NULL COMMENT 'manger give the reason for approving',
+  `reject_reason`          TEXT          NOT NULL COMMENT 'manger give the reason for rejecting',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=94 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `staff_leave`
 --
 
 INSERT INTO `staff_leave` (`id`, `staff_att_approve`, `user`, `user_manager`, `inserted_date`, `updated_date`, `user_id`, `avl`, `type`, `in_time`, `out_time`, `hd_ee_da_date`, `reason`, `manager`, `submit_with`, `f_date`, `f_time`, `t_date`, `to_time`, `half_time_in`, `backup`, `notify`, `days`, `contact`, `approved`, `reject`, `acc_year`, `status`, `status_reason`, `withd_commt`, `with_color`, `status_approve`, `status_approve_manger`, `status_with_staff`, `staff_id`, `approve_reason`, `reject_reason`) VALUES
-(17, 0, 'archanam', '', '2026-03-07 11:06:03', '0000-00-00 00:00:00', 0, 0, '1', '', '', '0000-00-00', 'personal', '', 1, '2026-03-20', '', '2026-03-20', '', '', '', '', '1', '', 0, 0, 2026, 1, 2, 'no personal work', '', 2, '0000-00-00 00:00:00', '2026-03-07 11:11:03', 246, '', ''),
-(16, 0, 'archanam', 'chaitalig', '2026-03-07 11:02:03', '2026-03-07 11:05:03', 247, 0, '1', '', '', '0000-00-00', 'personal work', '', 0, '2026-03-17', '', '2026-03-17', '', '', '', '', '0', '', 0, 1, 2026, 1, 1, '', '', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 246, '', 'public holiday'),
-(89, 0, 'soumendran', '', '2026-03-27 14:11:03', '0000-00-00 00:00:00', 0, 0, '1', '', '', '0000-00-00', 'Not well', '', 0, '2026-03-25', '', '2026-03-25', '', '', '', '', '1', '', 0, 0, 2026, 1, 1, '', '', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 249, '', ''),
-(92, 0, 'scottw', 'shannac', '2026-03-31 15:55:03', '2026-04-01 10:18:04', 3, 0, '1', '', '', '0000-00-00', 'personal day', '', 0, '2026-05-02', '', '2026-05-02', '', '', '', '', '1', 'n/a', 1, 0, 2026, 1, 1, '', '', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 7, 'Approved', ''),
-(21, 0, 'adrienneh', '', '2026-03-07 12:53:03', '0000-00-00 00:00:00', 0, 0, 'EE', '', '15:00', '2026-02-28', 'Pesrsonal', '', 1, '0000-00-00', '', '0000-00-00', '', '', '', '', '', '', 0, 0, 2026, 1, 2, 'Wrongly upaded', '', 2, '0000-00-00 00:00:00', '2026-03-07 12:56:03', 4, '', ''),
-(22, 0, 'adrienneh', 'shannac', '2026-03-07 12:57:03', '2026-03-10 16:15:03', 3, 0, '6', '08:00', '15:00', '2026-02-28', 'Out door duty', '', 0, '0000-00-00', '', '0000-00-00', '', '', '', '', '', '', 1, 0, 2026, 1, 1, '', '', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 4, 'Ok', ''),
-(23, 0, 'parago', 'shannac', '2026-03-07 13:04:03', '2026-03-10 16:15:03', 3, 0, 'EE', '', '15:10', '2026-02-28', 'Personal', '', 0, '0000-00-00', '', '0000-00-00', '', '', '', '', '', '', 1, 0, 2026, 1, 1, '', '', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 34, 'Ok', ''),
-(25, 0, 'shilpak', 'michaelb', '2026-03-07 15:28:03', '2026-03-07 15:29:03', 68, 0, '6', '07:15', '17:00', '2026-02-28', 'Official', '', 0, '0000-00-00', '', '0000-00-00', '', '', '', '', '', '', 1, 0, 2026, 1, 1, '', '', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 24, 'ok', ''),
-(27, 0, 'adrienneh', 'shannac', '2026-03-07 16:18:03', '2026-03-07 16:22:03', 3, 0, '1', '', '', '0000-00-00', 'Sick', '', 0, '2026-02-25', '', '2026-02-25', '', '', '', '', '1', '', 1, 0, 2026, 1, 1, '', '', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 4, 'Ok', ''),
-(29, 0, 'ulkaa', 'shannac', '2026-03-10 14:30:03', '2026-03-10 14:36:03', 3, 0, '1', '', '', '0000-00-00', 'Had to urgently go to Pune due to dad\\''s health issue', '', 0, '2026-02-24', '', '2026-02-24', '', '', '', '', '1', '', 1, 0, 2026, 1, 1, '', '', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 26, 'OK', ''),
-(30, 0, 'debran', 'michaelb', '2026-03-10 15:23:03', '2026-03-10 15:24:03', 68, 0, '1', '', '', '0000-00-00', 'Mother is not well', '', 0, '2026-02-20', '', '2026-02-26', '', '', '', '', '5', '', 1, 0, 2026, 1, 1, '', '', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 151, 'Ok', '');
+(17, 0, 'archanam', '', '2026-03-07 11:06:03', NULL, 0, 0, '1', '', '', NULL, 'personal', '', 1, '2026-03-20', '', '2026-03-20', '', '', '', '', '1', '', 0, 0, 2026, 1, 2, 'no personal work', '', 2, NULL, '2026-03-07 11:11:03', 246, '', ''),
+(16, 0, 'archanam', 'chaitalig', '2026-03-07 11:02:03', '2026-03-07 11:05:03', 247, 0, '1', '', '', NULL, 'personal work', '', 0, '2026-03-17', '', '2026-03-17', '', '', '', '', '0', '', 0, 1, 2026, 1, 1, '', '', 1, NULL, NULL, 246, '', 'public holiday'),
+(89, 0, 'soumendran', '', '2026-03-27 14:11:03', NULL, 0, 0, '1', '', '', NULL, 'Not well', '', 0, '2026-03-25', '', '2026-03-25', '', '', '', '', '1', '', 0, 0, 2026, 1, 1, '', '', 1, NULL, NULL, 249, '', ''),
+(92, 0, 'scottw', 'shannac', '2026-03-31 15:55:03', '2026-04-01 10:18:04', 3, 0, '1', '', '', NULL, 'personal day', '', 0, '2026-05-02', '', '2026-05-02', '', '', '', '', '1', 'n/a', 1, 0, 2026, 1, 1, '', '', 1, NULL, NULL, 7, 'Approved', ''),
+(21, 0, 'adrienneh', '', '2026-03-07 12:53:03', NULL, 0, 0, 'EE', '', '15:00', '2026-02-28', 'Pesrsonal', '', 1, NULL, '', NULL, '', '', '', '', '', '', 0, 0, 2026, 1, 2, 'Wrongly upaded', '', 2, NULL, '2026-03-07 12:56:03', 4, '', ''),
+(22, 0, 'adrienneh', 'shannac', '2026-03-07 12:57:03', '2026-03-10 16:15:03', 3, 0, '6', '08:00', '15:00', '2026-02-28', 'Out door duty', '', 0, NULL, '', NULL, '', '', '', '', '', '', 1, 0, 2026, 1, 1, '', '', 1, NULL, NULL, 4, 'Ok', ''),
+(23, 0, 'parago', 'shannac', '2026-03-07 13:04:03', '2026-03-10 16:15:03', 3, 0, 'EE', '', '15:10', '2026-02-28', 'Personal', '', 0, NULL, '', NULL, '', '', '', '', '', '', 1, 0, 2026, 1, 1, '', '', 1, NULL, NULL, 34, 'Ok', ''),
+(25, 0, 'shilpak', 'michaelb', '2026-03-07 15:28:03', '2026-03-07 15:29:03', 68, 0, '6', '07:15', '17:00', '2026-02-28', 'Official', '', 0, NULL, '', NULL, '', '', '', '', '', '', 1, 0, 2026, 1, 1, '', '', 1, NULL, NULL, 24, 'ok', ''),
+(27, 0, 'adrienneh', 'shannac', '2026-03-07 16:18:03', '2026-03-07 16:22:03', 3, 0, '1', '', '', NULL, 'Sick', '', 0, '2026-02-25', '', '2026-02-25', '', '', '', '', '1', '', 1, 0, 2026, 1, 1, '', '', 1, NULL, NULL, 4, 'Ok', ''),
+(29, 0, 'ulkaa', 'shannac', '2026-03-10 14:30:03', '2026-03-10 14:36:03', 3, 0, '1', '', '', NULL, 'Had to urgently go to Pune due to dad\\''s health issue', '', 0, '2026-02-24', '', '2026-02-24', '', '', '', '', '1', '', 1, 0, 2026, 1, 1, '', '', 1, NULL, NULL, 26, 'OK', ''),
+(30, 0, 'debran', 'michaelb', '2026-03-10 15:23:03', '2026-03-10 15:24:03', 68, 0, '1', '', '', NULL, 'Mother is not well', '', 0, '2026-02-20', '', '2026-02-26', '', '', '', '', '5', '', 1, 0, 2026, 1, 1, '', '', 1, NULL, NULL, 151, 'Ok', '');
 
 -- --------------------------------------------------------
 
@@ -12525,13 +12583,13 @@ INSERT INTO `staff_leave` (`id`, `staff_att_approve`, `user`, `user_manager`, `i
 --
 
 CREATE TABLE IF NOT EXISTS `staff_leave_hr` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` varchar(255) NOT NULL,
-  `hr_id` int(11) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`        INT           NOT NULL AUTO_INCREMENT,
+  `user`      VARCHAR(255)  NOT NULL,
+  `hr_id`     INT           NOT NULL,
+  `acc_year`  INT           NOT NULL,
+  `status`    TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `staff_leave_hr`
@@ -12549,13 +12607,13 @@ INSERT INTO `staff_leave_hr` (`id`, `user`, `hr_id`, `acc_year`, `status`) VALUE
 --
 
 CREATE TABLE IF NOT EXISTS `staff_leave_manger` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user` varchar(255) NOT NULL,
-  `manger_id` int(11) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`         INT           NOT NULL AUTO_INCREMENT,
+  `user`       VARCHAR(255)  NOT NULL,
+  `manger_id`  INT           NOT NULL,
+  `acc_year`   INT           NOT NULL,
+  `status`     TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `staff_leave_manger`
@@ -12590,13 +12648,13 @@ INSERT INTO `staff_leave_manger` (`id`, `user`, `manger_id`, `acc_year`, `status
 --
 
 CREATE TABLE IF NOT EXISTS `staff_leave_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `leave_name` varchar(255) NOT NULL,
-  `special_type` int(11) NOT NULL,
-  `lv_ty` int(11) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`            INT           NOT NULL AUTO_INCREMENT,
+  `leave_name`    VARCHAR(255)  NOT NULL,
+  `special_type`  INT           NOT NULL,
+  `lv_ty`         INT           NOT NULL,
+  `status`        TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `staff_leave_type`
@@ -12616,12 +12674,12 @@ INSERT INTO `staff_leave_type` (`id`, `leave_name`, `special_type`, `lv_ty`, `st
 --
 
 CREATE TABLE IF NOT EXISTS `staff_leave_type_group` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `staff_id` int(11) NOT NULL,
-  `leave_type` int(11) NOT NULL,
-  `status` int(11) NOT NULL,
+  `id`          INT  NOT NULL AUTO_INCREMENT,
+  `staff_id`    INT  NOT NULL,
+  `leave_type`  INT  NOT NULL,
+  `status`      INT  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `staff_leave_type_group`
@@ -12649,19 +12707,19 @@ INSERT INTO `staff_leave_type_group` (`id`, `staff_id`, `leave_type`, `status`) 
 --
 
 CREATE TABLE IF NOT EXISTS `staff_qualification` (
-  `id` int(6) NOT NULL AUTO_INCREMENT,
-  `staff_id` int(6) DEFAULT NULL,
-  `course_name` varchar(100) DEFAULT NULL,
-  `year_pass` varchar(100) DEFAULT NULL,
-  `university` varchar(100) DEFAULT NULL,
-  `reg_date` varchar(200) DEFAULT NULL,
-  `name_board` varchar(200) DEFAULT NULL,
-  `college` varchar(200) DEFAULT NULL,
-  `specialization` varchar(50) DEFAULT NULL,
-  `class` varchar(25) DEFAULT NULL,
-  `percentage` varchar(25) DEFAULT NULL,
+  `id`              INT           NOT NULL AUTO_INCREMENT,
+  `staff_id`        INT           DEFAULT NULL,
+  `course_name`     VARCHAR(100)  DEFAULT NULL,
+  `year_pass`       VARCHAR(100)  DEFAULT NULL,
+  `university`      VARCHAR(100)  DEFAULT NULL,
+  `reg_date`        VARCHAR(200)  DEFAULT NULL,
+  `name_board`      VARCHAR(200)  DEFAULT NULL,
+  `college`         VARCHAR(200)  DEFAULT NULL,
+  `specialization`  VARCHAR(50)   DEFAULT NULL,
+  `class`           VARCHAR(25)   DEFAULT NULL,
+  `percentage`      VARCHAR(25)   DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `staff_qualification`
@@ -12681,18 +12739,18 @@ INSERT INTO `staff_qualification` (`id`, `staff_id`, `course_name`, `year_pass`,
 --
 
 CREATE TABLE IF NOT EXISTS `staff_rights` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `staff_id` int(11) DEFAULT NULL,
-  `course_id` int(11) DEFAULT NULL,
-  `subject_id` int(11) DEFAULT NULL,
-  `year_id` int(11) DEFAULT NULL,
-  `subject_type` int(11) DEFAULT NULL,
-  `class_section_id` int(4) DEFAULT NULL,
-  `batch_id` int(4) DEFAULT NULL,
-  `StaffID` varchar(50) DEFAULT NULL,
-  `maj_id` int(6) DEFAULT NULL,
+  `id`                INT          NOT NULL AUTO_INCREMENT,
+  `staff_id`          INT          DEFAULT NULL,
+  `course_id`         INT          DEFAULT NULL,
+  `subject_id`        INT          DEFAULT NULL,
+  `year_id`           INT          DEFAULT NULL,
+  `subject_type`      INT          DEFAULT NULL,
+  `class_section_id`  INT          DEFAULT NULL,
+  `batch_id`          INT          DEFAULT NULL,
+  `StaffID`           VARCHAR(50)  DEFAULT NULL,
+  `maj_id`            INT          DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `staff_rights`
@@ -12727,11 +12785,11 @@ INSERT INTO `staff_rights` (`id`, `staff_id`, `course_id`, `subject_id`, `year_i
 --
 
 CREATE TABLE IF NOT EXISTS `staff_status` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`      INT          NOT NULL AUTO_INCREMENT,
+  `name`    VARCHAR(50)  DEFAULT NULL,
+  `status`  TINYINT(1)   DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `staff_status`
@@ -12749,16 +12807,16 @@ INSERT INTO `staff_status` (`id`, `name`, `status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `staff_termination` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `staff_id` int(10) DEFAULT NULL,
-  `san_date` date DEFAULT NULL,
-  `san_no` varchar(100) DEFAULT NULL,
-  `aut_name` varchar(100) DEFAULT NULL,
-  `remarks` text,
-  `eff_date` date DEFAULT NULL,
-  `headg` varchar(200) DEFAULT NULL,
+  `id`        INT           NOT NULL AUTO_INCREMENT,
+  `staff_id`  INT           DEFAULT NULL,
+  `san_date`  DATE          DEFAULT NULL,
+  `san_no`    VARCHAR(100)  DEFAULT NULL,
+  `aut_name`  VARCHAR(100)  DEFAULT NULL,
+  `remarks`   TEXT,
+  `eff_date`  DATE          DEFAULT NULL,
+  `headg`     VARCHAR(200)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=208 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `staff_termination`
@@ -12783,22 +12841,22 @@ INSERT INTO `staff_termination` (`id`, `staff_id`, `san_date`, `san_no`, `aut_na
 --
 
 CREATE TABLE IF NOT EXISTS `staff_time` (
-  `id` int(100) NOT NULL AUTO_INCREMENT,
-  `acc_year` varchar(200) NOT NULL,
-  `leave_det` int(11) NOT NULL,
-  `staff_type` varchar(200) NOT NULL,
-  `enter_date` date NOT NULL,
-  `staff_date` varchar(255) NOT NULL,
-  `date_type` int(11) NOT NULL,
-  `username` varchar(200) NOT NULL,
-  `intime` varchar(200) NOT NULL,
-  `ex_intime` varchar(255) NOT NULL,
-  `outtime` varchar(200) NOT NULL,
-  `ex_outtime` varchar(255) NOT NULL,
-  `title` varchar(200) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1',
+  `id`          INT           NOT NULL AUTO_INCREMENT,
+  `acc_year`    VARCHAR(200)  NOT NULL,
+  `leave_det`   INT           NOT NULL,
+  `staff_type`  VARCHAR(200)  NOT NULL,
+  `enter_date`  DATE          NOT NULL,
+  `staff_date`  VARCHAR(255)  NOT NULL,
+  `date_type`   INT           NOT NULL,
+  `username`    VARCHAR(200)  NOT NULL,
+  `intime`      VARCHAR(200)  NOT NULL,
+  `ex_intime`   VARCHAR(255)  NOT NULL,
+  `outtime`     VARCHAR(200)  NOT NULL,
+  `ex_outtime`  VARCHAR(255)  NOT NULL,
+  `title`       VARCHAR(200)  NOT NULL,
+  `status`      INT           NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=81 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `staff_time`
@@ -12807,12 +12865,12 @@ CREATE TABLE IF NOT EXISTS `staff_time` (
 INSERT INTO `staff_time` (`id`, `acc_year`, `leave_det`, `staff_type`, `enter_date`, `staff_date`, `date_type`, `username`, `intime`, `ex_intime`, `outtime`, `ex_outtime`, `title`, `status`) VALUES
 (1, '2026', 1, '1', '2026-03-15', '', 1, 'administrator', '07:30', '07:40', '16:10', '16:10', 'Teaching', 1),
 (2, '2026', 1, '2', '2026-02-17', '', 1, 'administrator', '08:00', '08:15', '17:00', '17:00', 'Non Teaching', 1),
-(3, '2026', 1, '3', '0000-00-00', '', 1, 'administrator', '07:30', '', '13:30', '', 'Teaching', 1),
-(4, '2026', 1, '4', '0000-00-00', '', 1, 'administrator', '07:30', '', '13:00', '', 'Teaching Part Time', 1),
+(3, '2026', 1, '3', NULL, '', 1, 'administrator', '07:30', '', '13:30', '', 'Teaching', 1),
+(4, '2026', 1, '4', NULL, '', 1, 'administrator', '07:30', '', '13:00', '', 'Teaching Part Time', 1),
 (5, '2026', 1, '5', '2026-02-18', '', 1, 'administrator', '07:30', '07:45', '16:10', '16:10', 'Non Teaching', 1),
-(6, '2026', 1, '6', '0000-00-00', '', 1, 'administrator', '07:30', '', '15:00', '', 'Teaching Part Time', 1),
+(6, '2026', 1, '6', NULL, '', 1, 'administrator', '07:30', '', '15:00', '', 'Teaching Part Time', 1),
 (7, '2026', 1, '7', '2026-03-15', '', 1, 'administrator', '07:30', '07:45', '16:30', '16:30', 'Non Teaching', 1),
-(8, '2026', 1, '8', '0000-00-00', '', 1, 'administrator', '09:00', '', '15:00', '', 'Teaching', 1),
+(8, '2026', 1, '8', NULL, '', 1, 'administrator', '09:00', '', '15:00', '', 'Teaching', 1),
 (9, '2026', 1, '9', '2026-02-18', '', 1, 'administrator', '07:45', '08:00', '16:45', '16:45', 'Non Teaching', 1),
 (10, '2026', 1, '10', '2026-02-18', '', 1, 'administrator', '09:00', '09:15', '18:00', '18:00', 'Non Teaching', 1);
 
@@ -12823,14 +12881,16 @@ INSERT INTO `staff_time` (`id`, `acc_year`, `leave_det`, `staff_type`, `enter_da
 --
 
 CREATE TABLE IF NOT EXISTS `studentmenu` (
-  `module` char(50) DEFAULT NULL,
-  `submodule` char(50) DEFAULT NULL,
-  `linkname` char(250) DEFAULT NULL,
-  `linkpath` char(250) DEFAULT NULL,
-  `access` enum('Yes','No') DEFAULT NULL,
-  `parameter` char(250) DEFAULT NULL,
-  `id` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `row_id`     INT               NOT NULL AUTO_INCREMENT,
+  `module`     CHAR(50)          DEFAULT NULL,
+  `submodule`  CHAR(50)          DEFAULT NULL,
+  `linkname`   CHAR(250)         DEFAULT NULL,
+  `linkpath`   CHAR(250)         DEFAULT NULL,
+  `access`     ENUM('Yes','No')  DEFAULT NULL,
+  `parameter`  CHAR(250)         DEFAULT NULL,
+  `id`         INT               DEFAULT NULL,
+  PRIMARY KEY (`row_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `studentmenu`
@@ -12860,12 +12920,12 @@ INSERT INTO `studentmenu` (`module`, `submodule`, `linkname`, `linkpath`, `acces
 --
 
 CREATE TABLE IF NOT EXISTS `student_card_number` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_id` int(11) NOT NULL,
-  `swap_card` varchar(50) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`          INT          NOT NULL AUTO_INCREMENT,
+  `student_id`  INT          NOT NULL,
+  `swap_card`   VARCHAR(50)  NOT NULL,
+  `status`      TINYINT(1)   NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1606 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `student_card_number`
@@ -12890,15 +12950,15 @@ INSERT INTO `student_card_number` (`id`, `student_id`, `swap_card`, `status`) VA
 --
 
 CREATE TABLE IF NOT EXISTS `student_class` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `div` int(3) NOT NULL,
-  `class` int(3) NOT NULL,
-  `sub` int(8) NOT NULL,
-  `sub_sec` int(2) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
+  `id`        BIGINT  NOT NULL AUTO_INCREMENT,
+  `div`       INT     NOT NULL,
+  `class`     INT     NOT NULL,
+  `sub`       INT     NOT NULL,
+  `sub_sec`   INT     NOT NULL,
+  `acc_year`  INT     NOT NULL,
+  `stu_id`    BIGINT  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=60 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `student_class`
@@ -12923,15 +12983,15 @@ INSERT INTO `student_class` (`id`, `div`, `class`, `sub`, `sub_sec`, `acc_year`,
 --
 
 CREATE TABLE IF NOT EXISTS `student_course` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `div` int(3) NOT NULL,
-  `class` int(3) NOT NULL,
-  `sub` int(8) NOT NULL,
-  `sub_sec` int(2) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `stu_id` bigint(20) NOT NULL,
+  `id`        INT     NOT NULL AUTO_INCREMENT,
+  `div`       INT     NOT NULL,
+  `class`     INT     NOT NULL,
+  `sub`       INT     NOT NULL,
+  `sub_sec`   INT     NOT NULL,
+  `acc_year`  INT     NOT NULL,
+  `stu_id`    BIGINT  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=88492 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `student_course`
@@ -12956,27 +13016,27 @@ INSERT INTO `student_course` (`id`, `div`, `class`, `sub`, `sub_sec`, `acc_year`
 --
 
 CREATE TABLE IF NOT EXISTS `student_leavingcertificate` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_id` int(11) NOT NULL,
-  `gradeCompleted` int(4) NOT NULL,
-  `academicYear` int(4) NOT NULL,
-  `lastDateOfAttendance` date NOT NULL,
-  `sysdate` date NOT NULL,
-  `resultEndYear` int(4) NOT NULL,
-  `comments` text NOT NULL,
+  `id`                    INT   NOT NULL AUTO_INCREMENT,
+  `student_id`            INT   NOT NULL,
+  `gradeCompleted`        INT   NOT NULL,
+  `academicYear`          INT   NOT NULL,
+  `lastDateOfAttendance`  DATE  NOT NULL,
+  `sysdate`               DATE  NOT NULL,
+  `resultEndYear`         INT   NOT NULL,
+  `comments`              TEXT  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `student_leavingcertificate`
 --
 
 INSERT INTO `student_leavingcertificate` (`id`, `student_id`, `gradeCompleted`, `academicYear`, `lastDateOfAttendance`, `sysdate`, `resultEndYear`, `comments`) VALUES
-(1, 814, 4, 2026, '0000-00-00', '2026-05-30', 2026, ''),
-(2, 975, 1, 2026, '0000-00-00', '2026-07-22', 2026, ''),
-(3, 473, 1, 2026, '0000-00-00', '2026-09-30', 2026, ''),
-(4, 108, 1, 2026, '0000-00-00', '2026-11-06', 2026, ''),
-(5, 156, 1, 2026, '0000-00-00', '2026-02-19', 2026, '');
+(1, 814, 4, 2026, NULL, '2026-05-30', 2026, ''),
+(2, 975, 1, 2026, NULL, '2026-07-22', 2026, ''),
+(3, 473, 1, 2026, NULL, '2026-09-30', 2026, ''),
+(4, 108, 1, 2026, NULL, '2026-11-06', 2026, ''),
+(5, 156, 1, 2026, NULL, '2026-02-19', 2026, '');
 
 -- --------------------------------------------------------
 
@@ -12985,135 +13045,139 @@ INSERT INTO `student_leavingcertificate` (`id`, `student_id`, `gradeCompleted`, 
 --
 
 CREATE TABLE IF NOT EXISTS `student_m` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `admission_id` varchar(20) DEFAULT NULL,
-  `admission_date` date DEFAULT NULL,
-  `student_id` varchar(20) DEFAULT NULL,
-  `usn` varchar(20) DEFAULT NULL,
-  `first_name` varchar(30) DEFAULT NULL,
-  `middle_name` varchar(30) NOT NULL,
-  `last_name` varchar(30) DEFAULT NULL,
-  `nationality` int(3) DEFAULT NULL,
-  `religion` int(2) DEFAULT NULL,
-  `gender` char(1) DEFAULT NULL,
-  `caste_id` varchar(50) DEFAULT NULL,
-  `dob` date DEFAULT NULL,
-  `age` varchar(10) DEFAULT NULL,
-  `per_address` varchar(250) DEFAULT NULL,
-  `per_city` varchar(100) DEFAULT NULL,
-  `per_state` varchar(50) DEFAULT NULL,
-  `per_country` varchar(50) DEFAULT NULL,
-  `per_pincode` varchar(7) DEFAULT NULL,
-  `per_phone` varchar(20) DEFAULT NULL,
-  `cor_address` varchar(250) DEFAULT NULL,
-  `cor_city` varchar(100) DEFAULT NULL,
-  `cor_state` varchar(50) DEFAULT NULL,
-  `cor_country` varchar(50) DEFAULT NULL,
-  `cor_pincode` varchar(7) DEFAULT NULL,
-  `cor_phone` varchar(20) DEFAULT NULL,
-  `parent_name` varchar(60) DEFAULT NULL,
-  `parent_occupation` varchar(30) DEFAULT NULL,
-  `parent_income` float(12,2) DEFAULT NULL,
-  `loc_address` varchar(250) DEFAULT NULL,
-  `loc_city` varchar(100) DEFAULT NULL,
-  `loc_state` varchar(50) DEFAULT NULL,
-  `loc_country` varchar(50) DEFAULT NULL,
-  `loc_pincode` varchar(7) DEFAULT NULL,
-  `loc_phone` varchar(20) DEFAULT NULL,
-  `course_admitted` int(11) DEFAULT NULL,
-  `course_yearsem` int(11) DEFAULT NULL,
-  `quota_id` int(3) DEFAULT NULL,
-  `academic_year` varchar(12) DEFAULT NULL,
-  `remarks` varchar(250) DEFAULT NULL,
-  `username` varchar(15) DEFAULT NULL,
-  `password` varchar(15) DEFAULT NULL,
-  `archive` enum('Y','N','F') DEFAULT 'N',
-  `class_section_id` int(1) NOT NULL DEFAULT '0',
-  `parent_username` varchar(15) DEFAULT NULL,
-  `parent_password` varchar(35) DEFAULT NULL,
-  `count` int(11) DEFAULT NULL,
-  `blood_group` varchar(20) DEFAULT NULL,
-  `admission_type` varchar(10) DEFAULT NULL,
-  `img_source` varchar(255) DEFAULT NULL,
-  `img_source_s` varchar(255) DEFAULT NULL,
-  `marital_status` varchar(2) NOT NULL,
-  `mentor` varchar(15) DEFAULT '',
-  `m_email` varchar(70) DEFAULT NULL,
-  `mnum` varchar(32) DEFAULT NULL,
-  `g_name` varchar(15) DEFAULT NULL,
-  `g_occ` varchar(15) DEFAULT NULL,
-  `g_in` bigint(15) DEFAULT NULL,
-  `g_num` varchar(32) DEFAULT NULL,
-  `g_mail` varchar(70) DEFAULT NULL,
-  `f_email` varchar(70) DEFAULT NULL,
-  `place_of_birth` varchar(30) DEFAULT NULL,
-  `f_quali` varchar(30) DEFAULT NULL,
-  `m_quali` varchar(30) DEFAULT NULL,
-  `g_quali` varchar(30) DEFAULT NULL,
-  `lang_id` varchar(200) DEFAULT NULL,
-  `State` varchar(20) DEFAULT 'Karnataka',
-  `sms_mobile` varchar(32) DEFAULT NULL,
-  `mother_tongue` int(2) DEFAULT NULL,
-  `birth_disct` varchar(100) DEFAULT NULL,
-  `stud_type` varchar(10) DEFAULT NULL,
-  `vdate` date DEFAULT NULL,
-  `m_name` varchar(200) DEFAULT NULL,
-  `m_occ` varchar(200) DEFAULT NULL,
-  `m_inc` varchar(15) DEFAULT NULL,
-  `foadd` varchar(255) DEFAULT NULL,
-  `moadd` varchar(255) DEFAULT NULL,
-  `goadd` varchar(255) DEFAULT NULL,
-  `adm_yr` int(4) DEFAULT NULL,
-  `tcid` bigint(12) NOT NULL DEFAULT '0',
-  `tcdate` date NOT NULL,
-  `msgphone` bigint(10) NOT NULL,
-  `rgmailid` varchar(70) NOT NULL,
-  `Mothers_EMai_ID` varchar(30) DEFAULT NULL,
-  `f_org` varchar(100) DEFAULT NULL,
-  `m_org` varchar(100) DEFAULT NULL,
-  `g_org` varchar(100) DEFAULT NULL,
-  `f_desg` varchar(100) DEFAULT NULL,
-  `m_desg` varchar(100) DEFAULT NULL,
-  `g_desg` varchar(100) DEFAULT NULL,
-  `fpan_no` varchar(20) DEFAULT NULL,
-  `mpan_no` varchar(20) DEFAULT NULL,
-  `gpan_no` varchar(20) DEFAULT NULL,
-  `office` varchar(255) DEFAULT NULL,
-  `per_grade` varchar(100) DEFAULT NULL,
-  `residence` varchar(255) DEFAULT NULL,
-  `parent_org` text,
-  `hear_school` varchar(255) DEFAULT NULL,
-  `parent_desig` varchar(100) DEFAULT NULL,
-  `passport_type` varchar(20) DEFAULT NULL,
-  `per_school_name` varchar(255) DEFAULT NULL,
-  `enquiry_type` varchar(10) DEFAULT NULL,
-  `action` varchar(10) DEFAULT 'Disapprove',
-  `adminpack` varchar(2) DEFAULT 'N' COMMENT 'AFTER ADMIN-PACK DONE THIS WILL CHAGE TO ''Y''',
-  `inserted_date` date DEFAULT NULL,
-  `inserted_time` time DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
-  `sem_elig` int(2) NOT NULL,
-  `apl_prev` int(2) DEFAULT NULL,
-  `m_occp` varchar(250) NOT NULL,
-  `f_occp` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3000021 ;
+  `id`                 INT                NOT NULL AUTO_INCREMENT,
+  `admission_id`       VARCHAR(20)        DEFAULT NULL,
+  `admission_date`     DATE               DEFAULT NULL,
+  `student_id`         VARCHAR(20)        DEFAULT NULL,
+  `usn`                VARCHAR(20)        DEFAULT NULL,
+  `first_name`         VARCHAR(30)        DEFAULT NULL,
+  `middle_name`        VARCHAR(30)        NOT NULL,
+  `last_name`          VARCHAR(30)        DEFAULT NULL,
+  `nationality`        SMALLINT UNSIGNED  DEFAULT NULL,
+  `religion`           TINYINT UNSIGNED   DEFAULT NULL,
+  `gender`             CHAR(1)            DEFAULT NULL,
+  `caste_id`           VARCHAR(50)        DEFAULT NULL,
+  `dob`                DATE               DEFAULT NULL,
+  `age`                VARCHAR(10)        DEFAULT NULL,
+  `per_address`        VARCHAR(250)       DEFAULT NULL,
+  `per_city`           VARCHAR(100)       DEFAULT NULL,
+  `per_state`          VARCHAR(50)        DEFAULT NULL,
+  `per_country`        VARCHAR(50)        DEFAULT NULL,
+  `per_pincode`        VARCHAR(7)         DEFAULT NULL,
+  `per_phone`          VARCHAR(20)        DEFAULT NULL,
+  `cor_address`        VARCHAR(250)       DEFAULT NULL,
+  `cor_city`           VARCHAR(100)       DEFAULT NULL,
+  `cor_state`          VARCHAR(50)        DEFAULT NULL,
+  `cor_country`        VARCHAR(50)        DEFAULT NULL,
+  `cor_pincode`        VARCHAR(7)         DEFAULT NULL,
+  `cor_phone`          VARCHAR(20)        DEFAULT NULL,
+  `parent_name`        VARCHAR(60)        DEFAULT NULL,
+  `parent_occupation`  VARCHAR(30)        DEFAULT NULL,
+  `parent_income`      FLOAT(12,2)        DEFAULT NULL,
+  `loc_address`        VARCHAR(250)       DEFAULT NULL,
+  `loc_city`           VARCHAR(100)       DEFAULT NULL,
+  `loc_state`          VARCHAR(50)        DEFAULT NULL,
+  `loc_country`        VARCHAR(50)        DEFAULT NULL,
+  `loc_pincode`        VARCHAR(7)         DEFAULT NULL,
+  `loc_phone`          VARCHAR(20)        DEFAULT NULL,
+  `course_admitted`    INT                DEFAULT NULL,
+  `course_yearsem`     INT                DEFAULT NULL,
+  `quota_id`           INT                DEFAULT NULL,
+  `academic_year`      VARCHAR(12)        DEFAULT NULL,
+  `remarks`            VARCHAR(250)       DEFAULT NULL,
+  `username`           VARCHAR(15)        DEFAULT NULL,
+  `password`           VARCHAR(255)       DEFAULT NULL,
+  `archive`            ENUM('Y','N','F')  DEFAULT 'N',
+  `class_section_id`   TINYINT(1)         NOT NULL DEFAULT '0',
+  `parent_username`    VARCHAR(15)        DEFAULT NULL,
+  `parent_password`    VARCHAR(35)        DEFAULT NULL,
+  `count`              INT                DEFAULT NULL,
+  `blood_group`        VARCHAR(20)        DEFAULT NULL,
+  `admission_type`     VARCHAR(10)        DEFAULT NULL,
+  `img_source`         VARCHAR(255)       DEFAULT NULL,
+  `img_source_s`       VARCHAR(255)       DEFAULT NULL,
+  `marital_status`     VARCHAR(2)         NOT NULL,
+  `mentor`             VARCHAR(15)        DEFAULT '',
+  `m_email`            VARCHAR(70)        DEFAULT NULL,
+  `mnum`               VARCHAR(32)        DEFAULT NULL,
+  `g_name`             VARCHAR(15)        DEFAULT NULL,
+  `g_occ`              VARCHAR(15)        DEFAULT NULL,
+  `g_in`               BIGINT             DEFAULT NULL,
+  `g_num`              VARCHAR(32)        DEFAULT NULL,
+  `g_mail`             VARCHAR(70)        DEFAULT NULL,
+  `f_email`            VARCHAR(70)        DEFAULT NULL,
+  `place_of_birth`     VARCHAR(30)        DEFAULT NULL,
+  `f_quali`            VARCHAR(30)        DEFAULT NULL,
+  `m_quali`            VARCHAR(30)        DEFAULT NULL,
+  `g_quali`            VARCHAR(30)        DEFAULT NULL,
+  `lang_id`            VARCHAR(200)       DEFAULT NULL,
+  `State`              VARCHAR(20)        DEFAULT 'Karnataka',
+  `sms_mobile`         VARCHAR(32)        DEFAULT NULL,
+  `mother_tongue`      TINYINT UNSIGNED   DEFAULT NULL,
+  `birth_disct`        VARCHAR(100)       DEFAULT NULL,
+  `stud_type`          VARCHAR(10)        DEFAULT NULL,
+  `vdate`              DATE               DEFAULT NULL,
+  `m_name`             VARCHAR(200)       DEFAULT NULL,
+  `m_occ`              VARCHAR(200)       DEFAULT NULL,
+  `m_inc`              VARCHAR(15)        DEFAULT NULL,
+  `foadd`              VARCHAR(255)       DEFAULT NULL,
+  `moadd`              VARCHAR(255)       DEFAULT NULL,
+  `goadd`              VARCHAR(255)       DEFAULT NULL,
+  `adm_yr`             SMALLINT UNSIGNED  DEFAULT NULL,
+  `tcid`               BIGINT             NOT NULL DEFAULT '0',
+  `tcdate`             DATE               NOT NULL,
+  `msgphone`           BIGINT             NOT NULL,
+  `rgmailid`           VARCHAR(70)        NOT NULL,
+  `mother_email`       VARCHAR(30)        DEFAULT NULL,
+  `f_org`              VARCHAR(100)       DEFAULT NULL,
+  `m_org`              VARCHAR(100)       DEFAULT NULL,
+  `g_org`              VARCHAR(100)       DEFAULT NULL,
+  `f_desg`             VARCHAR(100)       DEFAULT NULL,
+  `m_desg`             VARCHAR(100)       DEFAULT NULL,
+  `g_desg`             VARCHAR(100)       DEFAULT NULL,
+  `fpan_no`            VARCHAR(20)        DEFAULT NULL,
+  `mpan_no`            VARCHAR(20)        DEFAULT NULL,
+  `gpan_no`            VARCHAR(20)        DEFAULT NULL,
+  `office`             VARCHAR(255)       DEFAULT NULL,
+  `per_grade`          VARCHAR(100)       DEFAULT NULL,
+  `residence`          VARCHAR(255)       DEFAULT NULL,
+  `parent_org`         TEXT,
+  `hear_school`        VARCHAR(255)       DEFAULT NULL,
+  `parent_desig`       VARCHAR(100)       DEFAULT NULL,
+  `passport_type`      VARCHAR(20)        DEFAULT NULL,
+  `per_school_name`    VARCHAR(255)       DEFAULT NULL,
+  `enquiry_type`       VARCHAR(10)        DEFAULT NULL,
+  `action`             VARCHAR(10)        DEFAULT 'Disapprove',
+  `adminpack`          VARCHAR(2)         DEFAULT 'N' COMMENT 'AFTER ADMIN-PACK DONE THIS WILL CHAGE TO ''Y''',
+  `inserted_date`      DATE               DEFAULT NULL,
+  `inserted_time`      TIME               DEFAULT NULL,
+  `status`             TINYINT(1)         DEFAULT '1',
+  `sem_elig`           TINYINT UNSIGNED   NOT NULL,
+  `apl_prev`           TINYINT UNSIGNED   DEFAULT NULL,
+  `m_occp`             VARCHAR(250)       NOT NULL,
+  `f_occp`             VARCHAR(250)       NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `ux_student_id`      (`student_id`),
+  INDEX        `ix_archive_year`    (`archive`, `adm_yr`),
+  INDEX        `ix_section_archive` (`class_section_id`, `archive`),
+  INDEX        `ix_first_last`      (`first_name`, `last_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `student_m`
 --
 
-INSERT INTO `student_m` (`id`, `admission_id`, `admission_date`, `student_id`, `usn`, `first_name`, `middle_name`, `last_name`, `nationality`, `religion`, `gender`, `caste_id`, `dob`, `age`, `per_address`, `per_city`, `per_state`, `per_country`, `per_pincode`, `per_phone`, `cor_address`, `cor_city`, `cor_state`, `cor_country`, `cor_pincode`, `cor_phone`, `parent_name`, `parent_occupation`, `parent_income`, `loc_address`, `loc_city`, `loc_state`, `loc_country`, `loc_pincode`, `loc_phone`, `course_admitted`, `course_yearsem`, `quota_id`, `academic_year`, `remarks`, `username`, `password`, `archive`, `class_section_id`, `parent_username`, `parent_password`, `count`, `blood_group`, `admission_type`, `img_source`, `img_source_s`, `marital_status`, `mentor`, `m_email`, `mnum`, `g_name`, `g_occ`, `g_in`, `g_num`, `g_mail`, `f_email`, `place_of_birth`, `f_quali`, `m_quali`, `g_quali`, `lang_id`, `State`, `sms_mobile`, `mother_tongue`, `birth_disct`, `stud_type`, `vdate`, `m_name`, `m_occ`, `m_inc`, `foadd`, `moadd`, `goadd`, `adm_yr`, `tcid`, `tcdate`, `msgphone`, `rgmailid`, `Mothers_EMai_ID`, `f_org`, `m_org`, `g_org`, `f_desg`, `m_desg`, `g_desg`, `fpan_no`, `mpan_no`, `gpan_no`, `office`, `per_grade`, `residence`, `parent_org`, `hear_school`, `parent_desig`, `passport_type`, `per_school_name`, `enquiry_type`, `action`, `adminpack`, `inserted_date`, `inserted_time`, `status`, `sem_elig`, `apl_prev`, `m_occp`, `f_occp`) VALUES
-(1, '129720', '2010-02-16', 'A233', '', 'S.Sri', '', 'Krishna', 13, 0, 'M', '', '2001-07-19', '12', '', '', '', '', '', '', 'Flat No. 1904, 19th Flr Tower-II Raheja Tipco Heights, Rani Sati Marg, Malad (E)', 'Mumbai', 'Maharashtra', 'India', '400097', '022 42665185 / 40700', 'S. Sri Shankar ', 'Employee', 0.00, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 3, 11, 0, '2026', '', 'A233', '129720', 'N', 44, '12345', '12345', 1, 'NA', '1', '../student_images/A233.JPG', 'srikrishna.srishankar@email.com', '', 'NULL', 'vidyalakshmishankar@email.com', '0', '', '', 0, '0', '', 'srishankarsrivatsa@email.com', '', '', '', '', '', '', '0000000000', 6, '', '', '0000-00-00', 'Srividyalakshmi Vaithianathan ', 'Ca Finance', '', 'Bkc -', '1904 19th Floor, Tower Ii, Raheja Tipco Heights Malad East', '', NULL, 0, '0000-00-00', 0000000000, 'srishankarsrivatsa@email.com', 'NULL', '', '', '', '', '', '', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', '0000-00-00', '00:00:00', 1, 0, NULL, '', ''),
-(2, '1206018', '2026-07-16', 'A921', '', 'Arsalaan', '', 'Abbas', 13, 0, 'M', '', '2002-02-18', '11', '', '', '', '', '', '', 'Raj Classic, B1507/08, Powai Marg, Off Yari Rd, Versova, Andheri (W)', 'Mumbai', 'Maharashtra', 'India', '400061', '022-26315140', 'Roshan Abbas ', 'Media Entrepreneur', 0.00, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 3, 10, 0, '2026', '', 'A921', '1206018', 'N', 0, '12345', '12345', 0, 'NA', '1', '../student_images/img3/2.jpg', 'arsalaan.abbas@email.com', '', 'NULL', 'shaheen@email.com', '0000000000', '', '', 0, '0', '', 'roshanabbas1970@email.com', '', '', '', '', '', '', '0000000000', 28, '', '', '0000-00-00', 'Shaheen Abbas ', 'Jewellry Designer', '', '401,Trans Avenue,Behind Mahada Tel.Exchange,Andheri (w) - 400053', 'Raj Classic,B1507/08,Off Yari Rd,Versova,Andheri (w) - 400061', '', NULL, 0, '0000-00-00', 0000000000, 'roshanabbas1970@email.com', 'NULL', 'Encompass Events Pvt Ltd', 'Flower Child', '', '', '', '', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', '0000-00-00', '00:00:00', 1, 0, NULL, '', ''),
-(3, '1205821', '2026-04-07', 'A920', 'NULL', 'Ayatal', '', 'Abbas', 13, NULL, 'F', 'NULL', '2007-07-18', '6', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Raj Classic, B1507/08, Panch Marg, Off Yari Rd Versova, Andheri (W)', 'Mumbai', 'Maharashtra', 'India', '400061', '022-26315140', 'Roshan Abbas ', 'Media Entrepreneur', NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 2, 5, NULL, '2026', 'NULL', '1205821', '1205821', 'N', 13, '12345', '12345', 0, 'NULL', '1', '../student_images/A920.JPG', 'roshanabbas1970@email.com,roshan@encompass.in,shaheen@email.com', '', 'NULL', 'shaheen@email.com', '0000000000', '', '', NULL, '0', '', 'roshanabbas1970@email.com', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '0000000000', 28, 'NULL', 'NULL', '0000-00-00', 'Shaheen Abbas ', 'Jewellry Designer', 'NULL', '401,Trans Avenue,Behind Mahada Tel.Exchange,Andheri (w) - 400053', 'Raj Classic,B1507/08,Off Yari Rd,Versova,Andheri (w) - 400061', 'NULL', NULL, 0, '0000-00-00', 0000000000, 'roshanabbas1970@email.com', 'NULL', 'Encompass Events Pvt Ltd', 'Flower Child', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', '0000-00-00', '00:00:00', 1, 0, NULL, '', ''),
-(4, '1201032', '2010-05-29', 'A310', '', 'Mael', 'Abdoun', 'Guezennec', 11, 0, 'M', '', '2005-04-01', '8', '', '', '', '', '', '', 'A - 1803, Oberoi Woods, Mohan Gokhale Rd, Off WE Hwy, Goregaon (E)', 'Mumbai', 'Maharashtra', 'India', '400063', '', 'Olivier Abdoun ', 'Software Engineer', 0.00, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 2, 7, 0, '2026', '', '1201032', '1201032', 'N', 26, '12345', '12345', 0, 'NA', '1', '../student_images/A310.JPG', '', '', 'NULL', 'soazic.guezennec@email.com', '0000000000', '', '', 0, '0', '', 'oabdoun@email.com', '', '', '', '', '', '', '9920709193', 8, '', '', '0000-00-00', 'Soazic Guezennec ', 'Artist', '', 'Tour Manhattan 5 - 6, Place De L''iris 92 926 Paris La Defense Cedex', '69 Bud Henri Barbusse Montreuil', '', NULL, 0, '0000-00-00', 0000000000, 'oliver.abdoun@atos.net', 'NULL', 'Tour Manhattan', '', '', '', '', '', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', '0000-00-00', '00:00:00', 1, 0, NULL, '', ''),
-(5, '1206748', '2026-09-07', 'A1117', 'NULL', 'Devyani', '', 'Abhyankar', 13, NULL, 'F', 'NULL', '2003-03-08', '10', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '15, Yugprabhat, Narayan Pathare Rd, Mahim', 'Mumbai', 'Maharashtra', 'India', '400016', '022-24452623', 'Ravindra Abhyankar ', '0', NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 2, 9, NULL, '2026', 'NULL', '1206748', '1206748', 'N', 37, '12345', '12345', 2, 'NULL', '1', '../student_images/A1117.JPG', 'devyani.abhyankar@email.com', '', 'NULL', 'mena.malgonkar@email.com', '9821883333', '', '', NULL, '0', '', 'ravi.abhyankar@email.com', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '0000000000', 18, 'NULL', 'NULL', '0000-00-00', 'Mena Malgavkar ', '0', 'NULL', '0', '0', 'NULL', NULL, 0, '0000-00-00', 0000000000, 'ravi.abhyankar@email.com', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', '0000-00-00', '00:00:00', 1, 0, NULL, '', ''),
-(6, '1204079', '2026-06-06', 'A728', '', 'Tanishqa', '', 'Abraham', 13, 0, 'F', '', '1998-09-20', '15', '', '', '', '', '', '', '2C/63, Windermere, Oshiwara, Andheri (W)', 'Mumbai', 'Maharashtra', 'India', '400053', '02226355661/26334958', 'Archie Abraham ', '0', 0.00, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 4, 14, 0, '2026', '', '1204079', '1204079', 'N', 52, '12345', '12345', 0, 'NA', '1', '../student_images/img4/6.JPG', 'tanishqa.abraham@email.com', '', 'NULL', 'estherabraham02@email.com', '0000000000', '', '', 0, '0', '', 'archie@aiplgroup.co.in', '', '', '', '', '', '', '0000000000', 8, '', '', '0000-00-00', 'Esther Abraham ', '0', '', '0', '0', '', NULL, 0, '0000-00-00', 0000000000, 'archie@aiplgroup.co.in', 'NULL', '', '', '', '', '', '', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', '0000-00-00', '00:00:00', 1, 0, NULL, '', ''),
-(7, '1208113', '0000-00-00', 'A12203', 'NULL', 'Saiesha', '', 'Adhalrao', 13, NULL, 'F', 'NULL', '2010-11-12', '3', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '1002, B-Wing,Valencia, Hiranandani Gardens, Powai', 'Mumbai', 'Maharashtra', 'India', '400076', '022-25704975', 'Akshay Adhalrao ', '0', NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 1, 1, NULL, '2026', 'NULL', '1208113', '1208113', 'N', 0, '12345', 'saiesha@11', 1, 'NULL', '1', '../student_images/A12203.JPG', 'akshay@email.com', '', 'NULL', 'madhuri@email.com', '0000000000', '', '', NULL, '0', '', 'akshay@email.com', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '0000000000', NULL, 'NULL', 'NULL', '0000-00-00', 'Madhuri Adhalrao ', '0', 'NULL', '0', '0', 'NULL', NULL, 0, '0000-00-00', 0000000000, 'akshay@email.com', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', '0000-00-00', '00:00:00', 1, 0, NULL, '', ''),
-(8, '1206173', '2026-02-07', 'A1100', 'NULL', 'Aaria', '', 'Adhvaryu', 13, NULL, 'F', 'NULL', '2009-03-30', '4', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '1601, Rajshree 1, Royal Complex, Eksar Rd, Borivali (W)', 'Mumabi', 'Maharashtra', 'India', '400092', '022-28902092', 'Jay Adhvaryu ', 'Business', NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 2, 3, NULL, '2026', 'NULL', '1206173', '1206173', 'N', 7, '12345', '12345', 0, 'NULL', '1', '../student_images/A1100.JPG', 'j7@email.com,meghnashsh1@email.com', '', 'NULL', 'meghnashah1@email.com', '0000000000', '', '', NULL, '0', '', 'j7@email.com', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '0000000000', 8, 'NULL', 'NULL', '0000-00-00', 'Meghna Adhvaryu ', 'Advocate', 'NULL', 'B - 202 City Point,J.B Nagar,Andheri (e) - 400059', 'Yusuf Bldg,3rd Floor,Fountain,Fort - 400001', 'NULL', NULL, 0, '0000-00-00', 0000000000, 'j7@email.com', 'NULL', 'Safforn Capital', 'Mis Malvi Ranchoddas', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', '0000-00-00', '00:00:00', 1, 0, NULL, '', ''),
-(9, '1208125', '2026-09-04', 'A12252', '', 'Zahra', '', 'Affendi', 13, 0, 'F', '', '2009-12-27', '4', '', '', '', '', '', '', '103, Silver Cascade Apts, Mount Mary Rd, Nr Mount Mary Curch, Bandra (W)', 'Mumbai', 'Maharahstra', 'India', '400050', '022-26411000', 'Kavish Affendi ', '0', 0.00, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 2, 2, 0, '2026', '', '1208125', '1208125', 'N', 0, '12345', '12345', 0, 'NA', '1', '../student_images/A12252.JPG', 'kavish.affendi@email.com', '', 'NULL', 'sabahet22@mail.co.in', '0', '', '', 0, '0', '', 'kavish.affendi@email.com', '', '', '', '', '', '', '0000000000', 9, '', '', '0000-00-00', 'Saba Affendi ', '0', '', '0', '0', '', NULL, 0, '0000-00-00', 0000000000, 'kavish.affendi@email.com', 'NULL', '', '', '', '', '', '', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', '0000-00-00', '00:00:00', 1, 0, NULL, '', ''),
-(10, '1206754', '2026-09-07', 'A1187', 'NULL', 'Aditya', '', 'Agarwal', 13, NULL, 'M', 'NULL', '1996-07-07', '17', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '2601 Verona, Hiranandani Gardens, Powai', 'Mumbai', 'Maharahstra', 'India', '400076', '40055469', 'Arvind Agarwal ', '0', NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 4, 16, NULL, '2026', 'NULL', '1206754', '1206754', 'N', 57, '12345', '12345', NULL, 'NULL', '1', '../student_images/A1187.JPG', 'aditya.agarwal@email.com', '', 'NULL', 'nirupama09@email.com', '0000000000', '', '', NULL, '0', '', 'aagarwal1602@email.com', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '00000000000', NULL, 'NULL', 'NULL', '0000-00-00', 'Nirupama Agarwal ', '0', 'NULL', '0', '0', 'NULL', NULL, 0, '0000-00-00', 00000000000, 'aagarwal1602@email.com', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', '0000-00-00', '00:00:00', 1, 0, NULL, '', '');
+INSERT INTO `student_m` (`id`, `admission_id`, `admission_date`, `student_id`, `usn`, `first_name`, `middle_name`, `last_name`, `nationality`, `religion`, `gender`, `caste_id`, `dob`, `age`, `per_address`, `per_city`, `per_state`, `per_country`, `per_pincode`, `per_phone`, `cor_address`, `cor_city`, `cor_state`, `cor_country`, `cor_pincode`, `cor_phone`, `parent_name`, `parent_occupation`, `parent_income`, `loc_address`, `loc_city`, `loc_state`, `loc_country`, `loc_pincode`, `loc_phone`, `course_admitted`, `course_yearsem`, `quota_id`, `academic_year`, `remarks`, `username`, `password`, `archive`, `class_section_id`, `parent_username`, `parent_password`, `count`, `blood_group`, `admission_type`, `img_source`, `img_source_s`, `marital_status`, `mentor`, `m_email`, `mnum`, `g_name`, `g_occ`, `g_in`, `g_num`, `g_mail`, `f_email`, `place_of_birth`, `f_quali`, `m_quali`, `g_quali`, `lang_id`, `State`, `sms_mobile`, `mother_tongue`, `birth_disct`, `stud_type`, `vdate`, `m_name`, `m_occ`, `m_inc`, `foadd`, `moadd`, `goadd`, `adm_yr`, `tcid`, `tcdate`, `msgphone`, `rgmailid`, `mother_email`, `f_org`, `m_org`, `g_org`, `f_desg`, `m_desg`, `g_desg`, `fpan_no`, `mpan_no`, `gpan_no`, `office`, `per_grade`, `residence`, `parent_org`, `hear_school`, `parent_desig`, `passport_type`, `per_school_name`, `enquiry_type`, `action`, `adminpack`, `inserted_date`, `inserted_time`, `status`, `sem_elig`, `apl_prev`, `m_occp`, `f_occp`) VALUES
+(1, '129720', '2010-02-16', 'A233', '', 'S.Sri', '', 'Krishna', 13, 0, 'M', '', '2001-07-19', '12', '', '', '', '', '', '', 'Flat No. 1904, 19th Flr Tower-II Raheja Tipco Heights, Rani Sati Marg, Malad (E)', 'Mumbai', 'Maharashtra', 'India', '400097', '022 42665185 / 40700', 'S. Sri Shankar ', 'Employee', 0.00, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 3, 11, 0, '2026', '', 'A233', '129720', 'N', 44, '12345', '12345', 1, 'NA', '1', '../student_images/A233.JPG', 'srikrishna.srishankar@email.com', '', 'NULL', 'vidyalakshmishankar@email.com', '0', '', '', 0, '0', '', 'srishankarsrivatsa@email.com', '', '', '', '', '', '', '0000000000', 6, '', '', NULL, 'Srividyalakshmi Vaithianathan ', 'Ca Finance', '', 'Bkc -', '1904 19th Floor, Tower Ii, Raheja Tipco Heights Malad East', '', NULL, 0, NULL, 0000000000, 'srishankarsrivatsa@email.com', 'NULL', '', '', '', '', '', '', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', NULL, '00:00:00', 1, 0, NULL, '', ''),
+(2, '1206018', '2026-07-16', 'A921', '', 'Arsalaan', '', 'Abbas', 13, 0, 'M', '', '2002-02-18', '11', '', '', '', '', '', '', 'Raj Classic, B1507/08, Powai Marg, Off Yari Rd, Versova, Andheri (W)', 'Mumbai', 'Maharashtra', 'India', '400061', '022-26315140', 'Roshan Abbas ', 'Media Entrepreneur', 0.00, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 3, 10, 0, '2026', '', 'A921', '1206018', 'N', 0, '12345', '12345', 0, 'NA', '1', '../student_images/img3/2.jpg', 'arsalaan.abbas@email.com', '', 'NULL', 'shaheen@email.com', '0000000000', '', '', 0, '0', '', 'roshanabbas1970@email.com', '', '', '', '', '', '', '0000000000', 28, '', '', NULL, 'Shaheen Abbas ', 'Jewellry Designer', '', '401,Trans Avenue,Behind Mahada Tel.Exchange,Andheri (w) - 400053', 'Raj Classic,B1507/08,Off Yari Rd,Versova,Andheri (w) - 400061', '', NULL, 0, NULL, 0000000000, 'roshanabbas1970@email.com', 'NULL', 'Encompass Events Pvt Ltd', 'Flower Child', '', '', '', '', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', NULL, '00:00:00', 1, 0, NULL, '', ''),
+(3, '1205821', '2026-04-07', 'A920', 'NULL', 'Ayatal', '', 'Abbas', 13, NULL, 'F', 'NULL', '2007-07-18', '6', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Raj Classic, B1507/08, Panch Marg, Off Yari Rd Versova, Andheri (W)', 'Mumbai', 'Maharashtra', 'India', '400061', '022-26315140', 'Roshan Abbas ', 'Media Entrepreneur', NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 2, 5, NULL, '2026', 'NULL', '1205821', '1205821', 'N', 13, '12345', '12345', 0, 'NULL', '1', '../student_images/A920.JPG', 'roshanabbas1970@email.com,roshan@encompass.in,shaheen@email.com', '', 'NULL', 'shaheen@email.com', '0000000000', '', '', NULL, '0', '', 'roshanabbas1970@email.com', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '0000000000', 28, 'NULL', 'NULL', NULL, 'Shaheen Abbas ', 'Jewellry Designer', 'NULL', '401,Trans Avenue,Behind Mahada Tel.Exchange,Andheri (w) - 400053', 'Raj Classic,B1507/08,Off Yari Rd,Versova,Andheri (w) - 400061', 'NULL', NULL, 0, NULL, 0000000000, 'roshanabbas1970@email.com', 'NULL', 'Encompass Events Pvt Ltd', 'Flower Child', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', NULL, '00:00:00', 1, 0, NULL, '', ''),
+(4, '1201032', '2010-05-29', 'A310', '', 'Mael', 'Abdoun', 'Guezennec', 11, 0, 'M', '', '2005-04-01', '8', '', '', '', '', '', '', 'A - 1803, Oberoi Woods, Mohan Gokhale Rd, Off WE Hwy, Goregaon (E)', 'Mumbai', 'Maharashtra', 'India', '400063', '', 'Olivier Abdoun ', 'Software Engineer', 0.00, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 2, 7, 0, '2026', '', '1201032', '1201032', 'N', 26, '12345', '12345', 0, 'NA', '1', '../student_images/A310.JPG', '', '', 'NULL', 'soazic.guezennec@email.com', '0000000000', '', '', 0, '0', '', 'oabdoun@email.com', '', '', '', '', '', '', '9920709193', 8, '', '', NULL, 'Soazic Guezennec ', 'Artist', '', 'Tour Manhattan 5 - 6, Place De L''iris 92 926 Paris La Defense Cedex', '69 Bud Henri Barbusse Montreuil', '', NULL, 0, NULL, 0000000000, 'oliver.abdoun@atos.net', 'NULL', 'Tour Manhattan', '', '', '', '', '', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', NULL, '00:00:00', 1, 0, NULL, '', ''),
+(5, '1206748', '2026-09-07', 'A1117', 'NULL', 'Devyani', '', 'Abhyankar', 13, NULL, 'F', 'NULL', '2003-03-08', '10', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '15, Yugprabhat, Narayan Pathare Rd, Mahim', 'Mumbai', 'Maharashtra', 'India', '400016', '022-24452623', 'Ravindra Abhyankar ', '0', NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 2, 9, NULL, '2026', 'NULL', '1206748', '1206748', 'N', 37, '12345', '12345', 2, 'NULL', '1', '../student_images/A1117.JPG', 'devyani.abhyankar@email.com', '', 'NULL', 'mena.malgonkar@email.com', '9821883333', '', '', NULL, '0', '', 'ravi.abhyankar@email.com', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '0000000000', 18, 'NULL', 'NULL', NULL, 'Mena Malgavkar ', '0', 'NULL', '0', '0', 'NULL', NULL, 0, NULL, 0000000000, 'ravi.abhyankar@email.com', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', NULL, '00:00:00', 1, 0, NULL, '', ''),
+(6, '1204079', '2026-06-06', 'A728', '', 'Tanishqa', '', 'Abraham', 13, 0, 'F', '', '1998-09-20', '15', '', '', '', '', '', '', '2C/63, Windermere, Oshiwara, Andheri (W)', 'Mumbai', 'Maharashtra', 'India', '400053', '02226355661/26334958', 'Archie Abraham ', '0', 0.00, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 4, 14, 0, '2026', '', '1204079', '1204079', 'N', 52, '12345', '12345', 0, 'NA', '1', '../student_images/img4/6.JPG', 'tanishqa.abraham@email.com', '', 'NULL', 'estherabraham02@email.com', '0000000000', '', '', 0, '0', '', 'archie@aiplgroup.co.in', '', '', '', '', '', '', '0000000000', 8, '', '', NULL, 'Esther Abraham ', '0', '', '0', '0', '', NULL, 0, NULL, 0000000000, 'archie@aiplgroup.co.in', 'NULL', '', '', '', '', '', '', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', NULL, '00:00:00', 1, 0, NULL, '', ''),
+(7, '1208113', NULL, 'A12203', 'NULL', 'Saiesha', '', 'Adhalrao', 13, NULL, 'F', 'NULL', '2010-11-12', '3', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '1002, B-Wing,Valencia, Hiranandani Gardens, Powai', 'Mumbai', 'Maharashtra', 'India', '400076', '022-25704975', 'Akshay Adhalrao ', '0', NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 1, 1, NULL, '2026', 'NULL', '1208113', '1208113', 'N', 0, '12345', 'saiesha@11', 1, 'NULL', '1', '../student_images/A12203.JPG', 'akshay@email.com', '', 'NULL', 'madhuri@email.com', '0000000000', '', '', NULL, '0', '', 'akshay@email.com', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '0000000000', NULL, 'NULL', 'NULL', NULL, 'Madhuri Adhalrao ', '0', 'NULL', '0', '0', 'NULL', NULL, 0, NULL, 0000000000, 'akshay@email.com', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', NULL, '00:00:00', 1, 0, NULL, '', ''),
+(8, '1206173', '2026-02-07', 'A1100', 'NULL', 'Aaria', '', 'Adhvaryu', 13, NULL, 'F', 'NULL', '2009-03-30', '4', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '1601, Rajshree 1, Royal Complex, Eksar Rd, Borivali (W)', 'Mumabi', 'Maharashtra', 'India', '400092', '022-28902092', 'Jay Adhvaryu ', 'Business', NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 2, 3, NULL, '2026', 'NULL', '1206173', '1206173', 'N', 7, '12345', '12345', 0, 'NULL', '1', '../student_images/A1100.JPG', 'j7@email.com,meghnashsh1@email.com', '', 'NULL', 'meghnashah1@email.com', '0000000000', '', '', NULL, '0', '', 'j7@email.com', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '0000000000', 8, 'NULL', 'NULL', NULL, 'Meghna Adhvaryu ', 'Advocate', 'NULL', 'B - 202 City Point,J.B Nagar,Andheri (e) - 400059', 'Yusuf Bldg,3rd Floor,Fountain,Fort - 400001', 'NULL', NULL, 0, NULL, 0000000000, 'j7@email.com', 'NULL', 'Safforn Capital', 'Mis Malvi Ranchoddas', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', NULL, '00:00:00', 1, 0, NULL, '', ''),
+(9, '1208125', '2026-09-04', 'A12252', '', 'Zahra', '', 'Affendi', 13, 0, 'F', '', '2009-12-27', '4', '', '', '', '', '', '', '103, Silver Cascade Apts, Mount Mary Rd, Nr Mount Mary Curch, Bandra (W)', 'Mumbai', 'Maharahstra', 'India', '400050', '022-26411000', 'Kavish Affendi ', '0', 0.00, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 2, 2, 0, '2026', '', '1208125', '1208125', 'N', 0, '12345', '12345', 0, 'NA', '1', '../student_images/A12252.JPG', 'kavish.affendi@email.com', '', 'NULL', 'sabahet22@mail.co.in', '0', '', '', 0, '0', '', 'kavish.affendi@email.com', '', '', '', '', '', '', '0000000000', 9, '', '', NULL, 'Saba Affendi ', '0', '', '0', '0', '', NULL, 0, NULL, 0000000000, 'kavish.affendi@email.com', 'NULL', '', '', '', '', '', '', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', NULL, '00:00:00', 1, 0, NULL, '', ''),
+(10, '1206754', '2026-09-07', 'A1187', 'NULL', 'Aditya', '', 'Agarwal', 13, NULL, 'M', 'NULL', '1996-07-07', '17', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '2601 Verona, Hiranandani Gardens, Powai', 'Mumbai', 'Maharahstra', 'India', '400076', '40055469', 'Arvind Agarwal ', '0', NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 4, 16, NULL, '2026', 'NULL', '1206754', '1206754', 'N', 57, '12345', '12345', NULL, 'NULL', '1', '../student_images/A1187.JPG', 'aditya.agarwal@email.com', '', 'NULL', 'nirupama09@email.com', '0000000000', '', '', NULL, '0', '', 'aagarwal1602@email.com', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '00000000000', NULL, 'NULL', 'NULL', NULL, 'Nirupama Agarwal ', '0', 'NULL', '0', '0', 'NULL', NULL, 0, NULL, 00000000000, 'aagarwal1602@email.com', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', NULL, '00:00:00', 1, 0, NULL, '', '');
 
 -- --------------------------------------------------------
 
@@ -13122,28 +13186,30 @@ INSERT INTO `student_m` (`id`, `admission_id`, `admission_date`, `student_id`, `
 --
 
 CREATE TABLE IF NOT EXISTS `student_mail_list` (
-  `id` int(255) NOT NULL AUTO_INCREMENT,
-  `date_entered` date DEFAULT NULL,
-  `staff_delete_vt` int(11) NOT NULL,
-  `staff_idss` int(11) NOT NULL,
-  `store_ids` int(11) NOT NULL,
-  `student_id` varchar(255) DEFAULT NULL,
-  `first_name` varchar(255) DEFAULT NULL,
-  `last_name` varchar(255) DEFAULT NULL,
-  `stud_mailss` varchar(255) DEFAULT NULL,
-  `emrgcy_mails` varchar(255) DEFAULT NULL,
-  `parent_name` varchar(255) DEFAULT NULL,
-  `m_name` varchar(255) DEFAULT NULL,
-  `f_email` varchar(255) DEFAULT NULL,
-  `m_email` varchar(255) DEFAULT NULL,
-  `g_name` varchar(255) DEFAULT NULL,
-  `g_mail` varchar(255) DEFAULT NULL,
-  `user` varchar(255) DEFAULT NULL,
-  `status` int(10) NOT NULL DEFAULT '0',
-  `person_type` varchar(255) NOT NULL,
-  `staff_mailid` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=236723 ;
+  `id`               MEDIUMINT UNSIGNED  NOT NULL AUTO_INCREMENT,
+  `date_entered`     DATE                DEFAULT NULL,
+  `staff_delete_vt`  INT                 NOT NULL,
+  `staff_idss`       INT                 NOT NULL,
+  `store_ids`        INT                 NOT NULL,
+  `student_id`       VARCHAR(255)        DEFAULT NULL,
+  `first_name`       VARCHAR(255)        DEFAULT NULL,
+  `last_name`        VARCHAR(255)        DEFAULT NULL,
+  `stud_mailss`      VARCHAR(255)        DEFAULT NULL,
+  `emrgcy_mails`     VARCHAR(255)        DEFAULT NULL,
+  `parent_name`      VARCHAR(255)        DEFAULT NULL,
+  `m_name`           VARCHAR(255)        DEFAULT NULL,
+  `f_email`          VARCHAR(255)        DEFAULT NULL,
+  `m_email`          VARCHAR(255)        DEFAULT NULL,
+  `g_name`           VARCHAR(255)        DEFAULT NULL,
+  `g_mail`           VARCHAR(255)        DEFAULT NULL,
+  `user`             VARCHAR(255)        DEFAULT NULL,
+  `status`           INT                 NOT NULL DEFAULT '0',
+  `person_type`      VARCHAR(255)        NOT NULL,
+  `staff_mailid`     VARCHAR(255)        DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_student_id`  (`student_id`),
+  INDEX `ix_date_status` (`date_entered`, `status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `student_mail_list`
@@ -13167,11 +13233,11 @@ INSERT INTO `student_mail_list` (`id`, `date_entered`, `staff_delete_vt`, `staff
 --
 
 CREATE TABLE IF NOT EXISTS `student_modify` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_field_name` varchar(50) NOT NULL,
-  `student_interface_name` varchar(50) NOT NULL,
+  `id`                      INT          NOT NULL AUTO_INCREMENT,
+  `student_field_name`      VARCHAR(50)  NOT NULL,
+  `student_interface_name`  VARCHAR(50)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=160 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `student_modify`
@@ -13196,31 +13262,31 @@ INSERT INTO `student_modify` (`id`, `student_field_name`, `student_interface_nam
 --
 
 CREATE TABLE IF NOT EXISTS `student_m_adminpack` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `reg_code` varchar(20) DEFAULT NULL COMMENT 'MASTER ID OF student_m_online',
-  `app_no` varchar(20) DEFAULT NULL,
-  `enquiry` varchar(20) DEFAULT NULL,
-  `handover_date` date DEFAULT NULL,
-  `courier` varchar(20) DEFAULT NULL,
-  `consignment` varchar(20) DEFAULT NULL,
-  `send_date` date DEFAULT NULL,
-  `receive_date` date DEFAULT NULL,
-  `action` varchar(10) DEFAULT 'Disapprove',
-  `inserted_date` date DEFAULT NULL,
-  `inserted_time` time DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`             INT          NOT NULL AUTO_INCREMENT,
+  `reg_code`       VARCHAR(20)  DEFAULT NULL COMMENT 'MASTER ID OF student_m_online',
+  `app_no`         VARCHAR(20)  DEFAULT NULL,
+  `enquiry`        VARCHAR(20)  DEFAULT NULL,
+  `handover_date`  DATE         DEFAULT NULL,
+  `courier`        VARCHAR(20)  DEFAULT NULL,
+  `consignment`    VARCHAR(20)  DEFAULT NULL,
+  `send_date`      DATE         DEFAULT NULL,
+  `receive_date`   DATE         DEFAULT NULL,
+  `action`         VARCHAR(10)  DEFAULT 'Disapprove',
+  `inserted_date`  DATE         DEFAULT NULL,
+  `inserted_time`  TIME         DEFAULT NULL,
+  `status`         TINYINT(1)   DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=100004 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `student_m_adminpack`
 --
 
 INSERT INTO `student_m_adminpack` (`id`, `reg_code`, `app_no`, `enquiry`, `handover_date`, `courier`, `consignment`, `send_date`, `receive_date`, `action`, `inserted_date`, `inserted_time`, `status`) VALUES
-(1, '100001', '12345', 'courier_service', '0000-00-00', 'DTDC', '12346', '2026-02-20', '2026-02-26', 'Disapprove', '2026-02-26', '16:15:38', 1),
-(2, '100002', '12347', 'manual_handover', '2026-02-10', '', '', '0000-00-00', '2026-02-26', 'Approve', '2026-02-26', '16:16:08', 1),
-(3, '100003', '12348', 'courier_service', '0000-00-00', 'Blue Dart', '12349', '2026-02-18', '2026-02-26', 'Approve', '2026-02-26', '17:06:03', 1),
-(4, '100004', '12349', 'manual_handover', '2026-03-01', '', '', '0000-00-00', '2026-01-08', 'Approve', '2026-03-01', '11:20:53', 1);
+(1, '100001', '12345', 'courier_service', NULL, 'DTDC', '12346', '2026-02-20', '2026-02-26', 'Disapprove', '2026-02-26', '16:15:38', 1),
+(2, '100002', '12347', 'manual_handover', '2026-02-10', '', '', NULL, '2026-02-26', 'Approve', '2026-02-26', '16:16:08', 1),
+(3, '100003', '12348', 'courier_service', NULL, 'Blue Dart', '12349', '2026-02-18', '2026-02-26', 'Approve', '2026-02-26', '17:06:03', 1),
+(4, '100004', '12349', 'manual_handover', '2026-03-01', '', '', NULL, '2026-01-08', 'Approve', '2026-03-01', '11:20:53', 1);
 
 -- --------------------------------------------------------
 
@@ -13229,19 +13295,19 @@ INSERT INTO `student_m_adminpack` (`id`, `reg_code`, `app_no`, `enquiry`, `hando
 --
 
 CREATE TABLE IF NOT EXISTS `student_m_appointment` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_name` varchar(100) DEFAULT NULL,
-  `parent_name` varchar(100) DEFAULT NULL,
-  `dob` date DEFAULT NULL,
-  `mobile` varchar(30) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `description` text,
-  `app_date` datetime DEFAULT NULL,
-  `inserted_date` date DEFAULT NULL,
-  `inserted_time` time DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `student_name`   VARCHAR(100)  DEFAULT NULL,
+  `parent_name`    VARCHAR(100)  DEFAULT NULL,
+  `dob`            DATE          DEFAULT NULL,
+  `mobile`         VARCHAR(30)   DEFAULT NULL,
+  `email`          VARCHAR(255)  DEFAULT NULL,
+  `description`    TEXT,
+  `app_date`       DATETIME      DEFAULT NULL,
+  `inserted_date`  DATE          DEFAULT NULL,
+  `inserted_time`  TIME          DEFAULT NULL,
+  `status`         TINYINT(1)    DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `student_m_appointment`
@@ -13258,20 +13324,20 @@ INSERT INTO `student_m_appointment` (`id`, `student_name`, `parent_name`, `dob`,
 --
 
 CREATE TABLE IF NOT EXISTS `student_m_ec` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fname` varchar(100) DEFAULT NULL,
-  `lname` varchar(100) DEFAULT NULL,
-  `relation` varchar(50) DEFAULT NULL,
-  `countryCode` int(10) DEFAULT NULL,
-  `home_phone` bigint(15) DEFAULT NULL,
-  `cell_phone` bigint(15) DEFAULT NULL,
-  `work_phone` bigint(15) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `note` text,
-  `inserted_date` date DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `fname`          VARCHAR(100)  DEFAULT NULL,
+  `lname`          VARCHAR(100)  DEFAULT NULL,
+  `relation`       VARCHAR(50)   DEFAULT NULL,
+  `countryCode`    INT           DEFAULT NULL,
+  `home_phone`     BIGINT        DEFAULT NULL,
+  `cell_phone`     BIGINT        DEFAULT NULL,
+  `work_phone`     BIGINT        DEFAULT NULL,
+  `email`          VARCHAR(255)  DEFAULT NULL,
+  `note`           TEXT,
+  `inserted_date`  DATE          DEFAULT NULL,
+  `status`         TINYINT(1)    DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `student_m_ec`
@@ -13294,11 +13360,11 @@ INSERT INTO `student_m_ec` (`id`, `fname`, `lname`, `relation`, `countryCode`, `
 --
 
 CREATE TABLE IF NOT EXISTS `student_m_enquirystatus` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`      INT          NOT NULL AUTO_INCREMENT,
+  `name`    VARCHAR(20)  DEFAULT NULL,
+  `status`  TINYINT(1)   DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `student_m_enquirystatus`
@@ -13318,11 +13384,11 @@ INSERT INTO `student_m_enquirystatus` (`id`, `name`, `status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `student_m_event` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `event` varchar(100) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`      INT           NOT NULL AUTO_INCREMENT,
+  `event`   VARCHAR(100)  DEFAULT NULL,
+  `status`  TINYINT(1)    DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `student_m_event`
@@ -13383,18 +13449,18 @@ INSERT INTO `student_m_event` (`id`, `event`, `status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `student_m_field` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tab_id` int(2) DEFAULT NULL COMMENT 'student_m_tab master id',
-  `order` int(2) DEFAULT NULL,
-  `user_name` varchar(255) DEFAULT NULL,
-  `field_name` varchar(100) DEFAULT NULL,
-  `display_name` varchar(100) DEFAULT NULL,
-  `field_type` varchar(10) DEFAULT NULL,
-  `mandatory` int(1) DEFAULT '0' COMMENT '1=Mandatory Field ',
-  `inserted_date` datetime DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `tab_id`         INT           DEFAULT NULL COMMENT 'student_m_tab master id',
+  `order`          INT           DEFAULT NULL,
+  `user_name`      VARCHAR(255)  DEFAULT NULL,
+  `field_name`     VARCHAR(100)  DEFAULT NULL,
+  `display_name`   VARCHAR(100)  DEFAULT NULL,
+  `field_type`     VARCHAR(10)   DEFAULT NULL,
+  `mandatory`      TINYINT(1)    DEFAULT '0' COMMENT '1=Mandatory Field ',
+  `inserted_date`  DATETIME      DEFAULT NULL,
+  `status`         TINYINT(1)    DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `student_m_field`
@@ -13464,25 +13530,25 @@ INSERT INTO `student_m_field` (`id`, `tab_id`, `order`, `user_name`, `field_name
 --
 
 CREATE TABLE IF NOT EXISTS `student_m_flexi` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `inserted_date` datetime DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
-  `Passport_No_8` varchar(100) DEFAULT NULL,
-  `Passport_Type_8` varchar(100) DEFAULT NULL,
-  `Passport_Issue_Date_8` varchar(100) DEFAULT NULL,
-  `Passport_Expiry_Date_8` varchar(100) DEFAULT NULL,
-  `Previous_School_Name_9` varchar(100) DEFAULT NULL,
-  `Previous_Grade_9` varchar(100) DEFAULT NULL,
-  `Email_ID_2` varchar(100) DEFAULT NULL,
-  `PS_No_2` varchar(100) DEFAULT NULL,
-  `Other_Info_2` varchar(100) DEFAULT NULL,
-  `Sample_feild_10` varchar(100) DEFAULT NULL,
-  `Date_of_Joining_2` varchar(100) DEFAULT NULL,
-  `Passport_info_8` varchar(100) DEFAULT NULL,
-  `Father_PAN_4` varchar(100) DEFAULT NULL,
-  `Mother_PAN_4` varchar(100) DEFAULT NULL,
+  `id`                      INT           NOT NULL AUTO_INCREMENT,
+  `inserted_date`           DATETIME      DEFAULT NULL,
+  `status`                  TINYINT(1)    DEFAULT '1',
+  `Passport_No_8`           VARCHAR(100)  DEFAULT NULL,
+  `Passport_Type_8`         VARCHAR(100)  DEFAULT NULL,
+  `Passport_Issue_Date_8`   VARCHAR(100)  DEFAULT NULL,
+  `Passport_Expiry_Date_8`  VARCHAR(100)  DEFAULT NULL,
+  `Previous_School_Name_9`  VARCHAR(100)  DEFAULT NULL,
+  `Previous_Grade_9`        VARCHAR(100)  DEFAULT NULL,
+  `Email_ID_2`              VARCHAR(100)  DEFAULT NULL,
+  `PS_No_2`                 VARCHAR(100)  DEFAULT NULL,
+  `Other_Info_2`            VARCHAR(100)  DEFAULT NULL,
+  `Sample_feild_10`         VARCHAR(100)  DEFAULT NULL,
+  `Date_of_Joining_2`       VARCHAR(100)  DEFAULT NULL,
+  `Passport_info_8`         VARCHAR(100)  DEFAULT NULL,
+  `Father_PAN_4`            VARCHAR(100)  DEFAULT NULL,
+  `Mother_PAN_4`            VARCHAR(100)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -13491,136 +13557,136 @@ CREATE TABLE IF NOT EXISTS `student_m_flexi` (
 --
 
 CREATE TABLE IF NOT EXISTS `student_m_online` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `admission_id` varchar(20) DEFAULT NULL,
-  `admission_date` date DEFAULT NULL,
-  `student_id` varchar(20) DEFAULT NULL,
-  `usn` varchar(20) DEFAULT NULL,
-  `first_name` varchar(30) DEFAULT NULL,
-  `middle_name` varchar(30) NOT NULL,
-  `last_name` varchar(30) DEFAULT NULL,
-  `nationality` int(3) DEFAULT NULL,
-  `religion` int(2) DEFAULT NULL,
-  `gender` char(1) DEFAULT NULL,
-  `caste_id` varchar(50) DEFAULT NULL,
-  `dob` date DEFAULT NULL,
-  `age` varchar(10) DEFAULT NULL,
-  `per_address` varchar(250) DEFAULT NULL,
-  `per_city` varchar(100) DEFAULT NULL,
-  `per_state` varchar(50) DEFAULT NULL,
-  `per_country` varchar(50) DEFAULT NULL,
-  `per_pincode` varchar(7) DEFAULT NULL,
-  `per_phone` varchar(20) DEFAULT NULL,
-  `cor_address` varchar(250) DEFAULT NULL,
-  `cor_city` varchar(100) DEFAULT NULL,
-  `cor_state` varchar(50) DEFAULT NULL,
-  `cor_country` varchar(50) DEFAULT NULL,
-  `cor_pincode` varchar(7) DEFAULT NULL,
-  `cor_phone` varchar(20) DEFAULT NULL,
-  `parent_name` varchar(60) DEFAULT NULL,
-  `parent_occupation` varchar(30) DEFAULT NULL,
-  `parent_income` float(12,2) DEFAULT NULL,
-  `loc_address` varchar(250) DEFAULT NULL,
-  `loc_city` varchar(100) DEFAULT NULL,
-  `loc_state` varchar(50) DEFAULT NULL,
-  `loc_country` varchar(50) DEFAULT NULL,
-  `loc_pincode` varchar(7) DEFAULT NULL,
-  `loc_phone` varchar(20) DEFAULT NULL,
-  `course_admitted` int(11) DEFAULT NULL,
-  `course_yearsem` int(11) DEFAULT NULL,
-  `quota_id` int(3) DEFAULT NULL,
-  `academic_year` varchar(12) DEFAULT NULL,
-  `remarks` varchar(250) DEFAULT NULL,
-  `username` varchar(15) DEFAULT NULL,
-  `password` varchar(15) DEFAULT NULL,
-  `archive` enum('Y','N','F') DEFAULT 'N',
-  `class_section_id` int(1) NOT NULL DEFAULT '0',
-  `parent_username` varchar(15) DEFAULT NULL,
-  `parent_password` varchar(35) DEFAULT NULL,
-  `count` int(11) DEFAULT NULL,
-  `blood_group` varchar(20) DEFAULT NULL,
-  `admission_type` varchar(10) DEFAULT NULL,
-  `img_source` varchar(255) DEFAULT NULL,
-  `img_source_s` varchar(255) DEFAULT NULL,
-  `marital_status` varchar(2) NOT NULL,
-  `mentor` varchar(15) DEFAULT '',
-  `m_email` varchar(100) DEFAULT NULL,
-  `mnum` bigint(15) DEFAULT NULL,
-  `g_name` varchar(15) DEFAULT NULL,
-  `g_occ` varchar(15) DEFAULT NULL,
-  `g_in` bigint(15) DEFAULT NULL,
-  `g_num` bigint(15) DEFAULT NULL,
-  `g_mail` varchar(100) DEFAULT NULL,
-  `f_email` varchar(100) DEFAULT NULL,
-  `place_of_birth` varchar(30) DEFAULT NULL,
-  `f_quali` varchar(30) DEFAULT NULL,
-  `m_quali` varchar(30) DEFAULT NULL,
-  `g_quali` varchar(30) DEFAULT NULL,
-  `lang_id` varchar(200) DEFAULT NULL,
-  `State` varchar(20) DEFAULT 'Karnataka',
-  `sms_mobile` bigint(10) DEFAULT NULL,
-  `mother_tongue` int(2) DEFAULT NULL,
-  `birth_disct` varchar(100) DEFAULT NULL,
-  `stud_type` varchar(10) DEFAULT NULL,
-  `vdate` date DEFAULT NULL,
-  `m_name` varchar(200) DEFAULT NULL,
-  `m_occ` varchar(200) DEFAULT NULL,
-  `m_inc` varchar(15) DEFAULT NULL,
-  `foadd` varchar(255) DEFAULT NULL,
-  `moadd` varchar(255) DEFAULT NULL,
-  `goadd` varchar(255) DEFAULT NULL,
-  `adm_yr` int(4) DEFAULT NULL,
-  `tcid` bigint(12) NOT NULL DEFAULT '0',
-  `tcdate` date NOT NULL,
-  `msgphone` bigint(10) NOT NULL,
-  `rgmailid` varchar(100) NOT NULL,
-  `Mothers_EMai_ID` varchar(30) DEFAULT NULL,
-  `f_org` varchar(100) DEFAULT NULL,
-  `m_org` varchar(100) DEFAULT NULL,
-  `g_org` varchar(100) DEFAULT NULL,
-  `f_desg` varchar(100) DEFAULT NULL,
-  `m_desg` varchar(100) DEFAULT NULL,
-  `g_desg` varchar(100) DEFAULT NULL,
-  `fpan_no` varchar(20) DEFAULT NULL,
-  `mpan_no` varchar(20) DEFAULT NULL,
-  `gpan_no` varchar(20) DEFAULT NULL,
-  `office` varchar(255) DEFAULT NULL,
-  `per_grade` varchar(100) DEFAULT NULL,
-  `residence` varchar(255) DEFAULT NULL,
-  `parent_org` text,
-  `hear_school` varchar(255) DEFAULT NULL,
-  `parent_desig` varchar(100) DEFAULT NULL,
-  `passport_type` varchar(20) DEFAULT NULL,
-  `per_school_name` varchar(255) DEFAULT NULL,
-  `enquiry_type` varchar(10) DEFAULT NULL,
-  `action` varchar(30) DEFAULT NULL,
-  `adminpack` varchar(2) DEFAULT 'N' COMMENT 'AFTER ADMIN-PACK DONE THIS WILL CHAGE TO ''Y''',
-  `inserted_date` date DEFAULT NULL,
-  `inserted_time` time DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
-  `sem_elig` int(2) NOT NULL,
-  `apl_prev` int(2) DEFAULT NULL,
-  `m_occp` varchar(250) NOT NULL,
-  `f_occp` varchar(250) NOT NULL,
+  `id`                 INT                NOT NULL AUTO_INCREMENT,
+  `admission_id`       VARCHAR(20)        DEFAULT NULL,
+  `admission_date`     DATE               DEFAULT NULL,
+  `student_id`         VARCHAR(20)        DEFAULT NULL,
+  `usn`                VARCHAR(20)        DEFAULT NULL,
+  `first_name`         VARCHAR(30)        DEFAULT NULL,
+  `middle_name`        VARCHAR(30)        NOT NULL,
+  `last_name`          VARCHAR(30)        DEFAULT NULL,
+  `nationality`        SMALLINT UNSIGNED  DEFAULT NULL,
+  `religion`           TINYINT UNSIGNED   DEFAULT NULL,
+  `gender`             CHAR(1)            DEFAULT NULL,
+  `caste_id`           VARCHAR(50)        DEFAULT NULL,
+  `dob`                DATE               DEFAULT NULL,
+  `age`                VARCHAR(10)        DEFAULT NULL,
+  `per_address`        VARCHAR(250)       DEFAULT NULL,
+  `per_city`           VARCHAR(100)       DEFAULT NULL,
+  `per_state`          VARCHAR(50)        DEFAULT NULL,
+  `per_country`        VARCHAR(50)        DEFAULT NULL,
+  `per_pincode`        VARCHAR(7)         DEFAULT NULL,
+  `per_phone`          VARCHAR(20)        DEFAULT NULL,
+  `cor_address`        VARCHAR(250)       DEFAULT NULL,
+  `cor_city`           VARCHAR(100)       DEFAULT NULL,
+  `cor_state`          VARCHAR(50)        DEFAULT NULL,
+  `cor_country`        VARCHAR(50)        DEFAULT NULL,
+  `cor_pincode`        VARCHAR(7)         DEFAULT NULL,
+  `cor_phone`          VARCHAR(20)        DEFAULT NULL,
+  `parent_name`        VARCHAR(60)        DEFAULT NULL,
+  `parent_occupation`  VARCHAR(30)        DEFAULT NULL,
+  `parent_income`      FLOAT(12,2)        DEFAULT NULL,
+  `loc_address`        VARCHAR(250)       DEFAULT NULL,
+  `loc_city`           VARCHAR(100)       DEFAULT NULL,
+  `loc_state`          VARCHAR(50)        DEFAULT NULL,
+  `loc_country`        VARCHAR(50)        DEFAULT NULL,
+  `loc_pincode`        VARCHAR(7)         DEFAULT NULL,
+  `loc_phone`          VARCHAR(20)        DEFAULT NULL,
+  `course_admitted`    INT                DEFAULT NULL,
+  `course_yearsem`     INT                DEFAULT NULL,
+  `quota_id`           INT                DEFAULT NULL,
+  `academic_year`      VARCHAR(12)        DEFAULT NULL,
+  `remarks`            VARCHAR(250)       DEFAULT NULL,
+  `username`           VARCHAR(15)        DEFAULT NULL,
+  `password`           VARCHAR(255)       DEFAULT NULL,
+  `archive`            ENUM('Y','N','F')  DEFAULT 'N',
+  `class_section_id`   TINYINT(1)         NOT NULL DEFAULT '0',
+  `parent_username`    VARCHAR(15)        DEFAULT NULL,
+  `parent_password`    VARCHAR(35)        DEFAULT NULL,
+  `count`              INT                DEFAULT NULL,
+  `blood_group`        VARCHAR(20)        DEFAULT NULL,
+  `admission_type`     VARCHAR(10)        DEFAULT NULL,
+  `img_source`         VARCHAR(255)       DEFAULT NULL,
+  `img_source_s`       VARCHAR(255)       DEFAULT NULL,
+  `marital_status`     VARCHAR(2)         NOT NULL,
+  `mentor`             VARCHAR(15)        DEFAULT '',
+  `m_email`            VARCHAR(100)       DEFAULT NULL,
+  `mnum`               BIGINT             DEFAULT NULL,
+  `g_name`             VARCHAR(15)        DEFAULT NULL,
+  `g_occ`              VARCHAR(15)        DEFAULT NULL,
+  `g_in`               BIGINT             DEFAULT NULL,
+  `g_num`              BIGINT             DEFAULT NULL,
+  `g_mail`             VARCHAR(100)       DEFAULT NULL,
+  `f_email`            VARCHAR(100)       DEFAULT NULL,
+  `place_of_birth`     VARCHAR(30)        DEFAULT NULL,
+  `f_quali`            VARCHAR(30)        DEFAULT NULL,
+  `m_quali`            VARCHAR(30)        DEFAULT NULL,
+  `g_quali`            VARCHAR(30)        DEFAULT NULL,
+  `lang_id`            VARCHAR(200)       DEFAULT NULL,
+  `State`              VARCHAR(20)        DEFAULT 'Karnataka',
+  `sms_mobile`         VARCHAR(15)        DEFAULT NULL,
+  `mother_tongue`      TINYINT UNSIGNED   DEFAULT NULL,
+  `birth_disct`        VARCHAR(100)       DEFAULT NULL,
+  `stud_type`          VARCHAR(10)        DEFAULT NULL,
+  `vdate`              DATE               DEFAULT NULL,
+  `m_name`             VARCHAR(200)       DEFAULT NULL,
+  `m_occ`              VARCHAR(200)       DEFAULT NULL,
+  `m_inc`              VARCHAR(15)        DEFAULT NULL,
+  `foadd`              VARCHAR(255)       DEFAULT NULL,
+  `moadd`              VARCHAR(255)       DEFAULT NULL,
+  `goadd`              VARCHAR(255)       DEFAULT NULL,
+  `adm_yr`             SMALLINT UNSIGNED  DEFAULT NULL,
+  `tcid`               BIGINT             NOT NULL DEFAULT '0',
+  `tcdate`             DATE               NOT NULL,
+  `msgphone`           BIGINT             NOT NULL,
+  `rgmailid`           VARCHAR(100)       NOT NULL,
+  `mother_email`       VARCHAR(30)        DEFAULT NULL,
+  `f_org`              VARCHAR(100)       DEFAULT NULL,
+  `m_org`              VARCHAR(100)       DEFAULT NULL,
+  `g_org`              VARCHAR(100)       DEFAULT NULL,
+  `f_desg`             VARCHAR(100)       DEFAULT NULL,
+  `m_desg`             VARCHAR(100)       DEFAULT NULL,
+  `g_desg`             VARCHAR(100)       DEFAULT NULL,
+  `fpan_no`            VARCHAR(20)        DEFAULT NULL,
+  `mpan_no`            VARCHAR(20)        DEFAULT NULL,
+  `gpan_no`            VARCHAR(20)        DEFAULT NULL,
+  `office`             VARCHAR(255)       DEFAULT NULL,
+  `per_grade`          VARCHAR(100)       DEFAULT NULL,
+  `residence`          VARCHAR(255)       DEFAULT NULL,
+  `parent_org`         TEXT,
+  `hear_school`        VARCHAR(255)       DEFAULT NULL,
+  `parent_desig`       VARCHAR(100)       DEFAULT NULL,
+  `passport_type`      VARCHAR(20)        DEFAULT NULL,
+  `per_school_name`    VARCHAR(255)       DEFAULT NULL,
+  `enquiry_type`       VARCHAR(10)        DEFAULT NULL,
+  `action`             VARCHAR(30)        DEFAULT NULL,
+  `adminpack`          VARCHAR(2)         DEFAULT 'N' COMMENT 'AFTER ADMIN-PACK DONE THIS WILL CHAGE TO ''Y''',
+  `inserted_date`      DATE               DEFAULT NULL,
+  `inserted_time`      TIME               DEFAULT NULL,
+  `status`             TINYINT(1)         DEFAULT '1',
+  `sem_elig`           TINYINT UNSIGNED   NOT NULL,
+  `apl_prev`           TINYINT UNSIGNED   DEFAULT NULL,
+  `m_occp`             VARCHAR(250)       NOT NULL,
+  `f_occp`             VARCHAR(250)       NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1001254 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `student_m_online`
 --
 
-INSERT INTO `student_m_online` (`id`, `admission_id`, `admission_date`, `student_id`, `usn`, `first_name`, `middle_name`, `last_name`, `nationality`, `religion`, `gender`, `caste_id`, `dob`, `age`, `per_address`, `per_city`, `per_state`, `per_country`, `per_pincode`, `per_phone`, `cor_address`, `cor_city`, `cor_state`, `cor_country`, `cor_pincode`, `cor_phone`, `parent_name`, `parent_occupation`, `parent_income`, `loc_address`, `loc_city`, `loc_state`, `loc_country`, `loc_pincode`, `loc_phone`, `course_admitted`, `course_yearsem`, `quota_id`, `academic_year`, `remarks`, `username`, `password`, `archive`, `class_section_id`, `parent_username`, `parent_password`, `count`, `blood_group`, `admission_type`, `img_source`, `img_source_s`, `marital_status`, `mentor`, `m_email`, `mnum`, `g_name`, `g_occ`, `g_in`, `g_num`, `g_mail`, `f_email`, `place_of_birth`, `f_quali`, `m_quali`, `g_quali`, `lang_id`, `State`, `sms_mobile`, `mother_tongue`, `birth_disct`, `stud_type`, `vdate`, `m_name`, `m_occ`, `m_inc`, `foadd`, `moadd`, `goadd`, `adm_yr`, `tcid`, `tcdate`, `msgphone`, `rgmailid`, `Mothers_EMai_ID`, `f_org`, `m_org`, `g_org`, `f_desg`, `m_desg`, `g_desg`, `fpan_no`, `mpan_no`, `gpan_no`, `office`, `per_grade`, `residence`, `parent_org`, `hear_school`, `parent_desig`, `passport_type`, `per_school_name`, `enquiry_type`, `action`, `adminpack`, `inserted_date`, `inserted_time`, `status`, `sem_elig`, `apl_prev`, `m_occp`, `f_occp`) VALUES
-(1000000, NULL, '2026-10-09', NULL, NULL, 'Chayn', '', 'Gupta Murthy ', 6, NULL, NULL, NULL, '2010-10-15', NULL, '8A, Hilltop Apartments,\nPali Hill, \nBandra West\nBombay 400050', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Ansoo Gupta', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 3, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'mahesh.murthy@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'nsoogupta@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Mahesh Murthy', NULL, NULL, NULL, NULL, NULL, NULL, 0, '0000-00-00', 0, '', NULL, 'Pinstorm', 'Seedfund', NULL, 'Chief Operating Officer', 'Managing Partner', NULL, NULL, NULL, NULL, NULL, NULL, 'Montessori', NULL, 'Half-brother - Agni Murthy - studies in OIS, in Grade 11', NULL, NULL, 'Little Butterflies', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'Venture Capital', 'Digital Media'),
-(1000001, NULL, '2026-10-09', NULL, NULL, 'Nishil', '', 'Parwani  ', 31, NULL, NULL, NULL, '2026-12-02', NULL, '32/02 C Wing, Oberoi Springs, Off New Link Road, Opposite Citi Mall, Andheri West, Mumbai 400053, India', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Seema Parwani', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'sameer@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'seema.parwani@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Sameer Parwani', NULL, NULL, NULL, NULL, NULL, NULL, 0, '0000-00-00', 0, '', NULL, 'Education', 'IT', NULL, 'Oberoi International School', 'Coupon Dunia', NULL, NULL, NULL, NULL, NULL, NULL, 'Not Applicable', NULL, 'I am a teacher at your school.', NULL, NULL, 'Not Applicable', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'Computer Engineer', 'Teacher'),
-(1000002, NULL, '2026-10-09', NULL, NULL, 'Renaya', '', 'Batra  ', 13, NULL, NULL, NULL, '2009-06-08', NULL, 'Plot no 40. Renaissance Bldg, 4th floor, Gulmohar Road no 1, JVPD Scheme, Next to Criti Care Hospital, Juhu. Mumbai 400049', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Rohini Batra', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 4, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'rishi_batra@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'batrarohini@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Rishi Batra', NULL, NULL, NULL, NULL, NULL, NULL, 0, '0000-00-00', 0, '', NULL, 'NotApplicable', 'Family Business', NULL, 'Home-maker', 'Administration Manager', NULL, NULL, NULL, NULL, NULL, NULL, 'ICSE', NULL, 'Through friends.', NULL, NULL, 'Camlin Alpha kids', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'Logistics', 'Not Applicable'),
-(1000003, NULL, '2026-10-09', NULL, NULL, 'SHIVAAN', '', 'ANAL PATWA ', 13, NULL, NULL, NULL, '2026-08-13', NULL, '101-102, WESTWIND I, \nGANDHI GRAM ROAD, \nNEAR ISCKON TEMPLE, \nJUHU, MUMBAI 400049.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'JARNA PRADEEP DOSHI', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'ivy.anal@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'jarnadoshi@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'ANAL RAJNIKANT PATWA', NULL, NULL, NULL, NULL, NULL, NULL, 0, '0000-00-00', 0, '', NULL, 'J''S STUDIO', 'IVORY ROSE', NULL, 'PROPRIETOR', 'PARTNER', NULL, NULL, NULL, NULL, NULL, NULL, 'NOT APPLICABLE', NULL, 'PARIZAD PATRAWALA , JUGNU SHAH AND RECENTLY KRUPA BHIMANI. (FRIENDS WHOSE CHILDREN ARE CURRENTLY STUDYING THERE)', NULL, NULL, 'SERRA INTERNATIONAL', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'DIAMOND JEWELRY', 'HOME DECOR'),
-(1000004, NULL, '2026-10-10', NULL, NULL, 'Hridhaan', '', 'kalpesh Mehta ', 13, NULL, NULL, NULL, '2009-04-03', NULL, '302 Jamuna apartment, opposite shoppers stop, s. v. Road, AndheriMumbai west, Mumbai 400058', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Vaidehi kalpesh Mehta', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 4, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'kalpesh@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'vaidehi@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Kalpesh D. Mehta', NULL, NULL, NULL, NULL, NULL, NULL, 0, '0000-00-00', 0, '', NULL, 'Not applicable', 'Mehta exports', NULL, 'Not applicable', 'Managing partner', NULL, NULL, NULL, NULL, NULL, NULL, 'IGCSE', NULL, 'Family and friends', NULL, NULL, 'Utpal shanghai school', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'Exports of Argo products', 'Not applicable'),
-(1000005, NULL, '2026-10-10', NULL, NULL, 'Ashima', '', 'Dasgupta  ', 13, NULL, NULL, NULL, '2026-07-08', NULL, '12A04, E Wing, Raheja Heights, Malad East', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Shweta Dasgupta', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'kaushik.dasgupta@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'shweta.dasgupta@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Kaushik Dasgupta', NULL, NULL, NULL, NULL, NULL, NULL, 0, '0000-00-00', 0, '', NULL, 'Deutsche Bank', 'Avista Advisory', NULL, 'Vice President', 'Senior Associate', NULL, NULL, NULL, NULL, NULL, NULL, 'Not Applicable', NULL, 'From Collegues', NULL, NULL, 'Not Applicable', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'Finance', 'Finance'),
-(1000006, NULL, '2026-10-10', NULL, NULL, 'Hridaan', '', 'Pankil Mehta ', 13, NULL, NULL, NULL, '2026-06-12', NULL, '11/12, Aashit Apartment, A Wing, 1st Floor, Off Juhu Tara Road, Juhu Koliwada, Juhu, Mumbai - 400049', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'AANAL MEHTA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, '2015', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'pankil@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'aanal@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'PANKIL MEHTA', NULL, NULL, NULL, NULL, NULL, NULL, 0, '0000-00-00', 0, '', NULL, 'MARRIAGE MANTRA', 'KIAANA HOME ORIGINALE USA / AFFINITY', NULL, 'DIRECTOR', 'DIRECTOR / MANAGING DIRECTOR', NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, 'Word of mouth through other parents whose children are currently at OIS.', NULL, NULL, '', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'HOME FURNISHINGS / DIGITAL MARKETING', 'EVENTS & EXHIBITIONS'),
-(1000007, NULL, '2026-10-10', NULL, NULL, 'Kabir', '', 'Tahir Majithia ', 13, NULL, NULL, NULL, '2026-11-04', NULL, '501 Hicons Aura, Sherly Rajan Road, Off Carter Road, Bandra (W), Mumbai -400 050', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Zeba Tahir Majithia', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'kevinsm@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'zebanathani@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Tahir Shantikumar Majithia', NULL, NULL, NULL, NULL, NULL, NULL, 0, '0000-00-00', 0, '', NULL, 'Not Applicable', 'Majithia Constructions Pvt.Ltd', NULL, 'Not Applicable', 'Managing Director', NULL, NULL, NULL, NULL, NULL, NULL, 'Not Applicable', NULL, 'Friends', NULL, NULL, 'Not Applicable', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'Real Estate', 'Not Applicable'),
-(1000008, NULL, '2026-10-10', NULL, NULL, 'Ira', '', 'Pande  ', 13, NULL, NULL, NULL, '2026-07-08', NULL, '801, Hicons Enclave,\n14th Road, Khar (West),\nMumbai 400 052.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Kanan Sangani', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'tarun@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'kanansangani@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Tarun Pande', NULL, NULL, NULL, NULL, NULL, NULL, 0, '0000-00-00', 0, '', NULL, 'Beetle & Bottle', 'Lighthouse Funds', NULL, 'Co-founder', 'Chief Financial Officer', NULL, NULL, NULL, NULL, NULL, NULL, 'Play school', NULL, 'We first heard about OIS from Sachin Bhartiya and his wife Seema. Sachin is Tarun’s work colleague and Seema and him are our close friends. Their sons Saksham (JKG) and Satvik (grade 3) have been attending OIS for the past few years.', NULL, NULL, 'Little Bo Peep', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'Private Equity', 'Design label for kids'),
-(1000009, NULL, '2026-10-10', NULL, NULL, 'Aanya', '', 'verma  ', 13, NULL, NULL, NULL, '2026-03-09', NULL, 'A-1104 Oberoi woods, goregaon east, mumbai', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Vandana Verma', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'Sharatv@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'Vandanaluther@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Sharat verma', NULL, NULL, NULL, NULL, NULL, NULL, 0, '0000-00-00', 0, '', NULL, '', 'Procter and gamble', NULL, '', 'Brand Manager', NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, 'Right behind the residence', NULL, NULL, '', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'FMCG', ''),
-(1000010, NULL, '2026-10-10', NULL, NULL, 'Vedant', '', 'Chanakya  ', 13, NULL, NULL, NULL, '2026-04-13', NULL, 'E-1206, Oberoi Splendor, JVLR, Andheri East, Mumbai 400060', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Aishvarya', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'Chanakya.gupta@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'Aishvarya.m@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Chanakya Gupta', NULL, NULL, NULL, NULL, NULL, NULL, 0, '0000-00-00', 0, '', NULL, 'Hindustan Unilever Limited', 'Hindustan Unilever Limited', NULL, 'Marketing Manager', 'National Account Manager', NULL, NULL, NULL, NULL, NULL, NULL, 'Play school', NULL, 'Through friends in the apartment complex and colleagues at work', NULL, NULL, 'The Little Company, unilever campus', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'Sales and Marketing', 'Sales and Marketing');
+INSERT INTO `student_m_online` (`id`, `admission_id`, `admission_date`, `student_id`, `usn`, `first_name`, `middle_name`, `last_name`, `nationality`, `religion`, `gender`, `caste_id`, `dob`, `age`, `per_address`, `per_city`, `per_state`, `per_country`, `per_pincode`, `per_phone`, `cor_address`, `cor_city`, `cor_state`, `cor_country`, `cor_pincode`, `cor_phone`, `parent_name`, `parent_occupation`, `parent_income`, `loc_address`, `loc_city`, `loc_state`, `loc_country`, `loc_pincode`, `loc_phone`, `course_admitted`, `course_yearsem`, `quota_id`, `academic_year`, `remarks`, `username`, `password`, `archive`, `class_section_id`, `parent_username`, `parent_password`, `count`, `blood_group`, `admission_type`, `img_source`, `img_source_s`, `marital_status`, `mentor`, `m_email`, `mnum`, `g_name`, `g_occ`, `g_in`, `g_num`, `g_mail`, `f_email`, `place_of_birth`, `f_quali`, `m_quali`, `g_quali`, `lang_id`, `State`, `sms_mobile`, `mother_tongue`, `birth_disct`, `stud_type`, `vdate`, `m_name`, `m_occ`, `m_inc`, `foadd`, `moadd`, `goadd`, `adm_yr`, `tcid`, `tcdate`, `msgphone`, `rgmailid`, `mother_email`, `f_org`, `m_org`, `g_org`, `f_desg`, `m_desg`, `g_desg`, `fpan_no`, `mpan_no`, `gpan_no`, `office`, `per_grade`, `residence`, `parent_org`, `hear_school`, `parent_desig`, `passport_type`, `per_school_name`, `enquiry_type`, `action`, `adminpack`, `inserted_date`, `inserted_time`, `status`, `sem_elig`, `apl_prev`, `m_occp`, `f_occp`) VALUES
+(1000000, NULL, '2026-10-09', NULL, NULL, 'Chayn', '', 'Gupta Murthy ', 6, NULL, NULL, NULL, '2010-10-15', NULL, '8A, Hilltop Apartments,\nPali Hill, \nBandra West\nBombay 400050', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Ansoo Gupta', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 3, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'mahesh.murthy@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'nsoogupta@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Mahesh Murthy', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '', NULL, 'Pinstorm', 'Seedfund', NULL, 'Chief Operating Officer', 'Managing Partner', NULL, NULL, NULL, NULL, NULL, NULL, 'Montessori', NULL, 'Half-brother - Agni Murthy - studies in OIS, in Grade 11', NULL, NULL, 'Little Butterflies', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'Venture Capital', 'Digital Media'),
+(1000001, NULL, '2026-10-09', NULL, NULL, 'Nishil', '', 'Parwani  ', 31, NULL, NULL, NULL, '2026-12-02', NULL, '32/02 C Wing, Oberoi Springs, Off New Link Road, Opposite Citi Mall, Andheri West, Mumbai 400053, India', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Seema Parwani', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'sameer@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'seema.parwani@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Sameer Parwani', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '', NULL, 'Education', 'IT', NULL, 'Oberoi International School', 'Coupon Dunia', NULL, NULL, NULL, NULL, NULL, NULL, 'Not Applicable', NULL, 'I am a teacher at your school.', NULL, NULL, 'Not Applicable', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'Computer Engineer', 'Teacher'),
+(1000002, NULL, '2026-10-09', NULL, NULL, 'Renaya', '', 'Batra  ', 13, NULL, NULL, NULL, '2009-06-08', NULL, 'Plot no 40. Renaissance Bldg, 4th floor, Gulmohar Road no 1, JVPD Scheme, Next to Criti Care Hospital, Juhu. Mumbai 400049', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Rohini Batra', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 4, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'rishi_batra@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'batrarohini@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Rishi Batra', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '', NULL, 'NotApplicable', 'Family Business', NULL, 'Home-maker', 'Administration Manager', NULL, NULL, NULL, NULL, NULL, NULL, 'ICSE', NULL, 'Through friends.', NULL, NULL, 'Camlin Alpha kids', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'Logistics', 'Not Applicable'),
+(1000003, NULL, '2026-10-09', NULL, NULL, 'SHIVAAN', '', 'ANAL PATWA ', 13, NULL, NULL, NULL, '2026-08-13', NULL, '101-102, WESTWIND I, \nGANDHI GRAM ROAD, \nNEAR ISCKON TEMPLE, \nJUHU, MUMBAI 400049.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'JARNA PRADEEP DOSHI', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'ivy.anal@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'jarnadoshi@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'ANAL RAJNIKANT PATWA', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '', NULL, 'J''S STUDIO', 'IVORY ROSE', NULL, 'PROPRIETOR', 'PARTNER', NULL, NULL, NULL, NULL, NULL, NULL, 'NOT APPLICABLE', NULL, 'PARIZAD PATRAWALA , JUGNU SHAH AND RECENTLY KRUPA BHIMANI. (FRIENDS WHOSE CHILDREN ARE CURRENTLY STUDYING THERE)', NULL, NULL, 'SERRA INTERNATIONAL', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'DIAMOND JEWELRY', 'HOME DECOR'),
+(1000004, NULL, '2026-10-10', NULL, NULL, 'Hridhaan', '', 'kalpesh Mehta ', 13, NULL, NULL, NULL, '2009-04-03', NULL, '302 Jamuna apartment, opposite shoppers stop, s. v. Road, AndheriMumbai west, Mumbai 400058', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Vaidehi kalpesh Mehta', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 4, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'kalpesh@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'vaidehi@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Kalpesh D. Mehta', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '', NULL, 'Not applicable', 'Mehta exports', NULL, 'Not applicable', 'Managing partner', NULL, NULL, NULL, NULL, NULL, NULL, 'IGCSE', NULL, 'Family and friends', NULL, NULL, 'Utpal shanghai school', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'Exports of Argo products', 'Not applicable'),
+(1000005, NULL, '2026-10-10', NULL, NULL, 'Ashima', '', 'Dasgupta  ', 13, NULL, NULL, NULL, '2026-07-08', NULL, '12A04, E Wing, Raheja Heights, Malad East', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Shweta Dasgupta', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'kaushik.dasgupta@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'shweta.dasgupta@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Kaushik Dasgupta', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '', NULL, 'Deutsche Bank', 'Avista Advisory', NULL, 'Vice President', 'Senior Associate', NULL, NULL, NULL, NULL, NULL, NULL, 'Not Applicable', NULL, 'From Collegues', NULL, NULL, 'Not Applicable', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'Finance', 'Finance'),
+(1000006, NULL, '2026-10-10', NULL, NULL, 'Hridaan', '', 'Pankil Mehta ', 13, NULL, NULL, NULL, '2026-06-12', NULL, '11/12, Aashit Apartment, A Wing, 1st Floor, Off Juhu Tara Road, Juhu Koliwada, Juhu, Mumbai - 400049', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'AANAL MEHTA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, '2015', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'pankil@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'aanal@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'PANKIL MEHTA', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '', NULL, 'MARRIAGE MANTRA', 'KIAANA HOME ORIGINALE USA / AFFINITY', NULL, 'DIRECTOR', 'DIRECTOR / MANAGING DIRECTOR', NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, 'Word of mouth through other parents whose children are currently at OIS.', NULL, NULL, '', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'HOME FURNISHINGS / DIGITAL MARKETING', 'EVENTS & EXHIBITIONS'),
+(1000007, NULL, '2026-10-10', NULL, NULL, 'Kabir', '', 'Tahir Majithia ', 13, NULL, NULL, NULL, '2026-11-04', NULL, '501 Hicons Aura, Sherly Rajan Road, Off Carter Road, Bandra (W), Mumbai -400 050', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Zeba Tahir Majithia', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'kevinsm@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'zebanathani@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Tahir Shantikumar Majithia', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '', NULL, 'Not Applicable', 'Majithia Constructions Pvt.Ltd', NULL, 'Not Applicable', 'Managing Director', NULL, NULL, NULL, NULL, NULL, NULL, 'Not Applicable', NULL, 'Friends', NULL, NULL, 'Not Applicable', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'Real Estate', 'Not Applicable'),
+(1000008, NULL, '2026-10-10', NULL, NULL, 'Ira', '', 'Pande  ', 13, NULL, NULL, NULL, '2026-07-08', NULL, '801, Hicons Enclave,\n14th Road, Khar (West),\nMumbai 400 052.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Kanan Sangani', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'tarun@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'kanansangani@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Tarun Pande', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '', NULL, 'Beetle & Bottle', 'Lighthouse Funds', NULL, 'Co-founder', 'Chief Financial Officer', NULL, NULL, NULL, NULL, NULL, NULL, 'Play school', NULL, 'We first heard about OIS from Sachin Bhartiya and his wife Seema. Sachin is Tarun’s work colleague and Seema and him are our close friends. Their sons Saksham (JKG) and Satvik (grade 3) have been attending OIS for the past few years.', NULL, NULL, 'Little Bo Peep', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'Private Equity', 'Design label for kids'),
+(1000009, NULL, '2026-10-10', NULL, NULL, 'Aanya', '', 'verma  ', 13, NULL, NULL, NULL, '2026-03-09', NULL, 'A-1104 Oberoi woods, goregaon east, mumbai', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Vandana Verma', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'Sharatv@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'Vandanaluther@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Sharat verma', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '', NULL, '', 'Procter and gamble', NULL, '', 'Brand Manager', NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, 'Right behind the residence', NULL, NULL, '', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'FMCG', ''),
+(1000010, NULL, '2026-10-10', NULL, NULL, 'Vedant', '', 'Chanakya  ', 13, NULL, NULL, NULL, '2026-04-13', NULL, 'E-1206, Oberoi Splendor, JVLR, Andheri East, Mumbai 400060', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Aishvarya', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 2, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'Chanakya.gupta@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'Aishvarya.m@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Chanakya Gupta', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '', NULL, 'Hindustan Unilever Limited', 'Hindustan Unilever Limited', NULL, 'Marketing Manager', 'National Account Manager', NULL, NULL, NULL, NULL, NULL, NULL, 'Play school', NULL, 'Through friends in the apartment complex and colleagues at work', NULL, NULL, 'The Little Company, unilever campus', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'Sales and Marketing', 'Sales and Marketing');
 
 -- --------------------------------------------------------
 
@@ -13629,17 +13695,17 @@ INSERT INTO `student_m_online` (`id`, `admission_id`, `admission_date`, `student
 --
 
 CREATE TABLE IF NOT EXISTS `student_m_online_enquirystage` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_m_online_id` int(10) DEFAULT NULL,
-  `comments` text,
-  `admission_steps_master_id` int(5) DEFAULT NULL,
-  `admission_stage_master_id` int(5) DEFAULT NULL,
-  `admission_stage_master_action` int(2) DEFAULT NULL,
-  `meeting_date` datetime DEFAULT NULL,
-  `inserted` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` int(1) NOT NULL DEFAULT '1',
+  `id`                             INT         NOT NULL AUTO_INCREMENT,
+  `student_m_online_id`            INT         DEFAULT NULL,
+  `comments`                       TEXT,
+  `admission_steps_master_id`      INT         DEFAULT NULL,
+  `admission_stage_master_id`      INT         DEFAULT NULL,
+  `admission_stage_master_action`  INT         DEFAULT NULL,
+  `meeting_date`                   DATETIME    DEFAULT NULL,
+  `inserted`                       TIMESTAMP   NULL DEFAULT CURRENT_TIMESTAMP,
+  `status`                         TINYINT(1)  NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1282 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `student_m_online_enquirystage`
@@ -13664,21 +13730,21 @@ INSERT INTO `student_m_online_enquirystage` (`id`, `student_m_online_id`, `comme
 --
 
 CREATE TABLE IF NOT EXISTS `student_m_pastoral` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_id` varchar(20) DEFAULT NULL,
-  `selected_date` date DEFAULT NULL,
-  `reported_by` varchar(20) DEFAULT NULL,
-  `event_id` int(2) DEFAULT NULL COMMENT 'student_m_event id',
-  `description` text,
-  `notes` text,
-  `consequence` text,
-  `detention` varchar(10) DEFAULT NULL,
-  `email_send` text,
-  `a_year` int(4) DEFAULT NULL,
-  `inserted_date` datetime DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`             INT          NOT NULL AUTO_INCREMENT,
+  `student_id`     VARCHAR(20)  DEFAULT NULL,
+  `selected_date`  DATE         DEFAULT NULL,
+  `reported_by`    VARCHAR(20)  DEFAULT NULL,
+  `event_id`       INT          DEFAULT NULL COMMENT 'student_m_event id',
+  `description`    TEXT,
+  `notes`          TEXT,
+  `consequence`    TEXT,
+  `detention`      VARCHAR(10)  DEFAULT NULL,
+  `email_send`     TEXT,
+  `a_year`         INT          DEFAULT NULL,
+  `inserted_date`  DATETIME     DEFAULT NULL,
+  `status`         TINYINT(1)   DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=81 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `student_m_pastoral`
@@ -13703,14 +13769,14 @@ INSERT INTO `student_m_pastoral` (`id`, `student_id`, `selected_date`, `reported
 --
 
 CREATE TABLE IF NOT EXISTS `student_m_tab` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  `tab_name` varchar(100) DEFAULT NULL,
-  `inserted_date` date DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
-  `description` varchar(50) DEFAULT NULL,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `name`           VARCHAR(100)  DEFAULT NULL,
+  `tab_name`       VARCHAR(100)  DEFAULT NULL,
+  `inserted_date`  DATE          DEFAULT NULL,
+  `status`         TINYINT(1)    DEFAULT '1',
+  `description`    VARCHAR(50)   DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `student_m_tab`
@@ -13732,27 +13798,27 @@ INSERT INTO `student_m_tab` (`id`, `name`, `tab_name`, `inserted_date`, `status`
 --
 
 CREATE TABLE IF NOT EXISTS `student_pt_m` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(100) DEFAULT NULL,
-  `subject` varchar(100) DEFAULT NULL,
-  `student_id` varchar(20) DEFAULT NULL,
-  `teacher_id` int(5) DEFAULT NULL,
-  `conf_date` date DEFAULT NULL,
-  `academic` int(1) DEFAULT '0',
-  `conduct` int(1) DEFAULT '0',
-  `other` int(1) DEFAULT '0',
-  `location` int(1) DEFAULT NULL COMMENT '1=Phone Conversation,2=In-person Conference,3=Email/Mail',
-  `reason` text COMMENT '4=Academic,5=Conduct,6=Other',
-  `other_reason` text,
-  `observation_id` text COMMENT 'student_pt_observation id',
-  `observation` text,
-  `recommendation` text,
-  `parents_comments` text,
-  `a_year` int(4) DEFAULT NULL,
-  `inserted_date` datetime DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`                INT           NOT NULL AUTO_INCREMENT,
+  `user_name`         VARCHAR(100)  DEFAULT NULL,
+  `subject`           VARCHAR(100)  DEFAULT NULL,
+  `student_id`        VARCHAR(20)   DEFAULT NULL,
+  `teacher_id`        INT           DEFAULT NULL,
+  `conf_date`         DATE          DEFAULT NULL,
+  `academic`          TINYINT(1)    DEFAULT '0',
+  `conduct`           TINYINT(1)    DEFAULT '0',
+  `other`             TINYINT(1)    DEFAULT '0',
+  `location`          TINYINT(1)    DEFAULT NULL COMMENT '1=Phone Conversation,2=In-person Conference,3=Email/Mail',
+  `reason`            TEXT          COMMENT '4=Academic,5=Conduct,6=Other',
+  `other_reason`      TEXT,
+  `observation_id`    TEXT          COMMENT 'student_pt_observation id',
+  `observation`       TEXT,
+  `recommendation`    TEXT,
+  `parents_comments`  TEXT,
+  `a_year`            INT           DEFAULT NULL,
+  `inserted_date`     DATETIME      DEFAULT NULL,
+  `status`            TINYINT(1)    DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `student_pt_m`
@@ -13774,11 +13840,11 @@ INSERT INTO `student_pt_m` (`id`, `user_name`, `subject`, `student_id`, `teacher
 --
 
 CREATE TABLE IF NOT EXISTS `student_pt_observation` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `observation` varchar(100) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`           INT           NOT NULL AUTO_INCREMENT,
+  `observation`  VARCHAR(100)  DEFAULT NULL,
+  `status`       TINYINT(1)    DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `student_pt_observation`
@@ -13803,13 +13869,13 @@ INSERT INTO `student_pt_observation` (`id`, `observation`, `status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `student_pt_observation_m` (
-  `id` bigint(11) NOT NULL AUTO_INCREMENT,
-  `student_id` int(5) DEFAULT NULL,
-  `teacher_id` int(4) DEFAULT NULL,
-  `observation_id` int(4) DEFAULT NULL,
-  `checkbox` int(1) DEFAULT '0',
+  `id`              BIGINT      NOT NULL AUTO_INCREMENT,
+  `student_id`      INT         DEFAULT NULL,
+  `teacher_id`      INT         DEFAULT NULL,
+  `observation_id`  INT         DEFAULT NULL,
+  `checkbox`        TINYINT(1)  DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `student_pt_observation_m`
@@ -13834,28 +13900,28 @@ INSERT INTO `student_pt_observation_m` (`id`, `student_id`, `teacher_id`, `obser
 --
 
 CREATE TABLE IF NOT EXISTS `stud_health` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studid` varchar(20) DEFAULT NULL,
-  `studname` varchar(30) DEFAULT NULL,
-  `courseid` int(11) DEFAULT NULL,
-  `academicyear` varchar(10) DEFAULT NULL,
-  `height` varchar(10) DEFAULT NULL,
-  `weight` varchar(10) DEFAULT NULL,
-  `general_exam` text,
-  `vision` text,
-  `dental` text,
-  `cardio_exam` text,
-  `chest_exam` text,
-  `urine_exam` text,
-  `blood_exam` text,
-  `remarks` text,
-  `rep_date` date DEFAULT NULL,
-  `pefr` text,
-  `date_selected` date DEFAULT NULL,
-  `student_id` int(20) DEFAULT NULL,
-  `date_modified` date DEFAULT NULL,
+  `id`             INT          NOT NULL AUTO_INCREMENT,
+  `studid`         VARCHAR(20)  DEFAULT NULL,
+  `studname`       VARCHAR(30)  DEFAULT NULL,
+  `courseid`       INT          DEFAULT NULL,
+  `academicyear`   VARCHAR(10)  DEFAULT NULL,
+  `height`         VARCHAR(10)  DEFAULT NULL,
+  `weight`         VARCHAR(10)  DEFAULT NULL,
+  `general_exam`   TEXT,
+  `vision`         TEXT,
+  `dental`         TEXT,
+  `cardio_exam`    TEXT,
+  `chest_exam`     TEXT,
+  `urine_exam`     TEXT,
+  `blood_exam`     TEXT,
+  `remarks`        TEXT,
+  `rep_date`       DATE         DEFAULT NULL,
+  `pefr`           TEXT,
+  `date_selected`  DATE         DEFAULT NULL,
+  `student_id`     INT          DEFAULT NULL,
+  `date_modified`  DATE         DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=903 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `stud_health`
@@ -13880,14 +13946,14 @@ INSERT INTO `stud_health` (`id`, `studid`, `studname`, `courseid`, `academicyear
 --
 
 CREATE TABLE IF NOT EXISTS `stud_sibling` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `family_name` varchar(255) NOT NULL,
-  `family_code` varchar(255) NOT NULL,
-  `relation` varchar(255) NOT NULL,
-  `stud` int(11) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`           INT           NOT NULL AUTO_INCREMENT,
+  `family_name`  VARCHAR(255)  NOT NULL,
+  `family_code`  VARCHAR(255)  NOT NULL,
+  `relation`     VARCHAR(255)  NOT NULL,
+  `stud`         INT           NOT NULL,
+  `status`       TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=658 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `stud_sibling`
@@ -13912,13 +13978,13 @@ INSERT INTO `stud_sibling` (`id`, `family_name`, `family_code`, `relation`, `stu
 --
 
 CREATE TABLE IF NOT EXISTS `style` (
-  `field_id` int(11) NOT NULL AUTO_INCREMENT,
-  `field_pos_org` int(11) NOT NULL DEFAULT '1',
-  `field_pos_recent` int(10) NOT NULL DEFAULT '1',
-  `vert_pos_org` int(4) DEFAULT NULL,
-  `vert_pos_rec` int(4) DEFAULT NULL,
+  `field_id`          INT  NOT NULL AUTO_INCREMENT,
+  `field_pos_org`     INT  NOT NULL DEFAULT '1',
+  `field_pos_recent`  INT  NOT NULL DEFAULT '1',
+  `vert_pos_org`      INT  DEFAULT NULL,
+  `vert_pos_rec`      INT  DEFAULT NULL,
   PRIMARY KEY (`field_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=139 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `style`
@@ -13944,10 +14010,10 @@ INSERT INTO `style` (`field_id`, `field_pos_org`, `field_pos_recent`, `vert_pos_
 --
 
 CREATE TABLE IF NOT EXISTS `subjecttype` (
-  `subtype_id` int(11) NOT NULL AUTO_INCREMENT,
-  `subtype_name` varchar(50) NOT NULL DEFAULT '',
+  `subtype_id`    INT          NOT NULL AUTO_INCREMENT,
+  `subtype_name`  VARCHAR(50)  NOT NULL DEFAULT '',
   PRIMARY KEY (`subtype_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `subjecttype`
@@ -13967,12 +14033,12 @@ INSERT INTO `subjecttype` (`subtype_id`, `subtype_name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `subject_group` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `group_name` varchar(80) NOT NULL,
-  `status` int(1) NOT NULL,
-  `order_id` int(2) NOT NULL,
+  `id`          INT          NOT NULL AUTO_INCREMENT,
+  `group_name`  VARCHAR(80)  NOT NULL,
+  `status`      TINYINT(1)   NOT NULL,
+  `order_id`    INT          NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -13981,13 +14047,13 @@ CREATE TABLE IF NOT EXISTS `subject_group` (
 --
 
 CREATE TABLE IF NOT EXISTS `subject_group_det` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `group_id` int(3) NOT NULL,
-  `sem` int(3) NOT NULL,
-  `subject_id` int(11) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`          INT         NOT NULL AUTO_INCREMENT,
+  `group_id`    INT         NOT NULL,
+  `sem`         INT         NOT NULL,
+  `subject_id`  INT         NOT NULL,
+  `status`      TINYINT(1)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -13996,24 +14062,24 @@ CREATE TABLE IF NOT EXISTS `subject_group_det` (
 --
 
 CREATE TABLE IF NOT EXISTS `subject_m` (
-  `subject_id` int(11) NOT NULL AUTO_INCREMENT,
-  `course_id` int(11) NOT NULL DEFAULT '0',
-  `subject_name` varchar(100) NOT NULL DEFAULT '',
-  `sub_type` int(11) NOT NULL DEFAULT '0',
-  `total_marks` int(11) DEFAULT NULL,
-  `course_year_id` int(11) NOT NULL DEFAULT '0',
-  `subject_code` varchar(50) DEFAULT NULL,
-  `status` int(1) DEFAULT '1',
-  `elective` enum('Y','N') DEFAULT 'N',
-  `abb_name` varchar(7) DEFAULT NULL,
-  `cycle` int(3) NOT NULL,
-  `sys_year` int(4) NOT NULL DEFAULT '0',
-  `cont_hours` int(3) NOT NULL,
-  `max_mark` int(3) DEFAULT NULL,
-  `f` varchar(3) NOT NULL,
-  `sub_pre` int(2) DEFAULT NULL,
+  `subject_id`      INT            NOT NULL AUTO_INCREMENT,
+  `course_id`       INT            NOT NULL DEFAULT '0',
+  `subject_name`    VARCHAR(100)   NOT NULL DEFAULT '',
+  `sub_type`        INT            NOT NULL DEFAULT '0',
+  `total_marks`     INT            DEFAULT NULL,
+  `course_year_id`  INT            NOT NULL DEFAULT '0',
+  `subject_code`    VARCHAR(50)    DEFAULT NULL,
+  `status`          TINYINT(1)     DEFAULT '1',
+  `elective`        ENUM('Y','N')  DEFAULT 'N',
+  `abb_name`        VARCHAR(7)     DEFAULT NULL,
+  `cycle`           INT            NOT NULL,
+  `sys_year`        INT            NOT NULL DEFAULT '0',
+  `cont_hours`      INT            NOT NULL,
+  `max_mark`        INT            DEFAULT NULL,
+  `f`               VARCHAR(3)     NOT NULL,
+  `sub_pre`         INT            DEFAULT NULL,
   PRIMARY KEY (`subject_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=484 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `subject_m`
@@ -14038,11 +14104,11 @@ INSERT INTO `subject_m` (`subject_id`, `course_id`, `subject_name`, `sub_type`, 
 --
 
 CREATE TABLE IF NOT EXISTS `submodules` (
-  `module` varchar(50) DEFAULT NULL,
-  `submodule` varchar(50) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `module`     VARCHAR(50)  DEFAULT NULL,
+  `submodule`  VARCHAR(50)  DEFAULT NULL,
+  `id`         INT          NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=148 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `submodules`
@@ -14176,16 +14242,16 @@ INSERT INTO `submodules` (`module`, `submodule`, `id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `sub_skills` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `divi` int(3) NOT NULL,
-  `class` int(3) NOT NULL,
-  `sub` int(5) NOT NULL,
-  `master_skill` int(10) NOT NULL,
-  `sub_skill` text NOT NULL,
-  `posi` int(2) NOT NULL,
-  `status` int(1) DEFAULT '1',
+  `id`            INT         NOT NULL AUTO_INCREMENT,
+  `divi`          INT         NOT NULL,
+  `class`         INT         NOT NULL,
+  `sub`           INT         NOT NULL,
+  `master_skill`  INT         NOT NULL,
+  `sub_skill`     TEXT        NOT NULL,
+  `posi`          INT         NOT NULL,
+  `status`        TINYINT(1)  DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=381 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `sub_skills`
@@ -14211,12 +14277,12 @@ INSERT INTO `sub_skills` (`id`, `divi`, `class`, `sub`, `master_skill`, `sub_ski
 --
 
 CREATE TABLE IF NOT EXISTS `tabs` (
-  `tab_id` int(11) NOT NULL AUTO_INCREMENT,
-  `tab_name` varchar(50) NOT NULL,
-  `modul_id` int(10) NOT NULL,
-  `tab_visibility` int(2) DEFAULT '0',
+  `tab_id`          INT          NOT NULL AUTO_INCREMENT,
+  `tab_name`        VARCHAR(50)  NOT NULL,
+  `modul_id`        INT          NOT NULL,
+  `tab_visibility`  INT          DEFAULT '0',
   PRIMARY KEY (`tab_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `tabs`
@@ -14250,15 +14316,15 @@ INSERT INTO `tabs` (`tab_id`, `tab_name`, `modul_id`, `tab_visibility`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `teacher_lesson_docments` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `teacher_lesson_id` int(10) NOT NULL,
-  `title` varchar(70) NOT NULL,
-  `description` text NOT NULL,
-  `source` varchar(250) NOT NULL,
-  `status` int(1) NOT NULL,
-  `p_Access` int(1) NOT NULL,
+  `id`                 INT           NOT NULL AUTO_INCREMENT,
+  `teacher_lesson_id`  INT           NOT NULL,
+  `title`              VARCHAR(70)   NOT NULL,
+  `description`        TEXT          NOT NULL,
+  `source`             VARCHAR(250)  NOT NULL,
+  `status`             TINYINT(1)    NOT NULL,
+  `p_Access`           TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=55 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `teacher_lesson_docments`
@@ -14283,24 +14349,24 @@ INSERT INTO `teacher_lesson_docments` (`id`, `teacher_lesson_id`, `title`, `desc
 --
 
 CREATE TABLE IF NOT EXISTS `teacher_lesson_plan` (
-  `id` int(12) NOT NULL AUTO_INCREMENT,
-  `divi` int(3) NOT NULL,
-  `class` int(3) NOT NULL,
-  `sec` int(2) NOT NULL,
-  `subj` int(10) NOT NULL,
-  `chapter` int(2) NOT NULL,
-  `topic` varchar(99) NOT NULL,
-  `r_date` date NOT NULL,
-  `to_date` date NOT NULL,
-  `description` text NOT NULL,
-  `home_work` text NOT NULL,
-  `notes` text NOT NULL,
-  `details` text NOT NULL,
-  `staff_r` int(1) NOT NULL,
-  `parent_r` int(1) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`           INT          NOT NULL AUTO_INCREMENT,
+  `divi`         INT          NOT NULL,
+  `class`        INT          NOT NULL,
+  `sec`          INT          NOT NULL,
+  `subj`         INT          NOT NULL,
+  `chapter`      INT          NOT NULL,
+  `topic`        VARCHAR(99)  NOT NULL,
+  `r_date`       DATE         NOT NULL,
+  `to_date`      DATE         NOT NULL,
+  `description`  TEXT         NOT NULL,
+  `home_work`    TEXT         NOT NULL,
+  `notes`        TEXT         NOT NULL,
+  `details`      TEXT         NOT NULL,
+  `staff_r`      TINYINT(1)   NOT NULL,
+  `parent_r`     TINYINT(1)   NOT NULL,
+  `status`       TINYINT(1)   NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `teacher_lesson_plan`
@@ -14308,7 +14374,7 @@ CREATE TABLE IF NOT EXISTS `teacher_lesson_plan` (
 
 INSERT INTO `teacher_lesson_plan` (`id`, `divi`, `class`, `sec`, `subj`, `chapter`, `topic`, `r_date`, `to_date`, `description`, `home_work`, `notes`, `details`, `staff_r`, `parent_r`, `status`) VALUES
 (1, 3, 5, 1, 5, 1, '2', '2026-01-08', '2026-01-08', 'Students were made familiar with the some of the input-output devices.', 'Lab exercises', 'Worksheet given - Identify the device and specify whether input or output.', 'Good', 0, 0, 1),
-(2, 3, 5, 1, 5, 1, '1', '2026-01-08', '2026-01-08', 'Students were introduced to the concept of John Von Neuman\'s architecture', 'Lab exercises', 'Practicals in the lab', 'Good', 0, 0, 1),
+(2, 3, 5, 1, 5, 1, '1', '2026-01-08', '2026-01-08', 'Students were introduced to the concept of John Von Neuman architecture', 'Lab exercises', 'Practicals in the lab', 'Good', 0, 0, 1),
 (3, 3, 5, 1, 3, 5, '12', '2026-01-02', '2026-01-08', 'Introduction to the evolution of mathematics', 'Get more information', 'Get more information', '', 0, 0, 1),
 (4, 3, 5, 1, 3, 6, '14', '2026-01-08', '2026-01-15', 'Adding two numbers', 'Try complexity', 'Try complexity', 'Good', 0, 0, 1),
 (5, 3, 5, 1, 3, 6, '15', '2026-01-16', '2026-01-22', 'Subtract two numbers', 'Try complexity', 'Try complexity', 'Good', 0, 0, 1),
@@ -14316,7 +14382,7 @@ INSERT INTO `teacher_lesson_plan` (`id`, `divi`, `class`, `sec`, `subj`, `chapte
 (7, 3, 5, 1, 1, 12, '23', '2026-01-07', '2026-01-09', 'Public speaking', 'Talk in class', 'Talk in class', 'Good', 0, 0, 1),
 (8, 3, 5, 1, 1, 12, '24', '2026-01-10', '2026-01-15', 'Working in a team', 'Team activity', 'Team activity', '', 0, 0, 1),
 (9, 3, 5, 1, 2, 13, '25', '2026-01-02', '2026-01-04', 'Simple spellings', 'Learn simple words', 'Learn simple words', 'Good', 0, 0, 1),
-(10, 3, 5, 1, 2, 14, '26', '2026-01-07', '2026-01-15', 'Abbreviate days ', 'Abbreviate days ', 'Abbreviate days ', '', 0, 0, 1);
+(10, 3, 5, 1, 2, 14, '26', '2026-01-07', '2026-01-15', 'Abbreviate days ', 'Abbreviate days ', 'Abbreviate days', '', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -14325,18 +14391,18 @@ INSERT INTO `teacher_lesson_plan` (`id`, `divi`, `class`, `sec`, `subj`, `chapte
 --
 
 CREATE TABLE IF NOT EXISTS `tempstaff_qualification` (
-  `id` int(6) NOT NULL AUTO_INCREMENT,
-  `course_name` varchar(100) DEFAULT NULL,
-  `year_pass` varchar(100) DEFAULT NULL,
-  `university` varchar(100) DEFAULT NULL,
-  `reg_date` varchar(200) DEFAULT NULL,
-  `name_board` varchar(200) DEFAULT NULL,
-  `college` varchar(200) DEFAULT NULL,
-  `specialization` varchar(50) DEFAULT NULL,
-  `username` varchar(100) DEFAULT NULL,
-  `col_id` int(11) DEFAULT NULL,
+  `id`              INT           NOT NULL AUTO_INCREMENT,
+  `course_name`     VARCHAR(100)  DEFAULT NULL,
+  `year_pass`       VARCHAR(100)  DEFAULT NULL,
+  `university`      VARCHAR(100)  DEFAULT NULL,
+  `reg_date`        VARCHAR(200)  DEFAULT NULL,
+  `name_board`      VARCHAR(200)  DEFAULT NULL,
+  `college`         VARCHAR(200)  DEFAULT NULL,
+  `specialization`  VARCHAR(50)   DEFAULT NULL,
+  `username`        VARCHAR(100)  DEFAULT NULL,
+  `col_id`          INT           DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -14345,17 +14411,18 @@ CREATE TABLE IF NOT EXISTS `tempstaff_qualification` (
 --
 
 CREATE TABLE IF NOT EXISTS `temp_previous_job` (
-  `prev_post` varchar(200) DEFAULT NULL,
-  `prev_work_place` varchar(200) DEFAULT NULL,
-  `prev_work_city` varchar(200) DEFAULT NULL,
-  `prev_work_country` varchar(200) DEFAULT NULL,
-  `last_date_work` date DEFAULT NULL,
-  `id` int(6) NOT NULL DEFAULT '0',
-  `from_date` date DEFAULT NULL,
-  `username` varchar(100) DEFAULT NULL,
-  `col_id` int(11) DEFAULT NULL,
-  `exp_type` varchar(100) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `prev_post`          VARCHAR(200)  DEFAULT NULL,
+  `prev_work_place`    VARCHAR(200)  DEFAULT NULL,
+  `prev_work_city`     VARCHAR(200)  DEFAULT NULL,
+  `prev_work_country`  VARCHAR(200)  DEFAULT NULL,
+  `last_date_work`     DATE          DEFAULT NULL,
+  `id`                 INT           NOT NULL DEFAULT '0',
+  `from_date`          DATE          DEFAULT NULL,
+  `username`           VARCHAR(100)  DEFAULT NULL,
+  `col_id`             INT           DEFAULT NULL,
+  `exp_type`           VARCHAR(100)  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -14364,18 +14431,18 @@ CREATE TABLE IF NOT EXISTS `temp_previous_job` (
 --
 
 CREATE TABLE IF NOT EXISTS `temp_rec` (
-  `ID` int(3) NOT NULL AUTO_INCREMENT,
-  `DESCRIPTION` double NOT NULL,
-  `QTY` double NOT NULL,
-  `AMOUNT` double NOT NULL,
-  `SUBTOTAL` double NOT NULL,
-  `DISCOUNTAMOUNT` double NOT NULL,
-  `SERVICETAXAMOUNT` double NOT NULL,
-  `TOTAL` double NOT NULL,
-  `ATTENDEDBY` int(25) NOT NULL,
-  `USERNAME` int(30) NOT NULL,
+  `ID`                INT     NOT NULL AUTO_INCREMENT,
+  `DESCRIPTION`       DOUBLE  NOT NULL,
+  `QTY`               DOUBLE  NOT NULL,
+  `AMOUNT`            DOUBLE  NOT NULL,
+  `SUBTOTAL`          DOUBLE  NOT NULL,
+  `DISCOUNTAMOUNT`    DOUBLE  NOT NULL,
+  `SERVICETAXAMOUNT`  DOUBLE  NOT NULL,
+  `TOTAL`             DOUBLE  NOT NULL,
+  `ATTENDEDBY`        INT     NOT NULL,
+  `USERNAME`          INT     NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -14384,16 +14451,17 @@ CREATE TABLE IF NOT EXISTS `temp_rec` (
 --
 
 CREATE TABLE IF NOT EXISTS `temp_staff_dependents` (
-  `id` int(11) NOT NULL DEFAULT '0',
-  `dname` varchar(100) DEFAULT NULL,
-  `ddob` varchar(100) DEFAULT NULL,
-  `drel` varchar(50) DEFAULT NULL,
-  `doccu` varchar(50) DEFAULT NULL,
-  `d_addr` varchar(255) DEFAULT NULL,
-  `username` varchar(100) DEFAULT NULL,
-  `col_id` int(11) DEFAULT NULL,
-  `d_phone` int(25) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`        INT           NOT NULL DEFAULT '0',
+  `dname`     VARCHAR(100)  DEFAULT NULL,
+  `ddob`      VARCHAR(100)  DEFAULT NULL,
+  `drel`      VARCHAR(50)   DEFAULT NULL,
+  `doccu`     VARCHAR(50)   DEFAULT NULL,
+  `d_addr`    VARCHAR(255)  DEFAULT NULL,
+  `username`  VARCHAR(100)  DEFAULT NULL,
+  `col_id`    INT           DEFAULT NULL,
+  `d_phone`   INT           DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -14402,24 +14470,25 @@ CREATE TABLE IF NOT EXISTS `temp_staff_dependents` (
 --
 
 CREATE TABLE IF NOT EXISTS `temp_trans` (
-  `temp_id` bigint(20) NOT NULL,
-  `temp_dept` varchar(250) NOT NULL,
-  `temp_vtype` varchar(250) NOT NULL,
-  `temp_billno` varchar(250) NOT NULL,
-  `temp_billdate` date NOT NULL,
-  `temp_vno` varchar(250) NOT NULL,
-  `temp_vdate` date NOT NULL,
-  `temp_cb` varchar(250) NOT NULL,
-  `temp_cdno` varchar(250) NOT NULL,
-  `temp_cddate` date NOT NULL,
-  `temp_tds` double(18,2) NOT NULL,
-  `temp_narration` varchar(250) NOT NULL,
-  `temp_by` varchar(250) NOT NULL,
-  `temp_to` varchar(250) NOT NULL,
-  `temp_byam` double(18,2) NOT NULL,
-  `temp_toam` double(18,2) NOT NULL,
-  `temp_tr` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `temp_id`         BIGINT        NOT NULL,
+  `temp_dept`       VARCHAR(250)  NOT NULL,
+  `temp_vtype`      VARCHAR(250)  NOT NULL,
+  `temp_billno`     VARCHAR(250)  NOT NULL,
+  `temp_billdate`   DATE          NOT NULL,
+  `temp_vno`        VARCHAR(250)  NOT NULL,
+  `temp_vdate`      DATE          NOT NULL,
+  `temp_cb`         VARCHAR(250)  NOT NULL,
+  `temp_cdno`       VARCHAR(250)  NOT NULL,
+  `temp_cddate`     DATE          NOT NULL,
+  `temp_tds`        DOUBLE(18,2)  NOT NULL,
+  `temp_narration`  VARCHAR(250)  NOT NULL,
+  `temp_by`         VARCHAR(250)  NOT NULL,
+  `temp_to`         VARCHAR(250)  NOT NULL,
+  `temp_byam`       DOUBLE(18,2)  NOT NULL,
+  `temp_toam`       DOUBLE(18,2)  NOT NULL,
+  `temp_tr`         VARCHAR(250)  NOT NULL,
+  PRIMARY KEY (`temp_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -14428,21 +14497,21 @@ CREATE TABLE IF NOT EXISTS `temp_trans` (
 --
 
 CREATE TABLE IF NOT EXISTS `timetable` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `subjectcode` varchar(15) DEFAULT NULL,
-  `subname` varchar(30) DEFAULT NULL,
-  `hallno` varchar(10) DEFAULT NULL,
-  `staffid` varchar(15) DEFAULT NULL,
-  `staffname` varchar(20) DEFAULT NULL,
-  `course_id` varchar(10) DEFAULT NULL,
-  `sem_id` int(10) DEFAULT NULL,
-  `sec_id` int(3) DEFAULT NULL,
-  `batchid` int(11) DEFAULT '0',
-  `pid` int(11) DEFAULT NULL,
-  `sub_id` int(11) DEFAULT NULL,
-  `weekday` int(11) DEFAULT NULL,
+  `id`           INT          NOT NULL AUTO_INCREMENT,
+  `subjectcode`  VARCHAR(15)  DEFAULT NULL,
+  `subname`      VARCHAR(30)  DEFAULT NULL,
+  `hallno`       VARCHAR(10)  DEFAULT NULL,
+  `staffid`      VARCHAR(15)  DEFAULT NULL,
+  `staffname`    VARCHAR(20)  DEFAULT NULL,
+  `course_id`    VARCHAR(10)  DEFAULT NULL,
+  `sem_id`       INT          DEFAULT NULL,
+  `sec_id`       INT          DEFAULT NULL,
+  `batchid`      INT          DEFAULT '0',
+  `pid`          INT          DEFAULT NULL,
+  `sub_id`       INT          DEFAULT NULL,
+  `weekday`      INT          DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2667 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `timetable`
@@ -14467,13 +14536,13 @@ INSERT INTO `timetable` (`id`, `subjectcode`, `subname`, `hallno`, `staffid`, `s
 --
 
 CREATE TABLE IF NOT EXISTS `tptfeehead` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `route` int(5) DEFAULT NULL,
-  `point_id` int(5) DEFAULT NULL,
-  `amount` int(5) DEFAULT NULL,
-  `accyr` int(4) DEFAULT NULL,
+  `id`        INT  NOT NULL AUTO_INCREMENT,
+  `route`     INT  DEFAULT NULL,
+  `point_id`  INT  DEFAULT NULL,
+  `amount`    INT  DEFAULT NULL,
+  `accyr`     INT  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -14482,13 +14551,13 @@ CREATE TABLE IF NOT EXISTS `tptfeehead` (
 --
 
 CREATE TABLE IF NOT EXISTS `trans_fee_str` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `validity` int(1) DEFAULT NULL,
-  `FMon` int(2) DEFAULT NULL,
-  `FYear` int(4) DEFAULT NULL,
-  `amount` int(11) NOT NULL,
+  `id`        INT         NOT NULL AUTO_INCREMENT,
+  `validity`  TINYINT(1)  DEFAULT NULL,
+  `FMon`      INT         DEFAULT NULL,
+  `FYear`     INT         DEFAULT NULL,
+  `amount`    INT         NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -14497,12 +14566,12 @@ CREATE TABLE IF NOT EXISTS `trans_fee_str` (
 --
 
 CREATE TABLE IF NOT EXISTS `tripmaster` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `route_id` varchar(100) DEFAULT NULL,
-  `trip_name` varchar(100) DEFAULT NULL,
-  `trip_time` varchar(100) DEFAULT NULL,
+  `id`         INT           NOT NULL AUTO_INCREMENT,
+  `route_id`   VARCHAR(100)  DEFAULT NULL,
+  `trip_name`  VARCHAR(100)  DEFAULT NULL,
+  `trip_time`  VARCHAR(100)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -14511,10 +14580,10 @@ CREATE TABLE IF NOT EXISTS `tripmaster` (
 --
 
 CREATE TABLE IF NOT EXISTS `type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(10) DEFAULT NULL,
+  `id`    INT          NOT NULL AUTO_INCREMENT,
+  `type`  VARCHAR(10)  DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -14523,19 +14592,19 @@ CREATE TABLE IF NOT EXISTS `type` (
 --
 
 CREATE TABLE IF NOT EXISTS `unit_kg` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `class` int(3) NOT NULL,
-  `exam_id` int(11) NOT NULL,
-  `master_skill` int(10) NOT NULL,
-  `acc_year` int(4) NOT NULL,
-  `student_id` int(10) NOT NULL,
-  `theme` text NOT NULL,
-  `idea` text NOT NULL,
-  `skill_cm` text NOT NULL,
-  `profile` text NOT NULL,
-  `fac_cmt` text NOT NULL,
+  `id`            INT   NOT NULL AUTO_INCREMENT,
+  `class`         INT   NOT NULL,
+  `exam_id`       INT   NOT NULL,
+  `master_skill`  INT   NOT NULL,
+  `acc_year`      INT   NOT NULL,
+  `student_id`    INT   NOT NULL,
+  `theme`         TEXT  NOT NULL,
+  `idea`          TEXT  NOT NULL,
+  `skill_cm`      TEXT  NOT NULL,
+  `profile`       TEXT  NOT NULL,
+  `fac_cmt`       TEXT  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -14544,24 +14613,24 @@ CREATE TABLE IF NOT EXISTS `unit_kg` (
 --
 
 CREATE TABLE IF NOT EXISTS `unpaid_leave_data_m20` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `staff_id` int(11) NOT NULL,
-  `E_Code` varchar(255) NOT NULL,
-  `Employee_Name` varchar(255) NOT NULL,
-  `Apr_13` varchar(255) NOT NULL,
-  `May_13` varchar(255) NOT NULL,
-  `June_13` varchar(255) NOT NULL,
-  `July_13` varchar(255) NOT NULL,
-  `Aug_13` varchar(255) NOT NULL,
-  `Sep_13` varchar(255) NOT NULL,
-  `Oct_13` varchar(255) NOT NULL,
-  `Nov_13` varchar(255) NOT NULL,
-  `Dec_13` varchar(255) NOT NULL,
-  `Jan_14` varchar(255) NOT NULL,
-  `Feb_14` varchar(255) NOT NULL,
-  `March_14` varchar(255) NOT NULL,
+  `id`             INT           NOT NULL AUTO_INCREMENT,
+  `staff_id`       INT           NOT NULL,
+  `E_Code`         VARCHAR(255)  NOT NULL,
+  `Employee_Name`  VARCHAR(255)  NOT NULL,
+  `Apr_13`         VARCHAR(255)  NOT NULL,
+  `May_13`         VARCHAR(255)  NOT NULL,
+  `June_13`        VARCHAR(255)  NOT NULL,
+  `July_13`        VARCHAR(255)  NOT NULL,
+  `Aug_13`         VARCHAR(255)  NOT NULL,
+  `Sep_13`         VARCHAR(255)  NOT NULL,
+  `Oct_13`         VARCHAR(255)  NOT NULL,
+  `Nov_13`         VARCHAR(255)  NOT NULL,
+  `Dec_13`         VARCHAR(255)  NOT NULL,
+  `Jan_14`         VARCHAR(255)  NOT NULL,
+  `Feb_14`         VARCHAR(255)  NOT NULL,
+  `March_14`       VARCHAR(255)  NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=211 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `unpaid_leave_data_m20`
@@ -14586,19 +14655,19 @@ INSERT INTO `unpaid_leave_data_m20` (`id`, `staff_id`, `E_Code`, `Employee_Name`
 --
 
 CREATE TABLE IF NOT EXISTS `usermenu` (
-  `username` varchar(50) DEFAULT NULL,
-  `module` varchar(50) DEFAULT NULL,
-  `submodule` varchar(50) DEFAULT NULL,
-  `linkname` varchar(250) DEFAULT NULL,
-  `linkpath` varchar(250) DEFAULT NULL,
-  `access` enum('Yes','No') DEFAULT NULL,
-  `parameter` varchar(250) DEFAULT NULL,
-  `id` int(11) DEFAULT NULL,
-  `inc` int(11) NOT NULL AUTO_INCREMENT,
-  `groupname` varchar(50) DEFAULT NULL,
-  `rights` varchar(1) DEFAULT 'V' COMMENT 'V=View E=Edit ',
+  `username`   VARCHAR(50)       DEFAULT NULL,
+  `module`     VARCHAR(50)       DEFAULT NULL,
+  `submodule`  VARCHAR(50)       DEFAULT NULL,
+  `linkname`   VARCHAR(250)      DEFAULT NULL,
+  `linkpath`   VARCHAR(250)      DEFAULT NULL,
+  `access`     ENUM('Yes','No')  DEFAULT NULL,
+  `parameter`  VARCHAR(250)      DEFAULT NULL,
+  `id`         INT               DEFAULT NULL,
+  `inc`        INT               NOT NULL AUTO_INCREMENT,
+  `groupname`  VARCHAR(50)       DEFAULT NULL,
+  `rights`     VARCHAR(1)        DEFAULT 'V' COMMENT 'V=View E=Edit ',
   PRIMARY KEY (`inc`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=123121 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `usermenu`
@@ -14625,36 +14694,37 @@ INSERT INTO `usermenu` (`username`, `module`, `submodule`, `linkname`, `linkpath
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `username` varchar(50) DEFAULT NULL,
-  `password` varchar(32) DEFAULT NULL,
-  `id` int(11) NOT NULL DEFAULT '0',
-  `count` int(1) DEFAULT '0',
-  `Activated` enum('On','Off') DEFAULT 'On',
-  `fullname` varchar(100) DEFAULT NULL,
-  `description` varchar(250) DEFAULT NULL,
-  `disabledate` date DEFAULT NULL,
-  `Person` varchar(50) DEFAULT NULL,
-  `S_ID` varchar(50) DEFAULT NULL,
-  `usr_type` char(2) DEFAULT NULL,
-  `srid` int(10) DEFAULT NULL,
-  `groupname` varchar(100) DEFAULT NULL,
-  `shortname` varchar(10) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `username`     VARCHAR(50)       NOT NULL,
+  `password`     VARCHAR(255)      DEFAULT NULL,
+  `id`           INT               NOT NULL DEFAULT '0',
+  `count`        TINYINT(1)        DEFAULT '0',
+  `activated`    ENUM('On','Off')  DEFAULT 'On',
+  `fullname`     VARCHAR(100)      DEFAULT NULL,
+  `description`  VARCHAR(250)      DEFAULT NULL,
+  `disabledate`  DATE              DEFAULT NULL,
+  `person`       VARCHAR(50)       DEFAULT NULL,
+  `s_id`         VARCHAR(50)       DEFAULT NULL,
+  `user_type`    CHAR(2)           DEFAULT NULL,
+  `srid`         INT               DEFAULT NULL,
+  `groupname`    VARCHAR(100)      DEFAULT NULL,
+  `shortname`    VARCHAR(10)       DEFAULT NULL,
+  PRIMARY KEY (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`username`, `password`, `id`, `count`, `Activated`, `fullname`, `description`, `disabledate`, `Person`, `S_ID`, `usr_type`, `srid`, `groupname`, `shortname`) VALUES
-('administrator', 'c556fc50260d162e18350cc2352dc38b', 1, 1, 'On', 'admin', 'admin', '0000-00-00', 'Staff', 'a1', 'NT', 0, 'adminm', 'admin'),
-('priyadarshinir', '9154e0bfa96d744818cd15ea25a9c84c', 0, 1, 'On', 'Priyadarshini Ramteke', '', '0000-00-00', 'Staff', 'RD-S8629', NULL, 18, 'FACULTY', 'Priyadarsh'),
-('faculty', '827ccb0eea8a706c4c34a16891f84e7b', 0, 1, 'On', 'Faculty Test', '', '0000-00-00', 'Staff', 'RD-S0001', NULL, 209, 'FACULTY', 'admin'),
-('vladimirk', '9154e0bfa96d744818cd15ea25a9c84c', 0, 0, 'On', 'Vladimir Kuskovski', 'User', '0000-00-00', 'None', 'RD-S21112', NULL, 251, 'SLT', 'Vladimir'),
-('pujas', '9154e0bfa96d744818cd15ea25a9c84c', 0, 1, 'On', 'Puja Srivastava', 'User', '0000-00-00', 'None', 'RD-S2026', NULL, 250, 'SLT', 'Puja'),
-('andrewc', '510aa8bfcab9e742e9ab98d707b811d7', 0, 1, 'On', 'Andrew Crofton', 'user', '0000-00-00', 'Staff', '8227', NULL, 1, 'FACULTY', 'Andrew'),
-('annem', '6d4ce717499b3df5d6101ab1dc18c09a', 0, 1, 'On', 'Anne Murray', 'User', '0000-00-00', 'Staff', '9054', NULL, 2, 'FACULTY', 'Anne '),
-('shannac', '9154e0bfa96d744818cd15ea25a9c84c', 0, 0, 'On', 'Shanna Crofton', '', '0000-00-00', 'Staff', '8226', NULL, 3, 'SLT', 'Shanna '),
-('adrienneh', 'c89f9f4ef264e22001f9a9c3d72992ef', 0, 1, 'On', 'Adrienne Higley', 'User', '0000-00-00', 'Staff', '8273', NULL, 4, 'FACULTY', 'Adrienne');
+INSERT INTO `users` (`username`, `password`, `id`, `count`, `activated`, `fullname`, `description`, `disabledate`, `person`, `s_id`, `user_type`, `srid`, `groupname`, `shortname`) VALUES
+('administrator', 'c556fc50260d162e18350cc2352dc38b', 1, 1, 'On', 'admin', 'admin', NULL, 'Staff', 'a1', 'NT', 0, 'adminm', 'admin'),
+('priyadarshinir', '9154e0bfa96d744818cd15ea25a9c84c', 0, 1, 'On', 'Priyadarshini Ramteke', '', NULL, 'Staff', 'RD-S8629', NULL, 18, 'FACULTY', 'Priyadarsh'),
+('faculty', '827ccb0eea8a706c4c34a16891f84e7b', 0, 1, 'On', 'Faculty Test', '', NULL, 'Staff', 'RD-S0001', NULL, 209, 'FACULTY', 'admin'),
+('vladimirk', '9154e0bfa96d744818cd15ea25a9c84c', 0, 0, 'On', 'Vladimir Kuskovski', 'User', NULL, 'None', 'RD-S21112', NULL, 251, 'SLT', 'Vladimir'),
+('pujas', '9154e0bfa96d744818cd15ea25a9c84c', 0, 1, 'On', 'Puja Srivastava', 'User', NULL, 'None', 'RD-S2026', NULL, 250, 'SLT', 'Puja'),
+('andrewc', '510aa8bfcab9e742e9ab98d707b811d7', 0, 1, 'On', 'Andrew Crofton', 'user', NULL, 'Staff', '8227', NULL, 1, 'FACULTY', 'Andrew'),
+('annem', '6d4ce717499b3df5d6101ab1dc18c09a', 0, 1, 'On', 'Anne Murray', 'User', NULL, 'Staff', '9054', NULL, 2, 'FACULTY', 'Anne '),
+('shannac', '9154e0bfa96d744818cd15ea25a9c84c', 0, 0, 'On', 'Shanna Crofton', '', NULL, 'Staff', '8226', NULL, 3, 'SLT', 'Shanna '),
+('adrienneh', 'c89f9f4ef264e22001f9a9c3d72992ef', 0, 1, 'On', 'Adrienne Higley', 'User', NULL, 'Staff', '8273', NULL, 4, 'FACULTY', 'Adrienne');
 
 -- --------------------------------------------------------
 
@@ -14663,14 +14733,16 @@ INSERT INTO `users` (`username`, `password`, `id`, `count`, `Activated`, `fullna
 --
 
 CREATE TABLE IF NOT EXISTS `user_group` (
-  `group_name` varchar(50) DEFAULT NULL,
-  `module` varchar(50) DEFAULT NULL,
-  `submodule` varchar(50) DEFAULT NULL,
-  `linkname` varchar(250) DEFAULT NULL,
-  `id` int(10) DEFAULT NULL,
-  `parameter` varchar(250) DEFAULT NULL,
-  `linkpath` varchar(250) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `row_id`      INT           NOT NULL AUTO_INCREMENT,
+  `group_name`  VARCHAR(50)   DEFAULT NULL,
+  `module`      VARCHAR(50)   DEFAULT NULL,
+  `submodule`   VARCHAR(50)   DEFAULT NULL,
+  `linkname`    VARCHAR(250)  DEFAULT NULL,
+  `id`          INT           DEFAULT NULL,
+  `parameter`   VARCHAR(250)  DEFAULT NULL,
+  `linkpath`    VARCHAR(250)  DEFAULT NULL,
+  PRIMARY KEY (`row_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `user_group`
@@ -14776,21 +14848,21 @@ INSERT INTO `user_group` (`group_name`, `module`, `submodule`, `linkname`, `id`,
 --
 
 CREATE TABLE IF NOT EXISTS `vechile_master` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `registration_no` varchar(10) DEFAULT NULL,
-  `vechile_mod_no` varchar(20) DEFAULT NULL,
-  `year_of_mfg` varchar(10) DEFAULT NULL,
-  `registration_details` varchar(50) DEFAULT NULL,
-  `trans_type` enum('O','L') DEFAULT NULL,
-  `lease_det` varchar(100) DEFAULT NULL,
-  `passng_capacity_sch` int(10) DEFAULT NULL,
-  `passng_capacity_col` int(10) DEFAULT NULL,
-  `fittness_date` date DEFAULT NULL,
-  `insurance_date` date DEFAULT NULL,
-  `road_tax_date` date DEFAULT NULL,
-  `permit` date DEFAULT NULL,
+  `id`                    INT            NOT NULL AUTO_INCREMENT,
+  `registration_no`       VARCHAR(10)    DEFAULT NULL,
+  `vechile_mod_no`        VARCHAR(20)    DEFAULT NULL,
+  `year_of_mfg`           VARCHAR(10)    DEFAULT NULL,
+  `registration_details`  VARCHAR(50)    DEFAULT NULL,
+  `trans_type`            ENUM('O','L')  DEFAULT NULL,
+  `lease_det`             VARCHAR(100)   DEFAULT NULL,
+  `passng_capacity_sch`   INT            DEFAULT NULL,
+  `passng_capacity_col`   INT            DEFAULT NULL,
+  `fittness_date`         DATE           DEFAULT NULL,
+  `insurance_date`        DATE           DEFAULT NULL,
+  `road_tax_date`         DATE           DEFAULT NULL,
+  `permit`                DATE           DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -14799,19 +14871,19 @@ CREATE TABLE IF NOT EXISTS `vechile_master` (
 --
 
 CREATE TABLE IF NOT EXISTS `vendormaster_assets` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(250) DEFAULT NULL,
-  `contact_person` varchar(100) DEFAULT NULL,
-  `phone` varchar(30) DEFAULT NULL,
-  `fax` varchar(30) DEFAULT NULL,
-  `email` varchar(30) DEFAULT NULL,
-  `black_listed` enum('YES','NO') DEFAULT 'NO',
-  `address` varchar(255) DEFAULT NULL,
-  `remarks` varchar(255) DEFAULT NULL,
-  `ledger_id` varchar(10) DEFAULT NULL,
-  `pan_no` varchar(20) DEFAULT NULL,
+  `id`              INT               NOT NULL AUTO_INCREMENT,
+  `name`            VARCHAR(250)      DEFAULT NULL,
+  `contact_person`  VARCHAR(100)      DEFAULT NULL,
+  `phone`           VARCHAR(30)       DEFAULT NULL,
+  `fax`             VARCHAR(30)       DEFAULT NULL,
+  `email`           VARCHAR(30)       DEFAULT NULL,
+  `black_listed`    ENUM('YES','NO')  DEFAULT 'NO',
+  `address`         VARCHAR(255)      DEFAULT NULL,
+  `remarks`         VARCHAR(255)      DEFAULT NULL,
+  `ledger_id`       VARCHAR(10)       DEFAULT NULL,
+  `pan_no`          VARCHAR(20)       DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 
@@ -14820,15 +14892,15 @@ CREATE TABLE IF NOT EXISTS `vendormaster_assets` (
 --
 
 CREATE TABLE IF NOT EXISTS `week_updates` (
-  `id` int(14) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  `link` varchar(200) NOT NULL,
-  `adate` date NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `class` varchar(255) NOT NULL,
-  `status` int(1) NOT NULL,
+  `id`        INT           NOT NULL AUTO_INCREMENT,
+  `name`      VARCHAR(50)   NOT NULL,
+  `link`      VARCHAR(200)  NOT NULL,
+  `adate`     DATE          NOT NULL,
+  `username`  VARCHAR(255)  NOT NULL,
+  `class`     VARCHAR(255)  NOT NULL,
+  `status`    TINYINT(1)    NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=117 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 --
 -- Dumping data for table `week_updates`
@@ -14854,12 +14926,103 @@ INSERT INTO `week_updates` (`id`, `name`, `link`, `adate`, `username`, `class`, 
 --
 
 CREATE TABLE IF NOT EXISTS `working_year` (
-  `Company_ID` int(5) DEFAULT NULL,
-  `From_Date` date DEFAULT NULL,
-  `To_Date` date DEFAULT NULL,
-  `Activated` enum('On','Off') DEFAULT 'On',
-  `Transfered` enum('Yes','No') DEFAULT 'No'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id`          INT               NOT NULL AUTO_INCREMENT,
+  `Company_ID`  INT               DEFAULT NULL,
+  `From_Date`   DATE              DEFAULT NULL,
+  `To_Date`     DATE              DEFAULT NULL,
+  `activated`   ENUM('On','Off')  DEFAULT 'On',
+  `Transfered`  ENUM('Yes','No')  DEFAULT 'No',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
+
+-- --------------------------------------------------------
+-- NORMALIZED TABLES (added 2026-06-07 — DBA optimization)
+-- --------------------------------------------------------
+
+--
+-- Unified attendance log replacing the 34 separate att_* tables.
+-- Partitioned by year for O(1) archival via DROP PARTITION.
+--
+
+CREATE TABLE IF NOT EXISTS `attendance_log` (
+  `id`          BIGINT UNSIGNED     NOT NULL AUTO_INCREMENT,
+  `att_date`    DATE                NOT NULL,
+  `stu_id`      INT UNSIGNED        NOT NULL,
+  `subject_id`  MEDIUMINT UNSIGNED  NOT NULL DEFAULT 0,
+  `class_id`    SMALLINT UNSIGNED   NOT NULL,
+  `sec`         SMALLINT UNSIGNED   NOT NULL,
+  `mor`         TINYINT(1)          NOT NULL DEFAULT 0,
+  `after`       TINYINT(1)          NOT NULL DEFAULT 0,
+  `username`    VARCHAR(50)         NOT NULL DEFAULT '',
+  `att_desc`    VARCHAR(500)        NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`, `att_date`),
+  INDEX `ix_stu_date`   (`stu_id`,     `att_date`),
+  INDEX `ix_date_class` (`att_date`,   `class_id`, `sec`),
+  INDEX `ix_subj_date`  (`subject_id`, `att_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+PARTITION BY RANGE (YEAR(`att_date`)) (
+  PARTITION p2024 VALUES LESS THAN (2025),
+  PARTITION p2025 VALUES LESS THAN (2026),
+  PARTITION p2026 VALUES LESS THAN (2027),
+  PARTITION p2027 VALUES LESS THAN (2028),
+  PARTITION pmax  VALUES LESS THAN MAXVALUE
+);
+
+-- --------------------------------------------------------
+
+--
+-- Normalized parent/guardian contacts (replaces 25+ flat columns in student_m).
+-- Supports unlimited contacts per student without schema changes.
+--
+
+CREATE TABLE IF NOT EXISTS `student_contacts` (
+  `id`            INT UNSIGNED                        NOT NULL AUTO_INCREMENT,
+  `student_m_id`  INT UNSIGNED                        NOT NULL,
+  `relation`      ENUM('FATHER','MOTHER','GUARDIAN')  NOT NULL,
+  `full_name`     VARCHAR(100)                        DEFAULT NULL,
+  `email`         VARCHAR(150)                        DEFAULT NULL,
+  `mobile`        VARCHAR(20)                         DEFAULT NULL,
+  `occupation`    VARCHAR(100)                        DEFAULT NULL,
+  `organisation`  VARCHAR(100)                        DEFAULT NULL,
+  `designation`   VARCHAR(100)                        DEFAULT NULL,
+  `pan_no`        VARCHAR(20)                         DEFAULT NULL,
+  `address`       VARCHAR(255)                        DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `ix_student_rel` (`student_m_id`, `relation`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
+
+-- --------------------------------------------------------
+
+--
+-- Overflow table for large TEXT/blob columns from student_m.
+-- Keeps the main student_m row compact for sequential scans.
+--
+
+CREATE TABLE IF NOT EXISTS `student_extended` (
+  `student_m_id`  INT UNSIGNED  NOT NULL,
+  `parent_org`    TEXT          DEFAULT NULL,
+  `residence`     VARCHAR(255)  DEFAULT NULL,
+  `office`        VARCHAR(255)  DEFAULT NULL,
+  `per_grade`     VARCHAR(100)  DEFAULT NULL,
+  PRIMARY KEY (`student_m_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- Pre-aggregated grade summary cache for read-heavy report queries.
+-- Refreshed nightly; report pages query this instead of joining grade_assessment + grade_category.
+--
+
+CREATE TABLE IF NOT EXISTS `grade_summary_cache` (
+  `subject`       INT UNSIGNED       NOT NULL,
+  `a_year`        SMALLINT UNSIGNED  NOT NULL,
+  `term_id`       TINYINT UNSIGNED   NOT NULL,
+  `avg_score`     DECIMAL(5,2)       DEFAULT NULL,
+  `top_grade`     VARCHAR(5)         DEFAULT NULL,
+  `refreshed_at`  DATETIME           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`subject`, `a_year`, `term_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
