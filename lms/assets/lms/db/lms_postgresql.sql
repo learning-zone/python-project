@@ -127,10 +127,10 @@ INSERT INTO "academic_year" ("academic_year_id", "acc_year", "from_date", "to_da
 -- --------------------------------------------------------
 
 --
--- Table structure for table "additional_college"
+-- Table structure for table "additional_school"
 --
 
-CREATE TABLE IF NOT EXISTS "additional_college" (
+CREATE TABLE IF NOT EXISTS "additional_school" (
   "col_id"                    SERIAL,
   "col_name"    VARCHAR(100)  DEFAULT NULL,
   "col_code"    VARCHAR(10)   DEFAULT NULL,
@@ -173,7 +173,7 @@ CREATE TABLE IF NOT EXISTS "additional_student" (
   "course_yearsem"   INT           DEFAULT NULL,
   "academic_year"    VARCHAR(12)   DEFAULT NULL,
   "remarks"          VARCHAR(250)  DEFAULT NULL,
-  "college_id"       INT           DEFAULT NULL,
+  "school_id"       INT           DEFAULT NULL,
   PRIMARY KEY ("additional_student_id")
 );
 
@@ -2698,7 +2698,7 @@ INSERT INTO "class_teacher" ("class_teacher_id", "curri_type", "grade", "sect", 
 -- Table structure for table "school"
 --
 
-CREATE TABLE IF NOT EXISTS "college" (
+CREATE TABLE IF NOT EXISTS "school" (
   "col_id"      SERIAL,
   "col_name"    VARCHAR(100)  DEFAULT NULL,
   "col_code"    VARCHAR(10)   NOT NULL DEFAULT '',
@@ -2715,10 +2715,10 @@ CREATE TABLE IF NOT EXISTS "college" (
 );
 
 --
--- Dumping data for table "college"
+-- Dumping data for table "school"
 --
 
-INSERT INTO "college" ("col_id", "col_name", "col_code", "col_addr", "col_pin", "col_phone", "col_fax", "email", "company_id", "col_city", "col_state", "col_tin") VALUES
+INSERT INTO "school" ("col_id", "col_name", "col_code", "col_addr", "col_pin", "col_phone", "col_fax", "email", "company_id", "col_city", "col_state", "col_tin") VALUES
 (1, 'INTERNATIONAL SCHOOL', 'RD-S', 'Garden City\r\nNear Mall\r\nOff Western Express Highway\r\nGoregaon East\r\nMumbai - 4000000', '400000', '+ 91 22 4236 0000 / 199', '+ 91 22 4236 0000', 'education@email.com', '', 'Mumbai', 'Maharashtra', '');
 
 -- --------------------------------------------------------
@@ -4267,10 +4267,10 @@ CREATE TABLE IF NOT EXISTS "emp_attendance" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "emp_department"
+-- Table structure for table "employee_department"
 --
 
-CREATE TABLE IF NOT EXISTS "emp_department" (
+CREATE TABLE IF NOT EXISTS "employee_department" (
   "iId_department"    BIGSERIAL,
   "iIdx_institution"  BIGINT        NOT NULL,
   "vdepartmentname"   VARCHAR(250)  NOT NULL,
@@ -4374,10 +4374,10 @@ CREATE TABLE IF NOT EXISTS "emp_loan" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "emp_salary"
+-- Table structure for table "employee_salary"
 --
 
-CREATE TABLE IF NOT EXISTS "emp_salary" (
+CREATE TABLE IF NOT EXISTS "employee_salary" (
   "iId_salary"         BIGSERIAL,
   "iIdx_organization"  BIGINT        NOT NULL,
   "iIdx_department"    BIGINT        NOT NULL,
@@ -6680,7 +6680,7 @@ CREATE TABLE IF NOT EXISTS "grade_skill_ponts" (
 CREATE TABLE IF NOT EXISTS "hallno" (
   "hallno_id"       SERIAL,
   "hall_no"  VARCHAR(30)  DEFAULT NULL,
-  "college"  VARCHAR(60)  DEFAULT NULL,
+  "school"  VARCHAR(60)  DEFAULT NULL,
   "status"   SMALLINT   DEFAULT 1,
   PRIMARY KEY ("hallno_id")
 );
@@ -6689,7 +6689,7 @@ CREATE TABLE IF NOT EXISTS "hallno" (
 -- Dumping data for table "hallno"
 --
 
-INSERT INTO "hallno" ("hallno_id", "hall_no", "college", "status") VALUES
+INSERT INTO "hallno" ("hallno_id", "hall_no", "school", "status") VALUES
 (1, '101', 'RD-S', 1),
 (2, '501 Hum', 'RD-S', 1),
 (3, '502 Hum', 'RD-S', 1),
@@ -6844,15 +6844,15 @@ CREATE TABLE IF NOT EXISTS "h_archive_m" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "h_block"
+-- Table structure for table "hostel_block"
 --
 
-CREATE TABLE IF NOT EXISTS "h_block" (
-  "h_block_id"         SERIAL,
+CREATE TABLE IF NOT EXISTS "hostel_block" (
+  "hostel_block_id"         SERIAL,
   "blockname"  VARCHAR(50)    NOT NULL DEFAULT '',
   "hostel_no"  INT            DEFAULT NULL,
   "status"     VARCHAR(50)  DEFAULT 1,
-  PRIMARY KEY ("h_block_id")
+  PRIMARY KEY ("hostel_block_id")
 );
 
 -- --------------------------------------------------------
@@ -6900,7 +6900,7 @@ CREATE TABLE IF NOT EXISTS "h_cons_purchase_m" (
 
 CREATE TABLE IF NOT EXISTS "h_issue_consumable" (
   "issue_id"       SERIAL,
-  "college_id"     INT           DEFAULT NULL,
+  "school_id"     INT           DEFAULT NULL,
   "department_id"  INT           DEFAULT NULL,
   "issued_date"    DATE          DEFAULT NULL,
   "itemname"       VARCHAR(250)  DEFAULT NULL,
@@ -6928,28 +6928,28 @@ CREATE TABLE IF NOT EXISTS "h_item_master" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "h_room_m"
+-- Table structure for table "hostel_room_m"
 --
 
-CREATE TABLE IF NOT EXISTS "h_room_m" (
-  "h_room_m_id"        SERIAL,
+CREATE TABLE IF NOT EXISTS "hostel_room_m" (
+  "hostel_room_m_id"        SERIAL,
   "h_id"      INT          NOT NULL DEFAULT 0,
   "room_no"   VARCHAR(50)  NOT NULL DEFAULT '',
   "capacity"  INT          NOT NULL DEFAULT 0,
   "occupant"  INT          NOT NULL DEFAULT 0,
   "bid"       INT          NOT NULL DEFAULT 0,
   "ext_no"    INT          DEFAULT 0,
-  PRIMARY KEY ("h_room_m_id")
+  PRIMARY KEY ("hostel_room_m_id")
 );
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table "h_stud_m"
+-- Table structure for table "hostel_student_m"
 --
 
-CREATE TABLE IF NOT EXISTS "h_stud_m" (
-  "h_stud_m_id"          SERIAL,
+CREATE TABLE IF NOT EXISTS "hostel_student_m" (
+  "hostel_student_m_id"          SERIAL,
   "s_id"        INTEGER  DEFAULT NULL,
   "h_id"        INT                    NOT NULL DEFAULT 0,
   "lg_name"     VARCHAR(50)            NOT NULL DEFAULT '',
@@ -6969,7 +6969,7 @@ CREATE TABLE IF NOT EXISTS "h_stud_m" (
   "blood"       VARCHAR(20)            DEFAULT NULL,
   "last_name"   VARCHAR(50)            DEFAULT NULL,
   "first_name"  VARCHAR(50)            DEFAULT NULL,
-  PRIMARY KEY ("h_stud_m_id")
+  PRIMARY KEY ("hostel_student_m_id")
 );
 
 -- --------------------------------------------------------
@@ -8376,7 +8376,7 @@ CREATE TABLE IF NOT EXISTS "lib_project_report_det" (
   "title"              VARCHAR(255)  DEFAULT NULL,
   "call_no"            VARCHAR(100)  DEFAULT NULL,
   "author"             VARCHAR(255)  DEFAULT NULL,
-  "college"            VARCHAR(20)   DEFAULT NULL,
+  "school"            VARCHAR(20)   DEFAULT NULL,
   "year"               VARCHAR(255)  DEFAULT NULL,
   "rack"               VARCHAR(255)  DEFAULT NULL,
   "no_of_pages"        VARCHAR(10)   DEFAULT 0,
@@ -8461,7 +8461,7 @@ CREATE TABLE IF NOT EXISTS "lib_purchase_m" (
 CREATE TABLE IF NOT EXISTS "lib_question_paper_det" (
   "lib_question_paper_det_id"                 SERIAL,
   "question_paper_no"  VARCHAR(255)  DEFAULT NULL,
-  "college"            VARCHAR(10)   DEFAULT NULL,
+  "school"            VARCHAR(10)   DEFAULT NULL,
   "course"             INT           DEFAULT NULL,
   "sem"                INT           DEFAULT NULL,
   "subject"            INT           DEFAULT NULL,
@@ -8813,7 +8813,7 @@ INSERT INTO "links" ("module", "submodule", "linkname", "linkpath", "id", "param
 ('Student-Management', 'Reports', 'Religion Wise Report', '/lms/student_det/ReligionWise.php', 237, '', 'Religion Wise Report', '', ''),
 ('Student-Management', 'Reports', 'Gender Wise Report', '/lms/student_det/sexwise.php', 238, '', 'Gender Wise Report', '', ''),
 ('Student-Management', 'Reports', 'Archived Student List', '/lms/student_det/search_archive_det.php', 239, '', 'Archived Student List', '', ''),
-('Settings', 'Add Masters', 'School Details', '/lms/masters/collegeadd.php', 240, '', 'School Information', '', ''),
+('Settings', 'Add Masters', 'School Details', '/lms/masters/schooladd.php', 240, '', 'School Information', '', ''),
 ('Settings', 'Add Masters', 'School Division', '/lms/masters/courseadd.php', 241, '', 'Division', '', ''),
 ('Settings', 'Add Masters', 'Class', '/lms/masters/yearadd.php', 242, '', 'Class', '', ''),
 ('Settings', 'Add Masters', 'Subject Type', '/lms/masters/subtypeadd.php', 243, '', 'Subject Type', '', ''),
@@ -8830,25 +8830,25 @@ INSERT INTO "links" ("module", "submodule", "linkname", "linkpath", "id", "param
 ('Settings', 'Add Masters', 'Main Approaches', '/lms/masters/master_approaches.php', 254, '', 'Main Approaches', '', ''),
 ('Settings', 'Masters', 'Section & Intake', '/lms/masters/sanction_intake.php', 256, '', 'Section & Intake', '', ''),
 ('Settings', 'Reports', 'Intake Report', '/lms/masters/inrep.php', 257, '', 'Intake Report', '', ''),
-('Staff Management', 'Add Masters', 'Manage Department', '/lms/staff_det/departmentadd.php', 258, '', 'Add Department', '', ''),
-('Staff Management', 'Add Masters', 'Manage Designation', '/lms/staff_det/staffdesadd.php', 259, '', 'Add Designation', '', ''),
-('Staff Management', 'Add Masters', 'Manage Staff Type', '/lms/staff_det/stafftypeadd.php', 260, '', 'Add Staff Type', '', ''),
-('Staff Management', 'Add Masters', 'Add Staff Details', '/lms/staff_det/update.php', 261, '', 'Add Staff Details', '', ''),
-('Staff Management', 'Add Masters', 'Modify Staff Details', '/lms/staff_det/search.php', 262, '', 'Modify Staff Details', '', ''),
-('Staff Management', 'Add Masters', 'Generate ID Card', '/lms/staff_det/staff_card.php', 263, '', 'Generate ID Card', '', ''),
-('Staff Management', 'Add Masters', 'Manage Service Book', '/lms/staff_det/Promotion.php', 264, '', 'Manage Service Book', '', ''),
-('Staff Management', 'Add Masters', 'Activate Archived Staff', '/lms/staff_det/act_staff.php', 265, '', 'Activate Archived Staff', '', ''),
+('Staff Management', 'Add Masters', 'Manage Department', '/lms/employee_details/departmentadd.php', 258, '', 'Add Department', '', ''),
+('Staff Management', 'Add Masters', 'Manage Designation', '/lms/employee_details/staffdesadd.php', 259, '', 'Add Designation', '', ''),
+('Staff Management', 'Add Masters', 'Manage Staff Type', '/lms/employee_details/stafftypeadd.php', 260, '', 'Add Staff Type', '', ''),
+('Staff Management', 'Add Masters', 'Add Staff Details', '/lms/employee_details/update.php', 261, '', 'Add Staff Details', '', ''),
+('Staff Management', 'Add Masters', 'Modify Staff Details', '/lms/employee_details/search.php', 262, '', 'Modify Staff Details', '', ''),
+('Staff Management', 'Add Masters', 'Generate ID Card', '/lms/employee_details/staff_card.php', 263, '', 'Generate ID Card', '', ''),
+('Staff Management', 'Add Masters', 'Manage Service Book', '/lms/employee_details/Promotion.php', 264, '', 'Manage Service Book', '', ''),
+('Staff Management', 'Add Masters', 'Activate Archived Staff', '/lms/employee_details/act_staff.php', 265, '', 'Activate Archived Staff', '', ''),
 ('Parents Web', 'Calendar', 'Lunch Calendar', '/lms/Calendar/Lunch_Calendar.php', 440, 'NULL', 'Lunch Calendar', '', ''),
-('Staff Management', 'Reports', 'View Details', '/lms/staff_det/viewstf.php', 267, '', 'View Details', '', ''),
-('Staff Management', 'Reports', 'View Staff Details', '/lms/staff_det/view_staff_details.php', 268, '', 'View Staff Details', '', ''),
-('Staff Management', 'Reports', 'Staff Service Record', '/lms/staff_det/archive_search.php', 269, '', 'Staff Service Record', '', ''),
-('Staff Management', 'Reports', 'View Staff List', '/lms/staff_det/Staff_Type_Emplist.php', 270, '', 'View Staff List', '', ''),
-('Staff Management', 'Reports', 'Teaching Staff Contact Details', '/lms/staff_det/teaching.php', 271, '', 'Teaching Staff Contact Details', '', ''),
-('Staff Management', 'Reports', 'Non Teaching Staff Contact Details', '/lms/staff_det/nonteaching.php', 272, '', 'Non Teaching Staff Contact Details', '', ''),
-('Staff Management', 'Reports', 'Employee List Designation Wise', '/lms/staff_det/Emp_List.php', 273, '', 'Employee List Designation Wise', '', ''),
-('Staff Management', 'Reports', 'Employee List Department Wise', '/lms/staff_det/Emp_List_Department.php', 274, '', 'Employee List Department Wise', '', ''),
-('Staff Management', 'Reports', 'Print Address Label', '/lms/staff_det/addresssearch.php', 275, '', 'Print Address Label', '', ''),
-('Staff Management', 'Reports', 'Archived Employee Details', '/lms/staff_det/Retired_Emplist.php', 276, '', 'Archived Employee Details', '', ''),
+('Staff Management', 'Reports', 'View Details', '/lms/employee_details/viewstf.php', 267, '', 'View Details', '', ''),
+('Staff Management', 'Reports', 'View Staff Details', '/lms/employee_details/view_employee_details.php', 268, '', 'View Staff Details', '', ''),
+('Staff Management', 'Reports', 'Staff Service Record', '/lms/employee_details/archive_search.php', 269, '', 'Staff Service Record', '', ''),
+('Staff Management', 'Reports', 'View Staff List', '/lms/employee_details/Staff_Type_Emplist.php', 270, '', 'View Staff List', '', ''),
+('Staff Management', 'Reports', 'Teaching Staff Contact Details', '/lms/employee_details/teaching.php', 271, '', 'Teaching Staff Contact Details', '', ''),
+('Staff Management', 'Reports', 'Non Teaching Staff Contact Details', '/lms/employee_details/nonteaching.php', 272, '', 'Non Teaching Staff Contact Details', '', ''),
+('Staff Management', 'Reports', 'Employee List Designation Wise', '/lms/employee_details/Emp_List.php', 273, '', 'Employee List Designation Wise', '', ''),
+('Staff Management', 'Reports', 'Employee List Department Wise', '/lms/employee_details/Emp_List_Department.php', 274, '', 'Employee List Department Wise', '', ''),
+('Staff Management', 'Reports', 'Print Address Label', '/lms/employee_details/addresssearch.php', 275, '', 'Print Address Label', '', ''),
+('Staff Management', 'Reports', 'Archived Employee Details', '/lms/employee_details/Retired_Emplist.php', 276, '', 'Archived Employee Details', '', ''),
 ('Class', 'Add Masters', 'Attendance', '/lms/studatt/ex_FetchsubjectDet1.php', 278, '', 'Attendance', '', ''),
 ('Student Assessment', 'Add Masters', 'Add Marks', '/lms/studatt/AddMarks.php', 280, '', 'Add Marks', '', ''),
 ('Student Assessment', 'Assessment', 'Year Setup', '/lms/Assessment/YearSetup.php', 288, '', 'Year Setup', '', ''),
@@ -9000,15 +9000,15 @@ INSERT INTO "links" ("module", "submodule", "linkname", "linkpath", "id", "param
 ('Student-Management', 'Add Masters', 'Pastoral Care', '/lms/student_det/pastoral.php', 474, 'NULL', 'Pastoral Care', '', ''),
 ('Student-Management', 'Add Masters', 'Leaving Certificate', '/lms/student_det/LeavingCertificate.php', 475, 'NULL', 'Leaving Certificate', '', ''),
 ('Email & SMS alert', 'Reports', 'Mail Admin Log', '/lms/mail_msg/mailadminlog.php', 487, 'NULL', 'Mail Admin Log', '', ''),
-('Staff Management', 'Add Masters', 'Leave Management', '/lms/staff_det/leave.php', 476, 'NULL', 'Leave Management', '', ''),
+('Staff Management', 'Add Masters', 'Leave Management', '/lms/employee_details/leave.php', 476, 'NULL', 'Leave Management', '', ''),
 ('Main', 'Main', 'Student-Information', '/lms/menu/Student-Information.php', 477, 'NULL', 'Student-Information', '', 'images/menu/student_info.png'),
 ('Student-Information', 'Add Masters', 'Student-Information', '/lms/student_det/SearchStudent.php', 478, 'NULL', 'Student-Information', '', ''),
 ('Settings', 'Add Masters', 'Class Setup', '/lms/class/class_create.php', 479, 'NULL', 'Class Setup', '', ''),
 ('Settings', 'Add Masters', 'Create Group', '/lms/group/group.php', 480, 'NULL', 'Create Group', '', ''),
 ('Main', 'Main', 'RFID', '/lms/menu/rfid.php', 481, 'NULL', 'RFID', '', 'images/menu/rfid.png'),
 ('RFID', 'Reports', 'Staff Time Sheet', '/lms/rfid/StaffDailyAttendance.php', 482, 'NULL', 'Staff Time Sheet', '', ''),
-('Settings', 'Add Masters', 'Leave Setup', '/lms/staff_det/leavesetup.php', 483, 'NULL', 'Leave Setup', '', ''),
-('Staff Management', 'Reports', 'Leave Reports', '/lms/staff_det/leavereports.php', 484, 'NULL', 'Leave Reports', '', ''),
+('Settings', 'Add Masters', 'Leave Setup', '/lms/employee_details/leavesetup.php', 483, 'NULL', 'Leave Setup', '', ''),
+('Staff Management', 'Reports', 'Leave Reports', '/lms/employee_details/leavereports.php', 484, 'NULL', 'Leave Reports', '', ''),
 ('Class', 'Reports', 'Class Report', '/lms/class/class_report.php', 485, 'NULL', 'Class Report', '', ''),
 ('Time Table', 'Reports', 'Student Time Table', '/lms/TimeTable/studentwise.php', 486, '', 'Student Time Table', '', ''),
 ('Email & SMS alert', 'Reports', 'Mail Log', '/lms/mail_msg/maillog.php', 488, 'NULL', 'Mail Log', '', ''),
@@ -9048,7 +9048,7 @@ INSERT INTO "links" ("module", "submodule", "linkname", "linkpath", "id", "param
 ('Pre-Admission', 'Enquires', 'Admission Pack', '/lms/pre_admin/admission_pack.php', 541, '', 'Admission Pack', '', ''),
 ('Class', 'Reports', 'Attendance Report - Year', '/lms/studatt/studentcourse.php', 542, 'NULL', 'Attendance Report - Year', '', ''),
 ('Student-Management', 'Add Masters', 'RFID', '/lms/student_det/studentcourserfid.php', 543, 'NULL', 'RFID', '', ''),
-('Staff Management', 'Add Masters', 'RFID', '/lms/staff_det/staffrfidupdate.php', 544, 'NULL', 'RFID', '', ''),
+('Staff Management', 'Add Masters', 'RFID', '/lms/employee_details/staffrfidupdate.php', 544, 'NULL', 'RFID', '', ''),
 ('Parents Web', 'Appointment Scheduler', 'Schedule Setup', '/lms/Calendar/schedulerSetup.php', 545, 'NULL', 'Schedule Setup', '', ''),
 ('Parents Web', 'Appointment Scheduler', 'Schedule Meeting', '/lms/Calendar/appointmentScheduler.php', 546, 'NULL', 'Schedule Meeting', '', ''),
 ('Parents Web', 'Appointment Scheduler', 'Confirm Meeting', '/lms/Calendar/adminScheduler.php', 547, 'NULL', 'Confirm Meeting', '', ''),
@@ -9296,25 +9296,25 @@ INSERT INTO "mail_attachments" ("mail_attachments_id", "str_id", "name", "link",
 -- --------------------------------------------------------
 
 --
--- Table structure for table "mail_det"
+-- Table structure for table "mail_details"
 --
 
-CREATE TABLE IF NOT EXISTS "mail_det" (
-  "mail_det_id"            SERIAL,
+CREATE TABLE IF NOT EXISTS "mail_details" (
+  "mail_details_id"            SERIAL,
   "mail_subject"  VARCHAR(70)  NOT NULL,
   "mail_content"  MEDIUMTEXT   NOT NULL,
   "status"        SMALLINT   NOT NULL,
   "mail_date"     DATE         NOT NULL,
   "username"      VARCHAR(40)  NOT NULL,
   "count"         INT          NOT NULL,
-  PRIMARY KEY ("mail_det_id")
+  PRIMARY KEY ("mail_details_id")
 );
 
 --
--- Dumping data for table "mail_det"
+-- Dumping data for table "mail_details"
 --
 
-INSERT INTO "mail_det" ("mail_det_id", "mail_subject", "mail_content", "status", "mail_date", "username", "count") VALUES
+INSERT INTO "mail_details" ("mail_details_id", "mail_subject", "mail_content", "status", "mail_date", "username", "count") VALUES
 (1, 'HEALTH INfo', '', 1, '2026-05-28', 'administrator', 0),
 (2, 'French 6 week update', '<p>Dear Parents,</p>\r\n<p>the year started with a lot of enthusiasm in the French class. It is good to be back and to see the children everyday. Do contact me at any time, I will be happy to answer your questions.</p>\r\n<p>For now, please find attached our plans for the first six weeks of instruction.</p>\r\n<p>Kind regards.</p>\r\n<p>Pascal Fuzier.</p>\r\n', 1, '2026-08-14', 'pascalf', 0),
 (3, 'No school tomorrow & Thursday is library day. ', '<p>Dear parents of 1C,</p>\r\n<p>Please note that 1C class will be visiting the library every Thursday for book exchange. Students are encouraged to exchange books on any day they are done with the library books. Students are learning about &#39;good fit book&#39; and &#39;I PICK&#39; to<i><u> become independent in choosing the right books for them</u></i>. &#39;I PICK&#39; stands for<font color="#FF0000"> I</font> choose the book.<font color="#FF0000"> P</font>urpose; Why do I want to read this book? <font color="#FF0000">I</font>nterest: Does this book interest me? <font color="#FF0000">C</font>omprehension: Do I understand the text? <font color="#FF0000">K</font>now: I know most of the words. Please expect the children to bring the books that are not exactly at their reading level, but try to understand why they might have choosen the book. The discussion and encouragement of &#39;I PICK&#39; should continue at home as well. The modifiied reading will be provided by the school. Please read with your children and talk about reading everyday.</p>\r\n<p>As you know and received the note many times, there is no school tomorrow.</p>\r\n<p>Enjoy Raksha Badhan and thank you for your support,</p>\r\n<p>Vitna Bailey</p>\r\n', 1, '2026-08-19', 'vitnab', 0);
@@ -9350,7 +9350,7 @@ INSERT INTO "mail_group" ("mail_group_id", "group_name", "description", "status"
 CREATE TABLE IF NOT EXISTS "mail_logs" (
   "mail_logs_id"            SERIAL,
   "mail_sent_id"  INT           NOT NULL,
-  "mail_det"      TEXT          NOT NULL,
+  "mail_details"      TEXT          NOT NULL,
   "response"      TEXT          NOT NULL,
   "status"        SMALLINT    NOT NULL,
   "mail_date"     DATE          NOT NULL,
@@ -9374,7 +9374,7 @@ CREATE TABLE IF NOT EXISTS "mail_logs" (
 CREATE TABLE IF NOT EXISTS "mail_logs_system" (
   "mail_logs_system_id"            SERIAL,
   "mail_sent_id"  INT           NOT NULL,
-  "mail_det"      TEXT          NOT NULL,
+  "mail_details"      TEXT          NOT NULL,
   "response"      TEXT          NOT NULL,
   "status"        SMALLINT    NOT NULL,
   "mail_date"     DATE          NOT NULL,
@@ -9429,7 +9429,7 @@ CREATE TABLE IF NOT EXISTS "mail_member_field" (
 CREATE TABLE IF NOT EXISTS "mail_sent_count" (
   "mail_sent_count_id"            SERIAL,
   "username"      VARCHAR(30)  NOT NULL,
-  "mail_det_id"   VARCHAR(70)  NOT NULL,
+  "mail_details_id"   VARCHAR(70)  NOT NULL,
   "from_mail_id"  VARCHAR(70)  NOT NULL,
   "to_mail_id"    VARCHAR(70)  NOT NULL,
   "student_id"    INT          NOT NULL,
@@ -11241,7 +11241,7 @@ CREATE TABLE IF NOT EXISTS "requirementindent" (
   "requirementindent_id"                SERIAL,
   "RDate"             DATE                      DEFAULT NULL,
   "RINumber"          VARCHAR(20)               DEFAULT NULL,
-  "College"           VARCHAR(100)              DEFAULT NULL,
+  "School"           VARCHAR(100)              DEFAULT NULL,
   "person"            VARCHAR(150)              DEFAULT NULL,
   "asset_id"          INT                       DEFAULT NULL,
   "quantity"          INT                       DEFAULT NULL,
@@ -11448,11 +11448,11 @@ CREATE TABLE IF NOT EXISTS "rfid_staff_check_out" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "rfid_stud"
+-- Table structure for table "rfid_student"
 --
 
-CREATE TABLE IF NOT EXISTS "rfid_stud" (
-  "rfid_stud_id"            SERIAL,
+CREATE TABLE IF NOT EXISTS "rfid_student" (
+  "rfid_student_id"            SERIAL,
   "to_day_date"   DATE         NOT NULL,
   "controllerip"  VARCHAR(40)  NOT NULL,
   "readerno"      VARCHAR(40)  NOT NULL,
@@ -11462,7 +11462,7 @@ CREATE TABLE IF NOT EXISTS "rfid_stud" (
   "studid"        INT          NOT NULL,
   "status"        INT          NOT NULL DEFAULT 1,
   "delt"          VARCHAR(2)   NOT NULL,
-  PRIMARY KEY ("rfid_stud_id")
+  PRIMARY KEY ("rfid_student_id")
 );
 
 -- --------------------------------------------------------
@@ -12298,10 +12298,10 @@ INSERT INTO "staff_des" ("d_name", "d_id", "group_id", "d_code", "col_id", "prio
 -- --------------------------------------------------------
 
 --
--- Table structure for table "staff_det"
+-- Table structure for table "employee_details"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_det" (
+CREATE TABLE IF NOT EXISTS "employee_details" (
   "f_name"                  VARCHAR(50)       NOT NULL DEFAULT '',
   "s_name"                  VARCHAR(50)       NOT NULL DEFAULT '',
   "i_name"                  VARCHAR(15)       DEFAULT NULL,
@@ -12327,7 +12327,7 @@ CREATE TABLE IF NOT EXISTS "staff_det" (
   "st_pres"                 VARCHAR(50)       DEFAULT NULL,
   "ph_pres"                 VARCHAR(50)       DEFAULT NULL,
   "email"                   VARCHAR(250)      DEFAULT NULL,
-  "staff_det_id"                      SERIAL,
+  "employee_details_id"                      SERIAL,
   "slno"                    VARCHAR(50)       NOT NULL DEFAULT '',
   "group_id"                INT               DEFAULT NULL,
   "appnt_des"               INT               DEFAULT 0,
@@ -12403,17 +12403,17 @@ CREATE TABLE IF NOT EXISTS "staff_det" (
   "husband"                 VARCHAR(50)       DEFAULT NULL,
   "scard"                   VARCHAR(15)       DEFAULT NULL,
   "employee_code"           VARCHAR(20)       NOT NULL,
-  PRIMARY KEY ("staff_det_id")
+  PRIMARY KEY ("employee_details_id")
 );
 
-CREATE UNIQUE INDEX "ux_employee_code" ON "staff_det" ("employee_code");
-CREATE INDEX "ix_group_active" ON "staff_det" ("group_id", "active");
+CREATE UNIQUE INDEX "ux_employee_code" ON "employee_details" ("employee_code");
+CREATE INDEX "ix_group_active" ON "employee_details" ("group_id", "active");
 
 --
--- Dumping data for table "staff_det"
+-- Dumping data for table "employee_details"
 --
 
-INSERT INTO "staff_det" ("f_name", "s_name", "i_name", "qual", "cert", "subj", "exp_cur", "exp_prev", "sp_assoc", "xtra", "father", "doa", "bg", "ms", "addr_perm", "ct_perm", "pin_perm", "st_perm", "ph_perm", "addr_pres", "ct_pres", "pin_pres", "st_pres", "ph_pres", "email", "id", "slno", "group_id", "appnt_des", "offeredsal", "basicsal", "j_date", "cmts", "status_id", "dob", "other_facilities", "other_responsibilities", "prev_post", "prev_work_place", "prev_work_city", "prev_work_country", "last_date_of_work", "staff_status_id", "date_of_updation", "expirydate", "gender", "releive_date", "recruitment_procedure", "pfscheme", "active", "bank_ac_no", "pf_ac_no", "panno", "csal", "sop", "cat", "pno", "vfdate", "vtadate", "dep", "category", "cat_fdate", "cat_tdate", "pay_scale", "spouse_name", "dept_name", "dept_dob", "dept_rel", "dept_occu", "dept_anualinc", "issue_place", "mobileno", "col_id", "height", "id_mark", "religion", "appnt_date", "type_id", "aicte_scale", "payscale", "payrange", "substantive", "tanno", "bank", "joined_as", "officiating_pay", "app_no", "staff_group_id", "img_col", "nationality", "mother_tongue", "membership", "empexc", "extraact", "addinfo", "kannada", "english", "hindi", "husband", "scard", "employee_code") VALUES
+INSERT INTO "employee_details" ("f_name", "s_name", "i_name", "qual", "cert", "subj", "exp_cur", "exp_prev", "sp_assoc", "xtra", "father", "doa", "bg", "ms", "addr_perm", "ct_perm", "pin_perm", "st_perm", "ph_perm", "addr_pres", "ct_pres", "pin_pres", "st_pres", "ph_pres", "email", "id", "slno", "group_id", "appnt_des", "offeredsal", "basicsal", "j_date", "cmts", "status_id", "dob", "other_facilities", "other_responsibilities", "prev_post", "prev_work_place", "prev_work_city", "prev_work_country", "last_date_of_work", "staff_status_id", "date_of_updation", "expirydate", "gender", "releive_date", "recruitment_procedure", "pfscheme", "active", "bank_ac_no", "pf_ac_no", "panno", "csal", "sop", "cat", "pno", "vfdate", "vtadate", "dep", "category", "cat_fdate", "cat_tdate", "pay_scale", "spouse_name", "dept_name", "dept_dob", "dept_rel", "dept_occu", "dept_anualinc", "issue_place", "mobileno", "col_id", "height", "id_mark", "religion", "appnt_date", "type_id", "aicte_scale", "payscale", "payrange", "substantive", "tanno", "bank", "joined_as", "officiating_pay", "app_no", "staff_group_id", "img_col", "nationality", "mother_tongue", "membership", "empexc", "extraact", "addinfo", "kannada", "english", "hindi", "husband", "scard", "employee_code") VALUES
 ('Alexander Johnson', '', NULL, '', NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'alexander.johnson@email.com', 69, '8327', 1, NULL, 0, 0, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 31, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8327'),
 ('Natasha Khanna', '', NULL, '', NULL, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'natasha.khanna@email.com', 70, '8244', 1, NULL, 0, 0, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FEMALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 34, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8244'),
 ('Neha Thoria', '', NULL, '', NULL, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'neha.thoria@email.com', 71, '8269', 1, NULL, 0, 0, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 34, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8269'),
@@ -12548,11 +12548,11 @@ INSERT INTO "staff_hr_grup" ("staff_hr_grup_id", "user", "hr_id", "mng_id", "sta
 -- --------------------------------------------------------
 
 --
--- Table structure for table "staff_leave"
+-- Table structure for table "employee_leave"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_leave" (
-  "staff_leave_id"                     SERIAL,
+CREATE TABLE IF NOT EXISTS "employee_leave" (
+  "employee_leave_id"                     SERIAL,
   "staff_att_approve"      INT           NOT NULL,
   "user"                   VARCHAR(255)  NOT NULL,
   "user_manager"           VARCHAR(255)  NOT NULL,
@@ -12589,14 +12589,14 @@ CREATE TABLE IF NOT EXISTS "staff_leave" (
   "staff_id"               INT           NOT NULL,
   "approve_reason"         TEXT          NOT NULL,
   "reject_reason"          TEXT          NOT NULL,
-  PRIMARY KEY ("staff_leave_id")
+  PRIMARY KEY ("employee_leave_id")
 );
 
 --
--- Dumping data for table "staff_leave"
+-- Dumping data for table "employee_leave"
 --
 
-INSERT INTO "staff_leave" ("staff_leave_id", "staff_att_approve", "user", "user_manager", "inserted_date", "updated_date", "user_id", "avl", "type", "in_time", "out_time", "hd_ee_da_date", "reason", "manager", "submit_with", "f_date", "f_time", "t_date", "to_time", "half_time_in", "backup", "notify", "days", "contact", "approved", "reject", "acc_year", "status", "status_reason", "withd_commt", "with_color", "status_approve", "status_approve_manger", "status_with_staff", "staff_id", "approve_reason", "reject_reason") VALUES
+INSERT INTO "employee_leave" ("employee_leave_id", "staff_att_approve", "user", "user_manager", "inserted_date", "updated_date", "user_id", "avl", "type", "in_time", "out_time", "hd_ee_da_date", "reason", "manager", "submit_with", "f_date", "f_time", "t_date", "to_time", "half_time_in", "backup", "notify", "days", "contact", "approved", "reject", "acc_year", "status", "status_reason", "withd_commt", "with_color", "status_approve", "status_approve_manger", "status_with_staff", "staff_id", "approve_reason", "reject_reason") VALUES
 (17, 0, 'archanam', '', '2026-03-07 11:06:03', NULL, 0, 0, '1', '', '', NULL, 'personal', '', 1, '2026-03-20', '', '2026-03-20', '', '', '', '', '1', '', 0, 0, 2026, 1, 2, 'no personal work', '', 2, NULL, '2026-03-07 11:11:03', 246, '', ''),
 (16, 0, 'archanam', 'chaitalig', '2026-03-07 11:02:03', '2026-03-07 11:05:03', 247, 0, '1', '', '', NULL, 'personal work', '', 0, '2026-03-17', '', '2026-03-17', '', '', '', '', '0', '', 0, 1, 2026, 1, 1, '', '', 1, NULL, NULL, 246, '', 'public holiday'),
 (89, 0, 'soumendran', '', '2026-03-27 14:11:03', NULL, 0, 0, '1', '', '', NULL, 'Not well', '', 0, '2026-03-25', '', '2026-03-25', '', '', '', '', '1', '', 0, 0, 2026, 1, 1, '', '', 1, NULL, NULL, 249, '', ''),
@@ -12612,23 +12612,23 @@ INSERT INTO "staff_leave" ("staff_leave_id", "staff_att_approve", "user", "user_
 -- --------------------------------------------------------
 
 --
--- Table structure for table "staff_leave_hr"
+-- Table structure for table "employee_leave_hr"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_leave_hr" (
-  "staff_leave_hr_id"        SERIAL,
+CREATE TABLE IF NOT EXISTS "employee_leave_hr" (
+  "employee_leave_hr_id"        SERIAL,
   "user"      VARCHAR(255)  NOT NULL,
   "hr_id"     INT           NOT NULL,
   "acc_year"  INT           NOT NULL,
   "status"    SMALLINT    NOT NULL,
-  PRIMARY KEY ("staff_leave_hr_id")
+  PRIMARY KEY ("employee_leave_hr_id")
 );
 
 --
--- Dumping data for table "staff_leave_hr"
+-- Dumping data for table "employee_leave_hr"
 --
 
-INSERT INTO "staff_leave_hr" ("staff_leave_hr_id", "user", "hr_id", "acc_year", "status") VALUES
+INSERT INTO "employee_leave_hr" ("employee_leave_hr_id", "user", "hr_id", "acc_year", "status") VALUES
 (1, 'administrator', 247, 2026, 1),
 (2, 'administrator', 246, 2026, 1),
 (3, 'administrator', 248, 2026, 1);
@@ -12636,23 +12636,23 @@ INSERT INTO "staff_leave_hr" ("staff_leave_hr_id", "user", "hr_id", "acc_year", 
 -- --------------------------------------------------------
 
 --
--- Table structure for table "staff_leave_manger"
+-- Table structure for table "employee_leave_manger"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_leave_manger" (
-  "staff_leave_manger_id"         SERIAL,
+CREATE TABLE IF NOT EXISTS "employee_leave_manger" (
+  "employee_leave_manger_id"         SERIAL,
   "user"       VARCHAR(255)  NOT NULL,
   "manger_id"  INT           NOT NULL,
   "acc_year"   INT           NOT NULL,
   "status"     SMALLINT    NOT NULL,
-  PRIMARY KEY ("staff_leave_manger_id")
+  PRIMARY KEY ("employee_leave_manger_id")
 );
 
 --
--- Dumping data for table "staff_leave_manger"
+-- Dumping data for table "employee_leave_manger"
 --
 
-INSERT INTO "staff_leave_manger" ("staff_leave_manger_id", "user", "manger_id", "acc_year", "status") VALUES
+INSERT INTO "employee_leave_manger" ("employee_leave_manger_id", "user", "manger_id", "acc_year", "status") VALUES
 (1, 'administrator', 188, 2026, 0),
 (2, 'administrator', 182, 2026, 1),
 (3, 'administrator', 68, 2026, 1),
@@ -12677,23 +12677,23 @@ INSERT INTO "staff_leave_manger" ("staff_leave_manger_id", "user", "manger_id", 
 -- --------------------------------------------------------
 
 --
--- Table structure for table "staff_leave_type"
+-- Table structure for table "employee_leave_type"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_leave_type" (
-  "staff_leave_type_id"            SERIAL,
+CREATE TABLE IF NOT EXISTS "employee_leave_type" (
+  "employee_leave_type_id"            SERIAL,
   "leave_name"    VARCHAR(255)  NOT NULL,
   "special_type"  INT           NOT NULL,
   "lv_ty"         INT           NOT NULL,
   "status"        SMALLINT    NOT NULL,
-  PRIMARY KEY ("staff_leave_type_id")
+  PRIMARY KEY ("employee_leave_type_id")
 );
 
 --
--- Dumping data for table "staff_leave_type"
+-- Dumping data for table "employee_leave_type"
 --
 
-INSERT INTO "staff_leave_type" ("staff_leave_type_id", "leave_name", "special_type", "lv_ty", "status") VALUES
+INSERT INTO "employee_leave_type" ("employee_leave_type_id", "leave_name", "special_type", "lv_ty", "status") VALUES
 (1, 'Leave', 1, 0, 1),
 (2, 'Unpaid Leave', 1, 0, 1),
 (3, 'Maternity Leave', 2, 0, 1),
@@ -12703,22 +12703,22 @@ INSERT INTO "staff_leave_type" ("staff_leave_type_id", "leave_name", "special_ty
 -- --------------------------------------------------------
 
 --
--- Table structure for table "staff_leave_type_group"
+-- Table structure for table "employee_leave_type_group"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_leave_type_group" (
-  "staff_leave_type_group_id"          SERIAL,
+CREATE TABLE IF NOT EXISTS "employee_leave_type_group" (
+  "employee_leave_type_group_id"          SERIAL,
   "staff_id"    INT  NOT NULL,
   "leave_type"  INT  NOT NULL,
   "status"      INT  NOT NULL,
-  PRIMARY KEY ("staff_leave_type_group_id")
+  PRIMARY KEY ("employee_leave_type_group_id")
 );
 
 --
--- Dumping data for table "staff_leave_type_group"
+-- Dumping data for table "employee_leave_type_group"
 --
 
-INSERT INTO "staff_leave_type_group" ("staff_leave_type_group_id", "staff_id", "leave_type", "status") VALUES
+INSERT INTO "employee_leave_type_group" ("employee_leave_type_group_id", "staff_id", "leave_type", "status") VALUES
 (1, 330, 1, 0),
 (2, 331, 1, 0),
 (3, 332, 1, 0),
@@ -12747,7 +12747,7 @@ CREATE TABLE IF NOT EXISTS "staff_qualification" (
   "university"      VARCHAR(100)  DEFAULT NULL,
   "reg_date"        VARCHAR(200)  DEFAULT NULL,
   "name_board"      VARCHAR(200)  DEFAULT NULL,
-  "college"         VARCHAR(200)  DEFAULT NULL,
+  "school"         VARCHAR(200)  DEFAULT NULL,
   "specialization"  VARCHAR(50)   DEFAULT NULL,
   "class"           VARCHAR(25)   DEFAULT NULL,
   "percentage"      VARCHAR(25)   DEFAULT NULL,
@@ -12758,7 +12758,7 @@ CREATE TABLE IF NOT EXISTS "staff_qualification" (
 -- Dumping data for table "staff_qualification"
 --
 
-INSERT INTO "staff_qualification" ("staff_qualification_id", "staff_id", "course_name", "year_pass", "university", "reg_date", "name_board", "college", "specialization", "class", "percentage") VALUES
+INSERT INTO "staff_qualification" ("staff_qualification_id", "staff_id", "course_name", "year_pass", "university", "reg_date", "name_board", "school", "specialization", "class", "percentage") VALUES
 (1, 1, 'Dip. in Comp.Sc', '1991', '', '', '', 'MNTI', 'CS', NULL, NULL),
 (2, 2, 'II PUC', '1988', 'bangalore', '', '', 'mounts', 'Commerce', NULL, NULL),
 (3, 2, 'Dip in Com', '', '', '', '', '', 'CS', NULL, NULL),
@@ -13931,11 +13931,11 @@ INSERT INTO "student_pt_observation_m" ("student_pt_observation_m_id", "student_
 -- --------------------------------------------------------
 
 --
--- Table structure for table "stud_health"
+-- Table structure for table "student_health"
 --
 
-CREATE TABLE IF NOT EXISTS "stud_health" (
-  "stud_health_id"             SERIAL,
+CREATE TABLE IF NOT EXISTS "student_health" (
+  "student_health_id"             SERIAL,
   "studid"         VARCHAR(20)  DEFAULT NULL,
   "studname"       VARCHAR(30)  DEFAULT NULL,
   "courseid"       INT          DEFAULT NULL,
@@ -13955,14 +13955,14 @@ CREATE TABLE IF NOT EXISTS "stud_health" (
   "date_selected"  DATE         DEFAULT NULL,
   "student_id"     INT          DEFAULT NULL,
   "date_modified"  DATE         DEFAULT NULL,
-  PRIMARY KEY ("stud_health_id")
+  PRIMARY KEY ("student_health_id")
 );
 
 --
--- Dumping data for table "stud_health"
+-- Dumping data for table "student_health"
 --
 
-INSERT INTO "stud_health" ("stud_health_id", "studid", "studname", "courseid", "academicyear", "height", "weight", "general_exam", "vision", "dental", "cardio_exam", "chest_exam", "urine_exam", "blood_exam", "remarks", "rep_date", "pefr", "date_selected", "student_id", "date_modified") VALUES
+INSERT INTO "student_health" ("student_health_id", "studid", "studname", "courseid", "academicyear", "height", "weight", "general_exam", "vision", "dental", "cardio_exam", "chest_exam", "urine_exam", "blood_exam", "remarks", "rep_date", "pefr", "date_selected", "student_id", "date_modified") VALUES
 (1, 'A1013', 'Bharadwaj, Ayan Puneet', 2, '2026', '90', '14', 'not measured', 'not measured', '50', '17.283950617', '0.91228070175', NULL, NULL, NULL, NULL, NULL, '2026-08-05', 141, NULL),
 (2, 'A1071', 'Chandorkar, Arya Rajendra', 2, '2026', '87', '9', 'not measured', 'not measured', '48', '11.890606421', '0.88679245283', NULL, NULL, NULL, NULL, NULL, '2026-08-05', 197, NULL),
 (3, 'A1143', 'Dixit, Shaurya Maulik', 2, '2026', '99', '13', '116', '98', '49.5', '13.263952658', '0.84210526316', NULL, NULL, NULL, NULL, NULL, '2026-08-05', 326, NULL),
@@ -14432,7 +14432,7 @@ CREATE TABLE IF NOT EXISTS "tempstaff_qualification" (
   "university"      VARCHAR(100)  DEFAULT NULL,
   "reg_date"        VARCHAR(200)  DEFAULT NULL,
   "name_board"      VARCHAR(200)  DEFAULT NULL,
-  "college"         VARCHAR(200)  DEFAULT NULL,
+  "school"         VARCHAR(200)  DEFAULT NULL,
   "specialization"  VARCHAR(50)   DEFAULT NULL,
   "username"        VARCHAR(100)  DEFAULT NULL,
   "col_id"          INT           DEFAULT NULL,
@@ -14717,7 +14717,7 @@ INSERT INTO "usermenu" ("username", "module", "submodule", "linkname", "linkpath
 ('heidih', 'Student Management', 'Reports', 'Parent Username', '/lms/student_det/parentUsername.php', 'Yes', '', 432, 121853, 'FACULTY', 'V'),
 ('aartia', 'Online Assessment', 'Add Masters', 'Evaluate', '/lms/OnlineAss/Evaluate.php', 'Yes', '', 407, 116966, 'FACULTY', 'V'),
 ('manjuu', 'Student Assessment', 'Add Masters', 'Student Report Card', '/lms/skills/studentReportCard.php', 'Yes', '', 524, 100013, 'FACULTY', 'V'),
-('administrator', 'Staff Management', 'Add Masters', 'Leave Management', '/lms/staff_det/leave.php', 'Yes', '', 476, 33431, '', 'V'),
+('administrator', 'Staff Management', 'Add Masters', 'Leave Management', '/lms/employee_details/leave.php', 'Yes', '', 476, 33431, '', 'V'),
 ('administrator', 'Accounts', 'Add Masters', 'Scholarship Update', '/lms/fee/studsearch.php', 'Yes', '', 10, 10, 'NULL', 'V'),
 ('administrator', 'Accounts', 'Reports', 'Demanded Fee Structure', '/lms/fee/dmdfee.php', 'Yes', '', 12, 12, 'NULL', 'V');
 
@@ -14797,7 +14797,7 @@ INSERT INTO "user_group" ("group_name", "module", "submodule", "linkname", "id",
 ('FACULTY', 'Main', 'Main', 'Staff Management', 205, '', '/lms/menu/staffmenu.php'),
 ('FACULTY', 'Main', 'Main', 'Email & SMS alert', 212, '', '/lms/menu/enoticemenu.php'),
 ('FACULTY', 'Class', 'Reports', 'Detailed Student Attendance', 303, '', '/lms/studatt/det_att_rep_stud.php'),
-('FACULTY', 'Staff Management', 'Add Masters', 'Leave Management', 476, '', '/lms/staff_det/leave.php'),
+('FACULTY', 'Staff Management', 'Add Masters', 'Leave Management', 476, '', '/lms/employee_details/leave.php'),
 ('ADMIN', 'Class', 'Reports', 'Master Lesson Plan', 408, '', '/lms/TimeTable/master_lesson_plan_rep.php'),
 ('COORDINATOR', 'Class', 'Reports', 'Detailed Attendance Report', 304, '', '/lms/studatt/det_stud.php'),
 ('FACULTY', 'Online Assessment', 'Add Masters', 'Add Questions', 405, '', '/lms/OnlineAss/add_questions.php'),
@@ -15108,7 +15108,7 @@ SELECT setval(pg_get_serial_sequence('"class_section"', 'class_section_id'), COA
 SELECT setval(pg_get_serial_sequence('"class_section_sub"', 'class_section_sub_id'), COALESCE((SELECT MAX("class_section_sub_id") FROM "class_section_sub"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"class_teacher"', 'class_teacher_id'), COALESCE((SELECT MAX("class_teacher_id") FROM "class_teacher"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"classtime"', 'classtime_id'), COALESCE((SELECT MAX("classtime_id") FROM "classtime"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"college"', 'col_id'), COALESCE((SELECT MAX("col_id") FROM "college"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('"school"', 'col_id'), COALESCE((SELECT MAX("col_id") FROM "school"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"country"', 'country_id'), COALESCE((SELECT MAX("country_id") FROM "country"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"course_m"', 'course_id'), COALESCE((SELECT MAX("course_id") FROM "course_m"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"course_year"', 'year_id'), COALESCE((SELECT MAX("year_id") FROM "course_year"), 0) + 1, false);
@@ -15185,7 +15185,7 @@ SELECT setval(pg_get_serial_sequence('"links_p"', 'links_p_id'), COALESCE((SELEC
 SELECT setval(pg_get_serial_sequence('"log"', 'log_id'), COALESCE((SELECT MAX("log_id") FROM "log"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"lunch_menu_master"', 'lunch_menu_master_id'), COALESCE((SELECT MAX("lunch_menu_master_id") FROM "lunch_menu_master"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"mail_attachments"', 'mail_attachments_id'), COALESCE((SELECT MAX("mail_attachments_id") FROM "mail_attachments"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"mail_det"', 'mail_det_id'), COALESCE((SELECT MAX("mail_det_id") FROM "mail_det"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('"mail_details"', 'mail_details_id'), COALESCE((SELECT MAX("mail_details_id") FROM "mail_details"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"mail_group"', 'mail_group_id'), COALESCE((SELECT MAX("mail_group_id") FROM "mail_group"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"mail_settings"', 'mail_settings_id'), COALESCE((SELECT MAX("mail_settings_id") FROM "mail_settings"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"mailinsert"', 'mailinsert_id'), COALESCE((SELECT MAX("mailinsert_id") FROM "mailinsert"), 0) + 1, false);
@@ -15212,22 +15212,22 @@ SELECT setval(pg_get_serial_sequence('"staff_class_group"', 'staff_class_group_i
 SELECT setval(pg_get_serial_sequence('"staff_default"', 'staff_default_id'), COALESCE((SELECT MAX("staff_default_id") FROM "staff_default"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"staff_default_status"', 'staff_default_status_id'), COALESCE((SELECT MAX("staff_default_status_id") FROM "staff_default_status"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"staff_des"', 'd_id'), COALESCE((SELECT MAX("d_id") FROM "staff_des"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_det"', 'staff_det_id'), COALESCE((SELECT MAX("staff_det_id") FROM "staff_det"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('"employee_details"', 'employee_details_id'), COALESCE((SELECT MAX("employee_details_id") FROM "employee_details"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"staff_group"', 'staff_group_id'), COALESCE((SELECT MAX("staff_group_id") FROM "staff_group"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"staff_groupnames"', 'staff_groupnames_id'), COALESCE((SELECT MAX("staff_groupnames_id") FROM "staff_groupnames"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"staff_hr_grup"', 'staff_hr_grup_id'), COALESCE((SELECT MAX("staff_hr_grup_id") FROM "staff_hr_grup"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_leave"', 'staff_leave_id'), COALESCE((SELECT MAX("staff_leave_id") FROM "staff_leave"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_leave_hr"', 'staff_leave_hr_id'), COALESCE((SELECT MAX("staff_leave_hr_id") FROM "staff_leave_hr"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_leave_manger"', 'staff_leave_manger_id'), COALESCE((SELECT MAX("staff_leave_manger_id") FROM "staff_leave_manger"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_leave_type"', 'staff_leave_type_id'), COALESCE((SELECT MAX("staff_leave_type_id") FROM "staff_leave_type"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_leave_type_group"', 'staff_leave_type_group_id'), COALESCE((SELECT MAX("staff_leave_type_group_id") FROM "staff_leave_type_group"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('"employee_leave"', 'employee_leave_id'), COALESCE((SELECT MAX("employee_leave_id") FROM "employee_leave"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('"employee_leave_hr"', 'employee_leave_hr_id'), COALESCE((SELECT MAX("employee_leave_hr_id") FROM "employee_leave_hr"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('"employee_leave_manger"', 'employee_leave_manger_id'), COALESCE((SELECT MAX("employee_leave_manger_id") FROM "employee_leave_manger"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('"employee_leave_type"', 'employee_leave_type_id'), COALESCE((SELECT MAX("employee_leave_type_id") FROM "employee_leave_type"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('"employee_leave_type_group"', 'employee_leave_type_group_id'), COALESCE((SELECT MAX("employee_leave_type_group_id") FROM "employee_leave_type_group"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"staff_lv_data_feb19"', 'staff_lv_data_feb19_id'), COALESCE((SELECT MAX("staff_lv_data_feb19_id") FROM "staff_lv_data_feb19"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"staff_qualification"', 'staff_qualification_id'), COALESCE((SELECT MAX("staff_qualification_id") FROM "staff_qualification"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"staff_rights"', 'staff_rights_id'), COALESCE((SELECT MAX("staff_rights_id") FROM "staff_rights"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"staff_status"', 'staff_status_id'), COALESCE((SELECT MAX("staff_status_id") FROM "staff_status"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"staff_termination"', 'staff_termination_id'), COALESCE((SELECT MAX("staff_termination_id") FROM "staff_termination"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"staff_time"', 'staff_time_id'), COALESCE((SELECT MAX("staff_time_id") FROM "staff_time"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"stud_health"', 'stud_health_id'), COALESCE((SELECT MAX("stud_health_id") FROM "stud_health"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('"student_health"', 'student_health_id'), COALESCE((SELECT MAX("student_health_id") FROM "student_health"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"stud_sibling"', 'stud_sibling_id'), COALESCE((SELECT MAX("stud_sibling_id") FROM "stud_sibling"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"student_card_number"', 'student_card_number_id'), COALESCE((SELECT MAX("student_card_number_id") FROM "student_card_number"), 0) + 1, false);
 SELECT setval(pg_get_serial_sequence('"student_class"', 'student_class_id'), COALESCE((SELECT MAX("student_class_id") FROM "student_class"), 0) + 1, false);
