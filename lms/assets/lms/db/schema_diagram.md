@@ -1,10 +1,6 @@
 # LMS Database Schema Diagram
 
-> **Stack:** React + Python (Django/FastAPI) + PostgreSQL  
-> **Tables:** ~300 tables across 14 functional domains  
-> **Note:** Foreign keys are implied by naming conventions (no explicit FK constraints in schema).
-
----
+<br>
 
 ## Entity Relationship Diagram
 
