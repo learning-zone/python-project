@@ -26,19 +26,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-^3x4qpbk$zy(l$u-sp%^jnu3cre*mzqe@z69uqk0t9#1a+!%vq"
+SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+JAZZMIN_SITE_TITLE = "LMS Admin"
+
 JAZZMIN_SETTINGS = {
-    "site_title": "LMS Admin",
-    "site_header": "LMS Admin",
-    "site_brand": "LMS Admin",
+    "site_title": JAZZMIN_SITE_TITLE,
+    "site_header": JAZZMIN_SITE_TITLE,
+    "site_brand": JAZZMIN_SITE_TITLE,
     "welcome_sign": "Welcome to the LMS Admin",
-    "copyright": "LMS Admin",
+    "copyright": JAZZMIN_SITE_TITLE,
 }
 
 JAZZMIN_UI_TWEAKS = {
