@@ -5,18 +5,30 @@
 -- Created  : 2026-06-07
 -- =============================================================
 
-
---
--- Database: "lms"
---
-
 -- --------------------------------------------------------
 
+-- ============================================================
+-- Schema definitions
+-- ============================================================
+CREATE SCHEMA IF NOT EXISTS academic;
+CREATE SCHEMA IF NOT EXISTS admission;
+CREATE SCHEMA IF NOT EXISTS asset;
+CREATE SCHEMA IF NOT EXISTS communication;
+CREATE SCHEMA IF NOT EXISTS fee;
+CREATE SCHEMA IF NOT EXISTS hostel;
+CREATE SCHEMA IF NOT EXISTS hr;
+CREATE SCHEMA IF NOT EXISTS library;
+CREATE SCHEMA IF NOT EXISTS medical;
+CREATE SCHEMA IF NOT EXISTS settings;
+CREATE SCHEMA IF NOT EXISTS student;
+CREATE SCHEMA IF NOT EXISTS transport;
+
+-- ============================================================
 --
 -- Table structure for table "academic_details"
 --
 
-CREATE TABLE IF NOT EXISTS "academic_details" (
+CREATE TABLE IF NOT EXISTS academic."academic_details" (
   "academic_details_id"     SERIAL,
   "student_id"              VARCHAR(20)   NOT NULL,
   "grade12_board"           VARCHAR(25)   DEFAULT NULL,
@@ -51,7 +63,7 @@ CREATE TABLE IF NOT EXISTS "academic_details" (
 -- Table structure for table "academic_exam"
 --
 
-CREATE TABLE IF NOT EXISTS "academic_exam" (
+CREATE TABLE IF NOT EXISTS academic."academic_exam" (
   "academic_exam_id"                SERIAL,
   "academic_term_id"  INT          DEFAULT NULL,
   "exam_name"         VARCHAR(50)  DEFAULT NULL,
@@ -63,7 +75,7 @@ CREATE TABLE IF NOT EXISTS "academic_exam" (
 -- Dumping data for table "academic_exam"
 --
 
-INSERT INTO "academic_exam" ("academic_exam_id", "academic_term_id", "exam_name", "status") VALUES
+INSERT INTO academic."academic_exam" ("academic_exam_id", "academic_term_id", "exam_name", "status") VALUES
 (1, 1, 'Mid-Semester 1', 1),
 (2, 1, 'End-Semester 1', 1),
 (3, 2, 'Mid-Semester 2', 1),
@@ -75,7 +87,7 @@ INSERT INTO "academic_exam" ("academic_exam_id", "academic_term_id", "exam_name"
 -- Table structure for table "academic_term"
 --
 
-CREATE TABLE IF NOT EXISTS "academic_term" (
+CREATE TABLE IF NOT EXISTS academic."academic_term" (
   "academic_term_id"             SERIAL,
   "term"           VARCHAR(100)  DEFAULT NULL,
   "a_year"         VARCHAR(10)   DEFAULT NULL,
@@ -90,7 +102,7 @@ CREATE TABLE IF NOT EXISTS "academic_term" (
 -- Dumping data for table "academic_term"
 --
 
-INSERT INTO "academic_term" ("academic_term_id", "term", "a_year", "start_date", "end_date", "inserted_date", "status") VALUES
+INSERT INTO academic."academic_term" ("academic_term_id", "term", "a_year", "start_date", "end_date", "inserted_date", "status") VALUES
 (1, 'Semester One', '2026', '2026-07-01', '2026-12-31', '2026-04-16', 1),
 (2, 'Semester Two', '2026', '2026-01-06', '2026-07-30', '2026-04-16', 1);
 
@@ -100,7 +112,7 @@ INSERT INTO "academic_term" ("academic_term_id", "term", "a_year", "start_date",
 -- Table structure for table "academic_year"
 --
 
-CREATE TABLE IF NOT EXISTS "academic_year" (
+CREATE TABLE IF NOT EXISTS academic."academic_year" (
   "academic_year_id"         SERIAL,
   "acc_year"   INT         NOT NULL,
   "from_date"  DATE        NOT NULL,
@@ -114,7 +126,7 @@ CREATE TABLE IF NOT EXISTS "academic_year" (
 -- Dumping data for table "academic_year"
 --
 
-INSERT INTO "academic_year" ("academic_year_id", "acc_year", "from_date", "to_date", "class_div", "status") VALUES
+INSERT INTO academic."academic_year" ("academic_year_id", "acc_year", "from_date", "to_date", "class_div", "status") VALUES
 (1, 2026, '2026-06-01', '2026-06-30', 1, 1),
 (2, 2026, '2026-06-01', '2026-06-30', 2, 1),
 (3, 2026, '2026-06-01', '2026-06-30', 3, 1),
@@ -130,7 +142,7 @@ INSERT INTO "academic_year" ("academic_year_id", "acc_year", "from_date", "to_da
 -- Table structure for table "additional_school"
 --
 
-CREATE TABLE IF NOT EXISTS "additional_school" (
+CREATE TABLE IF NOT EXISTS settings."additional_school" (
   "col_id"                    SERIAL,
   "col_name"    VARCHAR(100)  DEFAULT NULL,
   "col_code"    VARCHAR(10)   DEFAULT NULL,
@@ -147,7 +159,7 @@ CREATE TABLE IF NOT EXISTS "additional_school" (
 -- Table structure for table "additional_student"
 --
 
-CREATE TABLE IF NOT EXISTS "additional_student" (
+CREATE TABLE IF NOT EXISTS student."additional_student" (
   "additional_student_id"               SERIAL,
   "tempid"           INT           DEFAULT NULL,
   "admission_date"   DATE          DEFAULT NULL,
@@ -183,7 +195,7 @@ CREATE TABLE IF NOT EXISTS "additional_student" (
 -- Table structure for table "admission"
 --
 
-CREATE TABLE IF NOT EXISTS "admission" (
+CREATE TABLE IF NOT EXISTS admission."admission" (
   "admission_id"             SERIAL,
   "name"        VARCHAR(50)  NOT NULL DEFAULT '',
   "short_name"  VARCHAR(10)  DEFAULT NULL,
@@ -194,17 +206,17 @@ CREATE TABLE IF NOT EXISTS "admission" (
 -- Dumping data for table "admission"
 --
 
-INSERT INTO "admission" ("admission_id", "name", "short_name") VALUES
+INSERT INTO admission."admission" ("admission_id", "name", "short_name") VALUES
 (1, 'Indian', 'Ind'),
 (2, 'Foreign', 'For');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table "admissiontrack"
+-- Table structure for table "admission_track"
 --
 
-CREATE TABLE IF NOT EXISTS "admissiontrack" (
+CREATE TABLE IF NOT EXISTS admission."admission_track" (
   "admissiontrack_id"          SERIAL,
   "student_id"  INT   NOT NULL,
   "desdet"      TEXT  NOT NULL,
@@ -214,20 +226,20 @@ CREATE TABLE IF NOT EXISTS "admissiontrack" (
 );
 
 --
--- Dumping data for table "admissiontrack"
+-- Dumping data for table "admission_track"
 --
 
-INSERT INTO "admissiontrack" ("admissiontrack_id", "student_id", "desdet", "trackid", "mark") VALUES
+INSERT INTO admission."admission_track" ("admissiontrack_id", "student_id", "desdet", "trackid", "mark") VALUES
 (1, 1, '', 1, 0),
 (2, 1000000, 'hhhhhhh', 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table "admission_stage_master"
+-- Table structure for table "admission_stage"
 --
 
-CREATE TABLE IF NOT EXISTS "admission_stage_master" (
+CREATE TABLE IF NOT EXISTS admission."admission_stage" (
   "admission_stage_master_id"                SERIAL,
   "admission_steps_master_id"  INT           NOT NULL,
   "main_stages"                VARCHAR(200)  NOT NULL,
@@ -239,10 +251,10 @@ CREATE TABLE IF NOT EXISTS "admission_stage_master" (
 );
 
 --
--- Dumping data for table "admission_stage_master"
+-- Dumping data for table "admission_stage"
 --
 
-INSERT INTO "admission_stage_master" ("admission_stage_master_id", "admission_steps_master_id", "main_stages", "action_1", "posi", "status", "inserted_date_time") VALUES
+INSERT INTO admission."admission_stage" ("admission_stage_master_id", "admission_steps_master_id", "main_stages", "action_1", "posi", "status", "inserted_date_time") VALUES
 (31, 3, 'Application form not purchased', 2, '1', 1, '2026-02-23 12:58:48'),
 (30, 3, 'Application form purchased ', 3, '2', 1, '2026-02-23 12:58:28'),
 (4, 2, 'To be Scheduled ', 1, '1', 1, '2026-02-22 12:28:46'),
@@ -256,10 +268,10 @@ INSERT INTO "admission_stage_master" ("admission_stage_master_id", "admission_st
 -- --------------------------------------------------------
 
 --
--- Table structure for table "admission_steps_master"
+-- Table structure for table "admission_process"
 --
 
-CREATE TABLE IF NOT EXISTS "admission_steps_master" (
+CREATE TABLE IF NOT EXISTS admission."admission_process" (
   "admission_steps_master_id"         SERIAL,
   "main_steps"          VARCHAR(250)  NOT NULL,
   "pos"                 INT           NOT NULL,
@@ -270,10 +282,10 @@ CREATE TABLE IF NOT EXISTS "admission_steps_master" (
 );
 
 --
--- Dumping data for table "admission_steps_master"
+-- Dumping data for table "admission_process"
 --
 
-INSERT INTO "admission_steps_master" ("admission_steps_master_id", "main_steps", "pos", "status", "comments", "inserted_date_time") VALUES
+INSERT INTO admission."admission_process" ("admission_steps_master_id", "main_steps", "pos", "status", "comments", "inserted_date_time") VALUES
 (2, 'Information Session', 1, 1, '', '2026-02-22 12:13:35'),
 (3, 'Issue of Application Form', 2, 1, '', '2026-02-22 12:16:56'),
 (4, 'Registration of Application Form', 3, 1, '', '2026-02-22 12:17:16'),
@@ -288,7 +300,7 @@ INSERT INTO "admission_steps_master" ("admission_steps_master_id", "main_steps",
 -- Table structure for table "album"
 --
 
-CREATE TABLE IF NOT EXISTS "album" (
+CREATE TABLE IF NOT EXISTS communication."album" (
   "album_id"                    SERIAL,
   "album_name"   VARCHAR(70)  NOT NULL,
   "description"  TEXT         NOT NULL,
@@ -302,7 +314,7 @@ CREATE TABLE IF NOT EXISTS "album" (
 -- Dumping data for table "album"
 --
 
-INSERT INTO "album" ("album_id", "album_name", "description", "class", "section", "status") VALUES
+INSERT INTO communication."album" ("album_id", "album_name", "description", "class", "section", "status") VALUES
 (1, 'LMS ', 'School Pictures', 0, 0, 0),
 (2, 'LMS', 'LMS', 0, 0, 0),
 (3, 'LMS', 'Activities', 0, 0, 0),
@@ -315,7 +327,7 @@ INSERT INTO "album" ("album_id", "album_name", "description", "class", "section"
 -- Table structure for table "albumpic"
 --
 
-CREATE TABLE IF NOT EXISTS "albumpic" (
+CREATE TABLE IF NOT EXISTS communication."albumpic" (
   "albumpic_id"               SERIAL,
   "album_id"         INT           NOT NULL,
   "pic_name"         VARCHAR(70)   NOT NULL,
@@ -331,7 +343,7 @@ CREATE TABLE IF NOT EXISTS "albumpic" (
 -- Dumping data for table "albumpic"
 --
 
-INSERT INTO "albumpic" ("albumpic_id", "album_id", "pic_name", "description", "full_image_path", "half_image_path", "cover", "status") VALUES
+INSERT INTO communication."albumpic" ("albumpic_id", "album_id", "pic_name", "description", "full_image_path", "half_image_path", "cover", "status") VALUES
 (1, 1, 'LMS 0', 'Main', '../PhotoGallery/images/68db0b28f5b559c0aa58475ab4fd42a9.jpg', '../PhotoGallery/images/68db0b28f5b559c0aa58475ab4fd42a9.jpg', 0, 1),
 (2, 1, 'LMS 0 0', 'Cafeteria', '../PhotoGallery/images/932656ce69ac72b747e4945dd7952144.jpg', '../PhotoGallery/images/932656ce69ac72b747e4945dd7952144.jpg', 0, 0),
 (3, 1, 'LMS 0 0 0', 'Library', '../PhotoGallery/images/8b392adea22c53b113bb84b49ef210d8.jpg', '../PhotoGallery/images/8b392adea22c53b113bb84b49ef210d8.jpg', 0, 0),
@@ -349,7 +361,7 @@ INSERT INTO "albumpic" ("albumpic_id", "album_id", "pic_name", "description", "f
 -- Table structure for table "all_teachers"
 --
 
-CREATE TABLE IF NOT EXISTS "all_teachers" (
+CREATE TABLE IF NOT EXISTS academic."all_teachers" (
   "all_teachers_id"         BIGSERIAL,
   "class"      INT           NOT NULL,
   "user"       VARCHAR(255)  NOT NULL,
@@ -363,14 +375,14 @@ CREATE TABLE IF NOT EXISTS "all_teachers" (
   PRIMARY KEY ("all_teachers_id")
 );
 
-CREATE INDEX "ix_year_class_sec" ON "all_teachers" ("acc_year", "class", "section");
-CREATE INDEX "ix_user_year" ON "all_teachers" ("user", "acc_year");
+CREATE INDEX "ix_year_class_sec" ON academic."all_teachers" ("acc_year", "class", "section");
+CREATE INDEX "ix_user_year" ON academic."all_teachers" ("user", "acc_year");
 
 --
 -- Dumping data for table "all_teachers"
 --
 
-INSERT INTO "all_teachers" ("all_teachers_id", "class", "user", "sub", "section", "sub_teac2", "sub_teac", "home_teac", "sub_type", "acc_year") VALUES
+INSERT INTO academic."all_teachers" ("all_teachers_id", "class", "user", "sub", "section", "sub_teac2", "sub_teac", "home_teac", "sub_type", "acc_year") VALUES
 (2, 1, 'administrator', 237, 64, 0, 0, 161, 2, 2026),
 (3, 10, 'administrator', 69, 65, 0, 19, 0, 1, 2026),
 (8, 6, 'administrator', 69, 66, 0, 19, 0, 1, 2026),
@@ -389,7 +401,7 @@ INSERT INTO "all_teachers" ("all_teachers_id", "class", "user", "sub", "section"
 -- Table structure for table "announcement"
 --
 
-CREATE TABLE IF NOT EXISTS "announcement" (
+CREATE TABLE IF NOT EXISTS communication."announcement" (
   "announcement_id"           SERIAL,
   "acc_year"     INT           NOT NULL,
   "type"         SMALLINT    NOT NULL,
@@ -407,7 +419,7 @@ CREATE TABLE IF NOT EXISTS "announcement" (
 -- Table structure for table "announcement_call"
 --
 
-CREATE TABLE IF NOT EXISTS "announcement_call" (
+CREATE TABLE IF NOT EXISTS communication."announcement_call" (
   "announcement_call_id"           SERIAL,
   "type"         SMALLINT    NOT NULL,
   "fromdate"     DATE          NOT NULL,
@@ -423,7 +435,7 @@ CREATE TABLE IF NOT EXISTS "announcement_call" (
 -- Dumping data for table "announcement_call"
 --
 
-INSERT INTO "announcement_call" ("announcement_call_id", "type", "fromdate", "todate", "title", "description", "acc_year", "status") VALUES
+INSERT INTO communication."announcement_call" ("announcement_call_id", "type", "fromdate", "todate", "title", "description", "acc_year", "status") VALUES
 (1, 1, '2026-08-05', NULL, 'School Reopens', 'School Reopens for the Academic year 2026-2026', 2026, 1),
 (2, 2, '2026-08-22', '2026-08-27', '   School Mails Going into Spam', 'Over the past couple of months Google has made major modifications to its security settings. We have to send mass mails to our parents via a mail blaster but the security setting that Gmail users have deem these as unauthentic and they land in the spam folder. In such a case, please open the message and click on the button which says ''not spam''. Subsequent mails from the school will then be received in your inbox.', 2026, 1);
 
@@ -433,7 +445,7 @@ INSERT INTO "announcement_call" ("announcement_call_id", "type", "fromdate", "to
 -- Table structure for table "announcement_class"
 --
 
-CREATE TABLE IF NOT EXISTS "announcement_class" (
+CREATE TABLE IF NOT EXISTS communication."announcement_class" (
   "announcement_class_id"           SERIAL,
   "acc_year"     INT           NOT NULL,
   "type"         SMALLINT    NOT NULL,
@@ -451,14 +463,14 @@ CREATE TABLE IF NOT EXISTS "announcement_class" (
   PRIMARY KEY ("announcement_class_id")
 );
 
-CREATE INDEX "ix_year_grade_sec" ON "announcement_class" ("acc_year", "grade", "section_id", "status");
-CREATE INDEX "ix_username_year" ON "announcement_class" ("username", "acc_year");
+CREATE INDEX "ix_year_grade_sec" ON communication."announcement_class" ("acc_year", "grade", "section_id", "status");
+CREATE INDEX "ix_username_year" ON communication."announcement_class" ("username", "acc_year");
 
 --
 -- Dumping data for table "announcement_class"
 --
 
-INSERT INTO "announcement_class" ("announcement_class_id", "acc_year", "type", "class", "username", "fromdate", "todate", "title", "description", "status", "grade", "section_id", "trg_name", "trg_path") VALUES
+INSERT INTO communication."announcement_class" ("announcement_class_id", "acc_year", "type", "class", "username", "fromdate", "todate", "title", "description", "status", "grade", "section_id", "trg_name", "trg_path") VALUES
 (1, 2026, 1, 0, 'administrator', '2026-08-01', NULL, 'School Reopens', 'School Reopens for the Academic Year 2026-14', 1, 0, 0, '', ''),
 (2, 2026, 1, 3, 'brindaa', '2026-08-01', NULL, 'Welcome Back To School', 'Dear Student,\r\nWelcome back to School wishing you a great year ahead.\r\n\r\nRegards,\r\nBrinda', 1, 10, 71, '', ''),
 (3, 2026, 1, 2, 'administrator', '2026-08-15', NULL, 'Test Homeroom', 'Testing', 1, 5, 116, '', ''),
@@ -477,7 +489,7 @@ INSERT INTO "announcement_class" ("announcement_class_id", "acc_year", "type", "
 -- Table structure for table "announcement_class_call"
 --
 
-CREATE TABLE IF NOT EXISTS "announcement_class_call" (
+CREATE TABLE IF NOT EXISTS communication."announcement_class_call" (
   "announcement_class_call_id"           SERIAL,
   "acc_year"     INT           NOT NULL,
   "type"         SMALLINT    NOT NULL,
@@ -497,7 +509,7 @@ CREATE TABLE IF NOT EXISTS "announcement_class_call" (
 -- Dumping data for table "announcement_class_call"
 --
 
-INSERT INTO "announcement_class_call" ("announcement_class_call_id", "acc_year", "type", "class", "username", "fromdate", "todate", "title", "description", "status", "grade", "section_id") VALUES
+INSERT INTO communication."announcement_class_call" ("announcement_class_call_id", "acc_year", "type", "class", "username", "fromdate", "todate", "title", "description", "status", "grade", "section_id") VALUES
 (1, 2026, 1, 2, 'administrator', '2026-08-15', NULL, 'Class Test', 'test', 1, 5, 116),
 (2, 2026, 1, 3, 'brindaa', '2026-08-19', NULL, 'Attendance', '', 1, 10, 72);
 
@@ -507,7 +519,7 @@ INSERT INTO "announcement_class_call" ("announcement_class_call_id", "acc_year",
 -- Table structure for table "announcement_class_test"
 --
 
-CREATE TABLE IF NOT EXISTS "announcement_class_test" (
+CREATE TABLE IF NOT EXISTS communication."announcement_class_test" (
   "announcement_class_test_id"           SERIAL,
   "acc_year"     INT           NOT NULL,
   "type"         SMALLINT    NOT NULL,
@@ -530,7 +542,7 @@ CREATE TABLE IF NOT EXISTS "announcement_class_test" (
 -- Dumping data for table "announcement_class_test"
 --
 
-INSERT INTO "announcement_class_test" ("announcement_class_test_id", "acc_year", "type", "class", "username", "fromdate", "todate", "title", "description", "status", "grade", "section_id", "trg_name", "trg_path", "subject") VALUES
+INSERT INTO communication."announcement_class_test" ("announcement_class_test_id", "acc_year", "type", "class", "username", "fromdate", "todate", "title", "description", "status", "grade", "section_id", "trg_name", "trg_path", "subject") VALUES
 (69, 2026, 1, 1, 'administrator', '2026-11-19', NULL, 'Title', '<p>Description</p>', 1, 0, 0, '', '', ''),
 (70, 2026, 1, 2, 'administrator', '2026-11-19', NULL, 'Title', '<p>Description</p>', 1, 0, 0, '', '', ''),
 (71, 2026, 1, 3, 'administrator', '2026-11-19', NULL, 'Title', '<p>Description</p>', 1, 0, 0, '', '', ''),
@@ -545,7 +557,7 @@ INSERT INTO "announcement_class_test" ("announcement_class_test_id", "acc_year",
 -- Table structure for table "announcement_class_test_docs"
 --
 
-CREATE TABLE IF NOT EXISTS "announcement_class_test_docs" (
+CREATE TABLE IF NOT EXISTS communication."announcement_class_test_docs" (
   "announcement_class_test_docs_id"           INT           NOT NULL DEFAULT 0,
   "acc_year"     INT           NOT NULL,
   "type"         SMALLINT    NOT NULL,
@@ -568,7 +580,7 @@ CREATE TABLE IF NOT EXISTS "announcement_class_test_docs" (
 -- Dumping data for table "announcement_class_test_docs"
 --
 
-INSERT INTO "announcement_class_test_docs" ("announcement_class_test_docs_id", "acc_year", "type", "class", "username", "fromdate", "todate", "title", "description", "status", "grade", "section_id", "trg_name", "trg_path", "subject") VALUES
+INSERT INTO communication."announcement_class_test_docs" ("announcement_class_test_docs_id", "acc_year", "type", "class", "username", "fromdate", "todate", "title", "description", "status", "grade", "section_id", "trg_name", "trg_path", "subject") VALUES
 (1, 2026, 1, 0, 'administrator', '2026-08-01', NULL, 'School Reopens', 'School Reopens for the Academic Year 2026-14', 1, 0, 0, '', '', NULL),
 (2, 2026, 1, 3, 'brindaa', '2026-08-01', NULL, 'Welcome Back To School', 'Dear Student,\r\nWelcome back to School wishing you a great year ahead.\r\n\r\nRegards,\r\nBrinda', 1, 10, 71, '', '', NULL),
 (3, 2026, 1, 2, 'administrator', '2026-08-15', NULL, 'Test Homeroom', 'Testing', 1, 5, 116, '', '', NULL),
@@ -586,7 +598,7 @@ INSERT INTO "announcement_class_test_docs" ("announcement_class_test_docs_id", "
 -- Table structure for table "app_hod"
 --
 
-CREATE TABLE IF NOT EXISTS "app_hod" (
+CREATE TABLE IF NOT EXISTS admission."app_hod" (
   "app_hod_id"        SERIAL,
   "courseid"  INT  DEFAULT NULL,
   "fid"       INT  DEFAULT NULL,
@@ -599,7 +611,7 @@ CREATE TABLE IF NOT EXISTS "app_hod" (
 -- Table structure for table "archive"
 --
 
-CREATE TABLE IF NOT EXISTS "archive" (
+CREATE TABLE IF NOT EXISTS student."archive" (
   "f_name"                  CHAR(50)          NOT NULL DEFAULT '',
   "s_name"                  CHAR(50)          NOT NULL DEFAULT '',
   "i_name"                  CHAR(15)          DEFAULT NULL,
@@ -681,7 +693,7 @@ CREATE TABLE IF NOT EXISTS "archive" (
 -- Dumping data for table "archive"
 --
 
-INSERT INTO "archive" ("f_name", "s_name", "i_name", "qual", "cert", "subj", "exp_cur", "exp_prev", "sp_assoc", "xtra", "father", "doa", "bg", "ms", "addr_perm", "ct_perm", "pin_perm", "st_perm", "ph_perm", "addr_pres", "ct_pres", "pin_pres", "st_pres", "ph_pres", "email", "id", "slno", "group_id", "type_id", "offeredsal", "basicsal", "j_date", "cmts", "status_id", "dob", "other_facilities", "other_responsibilities", "prev_post", "prev_work_place", "prev_work_city", "prev_work_country", "last_date_of_work", "staff_status_id", "date_of_updation", "expirydate", "gender", "releive_date", "recruitment_procedure", "pfscheme", "active", "bank_ac_no", "pf_ac_no", "panno", "csal", "sop", "cat", "pno", "vfdate", "vtadate", "dep", "category", "cat_fdate", "cat_tdate", "pay_scale", "spouse_name", "dept_name", "dept_dob", "dept_rel", "dept_occu", "dept_anualinc", "issue_place", "mobileno", "consolidated", "col_id") VALUES
+INSERT INTO student."archive" ("f_name", "s_name", "i_name", "qual", "cert", "subj", "exp_cur", "exp_prev", "sp_assoc", "xtra", "father", "doa", "bg", "ms", "addr_perm", "ct_perm", "pin_perm", "st_perm", "ph_perm", "addr_pres", "ct_pres", "pin_pres", "st_pres", "ph_pres", "email", "id", "slno", "group_id", "type_id", "offeredsal", "basicsal", "j_date", "cmts", "status_id", "dob", "other_facilities", "other_responsibilities", "prev_post", "prev_work_place", "prev_work_city", "prev_work_country", "last_date_of_work", "staff_status_id", "date_of_updation", "expirydate", "gender", "releive_date", "recruitment_procedure", "pfscheme", "active", "bank_ac_no", "pf_ac_no", "panno", "csal", "sop", "cat", "pno", "vfdate", "vtadate", "dep", "category", "cat_fdate", "cat_tdate", "pay_scale", "spouse_name", "dept_name", "dept_dob", "dept_rel", "dept_occu", "dept_anualinc", "issue_place", "mobileno", "consolidated", "col_id") VALUES
 ('Faculty', 'One', NULL, '', '', 1, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 17, 'RD-S0001', NULL, 2, 0, 1000, NULL, '', 1, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-01-07', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 ('Puja', 'R Srivastava', NULL, '', '', 2, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 18, 'RD-S0001', NULL, 2, 0, 1000, NULL, '', 1, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-03-06', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 ('Soumendra', 'J', NULL, '', '', 2, NULL, NULL, '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 19, 'RD-S0003', NULL, 5, 0, 1000, NULL, '', -1, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, 0, '2026-06-28', NULL, NULL, NULL, 'YES', 'YES', 'YES', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -700,7 +712,7 @@ INSERT INTO "archive" ("f_name", "s_name", "i_name", "qual", "cert", "subj", "ex
 -- Table structure for table "archive_student"
 --
 
-CREATE TABLE IF NOT EXISTS "archive_student" (
+CREATE TABLE IF NOT EXISTS student."archive_student" (
   "archive_student_id"                 INT                NOT NULL DEFAULT 0,
   "admission_id"       VARCHAR(20)        DEFAULT NULL,
   "admission_date"     DATE               DEFAULT NULL,
@@ -792,7 +804,7 @@ CREATE TABLE IF NOT EXISTS "archive_student" (
 -- Table structure for table "assetstatusmaster"
 --
 
-CREATE TABLE IF NOT EXISTS "assetstatusmaster" (
+CREATE TABLE IF NOT EXISTS asset."assetstatusmaster" (
   "assetstatusmaster_id"          SERIAL,
   "conditions"  VARCHAR(250)  DEFAULT NULL,
   PRIMARY KEY ("assetstatusmaster_id")
@@ -804,7 +816,7 @@ CREATE TABLE IF NOT EXISTS "assetstatusmaster" (
 -- Table structure for table "asset_group"
 --
 
-CREATE TABLE IF NOT EXISTS "asset_group" (
+CREATE TABLE IF NOT EXISTS asset."asset_group" (
   "asset_group_id"                 SERIAL,
   "assetgroupname"     VARCHAR(200)  DEFAULT NULL,
   "depreciation_rate"  NUMERIC(10,2)   DEFAULT NULL,
@@ -816,10 +828,10 @@ CREATE TABLE IF NOT EXISTS "asset_group" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "asset_master"
+-- Table structure for table "asset"
 --
 
-CREATE TABLE IF NOT EXISTS "asset_master" (
+CREATE TABLE IF NOT EXISTS asset."asset" (
   "asset_master_id"                 SERIAL,
   "asset_name"         VARCHAR(100)  DEFAULT NULL,
   "asset_description"  TEXT,
@@ -830,10 +842,10 @@ CREATE TABLE IF NOT EXISTS "asset_master" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "asset_master_counter"
+-- Table structure for table "asset_counter"
 --
 
-CREATE TABLE IF NOT EXISTS "asset_master_counter" (
+CREATE TABLE IF NOT EXISTS asset."asset_counter" (
   "asset_master_counter_id"        SERIAL,
   "asset_id"  INT  DEFAULT NULL,
   "counter"   INT  DEFAULT NULL,
@@ -846,7 +858,7 @@ CREATE TABLE IF NOT EXISTS "asset_master_counter" (
 -- Table structure for table "asset_sub_group"
 --
 
-CREATE TABLE IF NOT EXISTS "asset_sub_group" (
+CREATE TABLE IF NOT EXISTS asset."asset_sub_group" (
   "asset_sub_group_id"                   SERIAL,
   "asset_subgroup_name"  VARCHAR(50)  DEFAULT NULL,
   "asset_group_id"       INT          DEFAULT NULL,
@@ -860,7 +872,7 @@ CREATE TABLE IF NOT EXISTS "asset_sub_group" (
 -- Table structure for table "attendance"
 --
 
-CREATE TABLE IF NOT EXISTS "attendance" (
+CREATE TABLE IF NOT EXISTS academic."attendance" (
   "attendance_id"        SERIAL,
   "class_id"  INT         NOT NULL,
   "type"      SMALLINT  NOT NULL,
@@ -873,7 +885,7 @@ CREATE TABLE IF NOT EXISTS "attendance" (
 -- Dumping data for table "attendance"
 --
 
-INSERT INTO "attendance" ("attendance_id", "class_id", "type", "acc_year", "status") VALUES
+INSERT INTO academic."attendance" ("attendance_id", "class_id", "type", "acc_year", "status") VALUES
 (1, 1, 1, 2026, 1),
 (2, 2, 1, 2026, 1),
 (3, 3, 1, 2026, 1),
@@ -891,7 +903,7 @@ INSERT INTO "attendance" ("attendance_id", "class_id", "type", "acc_year", "stat
 -- Table structure for table "attendance_points"
 --
 
-CREATE TABLE IF NOT EXISTS "attendance_points" (
+CREATE TABLE IF NOT EXISTS academic."attendance_points" (
   "attendance_points_id"           SERIAL,
   "description"  VARCHAR(100)  NOT NULL,
   "short_name"   VARCHAR(3)    NOT NULL,
@@ -906,7 +918,7 @@ CREATE TABLE IF NOT EXISTS "attendance_points" (
 -- Dumping data for table "attendance_points"
 --
 
-INSERT INTO "attendance_points" ("attendance_points_id", "description", "short_name", "count", "point", "status", "order_id") VALUES
+INSERT INTO academic."attendance_points" ("attendance_points_id", "description", "short_name", "count", "point", "status", "order_id") VALUES
 (1, 'Present', 'P', 1, 1, 1, 1),
 (2, 'Absent', 'A', 1, 0, 1, 0),
 (3, 'Tardy', 'T', 1, 1, 1, 2),
@@ -919,7 +931,7 @@ INSERT INTO "attendance_points" ("attendance_points_id", "description", "short_n
 -- Table structure for table "attendance"
 --
 
-CREATE TABLE IF NOT EXISTS "attendance" (
+CREATE TABLE IF NOT EXISTS academic."attendance" (
   "attendance_id"                   BIGSERIAL,
   "subject_id"  INTEGER             NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -932,9 +944,9 @@ CREATE TABLE IF NOT EXISTS "attendance" (
   PRIMARY KEY ("attendance_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "attendance" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "attendance" ("att_date", "sec");
-CREATE INDEX "ix_subj_date" ON "attendance" ("subject_id", "att_date");
+CREATE INDEX "ix_stu_date" ON academic."attendance" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."attendance" ("att_date", "sec");
+CREATE INDEX "ix_subj_date" ON academic."attendance" ("subject_id", "att_date");
 
 -- --------------------------------------------------------
 
@@ -942,7 +954,7 @@ CREATE INDEX "ix_subj_date" ON "attendance" ("subject_id", "att_date");
 -- Table structure for table "att_0"
 --
 
-CREATE TABLE IF NOT EXISTS "att_0" (
+CREATE TABLE IF NOT EXISTS academic."att_0" (
   "att_0_id"          BIGSERIAL,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -955,15 +967,15 @@ CREATE TABLE IF NOT EXISTS "att_0" (
   PRIMARY KEY ("att_0_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_0" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_0" ("att_date", "sec");
-CREATE INDEX "ix_subj_date" ON "att_0" ("subject_id", "att_date");
+CREATE INDEX "ix_stu_date" ON academic."att_0" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_0" ("att_date", "sec");
+CREATE INDEX "ix_subj_date" ON academic."att_0" ("subject_id", "att_date");
 
 --
 -- Dumping data for table "att_0"
 --
 
-INSERT INTO "att_0" ("att_0_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."att_0" ("att_0_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (1, 427, 'scottw', '2026-09-12', 65, 1093, 0, 0, ''),
 (2, 427, 'scottw', '2026-09-12', 482, 1093, 0, 0, ''),
 (3, 427, 'scottw', '2026-09-12', 986, 1093, 1, 1, ''),
@@ -981,7 +993,7 @@ INSERT INTO "att_0" ("att_0_id", "subject_id", "username", "att_date", "stu_id",
 -- Table structure for table "att_1"
 --
 
-CREATE TABLE IF NOT EXISTS "att_1" (
+CREATE TABLE IF NOT EXISTS academic."att_1" (
   "att_1_id"          BIGSERIAL,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -994,15 +1006,15 @@ CREATE TABLE IF NOT EXISTS "att_1" (
   PRIMARY KEY ("att_1_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_1" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_1" ("att_date", "sec");
-CREATE INDEX "ix_subj_date" ON "att_1" ("subject_id", "att_date");
+CREATE INDEX "ix_stu_date" ON academic."att_1" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_1" ("att_date", "sec");
+CREATE INDEX "ix_subj_date" ON academic."att_1" ("subject_id", "att_date");
 
 --
 -- Dumping data for table "att_1"
 --
 
-INSERT INTO "att_1" ("att_1_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."att_1" ("att_1_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (1, 0, 'RFID', '2026-02-18', 619, 1, 1, 0, ' 08:49:01,  08:49:04'),
 (2, 0, 'RFID', '2026-02-18', 630, 1, 1, 0, ' 08:50:44,  08:50:48'),
 (3, 0, 'RFID', '2026-02-18', 603, 1, 1, 0, ' 08:54:06'),
@@ -1020,7 +1032,7 @@ INSERT INTO "att_1" ("att_1_id", "subject_id", "username", "att_date", "stu_id",
 -- Table structure for table "att_1_1"
 --
 
-CREATE TABLE IF NOT EXISTS "att_1_1" (
+CREATE TABLE IF NOT EXISTS academic."att_1_1" (
   "att_1_1_id"        BIGSERIAL,
   "att_date"  DATE               NOT NULL,
   "stu_id"    BIGINT             NOT NULL,
@@ -1030,8 +1042,8 @@ CREATE TABLE IF NOT EXISTS "att_1_1" (
   PRIMARY KEY ("att_1_1_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_1_1" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_1_1" ("att_date", "sec");
+CREATE INDEX "ix_stu_date" ON academic."att_1_1" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_1_1" ("att_date", "sec");
 
 -- --------------------------------------------------------
 
@@ -1039,7 +1051,7 @@ CREATE INDEX "ix_date_sec" ON "att_1_1" ("att_date", "sec");
 -- Table structure for table "att_2"
 --
 
-CREATE TABLE IF NOT EXISTS "att_2" (
+CREATE TABLE IF NOT EXISTS academic."att_2" (
   "att_2_id"          BIGSERIAL,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -1052,15 +1064,15 @@ CREATE TABLE IF NOT EXISTS "att_2" (
   PRIMARY KEY ("att_2_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_2" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_2" ("att_date", "sec");
-CREATE INDEX "ix_subj_date" ON "att_2" ("subject_id", "att_date");
+CREATE INDEX "ix_stu_date" ON academic."att_2" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_2" ("att_date", "sec");
+CREATE INDEX "ix_subj_date" ON academic."att_2" ("subject_id", "att_date");
 
 --
 -- Dumping data for table "att_2"
 --
 
-INSERT INTO "att_2" ("att_2_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."att_2" ("att_2_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (1, 0, 'RFID', '2026-02-18', 538, 1, 1, 0, ' 08:01:24'),
 (2, 0, 'RFID', '2026-02-18', 773, 1, 1, 0, ' 08:01:05'),
 (3, 0, 'RFID', '2026-02-18', 22, 1, 1, 0, ' 08:01:40,  08:01:42,  12:22:50,  12:22:51'),
@@ -1078,7 +1090,7 @@ INSERT INTO "att_2" ("att_2_id", "subject_id", "username", "att_date", "stu_id",
 -- Table structure for table "att_2_2"
 --
 
-CREATE TABLE IF NOT EXISTS "att_2_2" (
+CREATE TABLE IF NOT EXISTS academic."att_2_2" (
   "att_2_2_id"        BIGSERIAL,
   "att_date"  DATE               NOT NULL,
   "stu_id"    BIGINT             NOT NULL,
@@ -1088,8 +1100,8 @@ CREATE TABLE IF NOT EXISTS "att_2_2" (
   PRIMARY KEY ("att_2_2_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_2_2" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_2_2" ("att_date", "sec");
+CREATE INDEX "ix_stu_date" ON academic."att_2_2" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_2_2" ("att_date", "sec");
 
 -- --------------------------------------------------------
 
@@ -1097,7 +1109,7 @@ CREATE INDEX "ix_date_sec" ON "att_2_2" ("att_date", "sec");
 -- Table structure for table "att_2_3"
 --
 
-CREATE TABLE IF NOT EXISTS "att_2_3" (
+CREATE TABLE IF NOT EXISTS academic."att_2_3" (
   "att_2_3_id"        BIGSERIAL,
   "att_date"  DATE               NOT NULL,
   "stu_id"    BIGINT             NOT NULL,
@@ -1107,8 +1119,8 @@ CREATE TABLE IF NOT EXISTS "att_2_3" (
   PRIMARY KEY ("att_2_3_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_2_3" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_2_3" ("att_date", "sec");
+CREATE INDEX "ix_stu_date" ON academic."att_2_3" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_2_3" ("att_date", "sec");
 
 -- --------------------------------------------------------
 
@@ -1116,7 +1128,7 @@ CREATE INDEX "ix_date_sec" ON "att_2_3" ("att_date", "sec");
 -- Table structure for table "att_2_4"
 --
 
-CREATE TABLE IF NOT EXISTS "att_2_4" (
+CREATE TABLE IF NOT EXISTS academic."att_2_4" (
   "att_2_4_id"        BIGSERIAL,
   "att_date"  DATE               NOT NULL,
   "stu_id"    BIGINT             NOT NULL,
@@ -1126,8 +1138,8 @@ CREATE TABLE IF NOT EXISTS "att_2_4" (
   PRIMARY KEY ("att_2_4_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_2_4" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_2_4" ("att_date", "sec");
+CREATE INDEX "ix_stu_date" ON academic."att_2_4" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_2_4" ("att_date", "sec");
 
 -- --------------------------------------------------------
 
@@ -1135,7 +1147,7 @@ CREATE INDEX "ix_date_sec" ON "att_2_4" ("att_date", "sec");
 -- Table structure for table "att_2_5"
 --
 
-CREATE TABLE IF NOT EXISTS "att_2_5" (
+CREATE TABLE IF NOT EXISTS academic."att_2_5" (
   "att_2_5_id"        BIGSERIAL,
   "att_date"  DATE               NOT NULL,
   "stu_id"    BIGINT             NOT NULL,
@@ -1145,8 +1157,8 @@ CREATE TABLE IF NOT EXISTS "att_2_5" (
   PRIMARY KEY ("att_2_5_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_2_5" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_2_5" ("att_date", "sec");
+CREATE INDEX "ix_stu_date" ON academic."att_2_5" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_2_5" ("att_date", "sec");
 
 -- --------------------------------------------------------
 
@@ -1154,7 +1166,7 @@ CREATE INDEX "ix_date_sec" ON "att_2_5" ("att_date", "sec");
 -- Table structure for table "att_2_6"
 --
 
-CREATE TABLE IF NOT EXISTS "att_2_6" (
+CREATE TABLE IF NOT EXISTS academic."att_2_6" (
   "att_2_6_id"        BIGSERIAL,
   "att_date"  DATE               NOT NULL,
   "stu_id"    BIGINT             NOT NULL,
@@ -1164,8 +1176,8 @@ CREATE TABLE IF NOT EXISTS "att_2_6" (
   PRIMARY KEY ("att_2_6_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_2_6" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_2_6" ("att_date", "sec");
+CREATE INDEX "ix_stu_date" ON academic."att_2_6" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_2_6" ("att_date", "sec");
 
 -- --------------------------------------------------------
 
@@ -1173,7 +1185,7 @@ CREATE INDEX "ix_date_sec" ON "att_2_6" ("att_date", "sec");
 -- Table structure for table "att_2_7"
 --
 
-CREATE TABLE IF NOT EXISTS "att_2_7" (
+CREATE TABLE IF NOT EXISTS academic."att_2_7" (
   "att_2_7_id"        BIGSERIAL,
   "att_date"  DATE               NOT NULL,
   "stu_id"    BIGINT             NOT NULL,
@@ -1183,8 +1195,8 @@ CREATE TABLE IF NOT EXISTS "att_2_7" (
   PRIMARY KEY ("att_2_7_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_2_7" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_2_7" ("att_date", "sec");
+CREATE INDEX "ix_stu_date" ON academic."att_2_7" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_2_7" ("att_date", "sec");
 
 -- --------------------------------------------------------
 
@@ -1192,7 +1204,7 @@ CREATE INDEX "ix_date_sec" ON "att_2_7" ("att_date", "sec");
 -- Table structure for table "att_2_8"
 --
 
-CREATE TABLE IF NOT EXISTS "att_2_8" (
+CREATE TABLE IF NOT EXISTS academic."att_2_8" (
   "att_2_8_id"        BIGSERIAL,
   "att_date"  DATE               NOT NULL,
   "stu_id"    BIGINT             NOT NULL,
@@ -1202,8 +1214,8 @@ CREATE TABLE IF NOT EXISTS "att_2_8" (
   PRIMARY KEY ("att_2_8_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_2_8" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_2_8" ("att_date", "sec");
+CREATE INDEX "ix_stu_date" ON academic."att_2_8" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_2_8" ("att_date", "sec");
 
 -- --------------------------------------------------------
 
@@ -1211,7 +1223,7 @@ CREATE INDEX "ix_date_sec" ON "att_2_8" ("att_date", "sec");
 -- Table structure for table "att_2_9"
 --
 
-CREATE TABLE IF NOT EXISTS "att_2_9" (
+CREATE TABLE IF NOT EXISTS academic."att_2_9" (
   "att_2_9_id"        BIGSERIAL,
   "att_date"  DATE               NOT NULL,
   "stu_id"    BIGINT             NOT NULL,
@@ -1221,8 +1233,8 @@ CREATE TABLE IF NOT EXISTS "att_2_9" (
   PRIMARY KEY ("att_2_9_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_2_9" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_2_9" ("att_date", "sec");
+CREATE INDEX "ix_stu_date" ON academic."att_2_9" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_2_9" ("att_date", "sec");
 
 -- --------------------------------------------------------
 
@@ -1230,7 +1242,7 @@ CREATE INDEX "ix_date_sec" ON "att_2_9" ("att_date", "sec");
 -- Table structure for table "att_3"
 --
 
-CREATE TABLE IF NOT EXISTS "att_3" (
+CREATE TABLE IF NOT EXISTS academic."att_3" (
   "att_3_id"          BIGSERIAL,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -1243,15 +1255,15 @@ CREATE TABLE IF NOT EXISTS "att_3" (
   PRIMARY KEY ("att_3_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_3" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_3" ("att_date", "sec");
-CREATE INDEX "ix_subj_date" ON "att_3" ("subject_id", "att_date");
+CREATE INDEX "ix_stu_date" ON academic."att_3" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_3" ("att_date", "sec");
+CREATE INDEX "ix_subj_date" ON academic."att_3" ("subject_id", "att_date");
 
 --
 -- Dumping data for table "att_3"
 --
 
-INSERT INTO "att_3" ("att_3_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."att_3" ("att_3_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (1, 0, 'RFID', '2026-02-12', 10, 1, 1, 0, ' 17:45:21'),
 (2, 0, 'RFID', '2026-02-15', 10, 1, 1, 0, ' 12:57:13'),
 (3, 0, 'RFID', '2026-02-15', 1, 1, 1, 0, ' 14:58:47'),
@@ -1269,7 +1281,7 @@ INSERT INTO "att_3" ("att_3_id", "subject_id", "username", "att_date", "stu_id",
 -- Table structure for table "att_3_10"
 --
 
-CREATE TABLE IF NOT EXISTS "att_3_10" (
+CREATE TABLE IF NOT EXISTS academic."att_3_10" (
   "att_3_10_id"        BIGSERIAL,
   "att_date"  DATE               NOT NULL,
   "stu_id"    BIGINT             NOT NULL,
@@ -1279,8 +1291,8 @@ CREATE TABLE IF NOT EXISTS "att_3_10" (
   PRIMARY KEY ("att_3_10_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_3_10" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_3_10" ("att_date", "sec");
+CREATE INDEX "ix_stu_date" ON academic."att_3_10" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_3_10" ("att_date", "sec");
 
 -- --------------------------------------------------------
 
@@ -1288,7 +1300,7 @@ CREATE INDEX "ix_date_sec" ON "att_3_10" ("att_date", "sec");
 -- Table structure for table "att_3_11"
 --
 
-CREATE TABLE IF NOT EXISTS "att_3_11" (
+CREATE TABLE IF NOT EXISTS academic."att_3_11" (
   "att_3_11_id"        BIGSERIAL,
   "att_date"  DATE               NOT NULL,
   "stu_id"    BIGINT             NOT NULL,
@@ -1298,8 +1310,8 @@ CREATE TABLE IF NOT EXISTS "att_3_11" (
   PRIMARY KEY ("att_3_11_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_3_11" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_3_11" ("att_date", "sec");
+CREATE INDEX "ix_stu_date" ON academic."att_3_11" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_3_11" ("att_date", "sec");
 
 -- --------------------------------------------------------
 
@@ -1307,7 +1319,7 @@ CREATE INDEX "ix_date_sec" ON "att_3_11" ("att_date", "sec");
 -- Table structure for table "att_3_12"
 --
 
-CREATE TABLE IF NOT EXISTS "att_3_12" (
+CREATE TABLE IF NOT EXISTS academic."att_3_12" (
   "att_3_12_id"        BIGSERIAL,
   "att_date"  DATE               NOT NULL,
   "stu_id"    BIGINT             NOT NULL,
@@ -1317,8 +1329,8 @@ CREATE TABLE IF NOT EXISTS "att_3_12" (
   PRIMARY KEY ("att_3_12_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_3_12" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_3_12" ("att_date", "sec");
+CREATE INDEX "ix_stu_date" ON academic."att_3_12" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_3_12" ("att_date", "sec");
 
 -- --------------------------------------------------------
 
@@ -1326,7 +1338,7 @@ CREATE INDEX "ix_date_sec" ON "att_3_12" ("att_date", "sec");
 -- Table structure for table "att_4"
 --
 
-CREATE TABLE IF NOT EXISTS "att_4" (
+CREATE TABLE IF NOT EXISTS academic."att_4" (
   "att_4_id"          BIGSERIAL,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -1339,15 +1351,15 @@ CREATE TABLE IF NOT EXISTS "att_4" (
   PRIMARY KEY ("att_4_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_4" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_4" ("att_date", "sec");
-CREATE INDEX "ix_subj_date" ON "att_4" ("subject_id", "att_date");
+CREATE INDEX "ix_stu_date" ON academic."att_4" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_4" ("att_date", "sec");
+CREATE INDEX "ix_subj_date" ON academic."att_4" ("subject_id", "att_date");
 
 --
 -- Dumping data for table "att_4"
 --
 
-INSERT INTO "att_4" ("att_4_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."att_4" ("att_4_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (1, 0, 'RFID', '2026-02-15', 581, 1, 1, 0, ' 14:51:19,  14:51:23'),
 (2, 0, 'RFID', '2026-02-15', 743, 1, 1, 0, ' 14:52:27,  14:52:33'),
 (3, 0, 'RFID', '2026-02-15', 741, 1, 1, 0, ' 14:58:04,  14:58:10'),
@@ -1365,7 +1377,7 @@ INSERT INTO "att_4" ("att_4_id", "subject_id", "username", "att_date", "stu_id",
 -- Table structure for table "att_4_13"
 --
 
-CREATE TABLE IF NOT EXISTS "att_4_13" (
+CREATE TABLE IF NOT EXISTS academic."att_4_13" (
   "att_4_13_id"        BIGSERIAL,
   "att_date"  DATE               NOT NULL,
   "stu_id"    BIGINT             NOT NULL,
@@ -1375,8 +1387,8 @@ CREATE TABLE IF NOT EXISTS "att_4_13" (
   PRIMARY KEY ("att_4_13_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_4_13" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_4_13" ("att_date", "sec");
+CREATE INDEX "ix_stu_date" ON academic."att_4_13" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_4_13" ("att_date", "sec");
 
 -- --------------------------------------------------------
 
@@ -1384,7 +1396,7 @@ CREATE INDEX "ix_date_sec" ON "att_4_13" ("att_date", "sec");
 -- Table structure for table "att_4_14"
 --
 
-CREATE TABLE IF NOT EXISTS "att_4_14" (
+CREATE TABLE IF NOT EXISTS academic."att_4_14" (
   "att_4_14_id"        BIGSERIAL,
   "att_date"  DATE               NOT NULL,
   "stu_id"    BIGINT             NOT NULL,
@@ -1394,8 +1406,8 @@ CREATE TABLE IF NOT EXISTS "att_4_14" (
   PRIMARY KEY ("att_4_14_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_4_14" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_4_14" ("att_date", "sec");
+CREATE INDEX "ix_stu_date" ON academic."att_4_14" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_4_14" ("att_date", "sec");
 
 -- --------------------------------------------------------
 
@@ -1403,7 +1415,7 @@ CREATE INDEX "ix_date_sec" ON "att_4_14" ("att_date", "sec");
 -- Table structure for table "att_4_15"
 --
 
-CREATE TABLE IF NOT EXISTS "att_4_15" (
+CREATE TABLE IF NOT EXISTS academic."att_4_15" (
   "att_4_15_id"        BIGSERIAL,
   "att_date"  DATE               NOT NULL,
   "stu_id"    BIGINT             NOT NULL,
@@ -1413,8 +1425,8 @@ CREATE TABLE IF NOT EXISTS "att_4_15" (
   PRIMARY KEY ("att_4_15_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_4_15" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_4_15" ("att_date", "sec");
+CREATE INDEX "ix_stu_date" ON academic."att_4_15" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_4_15" ("att_date", "sec");
 
 -- --------------------------------------------------------
 
@@ -1422,7 +1434,7 @@ CREATE INDEX "ix_date_sec" ON "att_4_15" ("att_date", "sec");
 -- Table structure for table "att_4_16"
 --
 
-CREATE TABLE IF NOT EXISTS "att_4_16" (
+CREATE TABLE IF NOT EXISTS academic."att_4_16" (
   "att_4_16_id"        BIGSERIAL,
   "att_date"  DATE               NOT NULL,
   "stu_id"    BIGINT             NOT NULL,
@@ -1432,8 +1444,8 @@ CREATE TABLE IF NOT EXISTS "att_4_16" (
   PRIMARY KEY ("att_4_16_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_4_16" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_4_16" ("att_date", "sec");
+CREATE INDEX "ix_stu_date" ON academic."att_4_16" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_4_16" ("att_date", "sec");
 
 -- --------------------------------------------------------
 
@@ -1441,7 +1453,7 @@ CREATE INDEX "ix_date_sec" ON "att_4_16" ("att_date", "sec");
 -- Table structure for table "att_5"
 --
 
-CREATE TABLE IF NOT EXISTS "att_5" (
+CREATE TABLE IF NOT EXISTS academic."att_5" (
   "att_5_id"          BIGSERIAL,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -1454,15 +1466,15 @@ CREATE TABLE IF NOT EXISTS "att_5" (
   PRIMARY KEY ("att_5_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_5" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_5" ("att_date", "sec");
-CREATE INDEX "ix_subj_date" ON "att_5" ("subject_id", "att_date");
+CREATE INDEX "ix_stu_date" ON academic."att_5" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_5" ("att_date", "sec");
+CREATE INDEX "ix_subj_date" ON academic."att_5" ("subject_id", "att_date");
 
 --
 -- Dumping data for table "att_5"
 --
 
-INSERT INTO "att_5" ("att_5_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."att_5" ("att_5_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (1, 0, 'RFID', '2026-02-15', 115, 1, 1, 0, ' 11:58:17'),
 (2, 0, 'RFID', '2026-02-15', 674, 1, 1, 0, ' 14:54:40'),
 (3, 0, 'RFID', '2026-02-15', 104, 1, 1, 0, ' 14:55:47'),
@@ -1481,7 +1493,7 @@ INSERT INTO "att_5" ("att_5_id", "subject_id", "username", "att_date", "stu_id",
 -- Table structure for table "att_6"
 --
 
-CREATE TABLE IF NOT EXISTS "att_6" (
+CREATE TABLE IF NOT EXISTS academic."att_6" (
   "att_6_id"          BIGSERIAL,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -1494,15 +1506,15 @@ CREATE TABLE IF NOT EXISTS "att_6" (
   PRIMARY KEY ("att_6_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_6" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_6" ("att_date", "sec");
-CREATE INDEX "ix_subj_date" ON "att_6" ("subject_id", "att_date");
+CREATE INDEX "ix_stu_date" ON academic."att_6" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_6" ("att_date", "sec");
+CREATE INDEX "ix_subj_date" ON academic."att_6" ("subject_id", "att_date");
 
 --
 -- Dumping data for table "att_6"
 --
 
-INSERT INTO "att_6" ("att_6_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."att_6" ("att_6_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (1, 0, 'RFID', '2026-02-15', 178, 1, 1, 0, ' 14:56:59'),
 (2, 0, 'RFID', '2026-02-15', 742, 1, 1, 0, ' 14:58:02'),
 (3, 0, 'RFID', '2026-02-15', 677, 1, 1, 0, ' 14:58:09'),
@@ -1520,7 +1532,7 @@ INSERT INTO "att_6" ("att_6_id", "subject_id", "username", "att_date", "stu_id",
 -- Table structure for table "att_7"
 --
 
-CREATE TABLE IF NOT EXISTS "att_7" (
+CREATE TABLE IF NOT EXISTS academic."att_7" (
   "att_7_id"          BIGSERIAL,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -1533,15 +1545,15 @@ CREATE TABLE IF NOT EXISTS "att_7" (
   PRIMARY KEY ("att_7_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_7" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_7" ("att_date", "sec");
-CREATE INDEX "ix_subj_date" ON "att_7" ("subject_id", "att_date");
+CREATE INDEX "ix_stu_date" ON academic."att_7" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_7" ("att_date", "sec");
+CREATE INDEX "ix_subj_date" ON academic."att_7" ("subject_id", "att_date");
 
 --
 -- Dumping data for table "att_7"
 --
 
-INSERT INTO "att_7" ("att_7_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."att_7" ("att_7_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (1, 0, 'RFID', '2026-02-15', 147, 1, 1, 0, ' 14:52:14,  14:52:19'),
 (2, 0, 'RFID', '2026-02-15', 730, 1, 1, 0, ' 14:55:23'),
 (3, 0, 'RFID', '2026-02-15', 734, 1, 1, 0, ' 14:59:53'),
@@ -1559,7 +1571,7 @@ INSERT INTO "att_7" ("att_7_id", "subject_id", "username", "att_date", "stu_id",
 -- Table structure for table "att_8"
 --
 
-CREATE TABLE IF NOT EXISTS "att_8" (
+CREATE TABLE IF NOT EXISTS academic."att_8" (
   "att_8_id"          BIGSERIAL,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -1572,15 +1584,15 @@ CREATE TABLE IF NOT EXISTS "att_8" (
   PRIMARY KEY ("att_8_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_8" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_8" ("att_date", "sec");
-CREATE INDEX "ix_subj_date" ON "att_8" ("subject_id", "att_date");
+CREATE INDEX "ix_stu_date" ON academic."att_8" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_8" ("att_date", "sec");
+CREATE INDEX "ix_subj_date" ON academic."att_8" ("subject_id", "att_date");
 
 --
 -- Dumping data for table "att_8"
 --
 
-INSERT INTO "att_8" ("att_8_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."att_8" ("att_8_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (1, 0, 'RFID', '2026-02-15', 774, 1, 1, 0, ' 14:54:23,  14:56:06'),
 (2, 0, 'RFID', '2026-02-15', 687, 1, 1, 0, ' 14:54:57'),
 (3, 0, 'RFID', '2026-02-15', 241, 1, 1, 0, ' 16:18:11,  16:18:18'),
@@ -1598,7 +1610,7 @@ INSERT INTO "att_8" ("att_8_id", "subject_id", "username", "att_date", "stu_id",
 -- Table structure for table "att_9"
 --
 
-CREATE TABLE IF NOT EXISTS "att_9" (
+CREATE TABLE IF NOT EXISTS academic."att_9" (
   "att_9_id"          BIGSERIAL,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -1611,15 +1623,15 @@ CREATE TABLE IF NOT EXISTS "att_9" (
   PRIMARY KEY ("att_9_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_9" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_9" ("att_date", "sec");
-CREATE INDEX "ix_subj_date" ON "att_9" ("subject_id", "att_date");
+CREATE INDEX "ix_stu_date" ON academic."att_9" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_9" ("att_date", "sec");
+CREATE INDEX "ix_subj_date" ON academic."att_9" ("subject_id", "att_date");
 
 --
 -- Dumping data for table "att_9"
 --
 
-INSERT INTO "att_9" ("att_9_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."att_9" ("att_9_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (1, 0, 'RFID', '2026-02-15', 410, 1, 1, 0, ' 15:00:37'),
 (2, 0, 'RFID', '2026-02-15', 232, 1, 1, 0, ' 15:00:39'),
 (3, 0, 'RFID', '2026-02-15', 274, 1, 1, 0, ' 15:18:44'),
@@ -1637,7 +1649,7 @@ INSERT INTO "att_9" ("att_9_id", "subject_id", "username", "att_date", "stu_id",
 -- Table structure for table "att_10"
 --
 
-CREATE TABLE IF NOT EXISTS "att_10" (
+CREATE TABLE IF NOT EXISTS academic."att_10" (
   "att_10_id"          BIGSERIAL,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -1650,9 +1662,9 @@ CREATE TABLE IF NOT EXISTS "att_10" (
   PRIMARY KEY ("att_10_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_10" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_10" ("att_date", "sec");
-CREATE INDEX "ix_subj_date" ON "att_10" ("subject_id", "att_date");
+CREATE INDEX "ix_stu_date" ON academic."att_10" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_10" ("att_date", "sec");
+CREATE INDEX "ix_subj_date" ON academic."att_10" ("subject_id", "att_date");
 
 -- --------------------------------------------------------
 
@@ -1660,7 +1672,7 @@ CREATE INDEX "ix_subj_date" ON "att_10" ("subject_id", "att_date");
 -- Table structure for table "att_11"
 --
 
-CREATE TABLE IF NOT EXISTS "att_11" (
+CREATE TABLE IF NOT EXISTS academic."att_11" (
   "att_11_id"          BIGSERIAL,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -1673,9 +1685,9 @@ CREATE TABLE IF NOT EXISTS "att_11" (
   PRIMARY KEY ("att_11_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_11" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_11" ("att_date", "sec");
-CREATE INDEX "ix_subj_date" ON "att_11" ("subject_id", "att_date");
+CREATE INDEX "ix_stu_date" ON academic."att_11" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_11" ("att_date", "sec");
+CREATE INDEX "ix_subj_date" ON academic."att_11" ("subject_id", "att_date");
 
 -- --------------------------------------------------------
 
@@ -1683,7 +1695,7 @@ CREATE INDEX "ix_subj_date" ON "att_11" ("subject_id", "att_date");
 -- Table structure for table "att_12"
 --
 
-CREATE TABLE IF NOT EXISTS "att_12" (
+CREATE TABLE IF NOT EXISTS academic."att_12" (
   "att_12_id"          BIGSERIAL,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -1696,9 +1708,9 @@ CREATE TABLE IF NOT EXISTS "att_12" (
   PRIMARY KEY ("att_12_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_12" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_12" ("att_date", "sec");
-CREATE INDEX "ix_subj_date" ON "att_12" ("subject_id", "att_date");
+CREATE INDEX "ix_stu_date" ON academic."att_12" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_12" ("att_date", "sec");
+CREATE INDEX "ix_subj_date" ON academic."att_12" ("subject_id", "att_date");
 
 -- --------------------------------------------------------
 
@@ -1706,7 +1718,7 @@ CREATE INDEX "ix_subj_date" ON "att_12" ("subject_id", "att_date");
 -- Table structure for table "att_13"
 --
 
-CREATE TABLE IF NOT EXISTS "att_13" (
+CREATE TABLE IF NOT EXISTS academic."att_13" (
   "att_13_id"          BIGSERIAL,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -1719,9 +1731,9 @@ CREATE TABLE IF NOT EXISTS "att_13" (
   PRIMARY KEY ("att_13_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_13" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_13" ("att_date", "sec");
-CREATE INDEX "ix_subj_date" ON "att_13" ("subject_id", "att_date");
+CREATE INDEX "ix_stu_date" ON academic."att_13" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_13" ("att_date", "sec");
+CREATE INDEX "ix_subj_date" ON academic."att_13" ("subject_id", "att_date");
 
 -- --------------------------------------------------------
 
@@ -1729,7 +1741,7 @@ CREATE INDEX "ix_subj_date" ON "att_13" ("subject_id", "att_date");
 -- Table structure for table "att_14"
 --
 
-CREATE TABLE IF NOT EXISTS "att_14" (
+CREATE TABLE IF NOT EXISTS academic."att_14" (
   "att_14_id"          BIGSERIAL,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -1742,15 +1754,15 @@ CREATE TABLE IF NOT EXISTS "att_14" (
   PRIMARY KEY ("att_14_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_14" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_14" ("att_date", "sec");
-CREATE INDEX "ix_subj_date" ON "att_14" ("subject_id", "att_date");
+CREATE INDEX "ix_stu_date" ON academic."att_14" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_14" ("att_date", "sec");
+CREATE INDEX "ix_subj_date" ON academic."att_14" ("subject_id", "att_date");
 
 --
 -- Dumping data for table "att_14"
 --
 
-INSERT INTO "att_14" ("att_14_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."att_14" ("att_14_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (1, 0, 'RFID', '2026-02-12', 557, 1, 1, 0, ' 15:19:01'),
 (2, 0, 'RFID', '2026-02-15', 427, 1, 1, 0, ' 15:03:49'),
 (3, 0, 'RFID', '2026-02-15', 443, 1, 1, 0, ' 15:07:12'),
@@ -1768,7 +1780,7 @@ INSERT INTO "att_14" ("att_14_id", "subject_id", "username", "att_date", "stu_id
 -- Table structure for table "att_15"
 --
 
-CREATE TABLE IF NOT EXISTS "att_15" (
+CREATE TABLE IF NOT EXISTS academic."att_15" (
   "att_15_id"          BIGSERIAL,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -1781,15 +1793,15 @@ CREATE TABLE IF NOT EXISTS "att_15" (
   PRIMARY KEY ("att_15_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_15" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_15" ("att_date", "sec");
-CREATE INDEX "ix_subj_date" ON "att_15" ("subject_id", "att_date");
+CREATE INDEX "ix_stu_date" ON academic."att_15" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_15" ("att_date", "sec");
+CREATE INDEX "ix_subj_date" ON academic."att_15" ("subject_id", "att_date");
 
 --
 -- Dumping data for table "att_15"
 --
 
-INSERT INTO "att_15" ("att_15_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."att_15" ("att_15_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (1, 0, 'RFID', '2026-02-18', 698, 1, 1, 0, ' 15:04:44'),
 (2, 0, 'RFID', '2026-02-18', 720, 1, 1, 0, ' 15:08:37'),
 (3, 0, 'RFID', '2026-02-18', 697, 1, 1, 0, ' 16:14:09'),
@@ -1807,7 +1819,7 @@ INSERT INTO "att_15" ("att_15_id", "subject_id", "username", "att_date", "stu_id
 -- Table structure for table "att_16"
 --
 
-CREATE TABLE IF NOT EXISTS "att_16" (
+CREATE TABLE IF NOT EXISTS academic."att_16" (
   "att_16_id"          BIGSERIAL,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -1820,15 +1832,15 @@ CREATE TABLE IF NOT EXISTS "att_16" (
   PRIMARY KEY ("att_16_id")
 );
 
-CREATE INDEX "ix_stu_date" ON "att_16" ("stu_id", "att_date");
-CREATE INDEX "ix_date_sec" ON "att_16" ("att_date", "sec");
-CREATE INDEX "ix_subj_date" ON "att_16" ("subject_id", "att_date");
+CREATE INDEX "ix_stu_date" ON academic."att_16" ("stu_id", "att_date");
+CREATE INDEX "ix_date_sec" ON academic."att_16" ("att_date", "sec");
+CREATE INDEX "ix_subj_date" ON academic."att_16" ("subject_id", "att_date");
 
 --
 -- Dumping data for table "att_16"
 --
 
-INSERT INTO "att_16" ("att_16_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."att_16" ("att_16_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (1, 0, 'RFID', '2026-02-15', 508, 1, 1, 0, ' 14:45:13'),
 (2, 0, 'RFID', '2026-02-15', 375, 1, 1, 0, ' 15:03:12'),
 (3, 0, 'RFID', '2026-02-15', 364, 1, 1, 0, ' 15:17:53'),
@@ -1846,7 +1858,7 @@ INSERT INTO "att_16" ("att_16_id", "subject_id", "username", "att_date", "stu_id
 -- Table structure for table "bank_details"
 --
 
-CREATE TABLE IF NOT EXISTS "bank_details" (
+CREATE TABLE IF NOT EXISTS fee."bank_details" (
   "bank_details_id"            SERIAL,
   "bank_name"     VARCHAR(60)  DEFAULT NULL,
   "bank_st_name"  VARCHAR(25)  DEFAULT NULL,
@@ -1863,7 +1875,7 @@ CREATE TABLE IF NOT EXISTS "bank_details" (
 -- Dumping data for table "bank_details"
 --
 
-INSERT INTO "bank_details" ("bank_details_id", "bank_name", "bank_st_name", "bank_address", "telephone", "acc_no", "acc_type", "ledger_id", "status") VALUES
+INSERT INTO fee."bank_details" ("bank_details_id", "bank_name", "bank_st_name", "bank_address", "telephone", "acc_no", "acc_type", "ledger_id", "status") VALUES
 (1, 'State Bank of India', NULL, NULL, NULL, NULL, NULL, NULL, 1),
 (3, 'Citi Bank', NULL, NULL, NULL, NULL, NULL, NULL, 1),
 (4, 'Punjab National Bank', NULL, NULL, NULL, NULL, NULL, NULL, 1),
@@ -1957,7 +1969,7 @@ INSERT INTO "bank_details" ("bank_details_id", "bank_name", "bank_st_name", "ban
 -- Table structure for table "batch_master"
 --
 
-CREATE TABLE IF NOT EXISTS "batch_master" (
+CREATE TABLE IF NOT EXISTS academic."batch_master" (
   "batch_master_id"          SERIAL,
   "batch_name"  VARCHAR(50)  DEFAULT NULL,
   PRIMARY KEY ("batch_master_id")
@@ -1969,7 +1981,7 @@ CREATE TABLE IF NOT EXISTS "batch_master" (
 -- Table structure for table "calendar_meeting"
 --
 
-CREATE TABLE IF NOT EXISTS "calendar_meeting" (
+CREATE TABLE IF NOT EXISTS communication."calendar_meeting" (
   "calendar_meeting_id"                  SERIAL,
   "calendar_reason_id"  INT          DEFAULT NULL,
   "staff_id"            INT          DEFAULT NULL,
@@ -1984,7 +1996,7 @@ CREATE TABLE IF NOT EXISTS "calendar_meeting" (
 -- Table structure for table "calendar_reason"
 --
 
-CREATE TABLE IF NOT EXISTS "calendar_reason" (
+CREATE TABLE IF NOT EXISTS communication."calendar_reason" (
   "calendar_reason_id"      SERIAL,
   "name"    VARCHAR(20)  DEFAULT NULL,
   "status"  SMALLINT   DEFAULT 1,
@@ -1995,7 +2007,7 @@ CREATE TABLE IF NOT EXISTS "calendar_reason" (
 -- Dumping data for table "calendar_reason"
 --
 
-INSERT INTO "calendar_reason" ("calendar_reason_id", "name", "status") VALUES
+INSERT INTO communication."calendar_reason" ("calendar_reason_id", "name", "status") VALUES
 (1, 'Academic', 1),
 (2, 'Admin Related', 1),
 (3, 'Transport Related', 1),
@@ -2007,7 +2019,7 @@ INSERT INTO "calendar_reason" ("calendar_reason_id", "name", "status") VALUES
 -- Table structure for table "calendar_schedule"
 --
 
-CREATE TABLE IF NOT EXISTS "calendar_schedule" (
+CREATE TABLE IF NOT EXISTS communication."calendar_schedule" (
   "calendar_schedule_id"                         SERIAL,
   "reason_id"                  INT          DEFAULT NULL,
   "meeting_id"                 INT          DEFAULT NULL,
@@ -2033,7 +2045,7 @@ CREATE TABLE IF NOT EXISTS "calendar_schedule" (
 -- Dumping data for table "calendar_schedule"
 --
 
-INSERT INTO "calendar_schedule" ("calendar_schedule_id", "reason_id", "meeting_id", "staff_id", "meeting_date", "calendar_schedule_time_id", "meeting_from_time", "meeting_to_time", "complain", "requested_user", "requested_user_type", "response_user", "response_date", "response_time", "inserted", "meeting_status", "status", "mail_setn") VALUES
+INSERT INTO communication."calendar_schedule" ("calendar_schedule_id", "reason_id", "meeting_id", "staff_id", "meeting_date", "calendar_schedule_time_id", "meeting_from_time", "meeting_to_time", "complain", "requested_user", "requested_user_type", "response_user", "response_date", "response_time", "inserted", "meeting_status", "status", "mail_setn") VALUES
 (1, 0, 0, 95, '2026-03-07', 25389, '08:40:00', '09:20:00', '', '244', NULL, NULL, NULL, NULL, '2026-02-26 18:51:00', 1, 1, 1),
 (2, 0, 0, 114, '2026-03-07', 27182, '08:00:00', '08:40:00', '', '242', NULL, NULL, NULL, NULL, '2026-02-26 18:38:57', 1, 1, 1),
 (3, 0, 0, 104, '2026-03-07', 27269, '08:40:00', '09:20:00', '', '1336', NULL, NULL, NULL, NULL, '2026-02-26 18:21:52', 1, 1, 1),
@@ -2051,7 +2063,7 @@ INSERT INTO "calendar_schedule" ("calendar_schedule_id", "reason_id", "meeting_i
 -- Table structure for table "calendar_schedule_bk"
 --
 
-CREATE TABLE IF NOT EXISTS "calendar_schedule_bk" (
+CREATE TABLE IF NOT EXISTS communication."calendar_schedule_bk" (
   "calendar_schedule_bk_id"                         SERIAL,
   "reason_id"                  INT          DEFAULT NULL,
   "meeting_id"                 INT          DEFAULT NULL,
@@ -2076,7 +2088,7 @@ CREATE TABLE IF NOT EXISTS "calendar_schedule_bk" (
 -- Dumping data for table "calendar_schedule_bk"
 --
 
-INSERT INTO "calendar_schedule_bk" ("calendar_schedule_bk_id", "reason_id", "meeting_id", "staff_id", "meeting_date", "calendar_schedule_time_id", "meeting_from_time", "meeting_to_time", "complain", "requested_user", "requested_user_type", "response_user", "response_date", "response_time", "inserted", "meeting_status", "status") VALUES
+INSERT INTO communication."calendar_schedule_bk" ("calendar_schedule_bk_id", "reason_id", "meeting_id", "staff_id", "meeting_date", "calendar_schedule_time_id", "meeting_from_time", "meeting_to_time", "complain", "requested_user", "requested_user_type", "response_user", "response_date", "response_time", "inserted", "meeting_status", "status") VALUES
 (1, 0, 0, 95, '2026-03-07', 25389, '08:40:00', '09:20:00', '', '244', NULL, NULL, NULL, NULL, '2026-02-26 18:51:00', 1, 1),
 (2, 0, 0, 114, '2026-03-07', 27182, '08:00:00', '08:40:00', '', '242', NULL, NULL, NULL, NULL, '2026-02-26 18:38:57', 1, 1),
 (3, 0, 0, 104, '2026-03-07', 27269, '08:40:00', '09:20:00', '', '1336', NULL, NULL, NULL, NULL, '2026-02-26 18:21:52', 1, 1),
@@ -2094,7 +2106,7 @@ INSERT INTO "calendar_schedule_bk" ("calendar_schedule_bk_id", "reason_id", "mee
 -- Table structure for table "calendar_schedule_setup"
 --
 
-CREATE TABLE IF NOT EXISTS "calendar_schedule_setup" (
+CREATE TABLE IF NOT EXISTS communication."calendar_schedule_setup" (
   "calendar_schedule_setup_id"            SERIAL,
   "name"          VARCHAR(100)  DEFAULT NULL,
   "description"   TEXT,
@@ -2111,7 +2123,7 @@ CREATE TABLE IF NOT EXISTS "calendar_schedule_setup" (
 -- Dumping data for table "calendar_schedule_setup"
 --
 
-INSERT INTO "calendar_schedule_setup" ("calendar_schedule_setup_id", "name", "description", "meeting_date", "inserted", "status", "staff_id", "nopd", "class_id") VALUES
+INSERT INTO communication."calendar_schedule_setup" ("calendar_schedule_setup_id", "name", "description", "meeting_date", "inserted", "status", "staff_id", "nopd", "class_id") VALUES
 (1, 'SLC', 'Please select one time for your child''s SLC. There are 4 slots for each of the time periods, choose one. During the 40 minute time slot, you will spend time in your child''s homeroom and also see some of the specialist teachers.\r\n\r\n*Note: This is one time selections, for any change in time slot please contact to kenneth.fernandez@email.com.', '2026-03-07', '2026-02-11 09:24:48', 1, 108, 45, 97),
 (2, 'SLC', 'Please select one time for your child''s SLC. There are 4 slots for each of the time periods, choose one. During the 40 minute time slot, you will spend time in your child''s homeroom and also see some of the specialist teachers.\r\n\r\n*Note: This is one time selections, for any change in time slot please contact to kenneth.fernandez@email.com.', '2026-03-07', '2026-02-05 07:50:09', 1, 159, 45, 107),
 (3, 'SLC', 'Please select one time for your child''s SLC. There are 4 slots for each of the time periods, choose one. During the 40 minute time slot, you will spend time in your child''s homeroom and also see some of the specialist teachers.\r\n\r\n*Note: This is one time selections, for any change in time slot please contact to kenneth.fernandez@email.com.', '2026-03-07', '2026-02-03 05:19:51', 1, 159, 45, 107),
@@ -2129,7 +2141,7 @@ INSERT INTO "calendar_schedule_setup" ("calendar_schedule_setup_id", "name", "de
 -- Table structure for table "calendar_schedule_time"
 --
 
-CREATE TABLE IF NOT EXISTS "calendar_schedule_time" (
+CREATE TABLE IF NOT EXISTS communication."calendar_schedule_time" (
   "calendar_schedule_time_id"                          BIGSERIAL,
   "calendar_schedule_setup_id"  INT          DEFAULT NULL,
   "from_time"                   VARCHAR(10)  DEFAULT NULL,
@@ -2143,7 +2155,7 @@ CREATE TABLE IF NOT EXISTS "calendar_schedule_time" (
 -- Dumping data for table "calendar_schedule_time"
 --
 
-INSERT INTO "calendar_schedule_time" ("calendar_schedule_time_id", "calendar_schedule_setup_id", "from_time", "to_time", "format", "status") VALUES
+INSERT INTO communication."calendar_schedule_time" ("calendar_schedule_time_id", "calendar_schedule_setup_id", "from_time", "to_time", "format", "status") VALUES
 (26421, 57, '15:20', '16:00', 0, 1),
 (29443, 12, '14:40', '15:20', 0, 1),
 (27981, 41, '15:20', '16:00', 0, 1),
@@ -2161,7 +2173,7 @@ INSERT INTO "calendar_schedule_time" ("calendar_schedule_time_id", "calendar_sch
 -- Table structure for table "calendar_schedule_type"
 --
 
-CREATE TABLE IF NOT EXISTS "calendar_schedule_type" (
+CREATE TABLE IF NOT EXISTS communication."calendar_schedule_type" (
   "calendar_schedule_type_id"            SERIAL,
   "name"          VARCHAR(100)  DEFAULT NULL,
   "description"   TEXT,
@@ -2177,7 +2189,7 @@ CREATE TABLE IF NOT EXISTS "calendar_schedule_type" (
 -- Table structure for table "calendar_time"
 --
 
-CREATE TABLE IF NOT EXISTS "calendar_time" (
+CREATE TABLE IF NOT EXISTS communication."calendar_time" (
   "calendar_time_id"      SERIAL,
   "time"    TIME        DEFAULT NULL,
   "format"  VARCHAR(2)  DEFAULT NULL,
@@ -2189,7 +2201,7 @@ CREATE TABLE IF NOT EXISTS "calendar_time" (
 -- Dumping data for table "calendar_time"
 --
 
-INSERT INTO "calendar_time" ("calendar_time_id", "time", "format", "status") VALUES
+INSERT INTO communication."calendar_time" ("calendar_time_id", "time", "format", "status") VALUES
 (1, '10:00:00', 'AM', 1),
 (2, '10:15:00', 'AM', 1),
 (3, '10:30:00', 'AM', 1),
@@ -2219,7 +2231,7 @@ INSERT INTO "calendar_time" ("calendar_time_id", "time", "format", "status") VAL
 -- Table structure for table "card"
 --
 
-CREATE TABLE IF NOT EXISTS "card" (
+CREATE TABLE IF NOT EXISTS student."card" (
   "student_id"  VARCHAR(255)  DEFAULT NULL,
   "no_series"   VARCHAR(255)  DEFAULT NULL,
   PRIMARY KEY ("student_id")
@@ -2229,7 +2241,7 @@ CREATE TABLE IF NOT EXISTS "card" (
 -- Dumping data for table "card"
 --
 
-INSERT INTO "card" ("student_id", "no_series") VALUES
+INSERT INTO student."card" ("student_id", "no_series") VALUES
 ('A728', '000C3A43000000000000000000000000'),
 ('A774', '43237817000000000000000000000000'),
 ('A759', '64927817000000000000000000000000');
@@ -2240,7 +2252,7 @@ INSERT INTO "card" ("student_id", "no_series") VALUES
 -- Table structure for table "category"
 --
 
-CREATE TABLE IF NOT EXISTS "category" (
+CREATE TABLE IF NOT EXISTS academic."category" (
   "category_id"    SERIAL,
   "name"  VARCHAR(50)  NOT NULL DEFAULT '',
   PRIMARY KEY ("category_id")
@@ -2252,7 +2264,7 @@ CREATE TABLE IF NOT EXISTS "category" (
 -- Table structure for table "centralideacomt_pyp"
 --
 
-CREATE TABLE IF NOT EXISTS "centralideacomt_pyp" (
+CREATE TABLE IF NOT EXISTS academic."centralideacomt_pyp" (
   "centralideacomt_pyp_id"          BIGSERIAL,
   "exam_id"     INT     NOT NULL,
   "class"       INT     NOT NULL,
@@ -2271,7 +2283,7 @@ CREATE TABLE IF NOT EXISTS "centralideacomt_pyp" (
 -- Table structure for table "centralidea_pyp"
 --
 
-CREATE TABLE IF NOT EXISTS "centralidea_pyp" (
+CREATE TABLE IF NOT EXISTS academic."centralidea_pyp" (
   "centralidea_pyp_id"          BIGSERIAL,
   "exam_id"     INT         NOT NULL,
   "class"       INT         NOT NULL,
@@ -2288,7 +2300,7 @@ CREATE TABLE IF NOT EXISTS "centralidea_pyp" (
 -- Table structure for table "certificate_det"
 --
 
-CREATE TABLE IF NOT EXISTS "certificate_det" (
+CREATE TABLE IF NOT EXISTS student."certificate_det" (
   "certificate_det_id"       SERIAL,
   "new_id"   INTEGER  DEFAULT NULL,
   "stud_id"  VARCHAR(15)            DEFAULT NULL,
@@ -2300,10 +2312,10 @@ CREATE TABLE IF NOT EXISTS "certificate_det" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "certificate_m"
+-- Table structure for table "certificate"
 --
 
-CREATE TABLE IF NOT EXISTS "certificate_m" (
+CREATE TABLE IF NOT EXISTS student."certificate" (
   "certificate_m_id"      SERIAL,
   "name"    VARCHAR(200)  DEFAULT NULL,
   "status"  SMALLINT    DEFAULT 1,
@@ -2314,7 +2326,7 @@ CREATE TABLE IF NOT EXISTS "certificate_m" (
 -- Dumping data for table "certificate_m"
 --
 
-INSERT INTO "certificate_m" ("certificate_m_id", "name", "status") VALUES
+INSERT INTO student."certificate" ("certificate_m_id", "name", "status") VALUES
 (1, '', 0);
 
 -- --------------------------------------------------------
@@ -2323,7 +2335,7 @@ INSERT INTO "certificate_m" ("certificate_m_id", "name", "status") VALUES
 -- Table structure for table "challan_mail_log"
 --
 
-CREATE TABLE IF NOT EXISTS "challan_mail_log" (
+CREATE TABLE IF NOT EXISTS fee."challan_mail_log" (
   "challan_mail_log_id"         SERIAL,
   "stud_id"    INT          DEFAULT NULL,
   "sem"        INT          DEFAULT NULL,
@@ -2339,10 +2351,10 @@ CREATE TABLE IF NOT EXISTS "challan_mail_log" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "chapter_m"
+-- Table structure for table "chapter"
 --
 
-CREATE TABLE IF NOT EXISTS "chapter_m" (
+CREATE TABLE IF NOT EXISTS academic."chapter" (
   "chapter_m_id"    SERIAL,
   "name"  VARCHAR(30)  NOT NULL,
   PRIMARY KEY ("chapter_m_id")
@@ -2354,7 +2366,7 @@ CREATE TABLE IF NOT EXISTS "chapter_m" (
 -- Table structure for table "charges"
 --
 
-CREATE TABLE IF NOT EXISTS "charges" (
+CREATE TABLE IF NOT EXISTS fee."charges" (
   "charges_id"           SERIAL,
   "charge_name"  VARCHAR(40)  NOT NULL,
   "narration"    TEXT         NOT NULL,
@@ -2371,7 +2383,7 @@ CREATE TABLE IF NOT EXISTS "charges" (
 -- Table structure for table "charges_applied"
 --
 
-CREATE TABLE IF NOT EXISTS "charges_applied" (
+CREATE TABLE IF NOT EXISTS fee."charges_applied" (
   "charges_applied_id"          SERIAL,
   "charges_id"  INT         NOT NULL,
   "group_id"    INT         NOT NULL,
@@ -2386,7 +2398,7 @@ CREATE TABLE IF NOT EXISTS "charges_applied" (
 -- Table structure for table "charges_group"
 --
 
-CREATE TABLE IF NOT EXISTS "charges_group" (
+CREATE TABLE IF NOT EXISTS fee."charges_group" (
   "charges_group_id"    SERIAL,
   "name"  VARCHAR(40)  NOT NULL,
   PRIMARY KEY ("charges_group_id")
@@ -2398,7 +2410,7 @@ CREATE TABLE IF NOT EXISTS "charges_group" (
 -- Table structure for table "charges_student_group"
 --
 
-CREATE TABLE IF NOT EXISTS "charges_student_group" (
+CREATE TABLE IF NOT EXISTS fee."charges_student_group" (
   "charges_student_group_id"               SERIAL,
   "charge_group_id"  INT         NOT NULL,
   "student_id"       INT         NOT NULL,
@@ -2412,7 +2424,7 @@ CREATE TABLE IF NOT EXISTS "charges_student_group" (
 -- Table structure for table "cir_parameter"
 --
 
-CREATE TABLE IF NOT EXISTS "cir_parameter" (
+CREATE TABLE IF NOT EXISTS library."cir_parameter" (
   "cir_parameter_id"          SERIAL,
   "member"      VARCHAR(20)  DEFAULT NULL,
   "department"  VARCHAR(25)  DEFAULT NULL,
@@ -2431,7 +2443,7 @@ CREATE TABLE IF NOT EXISTS "cir_parameter" (
 -- Table structure for table "classtime"
 --
 
-CREATE TABLE IF NOT EXISTS "classtime" (
+CREATE TABLE IF NOT EXISTS academic."classtime" (
   "classtime_id"      SERIAL,
   "grade"   INT          DEFAULT NULL,
   "nopd"    INT          DEFAULT NULL,
@@ -2517,7 +2529,7 @@ CREATE TABLE IF NOT EXISTS "classtime" (
 -- Dumping data for table "classtime"
 --
 
-INSERT INTO "classtime" ("classtime_id", "grade", "nopd", "desc1", "type1", "fmp1", "top1", "p1", "desc2", "type2", "fmp2", "top2", "p2", "desc3", "type3", "fmp3", "top3", "p3", "desc4", "type4", "fmp4", "top4", "p4", "desc5", "type5", "fmp5", "top5", "p5", "desc6", "type6", "fmp6", "top6", "p6", "desc7", "type7", "fmp7", "top7", "p7", "desc8", "type8", "fmp8", "top8", "p8", "desc9", "type9", "fmp9", "top9", "p9", "desc10", "type10", "fmp10", "top10", "p10", "desc11", "type11", "fmp11", "top11", "p11", "desc12", "type12", "fmp12", "top12", "p12", "desc13", "type13", "fmp13", "top13", "p13", "desc14", "type14", "fmp14", "top14", "p14", "desc15", "type15", "fmp15", "top15", "p15") VALUES
+INSERT INTO academic."classtime" ("classtime_id", "grade", "nopd", "desc1", "type1", "fmp1", "top1", "p1", "desc2", "type2", "fmp2", "top2", "p2", "desc3", "type3", "fmp3", "top3", "p3", "desc4", "type4", "fmp4", "top4", "p4", "desc5", "type5", "fmp5", "top5", "p5", "desc6", "type6", "fmp6", "top6", "p6", "desc7", "type7", "fmp7", "top7", "p7", "desc8", "type8", "fmp8", "top8", "p8", "desc9", "type9", "fmp9", "top9", "p9", "desc10", "type10", "fmp10", "top10", "p10", "desc11", "type11", "fmp11", "top11", "p11", "desc12", "type12", "fmp12", "top12", "p12", "desc13", "type13", "fmp13", "top13", "p13", "desc14", "type14", "fmp14", "top14", "p14", "desc15", "type15", "fmp15", "top15", "p15") VALUES
 (1, 1, 5, '', 1, '9:00', '9:30', 0, '', 1, '9:30', '10:00', 0, 'SNACK', 2, '10:00', '10:30', 0, '', 1, '10:30', '11:00', 0, '', 1, '11:00', '11:30', 0, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
 (2, 10, 10, 'Registration', 1, '7:50', '8:00', 0, 'Period 1', 1, '8:05', '8:50', 0, 'Period 2', 1, '8:55', '9:40', 0, 'Period 3', 1, '9:45', '10:30', 0, 'Morning Break', 2, '10:30', '10:50', 0, 'Period 4', 1, '10:50', '11:35', 0, 'Period 5', 1, '11:40', '12:25', 1, 'Lunch Break', 2, '12:25', '1:15', 1, 'Period 6', 1, '1:15', '2:00', 1, 'Period 7', 1, '2:05', '2:50', 1, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
 (3, 11, 10, 'Registration', 1, '7:50', '8:00', 0, 'Period 1', 1, '8:05', '8:50', 0, 'Period 2', 1, '8:55', '9:40', 0, 'Period 3', 1, '9:45', '10:30', 0, 'Morning Break', 2, '10:30', '10:50', 0, 'Period 4', 1, '10:50', '11:35', 0, 'Period 5', 1, '11:40', '12:25', 1, 'Lunch Break', 2, '12:25', '1:15', 1, 'Period 6', 1, '1:15', '2:00', 1, 'Period 7', 1, '2:05', '2:50', 1, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
@@ -2535,7 +2547,7 @@ INSERT INTO "classtime" ("classtime_id", "grade", "nopd", "desc1", "type1", "fmp
 -- Table structure for table "class_announcement_class"
 --
 
-CREATE TABLE IF NOT EXISTS "class_announcement_class" (
+CREATE TABLE IF NOT EXISTS academic."class_announcement_class" (
   "class_announcement_class_id"                 SERIAL,
   "class_announce_id"  INT         NOT NULL,
   "class"              INT         NOT NULL,
@@ -2548,7 +2560,7 @@ CREATE TABLE IF NOT EXISTS "class_announcement_class" (
 -- Dumping data for table "class_announcement_class"
 --
 
-INSERT INTO "class_announcement_class" ("class_announcement_class_id", "class_announce_id", "class", "grade", "status") VALUES
+INSERT INTO academic."class_announcement_class" ("class_announcement_class_id", "class_announce_id", "class", "grade", "status") VALUES
 (1, 6, 0, 10, 1),
 (2, 6, 0, 11, 1),
 (3, 6, 0, 12, 1),
@@ -2566,7 +2578,7 @@ INSERT INTO "class_announcement_class" ("class_announcement_class_id", "class_an
 -- Table structure for table "class_announcement_files"
 --
 
-CREATE TABLE IF NOT EXISTS "class_announcement_files" (
+CREATE TABLE IF NOT EXISTS academic."class_announcement_files" (
   "class_announcement_files_id"                     SERIAL,
   "announcement_class_id"  VARCHAR(100)  DEFAULT NULL,
   "trgt_filename"          VARCHAR(250)  DEFAULT NULL,
@@ -2580,16 +2592,16 @@ CREATE TABLE IF NOT EXISTS "class_announcement_files" (
 -- Dumping data for table "class_announcement_files"
 --
 
-INSERT INTO "class_announcement_files" ("class_announcement_files_id", "announcement_class_id", "trgt_filename", "trgt_filepath", "inserted_date", "user") VALUES
+INSERT INTO academic."class_announcement_files" ("class_announcement_files_id", "announcement_class_id", "trgt_filename", "trgt_filepath", "inserted_date", "user") VALUES
 (13, '46', 'Head Lice Email.doc', 'class_doc/a65b638466815f7aae29d7b728c15501.doc', '2026-02-03', 'administrator');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table "class_announcement_master"
+-- Table structure for table "class_announcement"
 --
 
-CREATE TABLE IF NOT EXISTS "class_announcement_master" (
+CREATE TABLE IF NOT EXISTS academic."class_announcement" (
   "class_announcement_master_id"             SERIAL,
   "day_type"       INT           NOT NULL,
   "from_date"      DATE          NOT NULL,
@@ -2604,10 +2616,10 @@ CREATE TABLE IF NOT EXISTS "class_announcement_master" (
 );
 
 --
--- Dumping data for table "class_announcement_master"
+-- Dumping data for table "class_announcement"
 --
 
-INSERT INTO "class_announcement_master" ("class_announcement_master_id", "day_type", "from_date", "to_date", "grade_type", "title", "description", "user", "inserted_date", "status") VALUES
+INSERT INTO academic."class_announcement" ("class_announcement_master_id", "day_type", "from_date", "to_date", "grade_type", "title", "description", "user", "inserted_date", "status") VALUES
 (6, 2, '2026-11-18', '2026-11-30', 1, ' Secondary Daily Bulletin - Mon, Nov. 18', '<div id="yui_3_7_2_1_1384872502665_3929">\r\n<div id="yui_3_7_2_1_1384872502665_3928">\r\n<div id="yui_3_7_2_1_1384872502665_4000"><strong id="yui_3_7_2_1_1384872502665_3999"><em id="yui_3_7_2_1_1384872502665_3998" style="text-decoration: underline;">From Ms. Anne</em>&nbsp;-&nbsp;</strong><strong>Very Important for Calamity Jane cast</strong></div>\r\n<div id="yui_3_7_2_1_1384872502665_3927">\r\n<div id="yui_3_7_2_1_1384872502665_3996">I will be taking cast photographs&nbsp;on Tuesday&nbsp;during lunchtime, please come to the seventh floor at some point over lunch.&nbsp; Principals, please co-ordinate with your opposite numbers so we can take paired pictures.<strong><span style="text-decoration: underline;"><br /> </span></strong></div>\r\n<br />ALL cast members should bring the shirts or blouses they are wearing for the show and change into them on the seventh floor.&nbsp; You can change back into your school shirt after you have had your photograph taken.&nbsp; There is no need to bring the bottom half of your costume.&nbsp; If you are planning on wearing a hat or anything else on your head please bring that too.<strong><br /> </strong></div>\r\n<div id="yui_3_7_2_1_1384872502665_3933"><strong><span style="text-decoration: underline;"><em>&nbsp;</em></span></strong></div>\r\n<div id="yui_3_7_2_1_1384872502665_3936">\r\n<div style="font-family: verdana, sans-serif;"><strong><span style="text-decoration: underline;"><em>From Ms. Priya</em></span><em>&nbsp;-&nbsp;</em>MS Assembly</strong></div>\r\n<div id="yui_3_7_2_1_1384872502665_3935" style="font-family: verdana, sans-serif;">MS assembly rehearsals will take place in the auditorium at the following times today and&nbsp;tomorrow. The following students must attend these rehearsals&nbsp;<strong><span style="text-decoration: underline;">today at 12:25&nbsp;and&nbsp;tomorrow at 12:45&nbsp;in the auditorium.</span></strong></div>\r\n<div id="yui_3_7_2_1_1384872502665_3938" style="font-family: verdana, sans-serif;">&nbsp;</div>\r\n<div id="yui_3_7_2_1_1384872502665_3940" style="font-family: verdana, sans-serif;">Saloni Ladha</div>\r\n<div id="yui_3_7_2_1_1384872502665_3942" style="font-family: verdana, sans-serif;">Khwaish Bedi</div>\r\n<div id="yui_3_7_2_1_1384872502665_3944" style="font-family: verdana, sans-serif;">Jennisa and Aashia</div>\r\n<div id="yui_3_7_2_1_1384872502665_3967" style="font-family: verdana, sans-serif;">Anay Khanderia</div>\r\n<div id="yui_3_7_2_1_1384872502665_4003" style="font-family: verdana, sans-serif;">Ekaadh and Kartik</div>\r\n<div id="yui_3_7_2_1_1384872502665_4005" style="font-family: verdana, sans-serif;">Mihika, Mandira, Noyyo, Gina and others in the group</div>\r\n<div id="yui_3_7_2_1_1384872502665_4007" style="font-family: verdana, sans-serif;">Isha and Mallika</div>\r\n<div id="yui_3_7_2_1_1384872502665_3946" style="font-family: verdana, sans-serif;">Anoushka Lad and Shivani P</div>\r\n<div id="yui_3_7_2_1_1384872502665_3965" style="font-family: verdana, sans-serif;">Stuti Srivatava</div>\r\n<div id="yui_3_7_2_1_1384872502665_3948" style="font-family: verdana, sans-serif;">Aditya Warrier</div>\r\n<div id="yui_3_7_2_1_1384872502665_3950" style="font-family: verdana, sans-serif;">Akansha Das</div>\r\n</div>\r\n<div id="yui_3_7_2_1_1384872502665_3952" style="font-family: verdana, sans-serif;">&nbsp;</div>\r\n<div id="yui_3_7_2_1_1384872502665_3954"><strong id="yui_3_7_2_1_1384872502665_4011"><span id="yui_3_7_2_1_1384872502665_4010" style="text-decoration: underline;"><em id="yui_3_7_2_1_1384872502665_4009">From Ms. Minal and Ms. Ulka</em></span>&nbsp;-&nbsp;</strong><strong>University Visits</strong></div>\r\n<div id="yui_3_7_2_1_1384872502665_3957"><span style="font-size: 13px;">Mon 18th Nov</span><span style="font-size: 13px;">&nbsp;</span><span id="yui_3_7_2_1_1384872502665_3956" style="font-size: 13px;">-&nbsp;Visit by York University in Toronto, Canada</span></div>\r\n<div id="yui_3_7_2_1_1384872502665_3961">\r\n<div id="yui_3_7_2_1_1384872502665_3959">Tues 19th Nov&nbsp;- Visit by Deakin University, Australia&nbsp;</div>\r\n<div id="yui_3_7_2_1_1384872502665_4013">and&nbsp;Australian National University.</div>\r\n</div>\r\n<p class="yiv752424536MsoNormal" style="margin-top: 6.6pt;">&nbsp;</p>\r\n<div>(All of these will be held in the Art room on the 6th floor between&nbsp;<span style="border-bottom-width: 1px; border-bottom-style: dashed; border-bottom-color: #cccccc;">12.25pm-1pm</span>)</div>\r\n<p class="yiv752424536MsoNormal" style="margin-top: 6.6pt;"><strong><span style="font-family: arial,helvetica,sans-serif;"><em style="text-decoration: underline;">From Ms. Anne</em>&nbsp;-&nbsp;</span>Halloween Pictures</strong></p>\r\n<div>Someone who I shared the dropbox file with has removed EVERY SINGLE PICTURE from the file.&nbsp; Can you please upload them all again as a matter of urgency.</div>\r\n<p class="yiv752424536MsoNormal" style="margin-top: 6.6pt;"><strong><span style="font-family: arial,helvetica,sans-serif;"><span style="text-decoration: underline;"><em>From Ms. Richa</em></span>&nbsp;-&nbsp;For Grade 6 to 8 students</span></strong></p>\r\n<p class="yiv752424536MsoNormal" style="margin-top: 6.6pt;"><span style="font-family: arial,helvetica,sans-serif;">Do you wish to explore space and be an astronomer ? then.. here`s the opportunity ....</span></p>\r\n<p id="yui_3_7_2_1_1384872502665_4020" class="yiv752424536MsoNormal" style="margin-top: 6.6pt;"><span id="yui_3_7_2_1_1384872502665_4019" style="font-family: arial,helvetica,sans-serif;"><strong id="yui_3_7_2_1_1384872502665_4022">NASA camp June 2026 :</strong>&nbsp;We have planned&nbsp;to take the middle school students for an experiential trip to NASA space camp in the month of June.Space School is a unique ten day trip to the USA designed to inspire, excite and motivate students about science and space research. The trip includes four days at Houston, Texas, during which students participate in educational activities at Space Center, Houston. The trip also includes four days of adventure in&nbsp; Orlando, Florida. There will an optional extension to New York and Niagara.</span></p>\r\n<p id="yui_3_7_2_1_1384872502665_4017" class="yiv752424536MsoNormal" style="margin-top: 6.6pt;"><span id="yui_3_7_2_1_1384872502665_4016" style="font-family: arial,helvetica,sans-serif;">During the educational program students will:</span></p>\r\n<ul id="yui_3_7_2_1_1384872502665_4027">\r\n<li id="yui_3_7_2_1_1384872502665_4026" style="margin-left: 15px;"><span id="yui_3_7_2_1_1384872502665_4025" style="font-family: arial, helvetica, sans-serif;">Learn about the work NASA is doing</span></li>\r\n<li id="yui_3_7_2_1_1384872502665_4030" style="margin-left: 15px;"><span id="yui_3_7_2_1_1384872502665_4029" style="font-family: arial, helvetica, sans-serif;">Undergo extensive astronaut training</span></li>\r\n<li style="margin-left: 15px;"><span style="font-family: arial, helvetica, sans-serif;">Learn to overcome challenges as they participate in a realistic simulation of a space mission</span></li>\r\n<li id="yui_3_7_2_1_1384872502665_4047" style="margin-left: 15px;"><span style="font-family: arial, helvetica, sans-serif;">Work on projects</span></li>\r\n<li id="yui_3_7_2_1_1384872502665_4045" style="margin-left: 15px;"><span id="yui_3_7_2_1_1384872502665_4044" style="font-family: arial, helvetica, sans-serif;">Participate in team building exercises</span></li>\r\n<li id="yui_3_7_2_1_1384872502665_4042" style="margin-left: 15px;"><span id="yui_3_7_2_1_1384872502665_4041" style="font-family: arial, helvetica, sans-serif;">Take exclusive tours of the facilities at NASA&rsquo;s USSRC</span></li>\r\n<li id="yui_3_7_2_1_1384872502665_4039" style="margin-left: 15px;"><span id="yui_3_7_2_1_1384872502665_4038" style="font-family: arial, helvetica, sans-serif;">Watch space shows and space movies</span></li>\r\n</ul>\r\n<p id="yui_3_7_2_1_1384872502665_4036" class="yiv752424536MsoNormal" style="margin-top: 6.6pt;"><span id="yui_3_7_2_1_1384872502665_4035" style="font-family: arial,helvetica,sans-serif;">At the end of the program, there will be a graduation ceremony in which each student will receive a certificate from NASA&rsquo;s USSRC.If you are interested in attending this camp , then please register your name with Ms.Richa by sending an email to her at&nbsp;&nbsp;<a href="mailto:richa.gupta@email.com" rel="nofollow" target="_blank">richa.gupta@email.com</a>&nbsp;by&nbsp;<strong>Friday, 22nd</strong>&nbsp;<strong id="yui_3_7_2_1_1384872502665_4034">November 2026. We will then conduct an information seminar for the interested students and their parents.</strong></span></p>\r\n</div>\r\n<div id="yui_3_7_2_1_1384872502665_4050" style="font-size: 13px;">&nbsp;</div>\r\n<div id="yui_3_7_2_1_1384872502665_4032" style="font-size: 13px;"><strong><span style="font-style: italic; text-decoration: underline;">&nbsp;</span></strong></div>\r\n<div id="yui_3_7_2_1_1384872502665_4053" style="font-size: 13px;"><strong id="yui_3_7_2_1_1384872502665_4052"><span style="font-style: italic; text-decoration: underline;">From Adventurois Editors</span>&nbsp;-&nbsp;Adventurois is calling young writers!</strong></div>\r\n<div id="yui_3_7_2_1_1384872502665_4083" style="font-size: 13px;"><strong id="yui_3_7_2_1_1384872502665_4097">(Grade 9 and 10 only)</strong></div>\r\n<div id="yui_3_7_2_1_1384872502665_4056" style="font-size: 13px;"><span id="yui_3_7_2_1_1384872502665_4055" style="font-size: 13px;">Adventurois Magazine is a student-led magazine, which is a platform for people to share ideas and opinions about the world around them. We request everyone from Grade 9 and Grade 10 to write about anything that interests them, from amazing recipes to hard wrenching fictional stories, anything which brings out the writer in you. There is also a new concept called "Agony Aunt" in which you can send in your problems anonymously and get replies from our Agony Aunts, who will give you advice.&nbsp;</span><span id="yui_3_7_2_1_1384872502665_4081" style="font-size: 13px;">The last day to submit your work is18th November, please send in your entries and/or questions to</span><span style="font-size: 13px;">&nbsp;</span><span style="font-size: 13px; text-decoration: underline;"><a href="mailto:adventurois@email.com" rel="nofollow" target="_blank">adventurois@email.com</a></span><span style="font-size: 13px;">.</span><span class="yiv752424536HOEnZb"><span style="color: #888888;"><br /> </span></span></div>\r\n<span class="yiv752424536HOEnZb"><span class="yiv752424536HOEnZb"><span style="color: #888888;"></span></span></span>\r\n<div id="yui_3_7_2_1_1384872502665_4058"><span style="font-size: 13px;">&nbsp;</span></div>\r\n<span id="yui_3_7_2_1_1384872502665_4060" class="yiv752424536HOEnZb"><span id="yui_3_7_2_1_1384872502665_4059" style="color: #888888;"></span></span></div>\r\n<p><span class="yiv752424536HOEnZb"><span class="yiv752424536HOEnZb"><span style="color: #888888;"></span></span></span></p>\r\n<div id="yui_3_7_2_1_1384872502665_4087">&nbsp;</div>\r\n<p><span class="yiv752424536HOEnZb"><span class="yiv752424536HOEnZb"><span style="color: #888888;">-- <br /></span></span></span></p>\r\n<div id="yui_3_7_2_1_1384872502665_4067" dir="ltr">\r\n<div id="yui_3_7_2_1_1384872502665_4074">\r\n<div id="yui_3_7_2_1_1384872502665_4073" style="color: #666666;">\r\n<div id="yui_3_7_2_1_1384872502665_4089"><span id="yui_3_7_2_1_1384872502665_4094" style="font-family: georgia, serif;">Eric Dyck Hilty</span></div>\r\n<div id="yui_3_7_2_1_1384872502665_4078"><span id="yui_3_7_2_1_1384872502665_4077" style="font-family: georgia, serif;">Deputy Head of Secondary for Student Life<br /><br /><em id="yui_3_7_2_1_1384872502665_4076">LMS International School<br />LMS Garden City, Off Western Express Highway,<br /></em></span></div>\r\n<span id="yui_3_7_2_1_1384872502665_4072" style="font-family: georgia, serif;"><em id="yui_3_7_2_1_1384872502665_4071">Goregaon (East), Mumbai - 400 063, India.&nbsp;<br /> </em></span></div>\r\n<span style="font-family: georgia, serif;"><span style="font-style: italic; color: #666666;">Tel: +91 22 4236 3134</span></span></div>\r\n</div>\r\n<p><span id="yui_3_7_2_1_1384872502665_4069" class="yiv752424536HOEnZb"><span id="yui_3_7_2_1_1384872502665_4068" style="color: #888888;"></span></span></p>', 'administrator', '2026-11-19', 1);
 
 -- --------------------------------------------------------
@@ -2616,7 +2628,7 @@ INSERT INTO "class_announcement_master" ("class_announcement_master_id", "day_ty
 -- Table structure for table "class_section"
 --
 
-CREATE TABLE IF NOT EXISTS "class_section" (
+CREATE TABLE IF NOT EXISTS academic."class_section" (
   "class_section_id"            SERIAL,
   "section_name"  VARCHAR(20)  DEFAULT NULL,
   "class_id"      INT          NOT NULL,
@@ -2632,7 +2644,7 @@ CREATE TABLE IF NOT EXISTS "class_section" (
 -- Dumping data for table "class_section"
 --
 
-INSERT INTO "class_section" ("class_section_id", "section_name", "class_id", "s_name", "codename", "grade", "sub", "status") VALUES
+INSERT INTO academic."class_section" ("class_section_id", "section_name", "class_id", "s_name", "codename", "grade", "sub", "status") VALUES
 (1, 'PS HR-NM-A', 1, 'A', '', 0, 0, 0),
 (2, 'PS HR-RP-B', 1, 'B', '', 0, 0, 0),
 (3, 'PS HR-SM-C', 1, 'C', '', 0, 0, 0),
@@ -2650,7 +2662,7 @@ INSERT INTO "class_section" ("class_section_id", "section_name", "class_id", "s_
 -- Table structure for table "class_section_sub"
 --
 
-CREATE TABLE IF NOT EXISTS "class_section_sub" (
+CREATE TABLE IF NOT EXISTS academic."class_section_sub" (
   "class_section_sub_id"            SERIAL,
   "section_name"  VARCHAR(20)  DEFAULT NULL,
   "sub"           INT          NOT NULL,
@@ -2663,7 +2675,7 @@ CREATE TABLE IF NOT EXISTS "class_section_sub" (
 -- Dumping data for table "class_section_sub"
 --
 
-INSERT INTO "class_section_sub" ("class_section_sub_id", "section_name", "sub", "grade", "status") VALUES
+INSERT INTO academic."class_section_sub" ("class_section_sub_id", "section_name", "sub", "grade", "status") VALUES
 (1, 'Music A', 238, 1, 1);
 
 -- --------------------------------------------------------
@@ -2672,7 +2684,7 @@ INSERT INTO "class_section_sub" ("class_section_sub_id", "section_name", "sub", 
 -- Table structure for table "class_teacher"
 --
 
-CREATE TABLE IF NOT EXISTS "class_teacher" (
+CREATE TABLE IF NOT EXISTS academic."class_teacher" (
   "class_teacher_id"          SERIAL,
   "curri_type"  INT  DEFAULT NULL,
   "grade"       INT  DEFAULT NULL,
@@ -2685,7 +2697,7 @@ CREATE TABLE IF NOT EXISTS "class_teacher" (
 -- Dumping data for table "class_teacher"
 --
 
-INSERT INTO "class_teacher" ("class_teacher_id", "curri_type", "grade", "sect", "teacher") VALUES
+INSERT INTO academic."class_teacher" ("class_teacher_id", "curri_type", "grade", "sect", "teacher") VALUES
 (10, 1, 1, 0, 17),
 (9, 3, 10, 42, 17),
 (4, 1, 1, 1, 18),
@@ -2698,7 +2710,7 @@ INSERT INTO "class_teacher" ("class_teacher_id", "curri_type", "grade", "sect", 
 -- Table structure for table "school"
 --
 
-CREATE TABLE IF NOT EXISTS "school" (
+CREATE TABLE IF NOT EXISTS settings."school" (
   "col_id"      SERIAL,
   "col_name"    VARCHAR(100)  DEFAULT NULL,
   "col_code"    VARCHAR(10)   NOT NULL DEFAULT '',
@@ -2718,7 +2730,7 @@ CREATE TABLE IF NOT EXISTS "school" (
 -- Dumping data for table "school"
 --
 
-INSERT INTO "school" ("col_id", "col_name", "col_code", "col_addr", "col_pin", "col_phone", "col_fax", "email", "company_id", "col_city", "col_state", "col_tin") VALUES
+INSERT INTO settings."school" ("col_id", "col_name", "col_code", "col_addr", "col_pin", "col_phone", "col_fax", "email", "company_id", "col_city", "col_state", "col_tin") VALUES
 (1, 'INTERNATIONAL SCHOOL', 'RD-S', 'Garden City\r\nNear Mall\r\nOff Western Express Highway\r\nGoregaon East\r\nMumbai - 4000000', '400000', '+ 91 22 4236 0000 / 199', '+ 91 22 4236 0000', 'education@email.com', '', 'Mumbai', 'Maharashtra', '');
 
 -- --------------------------------------------------------
@@ -2727,7 +2739,7 @@ INSERT INTO "school" ("col_id", "col_name", "col_code", "col_addr", "col_pin", "
 -- Table structure for table "comments"
 --
 
-CREATE TABLE IF NOT EXISTS "comments" (
+CREATE TABLE IF NOT EXISTS academic."comments" (
   "comments_id"           SERIAL,
   "class"        INT          NOT NULL,
   "acc_year"     INT          NOT NULL,
@@ -2749,7 +2761,7 @@ CREATE TABLE IF NOT EXISTS "comments" (
 -- Table structure for table "comment_kg"
 --
 
-CREATE TABLE IF NOT EXISTS "comment_kg" (
+CREATE TABLE IF NOT EXISTS academic."comment_kg" (
   "comment_kg_id"          BIGSERIAL,
   "exam_id"     INT     NOT NULL,
   "class"       INT     NOT NULL,
@@ -2766,7 +2778,7 @@ CREATE TABLE IF NOT EXISTS "comment_kg" (
 -- Table structure for table "comment_pyp"
 --
 
-CREATE TABLE IF NOT EXISTS "comment_pyp" (
+CREATE TABLE IF NOT EXISTS academic."comment_pyp" (
   "comment_pyp_id"          BIGSERIAL,
   "exam_id"     INT     NOT NULL,
   "class"       INT     NOT NULL,
@@ -2784,7 +2796,7 @@ CREATE TABLE IF NOT EXISTS "comment_pyp" (
 -- Table structure for table "company"
 --
 
-CREATE TABLE IF NOT EXISTS "company" (
+CREATE TABLE IF NOT EXISTS settings."company" (
   "Sl_No"         INT           NOT NULL,
   "ID"            INT           DEFAULT NULL,
   "Company_Name"  VARCHAR(250)  DEFAULT NULL,
@@ -2804,7 +2816,7 @@ CREATE TABLE IF NOT EXISTS "company" (
 -- Table structure for table "country"
 --
 
-CREATE TABLE IF NOT EXISTS "country" (
+CREATE TABLE IF NOT EXISTS settings."country" (
   "country_id"            SERIAL,
   "country_name"  VARCHAR(20)  DEFAULT NULL,
   PRIMARY KEY ("country_id")
@@ -2814,7 +2826,7 @@ CREATE TABLE IF NOT EXISTS "country" (
 -- Dumping data for table "country"
 --
 
-INSERT INTO "country" ("country_id", "country_name") VALUES
+INSERT INTO settings."country" ("country_id", "country_name") VALUES
 (1, 'INDIA'),
 (2, 'Malayasia'),
 (3, 'Korea'),
@@ -2827,7 +2839,7 @@ INSERT INTO "country" ("country_id", "country_name") VALUES
 -- Table structure for table "coursehead"
 --
 
-CREATE TABLE IF NOT EXISTS "coursehead" (
+CREATE TABLE IF NOT EXISTS academic."coursehead" (
   "coursehead_id"          SERIAL,
   "cname"       CHAR(50)       DEFAULT NULL,
   "activation"  VARCHAR(50)  DEFAULT 'Y',
@@ -2838,7 +2850,7 @@ CREATE TABLE IF NOT EXISTS "coursehead" (
 -- Dumping data for table "coursehead"
 --
 
-INSERT INTO "coursehead" ("coursehead_id", "cname", "activation") VALUES
+INSERT INTO academic."coursehead" ("coursehead_id", "cname", "activation") VALUES
 (1, 'Play School', 'Y'),
 (2, 'Early Year and Primary School', 'Y'),
 (3, 'Middle School', 'Y'),
@@ -2848,10 +2860,10 @@ INSERT INTO "coursehead" ("coursehead_id", "cname", "activation") VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table "course_m"
+-- Table structure for table "course"
 --
 
-CREATE TABLE IF NOT EXISTS "course_m" (
+CREATE TABLE IF NOT EXISTS academic."course" (
   "course_id"    SERIAL,
   "coursename"   VARCHAR(100)  NOT NULL DEFAULT '',
   "course_abbr"  VARCHAR(20)   DEFAULT NULL,
@@ -2864,10 +2876,10 @@ CREATE TABLE IF NOT EXISTS "course_m" (
 );
 
 --
--- Dumping data for table "course_m"
+-- Dumping data for table "course"
 --
 
-INSERT INTO "course_m" ("course_id", "coursename", "course_abbr", "intake", "status", "head_id", "uni_id", "cids") VALUES
+INSERT INTO academic."course" ("course_id", "coursename", "course_abbr", "intake", "status", "head_id", "uni_id", "cids") VALUES
 (1, 'Play School', 'EL', NULL, 1, 1, 'NULL', 'NULL'),
 (2, 'Early Year and Primary School', 'SE', NULL, 1, 2, 'NULL', 'NULL'),
 (3, 'Middle School', 'PYP', NULL, 1, 3, 'NULL', 'NULL'),
@@ -2879,7 +2891,7 @@ INSERT INTO "course_m" ("course_id", "coursename", "course_abbr", "intake", "sta
 -- Table structure for table "course_year"
 --
 
-CREATE TABLE IF NOT EXISTS "course_year" (
+CREATE TABLE IF NOT EXISTS academic."course_year" (
   "year_id"     SERIAL,
   "year_name"   VARCHAR(50)  NOT NULL DEFAULT '',
   "short_name"  VARCHAR(5)   NOT NULL,
@@ -2893,7 +2905,7 @@ CREATE TABLE IF NOT EXISTS "course_year" (
 -- Dumping data for table "course_year"
 --
 
-INSERT INTO "course_year" ("year_id", "year_name", "short_name", "status", "head_id", "student_id") VALUES
+INSERT INTO academic."course_year" ("year_id", "year_name", "short_name", "status", "head_id", "student_id") VALUES
 (1, 'PLAYSCHOOL', 'PS', 1, 1, 0),
 (2, 'NURSERY', 'NUR', 1, 2, 0),
 (3, 'JR KG', 'JR KG', 1, 2, 0),
@@ -2917,7 +2929,7 @@ INSERT INTO "course_year" ("year_id", "year_name", "short_name", "status", "head
 -- Table structure for table "criteria"
 --
 
-CREATE TABLE IF NOT EXISTS "criteria" (
+CREATE TABLE IF NOT EXISTS academic."criteria" (
   "criteria_id"        BIGSERIAL,
   "head"      INT     NOT NULL,
   "criteria"  TEXT    NOT NULL,
@@ -2930,7 +2942,7 @@ CREATE TABLE IF NOT EXISTS "criteria" (
 -- Table structure for table "criteria_m"
 --
 
-CREATE TABLE IF NOT EXISTS "criteria_m" (
+CREATE TABLE IF NOT EXISTS academic."criteria_m" (
   "criteria_m_id"           BIGSERIAL,
   "exam_id"      INT         NOT NULL,
   "class"        INT         NOT NULL,
@@ -2945,10 +2957,10 @@ CREATE TABLE IF NOT EXISTS "criteria_m" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "day"
+-- Table structure for table "weekday"
 --
 
-CREATE TABLE IF NOT EXISTS "day" (
+CREATE TABLE IF NOT EXISTS settings."weekday" (
   "day_id"      SERIAL,
   "Name"    VARCHAR(20)        NOT NULL,
   "status"  SMALLINT         DEFAULT 1,
@@ -2956,10 +2968,10 @@ CREATE TABLE IF NOT EXISTS "day" (
 );
 
 --
--- Dumping data for table "day"
+-- Dumping data for table "weekday"
 --
 
-INSERT INTO "day" ("ID", "Name", "status") VALUES
+INSERT INTO settings."weekday" ("ID", "Name", "status") VALUES
 (1, 'Monday', 1),
 (2, 'Tuesday', 1),
 (3, 'Wednesday', 1),
@@ -2974,7 +2986,7 @@ INSERT INTO "day" ("ID", "Name", "status") VALUES
 -- Table structure for table "dept_no"
 --
 
-CREATE TABLE IF NOT EXISTS "dept_no" (
+CREATE TABLE IF NOT EXISTS hr."dept_no" (
   "Dept"       VARCHAR(50)  NOT NULL DEFAULT '',
   "dpt_id"     SERIAL,
   "status"     SMALLINT   DEFAULT 1,
@@ -2986,7 +2998,7 @@ CREATE TABLE IF NOT EXISTS "dept_no" (
 -- Dumping data for table "dept_no"
 --
 
-INSERT INTO "dept_no" ("Dept", "dpt_id", "status", "dept_code") VALUES
+INSERT INTO hr."dept_no" ("Dept", "dpt_id", "status", "dept_code") VALUES
 ('NURSERY', 1, 1, 'NRY'),
 ('ADMINISTRATIVE', 2, 1, 'ADM'),
 ('PRIMARY & HIGHSCHOOL', 3, 1, 'PRY'),
@@ -3019,7 +3031,7 @@ INSERT INTO "dept_no" ("Dept", "dpt_id", "status", "dept_code") VALUES
 -- Table structure for table "detain_student"
 --
 
-CREATE TABLE IF NOT EXISTS "detain_student" (
+CREATE TABLE IF NOT EXISTS student."detain_student" (
   "detain_student_id"                 INT                NOT NULL DEFAULT 0,
   "admission_id"       VARCHAR(20)        DEFAULT NULL,
   "admission_date"     DATE               DEFAULT NULL,
@@ -3106,7 +3118,7 @@ CREATE TABLE IF NOT EXISTS "detain_student" (
 -- Table structure for table "dob"
 --
 
-CREATE TABLE IF NOT EXISTS "dob" (
+CREATE TABLE IF NOT EXISTS student."dob" (
   "student_id"    VARCHAR(255)  DEFAULT NULL,
   "img_source_s"  VARCHAR(11)   NOT NULL,
   PRIMARY KEY ("student_id")
@@ -3116,7 +3128,7 @@ CREATE TABLE IF NOT EXISTS "dob" (
 -- Dumping data for table "dob"
 --
 
-INSERT INTO "dob" ("student_id", "img_source_s") VALUES
+INSERT INTO student."dob" ("student_id", "img_source_s") VALUES
 ('A203', 'aaliya.jain'),
 ('A12397', 'aarush.gupt'),
 ('A1182', 'aashu.kedia'),
@@ -3134,7 +3146,7 @@ INSERT INTO "dob" ("student_id", "img_source_s") VALUES
 -- Table structure for table "doc_addnew"
 --
 
-CREATE TABLE IF NOT EXISTS "doc_addnew" (
+CREATE TABLE IF NOT EXISTS fee."doc_addnew" (
   "doc_addnew_id"            SERIAL,
   "new_doc_name"  VARCHAR(200)  NOT NULL,
   "position"      INT           NOT NULL,
@@ -3148,7 +3160,7 @@ CREATE TABLE IF NOT EXISTS "doc_addnew" (
 -- Table structure for table "doc_amt"
 --
 
-CREATE TABLE IF NOT EXISTS "doc_amt" (
+CREATE TABLE IF NOT EXISTS fee."doc_amt" (
   "doc_amt_id"             SERIAL,
   "doc_id"         VARCHAR(100)      NOT NULL DEFAULT '',
   "fee_id"         INT               NOT NULL DEFAULT 0,
@@ -3166,7 +3178,7 @@ CREATE TABLE IF NOT EXISTS "doc_amt" (
 -- Table structure for table "doc_detail"
 --
 
-CREATE TABLE IF NOT EXISTS "doc_detail" (
+CREATE TABLE IF NOT EXISTS medical."doc_detail" (
   "doc_detail_id"             SERIAL,
   "course_id"      INT           DEFAULT NULL,
   "age"            INT           DEFAULT NULL,
@@ -3208,7 +3220,7 @@ CREATE TABLE IF NOT EXISTS "doc_detail" (
 -- Dumping data for table "doc_detail"
 --
 
-INSERT INTO "doc_detail" ("doc_detail_id", "course_id", "age", "sex", "adm_type", "acc_year", "doc_name", "d_date", "complaints", "treatment", "remarks", "stud_id", "time", "time_1", "type", "place", "name", "uploadedfile", "healthspring", "parents", "called", "emailed", "met_the_child", "none", "p_called", "p_emailed", "pick_child", "p_none", "student_id", "user", "date_entered", "date_modified", "sent_by", "outcome") VALUES
+INSERT INTO medical."doc_detail" ("doc_detail_id", "course_id", "age", "sex", "adm_type", "acc_year", "doc_name", "d_date", "complaints", "treatment", "remarks", "stud_id", "time", "time_1", "type", "place", "name", "uploadedfile", "healthspring", "parents", "called", "emailed", "met_the_child", "none", "p_called", "p_emailed", "pick_child", "p_none", "student_id", "user", "date_entered", "date_modified", "sent_by", "outcome") VALUES
 (1, NULL, NULL, NULL, NULL, '2026', NULL, '2026-08-22', 'cough', 'warm water given by Lissy', '', 'A676', '00-00-AM', '00-00-AM', 'back to class,Grade Skg', NULL, 'none', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '416', NULL, NULL, NULL, NULL, NULL),
 (2, NULL, NULL, NULL, NULL, '2026', NULL, '2026-02-17', 'Lt Eye with redness noted,& Itchy & watery', 'Rose water Instilled & Observed', '', 'A1164', '08-15-AM', '11-20-AM', 'Informed to mother according to her that is usual after bath and it will disappear after 30 min.@09am Informed to Mother to take her home. Sent Home', NULL, 'Mother', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '666', NULL, NULL, NULL, NULL, NULL),
 (3, NULL, NULL, NULL, NULL, '2026', NULL, '2026-08-06', 'Had fall,C/o Pain On Forehead Cafeteria -Wet Floor No Bump Or Any Unusual Changes Noted', 'Cold pack Applied & Observed by nurse agnel', '', 'A12205', '1-05-PM', '1-15-PM', 'sent back to class', NULL, 'None', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '580', NULL, NULL, NULL, NULL, NULL),
@@ -3226,7 +3238,7 @@ INSERT INTO "doc_detail" ("doc_detail_id", "course_id", "age", "sex", "adm_type"
 -- Table structure for table "doc_detail_backup"
 --
 
-CREATE TABLE IF NOT EXISTS "doc_detail_backup" (
+CREATE TABLE IF NOT EXISTS medical."doc_detail_backup" (
   "doc_detail_backup_id"             INT           NOT NULL DEFAULT 0,
   "course_id"      INT           DEFAULT NULL,
   "age"            INT           DEFAULT NULL,
@@ -3263,7 +3275,7 @@ CREATE TABLE IF NOT EXISTS "doc_detail_backup" (
 -- Dumping data for table "doc_detail_backup"
 --
 
-INSERT INTO "doc_detail_backup" ("doc_detail_backup_id", "course_id", "age", "sex", "adm_type", "acc_year", "doc_name", "d_date", "complaints", "treatment", "remarks", "stud_id", "time", "time_1", "type", "place", "name", "uploadedfile", "healthspring", "parents", "called", "emailed", "met_the_child", "none", "p_called", "p_emailed", "pick_child", "p_none", "student_id") VALUES
+INSERT INTO medical."doc_detail_backup" ("doc_detail_backup_id", "course_id", "age", "sex", "adm_type", "acc_year", "doc_name", "d_date", "complaints", "treatment", "remarks", "stud_id", "time", "time_1", "type", "place", "name", "uploadedfile", "healthspring", "parents", "called", "emailed", "met_the_child", "none", "p_called", "p_emailed", "pick_child", "p_none", "student_id") VALUES
 (1, NULL, NULL, NULL, NULL, NULL, NULL, '2026-08-22', 'cough', 'warm water given by Lissy', 'back to class,Grade Skg', 'A676', '00-00-AM', '00-00-AM', NULL, NULL, 'none', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (2, NULL, NULL, NULL, NULL, NULL, NULL, '2026-02-17', 'Lt Eye with redness noted,& Itchy & watery', 'Rose water Instilled & Observed', 'Informed to mother according to her that is usual after bath and it will disappear after 30 min.@09am Informed to Mother to take her home. Sent Home', 'A1164', '08-15-AM', '11-20-AM', NULL, NULL, 'Mother', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (3, NULL, NULL, NULL, NULL, NULL, NULL, '2026-08-06', 'Had fall,C/o Pain On Forehead Cafeteria -Wet Floor No Bump Or Any Unusual Changes Noted', 'Cold pack Applied & Observed by nurse agnel', 'sent back to class', 'A12205', '1-05-PM', '1-15-PM', NULL, NULL, 'None', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -3281,7 +3293,7 @@ INSERT INTO "doc_detail_backup" ("doc_detail_backup_id", "course_id", "age", "se
 -- Table structure for table "doc_instr"
 --
 
-CREATE TABLE IF NOT EXISTS "doc_instr" (
+CREATE TABLE IF NOT EXISTS fee."doc_instr" (
   "doc_instr_id"           SERIAL,
   "doc_id"       VARCHAR(50)  NOT NULL DEFAULT '',
   "instr_id"     INT          NOT NULL DEFAULT 0,
@@ -3300,7 +3312,7 @@ CREATE TABLE IF NOT EXISTS "doc_instr" (
 -- Table structure for table "doc_instr1"
 --
 
-CREATE TABLE IF NOT EXISTS "doc_instr1" (
+CREATE TABLE IF NOT EXISTS fee."doc_instr1" (
   "doc_instr1_id"           INT       NOT NULL DEFAULT 0,
   "doc_id"       CHAR(50)  NOT NULL DEFAULT '',
   "instr_id"     INT       NOT NULL DEFAULT 0,
@@ -3319,7 +3331,7 @@ CREATE TABLE IF NOT EXISTS "doc_instr1" (
 -- Table structure for table "doc_lno"
 --
 
-CREATE TABLE IF NOT EXISTS "doc_lno" (
+CREATE TABLE IF NOT EXISTS fee."doc_lno" (
   "doc_lno_id"           SERIAL,
   "reciept_no"   INT  NOT NULL DEFAULT 0,
   "payorder_no"  INT  NOT NULL DEFAULT 0,
@@ -3334,7 +3346,7 @@ CREATE TABLE IF NOT EXISTS "doc_lno" (
 -- Table structure for table "doc_m"
 --
 
-CREATE TABLE IF NOT EXISTS "doc_m" (
+CREATE TABLE IF NOT EXISTS fee."doc_m" (
   "doc_m_id"          SERIAL,
   "doc_id"      VARCHAR(50)       NOT NULL DEFAULT '',
   "doc_date"    DATE              DEFAULT NULL,
@@ -3362,7 +3374,7 @@ CREATE TABLE IF NOT EXISTS "doc_m" (
 -- Table structure for table "doc_m1"
 --
 
-CREATE TABLE IF NOT EXISTS "doc_m1" (
+CREATE TABLE IF NOT EXISTS fee."doc_m1" (
   "doc_m1_id"          INT               NOT NULL DEFAULT 0,
   "doc_id"      CHAR(50)          NOT NULL DEFAULT '',
   "doc_date"    DATE              DEFAULT NULL,
@@ -3390,7 +3402,7 @@ CREATE TABLE IF NOT EXISTS "doc_m1" (
 -- Table structure for table "doc_other"
 --
 
-CREATE TABLE IF NOT EXISTS "doc_other" (
+CREATE TABLE IF NOT EXISTS medical."doc_other" (
   "doc_other_id"           SERIAL,
   "doc_name"     VARCHAR(30)  DEFAULT NULL,
   "d_date"       DATE         DEFAULT NULL,
@@ -3410,7 +3422,7 @@ CREATE TABLE IF NOT EXISTS "doc_other" (
 -- Table structure for table "doc_staff"
 --
 
-CREATE TABLE IF NOT EXISTS "doc_staff" (
+CREATE TABLE IF NOT EXISTS medical."doc_staff" (
   "doc_staff_id"          SERIAL,
   "sex"         VARCHAR(10)  DEFAULT NULL,
   "acc_year"    VARCHAR(10)  DEFAULT NULL,
@@ -3432,7 +3444,7 @@ CREATE TABLE IF NOT EXISTS "doc_staff" (
 -- Table structure for table "doc_visit"
 --
 
-CREATE TABLE IF NOT EXISTS "doc_visit" (
+CREATE TABLE IF NOT EXISTS medical."doc_visit" (
   "doc_visit_id"             SERIAL,
   "course_id"      INT           DEFAULT NULL,
   "age"            INT           DEFAULT NULL,
@@ -3476,7 +3488,7 @@ CREATE TABLE IF NOT EXISTS "doc_visit" (
 -- Table structure for table "dp_exam_sub_m"
 --
 
-CREATE TABLE IF NOT EXISTS "dp_exam_sub_m" (
+CREATE TABLE IF NOT EXISTS academic."dp_exam_sub_m" (
   "dp_exam_sub_m_id"             SERIAL,
   "exam_id"        INT          DEFAULT NULL,
   "exam_name"      VARCHAR(75)  NOT NULL,
@@ -3500,7 +3512,7 @@ CREATE TABLE IF NOT EXISTS "dp_exam_sub_m" (
 -- Dumping data for table "dp_exam_sub_m"
 --
 
-INSERT INTO "dp_exam_sub_m" ("dp_exam_sub_m_id", "exam_id", "exam_name", "from", "to", "examtype", "exam_sub_name", "subject_id", "acc_year", "section", "weight", "mark", "class", "status", "order_id", "per_info") VALUES
+INSERT INTO academic."dp_exam_sub_m" ("dp_exam_sub_m_id", "exam_id", "exam_name", "from", "to", "examtype", "exam_sub_name", "subject_id", "acc_year", "section", "weight", "mark", "class", "status", "order_id", "per_info") VALUES
 (1, 1, 'End of  Unit Inquiry Report', '2026-09-26', '2026-09-30', 0, 'UOI', 0, 2026, 0, 0, 0, 1, 1, 2, 0),
 (2, 2, 'End of Unit of Inquiry Report ', '2026-09-23', '2026-10-31', 0, 'UOI', 0, 2026, 0, 0, 0, 3, 1, 2, 0),
 (3, 0, 'First Unit of Inquiry ', '2026-09-23', '2026-10-31', 0, 'UOI - Ist', 0, 2026, 0, 0, 0, 2, 1, 1, 0),
@@ -3516,10 +3528,10 @@ INSERT INTO "dp_exam_sub_m" ("dp_exam_sub_m_id", "exam_id", "exam_name", "from",
 -- --------------------------------------------------------
 
 --
--- Table structure for table "driver_master"
+-- Table structure for table "driver"
 --
 
-CREATE TABLE IF NOT EXISTS "driver_master" (
+CREATE TABLE IF NOT EXISTS transport."driver" (
   "driver_master_id"                SERIAL,
   "driver_name"       VARCHAR(50)   DEFAULT NULL,
   "personal_details"  VARCHAR(50)   DEFAULT NULL,
@@ -3537,7 +3549,7 @@ CREATE TABLE IF NOT EXISTS "driver_master" (
 -- Table structure for table "d_att_0"
 --
 
-CREATE TABLE IF NOT EXISTS "d_att_0" (
+CREATE TABLE IF NOT EXISTS academic."d_att_0" (
   "d_att_0_id"          BIGINT              NOT NULL DEFAULT 0,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -3554,7 +3566,7 @@ CREATE TABLE IF NOT EXISTS "d_att_0" (
 -- Dumping data for table "d_att_0"
 --
 
-INSERT INTO "d_att_0" ("d_att_0_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."d_att_0" ("d_att_0_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (501, 412, 'nehap', '2026-10-21', 14, 1072, 1, 1, ''),
 (502, 412, 'nehap', '2026-10-21', 308, 1072, 1, 1, ''),
 (503, 412, 'nehap', '2026-10-21', 671, 1072, 1, 1, '');
@@ -3565,7 +3577,7 @@ INSERT INTO "d_att_0" ("d_att_0_id", "subject_id", "username", "att_date", "stu_
 -- Table structure for table "d_att_1"
 --
 
-CREATE TABLE IF NOT EXISTS "d_att_1" (
+CREATE TABLE IF NOT EXISTS academic."d_att_1" (
   "d_att_1_id"          BIGINT              NOT NULL DEFAULT 0,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -3582,7 +3594,7 @@ CREATE TABLE IF NOT EXISTS "d_att_1" (
 -- Dumping data for table "d_att_1"
 --
 
-INSERT INTO "d_att_1" ("d_att_1_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."d_att_1" ("d_att_1_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (1, 237, 'nasreens', '2026-08-21', 522, 64, 1, 1, ' 08:44:57'),
 (2, 237, 'nasreens', '2026-08-21', 523, 64, 1, 1, ' 08:45:00,  08:45:01'),
 (3, 237, 'nasreens', '2026-08-21', 892, 64, 1, 1, ' 08:46:18'),
@@ -3600,7 +3612,7 @@ INSERT INTO "d_att_1" ("d_att_1_id", "subject_id", "username", "att_date", "stu_
 -- Table structure for table "d_att_2"
 --
 
-CREATE TABLE IF NOT EXISTS "d_att_2" (
+CREATE TABLE IF NOT EXISTS academic."d_att_2" (
   "d_att_2_id"          BIGINT              NOT NULL DEFAULT 0,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -3617,7 +3629,7 @@ CREATE TABLE IF NOT EXISTS "d_att_2" (
 -- Dumping data for table "d_att_2"
 --
 
-INSERT INTO "d_att_2" ("d_att_2_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."d_att_2" ("d_att_2_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (1, 232, 'asavarid', '2026-09-04', 898, 98, 1, 1, ''),
 (2, 232, 'asavarid', '2026-09-04', 390, 98, 1, 1, ''),
 (3, 232, 'asavarid', '2026-09-04', 1270, 98, 1, 1, ''),
@@ -3635,7 +3647,7 @@ INSERT INTO "d_att_2" ("d_att_2_id", "subject_id", "username", "att_date", "stu_
 -- Table structure for table "d_att_3"
 --
 
-CREATE TABLE IF NOT EXISTS "d_att_3" (
+CREATE TABLE IF NOT EXISTS academic."d_att_3" (
   "d_att_3_id"          BIGINT              NOT NULL DEFAULT 0,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -3652,7 +3664,7 @@ CREATE TABLE IF NOT EXISTS "d_att_3" (
 -- Dumping data for table "d_att_3"
 --
 
-INSERT INTO "d_att_3" ("d_att_3_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."d_att_3" ("d_att_3_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (1, 313, 'nalinis', '2026-12-03', 1077, 1236, 1, 1, ''),
 (2, 313, 'nalinis', '2026-12-03', 1202, 1236, 1, 1, ''),
 (3, 313, 'nalinis', '2026-12-03', 1053, 1236, 1, 1, ''),
@@ -3670,7 +3682,7 @@ INSERT INTO "d_att_3" ("d_att_3_id", "subject_id", "username", "att_date", "stu_
 -- Table structure for table "d_att_4"
 --
 
-CREATE TABLE IF NOT EXISTS "d_att_4" (
+CREATE TABLE IF NOT EXISTS academic."d_att_4" (
   "d_att_4_id"          BIGINT              NOT NULL DEFAULT 0,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -3687,7 +3699,7 @@ CREATE TABLE IF NOT EXISTS "d_att_4" (
 -- Dumping data for table "d_att_4"
 --
 
-INSERT INTO "d_att_4" ("d_att_4_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."d_att_4" ("d_att_4_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (1102, 244, 'RFID', '2026-08-14', 463, 113, 1, 0, ' 08:08:21'),
 (1103, 244, 'RFID', '2026-08-14', 1218, 113, 1, 0, ' 08:09:37');
 
@@ -3697,7 +3709,7 @@ INSERT INTO "d_att_4" ("d_att_4_id", "subject_id", "username", "att_date", "stu_
 -- Table structure for table "d_att_5"
 --
 
-CREATE TABLE IF NOT EXISTS "d_att_5" (
+CREATE TABLE IF NOT EXISTS academic."d_att_5" (
   "d_att_5_id"          BIGINT              NOT NULL DEFAULT 0,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -3714,7 +3726,7 @@ CREATE TABLE IF NOT EXISTS "d_att_5" (
 -- Dumping data for table "d_att_5"
 --
 
-INSERT INTO "d_att_5" ("d_att_5_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."d_att_5" ("d_att_5_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (3906, 256, 'iffatk', '2026-09-27', 924, 118, 1, 1, ''),
 (3907, 256, 'iffatk', '2026-09-27', 280, 118, 1, 1, ''),
 (3908, 256, 'iffatk', '2026-09-27', 660, 118, 1, 1, ''),
@@ -3732,7 +3744,7 @@ INSERT INTO "d_att_5" ("d_att_5_id", "subject_id", "username", "att_date", "stu_
 -- Table structure for table "d_att_7"
 --
 
-CREATE TABLE IF NOT EXISTS "d_att_7" (
+CREATE TABLE IF NOT EXISTS academic."d_att_7" (
   "d_att_7_id"          BIGINT              NOT NULL DEFAULT 0,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -3749,7 +3761,7 @@ CREATE TABLE IF NOT EXISTS "d_att_7" (
 -- Dumping data for table "d_att_7"
 --
 
-INSERT INTO "d_att_7" ("d_att_7_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."d_att_7" ("d_att_7_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (11157, 30, 'RFID', '2026-01-24', 721, 127, 1, 0, ' 07:43:24,  07:43:24,  07:43:24'),
 (11160, 30, 'RFID', '2026-01-24', 880, 127, 1, 0, ' 07:44:46,  07:44:46,  07:44:46'),
 (11162, 30, 'RFID', '2026-01-24', 459, 127, 1, 0, ' 07:45:04,  07:45:04');
@@ -3760,7 +3772,7 @@ INSERT INTO "d_att_7" ("d_att_7_id", "subject_id", "username", "att_date", "stu_
 -- Table structure for table "d_att_8"
 --
 
-CREATE TABLE IF NOT EXISTS "d_att_8" (
+CREATE TABLE IF NOT EXISTS academic."d_att_8" (
   "d_att_8_id"          BIGINT              NOT NULL DEFAULT 0,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -3777,7 +3789,7 @@ CREATE TABLE IF NOT EXISTS "d_att_8" (
 -- Dumping data for table "d_att_8"
 --
 
-INSERT INTO "d_att_8" ("d_att_8_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."d_att_8" ("d_att_8_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (4903, 41, 'ramonaf', '2026-10-21', 252, 132, 1, 1, ''),
 (4904, 41, 'ramonaf', '2026-10-21', 258, 132, 1, 1, ''),
 (4905, 41, 'ramonaf', '2026-10-21', 1262, 132, 0, 0, ''),
@@ -3795,7 +3807,7 @@ INSERT INTO "d_att_8" ("d_att_8_id", "subject_id", "username", "att_date", "stu_
 -- Table structure for table "d_att_9"
 --
 
-CREATE TABLE IF NOT EXISTS "d_att_9" (
+CREATE TABLE IF NOT EXISTS academic."d_att_9" (
   "d_att_9_id"          BIGINT              NOT NULL DEFAULT 0,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -3812,7 +3824,7 @@ CREATE TABLE IF NOT EXISTS "d_att_9" (
 -- Dumping data for table "d_att_9"
 --
 
-INSERT INTO "d_att_9" ("d_att_9_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."d_att_9" ("d_att_9_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (3634, 58, 'medhaj', '2026-10-05', 945, 139, 1, 1, ' 13:05:37'),
 (7167, 58, 'medhaj', '2026-10-05', 483, 139, 1, 1, ''),
 (7168, 58, 'medhaj', '2026-10-05', 589, 139, 1, 1, ''),
@@ -3829,7 +3841,7 @@ INSERT INTO "d_att_9" ("d_att_9_id", "subject_id", "username", "att_date", "stu_
 -- Table structure for table "d_att_10"
 --
 
-CREATE TABLE IF NOT EXISTS "d_att_10" (
+CREATE TABLE IF NOT EXISTS academic."d_att_10" (
   "d_att_10_id"          BIGINT              NOT NULL DEFAULT 0,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -3846,7 +3858,7 @@ CREATE TABLE IF NOT EXISTS "d_att_10" (
 -- Dumping data for table "d_att_10"
 --
 
-INSERT INTO "d_att_10" ("d_att_10_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."d_att_10" ("d_att_10_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (3453, 72, 'moitreyeem', '2026-08-21', 267, 336, 1, 1, ''),
 (3454, 72, 'moitreyeem', '2026-08-21', 971, 336, 1, 1, ''),
 (3455, 72, 'moitreyeem', '2026-08-21', 2, 336, 1, 1, ''),
@@ -3864,7 +3876,7 @@ INSERT INTO "d_att_10" ("d_att_10_id", "subject_id", "username", "att_date", "st
 -- Table structure for table "d_att_11"
 --
 
-CREATE TABLE IF NOT EXISTS "d_att_11" (
+CREATE TABLE IF NOT EXISTS academic."d_att_11" (
   "d_att_11_id"          BIGINT              NOT NULL DEFAULT 0,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -3881,7 +3893,7 @@ CREATE TABLE IF NOT EXISTS "d_att_11" (
 -- Dumping data for table "d_att_11"
 --
 
-INSERT INTO "d_att_11" ("d_att_11_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."d_att_11" ("d_att_11_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (2167, 93, 'dianar', '2026-08-13', 1237, 222, 1, 1, ''),
 (2168, 93, 'dianar', '2026-08-13', 54, 222, 1, 1, ''),
 (2169, 93, 'dianar', '2026-08-13', 942, 222, 1, 1, ''),
@@ -3900,7 +3912,7 @@ INSERT INTO "d_att_11" ("d_att_11_id", "subject_id", "username", "att_date", "st
 -- Table structure for table "d_att_12"
 --
 
-CREATE TABLE IF NOT EXISTS "d_att_12" (
+CREATE TABLE IF NOT EXISTS academic."d_att_12" (
   "d_att_12_id"          BIGINT              NOT NULL DEFAULT 0,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -3917,7 +3929,7 @@ CREATE TABLE IF NOT EXISTS "d_att_12" (
 -- Dumping data for table "d_att_12"
 --
 
-INSERT INTO "d_att_12" ("d_att_12_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."d_att_12" ("d_att_12_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (1031, 281, 'shilpak', '2026-08-06', 1051, 218, 1, 1, ''),
 (1032, 281, 'shilpak', '2026-08-06', 597, 218, 1, 1, ''),
 (1033, 281, 'shilpak', '2026-08-06', 364, 218, 1, 1, ''),
@@ -3935,7 +3947,7 @@ INSERT INTO "d_att_12" ("d_att_12_id", "subject_id", "username", "att_date", "st
 -- Table structure for table "d_att_13"
 --
 
-CREATE TABLE IF NOT EXISTS "d_att_13" (
+CREATE TABLE IF NOT EXISTS academic."d_att_13" (
   "d_att_13_id"          BIGINT              NOT NULL DEFAULT 0,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -3952,7 +3964,7 @@ CREATE TABLE IF NOT EXISTS "d_att_13" (
 -- Dumping data for table "d_att_13"
 --
 
-INSERT INTO "d_att_13" ("d_att_13_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."d_att_13" ("d_att_13_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (1358, 275, 'vivekg', '2026-08-08', 474, 179, 1, 1, ''),
 (1359, 275, 'vivekg', '2026-08-08', 68, 179, 1, 1, ''),
 (1360, 275, 'vivekg', '2026-08-08', 1278, 179, 1, 1, ''),
@@ -3973,7 +3985,7 @@ INSERT INTO "d_att_13" ("d_att_13_id", "subject_id", "username", "att_date", "st
 -- Table structure for table "d_att_14"
 --
 
-CREATE TABLE IF NOT EXISTS "d_att_14" (
+CREATE TABLE IF NOT EXISTS academic."d_att_14" (
   "d_att_14_id"          BIGINT              NOT NULL DEFAULT 0,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -3990,7 +4002,7 @@ CREATE TABLE IF NOT EXISTS "d_att_14" (
 -- Dumping data for table "d_att_14"
 --
 
-INSERT INTO "d_att_14" ("d_att_14_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."d_att_14" ("d_att_14_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (1645, 158, 'shilpak', '2026-08-14', 331, 378, 1, 1, ''),
 (1646, 158, 'shilpak', '2026-08-14', 488, 378, 1, 1, ''),
 (1647, 158, 'shilpak', '2026-08-14', 812, 378, 1, 1, ''),
@@ -4008,7 +4020,7 @@ INSERT INTO "d_att_14" ("d_att_14_id", "subject_id", "username", "att_date", "st
 -- Table structure for table "d_att_15"
 --
 
-CREATE TABLE IF NOT EXISTS "d_att_15" (
+CREATE TABLE IF NOT EXISTS academic."d_att_15" (
   "d_att_15_id"          BIGINT              NOT NULL DEFAULT 0,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -4025,7 +4037,7 @@ CREATE TABLE IF NOT EXISTS "d_att_15" (
 -- Dumping data for table "d_att_15"
 --
 
-INSERT INTO "d_att_15" ("d_att_15_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."d_att_15" ("d_att_15_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (378, 193, 'jagrutij', '2026-08-08', 112, 161, 1, 1, ''),
 (379, 193, 'jagrutij', '2026-08-08', 1309, 161, 1, 1, ''),
 (380, 193, 'jagrutij', '2026-08-08', 69, 161, 1, 1, ''),
@@ -4046,7 +4058,7 @@ INSERT INTO "d_att_15" ("d_att_15_id", "subject_id", "username", "att_date", "st
 -- Table structure for table "d_att_16"
 --
 
-CREATE TABLE IF NOT EXISTS "d_att_16" (
+CREATE TABLE IF NOT EXISTS academic."d_att_16" (
   "d_att_16_id"          BIGINT              NOT NULL DEFAULT 0,
   "subject_id"  INTEGER  NOT NULL,
   "username"    VARCHAR(100)        NOT NULL,
@@ -4063,7 +4075,7 @@ CREATE TABLE IF NOT EXISTS "d_att_16" (
 -- Dumping data for table "d_att_16"
 --
 
-INSERT INTO "d_att_16" ("d_att_16_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
+INSERT INTO academic."d_att_16" ("d_att_16_id", "subject_id", "username", "att_date", "stu_id", "sec", "mor", "after", "att_desc") VALUES
 (8095, 265, 'scottw', '2026-12-04', 1114, 368, 1, 1, ''),
 (8096, 265, 'scottw', '2026-12-04', 10, 368, 1, 1, ''),
 (8097, 265, 'scottw', '2026-12-04', 1259, 368, 1, 1, ''),
@@ -4083,7 +4095,7 @@ INSERT INTO "d_att_16" ("d_att_16_id", "subject_id", "username", "att_date", "st
 -- Table structure for table "eca_fee_apply"
 --
 
-CREATE TABLE IF NOT EXISTS "eca_fee_apply" (
+CREATE TABLE IF NOT EXISTS fee."eca_fee_apply" (
   "eca_fee_apply_id"          SERIAL,
   "status"      SMALLINT    NOT NULL,
   "subject_id"  INT           NOT NULL,
@@ -4098,7 +4110,7 @@ CREATE TABLE IF NOT EXISTS "eca_fee_apply" (
 -- Dumping data for table "eca_fee_apply"
 --
 
-INSERT INTO "eca_fee_apply" ("eca_fee_apply_id", "status", "subject_id", "taxid", "apply_date", "applyAmt1", "applyAmt2") VALUES
+INSERT INTO fee."eca_fee_apply" ("eca_fee_apply_id", "status", "subject_id", "taxid", "apply_date", "applyAmt1", "applyAmt2") VALUES
 (428, 0, 393, 0, '2026-02-26', 0.00, 4500.00),
 (429, 0, 395, 0, '2026-02-26', 0.00, 1700.00),
 (430, 0, 396, 0, '2026-02-26', 0.00, 1700.00),
@@ -4119,7 +4131,7 @@ INSERT INTO "eca_fee_apply" ("eca_fee_apply_id", "status", "subject_id", "taxid"
 -- Table structure for table "eca_fee_invoice"
 --
 
-CREATE TABLE IF NOT EXISTS "eca_fee_invoice" (
+CREATE TABLE IF NOT EXISTS fee."eca_fee_invoice" (
   "eca_fee_invoice_id"            SERIAL,
   "invoce_id"     VARCHAR(11)   NOT NULL,
   "invoice_date"  DATE          NOT NULL,
@@ -4134,7 +4146,7 @@ CREATE TABLE IF NOT EXISTS "eca_fee_invoice" (
 -- Dumping data for table "eca_fee_invoice"
 --
 
-INSERT INTO "eca_fee_invoice" ("eca_fee_invoice_id", "invoce_id", "invoice_date", "student_id", "acc_year", "user", "status") VALUES
+INSERT INTO fee."eca_fee_invoice" ("eca_fee_invoice_id", "invoce_id", "invoice_date", "student_id", "acc_year", "user", "status") VALUES
 (3, '20261', '2026-11-26', 1132, 2026, 'administrator', 1),
 (4, '20264', '2026-11-26', 57, 2026, 'administrator', 1),
 (5, '20265', '2026-11-26', 1137, 2026, 'administrator', 1),
@@ -4150,7 +4162,7 @@ INSERT INTO "eca_fee_invoice" ("eca_fee_invoice_id", "invoce_id", "invoice_date"
 -- Table structure for table "eca_fee_invoice_det"
 --
 
-CREATE TABLE IF NOT EXISTS "eca_fee_invoice_det" (
+CREATE TABLE IF NOT EXISTS fee."eca_fee_invoice_det" (
   "eca_fee_invoice_det_id"          SERIAL,
   "invoice_id"  INT           NOT NULL,
   "fee_head"    INT           NOT NULL,
@@ -4165,7 +4177,7 @@ CREATE TABLE IF NOT EXISTS "eca_fee_invoice_det" (
 -- Dumping data for table "eca_fee_invoice_det"
 --
 
-INSERT INTO "eca_fee_invoice_det" ("eca_fee_invoice_det_id", "invoice_id", "fee_head", "amount", "tax_amount", "tot_amount", "status") VALUES
+INSERT INTO fee."eca_fee_invoice_det" ("eca_fee_invoice_det_id", "invoice_id", "fee_head", "amount", "tax_amount", "tot_amount", "status") VALUES
 (10, 3, 1, 10000.00, 800.00, 10800.00, 1),
 (11, 3, 1, 10000.00, 800.00, 10800.00, 1),
 (12, 3, 1, 10000.00, 800.00, 10800.00, 1),
@@ -4185,7 +4197,7 @@ INSERT INTO "eca_fee_invoice_det" ("eca_fee_invoice_det_id", "invoice_id", "fee_
 -- Table structure for table "eca_type"
 --
 
-CREATE TABLE IF NOT EXISTS "eca_type" (
+CREATE TABLE IF NOT EXISTS fee."eca_type" (
   "fee_id"     SERIAL,
   "fee_name"   VARCHAR(100)  NOT NULL DEFAULT '',
   "catid"      NUMERIC(18,2)  DEFAULT '0.00',
@@ -4201,7 +4213,7 @@ CREATE TABLE IF NOT EXISTS "eca_type" (
 -- Dumping data for table "eca_type"
 --
 
-INSERT INTO "eca_type" ("fee_id", "fee_name", "catid", "catidtype", "price", "refund", "status", "ftype") VALUES
+INSERT INTO fee."eca_type" ("fee_id", "fee_name", "catid", "catidtype", "price", "refund", "status", "ftype") VALUES
 (1, 'Ace Speech and Drama Course', 0.00, '', 4500.00, 0, 1, 1),
 (2, 'American Football', 0.00, '', 1700.00, 0, 1, 1),
 (3, 'App Development & Game Design - Net Value', 0.00, '', 1512.99, 0, 1, 1),
@@ -4219,7 +4231,7 @@ INSERT INTO "eca_type" ("fee_id", "fee_name", "catid", "catidtype", "price", "re
 -- Table structure for table "empallowances"
 --
 
-CREATE TABLE IF NOT EXISTS "empallowances" (
+CREATE TABLE IF NOT EXISTS hr."empallowances" (
   "empallowances_id"            SERIAL,
   "empid"         INT    DEFAULT NULL,
   "allowance_id"  INT    DEFAULT NULL,
@@ -4233,7 +4245,7 @@ CREATE TABLE IF NOT EXISTS "empallowances" (
 -- Dumping data for table "empallowances"
 --
 
-INSERT INTO "empallowances" ("empallowances_id", "empid", "allowance_id", "percent", "amt", "col_id") VALUES
+INSERT INTO hr."empallowances" ("empallowances_id", "empid", "allowance_id", "percent", "amt", "col_id") VALUES
 (1, 17, 0, 0, 1000, NULL),
 (2, 18, 0, 0, 1000, NULL),
 (3, 19, 0, 0, 1000, NULL),
@@ -4251,7 +4263,7 @@ INSERT INTO "empallowances" ("empallowances_id", "empid", "allowance_id", "perce
 -- Table structure for table "emp_attendance"
 --
 
-CREATE TABLE IF NOT EXISTS "emp_attendance" (
+CREATE TABLE IF NOT EXISTS hr."emp_attendance" (
   "iId_att"            BIGSERIAL,
   "iIdx_organization"  BIGINT        NOT NULL,
   "att_date"           DATE          NOT NULL,
@@ -4270,7 +4282,7 @@ CREATE TABLE IF NOT EXISTS "emp_attendance" (
 -- Table structure for table "employee_department"
 --
 
-CREATE TABLE IF NOT EXISTS "employee_department" (
+CREATE TABLE IF NOT EXISTS hr."employee_department" (
   "iId_department"    BIGSERIAL,
   "iIdx_institution"  BIGINT        NOT NULL,
   "vdepartmentname"   VARCHAR(250)  NOT NULL,
@@ -4283,7 +4295,7 @@ CREATE TABLE IF NOT EXISTS "employee_department" (
 -- Table structure for table "emp_details"
 --
 
-CREATE TABLE IF NOT EXISTS "emp_details" (
+CREATE TABLE IF NOT EXISTS hr."emp_details" (
   "iId_emp"           BIGSERIAL,
   "vemp_id"           VARCHAR(250)  NOT NULL,
   "demp_jdate"        DATE          NOT NULL,
@@ -4312,7 +4324,7 @@ CREATE TABLE IF NOT EXISTS "emp_details" (
 -- Table structure for table "emp_details1"
 --
 
-CREATE TABLE IF NOT EXISTS "emp_details1" (
+CREATE TABLE IF NOT EXISTS hr."emp_details1" (
   "iId_emp"             BIGSERIAL,
   "iIdx_institution"    BIGINT        NOT NULL,
   "iIdx_department"     BIGINT        NOT NULL,
@@ -4346,7 +4358,7 @@ CREATE TABLE IF NOT EXISTS "emp_details1" (
 -- Table structure for table "emp_job"
 --
 
-CREATE TABLE IF NOT EXISTS "emp_job" (
+CREATE TABLE IF NOT EXISTS hr."emp_job" (
   "iId_job"           BIGSERIAL,
   "iIdx_institution"  BIGINT        NOT NULL,
   "vjob"              VARCHAR(250)  NOT NULL,
@@ -4359,7 +4371,7 @@ CREATE TABLE IF NOT EXISTS "emp_job" (
 -- Table structure for table "emp_loan"
 --
 
-CREATE TABLE IF NOT EXISTS "emp_loan" (
+CREATE TABLE IF NOT EXISTS hr."emp_loan" (
   "iIdx_loan"          BIGSERIAL,
   "iIdx_organization"  BIGINT        NOT NULL,
   "iIdx_department"    BIGINT        NOT NULL,
@@ -4377,7 +4389,7 @@ CREATE TABLE IF NOT EXISTS "emp_loan" (
 -- Table structure for table "employee_salary"
 --
 
-CREATE TABLE IF NOT EXISTS "employee_salary" (
+CREATE TABLE IF NOT EXISTS hr."employee_salary" (
   "iId_salary"         BIGSERIAL,
   "iIdx_organization"  BIGINT        NOT NULL,
   "iIdx_department"    BIGINT        NOT NULL,
@@ -4409,7 +4421,7 @@ CREATE TABLE IF NOT EXISTS "employee_salary" (
 -- Table structure for table "enter_date"
 --
 
-CREATE TABLE IF NOT EXISTS "enter_date" (
+CREATE TABLE IF NOT EXISTS academic."enter_date" (
   "enter_date_id"    SERIAL,
   "Date"  DATE  DEFAULT NULL,
   PRIMARY KEY ("enter_date_id")
@@ -4421,7 +4433,7 @@ CREATE TABLE IF NOT EXISTS "enter_date" (
 -- Table structure for table "exam_detention"
 --
 
-CREATE TABLE IF NOT EXISTS "exam_detention" (
+CREATE TABLE IF NOT EXISTS academic."exam_detention" (
   "exam_detention_id"        SERIAL,
   "acc_year"  INT         NOT NULL,
   "sem"       INT         NOT NULL,
@@ -4440,7 +4452,7 @@ CREATE TABLE IF NOT EXISTS "exam_detention" (
 -- Table structure for table "exam_grade_point"
 --
 
-CREATE TABLE IF NOT EXISTS "exam_grade_point" (
+CREATE TABLE IF NOT EXISTS academic."exam_grade_point" (
   "exam_grade_point_id"          SERIAL,
   "sem"         INT          NOT NULL,
   "acc_year"    INT          NOT NULL,
@@ -4460,7 +4472,7 @@ CREATE TABLE IF NOT EXISTS "exam_grade_point" (
 -- Table structure for table "exam_links"
 --
 
-CREATE TABLE IF NOT EXISTS "exam_links" (
+CREATE TABLE IF NOT EXISTS academic."exam_links" (
   "exam_links_id"        SERIAL,
   "sem"       INT           NOT NULL,
   "linkname"  VARCHAR(200)  NOT NULL,
@@ -4470,10 +4482,10 @@ CREATE TABLE IF NOT EXISTS "exam_links" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "exam_m"
+-- Table structure for table "exam"
 --
 
-CREATE TABLE IF NOT EXISTS "exam_m" (
+CREATE TABLE IF NOT EXISTS academic."exam" (
   "exam_m_id"          SERIAL,
   "curriculam"  INT          NOT NULL,
   "class"       INT          NOT NULL,
@@ -4497,7 +4509,7 @@ CREATE TABLE IF NOT EXISTS "exam_m" (
 -- Table structure for table "exam_remarks"
 --
 
-CREATE TABLE IF NOT EXISTS "exam_remarks" (
+CREATE TABLE IF NOT EXISTS academic."exam_remarks" (
   "exam_remarks_id"          SERIAL,
   "acc_year"    INT         NOT NULL,
   "sem"         INT         NOT NULL,
@@ -4517,10 +4529,10 @@ CREATE TABLE IF NOT EXISTS "exam_remarks" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "exam_sub_m"
+-- Table structure for table "exam_subject"
 --
 
-CREATE TABLE IF NOT EXISTS "exam_sub_m" (
+CREATE TABLE IF NOT EXISTS academic."exam_subject" (
   "exam_sub_m_id"             SERIAL,
   "exam_id"        INT          DEFAULT NULL,
   "exam_name"      VARCHAR(75)  NOT NULL,
@@ -4537,10 +4549,10 @@ CREATE TABLE IF NOT EXISTS "exam_sub_m" (
 );
 
 --
--- Dumping data for table "exam_sub_m"
+-- Dumping data for table "exam_subject"
 --
 
-INSERT INTO "exam_sub_m" ("exam_sub_m_id", "exam_id", "exam_name", "exam_sub_name", "subject_id", "section", "per_info", "mark", "acc_year", "class", "status", "order_id") VALUES
+INSERT INTO academic."exam_subject" ("exam_sub_m_id", "exam_id", "exam_name", "exam_sub_name", "subject_id", "section", "per_info", "mark", "acc_year", "class", "status", "order_id") VALUES
 (1, 2, 'Test', 'TI', 59, 1, 0, 100, 2026, 9, 1, 1),
 (2, 2, 'Assignment', 'AS', 59, 1, 0, 100, 2026, 9, 1, 2);
 
@@ -4550,7 +4562,7 @@ INSERT INTO "exam_sub_m" ("exam_sub_m_id", "exam_id", "exam_name", "exam_sub_nam
 -- Table structure for table "exam_sub_sub_m"
 --
 
-CREATE TABLE IF NOT EXISTS "exam_sub_sub_m" (
+CREATE TABLE IF NOT EXISTS academic."exam_sub_sub_m" (
   "exam_sub_sub_m_id"             SERIAL,
   "exam_id"        INT          DEFAULT NULL,
   "exam_name"      VARCHAR(75)  NOT NULL,
@@ -4566,17 +4578,17 @@ CREATE TABLE IF NOT EXISTS "exam_sub_sub_m" (
 -- Dumping data for table "exam_sub_sub_m"
 --
 
-INSERT INTO "exam_sub_sub_m" ("exam_sub_sub_m_id", "exam_id", "exam_name", "exam_sub_name", "per_info", "mark", "status", "order_id") VALUES
+INSERT INTO academic."exam_sub_sub_m" ("exam_sub_sub_m_id", "exam_id", "exam_name", "exam_sub_name", "per_info", "mark", "status", "order_id") VALUES
 (1, 1, 'July Test 1', 'J', 0, 50, 1, 1),
 (2, 2, 'July Assessment 1', 'JS', 0, 30, 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table "exam_timetable_m"
+-- Table structure for table "exam_timetable"
 --
 
-CREATE TABLE IF NOT EXISTS "exam_timetable_m" (
+CREATE TABLE IF NOT EXISTS academic."exam_timetable" (
   "exam_timetable_m_id"          SERIAL,
   "exam_id"     INT          NOT NULL,
   "subject_id"  INT          NOT NULL,
@@ -4591,7 +4603,7 @@ CREATE TABLE IF NOT EXISTS "exam_timetable_m" (
 -- Table structure for table "exam_topers"
 --
 
-CREATE TABLE IF NOT EXISTS "exam_topers" (
+CREATE TABLE IF NOT EXISTS academic."exam_topers" (
   "exam_topers_id"          SERIAL,
   "exam_id"     INT          NOT NULL,
   "stud_id"     INT          NOT NULL,
@@ -4612,7 +4624,7 @@ CREATE TABLE IF NOT EXISTS "exam_topers" (
 -- Table structure for table "exam_year_m"
 --
 
-CREATE TABLE IF NOT EXISTS "exam_year_m" (
+CREATE TABLE IF NOT EXISTS academic."exam_year_m" (
   "exam_year_m_id"             SERIAL,
   "exam_name"      VARCHAR(75)  NOT NULL,
   "exam_sub_name"  VARCHAR(50)  NOT NULL,
@@ -4629,7 +4641,7 @@ CREATE TABLE IF NOT EXISTS "exam_year_m" (
 -- Dumping data for table "exam_year_m"
 --
 
-INSERT INTO "exam_year_m" ("exam_year_m_id", "exam_name", "exam_sub_name", "per_info", "mark", "acc_year", "class", "status", "order_id") VALUES
+INSERT INTO academic."exam_year_m" ("exam_year_m_id", "exam_name", "exam_sub_name", "per_info", "mark", "acc_year", "class", "status", "order_id") VALUES
 (1, '2026-13', '2026-13', 100, 100, 2026, 5, 1, 1),
 (2, 'Semester 1', 'Sem 1', 100, 100, 2026, 9, 1, 1);
 
@@ -4639,7 +4651,7 @@ INSERT INTO "exam_year_m" ("exam_year_m_id", "exam_name", "exam_sub_name", "per_
 -- Table structure for table "fee_apply_fee_student"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_apply_fee_student" (
+CREATE TABLE IF NOT EXISTS fee."fee_apply_fee_student" (
   "fee_apply_fee_student_id"              SERIAL,
   "student_id"      INT         NOT NULL,
   "acc_year"        INT         NOT NULL,
@@ -4655,7 +4667,7 @@ CREATE TABLE IF NOT EXISTS "fee_apply_fee_student" (
 -- Dumping data for table "fee_apply_fee_student"
 --
 
-INSERT INTO "fee_apply_fee_student" ("fee_apply_fee_student_id", "student_id", "acc_year", "status", "division", "comment", "generalComment", "hidePDC") VALUES
+INSERT INTO fee."fee_apply_fee_student" ("fee_apply_fee_student_id", "student_id", "acc_year", "status", "division", "comment", "generalComment", "hidePDC") VALUES
 (1, 1, 2026, 1, 11, '', 1, 1),
 (2, 2, 2026, 1, 10, '', 1, 1),
 (3, 3, 2026, 1, 5, '', 1, 1),
@@ -4673,7 +4685,7 @@ INSERT INTO "fee_apply_fee_student" ("fee_apply_fee_student_id", "student_id", "
 -- Table structure for table "fee_cat"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_cat" (
+CREATE TABLE IF NOT EXISTS fee."fee_cat" (
   "catid"     SERIAL,
   "cat_name"  VARCHAR(100)  DEFAULT NULL,
   "status"    SMALLINT    DEFAULT 1,
@@ -4686,7 +4698,7 @@ CREATE TABLE IF NOT EXISTS "fee_cat" (
 -- Table structure for table "fee_challan_mail_log"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_challan_mail_log" (
+CREATE TABLE IF NOT EXISTS fee."fee_challan_mail_log" (
   "fee_challan_mail_log_id"                 SERIAL,
   "stud_id"            INT           DEFAULT NULL,
   "sem"                INT           DEFAULT NULL,
@@ -4707,7 +4719,7 @@ CREATE TABLE IF NOT EXISTS "fee_challan_mail_log" (
 -- Dumping data for table "fee_challan_mail_log"
 --
 
-INSERT INTO "fee_challan_mail_log" ("fee_challan_mail_log_id", "stud_id", "sem", "a_year", "uid", "term", "slab_id", "uid_new", "mail_sent", "inserted_datetime", "user", "view_count", "sent_details") VALUES
+INSERT INTO fee."fee_challan_mail_log" ("fee_challan_mail_log_id", "stud_id", "sem", "a_year", "uid", "term", "slab_id", "uid_new", "mail_sent", "inserted_datetime", "user", "view_count", "sent_details") VALUES
 (411, 1132, 2, '2026', '6c3ccaa50629ecff340b6677b02eb8a8', '1', 6, '17d63b1625c816c22647a73e1482372b', 1, '2026-03-20 15:53:41', 'eyinfo', NULL, 'quebecxn@email.com'),
 (412, 57, 2, '2026', '6c3ccaa50629ecff340b6677b02eb8a8', '1', 6, 'b9228e0962a78b84f3d5d92f4faa000b', 1, '2026-03-20 15:53:41', 'eyinfo', 2, 'mohitconnections@email.com'),
 (413, 1137, 2, '2026', '6c3ccaa50629ecff340b6677b02eb8a8', '1', 6, '0deb1c54814305ca9ad266f53bc82511', 1, '2026-03-20 15:53:41', 'eyinfo', 4, 'bhupinder70@email.com'),
@@ -4725,7 +4737,7 @@ INSERT INTO "fee_challan_mail_log" ("fee_challan_mail_log_id", "stud_id", "sem",
 -- Table structure for table "fee_discount_det"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_discount_det" (
+CREATE TABLE IF NOT EXISTS fee."fee_discount_det" (
   "fee_discount_det_id"             SERIAL,
   "admissionType"  INT         NOT NULL,
   "currencyType"   INT         NOT NULL,
@@ -4741,7 +4753,7 @@ CREATE TABLE IF NOT EXISTS "fee_discount_det" (
 -- Dumping data for table "fee_discount_det"
 --
 
-INSERT INTO "fee_discount_det" ("fee_discount_det_id", "admissionType", "currencyType", "disscountType", "feeHead", "discountAmt", "curType", "status") VALUES
+INSERT INTO fee."fee_discount_det" ("fee_discount_det_id", "admissionType", "currencyType", "disscountType", "feeHead", "discountAmt", "curType", "status") VALUES
 (5, 1, 1, 4, 2, 75, 1, 1),
 (6, 1, 1, 4, 4, 75, 1, 1),
 (9, 1, 1, 4, 5, 75, 1, 1);
@@ -4752,7 +4764,7 @@ INSERT INTO "fee_discount_det" ("fee_discount_det_id", "admissionType", "currenc
 -- Table structure for table "fee_discount_head"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_discount_head" (
+CREATE TABLE IF NOT EXISTS fee."fee_discount_head" (
   "fee_discount_head_id"      SERIAL,
   "name"    VARCHAR(50)  NOT NULL,
   "desc"    TEXT         NOT NULL,
@@ -4764,7 +4776,7 @@ CREATE TABLE IF NOT EXISTS "fee_discount_head" (
 -- Dumping data for table "fee_discount_head"
 --
 
-INSERT INTO "fee_discount_head" ("fee_discount_head_id", "name", "desc", "status") VALUES
+INSERT INTO fee."fee_discount_head" ("fee_discount_head_id", "name", "desc", "status") VALUES
 (4, 'Scholarship 75%', 'Scholarship 75%', 1);
 
 -- --------------------------------------------------------
@@ -4773,7 +4785,7 @@ INSERT INTO "fee_discount_head" ("fee_discount_head_id", "name", "desc", "status
 -- Table structure for table "fee_discount_slab"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_discount_slab" (
+CREATE TABLE IF NOT EXISTS fee."fee_discount_slab" (
   "fee_discount_slab_id"      SERIAL,
   "name"    VARCHAR(50)  NOT NULL,
   "desc"    TEXT         NOT NULL,
@@ -4785,7 +4797,7 @@ CREATE TABLE IF NOT EXISTS "fee_discount_slab" (
 -- Dumping data for table "fee_discount_slab"
 --
 
-INSERT INTO "fee_discount_slab" ("fee_discount_slab_id", "name", "desc", "status") VALUES
+INSERT INTO fee."fee_discount_slab" ("fee_discount_slab_id", "name", "desc", "status") VALUES
 (6, 'CS', 'Continuing student', 1),
 (7, 'FS', 'Founder Student', 1),
 (8, 'STAP', 'STAP', 1),
@@ -4802,7 +4814,7 @@ INSERT INTO "fee_discount_slab" ("fee_discount_slab_id", "name", "desc", "status
 -- Table structure for table "fee_discount_student"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_discount_student" (
+CREATE TABLE IF NOT EXISTS fee."fee_discount_student" (
   "fee_discount_student_id"           SERIAL,
   "student_id"   INT         NOT NULL,
   "discount_id"  INT         NOT NULL,
@@ -4815,7 +4827,7 @@ CREATE TABLE IF NOT EXISTS "fee_discount_student" (
 -- Dumping data for table "fee_discount_student"
 --
 
-INSERT INTO "fee_discount_student" ("fee_discount_student_id", "student_id", "discount_id", "acc_year", "status") VALUES
+INSERT INTO fee."fee_discount_student" ("fee_discount_student_id", "student_id", "discount_id", "acc_year", "status") VALUES
 (8, 473, 4, 2026, 1),
 (9, 1308, 4, 2026, 1),
 (10, 156, 0, 2026, 1);
@@ -4826,7 +4838,7 @@ INSERT INTO "fee_discount_student" ("fee_discount_student_id", "student_id", "di
 -- Table structure for table "fee_dmd"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_dmd" (
+CREATE TABLE IF NOT EXISTS fee."fee_dmd" (
   "fee_dmd_id"      SERIAL,
   "studid"  INT         DEFAULT NULL,
   "pid"     INT         DEFAULT NULL,
@@ -4872,7 +4884,7 @@ CREATE TABLE IF NOT EXISTS "fee_dmd" (
 -- Table structure for table "fee_financial_year"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_financial_year" (
+CREATE TABLE IF NOT EXISTS fee."fee_financial_year" (
   "fee_financial_year_id"         SERIAL,
   "statrtM"    INT         NOT NULL,
   "greater"    VARCHAR(4)  NOT NULL,
@@ -4891,7 +4903,7 @@ CREATE TABLE IF NOT EXISTS "fee_financial_year" (
 -- Table structure for table "fee_head"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_head" (
+CREATE TABLE IF NOT EXISTS fee."fee_head" (
   "fee_head_id"              SERIAL,
   "course_id"       INT         DEFAULT NULL,
   "year_id"         INT         NOT NULL DEFAULT 0,
@@ -4914,7 +4926,7 @@ CREATE TABLE IF NOT EXISTS "fee_head" (
 -- Table structure for table "fee_h_det"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_h_det" (
+CREATE TABLE IF NOT EXISTS fee."fee_h_det" (
   "fee_h_det_id"             SERIAL,
   "stud_id"        INTEGER  NOT NULL,
   "fee_id"         INT                    DEFAULT NULL,
@@ -4935,7 +4947,7 @@ CREATE TABLE IF NOT EXISTS "fee_h_det" (
 -- Table structure for table "fee_import"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_import" (
+CREATE TABLE IF NOT EXISTS fee."fee_import" (
   "fee_import_id"              SERIAL,
   "accYear"         TEXT  NOT NULL,
   "receipt"         TEXT  NOT NULL,
@@ -4965,7 +4977,7 @@ CREATE TABLE IF NOT EXISTS "fee_import" (
 -- Table structure for table "fee_imprest"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_imprest" (
+CREATE TABLE IF NOT EXISTS fee."fee_imprest" (
   "enrollment_no"       VARCHAR(255)  DEFAULT NULL,
   "student_ name"       VARCHAR(255)  DEFAULT NULL,
   "tuition_fee_1"       NUMERIC(12,2)  DEFAULT NULL,
@@ -4980,7 +4992,7 @@ CREATE TABLE IF NOT EXISTS "fee_imprest" (
 -- Dumping data for table "fee_imprest"
 --
 
-INSERT INTO "fee_imprest" ("enrollment_no", "student_ name", "tuition_fee_1", "tuition_fee_2", "Imprest", "graduation_fees", "Excess_tuition_fee") VALUES
+INSERT INTO fee."fee_imprest" ("enrollment_no", "student_ name", "tuition_fee_1", "tuition_fee_2", "Imprest", "graduation_fees", "Excess_tuition_fee") VALUES
 ('enrollment_no', 'student_ name', 'tuition_fee_1', 'tuition_fee_2', 'Imprest', 'graduation_fees', 'Excess_tuition_fee'),
 ('A12176', 'Samaira Khan', NULL, NULL, '375', NULL, NULL),
 ('A12174', 'Aarohan Kundu', NULL, NULL, '375', NULL, NULL),
@@ -4999,7 +5011,7 @@ INSERT INTO "fee_imprest" ("enrollment_no", "student_ name", "tuition_fee_1", "t
 -- Table structure for table "fee_imprest_new"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_imprest_new" (
+CREATE TABLE IF NOT EXISTS fee."fee_imprest_new" (
   "enrollment_no"        VARCHAR(255)  DEFAULT NULL,
   "next_grade"           VARCHAR(255)  DEFAULT NULL,
   "student_name"         VARCHAR(255)  DEFAULT NULL,
@@ -5015,7 +5027,7 @@ CREATE TABLE IF NOT EXISTS "fee_imprest_new" (
 -- Dumping data for table "fee_imprest_new"
 --
 
-INSERT INTO "fee_imprest_new" ("enrollment_no", "next_grade", "student_name", "tution_fees1", "tution_fees2", "imprest", "graduation_fees", "less_execution_fees") VALUES
+INSERT INTO fee."fee_imprest_new" ("enrollment_no", "next_grade", "student_name", "tution_fees1", "tution_fees2", "imprest", "graduation_fees", "less_execution_fees") VALUES
 ('enrollment_no', 'next_grade', 'student_name', 'tution_fees1', 'tution_fees2', 0, 0, 0),
 ('A12176', 'Nursery', 'Samaira Khan', '', '', 375, 0, 0),
 ('A12174', 'Nursery', 'Aarohan Kundu', '', '', 375, 0, 0),
@@ -5036,7 +5048,7 @@ INSERT INTO "fee_imprest_new" ("enrollment_no", "next_grade", "student_name", "t
 -- Table structure for table "fee_invoice_settings"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_invoice_settings" (
+CREATE TABLE IF NOT EXISTS fee."fee_invoice_settings" (
   "fee_invoice_settings_id"           SERIAL,
   "invoicedate"  DATE        NOT NULL,
   "duedate"      DATE        NOT NULL,
@@ -5054,7 +5066,7 @@ CREATE TABLE IF NOT EXISTS "fee_invoice_settings" (
 -- Dumping data for table "fee_invoice_settings"
 --
 
-INSERT INTO "fee_invoice_settings" ("fee_invoice_settings_id", "invoicedate", "duedate", "sem", "ctype", "remark1", "remark2", "remark3", "accyear", "status") VALUES
+INSERT INTO fee."fee_invoice_settings" ("fee_invoice_settings_id", "invoicedate", "duedate", "sem", "ctype", "remark1", "remark2", "remark3", "accyear", "status") VALUES
 (2, NULL, NULL, 0, 1, '', '', '* This is a system generated receipt and hence does not require a signature. ', 2026, 1),
 (3, NULL, NULL, 0, 1, '', '', '*This is a system generated invoice and hence does not require a signature.\r\n\r\n*All the cheques must be handed over to the MAC by April 15th, 2026.', 2026, 1),
 (5, NULL, NULL, 2, 2, '', '', 'DISCLAIMER: This is a provisional promotion for the next academic year, which may be subject to change based on the PTM results. If there is any change in the result, the difference in the fees would be refunded by Oberoi International Early Years (Playschool to SKG).', 2026, 1),
@@ -5071,7 +5083,7 @@ INSERT INTO "fee_invoice_settings" ("fee_invoice_settings_id", "invoicedate", "d
 -- Table structure for table "fee_logo"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_logo" (
+CREATE TABLE IF NOT EXISTS fee."fee_logo" (
   "fee_logo_id"          SERIAL,
   "class_id"    INT           NOT NULL,
   "path"        VARCHAR(240)  NOT NULL,
@@ -5087,7 +5099,7 @@ CREATE TABLE IF NOT EXISTS "fee_logo" (
 -- Dumping data for table "fee_logo"
 --
 
-INSERT INTO "fee_logo" ("fee_logo_id", "class_id", "path", "name_det", "status", "eca", "reportcard", "s_name") VALUES
+INSERT INTO fee."fee_logo" ("fee_logo_id", "class_id", "path", "name_det", "status", "eca", "reportcard", "s_name") VALUES
 (1, 5, 'http://learninzone.com/lms/images/Grade1to10.png', ' INTERNATIONAL SCHOOL (Grade 1 to 10)', 1, ' FOUNDATION – ECA', 'https://learningzone.com/lms/images/Primaryheadsigniture.JPG', 'OIS'),
 (2, 6, 'https://learningzone.com/lms/images/Grade1to10.png', ' INTERNATIONAL SCHOOL (Grade 1 to 10)', 1, ' FOUNDATION – ECA', 'https://learningzone.com/lms/images/Primaryheadsigniture.JPG', 'OIS'),
 (3, 7, 'https://learningzone.com/lms/images/Grade1to10.png', ' INTERNATIONAL SCHOOL (Grade 1 to 10)', 1, ' FOUNDATION – ECA', 'https://learningzone.com/lms/images/Primaryheadsigniture.JPG', 'OIS'),
@@ -5105,7 +5117,7 @@ INSERT INTO "fee_logo" ("fee_logo_id", "class_id", "path", "name_det", "status",
 -- Table structure for table "fee_mail_log"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_mail_log" (
+CREATE TABLE IF NOT EXISTS fee."fee_mail_log" (
   "fee_mail_log_id"             SERIAL,
   "uid"            VARCHAR(100)  NOT NULL,
   "user"           VARCHAR(200)  NOT NULL,
@@ -5121,7 +5133,7 @@ CREATE TABLE IF NOT EXISTS "fee_mail_log" (
 -- Dumping data for table "fee_mail_log"
 --
 
-INSERT INTO "fee_mail_log" ("fee_mail_log_id", "uid", "user", "mail_date", "status", "mail_sentdate", "mail_senttime", "sentdet") VALUES
+INSERT INTO fee."fee_mail_log" ("fee_mail_log_id", "uid", "user", "mail_date", "status", "mail_sentdate", "mail_senttime", "sentdet") VALUES
 (88, '1becf26e9f32353e30870060538746e7', 'receipts', '2026-12-13', 1, NULL, '00:00:00', 'Mail sent to ruchiarora79@mail.com  <br>\n'),
 (87, '9f655cc8884fda7ad6d8a6fb15cc001e', 'receipts', '2026-12-13', 1, NULL, '00:00:00', 'Mail sent to sapanachandgothia@email.in  <br>\n'),
 (86, 'eebe038e47780c96e2762b5e2003cef7', 'receipts', '2026-12-13', 1, NULL, '00:00:00', 'Mail sent to tanejanidhi@email.com  <br>\n'),
@@ -5139,10 +5151,10 @@ INSERT INTO "fee_mail_log" ("fee_mail_log_id", "uid", "user", "mail_date", "stat
 -- --------------------------------------------------------
 
 --
--- Table structure for table "fee_master"
+-- Table structure for table "fee"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_master" (
+CREATE TABLE IF NOT EXISTS fee."fee" (
   "fee_master_id"         SERIAL,
   "dmdid"      INT         DEFAULT NULL,
   "studid"     INT         DEFAULT NULL,
@@ -5183,7 +5195,7 @@ CREATE TABLE IF NOT EXISTS "fee_master" (
 -- Table structure for table "fee_m_canceled"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_m_canceled" (
+CREATE TABLE IF NOT EXISTS fee."fee_m_canceled" (
   "fee_m_canceled_id"               SERIAL,
   "accYear"          INT           NOT NULL,
   "studentId"        INT           NOT NULL,
@@ -5212,7 +5224,7 @@ CREATE TABLE IF NOT EXISTS "fee_m_canceled" (
 -- Table structure for table "fee_m_cheque_det"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_m_cheque_det" (
+CREATE TABLE IF NOT EXISTS fee."fee_m_cheque_det" (
   "fee_m_cheque_det_id"            SERIAL,
   "receiptId"     INT           NOT NULL,
   "receiptDet"    VARCHAR(20)   NOT NULL,
@@ -5231,7 +5243,7 @@ CREATE TABLE IF NOT EXISTS "fee_m_cheque_det" (
 -- Dumping data for table "fee_m_cheque_det"
 --
 
-INSERT INTO "fee_m_cheque_det" ("fee_m_cheque_det_id", "receiptId", "receiptDet", "bankName", "amount", "ddChequeNo", "ddChequeDate", "clearedDate", "cleared", "remarks", "status") VALUES
+INSERT INTO fee."fee_m_cheque_det" ("fee_m_cheque_det_id", "receiptId", "receiptDet", "bankName", "amount", "ddChequeNo", "ddChequeDate", "clearedDate", "cleared", "remarks", "status") VALUES
 (1090, 626, 'EM/FR/2026/1', 51, 89500.00, '12345', '2026-04-16', NULL, 0.00, '', 1),
 (1091, 627, 'EM/FR/2026/2', 19, 89500.00, '12345', '2026-04-15', NULL, 0.00, '', 1),
 (1092, 629, 'EM/FR/2026/4', 0, 0.00, '', '2026-01-01', NULL, 0.00, '', 1);
@@ -5239,10 +5251,10 @@ INSERT INTO "fee_m_cheque_det" ("fee_m_cheque_det_id", "receiptId", "receiptDet"
 -- --------------------------------------------------------
 
 --
--- Table structure for table "fee_m_collect"
+-- Table structure for table "fee_collection"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_m_collect" (
+CREATE TABLE IF NOT EXISTS fee."fee_collection" (
   "fee_m_collect_id"               SERIAL,
   "accYear"          INT           NOT NULL,
   "studentId"        INT           NOT NULL,
@@ -5269,10 +5281,10 @@ CREATE TABLE IF NOT EXISTS "fee_m_collect" (
 );
 
 --
--- Dumping data for table "fee_m_collect"
+-- Dumping data for table "fee_collection"
 --
 
-INSERT INTO "fee_m_collect" ("fee_m_collect_id", "accYear", "studentId", "admissionCat", "currencyType", "installmentId", "amount", "totalAmount", "totalDisAmount", "discountType", "fine", "paymentDate", "mode_of_payment", "userDetails", "noOfddCheque", "amountCleared", "clearedDate", "remarks", "receipt", "status", "remarks_cancel", "date_cancel") VALUES
+INSERT INTO fee."fee_collection" ("fee_m_collect_id", "accYear", "studentId", "admissionCat", "currencyType", "installmentId", "amount", "totalAmount", "totalDisAmount", "discountType", "fine", "paymentDate", "mode_of_payment", "userDetails", "noOfddCheque", "amountCleared", "clearedDate", "remarks", "receipt", "status", "remarks_cancel", "date_cancel") VALUES
 (626, 2026, 650, 1, 1, 1, 89500.00, 89500.00, 0.00, 0, 0.00, '2026-04-17', 3, 'administrator 17-04-2026 17:34:42', '1', 0.00, NULL, 'Payment for 1st installment made', 'EM/FR/2026/1', 1, '', NULL),
 (627, 2026, 726, 1, 1, 1, 89500.00, 89500.00, 0.00, 0, 0.00, '2026-04-17', 3, 'administrator 17-04-2026 17:51:16', '1', 0.00, NULL, 'Testing description', 'EM/FR/2026/2', 1, '', NULL),
 (628, 2026, 841, 1, 1, 1, 89500.00, 89500.00, 0.00, 0, 0.00, '2026-05-30', 1, 'administrator 30-05-2026 10:21:44', '0', 89500.00, '2026-05-30', '', 'EM/FR/2026/3', 1, '', NULL),
@@ -5284,7 +5296,7 @@ INSERT INTO "fee_m_collect" ("fee_m_collect_id", "accYear", "studentId", "admiss
 -- Table structure for table "fee_m_collect_admission"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_m_collect_admission" (
+CREATE TABLE IF NOT EXISTS fee."fee_m_collect_admission" (
   "fee_m_collect_admission_id"               SERIAL,
   "studentId"        INT           NOT NULL,
   "currencyType"     INT           NOT NULL,
@@ -5309,7 +5321,7 @@ CREATE TABLE IF NOT EXISTS "fee_m_collect_admission" (
 -- Table structure for table "fee_m_conversion_rate"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_m_conversion_rate" (
+CREATE TABLE IF NOT EXISTS fee."fee_m_conversion_rate" (
   "fee_m_conversion_rate_id"               SERIAL,
   "c_date"           DATE        NOT NULL,
   "native_currency"  INT         NOT NULL,
@@ -5327,7 +5339,7 @@ CREATE TABLE IF NOT EXISTS "fee_m_conversion_rate" (
 -- Table structure for table "fee_m_currency_code"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_m_currency_code" (
+CREATE TABLE IF NOT EXISTS fee."fee_m_currency_code" (
   "fee_m_currency_code_id"           SERIAL,
   "name"         VARCHAR(10)   NOT NULL,
   "description"  VARCHAR(50)   NOT NULL,
@@ -5340,7 +5352,7 @@ CREATE TABLE IF NOT EXISTS "fee_m_currency_code" (
 -- Dumping data for table "fee_m_currency_code"
 --
 
-INSERT INTO "fee_m_currency_code" ("fee_m_currency_code_id", "name", "description", "code", "status") VALUES
+INSERT INTO fee."fee_m_currency_code" ("fee_m_currency_code_id", "name", "description", "code", "status") VALUES
 (1, 'INR', 'Rupee', '<b>&#x20B9;</b>', 1),
 (2, 'USD', 'Dollar', '<b>&#36;</b>', 1),
 (3, 'EUR', 'Euro', '<b>&#128;</b>', 1),
@@ -5352,7 +5364,7 @@ INSERT INTO "fee_m_currency_code" ("fee_m_currency_code_id", "name", "descriptio
 -- Table structure for table "fee_m_descrption"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_m_descrption" (
+CREATE TABLE IF NOT EXISTS fee."fee_m_descrption" (
   "fee_m_descrption_id"             SERIAL,
   "uid"            VARCHAR(35)  NOT NULL,
   "accyear"        INT          NOT NULL,
@@ -5370,7 +5382,7 @@ CREATE TABLE IF NOT EXISTS "fee_m_descrption" (
 -- Dumping data for table "fee_m_descrption"
 --
 
-INSERT INTO "fee_m_descrption" ("fee_m_descrption_id", "uid", "accyear", "academicYear", "class", "adm_cat", "no_of_instal", "currency", "no_of_student", "status") VALUES
+INSERT INTO fee."fee_m_descrption" ("fee_m_descrption_id", "uid", "accyear", "academicYear", "class", "adm_cat", "no_of_instal", "currency", "no_of_student", "status") VALUES
 (257, '26259f55dce251b7f48b2d6dde83cc49', 0, 0, 1, 1, 2, 1, 2, 1),
 (258, '30b69beef45b642cddad80fd5a7f1d21', 6, 0, 1, 1, 1, 1, 2, 1),
 (259, '6c3ccaa50629ecff340b6677b02eb8a8', 6, 0, 2, 1, 1, 1, 0, 1),
@@ -5389,7 +5401,7 @@ INSERT INTO "fee_m_descrption" ("fee_m_descrption_id", "uid", "accyear", "academ
 -- Table structure for table "fee_m_descrption_head_total"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_m_descrption_head_total" (
+CREATE TABLE IF NOT EXISTS fee."fee_m_descrption_head_total" (
   "fee_m_descrption_head_total_id"          SERIAL,
   "uid"         VARCHAR(35)   NOT NULL,
   "head_id"     INT           NOT NULL,
@@ -5403,7 +5415,7 @@ CREATE TABLE IF NOT EXISTS "fee_m_descrption_head_total" (
 -- Dumping data for table "fee_m_descrption_head_total"
 --
 
-INSERT INTO "fee_m_descrption_head_total" ("fee_m_descrption_head_total_id", "uid", "head_id", "amount", "sts", "discomment") VALUES
+INSERT INTO fee."fee_m_descrption_head_total" ("fee_m_descrption_head_total_id", "uid", "head_id", "amount", "sts", "discomment") VALUES
 (1021, '26259f55dce251b7f48b2d6dde83cc49', 5, 179000.00, 1, ''),
 (1022, '30b69beef45b642cddad80fd5a7f1d21', 5, 125000.00, 1, 'PDC dated November 30th, 2026'),
 (1023, '30b69beef45b642cddad80fd5a7f1d21', 6, 0.00, 1, ''),
@@ -5421,7 +5433,7 @@ INSERT INTO "fee_m_descrption_head_total" ("fee_m_descrption_head_total_id", "ui
 -- Table structure for table "fee_m_descrption_inst_total"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_m_descrption_inst_total" (
+CREATE TABLE IF NOT EXISTS fee."fee_m_descrption_inst_total" (
   "fee_m_descrption_inst_total_id"             SERIAL,
   "uid"            VARCHAR(35)  NOT NULL,
   "inst_id"        INT          NOT NULL,
@@ -5437,7 +5449,7 @@ CREATE TABLE IF NOT EXISTS "fee_m_descrption_inst_total" (
 -- Dumping data for table "fee_m_descrption_inst_total"
 --
 
-INSERT INTO "fee_m_descrption_inst_total" ("fee_m_descrption_inst_total_id", "uid", "inst_id", "amount", "f_due_date", "t_due_date", "no_of_student", "sts") VALUES
+INSERT INTO fee."fee_m_descrption_inst_total" ("fee_m_descrption_inst_total_id", "uid", "inst_id", "amount", "f_due_date", "t_due_date", "no_of_student", "sts") VALUES
 (256, '26259f55dce251b7f48b2d6dde83cc49', 1, 89500.00, '2026-04-01', '2026-05-31', 1, 1),
 (257, '26259f55dce251b7f48b2d6dde83cc49', 2, 89500.00, '2026-08-01', '2026-08-31', 1, 1),
 (258, '30b69beef45b642cddad80fd5a7f1d21', 1, 250000.00, NULL, NULL, 2, 1),
@@ -5460,7 +5472,7 @@ INSERT INTO "fee_m_descrption_inst_total" ("fee_m_descrption_inst_total_id", "ui
 -- Table structure for table "fee_m_descrption_invoice"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_m_descrption_invoice" (
+CREATE TABLE IF NOT EXISTS fee."fee_m_descrption_invoice" (
   "fee_m_descrption_invoice_id"            SERIAL,
   "uid"           VARCHAR(35)  NOT NULL,
   "academicYear"  INT          NOT NULL,
@@ -5479,7 +5491,7 @@ CREATE TABLE IF NOT EXISTS "fee_m_descrption_invoice" (
 -- Dumping data for table "fee_m_descrption_invoice"
 --
 
-INSERT INTO "fee_m_descrption_invoice" ("fee_m_descrption_invoice_id", "uid", "academicYear", "studentId", "invId", "class", "adm_cat", "no_of_instal", "invoiceid", "invoiceDate", "status") VALUES
+INSERT INTO fee."fee_m_descrption_invoice" ("fee_m_descrption_invoice_id", "uid", "academicYear", "studentId", "invId", "class", "adm_cat", "no_of_instal", "invoiceid", "invoiceDate", "status") VALUES
 (506, '30b69beef45b642cddad80fd5a7f1d21', 2026, 0, 100, 1, 1, 1, 'I/OEY/13-14/1', '2026-02-25', 0),
 (4150, 'b7832ddfc2017741b1a683a7c15d8a02', 2026, 68, 1548, 14, 1, 1, 'I/OIS/14-15/1548', '2026-03-20', 1),
 (4151, 'b7832ddfc2017741b1a683a7c15d8a02', 2026, 41, 1549, 14, 1, 1, 'I/OIS/14-15/1549', '2026-03-20', 1),
@@ -5497,7 +5509,7 @@ INSERT INTO "fee_m_descrption_invoice" ("fee_m_descrption_invoice_id", "uid", "a
 -- Table structure for table "fee_m_descrption_invoice_eca"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_m_descrption_invoice_eca" (
+CREATE TABLE IF NOT EXISTS fee."fee_m_descrption_invoice_eca" (
   "fee_m_descrption_invoice_eca_id"            INT          NOT NULL DEFAULT 0,
   "uid"           VARCHAR(35)  NOT NULL,
   "academicYear"  INT          NOT NULL,
@@ -5518,7 +5530,7 @@ CREATE TABLE IF NOT EXISTS "fee_m_descrption_invoice_eca" (
 -- Table structure for table "fee_m_descrption_invoice_head"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_m_descrption_invoice_head" (
+CREATE TABLE IF NOT EXISTS fee."fee_m_descrption_invoice_head" (
   "fee_m_descrption_invoice_head_id"            SERIAL,
   "invoice_id"    INT           NOT NULL,
   "requestedAmt"  NUMERIC(18,2)  NOT NULL,
@@ -5533,7 +5545,7 @@ CREATE TABLE IF NOT EXISTS "fee_m_descrption_invoice_head" (
 -- Dumping data for table "fee_m_descrption_invoice_head"
 --
 
-INSERT INTO "fee_m_descrption_invoice_head" ("fee_m_descrption_invoice_head_id", "invoice_id", "requestedAmt", "discountAmt", "recivedAmt", "status", "fee_head") VALUES
+INSERT INTO fee."fee_m_descrption_invoice_head" ("fee_m_descrption_invoice_head_id", "invoice_id", "requestedAmt", "discountAmt", "recivedAmt", "status", "fee_head") VALUES
 (5821, 2533, 220000.00, 0.00, 220000.00, 1, 4),
 (5822, 2533, 220000.00, 0.00, 220000.00, 1, 5),
 (5823, 2533, 1175.00, 0.00, 1175.00, 1, 8),
@@ -5551,7 +5563,7 @@ INSERT INTO "fee_m_descrption_invoice_head" ("fee_m_descrption_invoice_head_id",
 -- Table structure for table "fee_m_head_inst_collected"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_m_head_inst_collected" (
+CREATE TABLE IF NOT EXISTS fee."fee_m_head_inst_collected" (
   "fee_m_head_inst_collected_id"              SERIAL,
   "uid"             VARCHAR(50)   NOT NULL,
   "accYear"         INT           NOT NULL,
@@ -5575,7 +5587,7 @@ CREATE TABLE IF NOT EXISTS "fee_m_head_inst_collected" (
 -- Table structure for table "fee_m_head_total"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_m_head_total" (
+CREATE TABLE IF NOT EXISTS fee."fee_m_head_total" (
   "fee_m_head_total_id"              SERIAL,
   "uid"             VARCHAR(50)   NOT NULL,
   "accYear"         INT           NOT NULL,
@@ -5594,7 +5606,7 @@ CREATE TABLE IF NOT EXISTS "fee_m_head_total" (
 -- Dumping data for table "fee_m_head_total"
 --
 
-INSERT INTO "fee_m_head_total" ("fee_m_head_total_id", "uid", "accYear", "studentId", "feeHead", "oneTime", "totalCollected", "refund", "refundAmount", "cleared", "status") VALUES
+INSERT INTO fee."fee_m_head_total" ("fee_m_head_total_id", "uid", "accYear", "studentId", "feeHead", "oneTime", "totalCollected", "refund", "refundAmount", "cleared", "status") VALUES
 (158, '30b69beef45b642cddad80fd5a7f1d21', 2026, 650, 5, 2, 89500.00, 0, 0.00, 0, 1),
 (159, '30b69beef45b642cddad80fd5a7f1d21', 2026, 726, 5, 2, 89500.00, 0, 0.00, 0, 1),
 (160, '26259f55dce251b7f48b2d6dde83cc49', 2026, 841, 5, 2, 0.00, 0, 0.00, 0, 1);
@@ -5605,7 +5617,7 @@ INSERT INTO "fee_m_head_total" ("fee_m_head_total_id", "uid", "accYear", "studen
 -- Table structure for table "fee_payment"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_payment" (
+CREATE TABLE IF NOT EXISTS fee."fee_payment" (
   "fee_payment_id"           SERIAL,
   "fmid"         INT           DEFAULT NULL,
   "studid"       INT           DEFAULT NULL,
@@ -5653,7 +5665,7 @@ CREATE TABLE IF NOT EXISTS "fee_payment" (
 -- Table structure for table "fee_slab_student"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_slab_student" (
+CREATE TABLE IF NOT EXISTS fee."fee_slab_student" (
   "fee_slab_student_id"          SERIAL,
   "student_id"  INT         NOT NULL,
   "slab_id"     INT         NOT NULL,
@@ -5666,7 +5678,7 @@ CREATE TABLE IF NOT EXISTS "fee_slab_student" (
 -- Dumping data for table "fee_slab_student"
 --
 
-INSERT INTO "fee_slab_student" ("fee_slab_student_id", "student_id", "slab_id", "acc_year", "status") VALUES
+INSERT INTO fee."fee_slab_student" ("fee_slab_student_id", "student_id", "slab_id", "acc_year", "status") VALUES
 (1264, 639, 6, 2026, 1),
 (1265, 632, 6, 2026, 1),
 (1266, 648, 6, 2026, 1),
@@ -5685,7 +5697,7 @@ INSERT INTO "fee_slab_student" ("fee_slab_student_id", "student_id", "slab_id", 
 -- Table structure for table "fee_tax"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_tax" (
+CREATE TABLE IF NOT EXISTS fee."fee_tax" (
   "fee_tax_id"        SERIAL,
   "tax_name"  VARCHAR(100)  NOT NULL,
   "value"     NUMERIC(18,2)  NOT NULL,
@@ -5699,7 +5711,7 @@ CREATE TABLE IF NOT EXISTS "fee_tax" (
 -- Dumping data for table "fee_tax"
 --
 
-INSERT INTO "fee_tax" ("fee_tax_id", "tax_name", "value", "fdate", "tdate", "typeid") VALUES
+INSERT INTO fee."fee_tax" ("fee_tax_id", "tax_name", "value", "fdate", "tdate", "typeid") VALUES
 (1, 'Service Tax  Cess @ 12%', 12.00, '2026-04-01', '2026-03-31', 1),
 (2, 'Education Cess @ 2%', 2.00, '2026-04-01', '2026-03-31', 2),
 (3, 'Secondary and Higher Education Cess @ 1%', 1.00, '2026-04-01', '2026-03-31', 3);
@@ -5710,7 +5722,7 @@ INSERT INTO "fee_tax" ("fee_tax_id", "tax_name", "value", "fdate", "tdate", "typ
 -- Table structure for table "fee_type"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_type" (
+CREATE TABLE IF NOT EXISTS fee."fee_type" (
   "fee_id"     SERIAL,
   "fee_name"   VARCHAR(100)  NOT NULL DEFAULT '',
   "catid"      NUMERIC(18,2)  DEFAULT '0.00',
@@ -5725,7 +5737,7 @@ CREATE TABLE IF NOT EXISTS "fee_type" (
 -- Dumping data for table "fee_type"
 --
 
-INSERT INTO "fee_type" ("fee_id", "fee_name", "catid", "refund", "status", "ftype", "fee_order") VALUES
+INSERT INTO fee."fee_type" ("fee_id", "fee_name", "catid", "refund", "status", "ftype", "fee_order") VALUES
 (1, 'Admission Fees', 15.50, 0, 1, 1, 1),
 (2, 'Secutiy Deposit', 10.00, 1, 1, 1, 2),
 (3, 'Imprest', 0.00, 0, 1, 1, 4),
@@ -5742,7 +5754,7 @@ INSERT INTO "fee_type" ("fee_id", "fee_name", "catid", "refund", "status", "ftyp
 -- Table structure for table "fee_upload"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_upload" (
+CREATE TABLE IF NOT EXISTS fee."fee_upload" (
   "fee_upload_id"                SERIAL,
   "feeDate"           VARCHAR(20)   NOT NULL,
   "receitNo"          VARCHAR(100)  NOT NULL,
@@ -5792,7 +5804,7 @@ CREATE TABLE IF NOT EXISTS "fee_upload" (
 -- Dumping data for table "fee_upload"
 --
 
-INSERT INTO "fee_upload" ("fee_upload_id", "feeDate", "receitNo", "name", "enrollmentNo", "grade", "category", "bank", "chqno", "total", "penaltyCharges", "inword", "comment", "acc_year", "fee_head", "feedet1", "amt1", "feedet2", "amt2", "feedet3", "amt3", "feedet4", "amt4", "feedet5", "amt5", "feedet6", "amt6", "feedet7", "amt7", "feedet8", "amt8", "feedet9", "amt9", "feedet10", "amt10", "fee_rec_type", "fee_uploade_date", "fee_uploade_user", "fee_deleted_date", "fee_deleted_user", "publish", "uid") VALUES
+INSERT INTO fee."fee_upload" ("fee_upload_id", "feeDate", "receitNo", "name", "enrollmentNo", "grade", "category", "bank", "chqno", "total", "penaltyCharges", "inword", "comment", "acc_year", "fee_head", "feedet1", "amt1", "feedet2", "amt2", "feedet3", "amt3", "feedet4", "amt4", "feedet5", "amt5", "feedet6", "amt6", "feedet7", "amt7", "feedet8", "amt8", "feedet9", "amt9", "feedet10", "amt10", "fee_rec_type", "fee_uploade_date", "fee_uploade_user", "fee_deleted_date", "fee_deleted_user", "publish", "uid") VALUES
 (9905, '30/11/2026', 'TFII/OIS/1742', 'Sarthak Darekar', 'A106', 'VI', 'Cheque', 'State Bank of India', 'Cheque No. 014557', 299750.00, '', 'Rupees Two Lakhs Ninety Nine Thousand Seven Hundred Fifty  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 299750.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-11', 'administrator', NULL, '', 1, '36ae77db7915835abc105f631f0391f8'),
 (9906, '30/11/2026', 'TFII/OIS/1743', 'Selina Ranchal', 'A407', 'VII', 'Cheque', 'State Bank of India', 'Cheque No. 004782', 299750.00, '', 'Rupees Two Lakhs Ninety Nine Thousand Seven Hundred Fifty  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 299750.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-11', 'administrator', NULL, '', 1, 'c5383525e91474a4e5d7dcfee92c054f'),
 (9907, '30/11/2026', 'TFII/OIS/1744', 'Varun Sivakumar', 'A459', 'VIII', 'Cheque', 'State Bank of India', 'Cheque No. 676392', 299750.00, '', 'Rupees Two Lakhs Ninety Nine Thousand Seven Hundred Fifty  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 299750.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-11', 'administrator', NULL, '', 1, '4d289c150fc83d36f5158512246e3bfe'),
@@ -5808,7 +5820,7 @@ INSERT INTO "fee_upload" ("fee_upload_id", "feeDate", "receitNo", "name", "enrol
 -- Table structure for table "fee_upload_deleted"
 --
 
-CREATE TABLE IF NOT EXISTS "fee_upload_deleted" (
+CREATE TABLE IF NOT EXISTS fee."fee_upload_deleted" (
   "fee_upload_deleted_id"                SERIAL,
   "feeDate"           VARCHAR(20)   NOT NULL,
   "receitNo"          VARCHAR(100)  NOT NULL,
@@ -5858,7 +5870,7 @@ CREATE TABLE IF NOT EXISTS "fee_upload_deleted" (
 -- Dumping data for table "fee_upload_deleted"
 --
 
-INSERT INTO "fee_upload_deleted" ("fee_upload_deleted_id", "feeDate", "receitNo", "name", "enrollmentNo", "grade", "category", "bank", "chqno", "total", "penaltyCharges", "inword", "comment", "acc_year", "fee_head", "feedet1", "amt1", "feedet2", "amt2", "feedet3", "amt3", "feedet4", "amt4", "feedet5", "amt5", "feedet6", "amt6", "feedet7", "amt7", "feedet8", "amt8", "feedet9", "amt9", "feedet10", "amt10", "fee_rec_type", "fee_uploade_date", "fee_uploade_user", "fee_deleted_date", "fee_deleted_user", "publish", "uid") VALUES
+INSERT INTO fee."fee_upload_deleted" ("fee_upload_deleted_id", "feeDate", "receitNo", "name", "enrollmentNo", "grade", "category", "bank", "chqno", "total", "penaltyCharges", "inword", "comment", "acc_year", "fee_head", "feedet1", "amt1", "feedet2", "amt2", "feedet3", "amt3", "feedet4", "amt4", "feedet5", "amt5", "feedet6", "amt6", "feedet7", "amt7", "feedet8", "amt8", "feedet9", "amt9", "feedet10", "amt10", "fee_rec_type", "fee_uploade_date", "fee_uploade_user", "fee_deleted_date", "fee_deleted_user", "publish", "uid") VALUES
 (6930, '30/11/2026', 'TFII/OIEY/515', 'Abhyudaya Singh', 'A12183', 'PLAYSCHOOL', 'Cheque', 'HDFC Bank', 'Cheque No.  290808', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', NULL, '', 0, '2f254e66097fd653a5ca4cfdb33be358'),
 (6932, '30/11/2026', 'TFII/OIEY/517', 'Ahaan Anand', 'A12217', 'PLAYSCHOOL', 'Cheque', 'HDFC Bank', 'Cheque No.  419926', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', NULL, '', 0, ''),
 (7113, '30/11/2026', 'TFII/OIEY/698', 'Akshata Singh', 'A12166', 'PLAYSCHOOL', 'Cheque', 'Axis Bank', 'Cheque No.  027355', 89500.00, '', 'Rupees Eighty Nine Thousand Five Hundred  and Paise Zero Only ', '', 2026, 'School fees for AY 2026-14', 'Tution Fees - II', 89500.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, '', 0.00, 1, '2026-12-06', 'administrator', NULL, '', 0, ''),
@@ -5876,7 +5888,7 @@ INSERT INTO "fee_upload_deleted" ("fee_upload_deleted_id", "feeDate", "receitNo"
 -- Table structure for table "field_info"
 --
 
-CREATE TABLE IF NOT EXISTS "field_info" (
+CREATE TABLE IF NOT EXISTS student."field_info" (
   "f_id"              SERIAL,
   "f_name"            VARCHAR(50)  NOT NULL,
   "tab_id"            INT          NOT NULL,
@@ -5891,7 +5903,7 @@ CREATE TABLE IF NOT EXISTS "field_info" (
 -- Dumping data for table "field_info"
 --
 
-INSERT INTO "field_info" ("f_id", "f_name", "tab_id", "field_type", "field_edit_type", "field_code", "field_visibility") VALUES
+INSERT INTO student."field_info" ("f_id", "f_name", "tab_id", "field_type", "field_edit_type", "field_code", "field_visibility") VALUES
 (1, 'Admission_Number', 1, 'TxtF', 'TxtF', 'adm_num', 1),
 (2, 'Admission_Date', 1, 'TxtF', 'Date', 'adm_date', 0),
 (3, 'First_Name', 1, 'TxtF', 'TxtF', 'frst_name', 0),
@@ -5993,7 +6005,7 @@ INSERT INTO "field_info" ("f_id", "f_name", "tab_id", "field_type", "field_edit_
 -- Table structure for table "fresh_contact_list"
 --
 
-CREATE TABLE IF NOT EXISTS "fresh_contact_list" (
+CREATE TABLE IF NOT EXISTS communication."fresh_contact_list" (
   "fresh_contact_list_id"           SERIAL,
   "school_id"    VARCHAR(100)  NOT NULL DEFAULT '',
   "father_mail"  VARCHAR(150)  DEFAULT NULL,
@@ -6002,13 +6014,13 @@ CREATE TABLE IF NOT EXISTS "fresh_contact_list" (
   PRIMARY KEY ("fresh_contact_list_id")
 );
 
-CREATE UNIQUE INDEX "ux_school_id" ON "fresh_contact_list" ("school_id");
+CREATE UNIQUE INDEX "ux_school_id" ON communication."fresh_contact_list" ("school_id");
 
 --
 -- Dumping data for table "fresh_contact_list"
 --
 
-INSERT INTO "fresh_contact_list" ("school_id", "father_mail", "mother_mail", "F8") VALUES
+INSERT INTO communication."fresh_contact_list" ("school_id", "father_mail", "mother_mail", "F8") VALUES
 ('A043', 'info@biosagri.com', 'nazina44@email.com', NULL),
 ('A051', 'w_pinto1@hotmail.com', 'jyotipinto1@email.com', NULL),
 ('A071', 'parmar.dipak@email.com', 'pannaparmar@email.com', NULL),
@@ -6026,7 +6038,7 @@ INSERT INTO "fresh_contact_list" ("school_id", "father_mail", "mother_mail", "F8
 -- Table structure for table "general_doc_details"
 --
 
-CREATE TABLE IF NOT EXISTS "general_doc_details" (
+CREATE TABLE IF NOT EXISTS medical."general_doc_details" (
   "general_doc_details_id"            SERIAL,
   "student_id"    VARCHAR(200)        NOT NULL,
   "docname"       VARCHAR(255)        NOT NULL,
@@ -6047,7 +6059,7 @@ CREATE TABLE IF NOT EXISTS "general_doc_details" (
 -- Dumping data for table "general_doc_details"
 --
 
-INSERT INTO "general_doc_details" ("general_doc_details_id", "student_id", "docname", "docphone", "docaddress", "denname", "denphone", "denaddress", "allergies", "notification", "status", "hospname", "ddv") VALUES
+INSERT INTO medical."general_doc_details" ("general_doc_details_id", "student_id", "docname", "docphone", "docaddress", "denname", "denphone", "denaddress", "allergies", "notification", "status", "hospname", "ddv") VALUES
 (10, '39', '', '', '', '', '', '', '', 'Frequent abdominal pain, Frequent headaches, Motion sickness', 1, '', '2026-09-26'),
 (11, '48', '', '', '', '', '', '', '', 'Motion sickness', 1, '', '2026-09-26'),
 (12, '50', '', '', '', '', '', '', '', 'Motion sickness', 1, '', '2026-09-26'),
@@ -6066,7 +6078,7 @@ INSERT INTO "general_doc_details" ("general_doc_details_id", "student_id", "docn
 -- Table structure for table "grade"
 --
 
-CREATE TABLE IF NOT EXISTS "grade" (
+CREATE TABLE IF NOT EXISTS academic."grade" (
   "grade_id"       SERIAL,
   "name"     VARCHAR(22)  NOT NULL,
   "g_from"   REAL        NOT NULL,
@@ -6081,7 +6093,7 @@ CREATE TABLE IF NOT EXISTS "grade" (
 -- Table structure for table "gradekg"
 --
 
-CREATE TABLE IF NOT EXISTS "gradekg" (
+CREATE TABLE IF NOT EXISTS academic."gradekg" (
   "gradekg_id"           BIGSERIAL,
   "exam_id"      INT         NOT NULL,
   "class"        INT         NOT NULL,
@@ -6099,7 +6111,7 @@ CREATE TABLE IF NOT EXISTS "gradekg" (
 -- Table structure for table "gradepyp"
 --
 
-CREATE TABLE IF NOT EXISTS "gradepyp" (
+CREATE TABLE IF NOT EXISTS academic."gradepyp" (
   "gradepyp_id"           BIGSERIAL,
   "exam_id"      INT         NOT NULL,
   "class"        INT         NOT NULL,
@@ -6117,7 +6129,7 @@ CREATE TABLE IF NOT EXISTS "gradepyp" (
 -- Table structure for table "grade_assessment"
 --
 
-CREATE TABLE IF NOT EXISTS "grade_assessment" (
+CREATE TABLE IF NOT EXISTS academic."grade_assessment" (
   "grade_assessment_id"                SERIAL,
   "category_id"       INT           DEFAULT NULL,
   "subject"           INT           DEFAULT NULL,
@@ -6136,14 +6148,14 @@ CREATE TABLE IF NOT EXISTS "grade_assessment" (
   PRIMARY KEY ("grade_assessment_id")
 );
 
-CREATE INDEX "ix_subj_term_year" ON "grade_assessment" ("subject", "term", "a_year", "status");
-CREATE INDEX "ix_category_year" ON "grade_assessment" ("category_id", "a_year");
+CREATE INDEX "ix_subj_term_year" ON academic."grade_assessment" ("subject", "term", "a_year", "status");
+CREATE INDEX "ix_category_year" ON academic."grade_assessment" ("category_id", "a_year");
 
 --
 -- Dumping data for table "grade_assessment"
 --
 
-INSERT INTO "grade_assessment" ("grade_assessment_id", "category_id", "subject", "term", "title", "description", "assign_date", "due_date", "max_point", "apply_grade", "grade_type", "course_objective", "a_year", "inserted_date", "status") VALUES
+INSERT INTO academic."grade_assessment" ("grade_assessment_id", "category_id", "subject", "term", "title", "description", "assign_date", "due_date", "max_point", "apply_grade", "grade_type", "course_objective", "a_year", "inserted_date", "status") VALUES
 (1, 1, 64, 1, 'HW Assign', 'Homeroom Assignment', '2026-08-01', '2026-08-30', 100, 'Y', 'alphabet', 'compulsory to attend', 2026, '2026-08-01', 1),
 (2, 1, 64, 1, 'HW Assign 2', 'Homeroom Assignment 2', '2026-08-01', '2026-08-30', 100, 'Y', 'alphabet', 'Optional', 2026, '2026-08-01', 1),
 (3, 2, 90, 1, 'August', 'class test - August', '2026-08-01', '2026-08-02', 0, 'Y', 'alphabet', '', 2026, '2026-08-01', 0),
@@ -6162,7 +6174,7 @@ INSERT INTO "grade_assessment" ("grade_assessment_id", "category_id", "subject",
 -- Table structure for table "grade_avg"
 --
 
-CREATE TABLE IF NOT EXISTS "grade_avg" (
+CREATE TABLE IF NOT EXISTS academic."grade_avg" (
   "grade_avg_id"             SERIAL,
   "subject"        INT         DEFAULT NULL,
   "letter1"        VARCHAR(5)  DEFAULT NULL,
@@ -6204,7 +6216,7 @@ CREATE TABLE IF NOT EXISTS "grade_avg" (
 -- Dumping data for table "grade_avg"
 --
 
-INSERT INTO "grade_avg" ("grade_avg_id", "subject", "letter1", "letter2", "letter3", "letter4", "letter5", "letter6", "letter7", "letter8", "letter9", "letter10", "letter11", "letter12", "letter13", "letter14", "letter15", "avg1", "avg2", "avg3", "avg4", "avg5", "avg6", "avg7", "avg8", "avg9", "avg10", "avg11", "avg12", "avg13", "avg14", "avg15", "inserted_date", "status") VALUES
+INSERT INTO academic."grade_avg" ("grade_avg_id", "subject", "letter1", "letter2", "letter3", "letter4", "letter5", "letter6", "letter7", "letter8", "letter9", "letter10", "letter11", "letter12", "letter13", "letter14", "letter15", "avg1", "avg2", "avg3", "avg4", "avg5", "avg6", "avg7", "avg8", "avg9", "avg10", "avg11", "avg12", "avg13", "avg14", "avg15", "inserted_date", "status") VALUES
 (1, 64, 'A+', 'A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F', '', '', '', '', '', '', '100', '94', '89', '84', '79', '74', '69', '64', '59', '', '', '', '', '', '', '2026-08-01', 1),
 (2, 336, 'A+', 'A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F', '', '', '', '', '', '', '100', '94', '89', '84', '79', '74', '69', '64', '59', '', '', '', '', '', '', '2026-08-01', 1),
 (3, 90, 'A+', 'A', 'B+', 'B', 'C+', 'C', 'D+', 'D', 'F', '', '', '', '', '', '', '100', '94', '89', '84', '79', '74', '69', '64', '59', '', '', '', '', '', '', '2026-08-01', 1),
@@ -6222,7 +6234,7 @@ INSERT INTO "grade_avg" ("grade_avg_id", "subject", "letter1", "letter2", "lette
 -- Table structure for table "grade_category"
 --
 
-CREATE TABLE IF NOT EXISTS "grade_category" (
+CREATE TABLE IF NOT EXISTS academic."grade_category" (
   "grade_category_id"           SERIAL,
   "subject"      INT           DEFAULT NULL,
   "title"        VARCHAR(50)   DEFAULT NULL,
@@ -6235,13 +6247,13 @@ CREATE TABLE IF NOT EXISTS "grade_category" (
   PRIMARY KEY ("grade_category_id")
 );
 
-CREATE INDEX "ix_subj_year_term" ON "grade_category" ("subject", "a_year", "term_id", "status");
+CREATE INDEX "ix_subj_year_term" ON academic."grade_category" ("subject", "a_year", "term_id", "status");
 
 --
 -- Dumping data for table "grade_category"
 --
 
-INSERT INTO "grade_category" ("grade_category_id", "subject", "title", "description", "a_year", "term_id", "term", "weight", "status") VALUES
+INSERT INTO academic."grade_category" ("grade_category_id", "subject", "title", "description", "a_year", "term_id", "term", "weight", "status") VALUES
 (1, 64, 'HW', 'Home Room', 2026, 1, 't1, t2, t3, t4, t5, t6', 0, 1),
 (2, 90, 'Class Test', 'class test', 2026, 1, 't1, t2, t3, t4, t5, t6', 50, 1),
 (3, 153, 'Speaking', 'Speech', 2026, 1, 't1, t2, t3, , , ', 0, 0),
@@ -6259,7 +6271,7 @@ INSERT INTO "grade_category" ("grade_category_id", "subject", "title", "descript
 -- Table structure for table "grade_grace"
 --
 
-CREATE TABLE IF NOT EXISTS "grade_grace" (
+CREATE TABLE IF NOT EXISTS academic."grade_grace" (
   "grade_grace_id"      SERIAL,
   "letter"  VARCHAR(5)  DEFAULT NULL,
   "status"  SMALLINT  DEFAULT 1,
@@ -6270,7 +6282,7 @@ CREATE TABLE IF NOT EXISTS "grade_grace" (
 -- Dumping data for table "grade_grace"
 --
 
-INSERT INTO "grade_grace" ("grade_grace_id", "letter", "status") VALUES
+INSERT INTO academic."grade_grace" ("grade_grace_id", "letter", "status") VALUES
 (1, 'A+', 1),
 (2, 'A', 1),
 (3, 'B+', 1),
@@ -6288,7 +6300,7 @@ INSERT INTO "grade_grace" ("grade_grace_id", "letter", "status") VALUES
 -- Table structure for table "grade_m_64_1"
 --
 
-CREATE TABLE IF NOT EXISTS "grade_m_64_1" (
+CREATE TABLE IF NOT EXISTS academic."grade_m_64_1" (
   "grade_m_64_1_id"             SERIAL,
   "user"           VARCHAR(70)  DEFAULT NULL,
   "a_year"         INT          DEFAULT NULL,
@@ -6311,7 +6323,7 @@ CREATE TABLE IF NOT EXISTS "grade_m_64_1" (
 -- Dumping data for table "grade_m_64_1"
 --
 
-INSERT INTO "grade_m_64_1" ("grade_m_64_1_id", "user", "a_year", "student_id", "term", "subject", "category", "category1", "category2", "inserted_date", "comments", "status", "avg_1", "HW_Assign_1", "HW_Assign_2_1") VALUES
+INSERT INTO academic."grade_m_64_1" ("grade_m_64_1_id", "user", "a_year", "student_id", "term", "subject", "category", "category1", "category2", "inserted_date", "comments", "status", "avg_1", "HW_Assign_1", "HW_Assign_2_1") VALUES
 (1, NULL, NULL, 464, 1, 64, NULL, NULL, NULL, NULL, NULL, 1, '99', '99', '99'),
 (2, NULL, NULL, 1132, 1, 64, 0, NULL, NULL, '2026-12-16', NULL, 1, '100', '100', '100'),
 (3, NULL, NULL, 892, 1, 64, 0, NULL, NULL, '2026-12-16', NULL, 1, '98', '99', '97'),
@@ -6334,7 +6346,7 @@ INSERT INTO "grade_m_64_1" ("grade_m_64_1_id", "user", "a_year", "student_id", "
 -- Table structure for table "grade_m_64_2"
 --
 
-CREATE TABLE IF NOT EXISTS "grade_m_64_2" (
+CREATE TABLE IF NOT EXISTS academic."grade_m_64_2" (
   "grade_m_64_2_id"             SERIAL,
   "user"           VARCHAR(70)  DEFAULT NULL,
   "a_year"         INT          DEFAULT NULL,
@@ -6355,7 +6367,7 @@ CREATE TABLE IF NOT EXISTS "grade_m_64_2" (
 -- Dumping data for table "grade_m_64_2"
 --
 
-INSERT INTO "grade_m_64_2" ("grade_m_64_2_id", "user", "a_year", "student_id", "term", "subject", "category", "category1", "category2", "inserted_date", "comments", "status", "avg_1") VALUES
+INSERT INTO academic."grade_m_64_2" ("grade_m_64_2_id", "user", "a_year", "student_id", "term", "subject", "category", "category1", "category2", "inserted_date", "comments", "status", "avg_1") VALUES
 (1, NULL, NULL, 464, 2, 64, 0, 0, NULL, NULL, '', 1, '99'),
 (2, 'Abhyudaya', NULL, 1132, 2, 64, 0, 0, NULL, NULL, '', 1, '100'),
 (3, 'Adi', NULL, 892, 2, 64, 0, 0, NULL, NULL, '', 1, '98'),
@@ -6382,7 +6394,7 @@ INSERT INTO "grade_m_64_2" ("grade_m_64_2_id", "user", "a_year", "student_id", "
 -- Table structure for table "grade_m_68_1"
 --
 
-CREATE TABLE IF NOT EXISTS "grade_m_68_1" (
+CREATE TABLE IF NOT EXISTS academic."grade_m_68_1" (
   "grade_m_68_1_id"             SERIAL,
   "user"           VARCHAR(70)  DEFAULT NULL,
   "a_year"         INT          DEFAULT NULL,
@@ -6404,7 +6416,7 @@ CREATE TABLE IF NOT EXISTS "grade_m_68_1" (
 -- Table structure for table "grade_m_68_2"
 --
 
-CREATE TABLE IF NOT EXISTS "grade_m_68_2" (
+CREATE TABLE IF NOT EXISTS academic."grade_m_68_2" (
   "grade_m_68_2_id"             SERIAL,
   "user"           VARCHAR(70)  DEFAULT NULL,
   "a_year"         INT          DEFAULT NULL,
@@ -6426,7 +6438,7 @@ CREATE TABLE IF NOT EXISTS "grade_m_68_2" (
 -- Table structure for table "grade_m_71_1"
 --
 
-CREATE TABLE IF NOT EXISTS "grade_m_71_1" (
+CREATE TABLE IF NOT EXISTS academic."grade_m_71_1" (
   "grade_m_71_1_id"             SERIAL,
   "user"           VARCHAR(70)  DEFAULT NULL,
   "a_year"         INT          DEFAULT NULL,
@@ -6446,7 +6458,7 @@ CREATE TABLE IF NOT EXISTS "grade_m_71_1" (
 -- Dumping data for table "grade_m_71_1"
 --
 
-INSERT INTO "grade_m_71_1" ("grade_m_71_1_id", "user", "a_year", "student_id", "term", "subject", "category", "category1", "category2", "inserted_date", "comments", "status") VALUES
+INSERT INTO academic."grade_m_71_1" ("grade_m_71_1_id", "user", "a_year", "student_id", "term", "subject", "category", "category1", "category2", "inserted_date", "comments", "status") VALUES
 (1, 'Aaditya', NULL, 1277, 1, 71, 0, NULL, NULL, '2026-12-16', 'Aaditya is a very talented and hardworking member of our homeroom class.  He is enthusiastic when he is interested in a topic and he is an active participant in our class.  He can work on learning tolerance and empathy as he learns to develop a working relationship with different students. He can also work on being on time to class daily.', 1),
 (2, 'Alizeh', NULL, 746, 1, 71, 0, NULL, NULL, '2026-12-16', 'Alizeh is often quiet in our class discussions but when she has an opinion she is not shy to express it.  Her love of sport and particularly swimming is evident.  She willingly cooperates with her classmates and adds her perspective to our conversations.  She can work on being on time to class.', 1),
 (3, 'Aryan', NULL, 976, 1, 71, 0, NULL, NULL, '2026-12-16', 'Aryan is always willing to share in class.  He is enthusiastic, open, and willing to contribute to our class in whatever way he can.  He follows directions and can be a good listener.  He can work on developing a bit of independence and on learning to trust himself and his ideas.  ', 1),
@@ -6464,7 +6476,7 @@ INSERT INTO "grade_m_71_1" ("grade_m_71_1_id", "user", "a_year", "student_id", "
 -- Table structure for table "grade_m_71_2"
 --
 
-CREATE TABLE IF NOT EXISTS "grade_m_71_2" (
+CREATE TABLE IF NOT EXISTS academic."grade_m_71_2" (
   "grade_m_71_2_id"             SERIAL,
   "user"           VARCHAR(70)  DEFAULT NULL,
   "a_year"         INT          DEFAULT NULL,
@@ -6484,7 +6496,7 @@ CREATE TABLE IF NOT EXISTS "grade_m_71_2" (
 -- Dumping data for table "grade_m_71_2"
 --
 
-INSERT INTO "grade_m_71_2" ("grade_m_71_2_id", "user", "a_year", "student_id", "term", "subject", "category", "category1", "category2", "inserted_date", "comments", "status") VALUES
+INSERT INTO academic."grade_m_71_2" ("grade_m_71_2_id", "user", "a_year", "student_id", "term", "subject", "category", "category1", "category2", "inserted_date", "comments", "status") VALUES
 (1, 'Aaditya', NULL, 1277, 2, 71, 0, 0, NULL, NULL, 'Aaditya has been a welcome addition to 6B this year.  He excels at sharing his thinking and ideas with the class.  He can often see things from multiple perspectives.  I would encourage him to try to be on time to class next year.  I would also encourage him to work on his tolerance of others and on communicating with kindness.', 1),
 (2, 'Alizeh', NULL, 746, 2, 71, 0, 0, NULL, NULL, 'Alizeh has been an integral part of 6B.  She is has a knack for getting along wtih others, she shows tolarance of classmates that are different than she and often has unique ideas to share with the class.  Next year she can work on being on time (rather than standing outside socializing)and on keeping her locker neatly organized.  ', 1),
 (3, 'Aryan', NULL, 976, 2, 71, 0, 0, NULL, NULL, 'Aryan has demonstrated resinience, patience and tolerance this year.  He is always willing to participate and is enthusiastic in all he does.  He comes prepared to class and is always on time.  He can continue to work on communicating with kindness and listening to others.', 1),
@@ -6501,7 +6513,7 @@ INSERT INTO "grade_m_71_2" ("grade_m_71_2_id", "user", "a_year", "student_id", "
 -- Table structure for table "grade_m_exception"
 --
 
-CREATE TABLE IF NOT EXISTS "grade_m_exception" (
+CREATE TABLE IF NOT EXISTS academic."grade_m_exception" (
   "grade_m_exception_id"           SERIAL,
   "exception"    VARCHAR(5)    NOT NULL,
   "description"  VARCHAR(100)  NOT NULL,
@@ -6514,7 +6526,7 @@ CREATE TABLE IF NOT EXISTS "grade_m_exception" (
 -- Dumping data for table "grade_m_exception"
 --
 
-INSERT INTO "grade_m_exception" ("grade_m_exception_id", "exception", "description", "marks", "status") VALUES
+INSERT INTO academic."grade_m_exception" ("grade_m_exception_id", "exception", "description", "marks", "status") VALUES
 (1, 'EX', 'Exempt', 100, 1),
 (2, 'M', 'Missed', 100, 1),
 (3, 'I', 'Incomplete', 100, 1),
@@ -6527,7 +6539,7 @@ INSERT INTO "grade_m_exception" ("grade_m_exception_id", "exception", "descripti
 -- Table structure for table "grade_points"
 --
 
-CREATE TABLE IF NOT EXISTS "grade_points" (
+CREATE TABLE IF NOT EXISTS academic."grade_points" (
   "grade_points_id"           SERIAL,
   "achievement"  VARCHAR(3)  NOT NULL,
   "effort"       VARCHAR(3)  NOT NULL,
@@ -6538,7 +6550,7 @@ CREATE TABLE IF NOT EXISTS "grade_points" (
 -- Dumping data for table "grade_points"
 --
 
-INSERT INTO "grade_points" ("grade_points_id", "achievement", "effort") VALUES
+INSERT INTO academic."grade_points" ("grade_points_id", "achievement", "effort") VALUES
 (1, 'I', '4'),
 (2, 'D', '3'),
 (3, 'E', '2'),
@@ -6551,7 +6563,7 @@ INSERT INTO "grade_points" ("grade_points_id", "achievement", "effort") VALUES
 -- Table structure for table "grade_points_eal"
 --
 
-CREATE TABLE IF NOT EXISTS "grade_points_eal" (
+CREATE TABLE IF NOT EXISTS academic."grade_points_eal" (
   "grade_points_eal_id"           SERIAL,
   "achievement"  VARCHAR(50)  NOT NULL,
   "effort"       VARCHAR(3)   NOT NULL,
@@ -6562,7 +6574,7 @@ CREATE TABLE IF NOT EXISTS "grade_points_eal" (
 -- Dumping data for table "grade_points_eal"
 --
 
-INSERT INTO "grade_points_eal" ("grade_points_eal_id", "achievement", "effort") VALUES
+INSERT INTO academic."grade_points_eal" ("grade_points_eal_id", "achievement", "effort") VALUES
 (1, 'Bridging', '5'),
 (2, 'Expanding', '4'),
 (3, 'Developing', '3'),
@@ -6575,7 +6587,7 @@ INSERT INTO "grade_points_eal" ("grade_points_eal_id", "achievement", "effort") 
 -- Table structure for table "grade_points_eal_assessment_key"
 --
 
-CREATE TABLE IF NOT EXISTS "grade_points_eal_assessment_key" (
+CREATE TABLE IF NOT EXISTS academic."grade_points_eal_assessment_key" (
   "grade_points_eal_assessment_key_id"     SERIAL,
   "fname"  VARCHAR(50)  NOT NULL,
   "sname"  VARCHAR(50)  NOT NULL,
@@ -6587,7 +6599,7 @@ CREATE TABLE IF NOT EXISTS "grade_points_eal_assessment_key" (
 -- Dumping data for table "grade_points_eal_assessment_key"
 --
 
-INSERT INTO "grade_points_eal_assessment_key" ("grade_points_eal_assessment_key_id", "fname", "sname", "desc") VALUES
+INSERT INTO academic."grade_points_eal_assessment_key" ("grade_points_eal_assessment_key_id", "fname", "sname", "desc") VALUES
 (1, 'CD', 'Consistently Displayed', 'Student consistently demonstrates understanding of concepts, content and skills, at grade level, at the time of the progress report.'),
 (2, 'DE', 'Developing as Expected', 'meets most grade level expectations independently'),
 (3, 'DS', 'Developing Steadily', 'Student is developing steadily and demonstrates some understanding, with support, of concepts, content and skills, at grade level, at the time of the progress report'),
@@ -6599,7 +6611,7 @@ INSERT INTO "grade_points_eal_assessment_key" ("grade_points_eal_assessment_key_
 -- Table structure for table "grade_setup"
 --
 
-CREATE TABLE IF NOT EXISTS "grade_setup" (
+CREATE TABLE IF NOT EXISTS academic."grade_setup" (
   "grade_setup_id"                  SERIAL,
   "grade_id"            INT          DEFAULT NULL,
   "subject"             INT          DEFAULT NULL,
@@ -6618,7 +6630,7 @@ CREATE TABLE IF NOT EXISTS "grade_setup" (
 -- Dumping data for table "grade_setup"
 --
 
-INSERT INTO "grade_setup" ("grade_setup_id", "grade_id", "subject", "term", "category_grade", "term_grade", "assignment_sorting", "copy_class", "cal_method", "grade_type", "status") VALUES
+INSERT INTO academic."grade_setup" ("grade_setup_id", "grade_id", "subject", "term", "category_grade", "term_grade", "assignment_sorting", "copy_class", "cal_method", "grade_type", "status") VALUES
 (1, 1, 64, 1, 'Y', 'Y', '', 0, 1, 'alphabet', 1),
 (2, 2, 336, 1, '', '', '', 0, 2, 'alphabet', 1),
 (3, 3, 90, 1, '', '', '', 0, 2, 'alphabet', 1),
@@ -6636,7 +6648,7 @@ INSERT INTO "grade_setup" ("grade_setup_id", "grade_id", "subject", "term", "cat
 -- Table structure for table "grade_skill_comments"
 --
 
-CREATE TABLE IF NOT EXISTS "grade_skill_comments" (
+CREATE TABLE IF NOT EXISTS academic."grade_skill_comments" (
   "grade_skill_comments_id"        SERIAL,
   "sub"       INT           NOT NULL,
   "student"   INT           NOT NULL,
@@ -6655,7 +6667,7 @@ CREATE TABLE IF NOT EXISTS "grade_skill_comments" (
 -- Table structure for table "grade_skill_ponts"
 --
 
-CREATE TABLE IF NOT EXISTS "grade_skill_ponts" (
+CREATE TABLE IF NOT EXISTS academic."grade_skill_ponts" (
   "grade_skill_ponts_id"        SERIAL,
   "sub"       INT           NOT NULL,
   "student"   INT           NOT NULL,
@@ -6677,7 +6689,7 @@ CREATE TABLE IF NOT EXISTS "grade_skill_ponts" (
 -- Table structure for table "hallno"
 --
 
-CREATE TABLE IF NOT EXISTS "hallno" (
+CREATE TABLE IF NOT EXISTS academic."hallno" (
   "hallno_id"       SERIAL,
   "hall_no"  VARCHAR(30)  DEFAULT NULL,
   "school"  VARCHAR(60)  DEFAULT NULL,
@@ -6689,7 +6701,7 @@ CREATE TABLE IF NOT EXISTS "hallno" (
 -- Dumping data for table "hallno"
 --
 
-INSERT INTO "hallno" ("hallno_id", "hall_no", "school", "status") VALUES
+INSERT INTO academic."hallno" ("hallno_id", "hall_no", "school", "status") VALUES
 (1, '101', 'RD-S', 1),
 (2, '501 Hum', 'RD-S', 1),
 (3, '502 Hum', 'RD-S', 1),
@@ -6707,7 +6719,7 @@ INSERT INTO "hallno" ("hallno_id", "hall_no", "school", "status") VALUES
 -- Table structure for table "hospital_det"
 --
 
-CREATE TABLE IF NOT EXISTS "hospital_det" (
+CREATE TABLE IF NOT EXISTS medical."hospital_det" (
   "hospital_det_id"              SERIAL,
   "doc_name"        VARCHAR(200)  DEFAULT NULL,
   "treatment_date"  DATE          DEFAULT NULL,
@@ -6727,7 +6739,7 @@ CREATE TABLE IF NOT EXISTS "hospital_det" (
 -- Dumping data for table "hospital_det"
 --
 
-INSERT INTO "hospital_det" ("hospital_det_id", "doc_name", "treatment_date", "time_in", "time_out", "diagnosis", "treatment", "report", "returned", "picked", "doc_detail_id", "hospital_name") VALUES
+INSERT INTO medical."hospital_det" ("hospital_det_id", "doc_name", "treatment_date", "time_in", "time_out", "diagnosis", "treatment", "report", "returned", "picked", "doc_detail_id", "hospital_name") VALUES
 (1, '14july', NULL, '12-59-AM', '12-59-AM', '14july', '14july', '14july', 'on', '14july', '', '0'),
 (2, 'Doctor''s Name', NULL, '12-59-AM', '12-59-AM', 'Diagnosis', 'Treatment', 'Report', 'on', 'Picked By', '', '1'),
 (3, 'Doctor''s Name', NULL, '12-59-AM', '12-59-AM', 'Diagnosis', 'Treatment', 'Report', 'on', 'Picked By', '', '1'),
@@ -6745,7 +6757,7 @@ INSERT INTO "hospital_det" ("hospital_det_id", "doc_name", "treatment_date", "ti
 -- Table structure for table "hospital_tab"
 --
 
-CREATE TABLE IF NOT EXISTS "hospital_tab" (
+CREATE TABLE IF NOT EXISTS medical."hospital_tab" (
   "hospital_tab_id"             SERIAL,
   "hospital_name"  VARCHAR(250)  DEFAULT NULL,
   PRIMARY KEY ("hospital_tab_id")
@@ -6755,7 +6767,7 @@ CREATE TABLE IF NOT EXISTS "hospital_tab" (
 -- Dumping data for table "hospital_tab"
 --
 
-INSERT INTO "hospital_tab" ("hospital_tab_id", "hospital_name") VALUES
+INSERT INTO medical."hospital_tab" ("hospital_tab_id", "hospital_name") VALUES
 (1, 'Hospital');
 
 -- --------------------------------------------------------
@@ -6764,7 +6776,7 @@ INSERT INTO "hospital_tab" ("hospital_tab_id", "hospital_name") VALUES
 -- Table structure for table "hostel_fee_m"
 --
 
-CREATE TABLE IF NOT EXISTS "hostel_fee_m" (
+CREATE TABLE IF NOT EXISTS hostel."hostel_fee_m" (
   "hostel_fee_m_id"             SERIAL,
   "fee_id"         INT           NOT NULL DEFAULT 0,
   "amt"            INT           NOT NULL DEFAULT 0,
@@ -6782,7 +6794,7 @@ CREATE TABLE IF NOT EXISTS "hostel_fee_m" (
 -- Table structure for table "hostel_fee_type"
 --
 
-CREATE TABLE IF NOT EXISTS "hostel_fee_type" (
+CREATE TABLE IF NOT EXISTS hostel."hostel_fee_type" (
   "fee_id"    SERIAL,
   "fee_name"  VARCHAR(100)  NOT NULL DEFAULT '',
   "status"    INT           NOT NULL DEFAULT 1,
@@ -6792,10 +6804,10 @@ CREATE TABLE IF NOT EXISTS "hostel_fee_type" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "hostel_m"
+-- Table structure for table "hostel"
 --
 
-CREATE TABLE IF NOT EXISTS "hostel_m" (
+CREATE TABLE IF NOT EXISTS hostel."hostel" (
   "hostel_m_id"           SERIAL,
   "hostel_id"    VARCHAR(25)    DEFAULT NULL,
   "hostel_name"  VARCHAR(255)   DEFAULT NULL,
@@ -6817,7 +6829,7 @@ CREATE TABLE IF NOT EXISTS "hostel_m" (
 -- Table structure for table "h_archive_m"
 --
 
-CREATE TABLE IF NOT EXISTS "h_archive_m" (
+CREATE TABLE IF NOT EXISTS hostel."h_archive_m" (
   "h_archive_m_id"                INT          NOT NULL DEFAULT 0,
   "s_id"              VARCHAR(50)  NOT NULL DEFAULT '',
   "h_id"              INT          NOT NULL DEFAULT 0,
@@ -6847,7 +6859,7 @@ CREATE TABLE IF NOT EXISTS "h_archive_m" (
 -- Table structure for table "hostel_block"
 --
 
-CREATE TABLE IF NOT EXISTS "hostel_block" (
+CREATE TABLE IF NOT EXISTS hostel."hostel_block" (
   "hostel_block_id"         SERIAL,
   "blockname"  VARCHAR(50)    NOT NULL DEFAULT '',
   "hostel_no"  INT            DEFAULT NULL,
@@ -6861,7 +6873,7 @@ CREATE TABLE IF NOT EXISTS "hostel_block" (
 -- Table structure for table "h_cons_purchase_det"
 --
 
-CREATE TABLE IF NOT EXISTS "h_cons_purchase_det" (
+CREATE TABLE IF NOT EXISTS hostel."h_cons_purchase_det" (
   "id_det"         SERIAL,
   "id_m"           INT           NOT NULL DEFAULT 0,
   "itemname_id"    INT           NOT NULL DEFAULT 0,
@@ -6878,7 +6890,7 @@ CREATE TABLE IF NOT EXISTS "h_cons_purchase_det" (
 -- Table structure for table "h_cons_purchase_m"
 --
 
-CREATE TABLE IF NOT EXISTS "h_cons_purchase_m" (
+CREATE TABLE IF NOT EXISTS hostel."h_cons_purchase_m" (
   "id_m"           SERIAL,
   "date_of_entry"  DATE          DEFAULT NULL,
   "supplier_id"    INT           DEFAULT 0,
@@ -6898,7 +6910,7 @@ CREATE TABLE IF NOT EXISTS "h_cons_purchase_m" (
 -- Table structure for table "h_issue_consumable"
 --
 
-CREATE TABLE IF NOT EXISTS "h_issue_consumable" (
+CREATE TABLE IF NOT EXISTS hostel."h_issue_consumable" (
   "issue_id"       SERIAL,
   "school_id"     INT           DEFAULT NULL,
   "department_id"  INT           DEFAULT NULL,
@@ -6917,7 +6929,7 @@ CREATE TABLE IF NOT EXISTS "h_issue_consumable" (
 -- Table structure for table "h_item_master"
 --
 
-CREATE TABLE IF NOT EXISTS "h_item_master" (
+CREATE TABLE IF NOT EXISTS hostel."h_item_master" (
   "h_item_master_id"             SERIAL,
   "item_name"      VARCHAR(250)  DEFAULT NULL,
   "quantity_type"  VARCHAR(250)  DEFAULT NULL,
@@ -6928,10 +6940,10 @@ CREATE TABLE IF NOT EXISTS "h_item_master" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "hostel_room_m"
+-- Table structure for table "hostel_room"
 --
 
-CREATE TABLE IF NOT EXISTS "hostel_room_m" (
+CREATE TABLE IF NOT EXISTS hostel."hostel_room" (
   "hostel_room_m_id"        SERIAL,
   "h_id"      INT          NOT NULL DEFAULT 0,
   "room_no"   VARCHAR(50)  NOT NULL DEFAULT '',
@@ -6945,10 +6957,10 @@ CREATE TABLE IF NOT EXISTS "hostel_room_m" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "hostel_student_m"
+-- Table structure for table "hostel_student"
 --
 
-CREATE TABLE IF NOT EXISTS "hostel_student_m" (
+CREATE TABLE IF NOT EXISTS hostel."hostel_student" (
   "hostel_student_m_id"          SERIAL,
   "s_id"        INTEGER  DEFAULT NULL,
   "h_id"        INT                    NOT NULL DEFAULT 0,
@@ -6978,7 +6990,7 @@ CREATE TABLE IF NOT EXISTS "hostel_student_m" (
 -- Table structure for table "h_suplier_master"
 --
 
-CREATE TABLE IF NOT EXISTS "h_suplier_master" (
+CREATE TABLE IF NOT EXISTS hostel."h_suplier_master" (
   "h_suplier_master_id"              SERIAL,
   "name"            VARCHAR(250)      DEFAULT NULL,
   "contact_person"  VARCHAR(100)      DEFAULT NULL,
@@ -6998,7 +7010,7 @@ CREATE TABLE IF NOT EXISTS "h_suplier_master" (
 -- Table structure for table "h_temp_cons_purchase_det"
 --
 
-CREATE TABLE IF NOT EXISTS "h_temp_cons_purchase_det" (
+CREATE TABLE IF NOT EXISTS hostel."h_temp_cons_purchase_det" (
   "id_det"         SERIAL,
   "id_m"           INT           NOT NULL DEFAULT 0,
   "itemname_id"    INT           NOT NULL DEFAULT 0,
@@ -7015,7 +7027,7 @@ CREATE TABLE IF NOT EXISTS "h_temp_cons_purchase_det" (
 -- Table structure for table "h_temp_issue_consumable"
 --
 
-CREATE TABLE IF NOT EXISTS "h_temp_issue_consumable" (
+CREATE TABLE IF NOT EXISTS hostel."h_temp_issue_consumable" (
   "issue_id"     SERIAL,
   "itemname_id"  INT           NOT NULL DEFAULT 0,
   "issued_qty"   VARCHAR(45)   DEFAULT NULL,
@@ -7029,7 +7041,7 @@ CREATE TABLE IF NOT EXISTS "h_temp_issue_consumable" (
 -- Table structure for table "id"
 --
 
-CREATE TABLE IF NOT EXISTS "id" (
+CREATE TABLE IF NOT EXISTS student."id" (
   "student_id"  VARCHAR(255)  DEFAULT NULL,
   "no_series"   VARCHAR(255)  DEFAULT NULL,
   PRIMARY KEY ("student_id")
@@ -7039,7 +7051,7 @@ CREATE TABLE IF NOT EXISTS "id" (
 -- Dumping data for table "id"
 --
 
-INSERT INTO "id" ("student_id", "no_series") VALUES
+INSERT INTO student."id" ("student_id", "no_series") VALUES
 ('A1009', '41EB7717000000000000000000000000'),
 ('A1101', '409D7717000000000000000000000000'),
 ('A12416', '7DB5AA07000000000000000000000000'),
@@ -7059,7 +7071,7 @@ INSERT INTO "id" ("student_id", "no_series") VALUES
 -- Table structure for table "ideas"
 --
 
-CREATE TABLE IF NOT EXISTS "ideas" (
+CREATE TABLE IF NOT EXISTS academic."ideas" (
   "ideas_id"        SERIAL,
   "class"     INT   NOT NULL,
   "exam_id"   INT   NOT NULL,
@@ -7075,7 +7087,7 @@ CREATE TABLE IF NOT EXISTS "ideas" (
 -- Dumping data for table "ideas"
 --
 
-INSERT INTO "ideas" ("ideas_id", "class", "exam_id", "idea", "acc_year", "theme", "keyconc", "unit") VALUES
+INSERT INTO academic."ideas" ("ideas_id", "class", "exam_id", "idea", "acc_year", "theme", "keyconc", "unit") VALUES
 (1, 1, 1, 'Through visual arts we may express and share our ideas and feelings.', 2026, 'How we express ourselves.', 'Form, Perspective and Reflection.', 1),
 (2, 2, 4, 'Everyday I can learn about who I am with and through others.', 2026, 'Who we are ', 'Change, Reflection, Responsibility ', 5),
 (3, 3, 2, 'People’s relationships with each other can have an impact on their wellbeing. ', 2026, 'Who we are', 'Form, Connection, Responsibility ', 2),
@@ -7093,7 +7105,7 @@ INSERT INTO "ideas" ("ideas_id", "class", "exam_id", "idea", "acc_year", "theme"
 -- Table structure for table "ideas_1"
 --
 
-CREATE TABLE IF NOT EXISTS "ideas_1" (
+CREATE TABLE IF NOT EXISTS academic."ideas_1" (
   "ideas_1_id"            SERIAL,
   "class"         INT   NOT NULL,
   "master_ideas"  INT   NOT NULL,
@@ -7109,7 +7121,7 @@ CREATE TABLE IF NOT EXISTS "ideas_1" (
 -- Table structure for table "igc_2026_1"
 --
 
-CREATE TABLE IF NOT EXISTS "igc_2026_1" (
+CREATE TABLE IF NOT EXISTS academic."igc_2026_1" (
   "igc_2026_1_id"             SERIAL,
   "class_section"  INT           DEFAULT NULL,
   "student_id"     INT           DEFAULT NULL,
@@ -7131,7 +7143,7 @@ CREATE TABLE IF NOT EXISTS "igc_2026_1" (
 -- Table structure for table "igc_2026_2"
 --
 
-CREATE TABLE IF NOT EXISTS "igc_2026_2" (
+CREATE TABLE IF NOT EXISTS academic."igc_2026_2" (
   "igc_2026_2_id"             SERIAL,
   "class_section"  INT           DEFAULT NULL,
   "student_id"     INT           DEFAULT NULL,
@@ -7153,7 +7165,7 @@ CREATE TABLE IF NOT EXISTS "igc_2026_2" (
 -- Table structure for table "igc_2026_3"
 --
 
-CREATE TABLE IF NOT EXISTS "igc_2026_3" (
+CREATE TABLE IF NOT EXISTS academic."igc_2026_3" (
   "igc_2026_3_id"             SERIAL,
   "class_section"  INT           DEFAULT NULL,
   "student_id"     INT           DEFAULT NULL,
@@ -7175,7 +7187,7 @@ CREATE TABLE IF NOT EXISTS "igc_2026_3" (
 -- Table structure for table "igc_2026_4"
 --
 
-CREATE TABLE IF NOT EXISTS "igc_2026_4" (
+CREATE TABLE IF NOT EXISTS academic."igc_2026_4" (
   "igc_2026_4_id"             SERIAL,
   "class_section"  INT           DEFAULT NULL,
   "student_id"     INT           DEFAULT NULL,
@@ -7197,7 +7209,7 @@ CREATE TABLE IF NOT EXISTS "igc_2026_4" (
 -- Table structure for table "igc_2026_5"
 --
 
-CREATE TABLE IF NOT EXISTS "igc_2026_5" (
+CREATE TABLE IF NOT EXISTS academic."igc_2026_5" (
   "igc_2026_5_id"             SERIAL,
   "class_section"  INT           DEFAULT NULL,
   "student_id"     INT           DEFAULT NULL,
@@ -7219,7 +7231,7 @@ CREATE TABLE IF NOT EXISTS "igc_2026_5" (
 -- Table structure for table "igc_2026_6"
 --
 
-CREATE TABLE IF NOT EXISTS "igc_2026_6" (
+CREATE TABLE IF NOT EXISTS academic."igc_2026_6" (
   "igc_2026_6_id"             SERIAL,
   "class_section"  INT           DEFAULT NULL,
   "student_id"     INT           DEFAULT NULL,
@@ -7241,7 +7253,7 @@ CREATE TABLE IF NOT EXISTS "igc_2026_6" (
 -- Table structure for table "igc_2026_7"
 --
 
-CREATE TABLE IF NOT EXISTS "igc_2026_7" (
+CREATE TABLE IF NOT EXISTS academic."igc_2026_7" (
   "igc_2026_7_id"             SERIAL,
   "class_section"  INT           DEFAULT NULL,
   "student_id"     INT           DEFAULT NULL,
@@ -7263,7 +7275,7 @@ CREATE TABLE IF NOT EXISTS "igc_2026_7" (
 -- Table structure for table "igc_2026_8"
 --
 
-CREATE TABLE IF NOT EXISTS "igc_2026_8" (
+CREATE TABLE IF NOT EXISTS academic."igc_2026_8" (
   "igc_2026_8_id"             SERIAL,
   "class_section"  INT           DEFAULT NULL,
   "student_id"     INT           DEFAULT NULL,
@@ -7285,7 +7297,7 @@ CREATE TABLE IF NOT EXISTS "igc_2026_8" (
 -- Table structure for table "igc_2026_9"
 --
 
-CREATE TABLE IF NOT EXISTS "igc_2026_9" (
+CREATE TABLE IF NOT EXISTS academic."igc_2026_9" (
   "igc_2026_9_id"             SERIAL,
   "class_section"  INT           DEFAULT NULL,
   "student_id"     INT           DEFAULT NULL,
@@ -7307,7 +7319,7 @@ CREATE TABLE IF NOT EXISTS "igc_2026_9" (
 -- Table structure for table "igc_exam_year_m"
 --
 
-CREATE TABLE IF NOT EXISTS "igc_exam_year_m" (
+CREATE TABLE IF NOT EXISTS academic."igc_exam_year_m" (
   "igc_exam_year_m_id"             SERIAL,
   "exam_name"      VARCHAR(75)  NOT NULL,
   "exam_sub_name"  VARCHAR(50)  NOT NULL,
@@ -7324,7 +7336,7 @@ CREATE TABLE IF NOT EXISTS "igc_exam_year_m" (
 -- Dumping data for table "igc_exam_year_m"
 --
 
-INSERT INTO "igc_exam_year_m" ("igc_exam_year_m_id", "exam_name", "exam_sub_name", "per_info", "mark", "acc_year", "class", "status", "order_id") VALUES
+INSERT INTO academic."igc_exam_year_m" ("igc_exam_year_m_id", "exam_name", "exam_sub_name", "per_info", "mark", "acc_year", "class", "status", "order_id") VALUES
 (1, 'Semester 1', 'S1', 100, 100, 2026, 1, 1, 1),
 (2, 'Semester 1', 'Sem 1', 100, 100, 2026, 3, 1, 1),
 (3, 'Semester 1', 'Sem 1', 100, 100, 2026, 2, 1, 1),
@@ -7351,7 +7363,7 @@ INSERT INTO "igc_exam_year_m" ("igc_exam_year_m_id", "exam_name", "exam_sub_name
 -- Table structure for table "individual_asset_details"
 --
 
-CREATE TABLE IF NOT EXISTS "individual_asset_details" (
+CREATE TABLE IF NOT EXISTS asset."individual_asset_details" (
   "individual_asset_details_id"                 SERIAL,
   "asset_id"           INT                                                                         DEFAULT NULL,
   "item_code"          VARCHAR(50)                                                                 DEFAULT NULL,
@@ -7378,7 +7390,7 @@ CREATE TABLE IF NOT EXISTS "individual_asset_details" (
 -- Table structure for table "intake"
 --
 
-CREATE TABLE IF NOT EXISTS "intake" (
+CREATE TABLE IF NOT EXISTS academic."intake" (
   "intake_id"              SERIAL,
   "adm_type"        INT         DEFAULT NULL,
   "intake"          INT         DEFAULT NULL,
@@ -7394,7 +7406,7 @@ CREATE TABLE IF NOT EXISTS "intake" (
 -- Table structure for table "interview"
 --
 
-CREATE TABLE IF NOT EXISTS "interview" (
+CREATE TABLE IF NOT EXISTS admission."interview" (
   "interview_id"           SERIAL,
   "class"        INT          NOT NULL,
   "acc_year"     INT          NOT NULL,
@@ -7409,7 +7421,7 @@ CREATE TABLE IF NOT EXISTS "interview" (
 -- Dumping data for table "interview"
 --
 
-INSERT INTO "interview" ("interview_id", "class", "acc_year", "name", "description", "status", "mark") VALUES
+INSERT INTO admission."interview" ("interview_id", "class", "acc_year", "name", "description", "status", "mark") VALUES
 (1, 0, 2026, 'Tour of School', 'sample', 1, 0),
 (2, 0, 2026, 'Meeting with Head of School', 'sample', 1, 0),
 (3, 0, 2026, 'Registration', 'sample', 1, 0),
@@ -7422,7 +7434,7 @@ INSERT INTO "interview" ("interview_id", "class", "acc_year", "name", "descripti
 -- Table structure for table "kgskills"
 --
 
-CREATE TABLE IF NOT EXISTS "kgskills" (
+CREATE TABLE IF NOT EXISTS academic."kgskills" (
   "kgskills_id"        SERIAL,
   "class"     INT           NOT NULL,
   "sub"       INT           NOT NULL,
@@ -7439,7 +7451,7 @@ CREATE TABLE IF NOT EXISTS "kgskills" (
 -- Table structure for table "kg_subskills"
 --
 
-CREATE TABLE IF NOT EXISTS "kg_subskills" (
+CREATE TABLE IF NOT EXISTS academic."kg_subskills" (
   "kg_subskills_id"            SERIAL,
   "class"         INT   NOT NULL,
   "sub"           INT   NOT NULL,
@@ -7456,7 +7468,7 @@ CREATE TABLE IF NOT EXISTS "kg_subskills" (
 -- Table structure for table "language"
 --
 
-CREATE TABLE IF NOT EXISTS "language" (
+CREATE TABLE IF NOT EXISTS settings."language" (
   "language_id"    SERIAL,
   "lang"  VARCHAR(20)  NOT NULL,
   PRIMARY KEY ("language_id")
@@ -7466,7 +7478,7 @@ CREATE TABLE IF NOT EXISTS "language" (
 -- Dumping data for table "language"
 --
 
-INSERT INTO "language" ("language_id", "lang") VALUES
+INSERT INTO settings."language" ("language_id", "lang") VALUES
 (1, 'Arabic'),
 (2, 'Assamese'),
 (3, 'Bengali'),
@@ -7507,7 +7519,7 @@ INSERT INTO "language" ("language_id", "lang") VALUES
 -- Table structure for table "ld"
 --
 
-CREATE TABLE IF NOT EXISTS "ld" (
+CREATE TABLE IF NOT EXISTS fee."ld" (
   "Sl_No"            INT           NOT NULL DEFAULT 0,
   "LID"              VARCHAR(7)    DEFAULT NULL,
   "Name"             VARCHAR(200)  DEFAULT NULL,
@@ -7527,7 +7539,7 @@ CREATE TABLE IF NOT EXISTS "ld" (
 -- Table structure for table "leave_acc_year"
 --
 
-CREATE TABLE IF NOT EXISTS "leave_acc_year" (
+CREATE TABLE IF NOT EXISTS hr."leave_acc_year" (
   "leave_acc_year_id"        SERIAL,
   "acc_name"  VARCHAR(50)  NOT NULL,
   "acc_year"  VARCHAR(50)  NOT NULL,
@@ -7539,7 +7551,7 @@ CREATE TABLE IF NOT EXISTS "leave_acc_year" (
 -- Dumping data for table "leave_acc_year"
 --
 
-INSERT INTO "leave_acc_year" ("leave_acc_year_id", "acc_name", "acc_year", "status") VALUES
+INSERT INTO hr."leave_acc_year" ("leave_acc_year_id", "acc_name", "acc_year", "status") VALUES
 (1, '2008', '2008 - 2009', 1),
 (2, '2009', '2009 - 2010', 1),
 (3, '2010', '2010 - 2026', 1),
@@ -7553,7 +7565,7 @@ INSERT INTO "leave_acc_year" ("leave_acc_year_id", "acc_name", "acc_year", "stat
 -- Table structure for table "leave_att_point"
 --
 
-CREATE TABLE IF NOT EXISTS "leave_att_point" (
+CREATE TABLE IF NOT EXISTS hr."leave_att_point" (
   "leave_att_point_id"               SERIAL,
   "point_att"        VARCHAR(50)   NOT NULL,
   "update_points"    VARCHAR(200)  NOT NULL,
@@ -7570,7 +7582,7 @@ CREATE TABLE IF NOT EXISTS "leave_att_point" (
 -- Dumping data for table "leave_att_point"
 --
 
-INSERT INTO "leave_att_point" ("leave_att_point_id", "point_att", "update_points", "att_colors", "full_name", "name", "status", "staff_date_time", "username") VALUES
+INSERT INTO hr."leave_att_point" ("leave_att_point_id", "point_att", "update_points", "att_colors", "full_name", "name", "status", "staff_date_time", "username") VALUES
 (1, '1', '0', '077512', '0', 'P', 1, '2026-01-31 01:36:30', 'administrator'),
 (2, '0', '1', 'FF1808', '0', 'A', 1, '2026-01-31 01:36:30', 'administrator'),
 (3, '1', '0', 'FF3912', '0', 'WO', 1, '2026-01-31 01:36:30', 'administrator'),
@@ -7589,7 +7601,7 @@ INSERT INTO "leave_att_point" ("leave_att_point_id", "point_att", "update_points
 -- Table structure for table "leave_data_m20"
 --
 
-CREATE TABLE IF NOT EXISTS "leave_data_m20" (
+CREATE TABLE IF NOT EXISTS hr."leave_data_m20" (
   "leave_data_m20_id"             SERIAL,
   "staff_id"       INT           NOT NULL,
   "E_Code"         VARCHAR(255)  NOT NULL,
@@ -7613,7 +7625,7 @@ CREATE TABLE IF NOT EXISTS "leave_data_m20" (
 -- Dumping data for table "leave_data_m20"
 --
 
-INSERT INTO "leave_data_m20" ("leave_data_m20_id", "staff_id", "E_Code", "Employee_Name", "Apr_13", "May_13", "June_13", "July_13", "Aug_13", "Sep_13", "Oct_13", "Nov_13", "Dec_13", "Jan_14", "Feb_14", "March_14") VALUES
+INSERT INTO hr."leave_data_m20" ("leave_data_m20_id", "staff_id", "E_Code", "Employee_Name", "Apr_13", "May_13", "June_13", "July_13", "Aug_13", "Sep_13", "Oct_13", "Nov_13", "Dec_13", "Jan_14", "Feb_14", "March_14") VALUES
 (1, 238, '8209', 'Afroz Pannu', '0.50', '2.00', '4.5', '1.50', '1.00', '', '2.00', '1.00', '6.50', '7.00', '1.50', '1.00'),
 (2, 240, '8007', 'Agnel Waz', '1.00', '', '', '11', '1', '', '1.00', '1.00', '1.00', '6.00', '', '4.00'),
 (3, 0, '8015', 'Anil Mane', '2.50', '6.00', '1.00', '0.50', '3', '2.00', '1.00', '3.00', '4.00', '3.50', '3.50', '1.00'),
@@ -7631,7 +7643,7 @@ INSERT INTO "leave_data_m20" ("leave_data_m20_id", "staff_id", "E_Code", "Employ
 -- Table structure for table "leave_staff_attand"
 --
 
-CREATE TABLE IF NOT EXISTS "leave_staff_attand" (
+CREATE TABLE IF NOT EXISTS hr."leave_staff_attand" (
   "leave_staff_attand_id"               SERIAL,
   "staff_id"         VARCHAR(100)  NOT NULL,
   "a_year"           VARCHAR(10)   NOT NULL,
@@ -7651,7 +7663,7 @@ CREATE TABLE IF NOT EXISTS "leave_staff_attand" (
 -- Dumping data for table "leave_staff_attand"
 --
 
-INSERT INTO "leave_staff_attand" ("leave_staff_attand_id", "staff_id", "a_year", "rfid_date", "expect_rfid_in", "rfid_in", "expect_rfid_out", "rfid_out", "att_code_rfid", "att_point_rfid", "rfid_number", "status") VALUES
+INSERT INTO hr."leave_staff_attand" ("leave_staff_attand_id", "staff_id", "a_year", "rfid_date", "expect_rfid_in", "rfid_in", "expect_rfid_out", "rfid_out", "att_code_rfid", "att_point_rfid", "rfid_number", "status") VALUES
 (1, '281', '2026', '2026-03-20', '07:40', '', '16:10', '', 'H', '0', 'C429DF38000000000000000000000000', 1),
 (2, '281', '2026', '2026-03-21', '07:40', '', '16:10', '', 'H', '0', 'C429DF38000000000000000000000000', 1),
 (3, '281', '2026', '2026-03-22', '07:40', '', '16:10', '', 'H', '0', 'C429DF38000000000000000000000000', 1),
@@ -7669,7 +7681,7 @@ INSERT INTO "leave_staff_attand" ("leave_staff_attand_id", "staff_id", "a_year",
 -- Table structure for table "leave_staff_day"
 --
 
-CREATE TABLE IF NOT EXISTS "leave_staff_day" (
+CREATE TABLE IF NOT EXISTS hr."leave_staff_day" (
   "leave_staff_day_id"          SERIAL,
   "days"        INT  NOT NULL,
   "leave_type"  INT  NOT NULL,
@@ -7682,7 +7694,7 @@ CREATE TABLE IF NOT EXISTS "leave_staff_day" (
 -- Dumping data for table "leave_staff_day"
 --
 
-INSERT INTO "leave_staff_day" ("leave_staff_day_id", "days", "leave_type", "staff_type", "status") VALUES
+INSERT INTO hr."leave_staff_day" ("leave_staff_day_id", "days", "leave_type", "staff_type", "status") VALUES
 (1, 30, 1, 1, 1),
 (2, 30, 1, 2, 1),
 (3, 0, 6, 1, 1),
@@ -7695,7 +7707,7 @@ INSERT INTO "leave_staff_day" ("leave_staff_day_id", "days", "leave_type", "staf
 -- Table structure for table "leave_staff_paid_tot_acc"
 --
 
-CREATE TABLE IF NOT EXISTS "leave_staff_paid_tot_acc" (
+CREATE TABLE IF NOT EXISTS hr."leave_staff_paid_tot_acc" (
   "leave_staff_paid_tot_acc_id"          SERIAL,
   "staff_name"  VARCHAR(250)  NOT NULL DEFAULT '',
   "staff_id"    INT           DEFAULT NULL,
@@ -7715,7 +7727,7 @@ CREATE TABLE IF NOT EXISTS "leave_staff_paid_tot_acc" (
 -- Dumping data for table "leave_staff_paid_tot_acc"
 --
 
-INSERT INTO "leave_staff_paid_tot_acc" ("leave_staff_paid_tot_acc_id", "staff_name", "staff_id", "group_id", "ins_date", "acc_1", "acc_2", "acc_3", "acc_4", "acc_5", "acc_6", "status") VALUES
+INSERT INTO hr."leave_staff_paid_tot_acc" ("leave_staff_paid_tot_acc_id", "staff_name", "staff_id", "group_id", "ins_date", "acc_1", "acc_2", "acc_3", "acc_4", "acc_5", "acc_6", "status") VALUES
 (1, 'Alexander Johnson ', 69, 1, NULL, '', '', '', '', '', '25', 1),
 (2, 'Natasha Khanna ', 70, 1, NULL, '', '', '', '', '', '25', 1),
 (3, 'Neha Thoria ', 71, 1, NULL, '', '', '', '', '', '25', 1),
@@ -7733,7 +7745,7 @@ INSERT INTO "leave_staff_paid_tot_acc" ("leave_staff_paid_tot_acc_id", "staff_na
 -- Table structure for table "leave_staff_paid_tot_acc_temp"
 --
 
-CREATE TABLE IF NOT EXISTS "leave_staff_paid_tot_acc_temp" (
+CREATE TABLE IF NOT EXISTS hr."leave_staff_paid_tot_acc_temp" (
   "leave_staff_paid_tot_acc_temp_id"           SERIAL,
   "staff_id"     INT           DEFAULT NULL,
   "acc_id"       VARCHAR(250)  NOT NULL DEFAULT '',
@@ -7749,7 +7761,7 @@ CREATE TABLE IF NOT EXISTS "leave_staff_paid_tot_acc_temp" (
 -- Dumping data for table "leave_staff_paid_tot_acc_temp"
 --
 
-INSERT INTO "leave_staff_paid_tot_acc_temp" ("leave_staff_paid_tot_acc_temp_id", "staff_id", "acc_id", "tot_paid", "paid_vat", "cur_balance", "un_paid", "status") VALUES
+INSERT INTO hr."leave_staff_paid_tot_acc_temp" ("leave_staff_paid_tot_acc_temp_id", "staff_id", "acc_id", "tot_paid", "paid_vat", "cur_balance", "un_paid", "status") VALUES
 (1, 69, '6', '9', '15.25', '0', '6.25', 1),
 (2, 70, '6', '9', '8.5', '0.5', '0', 1),
 (3, 66, '6', '9', '7.5', '1.5', '0', 1),
@@ -7767,7 +7779,7 @@ INSERT INTO "leave_staff_paid_tot_acc_temp" ("leave_staff_paid_tot_acc_temp_id",
 -- Table structure for table "leave_staff_paid_tot_backup"
 --
 
-CREATE TABLE IF NOT EXISTS "leave_staff_paid_tot_backup" (
+CREATE TABLE IF NOT EXISTS hr."leave_staff_paid_tot_backup" (
   "leave_staff_paid_tot_backup_id"        SERIAL,
   "staff_id"  INT           DEFAULT NULL,
   "acc_id"    VARCHAR(250)  NOT NULL DEFAULT '',
@@ -7782,7 +7794,7 @@ CREATE TABLE IF NOT EXISTS "leave_staff_paid_tot_backup" (
 -- Dumping data for table "leave_staff_paid_tot_backup"
 --
 
-INSERT INTO "leave_staff_paid_tot_backup" ("leave_staff_paid_tot_backup_id", "staff_id", "acc_id", "tot_paid", "paid_vat", "un_paid", "status") VALUES
+INSERT INTO hr."leave_staff_paid_tot_backup" ("leave_staff_paid_tot_backup_id", "staff_id", "acc_id", "tot_paid", "paid_vat", "un_paid", "status") VALUES
 (1, 69, '6', '9', '9', '10', 1),
 (2, 70, '6', '9', '7.5', '0', 1),
 (3, 66, '6', '9', '7.5', '0', 1),
@@ -7800,7 +7812,7 @@ INSERT INTO "leave_staff_paid_tot_backup" ("leave_staff_paid_tot_backup_id", "st
 -- Table structure for table "lesson_chapter"
 --
 
-CREATE TABLE IF NOT EXISTS "lesson_chapter" (
+CREATE TABLE IF NOT EXISTS academic."lesson_chapter" (
   "lesson_chapter_id"       SERIAL,
   "class"    INT           NOT NULL,
   "subj"     INT           NOT NULL,
@@ -7812,7 +7824,7 @@ CREATE TABLE IF NOT EXISTS "lesson_chapter" (
 -- Dumping data for table "lesson_chapter"
 --
 
-INSERT INTO "lesson_chapter" ("lesson_chapter_id", "class", "subj", "chapter") VALUES
+INSERT INTO academic."lesson_chapter" ("lesson_chapter_id", "class", "subj", "chapter") VALUES
 (1, 5, 5, 'BASIC COMPUTER ORGANISATION'),
 (2, 5, 5, 'MULTIMEDIA'),
 (3, 5, 6, 'Mask Making'),
@@ -7853,7 +7865,7 @@ INSERT INTO "lesson_chapter" ("lesson_chapter_id", "class", "subj", "chapter") V
 -- Table structure for table "lesson_plan_documents"
 --
 
-CREATE TABLE IF NOT EXISTS "lesson_plan_documents" (
+CREATE TABLE IF NOT EXISTS academic."lesson_plan_documents" (
   "lesson_plan_documents_id"                      INT           NOT NULL,
   "teacher_lesson_plan_id"  INT           NOT NULL,
   "titel"                   VARCHAR(100)  NOT NULL,
@@ -7869,7 +7881,7 @@ CREATE TABLE IF NOT EXISTS "lesson_plan_documents" (
 -- Table structure for table "library_name"
 --
 
-CREATE TABLE IF NOT EXISTS "library_name" (
+CREATE TABLE IF NOT EXISTS library."library_name" (
   "library_name_id"       SERIAL,
   "name"     VARCHAR(100)  NOT NULL DEFAULT '',
   "address"  VARCHAR(250)  DEFAULT NULL,
@@ -7885,7 +7897,7 @@ CREATE TABLE IF NOT EXISTS "library_name" (
 -- Table structure for table "lib_acc_details"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_acc_details" (
+CREATE TABLE IF NOT EXISTS library."lib_acc_details" (
   "lib_acc_details_id"           SERIAL,
   "master_id"    INT                    DEFAULT NULL,
   "media_type"   INT                    NOT NULL DEFAULT 0,
@@ -7906,7 +7918,7 @@ CREATE TABLE IF NOT EXISTS "lib_acc_details" (
 -- Table structure for table "lib_book_binding"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_book_binding" (
+CREATE TABLE IF NOT EXISTS library."lib_book_binding" (
   "lib_book_binding_id"            SERIAL,
   "acc_no"        VARCHAR(10)    DEFAULT NULL,
   "library"       INT            DEFAULT NULL,
@@ -7920,10 +7932,10 @@ CREATE TABLE IF NOT EXISTS "lib_book_binding" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "lib_book_details"
+-- Table structure for table "library_book_details"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_book_details" (
+CREATE TABLE IF NOT EXISTS library."library_book_details" (
   "lib_book_details_id"                 SERIAL,
   "title"              VARCHAR(255)  DEFAULT NULL,
   "class_no"           VARCHAR(255)  DEFAULT NULL,
@@ -7962,7 +7974,7 @@ CREATE TABLE IF NOT EXISTS "lib_book_details" (
 -- Table structure for table "lib_bound_acc_det"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_bound_acc_det" (
+CREATE TABLE IF NOT EXISTS library."lib_bound_acc_det" (
   "lib_bound_acc_det_id"            SERIAL,
   "master_id"     INT          DEFAULT NULL,
   "mag_acc_no"    VARCHAR(50)  DEFAULT NULL,
@@ -7983,7 +7995,7 @@ CREATE TABLE IF NOT EXISTS "lib_bound_acc_det" (
 -- Table structure for table "lib_bound_media_det"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_bound_media_det" (
+CREATE TABLE IF NOT EXISTS library."lib_bound_media_det" (
   "lib_bound_media_det_id"                 SERIAL,
   "acc_no"             VARCHAR(50)            DEFAULT NULL,
   "title"              VARCHAR(255)           DEFAULT NULL,
@@ -8007,7 +8019,7 @@ CREATE TABLE IF NOT EXISTS "lib_bound_media_det" (
 -- Table structure for table "lib_budget_m"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_budget_m" (
+CREATE TABLE IF NOT EXISTS library."lib_budget_m" (
   "lib_budget_m_id"         SERIAL,
   "year_from"  DATE  DEFAULT NULL,
   "year_to"    DATE  DEFAULT NULL,
@@ -8022,7 +8034,7 @@ CREATE TABLE IF NOT EXISTS "lib_budget_m" (
 -- Table structure for table "lib_cd_acc_det"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_cd_acc_det" (
+CREATE TABLE IF NOT EXISTS library."lib_cd_acc_det" (
   "lib_cd_acc_det_id"          SERIAL,
   "master_id"   INT          DEFAULT NULL,
   "media_type"  INT          NOT NULL DEFAULT 0,
@@ -8043,7 +8055,7 @@ CREATE TABLE IF NOT EXISTS "lib_cd_acc_det" (
 -- Table structure for table "lib_cd_det"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_cd_det" (
+CREATE TABLE IF NOT EXISTS library."lib_cd_det" (
   "lib_cd_det_id"                 SERIAL,
   "title"              VARCHAR(255)           DEFAULT NULL,
   "call_no"            VARCHAR(100)           DEFAULT NULL,
@@ -8071,10 +8083,10 @@ CREATE TABLE IF NOT EXISTS "lib_cd_det" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "lib_circulation_m"
+-- Table structure for table "library_circulation"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_circulation_m" (
+CREATE TABLE IF NOT EXISTS library."library_circulation" (
   "lib_circulation_m_id"           SERIAL,
   "m_id"         INT                    NOT NULL DEFAULT 0,
   "acc_id"       INTEGER  DEFAULT NULL,
@@ -8103,7 +8115,7 @@ CREATE TABLE IF NOT EXISTS "lib_circulation_m" (
 -- Table structure for table "lib_finedtls"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_finedtls" (
+CREATE TABLE IF NOT EXISTS library."lib_finedtls" (
   "lib_finedtls_id"        SERIAL,
   "daysfrom"  INT         DEFAULT NULL,
   "daysto"    INT         DEFAULT NULL,
@@ -8119,7 +8131,7 @@ CREATE TABLE IF NOT EXISTS "lib_finedtls" (
 -- Table structure for table "lib_floppy_acc_det"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_floppy_acc_det" (
+CREATE TABLE IF NOT EXISTS library."lib_floppy_acc_det" (
   "lib_floppy_acc_det_id"             SERIAL,
   "master_id"      INT          DEFAULT NULL,
   "media_type"     INT          DEFAULT NULL,
@@ -8140,7 +8152,7 @@ CREATE TABLE IF NOT EXISTS "lib_floppy_acc_det" (
 -- Table structure for table "lib_magazine"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_magazine" (
+CREATE TABLE IF NOT EXISTS library."lib_magazine" (
   "title"            VARCHAR(200)           NOT NULL DEFAULT '',
   "rack"             VARCHAR(15)            DEFAULT NULL,
   "magazine_sub_no"  VARCHAR(50)            DEFAULT NULL,
@@ -8179,7 +8191,7 @@ CREATE TABLE IF NOT EXISTS "lib_magazine" (
 -- Table structure for table "lib_magazine_subscription"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_magazine_subscription" (
+CREATE TABLE IF NOT EXISTS library."lib_magazine_subscription" (
   "lib_magazine_subscription_id"                 SERIAL,
   "title"              VARCHAR(200)           NOT NULL DEFAULT '',
   "language"           VARCHAR(20)            DEFAULT NULL,
@@ -8206,7 +8218,7 @@ CREATE TABLE IF NOT EXISTS "lib_magazine_subscription" (
 -- Table structure for table "lib_mediatype"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_mediatype" (
+CREATE TABLE IF NOT EXISTS library."lib_mediatype" (
   "lib_mediatype_id"    INT          NOT NULL DEFAULT 0,
   "name"  VARCHAR(50)  NOT NULL DEFAULT '',
   PRIMARY KEY ("lib_mediatype_id")
@@ -8218,7 +8230,7 @@ CREATE TABLE IF NOT EXISTS "lib_mediatype" (
 -- Table structure for table "lib_membership_det"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_membership_det" (
+CREATE TABLE IF NOT EXISTS library."lib_membership_det" (
   "mbno"     VARCHAR(50)    NOT NULL DEFAULT '',
   "m_id"     VARCHAR(50)    NOT NULL DEFAULT '',
   "library"  VARCHAR(50)    NOT NULL DEFAULT '',
@@ -8229,10 +8241,10 @@ CREATE TABLE IF NOT EXISTS "lib_membership_det" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "lib_membership_m"
+-- Table structure for table "library_membership"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_membership_m" (
+CREATE TABLE IF NOT EXISTS library."library_membership" (
   "lib_membership_m_id"            SERIAL,
   "issued_on"     DATE          DEFAULT NULL,
   "valid_till"    DATE          DEFAULT NULL,
@@ -8255,7 +8267,7 @@ CREATE TABLE IF NOT EXISTS "lib_membership_m" (
 -- Table structure for table "lib_newmagazine"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_newmagazine" (
+CREATE TABLE IF NOT EXISTS library."lib_newmagazine" (
   "title"            VARCHAR(200)           NOT NULL DEFAULT '',
   "rack"             VARCHAR(15)            DEFAULT NULL,
   "magazine_sub_no"  VARCHAR(50)            DEFAULT NULL,
@@ -8292,7 +8304,7 @@ CREATE TABLE IF NOT EXISTS "lib_newmagazine" (
 -- Table structure for table "lib_newspaper_det"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_newspaper_det" (
+CREATE TABLE IF NOT EXISTS library."lib_newspaper_det" (
   "lib_newspaper_det_id"              SERIAL,
   "newspaper_no"    VARCHAR(10)   DEFAULT NULL,
   "title"           VARCHAR(150)  DEFAULT NULL,
@@ -8313,7 +8325,7 @@ CREATE TABLE IF NOT EXISTS "lib_newspaper_det" (
 -- Table structure for table "lib_order_det"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_order_det" (
+CREATE TABLE IF NOT EXISTS library."lib_order_det" (
   "lib_order_det_id"               SERIAL,
   "order_id"         INT   NOT NULL DEFAULT 0,
   "title"            TEXT,
@@ -8331,7 +8343,7 @@ CREATE TABLE IF NOT EXISTS "lib_order_det" (
 -- Table structure for table "lib_order_m"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_order_m" (
+CREATE TABLE IF NOT EXISTS library."lib_order_m" (
   "lib_order_m_id"            SERIAL,
   "order_no"      VARCHAR(50)  NOT NULL DEFAULT '',
   "order_date"    DATE         DEFAULT NULL,
@@ -8348,7 +8360,7 @@ CREATE TABLE IF NOT EXISTS "lib_order_m" (
 -- Table structure for table "lib_phy_stkrep"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_phy_stkrep" (
+CREATE TABLE IF NOT EXISTS library."lib_phy_stkrep" (
   "lib_phy_stkrep_id"       SERIAL,
   "mat_acc"  TEXT          NOT NULL,
   "mis_acc"  TEXT          NOT NULL,
@@ -8371,7 +8383,7 @@ CREATE TABLE IF NOT EXISTS "lib_phy_stkrep" (
 -- Table structure for table "lib_project_report_det"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_project_report_det" (
+CREATE TABLE IF NOT EXISTS library."lib_project_report_det" (
   "lib_project_report_det_id"                 SERIAL,
   "title"              VARCHAR(255)  DEFAULT NULL,
   "call_no"            VARCHAR(100)  DEFAULT NULL,
@@ -8399,7 +8411,7 @@ CREATE TABLE IF NOT EXISTS "lib_project_report_det" (
 -- Table structure for table "lib_proj_acc_det"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_proj_acc_det" (
+CREATE TABLE IF NOT EXISTS library."lib_proj_acc_det" (
   "lib_proj_acc_det_id"           SERIAL,
   "master_id"    INT       DEFAULT NULL,
   "media_type"   INT       NOT NULL DEFAULT 0,
@@ -8420,7 +8432,7 @@ CREATE TABLE IF NOT EXISTS "lib_proj_acc_det" (
 -- Table structure for table "lib_purchase_det"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_purchase_det" (
+CREATE TABLE IF NOT EXISTS library."lib_purchase_det" (
   "p_det_id"     SERIAL,
   "purchase_id"  INT           DEFAULT NULL,
   "title"        VARCHAR(200)  DEFAULT NULL,
@@ -8439,7 +8451,7 @@ CREATE TABLE IF NOT EXISTS "lib_purchase_det" (
 -- Table structure for table "lib_purchase_m"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_purchase_m" (
+CREATE TABLE IF NOT EXISTS library."lib_purchase_m" (
   "lib_purchase_m_id"             SERIAL,
   "order_id"       VARCHAR(50)  DEFAULT NULL,
   "purchaseNo"     VARCHAR(50)  NOT NULL DEFAULT '',
@@ -8458,7 +8470,7 @@ CREATE TABLE IF NOT EXISTS "lib_purchase_m" (
 -- Table structure for table "lib_question_paper_det"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_question_paper_det" (
+CREATE TABLE IF NOT EXISTS library."lib_question_paper_det" (
   "lib_question_paper_det_id"                 SERIAL,
   "question_paper_no"  VARCHAR(255)  DEFAULT NULL,
   "school"            VARCHAR(10)   DEFAULT NULL,
@@ -8483,7 +8495,7 @@ CREATE TABLE IF NOT EXISTS "lib_question_paper_det" (
 -- Table structure for table "lib_quotation"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_quotation" (
+CREATE TABLE IF NOT EXISTS library."lib_quotation" (
   "lib_quotation_id"         SERIAL,
   "library"    INT   DEFAULT NULL,
   "quot_date"  DATE  DEFAULT NULL,
@@ -8497,7 +8509,7 @@ CREATE TABLE IF NOT EXISTS "lib_quotation" (
 -- Table structure for table "lib_register"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_register" (
+CREATE TABLE IF NOT EXISTS library."lib_register" (
   "lib_register_id"            SERIAL,
   "library"       INT           DEFAULT NULL,
   "register"      VARCHAR(100)  DEFAULT NULL,
@@ -8511,7 +8523,7 @@ CREATE TABLE IF NOT EXISTS "lib_register" (
 -- Table structure for table "lib_reservation_m"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_reservation_m" (
+CREATE TABLE IF NOT EXISTS library."lib_reservation_m" (
   "lib_reservation_m_id"        SERIAL,
   "l_id"      INT          DEFAULT NULL,
   "resdate"   DATE         DEFAULT NULL,
@@ -8528,7 +8540,7 @@ CREATE TABLE IF NOT EXISTS "lib_reservation_m" (
 -- Table structure for table "lib_reservation_temp"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_reservation_temp" (
+CREATE TABLE IF NOT EXISTS library."lib_reservation_temp" (
   "lib_reservation_temp_id"          SERIAL,
   "l_id"        VARCHAR(20)            DEFAULT NULL,
   "resdate"     DATE                   DEFAULT NULL,
@@ -8546,7 +8558,7 @@ CREATE TABLE IF NOT EXISTS "lib_reservation_temp" (
 -- Table structure for table "lib_temp_quotation_trans"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_temp_quotation_trans" (
+CREATE TABLE IF NOT EXISTS library."lib_temp_quotation_trans" (
   "lib_temp_quotation_trans_id"         SERIAL,
   "author"     VARCHAR(100)  DEFAULT NULL,
   "publisher"  VARCHAR(100)  DEFAULT NULL,
@@ -8563,7 +8575,7 @@ CREATE TABLE IF NOT EXISTS "lib_temp_quotation_trans" (
 -- Table structure for table "lib_vendor_m"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_vendor_m" (
+CREATE TABLE IF NOT EXISTS library."lib_vendor_m" (
   "lib_vendor_m_id"         SERIAL,
   "type"       INT           NOT NULL DEFAULT 0,
   "Name"       VARCHAR(100)  NOT NULL DEFAULT '',
@@ -8581,7 +8593,7 @@ CREATE TABLE IF NOT EXISTS "lib_vendor_m" (
 -- Table structure for table "lib_vendor_type"
 --
 
-CREATE TABLE IF NOT EXISTS "lib_vendor_type" (
+CREATE TABLE IF NOT EXISTS library."lib_vendor_type" (
   "lib_vendor_type_id"    SERIAL,
   "type"  VARCHAR(50)  NOT NULL DEFAULT '',
   PRIMARY KEY ("lib_vendor_type_id")
@@ -8590,10 +8602,10 @@ CREATE TABLE IF NOT EXISTS "lib_vendor_type" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "links"
+-- Table structure for table "settings_links"
 --
 
-CREATE TABLE IF NOT EXISTS "links" (
+CREATE TABLE IF NOT EXISTS settings."settings_links" (
   "module"        VARCHAR(50)   DEFAULT NULL,
   "submodule"     VARCHAR(50)   DEFAULT NULL,
   "linkname"      VARCHAR(250)  DEFAULT NULL,
@@ -8607,10 +8619,10 @@ CREATE TABLE IF NOT EXISTS "links" (
 );
 
 --
--- Dumping data for table "links"
+-- Dumping data for table "settings_links"
 --
 
-INSERT INTO "links" ("module", "submodule", "linkname", "linkpath", "id", "parameter", "Display_name", "help", "imgpath") VALUES
+INSERT INTO settings."settings_links" ("module", "submodule", "linkname", "linkpath", "id", "parameter", "Display_name", "help", "imgpath") VALUES
 ('Accounts', 'Add Masters', 'Bank Details', '/lms/fee/bank_det.php', 1, '', 'Bank Details', '', ''),
 ('Accounts', 'Add Masters', 'Fee Head', '/lms/fee/feetypeadd.php', 2, '', 'Fee Head', '', ''),
 ('Accounts', 'Add Masters', 'General Fee Structure', '/lms/fee/feestut.php', 3, '', 'Fee Structure', '', ''),
@@ -8972,7 +8984,7 @@ INSERT INTO "links" ("module", "submodule", "linkname", "linkpath", "id", "param
 ('Email & SMS alert', 'Email', 'Add member to Group', '/lms/mail_msg/mail/mail_member.php', 427, 'NULL', 'Add member to Group', '', ''),
 ('Email & SMS alert', 'Email', 'Send Group Mail', '/lms/mail_msg/mail/sendmail_new.php', 428, 'NULL', 'Send Group Mail', '', ''),
 ('Student Assessment', 'Add Masters', 'Add Skill KG', '/lms/kg/subskill.php', 429, 'NULL', 'Add Skill KG', '', '');
-INSERT INTO "links" ("module", "submodule", "linkname", "linkpath", "id", "parameter", "Display_name", "help", "imgpath") VALUES
+INSERT INTO settings."settings_links" ("module", "submodule", "linkname", "linkpath", "id", "parameter", "Display_name", "help", "imgpath") VALUES
 ('Student Assessment', 'Add Masters', 'Skill Grade KG', '/lms/kg/gradekg.php', 430, 'NULL', 'Students Review Sheet (KG)', '', ''),
 ('Student Assessment', 'Reports', 'KG Reports', '/lms/kg/reportskg.php', 431, 'NULL', 'Students Review Sheet (KG)', '', ''),
 ('Student-Management', 'Reports', 'Parent Username', '/lms/student_det/parentUsername.php', 432, 'NULL', 'Parent Username', '', ''),
@@ -9069,10 +9081,10 @@ INSERT INTO "links" ("module", "submodule", "linkname", "linkpath", "id", "param
 -- --------------------------------------------------------
 
 --
--- Table structure for table "links_p"
+-- Table structure for table "settings_links_parents"
 --
 
-CREATE TABLE IF NOT EXISTS "links_p" (
+CREATE TABLE IF NOT EXISTS settings."settings_links_parents" (
   "module"        VARCHAR(50)   DEFAULT NULL,
   "submodule"     VARCHAR(50)   DEFAULT NULL,
   "linkname"      VARCHAR(250)  DEFAULT NULL,
@@ -9085,10 +9097,10 @@ CREATE TABLE IF NOT EXISTS "links_p" (
 );
 
 --
--- Dumping data for table "links_p"
+-- Dumping data for table "settings_links_parents"
 --
 
-INSERT INTO "links_p" ("module", "submodule", "linkname", "linkpath", "id", "parameter", "Display_name", "help") VALUES
+INSERT INTO settings."settings_links_parents" ("module", "submodule", "linkname", "linkpath", "id", "parameter", "Display_name", "help") VALUES
 ('Main', 'Main', 'User Management', '/lms/menu/usermenu.php', 206, '', '', ''),
 ('Main', 'Main', 'Student Management', '/lms/menu/studentmenu.php', 207, '', '', ''),
 ('Main', 'Main', 'Class', '/lms/menu/class.php', 214, '', '', ''),
@@ -9122,7 +9134,7 @@ INSERT INTO "links_p" ("module", "submodule", "linkname", "linkpath", "id", "par
 -- Table structure for table "location_master"
 --
 
-CREATE TABLE IF NOT EXISTS "location_master" (
+CREATE TABLE IF NOT EXISTS asset."location_master" (
   "location_master_id"        SERIAL,
   "location"  VARCHAR(50)  DEFAULT NULL,
   "dept_id"   INT          DEFAULT NULL,
@@ -9135,7 +9147,7 @@ CREATE TABLE IF NOT EXISTS "location_master" (
 -- Table structure for table "log"
 --
 
-CREATE TABLE IF NOT EXISTS "log" (
+CREATE TABLE IF NOT EXISTS settings."log" (
   "log_id"          BIGSERIAL,
   "username"    TEXT,
   "address"     TEXT,
@@ -9151,7 +9163,7 @@ CREATE TABLE IF NOT EXISTS "log" (
 -- Dumping data for table "log"
 --
 
-INSERT INTO "log" ("log_id", "username", "address", "accessdate", "urladdress", "linkname", "module", "trans_date") VALUES
+INSERT INTO settings."log" ("log_id", "username", "address", "accessdate", "urladdress", "linkname", "module", "trans_date") VALUES
 (1, 'administrator', '127.0.0.1', '2026-04-02 07:07:51', '/lms/home.php', 'Home', NULL, '2026-04-02'),
 (2, 'administrator', '127.0.0.1', '2026-04-02 07:07:57', '/lms/home.php', 'Home', NULL, '2026-04-02'),
 (3, 'administrator', '127.0.0.1', '2026-04-02 07:08:03', '/lms/home.php', 'Home', NULL, '2026-04-02'),
@@ -9169,7 +9181,7 @@ INSERT INTO "log" ("log_id", "username", "address", "accessdate", "urladdress", 
 -- Table structure for table "lunch_menu_master"
 --
 
-CREATE TABLE IF NOT EXISTS "lunch_menu_master" (
+CREATE TABLE IF NOT EXISTS academic."lunch_menu_master" (
   "lunch_menu_master_id"              SERIAL,
   "day_det"         VARCHAR(11)   NOT NULL,
   "menu_date"       DATE          NOT NULL,
@@ -9183,7 +9195,7 @@ CREATE TABLE IF NOT EXISTS "lunch_menu_master" (
 -- Dumping data for table "lunch_menu_master"
 --
 
-INSERT INTO "lunch_menu_master" ("lunch_menu_master_id", "day_det", "menu_date", "order_id", "Breakfast_Menu", "Lunch_Menu") VALUES
+INSERT INTO academic."lunch_menu_master" ("lunch_menu_master_id", "day_det", "menu_date", "order_id", "Breakfast_Menu", "Lunch_Menu") VALUES
 (1, 'Monday', '2026-01-03', 1, 'Samosa, Jam bread, fruit', 'Mix Veg., Jeera Rice, Dal Tadaka, Sprout Salad'),
 (2, 'Tuesday', '2026-01-04', 2, 'veg club sandwich, fruit', 'Boiled Veg, Schezwan Rice Soup, Palak Paratha'),
 (3, 'Wednesday', '2026-01-05', 3, 'Muesli-milk, Bread Butter, fruit', 'School will be functioning up to 11.00am, so no lunch'),
@@ -9196,7 +9208,7 @@ INSERT INTO "lunch_menu_master" ("lunch_menu_master_id", "day_det", "menu_date",
 -- Table structure for table "lunch_menu_master_temp"
 --
 
-CREATE TABLE IF NOT EXISTS "lunch_menu_master_temp" (
+CREATE TABLE IF NOT EXISTS academic."lunch_menu_master_temp" (
   "sr_number"       VARCHAR(10)   NOT NULL,
   "date_det"        VARCHAR(15)   NOT NULL,
   "day"             VARCHAR(10)   NOT NULL,
@@ -9209,7 +9221,7 @@ CREATE TABLE IF NOT EXISTS "lunch_menu_master_temp" (
 -- Dumping data for table "lunch_menu_master_temp"
 --
 
-INSERT INTO "lunch_menu_master_temp" ("sr_number", "date_det", "day", "Breakfast_Menu", "Lunch_Menu") VALUES
+INSERT INTO academic."lunch_menu_master_temp" ("sr_number", "date_det", "day", "Breakfast_Menu", "Lunch_Menu") VALUES
 ('1', '2026-01-03', 'Monday', 'Samosa, Jam bread, fruit', 'Mix Veg., Jeera Rice, Dal Tadaka, Sprout Salad'),
 ('2', '2026-01-04', 'Tuesday', 'veg club sandwich, fruit', 'Boiled Veg, Schezwan Rice Soup, Palak Paratha'),
 ('3', '2026-01-05', 'Wednesday', 'Muesli-milk, Bread Butter, fruit', 'School will be functioning up to 11.00am, so no lunch'),
@@ -9236,7 +9248,7 @@ INSERT INTO "lunch_menu_master_temp" ("sr_number", "date_det", "day", "Breakfast
 -- Table structure for table "mailinsert"
 --
 
-CREATE TABLE IF NOT EXISTS "mailinsert" (
+CREATE TABLE IF NOT EXISTS communication."mailinsert" (
   "mailinsert_id"     SERIAL,
   "user"   VARCHAR(80)  NOT NULL,
   "mail2"  VARCHAR(80)  NOT NULL,
@@ -9247,7 +9259,7 @@ CREATE TABLE IF NOT EXISTS "mailinsert" (
 -- Dumping data for table "mailinsert"
 --
 
-INSERT INTO "mailinsert" ("mailinsert_id", "user", "mail2") VALUES
+INSERT INTO communication."mailinsert" ("mailinsert_id", "user", "mail2") VALUES
 (1247, 'oisinfo', 'hiran_naresh@email.com'),
 (1248, 'oisinfo', 'ajay@email.com'),
 (1250, 'oisinfo', 'bijit.kundu@email.com'),
@@ -9266,7 +9278,7 @@ INSERT INTO "mailinsert" ("mailinsert_id", "user", "mail2") VALUES
 -- Table structure for table "mail_attachments"
 --
 
-CREATE TABLE IF NOT EXISTS "mail_attachments" (
+CREATE TABLE IF NOT EXISTS communication."mail_attachments" (
   "mail_attachments_id"        SERIAL,
   "str_id"    INT           NOT NULL,
   "name"      VARCHAR(50)   NOT NULL,
@@ -9281,7 +9293,7 @@ CREATE TABLE IF NOT EXISTS "mail_attachments" (
 -- Dumping data for table "mail_attachments"
 --
 
-INSERT INTO "mail_attachments" ("mail_attachments_id", "str_id", "name", "link", "adate", "username", "status") VALUES
+INSERT INTO communication."mail_attachments" ("mail_attachments_id", "str_id", "name", "link", "adate", "username", "status") VALUES
 (1, 0, 'test', 'attach/07-08-20261375884658test.xlsx', '2026-08-07', 'administrator', 0),
 (2, 0, '', 'attach/07-08-20261375885933Impact of different ingredients.docx', '2026-08-07', 'administrator', 0),
 (3, 0, 'file1', '', '2026-08-07', 'administrator', 0),
@@ -9299,7 +9311,7 @@ INSERT INTO "mail_attachments" ("mail_attachments_id", "str_id", "name", "link",
 -- Table structure for table "mail_details"
 --
 
-CREATE TABLE IF NOT EXISTS "mail_details" (
+CREATE TABLE IF NOT EXISTS communication."mail_details" (
   "mail_details_id"            SERIAL,
   "mail_subject"  VARCHAR(70)  NOT NULL,
   "mail_content"  MEDIUMTEXT   NOT NULL,
@@ -9314,7 +9326,7 @@ CREATE TABLE IF NOT EXISTS "mail_details" (
 -- Dumping data for table "mail_details"
 --
 
-INSERT INTO "mail_details" ("mail_details_id", "mail_subject", "mail_content", "status", "mail_date", "username", "count") VALUES
+INSERT INTO communication."mail_details" ("mail_details_id", "mail_subject", "mail_content", "status", "mail_date", "username", "count") VALUES
 (1, 'HEALTH INfo', '', 1, '2026-05-28', 'administrator', 0),
 (2, 'French 6 week update', '<p>Dear Parents,</p>\r\n<p>the year started with a lot of enthusiasm in the French class. It is good to be back and to see the children everyday. Do contact me at any time, I will be happy to answer your questions.</p>\r\n<p>For now, please find attached our plans for the first six weeks of instruction.</p>\r\n<p>Kind regards.</p>\r\n<p>Pascal Fuzier.</p>\r\n', 1, '2026-08-14', 'pascalf', 0),
 (3, 'No school tomorrow & Thursday is library day. ', '<p>Dear parents of 1C,</p>\r\n<p>Please note that 1C class will be visiting the library every Thursday for book exchange. Students are encouraged to exchange books on any day they are done with the library books. Students are learning about &#39;good fit book&#39; and &#39;I PICK&#39; to<i><u> become independent in choosing the right books for them</u></i>. &#39;I PICK&#39; stands for<font color="#FF0000"> I</font> choose the book.<font color="#FF0000"> P</font>urpose; Why do I want to read this book? <font color="#FF0000">I</font>nterest: Does this book interest me? <font color="#FF0000">C</font>omprehension: Do I understand the text? <font color="#FF0000">K</font>now: I know most of the words. Please expect the children to bring the books that are not exactly at their reading level, but try to understand why they might have choosen the book. The discussion and encouragement of &#39;I PICK&#39; should continue at home as well. The modifiied reading will be provided by the school. Please read with your children and talk about reading everyday.</p>\r\n<p>As you know and received the note many times, there is no school tomorrow.</p>\r\n<p>Enjoy Raksha Badhan and thank you for your support,</p>\r\n<p>Vitna Bailey</p>\r\n', 1, '2026-08-19', 'vitnab', 0);
@@ -9325,7 +9337,7 @@ INSERT INTO "mail_details" ("mail_details_id", "mail_subject", "mail_content", "
 -- Table structure for table "mail_group"
 --
 
-CREATE TABLE IF NOT EXISTS "mail_group" (
+CREATE TABLE IF NOT EXISTS communication."mail_group" (
   "mail_group_id"           SERIAL,
   "group_name"   VARCHAR(100)  DEFAULT NULL,
   "description"  VARCHAR(255)  DEFAULT NULL,
@@ -9337,7 +9349,7 @@ CREATE TABLE IF NOT EXISTS "mail_group" (
 -- Dumping data for table "mail_group"
 --
 
-INSERT INTO "mail_group" ("mail_group_id", "group_name", "description", "status") VALUES
+INSERT INTO communication."mail_group" ("mail_group_id", "group_name", "description", "status") VALUES
 (1, 'p', '', 1),
 (2, 'ECA', 'Cultural', 1);
 
@@ -9347,7 +9359,7 @@ INSERT INTO "mail_group" ("mail_group_id", "group_name", "description", "status"
 -- Table structure for table "mail_logs"
 --
 
-CREATE TABLE IF NOT EXISTS "mail_logs" (
+CREATE TABLE IF NOT EXISTS communication."mail_logs" (
   "mail_logs_id"            SERIAL,
   "mail_sent_id"  INT           NOT NULL,
   "mail_details"      TEXT          NOT NULL,
@@ -9371,7 +9383,7 @@ CREATE TABLE IF NOT EXISTS "mail_logs" (
 -- Table structure for table "mail_logs_system"
 --
 
-CREATE TABLE IF NOT EXISTS "mail_logs_system" (
+CREATE TABLE IF NOT EXISTS communication."mail_logs_system" (
   "mail_logs_system_id"            SERIAL,
   "mail_sent_id"  INT           NOT NULL,
   "mail_details"      TEXT          NOT NULL,
@@ -9393,7 +9405,7 @@ CREATE TABLE IF NOT EXISTS "mail_logs_system" (
 -- Table structure for table "mail_member"
 --
 
-CREATE TABLE IF NOT EXISTS "mail_member" (
+CREATE TABLE IF NOT EXISTS communication."mail_member" (
   "mail_member_id"           SERIAL,
   "group_name"   VARCHAR(10)   DEFAULT NULL,
   "stud_id"      VARCHAR(100)  DEFAULT NULL,
@@ -9408,7 +9420,7 @@ CREATE TABLE IF NOT EXISTS "mail_member" (
 -- Table structure for table "mail_member_field"
 --
 
-CREATE TABLE IF NOT EXISTS "mail_member_field" (
+CREATE TABLE IF NOT EXISTS communication."mail_member_field" (
   "mail_member_field_id"          SERIAL,
   "name"        VARCHAR(100)  DEFAULT NULL,
   "name_field"  VARCHAR(100)  DEFAULT NULL,
@@ -9426,7 +9438,7 @@ CREATE TABLE IF NOT EXISTS "mail_member_field" (
 -- Table structure for table "mail_sent_count"
 --
 
-CREATE TABLE IF NOT EXISTS "mail_sent_count" (
+CREATE TABLE IF NOT EXISTS communication."mail_sent_count" (
   "mail_sent_count_id"            SERIAL,
   "username"      VARCHAR(30)  NOT NULL,
   "mail_details_id"   VARCHAR(70)  NOT NULL,
@@ -9445,7 +9457,7 @@ CREATE TABLE IF NOT EXISTS "mail_sent_count" (
 -- Table structure for table "mail_settings"
 --
 
-CREATE TABLE IF NOT EXISTS "mail_settings" (
+CREATE TABLE IF NOT EXISTS communication."mail_settings" (
   "mail_settings_id"            SERIAL,
   "user_id"       VARCHAR(80)  NOT NULL,
   "status"        SMALLINT   NOT NULL,
@@ -9465,7 +9477,7 @@ CREATE TABLE IF NOT EXISTS "mail_settings" (
 -- Dumping data for table "mail_settings"
 --
 
-INSERT INTO "mail_settings" ("mail_settings_id", "user_id", "status", "from_name", "from_address", "domain_name", "smtp_host", "smtp_port", "username", "password", "signature", "count") VALUES
+INSERT INTO communication."mail_settings" ("mail_settings_id", "user_id", "status", "from_name", "from_address", "domain_name", "smtp_host", "smtp_port", "username", "password", "signature", "count") VALUES
 (1, 'administrator', 1, 'Soumendra Nath De', 'soumendranath.de@email.com', 'email.com', 'smtp.gmail.com', 465, 'soumendranath.de', 'xxxxxx', '', 0),
 (2, 'faculty', 1, 'Roshan', 'sureshduggaladka@email.com', 'email.com', 'smtp.gmail.com', 465, 'sureshduggaladka', 'xxxxxx', 'Thanks and Kind Regards', 0),
 (3, 'nehata', 1, 'MySchool', 'neha.thakar@email.com', 'email.com', 'smtp.gmail.com', 465, 'neha.thakar', 'xxxxxx', '', 0),
@@ -9483,7 +9495,7 @@ INSERT INTO "mail_settings" ("mail_settings_id", "user_id", "status", "from_name
 -- Table structure for table "major_master"
 --
 
-CREATE TABLE IF NOT EXISTS "major_master" (
+CREATE TABLE IF NOT EXISTS hr."major_master" (
   "major_master_id"          SERIAL,
   "section_id"  INT  DEFAULT NULL,
   "sem_id"      INT  DEFAULT NULL,
@@ -9497,7 +9509,7 @@ CREATE TABLE IF NOT EXISTS "major_master" (
 -- Table structure for table "marks_1_1"
 --
 
-CREATE TABLE IF NOT EXISTS "marks_1_1" (
+CREATE TABLE IF NOT EXISTS academic."marks_1_1" (
   "marks_1_1_id"       SERIAL,
   "studid"   INT  DEFAULT NULL,
   "secid"    INT  DEFAULT NULL,
@@ -9533,7 +9545,7 @@ CREATE TABLE IF NOT EXISTS "marks_1_1" (
 -- Table structure for table "marks_2_2"
 --
 
-CREATE TABLE IF NOT EXISTS "marks_2_2" (
+CREATE TABLE IF NOT EXISTS academic."marks_2_2" (
   "marks_2_2_id"       SERIAL,
   "studid"   INT  DEFAULT NULL,
   "secid"    INT  DEFAULT NULL,
@@ -9569,7 +9581,7 @@ CREATE TABLE IF NOT EXISTS "marks_2_2" (
 -- Table structure for table "marks_2_3"
 --
 
-CREATE TABLE IF NOT EXISTS "marks_2_3" (
+CREATE TABLE IF NOT EXISTS academic."marks_2_3" (
   "marks_2_3_id"       SERIAL,
   "studid"   INT  DEFAULT NULL,
   "secid"    INT  DEFAULT NULL,
@@ -9605,7 +9617,7 @@ CREATE TABLE IF NOT EXISTS "marks_2_3" (
 -- Table structure for table "marks_2_4"
 --
 
-CREATE TABLE IF NOT EXISTS "marks_2_4" (
+CREATE TABLE IF NOT EXISTS academic."marks_2_4" (
   "marks_2_4_id"       SERIAL,
   "studid"   INT  DEFAULT NULL,
   "secid"    INT  DEFAULT NULL,
@@ -9641,7 +9653,7 @@ CREATE TABLE IF NOT EXISTS "marks_2_4" (
 -- Table structure for table "marks_2_5"
 --
 
-CREATE TABLE IF NOT EXISTS "marks_2_5" (
+CREATE TABLE IF NOT EXISTS academic."marks_2_5" (
   "marks_2_5_id"       SERIAL,
   "studid"   INT  DEFAULT NULL,
   "secid"    INT  DEFAULT NULL,
@@ -9677,7 +9689,7 @@ CREATE TABLE IF NOT EXISTS "marks_2_5" (
 -- Table structure for table "marks_2_6"
 --
 
-CREATE TABLE IF NOT EXISTS "marks_2_6" (
+CREATE TABLE IF NOT EXISTS academic."marks_2_6" (
   "marks_2_6_id"       SERIAL,
   "studid"   INT  DEFAULT NULL,
   "secid"    INT  DEFAULT NULL,
@@ -9713,7 +9725,7 @@ CREATE TABLE IF NOT EXISTS "marks_2_6" (
 -- Table structure for table "marks_2_7"
 --
 
-CREATE TABLE IF NOT EXISTS "marks_2_7" (
+CREATE TABLE IF NOT EXISTS academic."marks_2_7" (
   "marks_2_7_id"       SERIAL,
   "studid"   INT  DEFAULT NULL,
   "secid"    INT  DEFAULT NULL,
@@ -9749,7 +9761,7 @@ CREATE TABLE IF NOT EXISTS "marks_2_7" (
 -- Table structure for table "marks_2_8"
 --
 
-CREATE TABLE IF NOT EXISTS "marks_2_8" (
+CREATE TABLE IF NOT EXISTS academic."marks_2_8" (
   "marks_2_8_id"       SERIAL,
   "studid"   INT  DEFAULT NULL,
   "secid"    INT  DEFAULT NULL,
@@ -9785,7 +9797,7 @@ CREATE TABLE IF NOT EXISTS "marks_2_8" (
 -- Table structure for table "marks_2_9"
 --
 
-CREATE TABLE IF NOT EXISTS "marks_2_9" (
+CREATE TABLE IF NOT EXISTS academic."marks_2_9" (
   "marks_2_9_id"       SERIAL,
   "studid"   INT  DEFAULT NULL,
   "secid"    INT  DEFAULT NULL,
@@ -9821,7 +9833,7 @@ CREATE TABLE IF NOT EXISTS "marks_2_9" (
 -- Table structure for table "marks_3_10"
 --
 
-CREATE TABLE IF NOT EXISTS "marks_3_10" (
+CREATE TABLE IF NOT EXISTS academic."marks_3_10" (
   "marks_3_10_id"       SERIAL,
   "studid"   INT  DEFAULT NULL,
   "secid"    INT  DEFAULT NULL,
@@ -9857,7 +9869,7 @@ CREATE TABLE IF NOT EXISTS "marks_3_10" (
 -- Table structure for table "marks_3_11"
 --
 
-CREATE TABLE IF NOT EXISTS "marks_3_11" (
+CREATE TABLE IF NOT EXISTS academic."marks_3_11" (
   "marks_3_11_id"       SERIAL,
   "studid"   INT  DEFAULT NULL,
   "secid"    INT  DEFAULT NULL,
@@ -9893,7 +9905,7 @@ CREATE TABLE IF NOT EXISTS "marks_3_11" (
 -- Table structure for table "marks_3_12"
 --
 
-CREATE TABLE IF NOT EXISTS "marks_3_12" (
+CREATE TABLE IF NOT EXISTS academic."marks_3_12" (
   "marks_3_12_id"       SERIAL,
   "studid"   INT  DEFAULT NULL,
   "secid"    INT  DEFAULT NULL,
@@ -9929,7 +9941,7 @@ CREATE TABLE IF NOT EXISTS "marks_3_12" (
 -- Table structure for table "marks_4_13"
 --
 
-CREATE TABLE IF NOT EXISTS "marks_4_13" (
+CREATE TABLE IF NOT EXISTS academic."marks_4_13" (
   "marks_4_13_id"       SERIAL,
   "studid"   INT  DEFAULT NULL,
   "secid"    INT  DEFAULT NULL,
@@ -9965,7 +9977,7 @@ CREATE TABLE IF NOT EXISTS "marks_4_13" (
 -- Table structure for table "marks_4_14"
 --
 
-CREATE TABLE IF NOT EXISTS "marks_4_14" (
+CREATE TABLE IF NOT EXISTS academic."marks_4_14" (
   "marks_4_14_id"       SERIAL,
   "studid"   INT  DEFAULT NULL,
   "secid"    INT  DEFAULT NULL,
@@ -10001,7 +10013,7 @@ CREATE TABLE IF NOT EXISTS "marks_4_14" (
 -- Table structure for table "marks_4_15"
 --
 
-CREATE TABLE IF NOT EXISTS "marks_4_15" (
+CREATE TABLE IF NOT EXISTS academic."marks_4_15" (
   "marks_4_15_id"       SERIAL,
   "studid"   INT  DEFAULT NULL,
   "secid"    INT  DEFAULT NULL,
@@ -10037,7 +10049,7 @@ CREATE TABLE IF NOT EXISTS "marks_4_15" (
 -- Table structure for table "marks_4_16"
 --
 
-CREATE TABLE IF NOT EXISTS "marks_4_16" (
+CREATE TABLE IF NOT EXISTS academic."marks_4_16" (
   "marks_4_16_id"       SERIAL,
   "studid"   INT  DEFAULT NULL,
   "secid"    INT  DEFAULT NULL,
@@ -10073,7 +10085,7 @@ CREATE TABLE IF NOT EXISTS "marks_4_16" (
 -- Table structure for table "marks_2026_5"
 --
 
-CREATE TABLE IF NOT EXISTS "marks_2026_5" (
+CREATE TABLE IF NOT EXISTS academic."marks_2026_5" (
   "marks_2026_5_id"             SERIAL,
   "class_section"  INT           DEFAULT NULL,
   "student_id"     INT           DEFAULT NULL,
@@ -10095,7 +10107,7 @@ CREATE TABLE IF NOT EXISTS "marks_2026_5" (
 -- Table structure for table "marks_2026_9"
 --
 
-CREATE TABLE IF NOT EXISTS "marks_2026_9" (
+CREATE TABLE IF NOT EXISTS academic."marks_2026_9" (
   "marks_2026_9_id"             SERIAL,
   "class_section"  INT           DEFAULT NULL,
   "student_id"     INT           DEFAULT NULL,
@@ -10117,7 +10129,7 @@ CREATE TABLE IF NOT EXISTS "marks_2026_9" (
 -- Table structure for table "master_approaches"
 --
 
-CREATE TABLE IF NOT EXISTS "master_approaches" (
+CREATE TABLE IF NOT EXISTS academic."master_approaches" (
   "master_approaches_id"     SERIAL,
   "divi"   INT           NOT NULL,
   "class"  INT           NOT NULL,
@@ -10133,7 +10145,7 @@ CREATE TABLE IF NOT EXISTS "master_approaches" (
 -- Table structure for table "master_lesson_plan"
 --
 
-CREATE TABLE IF NOT EXISTS "master_lesson_plan" (
+CREATE TABLE IF NOT EXISTS academic."master_lesson_plan" (
   "master_lesson_plan_id"           SERIAL,
   "divi"         INT           NOT NULL,
   "class"        INT           NOT NULL,
@@ -10153,7 +10165,7 @@ CREATE TABLE IF NOT EXISTS "master_lesson_plan" (
 -- Dumping data for table "master_lesson_plan"
 --
 
-INSERT INTO "master_lesson_plan" ("master_lesson_plan_id", "divi", "class", "subj", "chapter", "topic", "description", "home_work", "notes", "details", "reso", "status") VALUES
+INSERT INTO academic."master_lesson_plan" ("master_lesson_plan_id", "divi", "class", "subj", "chapter", "topic", "description", "home_work", "notes", "details", "reso", "status") VALUES
 (1, 0, 5, 5, '1', 'Introduction ', 'Students were introduced to the concept of John Von Neuman\\''s architecture', 'Lab exercises', 'Practicals in the lab', 'Good', '', 1),
 (2, 0, 5, 5, '1', 'Types of I/O devices', 'Students were made familiar with the some of the input-output devices.', 'Lab exercises', 'Worksheet given - Identify the device and specify whether input or output.', 'Good', '', 1),
 (3, 0, 5, 5, '1', '5 BaSIC OPERATIONS', 'Students were made familiar with the primary \r\nand Secondary storage and its types.', 'A test on the next day', 'Worksheet as homework', 'Students worked in pairs to\r\nprepare a PPT on any one \r\nInput/Output/storage device.\r\n\r\nWorksheet given to state the \r\ndifferent types of I/O devices.', '', 1),
@@ -10171,7 +10183,7 @@ INSERT INTO "master_lesson_plan" ("master_lesson_plan_id", "divi", "class", "sub
 -- Table structure for table "master_skills"
 --
 
-CREATE TABLE IF NOT EXISTS "master_skills" (
+CREATE TABLE IF NOT EXISTS academic."master_skills" (
   "master_skills_id"      SERIAL,
   "divi"    INT           NOT NULL,
   "class"   INT           NOT NULL,
@@ -10187,7 +10199,7 @@ CREATE TABLE IF NOT EXISTS "master_skills" (
 -- Dumping data for table "master_skills"
 --
 
-INSERT INTO "master_skills" ("master_skills_id", "divi", "class", "sub", "skill", "posi", "mark", "status") VALUES
+INSERT INTO academic."master_skills" ("master_skills_id", "divi", "class", "sub", "skill", "posi", "mark", "status") VALUES
 (1, 3, 5, 1, 'Thinking Skills', 1, 0, 0),
 (2, 3, 5, 1, 'Social Skills', 2, 0, 0),
 (3, 3, 5, 1, 'Self-Management Skills', 3, 0, 0),
@@ -10212,10 +10224,10 @@ INSERT INTO "master_skills" ("master_skills_id", "divi", "class", "sub", "skill"
 -- --------------------------------------------------------
 
 --
--- Table structure for table "modules"
+-- Table structure for table "settings_modules"
 --
 
-CREATE TABLE IF NOT EXISTS "modules" (
+CREATE TABLE IF NOT EXISTS settings."settings_modules" (
   "module"  VARCHAR(50)  NOT NULL,
   "modules_id"      SERIAL,
   PRIMARY KEY ("module"),
@@ -10223,10 +10235,10 @@ CREATE TABLE IF NOT EXISTS "modules" (
 );
 
 --
--- Dumping data for table "modules"
+-- Dumping data for table "settings_modules"
 --
 
-INSERT INTO "modules" ("module", "id") VALUES
+INSERT INTO settings."settings_modules" ("module", "id") VALUES
 ('Main', 1),
 ('Settings', 2),
 ('User Management', 3),
@@ -10256,10 +10268,10 @@ INSERT INTO "modules" ("module", "id") VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table "modules_p"
+-- Table structure for table "settings_modules_parents"
 --
 
-CREATE TABLE IF NOT EXISTS "modules_p" (
+CREATE TABLE IF NOT EXISTS settings."settings_modules_parents" (
   "module"  VARCHAR(50)  NOT NULL,
   "modules_p_id"      SERIAL,
   PRIMARY KEY ("module"),
@@ -10267,10 +10279,10 @@ CREATE TABLE IF NOT EXISTS "modules_p" (
 );
 
 --
--- Dumping data for table "modules_p"
+-- Dumping data for table "settings_modules_parents"
 --
 
-INSERT INTO "modules_p" ("module", "id") VALUES
+INSERT INTO settings."settings_modules_parents" ("module", "id") VALUES
 ('Main', 1),
 ('Student-Management', 5),
 ('Class', 7),
@@ -10289,7 +10301,7 @@ INSERT INTO "modules_p" ("module", "id") VALUES
 -- Table structure for table "module_info"
 --
 
-CREATE TABLE IF NOT EXISTS "module_info" (
+CREATE TABLE IF NOT EXISTS settings."module_info" (
   "mod_id"       SERIAL,
   "module_name"  VARCHAR(50)  NOT NULL,
   PRIMARY KEY ("mod_id")
@@ -10299,7 +10311,7 @@ CREATE TABLE IF NOT EXISTS "module_info" (
 -- Dumping data for table "module_info"
 --
 
-INSERT INTO "module_info" ("mod_id", "module_name") VALUES
+INSERT INTO settings."module_info" ("mod_id", "module_name") VALUES
 (1, 'Student Management'),
 (2, 'Staff Management'),
 (3, 'Library Management'),
@@ -10311,7 +10323,7 @@ INSERT INTO "module_info" ("mod_id", "module_name") VALUES
 -- Table structure for table "msg"
 --
 
-CREATE TABLE IF NOT EXISTS "msg" (
+CREATE TABLE IF NOT EXISTS communication."msg" (
   "msg_id"             SERIAL,
   "username"       VARCHAR(30)  DEFAULT NULL,
   "student_id"     INT          DEFAULT NULL,
@@ -10330,7 +10342,7 @@ CREATE TABLE IF NOT EXISTS "msg" (
 -- Dumping data for table "msg"
 --
 
-INSERT INTO "msg" ("msg_id", "username", "student_id", "mobile_number", "msg", "class_det", "msg_date", "msg_time", "guid", "errorcode", "seqno") VALUES
+INSERT INTO communication."msg" ("msg_id", "username", "student_id", "mobile_number", "msg", "class_det", "msg_date", "msg_time", "guid", "errorcode", "seqno") VALUES
 (1, 'administrator', 55, '8050458035', 'Announcement Test MSg', 0, '2026-01-09', '12:05:40', 'c65e709e-ead7-43a6-a8bc-da582c783cf7', 0, '918050458035'),
 (2, 'administrator', 55, '9845498377', 'Announcement Test MSG', 0, '2026-01-09', '12:07:28', '9ad8c4e5-672d-45ab-9293-f7b9764f9e05', 0, '919845498377'),
 (3, 'administrator', 3, '9845498377', 'Announcement HI this is test MSG\r\n\r\nregards ', 5, '2026-01-09', '20:01:52', '0d5ff463-e17f-4ca7-a5f2-e1ed92b748b8', 14, '919845498377'),
@@ -10343,7 +10355,7 @@ INSERT INTO "msg" ("msg_id", "username", "student_id", "mobile_number", "msg", "
 -- Table structure for table "msg_not_sent"
 --
 
-CREATE TABLE IF NOT EXISTS "msg_not_sent" (
+CREATE TABLE IF NOT EXISTS communication."msg_not_sent" (
   "msg_not_sent_id"             SERIAL,
   "username"       VARCHAR(30)  DEFAULT NULL,
   "student_id"     INT          DEFAULT NULL,
@@ -10361,7 +10373,7 @@ CREATE TABLE IF NOT EXISTS "msg_not_sent" (
 -- Table structure for table "msp_unit"
 --
 
-CREATE TABLE IF NOT EXISTS "msp_unit" (
+CREATE TABLE IF NOT EXISTS academic."msp_unit" (
   "msp_unit_id"         SERIAL,
   "class"      INT           NOT NULL,
   "exam_id"    INT           NOT NULL,
@@ -10381,7 +10393,7 @@ CREATE TABLE IF NOT EXISTS "msp_unit" (
 -- Dumping data for table "msp_unit"
 --
 
-INSERT INTO "msp_unit" ("msp_unit_id", "class", "exam_id", "sub", "unit", "unit_s", "mark_m", "acc_year", "posi", "un_type", "status", "exam_date") VALUES
+INSERT INTO academic."msp_unit" ("msp_unit_id", "class", "exam_id", "sub", "unit", "unit_s", "mark_m", "acc_year", "posi", "un_type", "status", "exam_date") VALUES
 (1, 1, 1, 0, 'Unit 1 Art', '', 0, 2026, 0, 0, 1, NULL),
 (2, 3, 2, 0, 'Unit 1- Relationships', '', 0, 2026, 0, 0, 1, '2026-10-04'),
 (3, 3, 2, 0, 'Unit 1 - Relationship', '', 0, 2026, 0, 0, 0, NULL),
@@ -10423,7 +10435,7 @@ INSERT INTO "msp_unit" ("msp_unit_id", "class", "exam_id", "sub", "unit", "unit_
 -- Table structure for table "nationality"
 --
 
-CREATE TABLE IF NOT EXISTS "nationality" (
+CREATE TABLE IF NOT EXISTS settings."nationality" (
   "nationality_id"            SERIAL,
   "nation"        VARCHAR(50)  DEFAULT NULL,
   "short_nation"  VARCHAR(10)  DEFAULT NULL,
@@ -10434,7 +10446,7 @@ CREATE TABLE IF NOT EXISTS "nationality" (
 -- Dumping data for table "nationality"
 --
 
-INSERT INTO "nationality" ("nationality_id", "nation", "short_nation") VALUES
+INSERT INTO settings."nationality" ("nationality_id", "nation", "short_nation") VALUES
 (1, 'American', 'NULL'),
 (2, 'Australian', 'NULL'),
 (3, 'Belgium', 'NULL'),
@@ -10498,7 +10510,7 @@ INSERT INTO "nationality" ("nationality_id", "nation", "short_nation") VALUES
 -- Table structure for table "obemail"
 --
 
-CREATE TABLE IF NOT EXISTS "obemail" (
+CREATE TABLE IF NOT EXISTS communication."obemail" (
   "student_id"    VARCHAR(255)  DEFAULT NULL,
   "img_source_s"  VARCHAR(255)  DEFAULT NULL,
   PRIMARY KEY ("student_id")
@@ -10508,7 +10520,7 @@ CREATE TABLE IF NOT EXISTS "obemail" (
 -- Dumping data for table "obemail"
 --
 
-INSERT INTO "obemail" ("student_id", "img_source_s") VALUES
+INSERT INTO communication."obemail" ("student_id", "img_source_s") VALUES
 ('A203', 'aaliya.jain@email.com'),
 ('A12397', 'aarush.gupta@email.com'),
 ('A1182', 'aashu.kedia@email.com'),
@@ -10527,7 +10539,7 @@ INSERT INTO "obemail" ("student_id", "img_source_s") VALUES
 -- Table structure for table "obe_skill_mark"
 --
 
-CREATE TABLE IF NOT EXISTS "obe_skill_mark" (
+CREATE TABLE IF NOT EXISTS academic."obe_skill_mark" (
   "obe_skill_mark_id"             SERIAL,
   "class_section"  INT           DEFAULT NULL,
   "student_id"     INT           DEFAULT NULL,
@@ -10550,7 +10562,7 @@ CREATE TABLE IF NOT EXISTS "obe_skill_mark" (
 -- Table structure for table "obnat"
 --
 
-CREATE TABLE IF NOT EXISTS "obnat" (
+CREATE TABLE IF NOT EXISTS settings."obnat" (
   "student_id"   VARCHAR(255)  DEFAULT NULL,
   "nationality"  VARCHAR(255)  DEFAULT NULL,
   PRIMARY KEY ("student_id")
@@ -10560,7 +10572,7 @@ CREATE TABLE IF NOT EXISTS "obnat" (
 -- Dumping data for table "obnat"
 --
 
-INSERT INTO "obnat" ("student_id", "nationality") VALUES
+INSERT INTO settings."obnat" ("student_id", "nationality") VALUES
 ('A630', '13'),
 ('A216', '13'),
 ('A606', '5'),
@@ -10578,7 +10590,7 @@ INSERT INTO "obnat" ("student_id", "nationality") VALUES
 -- Table structure for table "ois_data"
 --
 
-CREATE TABLE IF NOT EXISTS "ois_data" (
+CREATE TABLE IF NOT EXISTS settings."ois_data" (
   "stu_id"    VARCHAR(255)  DEFAULT NULL,
   "stu_rfid"  VARCHAR(255)  DEFAULT NULL,
   PRIMARY KEY ("stu_id")
@@ -10588,7 +10600,7 @@ CREATE TABLE IF NOT EXISTS "ois_data" (
 -- Dumping data for table "ois_data"
 --
 
-INSERT INTO "ois_data" ("stu_id", "stu_rfid") VALUES
+INSERT INTO settings."ois_data" ("stu_id", "stu_rfid") VALUES
 ('A467', '0B881817000000000000000000000000'),
 ('A458', '32981917000000000000000000000000'),
 ('A487', '723D6B17000000000000000000000000'),
@@ -10606,7 +10618,7 @@ INSERT INTO "ois_data" ("stu_id", "stu_rfid") VALUES
 -- Table structure for table "online_exam_des_mark"
 --
 
-CREATE TABLE IF NOT EXISTS "online_exam_des_mark" (
+CREATE TABLE IF NOT EXISTS academic."online_exam_des_mark" (
   "student_id"   INT         NOT NULL,
   "online_exam_des_mark_id"           SERIAL,
   "exam_id"      INT         NOT NULL,
@@ -10623,7 +10635,7 @@ CREATE TABLE IF NOT EXISTS "online_exam_des_mark" (
 -- Table structure for table "online_exam_des_questions"
 --
 
-CREATE TABLE IF NOT EXISTS "online_exam_des_questions" (
+CREATE TABLE IF NOT EXISTS academic."online_exam_des_questions" (
   "online_exam_des_questions_id"           SERIAL,
   "exam_id"      INT         NOT NULL,
   "description"  TEXT        NOT NULL,
@@ -10635,10 +10647,10 @@ CREATE TABLE IF NOT EXISTS "online_exam_des_questions" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "online_exam_det"
+-- Table structure for table "exam_online"
 --
 
-CREATE TABLE IF NOT EXISTS "online_exam_det" (
+CREATE TABLE IF NOT EXISTS academic."exam_online" (
   "online_exam_det_id"               SERIAL,
   "class_id"         INT          NOT NULL,
   "acc_year"         INT          NOT NULL,
@@ -10655,10 +10667,10 @@ CREATE TABLE IF NOT EXISTS "online_exam_det" (
 );
 
 --
--- Dumping data for table "online_exam_det"
+-- Dumping data for table "exam_online"
 --
 
-INSERT INTO "online_exam_det" ("online_exam_det_id", "class_id", "acc_year", "section_id", "exam_name", "exam_short_name", "subject_id", "exam_type", "score", "exam_date", "status", "time_limit") VALUES
+INSERT INTO academic."exam_online" ("online_exam_det_id", "class_id", "acc_year", "section_id", "exam_name", "exam_short_name", "subject_id", "exam_type", "score", "exam_date", "status", "time_limit") VALUES
 (1, 5, 2026, '1', 'ICT', 'ICT', 5, 2, 0, '2026-01-16', 1, '1:00');
 
 -- --------------------------------------------------------
@@ -10667,7 +10679,7 @@ INSERT INTO "online_exam_det" ("online_exam_det_id", "class_id", "acc_year", "se
 -- Table structure for table "online_exam_sel_mark"
 --
 
-CREATE TABLE IF NOT EXISTS "online_exam_sel_mark" (
+CREATE TABLE IF NOT EXISTS academic."online_exam_sel_mark" (
   "student_id"  INT         NOT NULL,
   "online_exam_sel_mark_id"          SERIAL,
   "exam_id"     INT         NOT NULL,
@@ -10683,7 +10695,7 @@ CREATE TABLE IF NOT EXISTS "online_exam_sel_mark" (
 -- Table structure for table "online_exam_sel_questions"
 --
 
-CREATE TABLE IF NOT EXISTS "online_exam_sel_questions" (
+CREATE TABLE IF NOT EXISTS academic."online_exam_sel_questions" (
   "online_exam_sel_questions_id"            SERIAL,
   "exam_id"       INT         NOT NULL,
   "no_of_option"  SMALLINT  NOT NULL,
@@ -10703,17 +10715,17 @@ CREATE TABLE IF NOT EXISTS "online_exam_sel_questions" (
 -- Dumping data for table "online_exam_sel_questions"
 --
 
-INSERT INTO "online_exam_sel_questions" ("online_exam_sel_questions_id", "exam_id", "no_of_option", "que", "option1", "option2", "option3", "option4", "option5", "right_ans", "score", "status") VALUES
+INSERT INTO academic."online_exam_sel_questions" ("online_exam_sel_questions_id", "exam_id", "no_of_option", "que", "option1", "option2", "option3", "option4", "option5", "right_ans", "score", "status") VALUES
 (1, 1, 4, 'WWW stands for ', 'World Worm Web ', 'World Wide Web ', 'World Word Web ', 'None', '', 2, 10, 1),
 (2, 1, 4, 'What do you use to type? ', 'Keyboard', 'Mouse', 'Monitor', 'CPU', '', 1, 10, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table "parentmenu"
+-- Table structure for table "settings_parentmenu"
 --
 
-CREATE TABLE IF NOT EXISTS "parentmenu" (
+CREATE TABLE IF NOT EXISTS settings."settings_parentmenu" (
   "row_id"     SERIAL,
   "module"     CHAR(50)          DEFAULT NULL,
   "submodule"  CHAR(50)          DEFAULT NULL,
@@ -10726,10 +10738,10 @@ CREATE TABLE IF NOT EXISTS "parentmenu" (
 );
 
 --
--- Dumping data for table "parentmenu"
+-- Dumping data for table "settings_parentmenu"
 --
 
-INSERT INTO "parentmenu" ("module", "submodule", "linkname", "linkpath", "access", "parameter", "id") VALUES
+INSERT INTO settings."settings_parentmenu" ("module", "submodule", "linkname", "linkpath", "access", "parameter", "id") VALUES
 ('Main', 'Main', 'Settings', '/lms/menu/mastermenu.php', 'No', '', 204),
 ('Main', 'Main', 'Staff Management', '/lms/menu/staffmenu.php', 'No', '', 205),
 ('Main', 'Main', 'User Management', '/lms/menu/usermenu.php', 'Yes', '', 206),
@@ -10829,7 +10841,7 @@ INSERT INTO "parentmenu" ("module", "submodule", "linkname", "linkpath", "access
 -- Table structure for table "pasng_route_master"
 --
 
-CREATE TABLE IF NOT EXISTS "pasng_route_master" (
+CREATE TABLE IF NOT EXISTS transport."pasng_route_master" (
   "pasng_route_master_id"         SERIAL,
   "p_type"     INT          DEFAULT NULL,
   "pasng_id"   VARCHAR(20)  DEFAULT NULL,
@@ -10850,7 +10862,7 @@ CREATE TABLE IF NOT EXISTS "pasng_route_master" (
 -- Table structure for table "phy_lib_stock"
 --
 
-CREATE TABLE IF NOT EXISTS "phy_lib_stock" (
+CREATE TABLE IF NOT EXISTS library."phy_lib_stock" (
   "acc_no"  VARCHAR(30)   DEFAULT NULL,
   "mtype"   VARCHAR(100)  DEFAULT NULL,
   PRIMARY KEY ("acc_no")
@@ -10862,7 +10874,7 @@ CREATE TABLE IF NOT EXISTS "phy_lib_stock" (
 -- Table structure for table "point_details"
 --
 
-CREATE TABLE IF NOT EXISTS "point_details" (
+CREATE TABLE IF NOT EXISTS academic."point_details" (
   "point_details_id"        SERIAL,
   "route_id"  INT          DEFAULT NULL,
   "point_id"  INT          DEFAULT NULL,
@@ -10877,7 +10889,7 @@ CREATE TABLE IF NOT EXISTS "point_details" (
 -- Table structure for table "point_master"
 --
 
-CREATE TABLE IF NOT EXISTS "point_master" (
+CREATE TABLE IF NOT EXISTS academic."point_master" (
   "point_master_id"          SERIAL,
   "point_name"  VARCHAR(50)  DEFAULT NULL,
   "details"     VARCHAR(50)  DEFAULT NULL,
@@ -10891,7 +10903,7 @@ CREATE TABLE IF NOT EXISTS "point_master" (
 -- Dumping data for table "point_master"
 --
 
-INSERT INTO "point_master" ("point_master_id", "point_name", "details", "dist", "oneway", "twoway") VALUES
+INSERT INTO academic."point_master" ("point_master_id", "point_name", "details", "dist", "oneway", "twoway") VALUES
 (1, 'Majestic', 'Majestic Bus Stand', 20.0, '20', '30');
 
 -- --------------------------------------------------------
@@ -10900,7 +10912,7 @@ INSERT INTO "point_master" ("point_master_id", "point_name", "details", "dist", 
 -- Table structure for table "previous_job"
 --
 
-CREATE TABLE IF NOT EXISTS "previous_job" (
+CREATE TABLE IF NOT EXISTS hr."previous_job" (
   "previous_job_id"                 SERIAL,
   "staff_id"           INT           DEFAULT NULL,
   "prev_post"          VARCHAR(200)  DEFAULT NULL,
@@ -10921,7 +10933,7 @@ CREATE TABLE IF NOT EXISTS "previous_job" (
 -- Table structure for table "products"
 --
 
-CREATE TABLE IF NOT EXISTS "products" (
+CREATE TABLE IF NOT EXISTS asset."products" (
   "PRODUCT_ID"    BIGSERIAL,
   "PRODUCT_NAME"  VARCHAR(200)     NOT NULL,
   "AMOUNT"        BIGINT  DEFAULT NULL,
@@ -10933,7 +10945,7 @@ CREATE TABLE IF NOT EXISTS "products" (
   PRIMARY KEY ("PRODUCT_ID")
 );
 
-CREATE UNIQUE INDEX "PRODUCT_ID" ON "products" ("PRODUCT_ID");
+CREATE UNIQUE INDEX "PRODUCT_ID" ON asset."products" ("PRODUCT_ID");
 
 -- --------------------------------------------------------
 
@@ -10941,7 +10953,7 @@ CREATE UNIQUE INDEX "PRODUCT_ID" ON "products" ("PRODUCT_ID");
 -- Table structure for table "pypskills"
 --
 
-CREATE TABLE IF NOT EXISTS "pypskills" (
+CREATE TABLE IF NOT EXISTS academic."pypskills" (
   "pypskills_id"        SERIAL,
   "class"     INT           NOT NULL,
   "sub"       INT           NOT NULL,
@@ -10958,7 +10970,7 @@ CREATE TABLE IF NOT EXISTS "pypskills" (
 -- Table structure for table "pyp_subskills"
 --
 
-CREATE TABLE IF NOT EXISTS "pyp_subskills" (
+CREATE TABLE IF NOT EXISTS academic."pyp_subskills" (
   "pyp_subskills_id"            SERIAL,
   "class"         INT   NOT NULL,
   "sub"           INT   NOT NULL,
@@ -10975,7 +10987,7 @@ CREATE TABLE IF NOT EXISTS "pyp_subskills" (
 -- Dumping data for table "pyp_subskills"
 --
 
-INSERT INTO "pyp_subskills" ("pyp_subskills_id", "class", "sub", "master_skill", "sub_skill", "examid", "acc_year", "posi", "unit") VALUES
+INSERT INTO academic."pyp_subskills" ("pyp_subskills_id", "class", "sub", "master_skill", "sub_skill", "examid", "acc_year", "posi", "unit") VALUES
 (1, 1, 0, 0, ' Elements of art (form).', 1, 2026, 1, 1),
 (2, 1, 0, 0, 'Diverse ways in which people express themselves (reflection)', 1, 2026, 2, 1),
 (3, 1, 0, 0, 'Translating our own ideas in different ways (perspective)', 1, 2026, 3, 1),
@@ -11076,7 +11088,7 @@ INSERT INTO "pyp_subskills" ("pyp_subskills_id", "class", "sub", "master_skill",
 -- Table structure for table "quotation"
 --
 
-CREATE TABLE IF NOT EXISTS "quotation" (
+CREATE TABLE IF NOT EXISTS asset."quotation" (
   "quotation_id"           SERIAL,
   "QuotNo"       VARCHAR(30)                        DEFAULT NULL,
   "QuotDate"     DATE                               DEFAULT NULL,
@@ -11098,7 +11110,7 @@ CREATE TABLE IF NOT EXISTS "quotation" (
 -- Table structure for table "quotation_trans"
 --
 
-CREATE TABLE IF NOT EXISTS "quotation_trans" (
+CREATE TABLE IF NOT EXISTS asset."quotation_trans" (
   "id"         INT           DEFAULT NULL,
   "author"     VARCHAR(250)  DEFAULT NULL,
   "publisher"  VARCHAR(250)  DEFAULT NULL,
@@ -11114,7 +11126,7 @@ CREATE TABLE IF NOT EXISTS "quotation_trans" (
 -- Table structure for table "receipt_details"
 --
 
-CREATE TABLE IF NOT EXISTS "receipt_details" (
+CREATE TABLE IF NOT EXISTS fee."receipt_details" (
   "RECEIPT_ID"        BIGINT        NOT NULL,
   "SL_NO"             BIGINT        DEFAULT NULL,
   "PRODUCT_ID"        BIGINT        DEFAULT NULL,
@@ -11136,7 +11148,7 @@ CREATE TABLE IF NOT EXISTS "receipt_details" (
 -- Table structure for table "receipt_totals"
 --
 
-CREATE TABLE IF NOT EXISTS "receipt_totals" (
+CREATE TABLE IF NOT EXISTS fee."receipt_totals" (
   "RECEIPT_ID"        BIGSERIAL,
   "TOTAL_QUANTITY"    BIGINT       DEFAULT NULL,
   "TOTAL_AMOUNT"      REAL        DEFAULT NULL,
@@ -11155,7 +11167,7 @@ CREATE TABLE IF NOT EXISTS "receipt_totals" (
 -- Table structure for table "register"
 --
 
-CREATE TABLE IF NOT EXISTS "register" (
+CREATE TABLE IF NOT EXISTS student."register" (
   "reg_no"                    SERIAL,
   "ish_start_date"            DATE          DEFAULT NULL,
   "student_id"                INT           DEFAULT NULL,
@@ -11225,7 +11237,7 @@ CREATE TABLE IF NOT EXISTS "register" (
 -- Table structure for table "religion"
 --
 
-CREATE TABLE IF NOT EXISTS "religion" (
+CREATE TABLE IF NOT EXISTS settings."religion" (
   "religion_id"    SERIAL,
   "name"  VARCHAR(100)  DEFAULT NULL,
   PRIMARY KEY ("religion_id")
@@ -11237,7 +11249,7 @@ CREATE TABLE IF NOT EXISTS "religion" (
 -- Table structure for table "requirementindent"
 --
 
-CREATE TABLE IF NOT EXISTS "requirementindent" (
+CREATE TABLE IF NOT EXISTS asset."requirementindent" (
   "requirementindent_id"                SERIAL,
   "RDate"             DATE                      DEFAULT NULL,
   "RINumber"          VARCHAR(20)               DEFAULT NULL,
@@ -11259,7 +11271,7 @@ CREATE TABLE IF NOT EXISTS "requirementindent" (
 -- Table structure for table "rfidois"
 --
 
-CREATE TABLE IF NOT EXISTS "rfidois" (
+CREATE TABLE IF NOT EXISTS settings."rfidois" (
   "strudentid"  VARCHAR(255)  DEFAULT NULL,
   "rfid"        VARCHAR(255)  DEFAULT NULL,
   PRIMARY KEY ("strudentid")
@@ -11269,7 +11281,7 @@ CREATE TABLE IF NOT EXISTS "rfidois" (
 -- Dumping data for table "rfidois"
 --
 
-INSERT INTO "rfidois" ("strudentid", "rfid") VALUES
+INSERT INTO settings."rfidois" ("strudentid", "rfid") VALUES
 ('A738', '50E46B17000000000000000000000000'),
 ('A607', '22941917000000000000000000000000'),
 ('A582', '02D71817000000000000000000000000'),
@@ -11287,7 +11299,7 @@ INSERT INTO "rfidois" ("strudentid", "rfid") VALUES
 -- Table structure for table "rfid_card_type"
 --
 
-CREATE TABLE IF NOT EXISTS "rfid_card_type" (
+CREATE TABLE IF NOT EXISTS settings."rfid_card_type" (
   "rfid_card_type_id"      SERIAL,
   "name"    VARCHAR(100)  NOT NULL,
   "status"  SMALLINT    NOT NULL,
@@ -11300,7 +11312,7 @@ CREATE TABLE IF NOT EXISTS "rfid_card_type" (
 -- Table structure for table "rfid_enrolment_user"
 --
 
-CREATE TABLE IF NOT EXISTS "rfid_enrolment_user" (
+CREATE TABLE IF NOT EXISTS settings."rfid_enrolment_user" (
   "rfid_enrolment_user_id"          SERIAL,
   "rfid"        VARCHAR(50)  NOT NULL,
   "user"        VARCHAR(50)  NOT NULL,
@@ -11318,7 +11330,7 @@ CREATE TABLE IF NOT EXISTS "rfid_enrolment_user" (
 -- Dumping data for table "rfid_enrolment_user"
 --
 
-INSERT INTO "rfid_enrolment_user" ("rfid_enrolment_user_id", "rfid", "user", "user_type", "add_date", "end_date", "status", "active", "rfidAccess", "desc") VALUES
+INSERT INTO settings."rfid_enrolment_user" ("rfid_enrolment_user_id", "rfid", "user", "user_type", "add_date", "end_date", "status", "active", "rfidAccess", "desc") VALUES
 (1, 'C4B7A30E000000000000000000000000', '240', 2, NULL, NULL, 1, 'Y', 'Y', ''),
 (2, 'DC080817000000000000000000000000', '192', 2, NULL, NULL, 1, 'Y', 'Y', ''),
 (3, '55FD7617000000000000000000000000', '203', 2, NULL, NULL, 1, 'Y', 'Y', ''),
@@ -11336,7 +11348,7 @@ INSERT INTO "rfid_enrolment_user" ("rfid_enrolment_user_id", "rfid", "user", "us
 -- Table structure for table "rfid_mac_det"
 --
 
-CREATE TABLE IF NOT EXISTS "rfid_mac_det" (
+CREATE TABLE IF NOT EXISTS settings."rfid_mac_det" (
   "rfid_mac_det_id"      SERIAL,
   "mac_id"  VARCHAR(50)   NOT NULL,
   "desc"    VARCHAR(250)  NOT NULL,
@@ -11347,10 +11359,10 @@ CREATE TABLE IF NOT EXISTS "rfid_mac_det" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "rfid_masters"
+-- Table structure for table "rfid"
 --
 
-CREATE TABLE IF NOT EXISTS "rfid_masters" (
+CREATE TABLE IF NOT EXISTS settings."rfid" (
   "rfid_masters_id"      SERIAL,
   "name"    VARCHAR(50)   NOT NULL,
   "desc"    VARCHAR(250)  NOT NULL,
@@ -11364,7 +11376,7 @@ CREATE TABLE IF NOT EXISTS "rfid_masters" (
 -- Table structure for table "rfid_new_aug15"
 --
 
-CREATE TABLE IF NOT EXISTS "rfid_new_aug15" (
+CREATE TABLE IF NOT EXISTS settings."rfid_new_aug15" (
   "rfid_new_aug15_id"        SERIAL,
   "GRNumber"  VARCHAR(255)  DEFAULT NULL,
   "CardUID"   VARCHAR(255)  DEFAULT NULL,
@@ -11378,7 +11390,7 @@ CREATE TABLE IF NOT EXISTS "rfid_new_aug15" (
 -- Dumping data for table "rfid_new_aug15"
 --
 
-INSERT INTO "rfid_new_aug15" ("GRNumber", "CardUID", "Checked", "cardid", "color") VALUES
+INSERT INTO settings."rfid_new_aug15" ("GRNumber", "CardUID", "Checked", "cardid", "color") VALUES
 ('A377', '63CB7817000000000000000000000000', 'Checked', NULL, '0'),
 ('A509', '59397917000000000000000000000000', 'Checked', NULL, '0'),
 ('A304', '6A337A17000000000000000000000000', 'Checked', NULL, '0'),
@@ -11396,7 +11408,7 @@ INSERT INTO "rfid_new_aug15" ("GRNumber", "CardUID", "Checked", "cardid", "color
 -- Table structure for table "rfid_reader_master"
 --
 
-CREATE TABLE IF NOT EXISTS "rfid_reader_master" (
+CREATE TABLE IF NOT EXISTS settings."rfid_reader_master" (
   "rfid_reader_master_id"          SERIAL,
   "readerName"  VARCHAR(50)  NOT NULL,
   "readerip"    VARCHAR(50)  NOT NULL,
@@ -11413,7 +11425,7 @@ CREATE TABLE IF NOT EXISTS "rfid_reader_master" (
 -- Table structure for table "rfid_staff_check_in"
 --
 
-CREATE TABLE IF NOT EXISTS "rfid_staff_check_in" (
+CREATE TABLE IF NOT EXISTS settings."rfid_staff_check_in" (
   "rfid_staff_check_in_id"            SERIAL,
   "controllerip"  VARCHAR(40)  NOT NULL,
   "readerno"      VARCHAR(40)  NOT NULL,
@@ -11432,7 +11444,7 @@ CREATE TABLE IF NOT EXISTS "rfid_staff_check_in" (
 -- Table structure for table "rfid_staff_check_out"
 --
 
-CREATE TABLE IF NOT EXISTS "rfid_staff_check_out" (
+CREATE TABLE IF NOT EXISTS settings."rfid_staff_check_out" (
   "rfid_staff_check_out_id"            SERIAL,
   "controllerip"  VARCHAR(40)  NOT NULL,
   "readerno"      VARCHAR(40)  NOT NULL,
@@ -11451,7 +11463,7 @@ CREATE TABLE IF NOT EXISTS "rfid_staff_check_out" (
 -- Table structure for table "rfid_student"
 --
 
-CREATE TABLE IF NOT EXISTS "rfid_student" (
+CREATE TABLE IF NOT EXISTS settings."rfid_student" (
   "rfid_student_id"            SERIAL,
   "to_day_date"   DATE         NOT NULL,
   "controllerip"  VARCHAR(40)  NOT NULL,
@@ -11471,7 +11483,7 @@ CREATE TABLE IF NOT EXISTS "rfid_student" (
 -- Table structure for table "rfid_user_access"
 --
 
-CREATE TABLE IF NOT EXISTS "rfid_user_access" (
+CREATE TABLE IF NOT EXISTS settings."rfid_user_access" (
   "rfid_user_access_id"         SERIAL,
   "user_type"  INT         NOT NULL,
   "userid"     INT         NOT NULL,
@@ -11484,10 +11496,10 @@ CREATE TABLE IF NOT EXISTS "rfid_user_access" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "route_master"
+-- Table structure for table "route"
 --
 
-CREATE TABLE IF NOT EXISTS "route_master" (
+CREATE TABLE IF NOT EXISTS transport."route" (
   "route_master_id"          SERIAL,
   "route_code"  VARCHAR(25)  DEFAULT NULL,
   "route_name"  VARCHAR(50)  DEFAULT NULL,
@@ -11500,7 +11512,7 @@ CREATE TABLE IF NOT EXISTS "route_master" (
 -- Table structure for table "route_vechile_details"
 --
 
-CREATE TABLE IF NOT EXISTS "route_vechile_details" (
+CREATE TABLE IF NOT EXISTS transport."route_vechile_details" (
   "route_vechile_details_id"          SERIAL,
   "vechile_id"  INT  DEFAULT NULL,
   "route_id"    INT  DEFAULT NULL,
@@ -11514,7 +11526,7 @@ CREATE TABLE IF NOT EXISTS "route_vechile_details" (
 -- Table structure for table "sal_head"
 --
 
-CREATE TABLE IF NOT EXISTS "sal_head" (
+CREATE TABLE IF NOT EXISTS hr."sal_head" (
   "sal_head_id"         SERIAL,
   "name"       VARCHAR(50)  NOT NULL DEFAULT '',
   "type"       INT          NOT NULL DEFAULT 0,
@@ -11530,7 +11542,7 @@ CREATE TABLE IF NOT EXISTS "sal_head" (
 -- Table structure for table "sanction_intake"
 --
 
-CREATE TABLE IF NOT EXISTS "sanction_intake" (
+CREATE TABLE IF NOT EXISTS admission."sanction_intake" (
   "sanction_intake_id"              SERIAL,
   "course_id"       INT         DEFAULT NULL,
   "course_year_id"  INT         DEFAULT NULL,
@@ -11545,7 +11557,7 @@ CREATE TABLE IF NOT EXISTS "sanction_intake" (
 -- Table structure for table "staff_lv_data_feb19"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_lv_data_feb19" (
+CREATE TABLE IF NOT EXISTS hr."staff_lv_data_feb19" (
   "staff_lv_data_feb19_id"                SERIAL,
   "Sr_No"             VARCHAR(255)  DEFAULT NULL,
   "Employee_Code"     VARCHAR(255)  DEFAULT NULL,
@@ -11561,7 +11573,7 @@ CREATE TABLE IF NOT EXISTS "staff_lv_data_feb19" (
 -- Dumping data for table "staff_lv_data_feb19"
 --
 
-INSERT INTO "staff_lv_data_feb19" ("Sr_No", "Employee_Code", "MySchoo_Staff_ID", "Employee_Name", "Category", "Official_Email", "UD_ID_no") VALUES
+INSERT INTO hr."staff_lv_data_feb19" ("Sr_No", "Employee_Code", "MySchoo_Staff_ID", "Employee_Name", "Category", "Official_Email", "UD_ID_no") VALUES
 ('1', '8730', 'RD-S46010', 'Radhakrishna Suvarna', 'Non Teaching', 'radhakrishna.suvarna@email.com', 'CB560717000000000000000000000000'),
 ('2', '8834', 'RD-S460013', 'Suhas Jadhav', 'Non Teaching', 'suhas.jadhav@email.com', 'C4BB1E4E000000000000000000000000'),
 ('3', '8007', 'RD-S20268', 'Agnel  Waz', 'Non Teaching', 'agnel.waz@email.com', 'C4B7A30E000000000000000000000000'),
@@ -11579,7 +11591,7 @@ INSERT INTO "staff_lv_data_feb19" ("Sr_No", "Employee_Code", "MySchoo_Staff_ID",
 -- Table structure for table "sec_hospital"
 --
 
-CREATE TABLE IF NOT EXISTS "sec_hospital" (
+CREATE TABLE IF NOT EXISTS medical."sec_hospital" (
   "sec_hospital_id"        SERIAL,
   "hos_name"  VARCHAR(11)  NOT NULL,
   "position"  INT          NOT NULL,
@@ -11593,7 +11605,7 @@ CREATE TABLE IF NOT EXISTS "sec_hospital" (
 -- Table structure for table "services"
 --
 
-CREATE TABLE IF NOT EXISTS "services" (
+CREATE TABLE IF NOT EXISTS asset."services" (
   "SERVICE_ID"    BIGSERIAL,
   "SERVICE_NAME"  VARCHAR(200)     NOT NULL,
   "AMOUNT"        BIGINT  DEFAULT NULL,
@@ -11603,7 +11615,7 @@ CREATE TABLE IF NOT EXISTS "services" (
   PRIMARY KEY ("SERVICE_ID")
 );
 
-CREATE UNIQUE INDEX "SERVICE_ID" ON "services" ("SERVICE_ID");
+CREATE UNIQUE INDEX "SERVICE_ID" ON asset."services" ("SERVICE_ID");
 
 -- --------------------------------------------------------
 
@@ -11611,7 +11623,7 @@ CREATE UNIQUE INDEX "SERVICE_ID" ON "services" ("SERVICE_ID");
 -- Table structure for table "service_gatepass_details"
 --
 
-CREATE TABLE IF NOT EXISTS "service_gatepass_details" (
+CREATE TABLE IF NOT EXISTS asset."service_gatepass_details" (
   "service_gatepass_details_id"                   SERIAL,
   "gatepass_id"          INT               DEFAULT NULL,
   "item_code_id"         INT               DEFAULT NULL,
@@ -11630,7 +11642,7 @@ CREATE TABLE IF NOT EXISTS "service_gatepass_details" (
 -- Table structure for table "sessional_master"
 --
 
-CREATE TABLE IF NOT EXISTS "sessional_master" (
+CREATE TABLE IF NOT EXISTS academic."sessional_master" (
   "Sl_No"           SERIAL,
   "Sessional_ID"    VARCHAR(10)       DEFAULT NULL,
   "Sessional_Name"  VARCHAR(20)       DEFAULT NULL,
@@ -11649,14 +11661,14 @@ CREATE TABLE IF NOT EXISTS "sessional_master" (
 -- Table structure for table "settings"
 --
 
-CREATE TABLE IF NOT EXISTS "settings" (
+CREATE TABLE IF NOT EXISTS settings."settings" (
   "SETTING_ID"     SERIAL,
   "SETTING_NAME"   VARCHAR(50)   NOT NULL DEFAULT 0,
   "SETTING_VALUE"  REAL         DEFAULT 0,
   PRIMARY KEY ("SETTING_ID")
 );
 
-CREATE UNIQUE INDEX "SETTING_ID" ON "settings" ("SETTING_ID");
+CREATE UNIQUE INDEX "SETTING_ID" ON settings."settings" ("SETTING_ID");
 
 
 -- --------------------------------------------------------
@@ -11665,7 +11677,7 @@ CREATE UNIQUE INDEX "SETTING_ID" ON "settings" ("SETTING_ID");
 -- Table structure for table "skill_grade"
 --
 
-CREATE TABLE IF NOT EXISTS "skill_grade" (
+CREATE TABLE IF NOT EXISTS academic."skill_grade" (
   "skill_grade_id"          BIGSERIAL,
   "divi"        INT         NOT NULL,
   "class"       INT         NOT NULL,
@@ -11683,7 +11695,7 @@ CREATE TABLE IF NOT EXISTS "skill_grade" (
 -- Dumping data for table "skill_grade"
 --
 
-INSERT INTO "skill_grade" ("skill_grade_id", "divi", "class", "sec", "student_id", "skill", "acc_year", "eval1", "eval2", "eval3") VALUES
+INSERT INTO academic."skill_grade" ("skill_grade_id", "divi", "class", "sec", "student_id", "skill", "acc_year", "eval1", "eval2", "eval3") VALUES
 (1, 3, 5, 1, 10, 1, 2026, '20', '22', ''),
 (2, 3, 5, 1, 10, 2, 2026, '13', '43', ''),
 (3, 3, 5, 1, 10, 3, 2026, '33', '33', ''),
@@ -11717,7 +11729,7 @@ INSERT INTO "skill_grade" ("skill_grade_id", "divi", "class", "sec", "student_id
 -- Table structure for table "skill_grade_desc"
 --
 
-CREATE TABLE IF NOT EXISTS "skill_grade_desc" (
+CREATE TABLE IF NOT EXISTS academic."skill_grade_desc" (
   "skill_grade_desc_id"          BIGSERIAL,
   "exam_id"     INT     NOT NULL,
   "class"       INT     NOT NULL,
@@ -11735,7 +11747,7 @@ CREATE TABLE IF NOT EXISTS "skill_grade_desc" (
 -- Table structure for table "skill_grade_ib"
 --
 
-CREATE TABLE IF NOT EXISTS "skill_grade_ib" (
+CREATE TABLE IF NOT EXISTS academic."skill_grade_ib" (
   "skill_grade_ib_id"          BIGSERIAL,
   "divi"        INT         NOT NULL,
   "class"       INT         NOT NULL,
@@ -11775,7 +11787,7 @@ CREATE TABLE IF NOT EXISTS "skill_grade_ib" (
 -- Table structure for table "special_trip_entry"
 --
 
-CREATE TABLE IF NOT EXISTS "special_trip_entry" (
+CREATE TABLE IF NOT EXISTS transport."special_trip_entry" (
   "special_trip_entry_id"              SERIAL,
   "req_given_by"    VARCHAR(60)   DEFAULT NULL,
   "trip_details"    VARCHAR(100)  DEFAULT NULL,
@@ -11794,7 +11806,7 @@ CREATE TABLE IF NOT EXISTS "special_trip_entry" (
 -- Table structure for table "spl_advances"
 --
 
-CREATE TABLE IF NOT EXISTS "spl_advances" (
+CREATE TABLE IF NOT EXISTS hr."spl_advances" (
   "spl_advances_id"        SERIAL,
   "div"       INT     NOT NULL,
   "class"     INT     NOT NULL,
@@ -11810,7 +11822,7 @@ CREATE TABLE IF NOT EXISTS "spl_advances" (
 -- Table structure for table "spl_advances_coll"
 --
 
-CREATE TABLE IF NOT EXISTS "spl_advances_coll" (
+CREATE TABLE IF NOT EXISTS hr."spl_advances_coll" (
   "spl_advances_coll_id"            BIGSERIAL,
   "div"           INT           NOT NULL,
   "class"         INT           NOT NULL,
@@ -11831,7 +11843,7 @@ CREATE TABLE IF NOT EXISTS "spl_advances_coll" (
 -- Table structure for table "sta"
 --
 
-CREATE TABLE IF NOT EXISTS "sta" (
+CREATE TABLE IF NOT EXISTS hr."sta" (
   "sta_id"            SERIAL,
   "srno"          VARCHAR(255)  DEFAULT NULL,
   "employeecode"  VARCHAR(255)  DEFAULT NULL,
@@ -11848,7 +11860,7 @@ CREATE TABLE IF NOT EXISTS "sta" (
 -- Dumping data for table "sta"
 --
 
-INSERT INTO "sta" ("srno", "employeecode", "employeename", "carduid", "employeetype", "category", "department", "emailid") VALUES
+INSERT INTO hr."sta" ("srno", "employeecode", "employeename", "carduid", "employeetype", "category", "department", "emailid") VALUES
 ('1', '8007', 'Agnel Waz', 'C4B7A30E000000000000000000000000', 'Current Employee', 'Non Teaching', 'Support - Nurse', 'agnel.waz@email.com'),
 ('2', '8015', 'Anil Mane', 'D0772717000000000000000000000000', 'Current Employee', 'Non Teaching', 'Library', 'anil.mane @email.com'),
 ('3', '8016', 'Anju Agrawal', 'DC080817000000000000000000000000', 'Current Employee', 'Non Teaching', 'Marketing, Admissions and Communications', 'anju.agrawal@email.com'),
@@ -11866,7 +11878,7 @@ INSERT INTO "sta" ("srno", "employeecode", "employeename", "carduid", "employeet
 -- Table structure for table "staff_archive_status"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_archive_status" (
+CREATE TABLE IF NOT EXISTS hr."staff_archive_status" (
   "staff_archive_status_id"      SERIAL,
   "status"  VARCHAR(30)  DEFAULT NULL,
   PRIMARY KEY ("staff_archive_status_id")
@@ -11878,7 +11890,7 @@ CREATE TABLE IF NOT EXISTS "staff_archive_status" (
 -- Table structure for table "staff_att"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_att" (
+CREATE TABLE IF NOT EXISTS hr."staff_att" (
   "staff_att_id"        SERIAL,
   "staff_id"  INT         NOT NULL,
   "bio_id"    INT         NOT NULL,
@@ -11955,7 +11967,7 @@ CREATE TABLE IF NOT EXISTS "staff_att" (
 -- Table structure for table "staff_att_updt"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_att_updt" (
+CREATE TABLE IF NOT EXISTS hr."staff_att_updt" (
   "staff_att_updt_id"              SERIAL,
   "leave_approval"  INT           NOT NULL,
   "staff_id"        INT           NOT NULL,
@@ -11970,7 +11982,7 @@ CREATE TABLE IF NOT EXISTS "staff_att_updt" (
 -- Dumping data for table "staff_att_updt"
 --
 
-INSERT INTO "staff_att_updt" ("staff_att_updt_id", "leave_approval", "staff_id", "user", "toddate", "todtime", "type") VALUES
+INSERT INTO hr."staff_att_updt" ("staff_att_updt_id", "leave_approval", "staff_id", "user", "toddate", "todtime", "type") VALUES
 (1, 0, 4, 'administrator', '2026-10-30', '11:19:22', '3'),
 (2, 0, 161, 'lesterd', '2026-11-14', '08:48:53', '1'),
 (3, 0, 170, 'lesterd', '2026-11-14', '08:49:45', '4'),
@@ -11988,7 +12000,7 @@ INSERT INTO "staff_att_updt" ("staff_att_updt_id", "leave_approval", "staff_id",
 -- Table structure for table "staff_calenders"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_calenders" (
+CREATE TABLE IF NOT EXISTS hr."staff_calenders" (
   "staff_calenders_id"           SERIAL,
   "acc_year"     INT           NOT NULL,
   "staff_typ"    INT           NOT NULL,
@@ -12004,7 +12016,7 @@ CREATE TABLE IF NOT EXISTS "staff_calenders" (
 -- Dumping data for table "staff_calenders"
 --
 
-INSERT INTO "staff_calenders" ("staff_calenders_id", "acc_year", "staff_typ", "username", "fromdate", "title", "description", "status") VALUES
+INSERT INTO hr."staff_calenders" ("staff_calenders_id", "acc_year", "staff_typ", "username", "fromdate", "title", "description", "status") VALUES
 (30, 2026, 1, 'administrator', '2026-10-21', 'Staff Holiday', 'Staff holiday', 1),
 (31, 2026, 1, 'administrator', '2026-11-25', 'Early school sports day', 'Early school sports day', 1),
 (32, 2026, 2, 'administrator', '2026-11-25', 'Early school sports day', 'Early school sports day', 0),
@@ -12023,7 +12035,7 @@ INSERT INTO "staff_calenders" ("staff_calenders_id", "acc_year", "staff_typ", "u
 -- Table structure for table "staff_class_group"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_class_group" (
+CREATE TABLE IF NOT EXISTS hr."staff_class_group" (
   "staff_class_group_id"         SERIAL,
   "group_id"   INT           NOT NULL,
   "section"    INT           NOT NULL,
@@ -12040,7 +12052,7 @@ CREATE TABLE IF NOT EXISTS "staff_class_group" (
 -- Dumping data for table "staff_class_group"
 --
 
-INSERT INTO "staff_class_group" ("staff_class_group_id", "group_id", "section", "grade", "sub", "username", "store_ids", "staff_id", "status") VALUES
+INSERT INTO hr."staff_class_group" ("staff_class_group_id", "group_id", "section", "grade", "sub", "username", "store_ids", "staff_id", "status") VALUES
 (1, 2, 382, 13, 276, 'administrator', 44249, 20, 1),
 (2, 2, 197, 13, 279, 'administrator', 44249, 20, 1),
 (3, 2, 193, 13, 279, 'administrator', 44249, 20, 1),
@@ -12058,7 +12070,7 @@ INSERT INTO "staff_class_group" ("staff_class_group_id", "group_id", "section", 
 -- Table structure for table "staff_default"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_default" (
+CREATE TABLE IF NOT EXISTS hr."staff_default" (
   "staff_default_id"        SERIAL,
   "status"    INT           NOT NULL,
   "reason"    TEXT          NOT NULL,
@@ -12075,7 +12087,7 @@ CREATE TABLE IF NOT EXISTS "staff_default" (
 -- Dumping data for table "staff_default"
 --
 
-INSERT INTO "staff_default" ("staff_default_id", "status", "reason", "time_in", "time_out", "d_date", "user", "staff_id", "ins_date") VALUES
+INSERT INTO hr."staff_default" ("staff_default_id", "status", "reason", "time_in", "time_out", "d_date", "user", "staff_id", "ins_date") VALUES
 (1, 1, 'test', '', '17:00', '2026-02-12', 'ishwarb', 244, '2026-02-04 17:53:02'),
 (2, 1, 'test', '08:25', '17:00', '2026-02-18', 'ishwarb', 244, '2026-02-19 14:53:02'),
 (3, 1, 'test  now', '08:25', '18:25', '2026-01-13', 'pujas', 250, '2026-02-24 19:28:02'),
@@ -12122,7 +12134,7 @@ INSERT INTO "staff_default" ("staff_default_id", "status", "reason", "time_in", 
 -- Table structure for table "staff_default_status"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_default_status" (
+CREATE TABLE IF NOT EXISTS hr."staff_default_status" (
   "staff_default_status_id"             SERIAL,
   "user"           VARCHAR(255)  NOT NULL,
   "inserted_date"  TIMESTAMP      NOT NULL,
@@ -12145,7 +12157,7 @@ CREATE TABLE IF NOT EXISTS "staff_default_status" (
 -- Dumping data for table "staff_default_status"
 --
 
-INSERT INTO "staff_default_status" ("staff_default_status_id", "user", "inserted_date", "staff_id_ins", "type", "in_time", "in_edit_time", "out_time", "out_edit_time", "manager_id", "default_date", "default_id", "approved", "reject", "acc_year") VALUES
+INSERT INTO hr."staff_default_status" ("staff_default_status_id", "user", "inserted_date", "staff_id_ins", "type", "in_time", "in_edit_time", "out_time", "out_edit_time", "manager_id", "default_date", "default_id", "approved", "reject", "acc_year") VALUES
 (1, 'pujas', '2026-02-25 12:29:02', 1, 'D', '', '', '', '', '250', NULL, 0, 0, 1, 2026),
 (2, 'pujas', '2026-02-20 00:46:02', 2, 'D', '', '', '', '', '250', NULL, 0, 0, 1, 2026),
 (3, 'michaelb', '2026-03-07 15:15:03', 4, 'D', '', '', '', '', '68', NULL, 0, 1, 0, 2026),
@@ -12180,7 +12192,7 @@ INSERT INTO "staff_default_status" ("staff_default_status_id", "user", "inserted
 -- Table structure for table "staff_dependents"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_dependents" (
+CREATE TABLE IF NOT EXISTS hr."staff_dependents" (
   "staff_dependents_id"        SERIAL,
   "dname"     VARCHAR(100)  DEFAULT NULL,
   "ddob"      VARCHAR(100)  DEFAULT NULL,
@@ -12200,7 +12212,7 @@ CREATE TABLE IF NOT EXISTS "staff_dependents" (
 -- Table structure for table "staff_des"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_des" (
+CREATE TABLE IF NOT EXISTS hr."staff_des" (
   "d_name"    VARCHAR(50)   NOT NULL DEFAULT '',
   "d_id"      SERIAL,
   "group_id"  INT           DEFAULT NULL,
@@ -12214,7 +12226,7 @@ CREATE TABLE IF NOT EXISTS "staff_des" (
 -- Dumping data for table "staff_des"
 --
 
-INSERT INTO "staff_des" ("d_name", "d_id", "group_id", "d_code", "col_id", "priority") VALUES
+INSERT INTO hr."staff_des" ("d_name", "d_id", "group_id", "d_code", "col_id", "priority") VALUES
 ('Principal', 1, 3, 'PRN', NULL, 1),
 ('Teacher', 2, 1, 'TC', NULL, 3),
 ('Admin', 3, 2, 'ADM', NULL, 1),
@@ -12301,7 +12313,7 @@ INSERT INTO "staff_des" ("d_name", "d_id", "group_id", "d_code", "col_id", "prio
 -- Table structure for table "employee_details"
 --
 
-CREATE TABLE IF NOT EXISTS "employee_details" (
+CREATE TABLE IF NOT EXISTS hr."employee_details" (
   "f_name"                  VARCHAR(50)       NOT NULL DEFAULT '',
   "s_name"                  VARCHAR(50)       NOT NULL DEFAULT '',
   "i_name"                  VARCHAR(15)       DEFAULT NULL,
@@ -12406,14 +12418,14 @@ CREATE TABLE IF NOT EXISTS "employee_details" (
   PRIMARY KEY ("employee_details_id")
 );
 
-CREATE UNIQUE INDEX "ux_employee_code" ON "employee_details" ("employee_code");
-CREATE INDEX "ix_group_active" ON "employee_details" ("group_id", "active");
+CREATE UNIQUE INDEX "ux_employee_code" ON hr."employee_details" ("employee_code");
+CREATE INDEX "ix_group_active" ON hr."employee_details" ("group_id", "active");
 
 --
 -- Dumping data for table "employee_details"
 --
 
-INSERT INTO "employee_details" ("f_name", "s_name", "i_name", "qual", "cert", "subj", "exp_cur", "exp_prev", "sp_assoc", "xtra", "father", "doa", "bg", "ms", "addr_perm", "ct_perm", "pin_perm", "st_perm", "ph_perm", "addr_pres", "ct_pres", "pin_pres", "st_pres", "ph_pres", "email", "id", "slno", "group_id", "appnt_des", "offeredsal", "basicsal", "j_date", "cmts", "status_id", "dob", "other_facilities", "other_responsibilities", "prev_post", "prev_work_place", "prev_work_city", "prev_work_country", "last_date_of_work", "staff_status_id", "date_of_updation", "expirydate", "gender", "releive_date", "recruitment_procedure", "pfscheme", "active", "bank_ac_no", "pf_ac_no", "panno", "csal", "sop", "cat", "pno", "vfdate", "vtadate", "dep", "category", "cat_fdate", "cat_tdate", "pay_scale", "spouse_name", "dept_name", "dept_dob", "dept_rel", "dept_occu", "dept_anualinc", "issue_place", "mobileno", "col_id", "height", "id_mark", "religion", "appnt_date", "type_id", "aicte_scale", "payscale", "payrange", "substantive", "tanno", "bank", "joined_as", "officiating_pay", "app_no", "staff_group_id", "img_col", "nationality", "mother_tongue", "membership", "empexc", "extraact", "addinfo", "kannada", "english", "hindi", "husband", "scard", "employee_code") VALUES
+INSERT INTO hr."employee_details" ("f_name", "s_name", "i_name", "qual", "cert", "subj", "exp_cur", "exp_prev", "sp_assoc", "xtra", "father", "doa", "bg", "ms", "addr_perm", "ct_perm", "pin_perm", "st_perm", "ph_perm", "addr_pres", "ct_pres", "pin_pres", "st_pres", "ph_pres", "email", "id", "slno", "group_id", "appnt_des", "offeredsal", "basicsal", "j_date", "cmts", "status_id", "dob", "other_facilities", "other_responsibilities", "prev_post", "prev_work_place", "prev_work_city", "prev_work_country", "last_date_of_work", "staff_status_id", "date_of_updation", "expirydate", "gender", "releive_date", "recruitment_procedure", "pfscheme", "active", "bank_ac_no", "pf_ac_no", "panno", "csal", "sop", "cat", "pno", "vfdate", "vtadate", "dep", "category", "cat_fdate", "cat_tdate", "pay_scale", "spouse_name", "dept_name", "dept_dob", "dept_rel", "dept_occu", "dept_anualinc", "issue_place", "mobileno", "col_id", "height", "id_mark", "religion", "appnt_date", "type_id", "aicte_scale", "payscale", "payrange", "substantive", "tanno", "bank", "joined_as", "officiating_pay", "app_no", "staff_group_id", "img_col", "nationality", "mother_tongue", "membership", "empexc", "extraact", "addinfo", "kannada", "english", "hindi", "husband", "scard", "employee_code") VALUES
 ('Alexander Johnson', '', NULL, '', NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'alexander.johnson@email.com', 69, '8327', 1, NULL, 0, 0, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 31, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8327'),
 ('Natasha Khanna', '', NULL, '', NULL, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'natasha.khanna@email.com', 70, '8244', 1, NULL, 0, 0, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'FEMALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 34, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8244'),
 ('Neha Thoria', '', NULL, '', NULL, 6, NULL, NULL, NULL, NULL, NULL, NULL, 'NA', 'Married', NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, 'neha.thoria@email.com', 71, '8269', 1, NULL, 0, 0, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 'MALE', NULL, 'User', '', 'YES', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '1940-01-01', 34, NULL, NULL, NULL, '', '', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '8269'),
@@ -12431,7 +12443,7 @@ INSERT INTO "employee_details" ("f_name", "s_name", "i_name", "qual", "cert", "s
 -- Table structure for table "staff_group"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_group" (
+CREATE TABLE IF NOT EXISTS hr."staff_group" (
   "staff_group_id"      SERIAL,
   "name"    VARCHAR(50)  NOT NULL DEFAULT '',
   "status"  SMALLINT   DEFAULT 1,
@@ -12443,7 +12455,7 @@ CREATE TABLE IF NOT EXISTS "staff_group" (
 -- Dumping data for table "staff_group"
 --
 
-INSERT INTO "staff_group" ("staff_group_id", "name", "status", "col_id") VALUES
+INSERT INTO hr."staff_group" ("staff_group_id", "name", "status", "col_id") VALUES
 (1, 'Teaching (7.30 am to 4.10 pm)', 1, 1),
 (2, 'Non Teaching (8.00 am to 5.00 pm)', 1, 1),
 (3, 'Teaching (7.30 am to 1.30 pm)', 1, 1),
@@ -12463,7 +12475,7 @@ INSERT INTO "staff_group" ("staff_group_id", "name", "status", "col_id") VALUES
 -- Table structure for table "staff_groupnames"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_groupnames" (
+CREATE TABLE IF NOT EXISTS hr."staff_groupnames" (
   "staff_groupnames_id"        SERIAL,
   "grupname"  VARCHAR(255)  NOT NULL,
   "status"    INT           NOT NULL,
@@ -12474,7 +12486,7 @@ CREATE TABLE IF NOT EXISTS "staff_groupnames" (
 -- Dumping data for table "staff_groupnames"
 --
 
-INSERT INTO "staff_groupnames" ("staff_groupnames_id", "grupname", "status") VALUES
+INSERT INTO hr."staff_groupnames" ("staff_groupnames_id", "grupname", "status") VALUES
 (1, 'Test Group', 1),
 (2, 'IGCSE', 1),
 (3, 'IBDP', 1),
@@ -12518,7 +12530,7 @@ INSERT INTO "staff_groupnames" ("staff_groupnames_id", "grupname", "status") VAL
 -- Table structure for table "staff_hr_grup"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_hr_grup" (
+CREATE TABLE IF NOT EXISTS hr."staff_hr_grup" (
   "staff_hr_grup_id"        SERIAL,
   "user"      VARCHAR(255)  NOT NULL,
   "hr_id"     INT           DEFAULT NULL,
@@ -12533,7 +12545,7 @@ CREATE TABLE IF NOT EXISTS "staff_hr_grup" (
 -- Dumping data for table "staff_hr_grup"
 --
 
-INSERT INTO "staff_hr_grup" ("staff_hr_grup_id", "user", "hr_id", "mng_id", "staff_id", "acc_year", "status") VALUES
+INSERT INTO hr."staff_hr_grup" ("staff_hr_grup_id", "user", "hr_id", "mng_id", "staff_id", "acc_year", "status") VALUES
 (1, '', 246, 68, 245, 0, 1),
 (2, '', 0, 0, 194, 0, 1),
 (3, '', 246, 183, 212, 0, 1),
@@ -12551,7 +12563,7 @@ INSERT INTO "staff_hr_grup" ("staff_hr_grup_id", "user", "hr_id", "mng_id", "sta
 -- Table structure for table "employee_leave"
 --
 
-CREATE TABLE IF NOT EXISTS "employee_leave" (
+CREATE TABLE IF NOT EXISTS hr."employee_leave" (
   "employee_leave_id"                     SERIAL,
   "staff_att_approve"      INT           NOT NULL,
   "user"                   VARCHAR(255)  NOT NULL,
@@ -12596,7 +12608,7 @@ CREATE TABLE IF NOT EXISTS "employee_leave" (
 -- Dumping data for table "employee_leave"
 --
 
-INSERT INTO "employee_leave" ("employee_leave_id", "staff_att_approve", "user", "user_manager", "inserted_date", "updated_date", "user_id", "avl", "type", "in_time", "out_time", "hd_ee_da_date", "reason", "manager", "submit_with", "f_date", "f_time", "t_date", "to_time", "half_time_in", "backup", "notify", "days", "contact", "approved", "reject", "acc_year", "status", "status_reason", "withd_commt", "with_color", "status_approve", "status_approve_manger", "status_with_staff", "staff_id", "approve_reason", "reject_reason") VALUES
+INSERT INTO hr."employee_leave" ("employee_leave_id", "staff_att_approve", "user", "user_manager", "inserted_date", "updated_date", "user_id", "avl", "type", "in_time", "out_time", "hd_ee_da_date", "reason", "manager", "submit_with", "f_date", "f_time", "t_date", "to_time", "half_time_in", "backup", "notify", "days", "contact", "approved", "reject", "acc_year", "status", "status_reason", "withd_commt", "with_color", "status_approve", "status_approve_manger", "status_with_staff", "staff_id", "approve_reason", "reject_reason") VALUES
 (17, 0, 'archanam', '', '2026-03-07 11:06:03', NULL, 0, 0, '1', '', '', NULL, 'personal', '', 1, '2026-03-20', '', '2026-03-20', '', '', '', '', '1', '', 0, 0, 2026, 1, 2, 'no personal work', '', 2, NULL, '2026-03-07 11:11:03', 246, '', ''),
 (16, 0, 'archanam', 'chaitalig', '2026-03-07 11:02:03', '2026-03-07 11:05:03', 247, 0, '1', '', '', NULL, 'personal work', '', 0, '2026-03-17', '', '2026-03-17', '', '', '', '', '0', '', 0, 1, 2026, 1, 1, '', '', 1, NULL, NULL, 246, '', 'public holiday'),
 (89, 0, 'soumendran', '', '2026-03-27 14:11:03', NULL, 0, 0, '1', '', '', NULL, 'Not well', '', 0, '2026-03-25', '', '2026-03-25', '', '', '', '', '1', '', 0, 0, 2026, 1, 1, '', '', 1, NULL, NULL, 249, '', ''),
@@ -12615,7 +12627,7 @@ INSERT INTO "employee_leave" ("employee_leave_id", "staff_att_approve", "user", 
 -- Table structure for table "employee_leave_hr"
 --
 
-CREATE TABLE IF NOT EXISTS "employee_leave_hr" (
+CREATE TABLE IF NOT EXISTS hr."employee_leave_hr" (
   "employee_leave_hr_id"        SERIAL,
   "user"      VARCHAR(255)  NOT NULL,
   "hr_id"     INT           NOT NULL,
@@ -12628,7 +12640,7 @@ CREATE TABLE IF NOT EXISTS "employee_leave_hr" (
 -- Dumping data for table "employee_leave_hr"
 --
 
-INSERT INTO "employee_leave_hr" ("employee_leave_hr_id", "user", "hr_id", "acc_year", "status") VALUES
+INSERT INTO hr."employee_leave_hr" ("employee_leave_hr_id", "user", "hr_id", "acc_year", "status") VALUES
 (1, 'administrator', 247, 2026, 1),
 (2, 'administrator', 246, 2026, 1),
 (3, 'administrator', 248, 2026, 1);
@@ -12639,7 +12651,7 @@ INSERT INTO "employee_leave_hr" ("employee_leave_hr_id", "user", "hr_id", "acc_y
 -- Table structure for table "employee_leave_manger"
 --
 
-CREATE TABLE IF NOT EXISTS "employee_leave_manger" (
+CREATE TABLE IF NOT EXISTS hr."employee_leave_manger" (
   "employee_leave_manger_id"         SERIAL,
   "user"       VARCHAR(255)  NOT NULL,
   "manger_id"  INT           NOT NULL,
@@ -12652,7 +12664,7 @@ CREATE TABLE IF NOT EXISTS "employee_leave_manger" (
 -- Dumping data for table "employee_leave_manger"
 --
 
-INSERT INTO "employee_leave_manger" ("employee_leave_manger_id", "user", "manger_id", "acc_year", "status") VALUES
+INSERT INTO hr."employee_leave_manger" ("employee_leave_manger_id", "user", "manger_id", "acc_year", "status") VALUES
 (1, 'administrator', 188, 2026, 0),
 (2, 'administrator', 182, 2026, 1),
 (3, 'administrator', 68, 2026, 1),
@@ -12680,7 +12692,7 @@ INSERT INTO "employee_leave_manger" ("employee_leave_manger_id", "user", "manger
 -- Table structure for table "employee_leave_type"
 --
 
-CREATE TABLE IF NOT EXISTS "employee_leave_type" (
+CREATE TABLE IF NOT EXISTS hr."employee_leave_type" (
   "employee_leave_type_id"            SERIAL,
   "leave_name"    VARCHAR(255)  NOT NULL,
   "special_type"  INT           NOT NULL,
@@ -12693,7 +12705,7 @@ CREATE TABLE IF NOT EXISTS "employee_leave_type" (
 -- Dumping data for table "employee_leave_type"
 --
 
-INSERT INTO "employee_leave_type" ("employee_leave_type_id", "leave_name", "special_type", "lv_ty", "status") VALUES
+INSERT INTO hr."employee_leave_type" ("employee_leave_type_id", "leave_name", "special_type", "lv_ty", "status") VALUES
 (1, 'Leave', 1, 0, 1),
 (2, 'Unpaid Leave', 1, 0, 1),
 (3, 'Maternity Leave', 2, 0, 1),
@@ -12706,7 +12718,7 @@ INSERT INTO "employee_leave_type" ("employee_leave_type_id", "leave_name", "spec
 -- Table structure for table "employee_leave_type_group"
 --
 
-CREATE TABLE IF NOT EXISTS "employee_leave_type_group" (
+CREATE TABLE IF NOT EXISTS hr."employee_leave_type_group" (
   "employee_leave_type_group_id"          SERIAL,
   "staff_id"    INT  NOT NULL,
   "leave_type"  INT  NOT NULL,
@@ -12718,7 +12730,7 @@ CREATE TABLE IF NOT EXISTS "employee_leave_type_group" (
 -- Dumping data for table "employee_leave_type_group"
 --
 
-INSERT INTO "employee_leave_type_group" ("employee_leave_type_group_id", "staff_id", "leave_type", "status") VALUES
+INSERT INTO hr."employee_leave_type_group" ("employee_leave_type_group_id", "staff_id", "leave_type", "status") VALUES
 (1, 330, 1, 0),
 (2, 331, 1, 0),
 (3, 332, 1, 0),
@@ -12739,7 +12751,7 @@ INSERT INTO "employee_leave_type_group" ("employee_leave_type_group_id", "staff_
 -- Table structure for table "staff_qualification"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_qualification" (
+CREATE TABLE IF NOT EXISTS hr."staff_qualification" (
   "staff_qualification_id"              SERIAL,
   "staff_id"        INT           DEFAULT NULL,
   "course_name"     VARCHAR(100)  DEFAULT NULL,
@@ -12758,7 +12770,7 @@ CREATE TABLE IF NOT EXISTS "staff_qualification" (
 -- Dumping data for table "staff_qualification"
 --
 
-INSERT INTO "staff_qualification" ("staff_qualification_id", "staff_id", "course_name", "year_pass", "university", "reg_date", "name_board", "school", "specialization", "class", "percentage") VALUES
+INSERT INTO hr."staff_qualification" ("staff_qualification_id", "staff_id", "course_name", "year_pass", "university", "reg_date", "name_board", "school", "specialization", "class", "percentage") VALUES
 (1, 1, 'Dip. in Comp.Sc', '1991', '', '', '', 'MNTI', 'CS', NULL, NULL),
 (2, 2, 'II PUC', '1988', 'bangalore', '', '', 'mounts', 'Commerce', NULL, NULL),
 (3, 2, 'Dip in Com', '', '', '', '', '', 'CS', NULL, NULL),
@@ -12771,7 +12783,7 @@ INSERT INTO "staff_qualification" ("staff_qualification_id", "staff_id", "course
 -- Table structure for table "staff_rights"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_rights" (
+CREATE TABLE IF NOT EXISTS hr."staff_rights" (
   "staff_rights_id"                SERIAL,
   "staff_id"          INT          DEFAULT NULL,
   "course_id"         INT          DEFAULT NULL,
@@ -12789,7 +12801,7 @@ CREATE TABLE IF NOT EXISTS "staff_rights" (
 -- Dumping data for table "staff_rights"
 --
 
-INSERT INTO "staff_rights" ("staff_rights_id", "staff_id", "course_id", "subject_id", "year_id", "subject_type", "class_section_id", "batch_id", "StaffID", "maj_id") VALUES
+INSERT INTO hr."staff_rights" ("staff_rights_id", "staff_id", "course_id", "subject_id", "year_id", "subject_type", "class_section_id", "batch_id", "StaffID", "maj_id") VALUES
 (1, 0, 2, 232, 2, 1, 1, 0, 'RD-S0001', 0),
 (2, 0, 2, 233, 2, 1, 1, 0, 'RD-S0001', 0),
 (3, 0, 2, 236, 2, 1, 1, 0, 'RD-S0001', 0),
@@ -12817,7 +12829,7 @@ INSERT INTO "staff_rights" ("staff_rights_id", "staff_id", "course_id", "subject
 -- Table structure for table "staff_status"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_status" (
+CREATE TABLE IF NOT EXISTS hr."staff_status" (
   "staff_status_id"      SERIAL,
   "name"    VARCHAR(50)  DEFAULT NULL,
   "status"  SMALLINT   DEFAULT 1,
@@ -12828,7 +12840,7 @@ CREATE TABLE IF NOT EXISTS "staff_status" (
 -- Dumping data for table "staff_status"
 --
 
-INSERT INTO "staff_status" ("staff_status_id", "name", "status") VALUES
+INSERT INTO hr."staff_status" ("staff_status_id", "name", "status") VALUES
 (1, 'Permanent', 1),
 (2, 'Temprorary', 1),
 (3, 'Contractual', 1);
@@ -12839,7 +12851,7 @@ INSERT INTO "staff_status" ("staff_status_id", "name", "status") VALUES
 -- Table structure for table "staff_termination"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_termination" (
+CREATE TABLE IF NOT EXISTS hr."staff_termination" (
   "staff_termination_id"        SERIAL,
   "staff_id"  INT           DEFAULT NULL,
   "san_date"  DATE          DEFAULT NULL,
@@ -12855,7 +12867,7 @@ CREATE TABLE IF NOT EXISTS "staff_termination" (
 -- Dumping data for table "staff_termination"
 --
 
-INSERT INTO "staff_termination" ("staff_termination_id", "staff_id", "san_date", "san_no", "aut_name", "remarks", "eff_date", "headg") VALUES
+INSERT INTO hr."staff_termination" ("staff_termination_id", "staff_id", "san_date", "san_no", "aut_name", "remarks", "eff_date", "headg") VALUES
 (1, 17, '2026-01-07', 'CLRT/HRM/NewApp/17', 'HR Manager', 'Newly recruited staff', '2026-01-07', 'New Appointment'),
 (2, 18, '2026-03-06', 'CLRT/HRM/NewApp/18', 'HR Manager', 'Newly recruited staff', '2026-03-06', 'New Appointment'),
 (3, 19, '2026-06-28', 'CLRT/HRM/NewApp/19', 'HR Manager', 'Newly recruited staff', '2026-06-28', 'New Appointment'),
@@ -12873,7 +12885,7 @@ INSERT INTO "staff_termination" ("staff_termination_id", "staff_id", "san_date",
 -- Table structure for table "staff_time"
 --
 
-CREATE TABLE IF NOT EXISTS "staff_time" (
+CREATE TABLE IF NOT EXISTS hr."staff_time" (
   "staff_time_id"          SERIAL,
   "acc_year"    VARCHAR(200)  NOT NULL,
   "leave_det"   INT           NOT NULL,
@@ -12895,7 +12907,7 @@ CREATE TABLE IF NOT EXISTS "staff_time" (
 -- Dumping data for table "staff_time"
 --
 
-INSERT INTO "staff_time" ("staff_time_id", "acc_year", "leave_det", "staff_type", "enter_date", "staff_date", "date_type", "username", "intime", "ex_intime", "outtime", "ex_outtime", "title", "status") VALUES
+INSERT INTO hr."staff_time" ("staff_time_id", "acc_year", "leave_det", "staff_type", "enter_date", "staff_date", "date_type", "username", "intime", "ex_intime", "outtime", "ex_outtime", "title", "status") VALUES
 (1, '2026', 1, '1', '2026-03-15', '', 1, 'administrator', '07:30', '07:40', '16:10', '16:10', 'Teaching', 1),
 (2, '2026', 1, '2', '2026-02-17', '', 1, 'administrator', '08:00', '08:15', '17:00', '17:00', 'Non Teaching', 1),
 (3, '2026', 1, '3', NULL, '', 1, 'administrator', '07:30', '', '13:30', '', 'Teaching', 1),
@@ -12910,10 +12922,10 @@ INSERT INTO "staff_time" ("staff_time_id", "acc_year", "leave_det", "staff_type"
 -- --------------------------------------------------------
 
 --
--- Table structure for table "studentmenu"
+-- Table structure for table "settings_studentmenu"
 --
 
-CREATE TABLE IF NOT EXISTS "studentmenu" (
+CREATE TABLE IF NOT EXISTS settings."settings_studentmenu" (
   "row_id"     SERIAL,
   "module"     CHAR(50)          DEFAULT NULL,
   "submodule"  CHAR(50)          DEFAULT NULL,
@@ -12926,10 +12938,10 @@ CREATE TABLE IF NOT EXISTS "studentmenu" (
 );
 
 --
--- Dumping data for table "studentmenu"
+-- Dumping data for table "settings_studentmenu"
 --
 
-INSERT INTO "studentmenu" ("module", "submodule", "linkname", "linkpath", "access", "parameter", "id") VALUES
+INSERT INTO settings."settings_studentmenu" ("module", "submodule", "linkname", "linkpath", "access", "parameter", "id") VALUES
 ('Main', 'Main', 'User Management', '/lms/menu/usermenu.php', 'No', '', 206),
 ('Main', 'Main', 'Student Management', '/lms/menu/studentmenu.php', 'No', '', 207),
 ('Main', 'Main', 'Class', '/lms/menu/class.php', 'Yes', '', 214),
@@ -12952,7 +12964,7 @@ INSERT INTO "studentmenu" ("module", "submodule", "linkname", "linkpath", "acces
 -- Table structure for table "student_card_number"
 --
 
-CREATE TABLE IF NOT EXISTS "student_card_number" (
+CREATE TABLE IF NOT EXISTS student."student_card_number" (
   "student_card_number_id"          SERIAL,
   "student_id"  INT          NOT NULL,
   "swap_card"   VARCHAR(50)  NOT NULL,
@@ -12964,7 +12976,7 @@ CREATE TABLE IF NOT EXISTS "student_card_number" (
 -- Dumping data for table "student_card_number"
 --
 
-INSERT INTO "student_card_number" ("student_card_number_id", "student_id", "swap_card", "status") VALUES
+INSERT INTO student."student_card_number" ("student_card_number_id", "student_id", "swap_card", "status") VALUES
 (1, 907, '32981917000000000000000000000000', 1),
 (2, 303, '723D6B17000000000000000000000000', 1),
 (3, 384, '72D76B17000000000000000000000000', 1),
@@ -12982,7 +12994,7 @@ INSERT INTO "student_card_number" ("student_card_number_id", "student_id", "swap
 -- Table structure for table "student_class"
 --
 
-CREATE TABLE IF NOT EXISTS "student_class" (
+CREATE TABLE IF NOT EXISTS student."student_class" (
   "student_class_id"        BIGSERIAL,
   "div"       INT     NOT NULL,
   "class"     INT     NOT NULL,
@@ -12997,7 +13009,7 @@ CREATE TABLE IF NOT EXISTS "student_class" (
 -- Dumping data for table "student_class"
 --
 
-INSERT INTO "student_class" ("student_class_id", "div", "class", "sub", "sub_sec", "acc_year", "stu_id") VALUES
+INSERT INTO student."student_class" ("student_class_id", "div", "class", "sub", "sub_sec", "acc_year", "stu_id") VALUES
 (1, 0, 1, 238, 1, 2026, 893),
 (2, 0, 1, 238, 1, 2026, 671),
 (3, 0, 1, 238, 1, 2026, 731),
@@ -13015,7 +13027,7 @@ INSERT INTO "student_class" ("student_class_id", "div", "class", "sub", "sub_sec
 -- Table structure for table "student_course"
 --
 
-CREATE TABLE IF NOT EXISTS "student_course" (
+CREATE TABLE IF NOT EXISTS student."student_course" (
   "student_course_id"        SERIAL,
   "div"       INT     NOT NULL,
   "class"     INT     NOT NULL,
@@ -13030,7 +13042,7 @@ CREATE TABLE IF NOT EXISTS "student_course" (
 -- Dumping data for table "student_course"
 --
 
-INSERT INTO "student_course" ("student_course_id", "div", "class", "sub", "sub_sec", "acc_year", "stu_id") VALUES
+INSERT INTO student."student_course" ("student_course_id", "div", "class", "sub", "sub_sec", "acc_year", "stu_id") VALUES
 (1, 3, 10, 0, 42, 2026, 1055),
 (2, 3, 10, 0, 42, 2026, 775),
 (3, 3, 10, 0, 42, 2026, 472),
@@ -13048,7 +13060,7 @@ INSERT INTO "student_course" ("student_course_id", "div", "class", "sub", "sub_s
 -- Table structure for table "student_leavingcertificate"
 --
 
-CREATE TABLE IF NOT EXISTS "student_leavingcertificate" (
+CREATE TABLE IF NOT EXISTS student."student_leavingcertificate" (
   "student_leavingcertificate_id"                    SERIAL,
   "student_id"            INT   NOT NULL,
   "gradeCompleted"        INT   NOT NULL,
@@ -13064,7 +13076,7 @@ CREATE TABLE IF NOT EXISTS "student_leavingcertificate" (
 -- Dumping data for table "student_leavingcertificate"
 --
 
-INSERT INTO "student_leavingcertificate" ("student_leavingcertificate_id", "student_id", "gradeCompleted", "academicYear", "lastDateOfAttendance", "sysdate", "resultEndYear", "comments") VALUES
+INSERT INTO student."student_leavingcertificate" ("student_leavingcertificate_id", "student_id", "gradeCompleted", "academicYear", "lastDateOfAttendance", "sysdate", "resultEndYear", "comments") VALUES
 (1, 814, 4, 2026, NULL, '2026-05-30', 2026, ''),
 (2, 975, 1, 2026, NULL, '2026-07-22', 2026, ''),
 (3, 473, 1, 2026, NULL, '2026-09-30', 2026, ''),
@@ -13074,10 +13086,10 @@ INSERT INTO "student_leavingcertificate" ("student_leavingcertificate_id", "stud
 -- --------------------------------------------------------
 
 --
--- Table structure for table "student_m"
+-- Table structure for table "student"
 --
 
-CREATE TABLE IF NOT EXISTS "student_m" (
+CREATE TABLE IF NOT EXISTS student."student" (
   "student_m_id"                 SERIAL,
   "admission_id"       VARCHAR(20)        DEFAULT NULL,
   "admission_date"     DATE               DEFAULT NULL,
@@ -13192,16 +13204,16 @@ CREATE TABLE IF NOT EXISTS "student_m" (
   PRIMARY KEY ("student_m_id")
 );
 
-CREATE UNIQUE INDEX "ux_student_id" ON "student_m" ("student_id");
-CREATE INDEX "ix_archive_year" ON "student_m" ("archive", "adm_yr");
-CREATE INDEX "ix_section_archive" ON "student_m" ("class_section_id", "archive");
-CREATE INDEX "ix_first_last" ON "student_m" ("first_name", "last_name");
+CREATE UNIQUE INDEX "ux_student_id" ON student."student" ("student_id");
+CREATE INDEX "ix_archive_year" ON student."student" ("archive", "adm_yr");
+CREATE INDEX "ix_section_archive" ON student."student" ("class_section_id", "archive");
+CREATE INDEX "ix_first_last" ON student."student" ("first_name", "last_name");
 
 --
--- Dumping data for table "student_m"
+-- Dumping data for table "student"
 --
 
-INSERT INTO "student_m" ("student_m_id", "admission_id", "admission_date", "student_id", "usn", "first_name", "middle_name", "last_name", "nationality", "religion", "gender", "caste_id", "dob", "age", "per_address", "per_city", "per_state", "per_country", "per_pincode", "per_phone", "cor_address", "cor_city", "cor_state", "cor_country", "cor_pincode", "cor_phone", "parent_name", "parent_occupation", "parent_income", "loc_address", "loc_city", "loc_state", "loc_country", "loc_pincode", "loc_phone", "course_admitted", "course_yearsem", "quota_id", "academic_year", "remarks", "username", "password", "archive", "class_section_id", "parent_username", "password_hash", "count", "blood_group", "admission_type", "img_source", "img_source_s", "marital_status", "mentor", "m_email", "mnum", "g_name", "g_occ", "g_in", "g_num", "g_mail", "f_email", "place_of_birth", "f_quali", "m_quali", "g_quali", "lang_id", "State", "sms_mobile", "mother_tongue", "birth_disct", "stud_type", "vdate", "m_name", "m_occ", "m_inc", "foadd", "moadd", "goadd", "adm_yr", "tcid", "tcdate", "msgphone", "rgmailid", "mother_email", "f_org", "m_org", "g_org", "f_desg", "m_desg", "g_desg", "fpan_no", "mpan_no", "gpan_no", "office", "per_grade", "residence", "parent_org", "hear_school", "parent_desig", "passport_type", "per_school_name", "enquiry_type", "action", "adminpack", "inserted_date", "inserted_time", "status", "sem_elig", "apl_prev", "m_occp", "f_occp") VALUES
+INSERT INTO student."student" ("student_m_id", "admission_id", "admission_date", "student_id", "usn", "first_name", "middle_name", "last_name", "nationality", "religion", "gender", "caste_id", "dob", "age", "per_address", "per_city", "per_state", "per_country", "per_pincode", "per_phone", "cor_address", "cor_city", "cor_state", "cor_country", "cor_pincode", "cor_phone", "parent_name", "parent_occupation", "parent_income", "loc_address", "loc_city", "loc_state", "loc_country", "loc_pincode", "loc_phone", "course_admitted", "course_yearsem", "quota_id", "academic_year", "remarks", "username", "password", "archive", "class_section_id", "parent_username", "password_hash", "count", "blood_group", "admission_type", "img_source", "img_source_s", "marital_status", "mentor", "m_email", "mnum", "g_name", "g_occ", "g_in", "g_num", "g_mail", "f_email", "place_of_birth", "f_quali", "m_quali", "g_quali", "lang_id", "State", "sms_mobile", "mother_tongue", "birth_disct", "stud_type", "vdate", "m_name", "m_occ", "m_inc", "foadd", "moadd", "goadd", "adm_yr", "tcid", "tcdate", "msgphone", "rgmailid", "mother_email", "f_org", "m_org", "g_org", "f_desg", "m_desg", "g_desg", "fpan_no", "mpan_no", "gpan_no", "office", "per_grade", "residence", "parent_org", "hear_school", "parent_desig", "passport_type", "per_school_name", "enquiry_type", "action", "adminpack", "inserted_date", "inserted_time", "status", "sem_elig", "apl_prev", "m_occp", "f_occp") VALUES
 (1, '129720', '2010-02-16', 'A233', '', 'S.Sri', '', 'Krishna', 13, 0, 'M', '', '2001-07-19', '12', '', '', '', '', '', '', 'Flat No. 1904, 19th Flr Tower-II Raheja Tipco Heights, Rani Sati Marg, Malad (E)', 'Mumbai', 'Maharashtra', 'India', '400097', '022 42665185 / 40700', 'S. Sri Shankar ', 'Employee', 0.00, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 3, 11, 0, '2026', '', 'A233', '129720', 'N', 44, '12345', '12345', 1, 'NA', '1', '../student_images/A233.JPG', 'srikrishna.srishankar@email.com', '', 'NULL', 'vidyalakshmishankar@email.com', '0', '', '', 0, '0', '', 'srishankarsrivatsa@email.com', '', '', '', '', '', '', '0000000000', 6, '', '', NULL, 'Srividyalakshmi Vaithianathan ', 'Ca Finance', '', 'Bkc -', '1904 19th Floor, Tower Ii, Raheja Tipco Heights Malad East', '', NULL, 0, NULL, 0000000000, 'srishankarsrivatsa@email.com', 'NULL', '', '', '', '', '', '', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', NULL, '00:00:00', 1, 0, NULL, '', ''),
 (2, '1206018', '2026-07-16', 'A921', '', 'Arsalaan', '', 'Abbas', 13, 0, 'M', '', '2002-02-18', '11', '', '', '', '', '', '', 'Raj Classic, B1507/08, Powai Marg, Off Yari Rd, Versova, Andheri (W)', 'Mumbai', 'Maharashtra', 'India', '400061', '022-26315140', 'Roshan Abbas ', 'Media Entrepreneur', 0.00, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 3, 10, 0, '2026', '', 'A921', '1206018', 'N', 0, '12345', '12345', 0, 'NA', '1', '../student_images/img3/2.jpg', 'arsalaan.abbas@email.com', '', 'NULL', 'shaheen@email.com', '0000000000', '', '', 0, '0', '', 'roshanabbas1970@email.com', '', '', '', '', '', '', '0000000000', 28, '', '', NULL, 'Shaheen Abbas ', 'Jewellry Designer', '', '401,Trans Avenue,Behind Mahada Tel.Exchange,Andheri (w) - 400053', 'Raj Classic,B1507/08,Off Yari Rd,Versova,Andheri (w) - 400061', '', NULL, 0, NULL, 0000000000, 'roshanabbas1970@email.com', 'NULL', 'Encompass Events Pvt Ltd', 'Flower Child', '', '', '', '', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', NULL, '00:00:00', 1, 0, NULL, '', ''),
 (3, '1205821', '2026-04-07', 'A920', 'NULL', 'Ayatal', '', 'Abbas', 13, NULL, 'F', 'NULL', '2007-07-18', '6', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Raj Classic, B1507/08, Panch Marg, Off Yari Rd Versova, Andheri (W)', 'Mumbai', 'Maharashtra', 'India', '400061', '022-26315140', 'Roshan Abbas ', 'Media Entrepreneur', NULL, 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 2, 5, NULL, '2026', 'NULL', '1205821', '1205821', 'N', 13, '12345', '12345', 0, 'NULL', '1', '../student_images/A920.JPG', 'roshanabbas1970@email.com,roshan@encompass.in,shaheen@email.com', '', 'NULL', 'shaheen@email.com', '0000000000', '', '', NULL, '0', '', 'roshanabbas1970@email.com', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '0000000000', 28, 'NULL', 'NULL', NULL, 'Shaheen Abbas ', 'Jewellry Designer', 'NULL', '401,Trans Avenue,Behind Mahada Tel.Exchange,Andheri (w) - 400053', 'Raj Classic,B1507/08,Off Yari Rd,Versova,Andheri (w) - 400061', 'NULL', NULL, 0, NULL, 0000000000, 'roshanabbas1970@email.com', 'NULL', 'Encompass Events Pvt Ltd', 'Flower Child', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'Disapprove', 'N', NULL, '00:00:00', 1, 0, NULL, '', ''),
@@ -13219,7 +13231,7 @@ INSERT INTO "student_m" ("student_m_id", "admission_id", "admission_date", "stud
 -- Table structure for table "student_mail_list"
 --
 
-CREATE TABLE IF NOT EXISTS "student_mail_list" (
+CREATE TABLE IF NOT EXISTS student."student_mail_list" (
   "student_mail_list_id"               SERIAL,
   "date_entered"     DATE                DEFAULT NULL,
   "staff_delete_vt"  INT                 NOT NULL,
@@ -13243,14 +13255,14 @@ CREATE TABLE IF NOT EXISTS "student_mail_list" (
   PRIMARY KEY ("student_mail_list_id")
 );
 
-CREATE INDEX "ix_student_id" ON "student_mail_list" ("student_id");
-CREATE INDEX "ix_date_status" ON "student_mail_list" ("date_entered", "status");
+CREATE INDEX "ix_student_id" ON student."student_mail_list" ("student_id");
+CREATE INDEX "ix_date_status" ON student."student_mail_list" ("date_entered", "status");
 
 --
 -- Dumping data for table "student_mail_list"
 --
 
-INSERT INTO "student_mail_list" ("student_mail_list_id", "date_entered", "staff_delete_vt", "staff_idss", "store_ids", "student_id", "first_name", "last_name", "stud_mailss", "emrgcy_mails", "parent_name", "m_name", "f_email", "m_email", "g_name", "g_mail", "user", "status", "person_type", "staff_mailid") VALUES
+INSERT INTO student."student_mail_list" ("student_mail_list_id", "date_entered", "staff_delete_vt", "staff_idss", "store_ids", "student_id", "first_name", "last_name", "stud_mailss", "emrgcy_mails", "parent_name", "m_name", "f_email", "m_email", "g_name", "g_mail", "user", "status", "person_type", "staff_mailid") VALUES
 (234189, '2026-03-28', 0, 0, 8524343, '1274', 'Aanchal', 'Vyas', 'aanchal.vyas@email.com', 'vyasdevelopers@email.com', 'Vyas, Sanjay', 'Vyas, Snehal', 'vyasdevelopers@email.com', 'vyasdevelopers@email.com', '', '', 'crystalv', 0, 'student', NULL),
 (234190, '2026-03-28', 0, 0, 8524343, '874', 'Dinisha', 'Patel', 'dinisha.patel@email.com', 'ppatelasda@email.com', 'Patel, Purvin', 'Patel, Gayatri', 'ppatelasda@email.com', 'gayatri203patel@email.com', '', '', 'crystalv', 0, 'student', NULL),
 (234191, '2026-03-28', 0, 0, 8524343, '1009', 'Dzhina', 'Sarasvat', 'dzhina.sarasvat@email.com', 'satyen.saraswat@email.com', 'Saraswat, Satyen', 'Sarasvat, Irina', 'satyen.saraswat@email.com', 'irinasar15@mail.ru', '', '', 'crystalv', 0, 'student', NULL),
@@ -13267,7 +13279,7 @@ INSERT INTO "student_mail_list" ("student_mail_list_id", "date_entered", "staff_
 -- Table structure for table "student_modify"
 --
 
-CREATE TABLE IF NOT EXISTS "student_modify" (
+CREATE TABLE IF NOT EXISTS student."student_modify" (
   "student_modify_id"                      SERIAL,
   "student_field_name"      VARCHAR(50)  NOT NULL,
   "student_interface_name"  VARCHAR(50)  NOT NULL,
@@ -13278,7 +13290,7 @@ CREATE TABLE IF NOT EXISTS "student_modify" (
 -- Dumping data for table "student_modify"
 --
 
-INSERT INTO "student_modify" ("student_modify_id", "student_field_name", "student_interface_name") VALUES
+INSERT INTO student."student_modify" ("student_modify_id", "student_field_name", "student_interface_name") VALUES
 (1, 'id', 'id'),
 (2, 'admission_id', 'Admission_Number'),
 (3, 'admission_date', 'Admission_Date'),
@@ -13296,7 +13308,7 @@ INSERT INTO "student_modify" ("student_modify_id", "student_field_name", "studen
 -- Table structure for table "student_m_adminpack"
 --
 
-CREATE TABLE IF NOT EXISTS "student_m_adminpack" (
+CREATE TABLE IF NOT EXISTS student."student_m_adminpack" (
   "student_m_adminpack_id"             SERIAL,
   "reg_code"       VARCHAR(20)  DEFAULT NULL,
   "app_no"         VARCHAR(20)  DEFAULT NULL,
@@ -13317,7 +13329,7 @@ CREATE TABLE IF NOT EXISTS "student_m_adminpack" (
 -- Dumping data for table "student_m_adminpack"
 --
 
-INSERT INTO "student_m_adminpack" ("student_m_adminpack_id", "reg_code", "app_no", "enquiry", "handover_date", "courier", "consignment", "send_date", "receive_date", "action", "inserted_date", "inserted_time", "status") VALUES
+INSERT INTO student."student_m_adminpack" ("student_m_adminpack_id", "reg_code", "app_no", "enquiry", "handover_date", "courier", "consignment", "send_date", "receive_date", "action", "inserted_date", "inserted_time", "status") VALUES
 (1, '100001', '12345', 'courier_service', NULL, 'DTDC', '12346', '2026-02-20', '2026-02-26', 'Disapprove', '2026-02-26', '16:15:38', 1),
 (2, '100002', '12347', 'manual_handover', '2026-02-10', '', '', NULL, '2026-02-26', 'Approve', '2026-02-26', '16:16:08', 1),
 (3, '100003', '12348', 'courier_service', NULL, 'Blue Dart', '12349', '2026-02-18', '2026-02-26', 'Approve', '2026-02-26', '17:06:03', 1),
@@ -13329,7 +13341,7 @@ INSERT INTO "student_m_adminpack" ("student_m_adminpack_id", "reg_code", "app_no
 -- Table structure for table "student_m_appointment"
 --
 
-CREATE TABLE IF NOT EXISTS "student_m_appointment" (
+CREATE TABLE IF NOT EXISTS student."student_m_appointment" (
   "student_m_appointment_id"             SERIAL,
   "student_name"   VARCHAR(100)  DEFAULT NULL,
   "parent_name"    VARCHAR(100)  DEFAULT NULL,
@@ -13348,7 +13360,7 @@ CREATE TABLE IF NOT EXISTS "student_m_appointment" (
 -- Dumping data for table "student_m_appointment"
 --
 
-INSERT INTO "student_m_appointment" ("student_m_appointment_id", "student_name", "parent_name", "dob", "mobile", "email", "description", "app_date", "inserted_date", "inserted_time", "status") VALUES
+INSERT INTO student."student_m_appointment" ("student_m_appointment_id", "student_name", "parent_name", "dob", "mobile", "email", "description", "app_date", "inserted_date", "inserted_time", "status") VALUES
 (1, 'Pradeep Kumar', 'Kumar Sharma', '2026-01-30', '7760653743', 'pradeep.vwa@email.com', 'hi', '2026-02-20 12:46:32', '2026-02-13', '17:59:53', 1),
 (2, 'Pradeep Kumar', 'Kumar Sharma', '2026-02-28', '7760653743', 'pradeep.vwa@email.com', 'hi', '2026-02-20 12:49:35', '2026-02-13', '19:57:03', 1);
 
@@ -13358,7 +13370,7 @@ INSERT INTO "student_m_appointment" ("student_m_appointment_id", "student_name",
 -- Table structure for table "student_m_ec"
 --
 
-CREATE TABLE IF NOT EXISTS "student_m_ec" (
+CREATE TABLE IF NOT EXISTS student."student_m_ec" (
   "student_m_ec_id"             SERIAL,
   "fname"          VARCHAR(100)  DEFAULT NULL,
   "lname"          VARCHAR(100)  DEFAULT NULL,
@@ -13378,7 +13390,7 @@ CREATE TABLE IF NOT EXISTS "student_m_ec" (
 -- Dumping data for table "student_m_ec"
 --
 
-INSERT INTO "student_m_ec" ("student_m_ec_id", "fname", "lname", "relation", "countryCode", "home_phone", "cell_phone", "work_phone", "email", "note", "inserted_date", "status") VALUES
+INSERT INTO student."student_m_ec" ("student_m_ec_id", "fname", "lname", "relation", "countryCode", "home_phone", "cell_phone", "work_phone", "email", "note", "inserted_date", "status") VALUES
 (1, 'Pradeep', 'Kumar', 'Brother', 91, 7760653743, 7760653743, 7760653743, 'pradeep.vwa@email.com', 'Hi,This is Pradeep Kumar.', '2026-07-26', 0),
 (2, 'Kumar', 'Pradeep', 'Brother', 91, 0, 0, 0, '', '', '2026-07-26', 0),
 (3, 'Pradeep', '', '', 0, 0, 0, 0, '', '', '2026-10-24', 0),
@@ -13394,7 +13406,7 @@ INSERT INTO "student_m_ec" ("student_m_ec_id", "fname", "lname", "relation", "co
 -- Table structure for table "student_m_enquirystatus"
 --
 
-CREATE TABLE IF NOT EXISTS "student_m_enquirystatus" (
+CREATE TABLE IF NOT EXISTS student."student_m_enquirystatus" (
   "student_m_enquirystatus_id"      SERIAL,
   "name"    VARCHAR(20)  DEFAULT NULL,
   "status"  SMALLINT   DEFAULT 1,
@@ -13405,7 +13417,7 @@ CREATE TABLE IF NOT EXISTS "student_m_enquirystatus" (
 -- Dumping data for table "student_m_enquirystatus"
 --
 
-INSERT INTO "student_m_enquirystatus" ("student_m_enquirystatus_id", "name", "status") VALUES
+INSERT INTO student."student_m_enquirystatus" ("student_m_enquirystatus_id", "name", "status") VALUES
 (1, 'To be Scheduled', 1),
 (2, 'Invited', 1),
 (3, 'Completed', 1),
@@ -13418,7 +13430,7 @@ INSERT INTO "student_m_enquirystatus" ("student_m_enquirystatus_id", "name", "st
 -- Table structure for table "student_m_event"
 --
 
-CREATE TABLE IF NOT EXISTS "student_m_event" (
+CREATE TABLE IF NOT EXISTS student."student_m_event" (
   "student_m_event_id"      SERIAL,
   "event"   VARCHAR(100)  DEFAULT NULL,
   "status"  SMALLINT    DEFAULT 1,
@@ -13429,7 +13441,7 @@ CREATE TABLE IF NOT EXISTS "student_m_event" (
 -- Dumping data for table "student_m_event"
 --
 
-INSERT INTO "student_m_event" ("student_m_event_id", "event", "status") VALUES
+INSERT INTO student."student_m_event" ("student_m_event_id", "event", "status") VALUES
 (1, 'Academic Event', 1),
 (2, 'Attendance Notice', 1),
 (3, 'Bullying/intimidation', 1),
@@ -13483,7 +13495,7 @@ INSERT INTO "student_m_event" ("student_m_event_id", "event", "status") VALUES
 -- Table structure for table "student_m_field"
 --
 
-CREATE TABLE IF NOT EXISTS "student_m_field" (
+CREATE TABLE IF NOT EXISTS student."student_m_field" (
   "student_m_field_id"             SERIAL,
   "tab_id"         INT           DEFAULT NULL,
   "order"          INT           DEFAULT NULL,
@@ -13501,7 +13513,7 @@ CREATE TABLE IF NOT EXISTS "student_m_field" (
 -- Dumping data for table "student_m_field"
 --
 
-INSERT INTO "student_m_field" ("student_m_field_id", "tab_id", "order", "user_name", "field_name", "display_name", "field_type", "mandatory", "inserted_date", "status") VALUES
+INSERT INTO student."student_m_field" ("student_m_field_id", "tab_id", "order", "user_name", "field_name", "display_name", "field_type", "mandatory", "inserted_date", "status") VALUES
 (1, 2, 5, 'administrator', 'admission_id', 'Application Number', 'INT', 0, '2026-05-21 16:02:52', 1),
 (2, 2, 10, 'administrator', 'admission_date', 'Admission Date', 'DATE', 0, '2026-05-21 16:02:52', 1),
 (3, 2, 0, 'administrator', 'course_admitted', 'School Division', 'SELECT', 1, '2026-05-21 16:02:52', 1),
@@ -13564,7 +13576,7 @@ INSERT INTO "student_m_field" ("student_m_field_id", "tab_id", "order", "user_na
 -- Table structure for table "student_m_flexi"
 --
 
-CREATE TABLE IF NOT EXISTS "student_m_flexi" (
+CREATE TABLE IF NOT EXISTS student."student_m_flexi" (
   "student_m_flexi_id"                      SERIAL,
   "inserted_date"           TIMESTAMP      DEFAULT NULL,
   "status"                  SMALLINT    DEFAULT 1,
@@ -13591,7 +13603,7 @@ CREATE TABLE IF NOT EXISTS "student_m_flexi" (
 -- Table structure for table "student_m_online"
 --
 
-CREATE TABLE IF NOT EXISTS "student_m_online" (
+CREATE TABLE IF NOT EXISTS student."student_m_online" (
   "student_m_online_id"                 SERIAL,
   "admission_id"       VARCHAR(20)        DEFAULT NULL,
   "admission_date"     DATE               DEFAULT NULL,
@@ -13710,7 +13722,7 @@ CREATE TABLE IF NOT EXISTS "student_m_online" (
 -- Dumping data for table "student_m_online"
 --
 
-INSERT INTO "student_m_online" ("student_m_online_id", "admission_id", "admission_date", "student_id", "usn", "first_name", "middle_name", "last_name", "nationality", "religion", "gender", "caste_id", "dob", "age", "per_address", "per_city", "per_state", "per_country", "per_pincode", "per_phone", "cor_address", "cor_city", "cor_state", "cor_country", "cor_pincode", "cor_phone", "parent_name", "parent_occupation", "parent_income", "loc_address", "loc_city", "loc_state", "loc_country", "loc_pincode", "loc_phone", "course_admitted", "course_yearsem", "quota_id", "academic_year", "remarks", "username", "password", "archive", "class_section_id", "parent_username", "password_hash", "count", "blood_group", "admission_type", "img_source", "img_source_s", "marital_status", "mentor", "m_email", "mnum", "g_name", "g_occ", "g_in", "g_num", "g_mail", "f_email", "place_of_birth", "f_quali", "m_quali", "g_quali", "lang_id", "State", "sms_mobile", "mother_tongue", "birth_disct", "stud_type", "vdate", "m_name", "m_occ", "m_inc", "foadd", "moadd", "goadd", "adm_yr", "tcid", "tcdate", "msgphone", "rgmailid", "mother_email", "f_org", "m_org", "g_org", "f_desg", "m_desg", "g_desg", "fpan_no", "mpan_no", "gpan_no", "office", "per_grade", "residence", "parent_org", "hear_school", "parent_desig", "passport_type", "per_school_name", "enquiry_type", "action", "adminpack", "inserted_date", "inserted_time", "status", "sem_elig", "apl_prev", "m_occp", "f_occp") VALUES
+INSERT INTO student."student_m_online" ("student_m_online_id", "admission_id", "admission_date", "student_id", "usn", "first_name", "middle_name", "last_name", "nationality", "religion", "gender", "caste_id", "dob", "age", "per_address", "per_city", "per_state", "per_country", "per_pincode", "per_phone", "cor_address", "cor_city", "cor_state", "cor_country", "cor_pincode", "cor_phone", "parent_name", "parent_occupation", "parent_income", "loc_address", "loc_city", "loc_state", "loc_country", "loc_pincode", "loc_phone", "course_admitted", "course_yearsem", "quota_id", "academic_year", "remarks", "username", "password", "archive", "class_section_id", "parent_username", "password_hash", "count", "blood_group", "admission_type", "img_source", "img_source_s", "marital_status", "mentor", "m_email", "mnum", "g_name", "g_occ", "g_in", "g_num", "g_mail", "f_email", "place_of_birth", "f_quali", "m_quali", "g_quali", "lang_id", "State", "sms_mobile", "mother_tongue", "birth_disct", "stud_type", "vdate", "m_name", "m_occ", "m_inc", "foadd", "moadd", "goadd", "adm_yr", "tcid", "tcdate", "msgphone", "rgmailid", "mother_email", "f_org", "m_org", "g_org", "f_desg", "m_desg", "g_desg", "fpan_no", "mpan_no", "gpan_no", "office", "per_grade", "residence", "parent_org", "hear_school", "parent_desig", "passport_type", "per_school_name", "enquiry_type", "action", "adminpack", "inserted_date", "inserted_time", "status", "sem_elig", "apl_prev", "m_occp", "f_occp") VALUES
 (1000000, NULL, '2026-10-09', NULL, NULL, 'Chayn', '', 'Gupta Murthy ', 6, NULL, NULL, NULL, '2010-10-15', NULL, '8A, Hilltop Apartments,\nPali Hill, \nBandra West\nBombay 400050', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Ansoo Gupta', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 3, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'mahesh.murthy@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'nsoogupta@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Mahesh Murthy', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '', NULL, 'Pinstorm', 'Seedfund', NULL, 'Chief Operating Officer', 'Managing Partner', NULL, NULL, NULL, NULL, NULL, NULL, 'Montessori', NULL, 'Half-brother - Agni Murthy - studies in OIS, in Grade 11', NULL, NULL, 'Little Butterflies', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'Venture Capital', 'Digital Media'),
 (1000001, NULL, '2026-10-09', NULL, NULL, 'Nishil', '', 'Parwani  ', 31, NULL, NULL, NULL, '2026-12-02', NULL, '32/02 C Wing, Oberoi Springs, Off New Link Road, Opposite Citi Mall, Andheri West, Mumbai 400053, India', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Seema Parwani', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'sameer@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'seema.parwani@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Sameer Parwani', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '', NULL, 'Education', 'IT', NULL, 'Oberoi International School', 'Coupon Dunia', NULL, NULL, NULL, NULL, NULL, NULL, 'Not Applicable', NULL, 'I am a teacher at your school.', NULL, NULL, 'Not Applicable', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'Computer Engineer', 'Teacher'),
 (1000002, NULL, '2026-10-09', NULL, NULL, 'Renaya', '', 'Batra  ', 13, NULL, NULL, NULL, '2009-06-08', NULL, 'Plot no 40. Renaissance Bldg, 4th floor, Gulmohar Road no 1, JVPD Scheme, Next to Criti Care Hospital, Juhu. Mumbai 400049', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Rohini Batra', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 4, NULL, '2026', NULL, NULL, NULL, 'N', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', 'rishi_batra@email.com', 0000000000, NULL, NULL, NULL, NULL, NULL, 'batrarohini@email.com', NULL, NULL, NULL, NULL, NULL, 'Karnataka', 0000000000, NULL, NULL, NULL, NULL, 'Rishi Batra', NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, '', NULL, 'NotApplicable', 'Family Business', NULL, 'Home-maker', 'Administration Manager', NULL, NULL, NULL, NULL, NULL, NULL, 'ICSE', NULL, 'Through friends.', NULL, NULL, 'Camlin Alpha kids', NULL, NULL, 'N', NULL, NULL, 1, 0, NULL, 'Logistics', 'Not Applicable'),
@@ -13729,7 +13741,7 @@ INSERT INTO "student_m_online" ("student_m_online_id", "admission_id", "admissio
 -- Table structure for table "student_m_online_enquirystage"
 --
 
-CREATE TABLE IF NOT EXISTS "student_m_online_enquirystage" (
+CREATE TABLE IF NOT EXISTS student."student_m_online_enquirystage" (
   "student_m_online_enquirystage_id"                             SERIAL,
   "student_m_online_id"            INT         DEFAULT NULL,
   "comments"                       TEXT,
@@ -13746,7 +13758,7 @@ CREATE TABLE IF NOT EXISTS "student_m_online_enquirystage" (
 -- Dumping data for table "student_m_online_enquirystage"
 --
 
-INSERT INTO "student_m_online_enquirystage" ("student_m_online_enquirystage_id", "student_m_online_id", "comments", "admission_steps_master_id", "admission_stage_master_id", "admission_stage_master_action", "meeting_date", "inserted", "status") VALUES
+INSERT INTO student."student_m_online_enquirystage" ("student_m_online_enquirystage_id", "student_m_online_id", "comments", "admission_steps_master_id", "admission_stage_master_id", "admission_stage_master_action", "meeting_date", "inserted", "status") VALUES
 (1, 1000000, NULL, 2, 4, 1, NULL, '2026-10-09 05:28:13', 1),
 (2, 1000001, NULL, 2, 4, 1, NULL, '2026-10-09 05:28:13', 1),
 (3, 1000002, NULL, 2, 4, 1, NULL, '2026-10-09 05:28:13', 1),
@@ -13764,7 +13776,7 @@ INSERT INTO "student_m_online_enquirystage" ("student_m_online_enquirystage_id",
 -- Table structure for table "student_m_pastoral"
 --
 
-CREATE TABLE IF NOT EXISTS "student_m_pastoral" (
+CREATE TABLE IF NOT EXISTS student."student_m_pastoral" (
   "student_m_pastoral_id"             SERIAL,
   "student_id"     VARCHAR(20)  DEFAULT NULL,
   "selected_date"  DATE         DEFAULT NULL,
@@ -13785,7 +13797,7 @@ CREATE TABLE IF NOT EXISTS "student_m_pastoral" (
 -- Dumping data for table "student_m_pastoral"
 --
 
-INSERT INTO "student_m_pastoral" ("student_m_pastoral_id", "student_id", "selected_date", "reported_by", "event_id", "description", "notes", "consequence", "detention", "email_send", "a_year", "inserted_date", "status") VALUES
+INSERT INTO student."student_m_pastoral" ("student_m_pastoral_id", "student_id", "selected_date", "reported_by", "event_id", "description", "notes", "consequence", "detention", "email_send", "a_year", "inserted_date", "status") VALUES
 (11, '1046', '2026-10-10', '38', 3, 'test', 'test', 'test', 'NO', ',,,,,,,', 2026, '2026-10-10 14:10:45', 1),
 (12, '151', '2026-10-10', '3', 2, 'test notice', 'test notice', 'test notice', 'NO', ',,,,,,,', 2026, '2026-10-10 14:58:00', 1),
 (13, '473', '2026-10-10', '188', 4, 'Description of Event', 'Notes ( Confidential - Parent do not see these notes ) ', 'Consequences', 'YES', ',,,,,,,', 2026, '2026-10-10 15:10:03', 1),
@@ -13803,7 +13815,7 @@ INSERT INTO "student_m_pastoral" ("student_m_pastoral_id", "student_id", "select
 -- Table structure for table "student_m_tab"
 --
 
-CREATE TABLE IF NOT EXISTS "student_m_tab" (
+CREATE TABLE IF NOT EXISTS student."student_m_tab" (
   "student_m_tab_id"             SERIAL,
   "name"           VARCHAR(100)  DEFAULT NULL,
   "tab_name"       VARCHAR(100)  DEFAULT NULL,
@@ -13817,7 +13829,7 @@ CREATE TABLE IF NOT EXISTS "student_m_tab" (
 -- Dumping data for table "student_m_tab"
 --
 
-INSERT INTO "student_m_tab" ("student_m_tab_id", "name", "tab_name", "inserted_date", "status", "description") VALUES
+INSERT INTO student."student_m_tab" ("student_m_tab_id", "name", "tab_name", "inserted_date", "status", "description") VALUES
 (2, NULL, 'Student', '2026-05-21', 1, 'Student Details'),
 (3, NULL, 'Emergency', '2026-05-21', 1, 'Emergency Contact Details'),
 (4, NULL, 'Parent', '2026-05-21', 1, 'Parent/Guardian Details'),
@@ -13832,7 +13844,7 @@ INSERT INTO "student_m_tab" ("student_m_tab_id", "name", "tab_name", "inserted_d
 -- Table structure for table "student_pt_m"
 --
 
-CREATE TABLE IF NOT EXISTS "student_pt_m" (
+CREATE TABLE IF NOT EXISTS student."student_pt_m" (
   "student_pt_m_id"                SERIAL,
   "user_name"         VARCHAR(100)  DEFAULT NULL,
   "subject"           VARCHAR(100)  DEFAULT NULL,
@@ -13859,7 +13871,7 @@ CREATE TABLE IF NOT EXISTS "student_pt_m" (
 -- Dumping data for table "student_pt_m"
 --
 
-INSERT INTO "student_pt_m" ("student_pt_m_id", "user_name", "subject", "student_id", "teacher_id", "conf_date", "academic", "conduct", "other", "location", "reason", "other_reason", "observation_id", "observation", "recommendation", "parents_comments", "a_year", "inserted_date", "status") VALUES
+INSERT INTO student."student_pt_m" ("student_pt_m_id", "user_name", "subject", "student_id", "teacher_id", "conf_date", "academic", "conduct", "other", "location", "reason", "other_reason", "observation_id", "observation", "recommendation", "parents_comments", "a_year", "inserted_date", "status") VALUES
 (1, 'administrator', 'Conference Testing', '266', 188, '2026-08-01', 0, 0, 0, 1, ',,', 'Reason Testing', '', 'Observation Testing', 'Recommendation Testing', 'Comments Testing', 2026, '2026-08-01 18:23:59', 1),
 (2, 'administrator', 'Conference Testing2', '266', 74, '2026-08-27', 1, 1, 1, 3, ',,', 'Reason Testing2', '', 'Observation Testing2', 'Recommendation Testing2', 'Comments Testing2', 2026, '2026-08-01 18:37:05', 1),
 (3, 'administrator', 'test', '', 3, '2026-08-19', 1, 0, 0, 0, NULL, '', NULL, '', 'test', '', 2026, '2026-08-19 14:33:38', 1),
@@ -13874,7 +13886,7 @@ INSERT INTO "student_pt_m" ("student_pt_m_id", "user_name", "subject", "student_
 -- Table structure for table "student_pt_observation"
 --
 
-CREATE TABLE IF NOT EXISTS "student_pt_observation" (
+CREATE TABLE IF NOT EXISTS student."student_pt_observation" (
   "student_pt_observation_id"           SERIAL,
   "observation"  VARCHAR(100)  DEFAULT NULL,
   "status"       SMALLINT    DEFAULT 1,
@@ -13885,7 +13897,7 @@ CREATE TABLE IF NOT EXISTS "student_pt_observation" (
 -- Dumping data for table "student_pt_observation"
 --
 
-INSERT INTO "student_pt_observation" ("student_pt_observation_id", "observation", "status") VALUES
+INSERT INTO student."student_pt_observation" ("student_pt_observation_id", "observation", "status") VALUES
 (1, 'Behavior Concern', 1),
 (2, 'Health Issues', 1),
 (3, 'IEP Review', 1),
@@ -13903,7 +13915,7 @@ INSERT INTO "student_pt_observation" ("student_pt_observation_id", "observation"
 -- Table structure for table "student_pt_observation_m"
 --
 
-CREATE TABLE IF NOT EXISTS "student_pt_observation_m" (
+CREATE TABLE IF NOT EXISTS student."student_pt_observation_m" (
   "student_pt_observation_m_id"              BIGSERIAL,
   "student_id"      INT         DEFAULT NULL,
   "teacher_id"      INT         DEFAULT NULL,
@@ -13916,7 +13928,7 @@ CREATE TABLE IF NOT EXISTS "student_pt_observation_m" (
 -- Dumping data for table "student_pt_observation_m"
 --
 
-INSERT INTO "student_pt_observation_m" ("student_pt_observation_m_id", "student_id", "teacher_id", "observation_id", "checkbox") VALUES
+INSERT INTO student."student_pt_observation_m" ("student_pt_observation_m_id", "student_id", "teacher_id", "observation_id", "checkbox") VALUES
 (34, 473, 194, 2, 1),
 (33, 473, 194, 1, 1),
 (3, 266, 188, 3, 1),
@@ -13934,7 +13946,7 @@ INSERT INTO "student_pt_observation_m" ("student_pt_observation_m_id", "student_
 -- Table structure for table "student_health"
 --
 
-CREATE TABLE IF NOT EXISTS "student_health" (
+CREATE TABLE IF NOT EXISTS student."student_health" (
   "student_health_id"             SERIAL,
   "studid"         VARCHAR(20)  DEFAULT NULL,
   "studname"       VARCHAR(30)  DEFAULT NULL,
@@ -13962,7 +13974,7 @@ CREATE TABLE IF NOT EXISTS "student_health" (
 -- Dumping data for table "student_health"
 --
 
-INSERT INTO "student_health" ("student_health_id", "studid", "studname", "courseid", "academicyear", "height", "weight", "general_exam", "vision", "dental", "cardio_exam", "chest_exam", "urine_exam", "blood_exam", "remarks", "rep_date", "pefr", "date_selected", "student_id", "date_modified") VALUES
+INSERT INTO student."student_health" ("student_health_id", "studid", "studname", "courseid", "academicyear", "height", "weight", "general_exam", "vision", "dental", "cardio_exam", "chest_exam", "urine_exam", "blood_exam", "remarks", "rep_date", "pefr", "date_selected", "student_id", "date_modified") VALUES
 (1, 'A1013', 'Bharadwaj, Ayan Puneet', 2, '2026', '90', '14', 'not measured', 'not measured', '50', '17.283950617', '0.91228070175', NULL, NULL, NULL, NULL, NULL, '2026-08-05', 141, NULL),
 (2, 'A1071', 'Chandorkar, Arya Rajendra', 2, '2026', '87', '9', 'not measured', 'not measured', '48', '11.890606421', '0.88679245283', NULL, NULL, NULL, NULL, NULL, '2026-08-05', 197, NULL),
 (3, 'A1143', 'Dixit, Shaurya Maulik', 2, '2026', '99', '13', '116', '98', '49.5', '13.263952658', '0.84210526316', NULL, NULL, NULL, NULL, NULL, '2026-08-05', 326, NULL),
@@ -13980,7 +13992,7 @@ INSERT INTO "student_health" ("student_health_id", "studid", "studname", "course
 -- Table structure for table "stud_sibling"
 --
 
-CREATE TABLE IF NOT EXISTS "stud_sibling" (
+CREATE TABLE IF NOT EXISTS student."stud_sibling" (
   "stud_sibling_id"           SERIAL,
   "family_name"  VARCHAR(255)  NOT NULL,
   "family_code"  VARCHAR(255)  NOT NULL,
@@ -13994,7 +14006,7 @@ CREATE TABLE IF NOT EXISTS "stud_sibling" (
 -- Dumping data for table "stud_sibling"
 --
 
-INSERT INTO "stud_sibling" ("stud_sibling_id", "family_name", "family_code", "relation", "stud", "status") VALUES
+INSERT INTO student."stud_sibling" ("stud_sibling_id", "family_name", "family_code", "relation", "stud", "status") VALUES
 (1, '', 'OB12962ye9g', '', 1297, 0),
 (2, '', 'OB12962ye9g', '', 1296, 0),
 (3, '', 'OB1297bklv0', '', 1296, 0),
@@ -14012,7 +14024,7 @@ INSERT INTO "stud_sibling" ("stud_sibling_id", "family_name", "family_code", "re
 -- Table structure for table "style"
 --
 
-CREATE TABLE IF NOT EXISTS "style" (
+CREATE TABLE IF NOT EXISTS communication."style" (
   "field_id"          SERIAL,
   "field_pos_org"     INT  NOT NULL DEFAULT 1,
   "field_pos_recent"  INT  NOT NULL DEFAULT 1,
@@ -14025,7 +14037,7 @@ CREATE TABLE IF NOT EXISTS "style" (
 -- Dumping data for table "style"
 --
 
-INSERT INTO "style" ("field_id", "field_pos_org", "field_pos_recent", "vert_pos_org", "vert_pos_rec") VALUES
+INSERT INTO communication."style" ("field_id", "field_pos_org", "field_pos_recent", "vert_pos_org", "vert_pos_rec") VALUES
 (1, 1, 2, NULL, NULL),
 (2, 2, 2, NULL, NULL),
 (3, 1, 2, NULL, NULL),
@@ -14044,7 +14056,7 @@ INSERT INTO "style" ("field_id", "field_pos_org", "field_pos_recent", "vert_pos_
 -- Table structure for table "subjecttype"
 --
 
-CREATE TABLE IF NOT EXISTS "subjecttype" (
+CREATE TABLE IF NOT EXISTS academic."subjecttype" (
   "subtype_id"    SERIAL,
   "subtype_name"  VARCHAR(50)  NOT NULL DEFAULT '',
   PRIMARY KEY ("subtype_id")
@@ -14054,7 +14066,7 @@ CREATE TABLE IF NOT EXISTS "subjecttype" (
 -- Dumping data for table "subjecttype"
 --
 
-INSERT INTO "subjecttype" ("subtype_id", "subtype_name") VALUES
+INSERT INTO academic."subjecttype" ("subtype_id", "subtype_name") VALUES
 (1, 'Theory'),
 (2, 'Homeroom'),
 (3, 'Activity'),
@@ -14067,7 +14079,7 @@ INSERT INTO "subjecttype" ("subtype_id", "subtype_name") VALUES
 -- Table structure for table "subject_group"
 --
 
-CREATE TABLE IF NOT EXISTS "subject_group" (
+CREATE TABLE IF NOT EXISTS academic."subject_group" (
   "subject_group_id"          SERIAL,
   "group_name"  VARCHAR(80)  NOT NULL,
   "status"      SMALLINT   NOT NULL,
@@ -14081,7 +14093,7 @@ CREATE TABLE IF NOT EXISTS "subject_group" (
 -- Table structure for table "subject_group_det"
 --
 
-CREATE TABLE IF NOT EXISTS "subject_group_det" (
+CREATE TABLE IF NOT EXISTS academic."subject_group_det" (
   "subject_group_det_id"          SERIAL,
   "group_id"    INT         NOT NULL,
   "sem"         INT         NOT NULL,
@@ -14093,10 +14105,10 @@ CREATE TABLE IF NOT EXISTS "subject_group_det" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "subject_m"
+-- Table structure for table "subject"
 --
 
-CREATE TABLE IF NOT EXISTS "subject_m" (
+CREATE TABLE IF NOT EXISTS academic."subject" (
   "subject_id"      SERIAL,
   "course_id"       INT            NOT NULL DEFAULT 0,
   "subject_name"    VARCHAR(100)   NOT NULL DEFAULT '',
@@ -14117,10 +14129,10 @@ CREATE TABLE IF NOT EXISTS "subject_m" (
 );
 
 --
--- Dumping data for table "subject_m"
+-- Dumping data for table "subject"
 --
 
-INSERT INTO "subject_m" ("subject_id", "course_id", "subject_name", "sub_type", "total_marks", "course_year_id", "subject_code", "status", "elective", "abb_name", "cycle", "sys_year", "cont_hours", "max_mark", "f", "sub_pre") VALUES
+INSERT INTO academic."subject" ("subject_id", "course_id", "subject_name", "sub_type", "total_marks", "course_year_id", "subject_code", "status", "elective", "abb_name", "cycle", "sys_year", "cont_hours", "max_mark", "f", "sub_pre") VALUES
 (1, 3, 'Art', 1, 100, 5, '01 Arts', 1, 'N', 'NULL', 0, 0, 0, 100, '', 10),
 (2, 3, '01 Language Art', 1, 100, 5, '01 Lan Art', 0, 'N', 'NULL', 0, 0, 0, 100, '', 2),
 (3, 3, 'Hindi Native', 1, 100, 5, '01 Hnd Nat', 1, 'N', 'NULL', 0, 0, 0, 100, '', 11),
@@ -14135,10 +14147,10 @@ INSERT INTO "subject_m" ("subject_id", "course_id", "subject_name", "sub_type", 
 -- --------------------------------------------------------
 
 --
--- Table structure for table "submodules"
+-- Table structure for table "settings_submodules"
 --
 
-CREATE TABLE IF NOT EXISTS "submodules" (
+CREATE TABLE IF NOT EXISTS settings."settings_submodules" (
   "module"     VARCHAR(50)  DEFAULT NULL,
   "submodule"  VARCHAR(50)  DEFAULT NULL,
   "submodules_id"         SERIAL,
@@ -14146,10 +14158,10 @@ CREATE TABLE IF NOT EXISTS "submodules" (
 );
 
 --
--- Dumping data for table "submodules"
+-- Dumping data for table "settings_submodules"
 --
 
-INSERT INTO "submodules" ("module", "submodule", "id") VALUES
+INSERT INTO settings."settings_submodules" ("module", "submodule", "id") VALUES
 ('Main', 'Main', 1),
 ('Settings', 'Add Masters', 2),
 ('Settings', 'Reports', 3),
@@ -14276,7 +14288,7 @@ INSERT INTO "submodules" ("module", "submodule", "id") VALUES
 -- Table structure for table "sub_skills"
 --
 
-CREATE TABLE IF NOT EXISTS "sub_skills" (
+CREATE TABLE IF NOT EXISTS academic."sub_skills" (
   "sub_skills_id"            SERIAL,
   "divi"          INT         NOT NULL,
   "class"         INT         NOT NULL,
@@ -14292,7 +14304,7 @@ CREATE TABLE IF NOT EXISTS "sub_skills" (
 -- Dumping data for table "sub_skills"
 --
 
-INSERT INTO "sub_skills" ("sub_skills_id", "divi", "class", "sub", "master_skill", "sub_skill", "posi", "status") VALUES
+INSERT INTO academic."sub_skills" ("sub_skills_id", "divi", "class", "sub", "master_skill", "sub_skill", "posi", "status") VALUES
 (1, 3, 5, 1, 1, '', 0, 1),
 (20, 3, 5, 2, 6, 'Follows directions ', 1, 1),
 (2, 3, 5, 1, 1, 'Comprehension: grasps meaning from material learned; communicates and interprets learning', 2, 1),
@@ -14311,7 +14323,7 @@ INSERT INTO "sub_skills" ("sub_skills_id", "divi", "class", "sub", "master_skill
 -- Table structure for table "tabs"
 --
 
-CREATE TABLE IF NOT EXISTS "tabs" (
+CREATE TABLE IF NOT EXISTS academic."tabs" (
   "tab_id"          SERIAL,
   "tab_name"        VARCHAR(50)  NOT NULL,
   "modul_id"        INT          NOT NULL,
@@ -14323,7 +14335,7 @@ CREATE TABLE IF NOT EXISTS "tabs" (
 -- Dumping data for table "tabs"
 --
 
-INSERT INTO "tabs" ("tab_id", "tab_name", "modul_id", "tab_visibility") VALUES
+INSERT INTO academic."tabs" ("tab_id", "tab_name", "modul_id", "tab_visibility") VALUES
 (1, 'Student', 1, 0),
 (2, 'Contact', 1, 0),
 (3, 'Medical', 1, 0),
@@ -14350,7 +14362,7 @@ INSERT INTO "tabs" ("tab_id", "tab_name", "modul_id", "tab_visibility") VALUES
 -- Table structure for table "teacher_lesson_docments"
 --
 
-CREATE TABLE IF NOT EXISTS "teacher_lesson_docments" (
+CREATE TABLE IF NOT EXISTS academic."teacher_lesson_docments" (
   "teacher_lesson_docments_id"                 SERIAL,
   "teacher_lesson_id"  INT           NOT NULL,
   "title"              VARCHAR(70)   NOT NULL,
@@ -14365,7 +14377,7 @@ CREATE TABLE IF NOT EXISTS "teacher_lesson_docments" (
 -- Dumping data for table "teacher_lesson_docments"
 --
 
-INSERT INTO "teacher_lesson_docments" ("teacher_lesson_docments_id", "teacher_lesson_id", "title", "description", "source", "status", "p_Access") VALUES
+INSERT INTO academic."teacher_lesson_docments" ("teacher_lesson_docments_id", "teacher_lesson_id", "title", "description", "source", "status", "p_Access") VALUES
 (1, 1, 'Types of I/O devices', '', '', 1, 0),
 (2, 2, 'Introduction ', '', '', 1, 0),
 (3, 3, 'Introduction', '', '', 1, 0),
@@ -14383,7 +14395,7 @@ INSERT INTO "teacher_lesson_docments" ("teacher_lesson_docments_id", "teacher_le
 -- Table structure for table "teacher_lesson_plan"
 --
 
-CREATE TABLE IF NOT EXISTS "teacher_lesson_plan" (
+CREATE TABLE IF NOT EXISTS academic."teacher_lesson_plan" (
   "teacher_lesson_plan_id"           SERIAL,
   "divi"         INT          NOT NULL,
   "class"        INT          NOT NULL,
@@ -14407,7 +14419,7 @@ CREATE TABLE IF NOT EXISTS "teacher_lesson_plan" (
 -- Dumping data for table "teacher_lesson_plan"
 --
 
-INSERT INTO "teacher_lesson_plan" ("teacher_lesson_plan_id", "divi", "class", "sec", "subj", "chapter", "topic", "r_date", "to_date", "description", "home_work", "notes", "details", "staff_r", "parent_r", "status") VALUES
+INSERT INTO academic."teacher_lesson_plan" ("teacher_lesson_plan_id", "divi", "class", "sec", "subj", "chapter", "topic", "r_date", "to_date", "description", "home_work", "notes", "details", "staff_r", "parent_r", "status") VALUES
 (1, 3, 5, 1, 5, 1, '2', '2026-01-08', '2026-01-08', 'Students were made familiar with the some of the input-output devices.', 'Lab exercises', 'Worksheet given - Identify the device and specify whether input or output.', 'Good', 0, 0, 1),
 (2, 3, 5, 1, 5, 1, '1', '2026-01-08', '2026-01-08', 'Students were introduced to the concept of John Von Neuman architecture', 'Lab exercises', 'Practicals in the lab', 'Good', 0, 0, 1),
 (3, 3, 5, 1, 3, 5, '12', '2026-01-02', '2026-01-08', 'Introduction to the evolution of mathematics', 'Get more information', 'Get more information', '', 0, 0, 1),
@@ -14425,7 +14437,7 @@ INSERT INTO "teacher_lesson_plan" ("teacher_lesson_plan_id", "divi", "class", "s
 -- Table structure for table "tempstaff_qualification"
 --
 
-CREATE TABLE IF NOT EXISTS "tempstaff_qualification" (
+CREATE TABLE IF NOT EXISTS hr."tempstaff_qualification" (
   "tempstaff_qualification_id"              SERIAL,
   "course_name"     VARCHAR(100)  DEFAULT NULL,
   "year_pass"       VARCHAR(100)  DEFAULT NULL,
@@ -14445,7 +14457,7 @@ CREATE TABLE IF NOT EXISTS "tempstaff_qualification" (
 -- Table structure for table "temp_previous_job"
 --
 
-CREATE TABLE IF NOT EXISTS "temp_previous_job" (
+CREATE TABLE IF NOT EXISTS hr."temp_previous_job" (
   "prev_post"          VARCHAR(200)  DEFAULT NULL,
   "prev_work_place"    VARCHAR(200)  DEFAULT NULL,
   "prev_work_city"     VARCHAR(200)  DEFAULT NULL,
@@ -14465,7 +14477,7 @@ CREATE TABLE IF NOT EXISTS "temp_previous_job" (
 -- Table structure for table "temp_rec"
 --
 
-CREATE TABLE IF NOT EXISTS "temp_rec" (
+CREATE TABLE IF NOT EXISTS settings."temp_rec" (
   "temp_rec_id"                SERIAL,
   "DESCRIPTION"       DOUBLE PRECISION  NOT NULL,
   "QTY"               DOUBLE PRECISION  NOT NULL,
@@ -14485,7 +14497,7 @@ CREATE TABLE IF NOT EXISTS "temp_rec" (
 -- Table structure for table "temp_staff_dependents"
 --
 
-CREATE TABLE IF NOT EXISTS "temp_staff_dependents" (
+CREATE TABLE IF NOT EXISTS hr."temp_staff_dependents" (
   "temp_staff_dependents_id"        INT           NOT NULL DEFAULT 0,
   "dname"     VARCHAR(100)  DEFAULT NULL,
   "ddob"      VARCHAR(100)  DEFAULT NULL,
@@ -14531,7 +14543,7 @@ CREATE TABLE IF NOT EXISTS "temp_trans" (
 -- Table structure for table "timetable"
 --
 
-CREATE TABLE IF NOT EXISTS "timetable" (
+CREATE TABLE IF NOT EXISTS academic."timetable" (
   "timetable_id"           SERIAL,
   "subjectcode"  VARCHAR(15)  DEFAULT NULL,
   "subname"      VARCHAR(30)  DEFAULT NULL,
@@ -14552,7 +14564,7 @@ CREATE TABLE IF NOT EXISTS "timetable" (
 -- Dumping data for table "timetable"
 --
 
-INSERT INTO "timetable" ("timetable_id", "subjectcode", "subname", "hallno", "staffid", "staffname", "course_id", "sem_id", "sec_id", "batchid", "pid", "sub_id", "weekday") VALUES
+INSERT INTO academic."timetable" ("timetable_id", "subjectcode", "subname", "hallno", "staffid", "staffname", "course_id", "sem_id", "sec_id", "batchid", "pid", "sub_id", "weekday") VALUES
 (1, '81', '06 Math', '15', '52', 'Dawn Schlecht', '3', 10, 287, 0, 2, 81, 1),
 (2, '77', '06 Homeroom', '15', '52', 'Dawn Schlecht', '3', 10, 71, 0, 2, 77, 3),
 (3, '77', '06 Homeroom', '15', '52', 'Dawn Schlecht', '3', 10, 71, 0, 1, 77, 5),
@@ -14570,7 +14582,7 @@ INSERT INTO "timetable" ("timetable_id", "subjectcode", "subname", "hallno", "st
 -- Table structure for table "tptfeehead"
 --
 
-CREATE TABLE IF NOT EXISTS "tptfeehead" (
+CREATE TABLE IF NOT EXISTS fee."tptfeehead" (
   "tptfeehead_id"        SERIAL,
   "route"     INT  DEFAULT NULL,
   "point_id"  INT  DEFAULT NULL,
@@ -14585,7 +14597,7 @@ CREATE TABLE IF NOT EXISTS "tptfeehead" (
 -- Table structure for table "trans_fee_str"
 --
 
-CREATE TABLE IF NOT EXISTS "trans_fee_str" (
+CREATE TABLE IF NOT EXISTS fee."trans_fee_str" (
   "trans_fee_str_id"        SERIAL,
   "validity"  SMALLINT  DEFAULT NULL,
   "FMon"      INT         DEFAULT NULL,
@@ -14597,10 +14609,10 @@ CREATE TABLE IF NOT EXISTS "trans_fee_str" (
 -- --------------------------------------------------------
 
 --
--- Table structure for table "tripmaster"
+-- Table structure for table "trip"
 --
 
-CREATE TABLE IF NOT EXISTS "tripmaster" (
+CREATE TABLE IF NOT EXISTS transport."trip" (
   "tripmaster_id"         SERIAL,
   "route_id"   VARCHAR(100)  DEFAULT NULL,
   "trip_name"  VARCHAR(100)  DEFAULT NULL,
@@ -14614,7 +14626,7 @@ CREATE TABLE IF NOT EXISTS "tripmaster" (
 -- Table structure for table "type"
 --
 
-CREATE TABLE IF NOT EXISTS "type" (
+CREATE TABLE IF NOT EXISTS settings."type" (
   "type_id"    SERIAL,
   "type"  VARCHAR(10)  DEFAULT NULL,
   PRIMARY KEY ("type_id")
@@ -14626,7 +14638,7 @@ CREATE TABLE IF NOT EXISTS "type" (
 -- Table structure for table "unit_kg"
 --
 
-CREATE TABLE IF NOT EXISTS "unit_kg" (
+CREATE TABLE IF NOT EXISTS academic."unit_kg" (
   "unit_kg_id"            SERIAL,
   "class"         INT   NOT NULL,
   "exam_id"       INT   NOT NULL,
@@ -14647,7 +14659,7 @@ CREATE TABLE IF NOT EXISTS "unit_kg" (
 -- Table structure for table "unpaid_leave_data_m20"
 --
 
-CREATE TABLE IF NOT EXISTS "unpaid_leave_data_m20" (
+CREATE TABLE IF NOT EXISTS hr."unpaid_leave_data_m20" (
   "unpaid_leave_data_m20_id"             SERIAL,
   "staff_id"       INT           NOT NULL,
   "E_Code"         VARCHAR(255)  NOT NULL,
@@ -14671,7 +14683,7 @@ CREATE TABLE IF NOT EXISTS "unpaid_leave_data_m20" (
 -- Dumping data for table "unpaid_leave_data_m20"
 --
 
-INSERT INTO "unpaid_leave_data_m20" ("unpaid_leave_data_m20_id", "staff_id", "E_Code", "Employee_Name", "Apr_13", "May_13", "June_13", "July_13", "Aug_13", "Sep_13", "Oct_13", "Nov_13", "Dec_13", "Jan_14", "Feb_14", "March_14") VALUES
+INSERT INTO hr."unpaid_leave_data_m20" ("unpaid_leave_data_m20_id", "staff_id", "E_Code", "Employee_Name", "Apr_13", "May_13", "June_13", "July_13", "Aug_13", "Sep_13", "Oct_13", "Nov_13", "Dec_13", "Jan_14", "Feb_14", "March_14") VALUES
 (1, 281, '8481', 'Aakruti Shah', '', '', '', '', '', '', '', '', '', '', '0.25', '0.25'),
 (2, 170, '8429', 'Aarti Ahuja', '', '', '', '', '', '', '', '', '', '', '', ''),
 (3, 188, '8439', 'Aarti Potdar', '', '', '', '', '', '', '', '', '', '', '', ''),
@@ -14689,7 +14701,7 @@ INSERT INTO "unpaid_leave_data_m20" ("unpaid_leave_data_m20_id", "staff_id", "E_
 -- Table structure for table "usermenu"
 --
 
-CREATE TABLE IF NOT EXISTS "usermenu" (
+CREATE TABLE IF NOT EXISTS settings."usermenu" (
   "username"   VARCHAR(50)       DEFAULT NULL,
   "module"     VARCHAR(50)       DEFAULT NULL,
   "submodule"  VARCHAR(50)       DEFAULT NULL,
@@ -14708,7 +14720,7 @@ CREATE TABLE IF NOT EXISTS "usermenu" (
 -- Dumping data for table "usermenu"
 --
 
-INSERT INTO "usermenu" ("username", "module", "submodule", "linkname", "linkpath", "access", "parameter", "id", "inc", "groupname", "rights") VALUES
+INSERT INTO settings."usermenu" ("username", "module", "submodule", "linkname", "linkpath", "access", "parameter", "id", "inc", "groupname", "rights") VALUES
 ('administrator', 'Accounts', 'Add Masters', 'Bank Details', '/lms/fee/bank_det.php', 'Yes', '', 1, 1, 'NULL', 'V'),
 ('administrator', 'Accounts', 'Add Masters', 'Fee Head', '/lms/fee/feetypeadd.php', 'Yes', '', 2, 2, 'NULL', 'V'),
 ('administrator', 'Accounts', 'Add Masters', 'General Fee Structure', '/lms/fee/feestut.php', 'Yes', '', 3, 3, 'NULL', 'V'),
@@ -14725,10 +14737,10 @@ INSERT INTO "usermenu" ("username", "module", "submodule", "linkname", "linkpath
 -- --------------------------------------------------------
 
 --
--- Table structure for table "users"
+-- Table structure for table "settings_users"
 --
 
-CREATE TABLE IF NOT EXISTS "users" (
+CREATE TABLE IF NOT EXISTS settings."settings_users" (
   "user_id"      SERIAL,
   "username"     VARCHAR(50)       NOT NULL,
   "password"     VARCHAR(255)      DEFAULT NULL,
@@ -14747,10 +14759,10 @@ CREATE TABLE IF NOT EXISTS "users" (
 );
 
 --
--- Dumping data for table "users"
+-- Dumping data for table "settings_users"
 --
 
-INSERT INTO "users" ("username", "password", "user_id", "count", "activated", "fullname", "description", "disabledate", "person", "s_id", "user_type", "srid", "groupname", "shortname") VALUES
+INSERT INTO settings."settings_users" ("username", "password", "user_id", "count", "activated", "fullname", "description", "disabledate", "person", "s_id", "user_type", "srid", "groupname", "shortname") VALUES
 ('administrator', 'c556fc50260d162e18350cc2352dc38b', 1, 1, 'On', 'admin', 'admin', NULL, 'Staff', 'a1', 'NT', 0, 'adminm', 'admin'),
 ('priyadarshinir', '9154e0bfa96d744818cd15ea25a9c84c', 0, 1, 'On', 'Priyadarshini Ramteke', '', NULL, 'Staff', 'RD-S8629', NULL, 18, 'FACULTY', 'Priyadarsh'),
 ('faculty', '827ccb0eea8a706c4c34a16891f84e7b', 0, 1, 'On', 'Faculty Test', '', NULL, 'Staff', 'RD-S0001', NULL, 209, 'FACULTY', 'admin'),
@@ -14764,10 +14776,10 @@ INSERT INTO "users" ("username", "password", "user_id", "count", "activated", "f
 -- --------------------------------------------------------
 
 --
--- Table structure for table "user_group"
+-- Table structure for table "settings_user_group"
 --
 
-CREATE TABLE IF NOT EXISTS "user_group" (
+CREATE TABLE IF NOT EXISTS settings."settings_user_group" (
   "user_group_id"          INT           NOT NULL DEFAULT 1,
   "group_name"  VARCHAR(50)   DEFAULT NULL,
   "module"      VARCHAR(50)   DEFAULT NULL,
@@ -14779,10 +14791,10 @@ CREATE TABLE IF NOT EXISTS "user_group" (
 );
 
 --
--- Dumping data for table "user_group"
+-- Dumping data for table "settings_user_group"
 --
 
-INSERT INTO "user_group" ("group_name", "module", "submodule", "linkname", "id", "parameter", "linkpath") VALUES
+INSERT INTO settings."settings_user_group" ("group_name", "module", "submodule", "linkname", "id", "parameter", "linkpath") VALUES
 ('COORDINATOR', 'Class', 'Reports', 'Subject wise Attendance Report', 298, '', '/lms/studatt/subject_attreport.php'),
 ('HUMAN RESOURCE', 'Main', 'Main', 'Staff Management', 205, '', '/lms/menu/staffmenu.php'),
 ('COORDINATOR', 'Class', 'Reports', 'Consolidated Attendance Report', 299, '', '/lms/studatt/View_Attendance.php'),
@@ -14878,10 +14890,10 @@ INSERT INTO "user_group" ("group_name", "module", "submodule", "linkname", "id",
 -- --------------------------------------------------------
 
 --
--- Table structure for table "vechile_master"
+-- Table structure for table "vechile"
 --
 
-CREATE TABLE IF NOT EXISTS "vechile_master" (
+CREATE TABLE IF NOT EXISTS transport."vechile" (
   "vechile_master_id"                    SERIAL,
   "registration_no"       VARCHAR(10)    DEFAULT NULL,
   "vechile_mod_no"        VARCHAR(20)    DEFAULT NULL,
@@ -14904,7 +14916,7 @@ CREATE TABLE IF NOT EXISTS "vechile_master" (
 -- Table structure for table "vendormaster_assets"
 --
 
-CREATE TABLE IF NOT EXISTS "vendormaster_assets" (
+CREATE TABLE IF NOT EXISTS asset."vendormaster_assets" (
   "vendormaster_assets_id"              SERIAL,
   "name"            VARCHAR(250)      DEFAULT NULL,
   "contact_person"  VARCHAR(100)      DEFAULT NULL,
@@ -14925,7 +14937,7 @@ CREATE TABLE IF NOT EXISTS "vendormaster_assets" (
 -- Table structure for table "week_updates"
 --
 
-CREATE TABLE IF NOT EXISTS "week_updates" (
+CREATE TABLE IF NOT EXISTS communication."week_updates" (
   "week_updates_id"        SERIAL,
   "name"      VARCHAR(50)   NOT NULL,
   "link"      VARCHAR(200)  NOT NULL,
@@ -14940,7 +14952,7 @@ CREATE TABLE IF NOT EXISTS "week_updates" (
 -- Dumping data for table "week_updates"
 --
 
-INSERT INTO "week_updates" ("week_updates_id", "name", "link", "adate", "username", "class", "status") VALUES
+INSERT INTO communication."week_updates" ("week_updates_id", "name", "link", "adate", "username", "class", "status") VALUES
 (1, 'obilogonew', 'view_week/23-08-20261377221669obilogonew.png', '2026-08-23', 'administrator', '139', 1),
 (2, 'oberoi report', 'view_week/23-08-20261377221759oberoi report.pdf', '2026-08-23', 'administrator', '139', 1),
 (3, 'Unit letter for ''Relationships''', 'view_week/26-08-20261377509079Unit letter for ''Relationships''.docx', '2026-08-26', 'administrator', '3', 1),
@@ -14959,7 +14971,7 @@ INSERT INTO "week_updates" ("week_updates_id", "name", "link", "adate", "usernam
 -- Table structure for table "working_year"
 --
 
-CREATE TABLE IF NOT EXISTS "working_year" (
+CREATE TABLE IF NOT EXISTS settings."working_year" (
   "working_year_id"          SERIAL,
   "Company_ID"  INT               DEFAULT NULL,
   "From_Date"   DATE              DEFAULT NULL,
@@ -14978,7 +14990,7 @@ CREATE TABLE IF NOT EXISTS "working_year" (
 -- Partitioned by year for O(1) archival via DROP PARTITION.
 --
 
-CREATE TABLE IF NOT EXISTS "attendance_log" (
+CREATE TABLE IF NOT EXISTS academic."attendance_log" (
   "id"          BIGSERIAL,
   "att_date"    DATE                NOT NULL,
   "stu_id"      INTEGER        NOT NULL,
@@ -14992,9 +15004,9 @@ CREATE TABLE IF NOT EXISTS "attendance_log" (
   PRIMARY KEY ("id", "att_date")
 );
 
-CREATE INDEX "ix_stu_date" ON "attendance_log" ("stu_id",     "att_date");
-CREATE INDEX "ix_date_class" ON "attendance_log" ("att_date",   "class_id", "sec");
-CREATE INDEX "ix_subj_date" ON "attendance_log" ("subject_id", "att_date");
+CREATE INDEX "ix_stu_date" ON academic."attendance_log" ("stu_id",     "att_date");
+CREATE INDEX "ix_date_class" ON academic."attendance_log" ("att_date",   "class_id", "sec");
+CREATE INDEX "ix_subj_date" ON academic."attendance_log" ("subject_id", "att_date");
 PARTITION BY RANGE (YEAR("att_date")) (
   PARTITION p2024 VALUES LESS THAN (2025),
   PARTITION p2025 VALUES LESS THAN (2026),
@@ -15010,7 +15022,7 @@ PARTITION BY RANGE (YEAR("att_date")) (
 -- Supports unlimited contacts per student without schema changes.
 --
 
-CREATE TABLE IF NOT EXISTS "student_contacts" (
+CREATE TABLE IF NOT EXISTS student."student_contacts" (
   "student_contacts_id"            SERIAL,
   "student_m_id"  INTEGER                        NOT NULL,
   "relation"      VARCHAR(50)  NOT NULL,
@@ -15025,7 +15037,7 @@ CREATE TABLE IF NOT EXISTS "student_contacts" (
   PRIMARY KEY ("student_contacts_id")
 );
 
-CREATE INDEX "ix_student_rel" ON "student_contacts" ("student_m_id", "relation");
+CREATE INDEX "ix_student_rel" ON student."student_contacts" ("student_m_id", "relation");
 
 -- --------------------------------------------------------
 
@@ -15034,7 +15046,7 @@ CREATE INDEX "ix_student_rel" ON "student_contacts" ("student_m_id", "relation")
 -- Keeps the main student_m row compact for sequential scans.
 --
 
-CREATE TABLE IF NOT EXISTS "student_extended" (
+CREATE TABLE IF NOT EXISTS student."student_extended" (
   "student_m_id"  INTEGER  NOT NULL,
   "parent_org"    TEXT          DEFAULT NULL,
   "residence"     VARCHAR(255)  DEFAULT NULL,
@@ -15050,7 +15062,7 @@ CREATE TABLE IF NOT EXISTS "student_extended" (
 -- Refreshed nightly; report pages query this instead of joining grade_assessment + grade_category.
 --
 
-CREATE TABLE IF NOT EXISTS "grade_summary_cache" (
+CREATE TABLE IF NOT EXISTS academic."grade_summary_cache" (
   "subject"       INTEGER       NOT NULL,
   "a_year"        SMALLINT  NOT NULL,
   "term_id"       SMALLINT   NOT NULL,
@@ -15064,202 +15076,202 @@ CREATE TABLE IF NOT EXISTS "grade_summary_cache" (
 -- Fix: Advance sequences past seed data to prevent id collisions
 -- Run these statements AFTER the initial data load.
 -- ============================================================
-SELECT setval(pg_get_serial_sequence('"academic_exam"', 'academic_exam_id'), COALESCE((SELECT MAX("academic_exam_id") FROM "academic_exam"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"academic_term"', 'academic_term_id'), COALESCE((SELECT MAX("academic_term_id") FROM "academic_term"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"academic_year"', 'academic_year_id'), COALESCE((SELECT MAX("academic_year_id") FROM "academic_year"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"admission"', 'admission_id'), COALESCE((SELECT MAX("admission_id") FROM "admission"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"admission_stage_master"', 'admission_stage_master_id'), COALESCE((SELECT MAX("admission_stage_master_id") FROM "admission_stage_master"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"admission_steps_master"', 'admission_steps_master_id'), COALESCE((SELECT MAX("admission_steps_master_id") FROM "admission_steps_master"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"admissiontrack"', 'admissiontrack_id'), COALESCE((SELECT MAX("admissiontrack_id") FROM "admissiontrack"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"album"', 'album_id'), COALESCE((SELECT MAX("album_id") FROM "album"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"albumpic"', 'albumpic_id'), COALESCE((SELECT MAX("albumpic_id") FROM "albumpic"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"all_teachers"', 'all_teachers_id'), COALESCE((SELECT MAX("all_teachers_id") FROM "all_teachers"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"announcement_call"', 'announcement_call_id'), COALESCE((SELECT MAX("announcement_call_id") FROM "announcement_call"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"announcement_class"', 'announcement_class_id'), COALESCE((SELECT MAX("announcement_class_id") FROM "announcement_class"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"announcement_class_call"', 'announcement_class_call_id'), COALESCE((SELECT MAX("announcement_class_call_id") FROM "announcement_class_call"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"announcement_class_test"', 'announcement_class_test_id'), COALESCE((SELECT MAX("announcement_class_test_id") FROM "announcement_class_test"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"att_0"', 'att_0_id'), COALESCE((SELECT MAX("att_0_id") FROM "att_0"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"att_1"', 'att_1_id'), COALESCE((SELECT MAX("att_1_id") FROM "att_1"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"att_14"', 'att_14_id'), COALESCE((SELECT MAX("att_14_id") FROM "att_14"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"att_15"', 'att_15_id'), COALESCE((SELECT MAX("att_15_id") FROM "att_15"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"att_16"', 'att_16_id'), COALESCE((SELECT MAX("att_16_id") FROM "att_16"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"att_2"', 'att_2_id'), COALESCE((SELECT MAX("att_2_id") FROM "att_2"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"att_3"', 'att_3_id'), COALESCE((SELECT MAX("att_3_id") FROM "att_3"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"att_4"', 'att_4_id'), COALESCE((SELECT MAX("att_4_id") FROM "att_4"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"att_5"', 'att_5_id'), COALESCE((SELECT MAX("att_5_id") FROM "att_5"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"att_6"', 'att_6_id'), COALESCE((SELECT MAX("att_6_id") FROM "att_6"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"att_7"', 'att_7_id'), COALESCE((SELECT MAX("att_7_id") FROM "att_7"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"att_8"', 'att_8_id'), COALESCE((SELECT MAX("att_8_id") FROM "att_8"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"att_9"', 'att_9_id'), COALESCE((SELECT MAX("att_9_id") FROM "att_9"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"attendance"', 'attendance_id'), COALESCE((SELECT MAX("attendance_id") FROM "attendance"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"attendance_points"', 'attendance_points_id'), COALESCE((SELECT MAX("attendance_points_id") FROM "attendance_points"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"bank_details"', 'bank_details_id'), COALESCE((SELECT MAX("bank_details_id") FROM "bank_details"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"calendar_reason"', 'calendar_reason_id'), COALESCE((SELECT MAX("calendar_reason_id") FROM "calendar_reason"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"calendar_schedule"', 'calendar_schedule_id'), COALESCE((SELECT MAX("calendar_schedule_id") FROM "calendar_schedule"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"calendar_schedule_bk"', 'calendar_schedule_bk_id'), COALESCE((SELECT MAX("calendar_schedule_bk_id") FROM "calendar_schedule_bk"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"calendar_schedule_setup"', 'calendar_schedule_setup_id'), COALESCE((SELECT MAX("calendar_schedule_setup_id") FROM "calendar_schedule_setup"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"calendar_schedule_time"', 'calendar_schedule_time_id'), COALESCE((SELECT MAX("calendar_schedule_time_id") FROM "calendar_schedule_time"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"calendar_time"', 'calendar_time_id'), COALESCE((SELECT MAX("calendar_time_id") FROM "calendar_time"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"certificate_m"', 'certificate_m_id'), COALESCE((SELECT MAX("certificate_m_id") FROM "certificate_m"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"class_announcement_class"', 'class_announcement_class_id'), COALESCE((SELECT MAX("class_announcement_class_id") FROM "class_announcement_class"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"class_announcement_files"', 'class_announcement_files_id'), COALESCE((SELECT MAX("class_announcement_files_id") FROM "class_announcement_files"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"class_announcement_master"', 'class_announcement_master_id'), COALESCE((SELECT MAX("class_announcement_master_id") FROM "class_announcement_master"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"class_section"', 'class_section_id'), COALESCE((SELECT MAX("class_section_id") FROM "class_section"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"class_section_sub"', 'class_section_sub_id'), COALESCE((SELECT MAX("class_section_sub_id") FROM "class_section_sub"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"class_teacher"', 'class_teacher_id'), COALESCE((SELECT MAX("class_teacher_id") FROM "class_teacher"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"classtime"', 'classtime_id'), COALESCE((SELECT MAX("classtime_id") FROM "classtime"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"school"', 'col_id'), COALESCE((SELECT MAX("col_id") FROM "school"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"country"', 'country_id'), COALESCE((SELECT MAX("country_id") FROM "country"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"course_m"', 'course_id'), COALESCE((SELECT MAX("course_id") FROM "course_m"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"course_year"', 'year_id'), COALESCE((SELECT MAX("year_id") FROM "course_year"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"coursehead"', 'coursehead_id'), COALESCE((SELECT MAX("coursehead_id") FROM "coursehead"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"day"', 'day_id'), COALESCE((SELECT MAX("day_id") FROM "day"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"dept_no"', 'dpt_id'), COALESCE((SELECT MAX("dpt_id") FROM "dept_no"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"doc_detail"', 'doc_detail_id'), COALESCE((SELECT MAX("doc_detail_id") FROM "doc_detail"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"dp_exam_sub_m"', 'dp_exam_sub_m_id'), COALESCE((SELECT MAX("dp_exam_sub_m_id") FROM "dp_exam_sub_m"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"eca_fee_apply"', 'eca_fee_apply_id'), COALESCE((SELECT MAX("eca_fee_apply_id") FROM "eca_fee_apply"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"eca_fee_invoice"', 'eca_fee_invoice_id'), COALESCE((SELECT MAX("eca_fee_invoice_id") FROM "eca_fee_invoice"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"eca_fee_invoice_det"', 'eca_fee_invoice_det_id'), COALESCE((SELECT MAX("eca_fee_invoice_det_id") FROM "eca_fee_invoice_det"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"eca_type"', 'fee_id'), COALESCE((SELECT MAX("fee_id") FROM "eca_type"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"empallowances"', 'empallowances_id'), COALESCE((SELECT MAX("empallowances_id") FROM "empallowances"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"exam_sub_m"', 'exam_sub_m_id'), COALESCE((SELECT MAX("exam_sub_m_id") FROM "exam_sub_m"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"exam_sub_sub_m"', 'exam_sub_sub_m_id'), COALESCE((SELECT MAX("exam_sub_sub_m_id") FROM "exam_sub_sub_m"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"exam_year_m"', 'exam_year_m_id'), COALESCE((SELECT MAX("exam_year_m_id") FROM "exam_year_m"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_apply_fee_student"', 'fee_apply_fee_student_id'), COALESCE((SELECT MAX("fee_apply_fee_student_id") FROM "fee_apply_fee_student"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_challan_mail_log"', 'fee_challan_mail_log_id'), COALESCE((SELECT MAX("fee_challan_mail_log_id") FROM "fee_challan_mail_log"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_discount_det"', 'fee_discount_det_id'), COALESCE((SELECT MAX("fee_discount_det_id") FROM "fee_discount_det"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_discount_head"', 'fee_discount_head_id'), COALESCE((SELECT MAX("fee_discount_head_id") FROM "fee_discount_head"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_discount_slab"', 'fee_discount_slab_id'), COALESCE((SELECT MAX("fee_discount_slab_id") FROM "fee_discount_slab"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_discount_student"', 'fee_discount_student_id'), COALESCE((SELECT MAX("fee_discount_student_id") FROM "fee_discount_student"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_invoice_settings"', 'fee_invoice_settings_id'), COALESCE((SELECT MAX("fee_invoice_settings_id") FROM "fee_invoice_settings"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_logo"', 'fee_logo_id'), COALESCE((SELECT MAX("fee_logo_id") FROM "fee_logo"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_m_cheque_det"', 'fee_m_cheque_det_id'), COALESCE((SELECT MAX("fee_m_cheque_det_id") FROM "fee_m_cheque_det"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_m_collect"', 'fee_m_collect_id'), COALESCE((SELECT MAX("fee_m_collect_id") FROM "fee_m_collect"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_m_currency_code"', 'fee_m_currency_code_id'), COALESCE((SELECT MAX("fee_m_currency_code_id") FROM "fee_m_currency_code"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_m_descrption"', 'fee_m_descrption_id'), COALESCE((SELECT MAX("fee_m_descrption_id") FROM "fee_m_descrption"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_m_descrption_head_total"', 'fee_m_descrption_head_total_id'), COALESCE((SELECT MAX("fee_m_descrption_head_total_id") FROM "fee_m_descrption_head_total"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_m_descrption_inst_total"', 'fee_m_descrption_inst_total_id'), COALESCE((SELECT MAX("fee_m_descrption_inst_total_id") FROM "fee_m_descrption_inst_total"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_m_descrption_invoice"', 'fee_m_descrption_invoice_id'), COALESCE((SELECT MAX("fee_m_descrption_invoice_id") FROM "fee_m_descrption_invoice"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_m_descrption_invoice_head"', 'fee_m_descrption_invoice_head_id'), COALESCE((SELECT MAX("fee_m_descrption_invoice_head_id") FROM "fee_m_descrption_invoice_head"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_m_head_total"', 'fee_m_head_total_id'), COALESCE((SELECT MAX("fee_m_head_total_id") FROM "fee_m_head_total"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_mail_log"', 'fee_mail_log_id'), COALESCE((SELECT MAX("fee_mail_log_id") FROM "fee_mail_log"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_slab_student"', 'fee_slab_student_id'), COALESCE((SELECT MAX("fee_slab_student_id") FROM "fee_slab_student"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_tax"', 'fee_tax_id'), COALESCE((SELECT MAX("fee_tax_id") FROM "fee_tax"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_type"', 'fee_id'), COALESCE((SELECT MAX("fee_id") FROM "fee_type"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_upload"', 'fee_upload_id'), COALESCE((SELECT MAX("fee_upload_id") FROM "fee_upload"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fee_upload_deleted"', 'fee_upload_deleted_id'), COALESCE((SELECT MAX("fee_upload_deleted_id") FROM "fee_upload_deleted"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"field_info"', 'f_id'), COALESCE((SELECT MAX("f_id") FROM "field_info"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"fresh_contact_list"', 'fresh_contact_list_id'), COALESCE((SELECT MAX("fresh_contact_list_id") FROM "fresh_contact_list"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"general_doc_details"', 'general_doc_details_id'), COALESCE((SELECT MAX("general_doc_details_id") FROM "general_doc_details"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"grade_assessment"', 'grade_assessment_id'), COALESCE((SELECT MAX("grade_assessment_id") FROM "grade_assessment"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"grade_avg"', 'grade_avg_id'), COALESCE((SELECT MAX("grade_avg_id") FROM "grade_avg"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"grade_category"', 'grade_category_id'), COALESCE((SELECT MAX("grade_category_id") FROM "grade_category"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"grade_grace"', 'grade_grace_id'), COALESCE((SELECT MAX("grade_grace_id") FROM "grade_grace"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"grade_m_64_1"', 'grade_m_64_1_id'), COALESCE((SELECT MAX("grade_m_64_1_id") FROM "grade_m_64_1"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"grade_m_64_2"', 'grade_m_64_2_id'), COALESCE((SELECT MAX("grade_m_64_2_id") FROM "grade_m_64_2"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"grade_m_71_1"', 'grade_m_71_1_id'), COALESCE((SELECT MAX("grade_m_71_1_id") FROM "grade_m_71_1"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"grade_m_71_2"', 'grade_m_71_2_id'), COALESCE((SELECT MAX("grade_m_71_2_id") FROM "grade_m_71_2"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"grade_m_exception"', 'grade_m_exception_id'), COALESCE((SELECT MAX("grade_m_exception_id") FROM "grade_m_exception"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"grade_points"', 'grade_points_id'), COALESCE((SELECT MAX("grade_points_id") FROM "grade_points"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"grade_points_eal"', 'grade_points_eal_id'), COALESCE((SELECT MAX("grade_points_eal_id") FROM "grade_points_eal"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"grade_points_eal_assessment_key"', 'grade_points_eal_assessment_key_id'), COALESCE((SELECT MAX("grade_points_eal_assessment_key_id") FROM "grade_points_eal_assessment_key"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"grade_setup"', 'grade_setup_id'), COALESCE((SELECT MAX("grade_setup_id") FROM "grade_setup"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"hallno"', 'hallno_id'), COALESCE((SELECT MAX("hallno_id") FROM "hallno"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"hospital_det"', 'hospital_det_id'), COALESCE((SELECT MAX("hospital_det_id") FROM "hospital_det"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"hospital_tab"', 'hospital_tab_id'), COALESCE((SELECT MAX("hospital_tab_id") FROM "hospital_tab"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"ideas"', 'ideas_id'), COALESCE((SELECT MAX("ideas_id") FROM "ideas"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"igc_exam_year_m"', 'igc_exam_year_m_id'), COALESCE((SELECT MAX("igc_exam_year_m_id") FROM "igc_exam_year_m"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"interview"', 'interview_id'), COALESCE((SELECT MAX("interview_id") FROM "interview"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"language"', 'language_id'), COALESCE((SELECT MAX("language_id") FROM "language"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"leave_acc_year"', 'leave_acc_year_id'), COALESCE((SELECT MAX("leave_acc_year_id") FROM "leave_acc_year"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"leave_att_point"', 'leave_att_point_id'), COALESCE((SELECT MAX("leave_att_point_id") FROM "leave_att_point"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"leave_data_m20"', 'leave_data_m20_id'), COALESCE((SELECT MAX("leave_data_m20_id") FROM "leave_data_m20"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"leave_staff_attand"', 'leave_staff_attand_id'), COALESCE((SELECT MAX("leave_staff_attand_id") FROM "leave_staff_attand"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"leave_staff_day"', 'leave_staff_day_id'), COALESCE((SELECT MAX("leave_staff_day_id") FROM "leave_staff_day"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"leave_staff_paid_tot_acc"', 'leave_staff_paid_tot_acc_id'), COALESCE((SELECT MAX("leave_staff_paid_tot_acc_id") FROM "leave_staff_paid_tot_acc"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"leave_staff_paid_tot_acc_temp"', 'leave_staff_paid_tot_acc_temp_id'), COALESCE((SELECT MAX("leave_staff_paid_tot_acc_temp_id") FROM "leave_staff_paid_tot_acc_temp"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"leave_staff_paid_tot_backup"', 'leave_staff_paid_tot_backup_id'), COALESCE((SELECT MAX("leave_staff_paid_tot_backup_id") FROM "leave_staff_paid_tot_backup"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"lesson_chapter"', 'lesson_chapter_id'), COALESCE((SELECT MAX("lesson_chapter_id") FROM "lesson_chapter"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"links"', 'links_id'), COALESCE((SELECT MAX("links_id") FROM "links"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"links_p"', 'links_p_id'), COALESCE((SELECT MAX("links_p_id") FROM "links_p"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"log"', 'log_id'), COALESCE((SELECT MAX("log_id") FROM "log"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"lunch_menu_master"', 'lunch_menu_master_id'), COALESCE((SELECT MAX("lunch_menu_master_id") FROM "lunch_menu_master"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"mail_attachments"', 'mail_attachments_id'), COALESCE((SELECT MAX("mail_attachments_id") FROM "mail_attachments"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"mail_details"', 'mail_details_id'), COALESCE((SELECT MAX("mail_details_id") FROM "mail_details"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"mail_group"', 'mail_group_id'), COALESCE((SELECT MAX("mail_group_id") FROM "mail_group"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"mail_settings"', 'mail_settings_id'), COALESCE((SELECT MAX("mail_settings_id") FROM "mail_settings"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"mailinsert"', 'mailinsert_id'), COALESCE((SELECT MAX("mailinsert_id") FROM "mailinsert"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"master_lesson_plan"', 'master_lesson_plan_id'), COALESCE((SELECT MAX("master_lesson_plan_id") FROM "master_lesson_plan"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"master_skills"', 'master_skills_id'), COALESCE((SELECT MAX("master_skills_id") FROM "master_skills"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"module_info"', 'mod_id'), COALESCE((SELECT MAX("mod_id") FROM "module_info"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"modules"', 'modules_id'), COALESCE((SELECT MAX("modules_id") FROM "modules"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"modules_p"', 'modules_p_id'), COALESCE((SELECT MAX("modules_p_id") FROM "modules_p"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"msg"', 'msg_id'), COALESCE((SELECT MAX("msg_id") FROM "msg"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"msp_unit"', 'msp_unit_id'), COALESCE((SELECT MAX("msp_unit_id") FROM "msp_unit"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"nationality"', 'nationality_id'), COALESCE((SELECT MAX("nationality_id") FROM "nationality"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"online_exam_det"', 'online_exam_det_id'), COALESCE((SELECT MAX("online_exam_det_id") FROM "online_exam_det"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"online_exam_sel_questions"', 'online_exam_sel_questions_id'), COALESCE((SELECT MAX("online_exam_sel_questions_id") FROM "online_exam_sel_questions"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"parentmenu"', 'row_id'), COALESCE((SELECT MAX("row_id") FROM "parentmenu"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"point_master"', 'point_master_id'), COALESCE((SELECT MAX("point_master_id") FROM "point_master"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"pyp_subskills"', 'pyp_subskills_id'), COALESCE((SELECT MAX("pyp_subskills_id") FROM "pyp_subskills"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"rfid_enrolment_user"', 'rfid_enrolment_user_id'), COALESCE((SELECT MAX("rfid_enrolment_user_id") FROM "rfid_enrolment_user"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"rfid_new_aug15"', 'rfid_new_aug15_id'), COALESCE((SELECT MAX("rfid_new_aug15_id") FROM "rfid_new_aug15"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"skill_grade"', 'skill_grade_id'), COALESCE((SELECT MAX("skill_grade_id") FROM "skill_grade"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"sta"', 'sta_id'), COALESCE((SELECT MAX("sta_id") FROM "sta"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_att_updt"', 'staff_att_updt_id'), COALESCE((SELECT MAX("staff_att_updt_id") FROM "staff_att_updt"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_calenders"', 'staff_calenders_id'), COALESCE((SELECT MAX("staff_calenders_id") FROM "staff_calenders"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_class_group"', 'staff_class_group_id'), COALESCE((SELECT MAX("staff_class_group_id") FROM "staff_class_group"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_default"', 'staff_default_id'), COALESCE((SELECT MAX("staff_default_id") FROM "staff_default"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_default_status"', 'staff_default_status_id'), COALESCE((SELECT MAX("staff_default_status_id") FROM "staff_default_status"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_des"', 'd_id'), COALESCE((SELECT MAX("d_id") FROM "staff_des"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"employee_details"', 'employee_details_id'), COALESCE((SELECT MAX("employee_details_id") FROM "employee_details"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_group"', 'staff_group_id'), COALESCE((SELECT MAX("staff_group_id") FROM "staff_group"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_groupnames"', 'staff_groupnames_id'), COALESCE((SELECT MAX("staff_groupnames_id") FROM "staff_groupnames"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_hr_grup"', 'staff_hr_grup_id'), COALESCE((SELECT MAX("staff_hr_grup_id") FROM "staff_hr_grup"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"employee_leave"', 'employee_leave_id'), COALESCE((SELECT MAX("employee_leave_id") FROM "employee_leave"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"employee_leave_hr"', 'employee_leave_hr_id'), COALESCE((SELECT MAX("employee_leave_hr_id") FROM "employee_leave_hr"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"employee_leave_manger"', 'employee_leave_manger_id'), COALESCE((SELECT MAX("employee_leave_manger_id") FROM "employee_leave_manger"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"employee_leave_type"', 'employee_leave_type_id'), COALESCE((SELECT MAX("employee_leave_type_id") FROM "employee_leave_type"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"employee_leave_type_group"', 'employee_leave_type_group_id'), COALESCE((SELECT MAX("employee_leave_type_group_id") FROM "employee_leave_type_group"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_lv_data_feb19"', 'staff_lv_data_feb19_id'), COALESCE((SELECT MAX("staff_lv_data_feb19_id") FROM "staff_lv_data_feb19"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_qualification"', 'staff_qualification_id'), COALESCE((SELECT MAX("staff_qualification_id") FROM "staff_qualification"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_rights"', 'staff_rights_id'), COALESCE((SELECT MAX("staff_rights_id") FROM "staff_rights"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_status"', 'staff_status_id'), COALESCE((SELECT MAX("staff_status_id") FROM "staff_status"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_termination"', 'staff_termination_id'), COALESCE((SELECT MAX("staff_termination_id") FROM "staff_termination"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"staff_time"', 'staff_time_id'), COALESCE((SELECT MAX("staff_time_id") FROM "staff_time"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_health"', 'student_health_id'), COALESCE((SELECT MAX("student_health_id") FROM "student_health"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"stud_sibling"', 'stud_sibling_id'), COALESCE((SELECT MAX("stud_sibling_id") FROM "stud_sibling"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_card_number"', 'student_card_number_id'), COALESCE((SELECT MAX("student_card_number_id") FROM "student_card_number"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_class"', 'student_class_id'), COALESCE((SELECT MAX("student_class_id") FROM "student_class"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_course"', 'student_course_id'), COALESCE((SELECT MAX("student_course_id") FROM "student_course"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_leavingcertificate"', 'student_leavingcertificate_id'), COALESCE((SELECT MAX("student_leavingcertificate_id") FROM "student_leavingcertificate"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_m"', 'student_m_id'), COALESCE((SELECT MAX("student_m_id") FROM "student_m"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_m_adminpack"', 'student_m_adminpack_id'), COALESCE((SELECT MAX("student_m_adminpack_id") FROM "student_m_adminpack"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_m_appointment"', 'student_m_appointment_id'), COALESCE((SELECT MAX("student_m_appointment_id") FROM "student_m_appointment"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_m_ec"', 'student_m_ec_id'), COALESCE((SELECT MAX("student_m_ec_id") FROM "student_m_ec"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_m_enquirystatus"', 'student_m_enquirystatus_id'), COALESCE((SELECT MAX("student_m_enquirystatus_id") FROM "student_m_enquirystatus"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_m_event"', 'student_m_event_id'), COALESCE((SELECT MAX("student_m_event_id") FROM "student_m_event"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_m_field"', 'student_m_field_id'), COALESCE((SELECT MAX("student_m_field_id") FROM "student_m_field"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_m_online"', 'student_m_online_id'), COALESCE((SELECT MAX("student_m_online_id") FROM "student_m_online"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_m_online_enquirystage"', 'student_m_online_enquirystage_id'), COALESCE((SELECT MAX("student_m_online_enquirystage_id") FROM "student_m_online_enquirystage"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_m_pastoral"', 'student_m_pastoral_id'), COALESCE((SELECT MAX("student_m_pastoral_id") FROM "student_m_pastoral"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_m_tab"', 'student_m_tab_id'), COALESCE((SELECT MAX("student_m_tab_id") FROM "student_m_tab"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_mail_list"', 'student_mail_list_id'), COALESCE((SELECT MAX("student_mail_list_id") FROM "student_mail_list"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_modify"', 'student_modify_id'), COALESCE((SELECT MAX("student_modify_id") FROM "student_modify"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_pt_m"', 'student_pt_m_id'), COALESCE((SELECT MAX("student_pt_m_id") FROM "student_pt_m"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_pt_observation"', 'student_pt_observation_id'), COALESCE((SELECT MAX("student_pt_observation_id") FROM "student_pt_observation"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"student_pt_observation_m"', 'student_pt_observation_m_id'), COALESCE((SELECT MAX("student_pt_observation_m_id") FROM "student_pt_observation_m"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"studentmenu"', 'row_id'), COALESCE((SELECT MAX("row_id") FROM "studentmenu"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"style"', 'field_id'), COALESCE((SELECT MAX("field_id") FROM "style"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"sub_skills"', 'sub_skills_id'), COALESCE((SELECT MAX("sub_skills_id") FROM "sub_skills"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"subject_m"', 'subject_id'), COALESCE((SELECT MAX("subject_id") FROM "subject_m"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"subjecttype"', 'subtype_id'), COALESCE((SELECT MAX("subtype_id") FROM "subjecttype"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"submodules"', 'submodules_id'), COALESCE((SELECT MAX("submodules_id") FROM "submodules"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"tabs"', 'tab_id'), COALESCE((SELECT MAX("tab_id") FROM "tabs"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"teacher_lesson_docments"', 'teacher_lesson_docments_id'), COALESCE((SELECT MAX("teacher_lesson_docments_id") FROM "teacher_lesson_docments"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"teacher_lesson_plan"', 'teacher_lesson_plan_id'), COALESCE((SELECT MAX("teacher_lesson_plan_id") FROM "teacher_lesson_plan"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"timetable"', 'timetable_id'), COALESCE((SELECT MAX("timetable_id") FROM "timetable"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"unpaid_leave_data_m20"', 'unpaid_leave_data_m20_id'), COALESCE((SELECT MAX("unpaid_leave_data_m20_id") FROM "unpaid_leave_data_m20"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"user_group"', 'row_id'), COALESCE((SELECT MAX("row_id") FROM "user_group"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"usermenu"', 'inc'), COALESCE((SELECT MAX("inc") FROM "usermenu"), 0) + 1, false);
-SELECT setval(pg_get_serial_sequence('"week_updates"', 'week_updates_id'), COALESCE((SELECT MAX("week_updates_id") FROM "week_updates"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."academic_exam"', 'academic_exam_id'), COALESCE((SELECT MAX("academic_exam_id") FROM academic."academic_exam"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."academic_term"', 'academic_term_id'), COALESCE((SELECT MAX("academic_term_id") FROM academic."academic_term"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."academic_year"', 'academic_year_id'), COALESCE((SELECT MAX("academic_year_id") FROM academic."academic_year"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('admission."admission"', 'admission_id'), COALESCE((SELECT MAX("admission_id") FROM admission."admission"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('admission."admission_stage"', 'admission_stage_master_id'), COALESCE((SELECT MAX("admission_stage_master_id") FROM admission."admission_stage"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('admission."admission_process"', 'admission_steps_master_id'), COALESCE((SELECT MAX("admission_steps_master_id") FROM admission."admission_process"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('admission."admission_track"', 'admissiontrack_id'), COALESCE((SELECT MAX("admissiontrack_id") FROM admission."admission_track"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."album"', 'album_id'), COALESCE((SELECT MAX("album_id") FROM communication."album"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."albumpic"', 'albumpic_id'), COALESCE((SELECT MAX("albumpic_id") FROM communication."albumpic"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."all_teachers"', 'all_teachers_id'), COALESCE((SELECT MAX("all_teachers_id") FROM academic."all_teachers"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."announcement_call"', 'announcement_call_id'), COALESCE((SELECT MAX("announcement_call_id") FROM communication."announcement_call"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."announcement_class"', 'announcement_class_id'), COALESCE((SELECT MAX("announcement_class_id") FROM communication."announcement_class"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."announcement_class_call"', 'announcement_class_call_id'), COALESCE((SELECT MAX("announcement_class_call_id") FROM communication."announcement_class_call"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."announcement_class_test"', 'announcement_class_test_id'), COALESCE((SELECT MAX("announcement_class_test_id") FROM communication."announcement_class_test"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."att_0"', 'att_0_id'), COALESCE((SELECT MAX("att_0_id") FROM academic."att_0"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."att_1"', 'att_1_id'), COALESCE((SELECT MAX("att_1_id") FROM academic."att_1"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."att_14"', 'att_14_id'), COALESCE((SELECT MAX("att_14_id") FROM academic."att_14"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."att_15"', 'att_15_id'), COALESCE((SELECT MAX("att_15_id") FROM academic."att_15"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."att_16"', 'att_16_id'), COALESCE((SELECT MAX("att_16_id") FROM academic."att_16"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."att_2"', 'att_2_id'), COALESCE((SELECT MAX("att_2_id") FROM academic."att_2"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."att_3"', 'att_3_id'), COALESCE((SELECT MAX("att_3_id") FROM academic."att_3"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."att_4"', 'att_4_id'), COALESCE((SELECT MAX("att_4_id") FROM academic."att_4"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."att_5"', 'att_5_id'), COALESCE((SELECT MAX("att_5_id") FROM academic."att_5"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."att_6"', 'att_6_id'), COALESCE((SELECT MAX("att_6_id") FROM academic."att_6"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."att_7"', 'att_7_id'), COALESCE((SELECT MAX("att_7_id") FROM academic."att_7"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."att_8"', 'att_8_id'), COALESCE((SELECT MAX("att_8_id") FROM academic."att_8"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."att_9"', 'att_9_id'), COALESCE((SELECT MAX("att_9_id") FROM academic."att_9"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."attendance"', 'attendance_id'), COALESCE((SELECT MAX("attendance_id") FROM academic."attendance"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."attendance_points"', 'attendance_points_id'), COALESCE((SELECT MAX("attendance_points_id") FROM academic."attendance_points"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."bank_details"', 'bank_details_id'), COALESCE((SELECT MAX("bank_details_id") FROM fee."bank_details"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."calendar_reason"', 'calendar_reason_id'), COALESCE((SELECT MAX("calendar_reason_id") FROM communication."calendar_reason"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."calendar_schedule"', 'calendar_schedule_id'), COALESCE((SELECT MAX("calendar_schedule_id") FROM communication."calendar_schedule"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."calendar_schedule_bk"', 'calendar_schedule_bk_id'), COALESCE((SELECT MAX("calendar_schedule_bk_id") FROM communication."calendar_schedule_bk"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."calendar_schedule_setup"', 'calendar_schedule_setup_id'), COALESCE((SELECT MAX("calendar_schedule_setup_id") FROM communication."calendar_schedule_setup"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."calendar_schedule_time"', 'calendar_schedule_time_id'), COALESCE((SELECT MAX("calendar_schedule_time_id") FROM communication."calendar_schedule_time"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."calendar_time"', 'calendar_time_id'), COALESCE((SELECT MAX("calendar_time_id") FROM communication."calendar_time"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."certificate"', 'certificate_m_id'), COALESCE((SELECT MAX("certificate_m_id") FROM student."certificate"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."class_announcement_class"', 'class_announcement_class_id'), COALESCE((SELECT MAX("class_announcement_class_id") FROM academic."class_announcement_class"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."class_announcement_files"', 'class_announcement_files_id'), COALESCE((SELECT MAX("class_announcement_files_id") FROM academic."class_announcement_files"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."class_announcement"', 'class_announcement_master_id'), COALESCE((SELECT MAX("class_announcement_master_id") FROM academic."class_announcement"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."class_section"', 'class_section_id'), COALESCE((SELECT MAX("class_section_id") FROM academic."class_section"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."class_section_sub"', 'class_section_sub_id'), COALESCE((SELECT MAX("class_section_sub_id") FROM academic."class_section_sub"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."class_teacher"', 'class_teacher_id'), COALESCE((SELECT MAX("class_teacher_id") FROM academic."class_teacher"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."classtime"', 'classtime_id'), COALESCE((SELECT MAX("classtime_id") FROM academic."classtime"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('settings."school"', 'col_id'), COALESCE((SELECT MAX("col_id") FROM settings."school"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('settings."country"', 'country_id'), COALESCE((SELECT MAX("country_id") FROM settings."country"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."course"', 'course_id'), COALESCE((SELECT MAX("course_id") FROM academic."course"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."course_year"', 'year_id'), COALESCE((SELECT MAX("year_id") FROM academic."course_year"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."coursehead"', 'coursehead_id'), COALESCE((SELECT MAX("coursehead_id") FROM academic."coursehead"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('settings."weekday"', 'day_id'), COALESCE((SELECT MAX("day_id") FROM settings."weekday"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."dept_no"', 'dpt_id'), COALESCE((SELECT MAX("dpt_id") FROM hr."dept_no"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('medical."doc_detail"', 'doc_detail_id'), COALESCE((SELECT MAX("doc_detail_id") FROM medical."doc_detail"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."dp_exam_sub_m"', 'dp_exam_sub_m_id'), COALESCE((SELECT MAX("dp_exam_sub_m_id") FROM academic."dp_exam_sub_m"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."eca_fee_apply"', 'eca_fee_apply_id'), COALESCE((SELECT MAX("eca_fee_apply_id") FROM fee."eca_fee_apply"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."eca_fee_invoice"', 'eca_fee_invoice_id'), COALESCE((SELECT MAX("eca_fee_invoice_id") FROM fee."eca_fee_invoice"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."eca_fee_invoice_det"', 'eca_fee_invoice_det_id'), COALESCE((SELECT MAX("eca_fee_invoice_det_id") FROM fee."eca_fee_invoice_det"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."eca_type"', 'fee_id'), COALESCE((SELECT MAX("fee_id") FROM fee."eca_type"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."empallowances"', 'empallowances_id'), COALESCE((SELECT MAX("empallowances_id") FROM hr."empallowances"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."exam_subject"', 'exam_sub_m_id'), COALESCE((SELECT MAX("exam_sub_m_id") FROM academic."exam_subject"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."exam_sub_sub_m"', 'exam_sub_sub_m_id'), COALESCE((SELECT MAX("exam_sub_sub_m_id") FROM academic."exam_sub_sub_m"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."exam_year_m"', 'exam_year_m_id'), COALESCE((SELECT MAX("exam_year_m_id") FROM academic."exam_year_m"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_apply_fee_student"', 'fee_apply_fee_student_id'), COALESCE((SELECT MAX("fee_apply_fee_student_id") FROM fee."fee_apply_fee_student"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_challan_mail_log"', 'fee_challan_mail_log_id'), COALESCE((SELECT MAX("fee_challan_mail_log_id") FROM fee."fee_challan_mail_log"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_discount_det"', 'fee_discount_det_id'), COALESCE((SELECT MAX("fee_discount_det_id") FROM fee."fee_discount_det"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_discount_head"', 'fee_discount_head_id'), COALESCE((SELECT MAX("fee_discount_head_id") FROM fee."fee_discount_head"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_discount_slab"', 'fee_discount_slab_id'), COALESCE((SELECT MAX("fee_discount_slab_id") FROM fee."fee_discount_slab"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_discount_student"', 'fee_discount_student_id'), COALESCE((SELECT MAX("fee_discount_student_id") FROM fee."fee_discount_student"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_invoice_settings"', 'fee_invoice_settings_id'), COALESCE((SELECT MAX("fee_invoice_settings_id") FROM fee."fee_invoice_settings"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_logo"', 'fee_logo_id'), COALESCE((SELECT MAX("fee_logo_id") FROM fee."fee_logo"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_m_cheque_det"', 'fee_m_cheque_det_id'), COALESCE((SELECT MAX("fee_m_cheque_det_id") FROM fee."fee_m_cheque_det"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_collection"', 'fee_m_collect_id'), COALESCE((SELECT MAX("fee_m_collect_id") FROM fee."fee_collection"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_m_currency_code"', 'fee_m_currency_code_id'), COALESCE((SELECT MAX("fee_m_currency_code_id") FROM fee."fee_m_currency_code"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_m_descrption"', 'fee_m_descrption_id'), COALESCE((SELECT MAX("fee_m_descrption_id") FROM fee."fee_m_descrption"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_m_descrption_head_total"', 'fee_m_descrption_head_total_id'), COALESCE((SELECT MAX("fee_m_descrption_head_total_id") FROM fee."fee_m_descrption_head_total"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_m_descrption_inst_total"', 'fee_m_descrption_inst_total_id'), COALESCE((SELECT MAX("fee_m_descrption_inst_total_id") FROM fee."fee_m_descrption_inst_total"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_m_descrption_invoice"', 'fee_m_descrption_invoice_id'), COALESCE((SELECT MAX("fee_m_descrption_invoice_id") FROM fee."fee_m_descrption_invoice"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_m_descrption_invoice_head"', 'fee_m_descrption_invoice_head_id'), COALESCE((SELECT MAX("fee_m_descrption_invoice_head_id") FROM fee."fee_m_descrption_invoice_head"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_m_head_total"', 'fee_m_head_total_id'), COALESCE((SELECT MAX("fee_m_head_total_id") FROM fee."fee_m_head_total"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_mail_log"', 'fee_mail_log_id'), COALESCE((SELECT MAX("fee_mail_log_id") FROM fee."fee_mail_log"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_slab_student"', 'fee_slab_student_id'), COALESCE((SELECT MAX("fee_slab_student_id") FROM fee."fee_slab_student"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_tax"', 'fee_tax_id'), COALESCE((SELECT MAX("fee_tax_id") FROM fee."fee_tax"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_type"', 'fee_id'), COALESCE((SELECT MAX("fee_id") FROM fee."fee_type"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_upload"', 'fee_upload_id'), COALESCE((SELECT MAX("fee_upload_id") FROM fee."fee_upload"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('fee."fee_upload_deleted"', 'fee_upload_deleted_id'), COALESCE((SELECT MAX("fee_upload_deleted_id") FROM fee."fee_upload_deleted"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."field_info"', 'f_id'), COALESCE((SELECT MAX("f_id") FROM student."field_info"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."fresh_contact_list"', 'fresh_contact_list_id'), COALESCE((SELECT MAX("fresh_contact_list_id") FROM communication."fresh_contact_list"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('medical."general_doc_details"', 'general_doc_details_id'), COALESCE((SELECT MAX("general_doc_details_id") FROM medical."general_doc_details"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."grade_assessment"', 'grade_assessment_id'), COALESCE((SELECT MAX("grade_assessment_id") FROM academic."grade_assessment"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."grade_avg"', 'grade_avg_id'), COALESCE((SELECT MAX("grade_avg_id") FROM academic."grade_avg"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."grade_category"', 'grade_category_id'), COALESCE((SELECT MAX("grade_category_id") FROM academic."grade_category"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."grade_grace"', 'grade_grace_id'), COALESCE((SELECT MAX("grade_grace_id") FROM academic."grade_grace"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."grade_m_64_1"', 'grade_m_64_1_id'), COALESCE((SELECT MAX("grade_m_64_1_id") FROM academic."grade_m_64_1"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."grade_m_64_2"', 'grade_m_64_2_id'), COALESCE((SELECT MAX("grade_m_64_2_id") FROM academic."grade_m_64_2"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."grade_m_71_1"', 'grade_m_71_1_id'), COALESCE((SELECT MAX("grade_m_71_1_id") FROM academic."grade_m_71_1"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."grade_m_71_2"', 'grade_m_71_2_id'), COALESCE((SELECT MAX("grade_m_71_2_id") FROM academic."grade_m_71_2"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."grade_m_exception"', 'grade_m_exception_id'), COALESCE((SELECT MAX("grade_m_exception_id") FROM academic."grade_m_exception"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."grade_points"', 'grade_points_id'), COALESCE((SELECT MAX("grade_points_id") FROM academic."grade_points"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."grade_points_eal"', 'grade_points_eal_id'), COALESCE((SELECT MAX("grade_points_eal_id") FROM academic."grade_points_eal"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."grade_points_eal_assessment_key"', 'grade_points_eal_assessment_key_id'), COALESCE((SELECT MAX("grade_points_eal_assessment_key_id") FROM academic."grade_points_eal_assessment_key"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."grade_setup"', 'grade_setup_id'), COALESCE((SELECT MAX("grade_setup_id") FROM academic."grade_setup"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."hallno"', 'hallno_id'), COALESCE((SELECT MAX("hallno_id") FROM academic."hallno"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('medical."hospital_det"', 'hospital_det_id'), COALESCE((SELECT MAX("hospital_det_id") FROM medical."hospital_det"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('medical."hospital_tab"', 'hospital_tab_id'), COALESCE((SELECT MAX("hospital_tab_id") FROM medical."hospital_tab"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."ideas"', 'ideas_id'), COALESCE((SELECT MAX("ideas_id") FROM academic."ideas"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."igc_exam_year_m"', 'igc_exam_year_m_id'), COALESCE((SELECT MAX("igc_exam_year_m_id") FROM academic."igc_exam_year_m"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('admission."interview"', 'interview_id'), COALESCE((SELECT MAX("interview_id") FROM admission."interview"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('settings."language"', 'language_id'), COALESCE((SELECT MAX("language_id") FROM settings."language"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."leave_acc_year"', 'leave_acc_year_id'), COALESCE((SELECT MAX("leave_acc_year_id") FROM hr."leave_acc_year"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."leave_att_point"', 'leave_att_point_id'), COALESCE((SELECT MAX("leave_att_point_id") FROM hr."leave_att_point"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."leave_data_m20"', 'leave_data_m20_id'), COALESCE((SELECT MAX("leave_data_m20_id") FROM hr."leave_data_m20"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."leave_staff_attand"', 'leave_staff_attand_id'), COALESCE((SELECT MAX("leave_staff_attand_id") FROM hr."leave_staff_attand"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."leave_staff_day"', 'leave_staff_day_id'), COALESCE((SELECT MAX("leave_staff_day_id") FROM hr."leave_staff_day"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."leave_staff_paid_tot_acc"', 'leave_staff_paid_tot_acc_id'), COALESCE((SELECT MAX("leave_staff_paid_tot_acc_id") FROM hr."leave_staff_paid_tot_acc"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."leave_staff_paid_tot_acc_temp"', 'leave_staff_paid_tot_acc_temp_id'), COALESCE((SELECT MAX("leave_staff_paid_tot_acc_temp_id") FROM hr."leave_staff_paid_tot_acc_temp"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."leave_staff_paid_tot_backup"', 'leave_staff_paid_tot_backup_id'), COALESCE((SELECT MAX("leave_staff_paid_tot_backup_id") FROM hr."leave_staff_paid_tot_backup"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."lesson_chapter"', 'lesson_chapter_id'), COALESCE((SELECT MAX("lesson_chapter_id") FROM academic."lesson_chapter"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('settings."settings_links"', 'links_id'), COALESCE((SELECT MAX("links_id") FROM settings."settings_links"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('settings."settings_links_parents"', 'links_p_id'), COALESCE((SELECT MAX("links_p_id") FROM settings."settings_links_parents"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('settings."log"', 'log_id'), COALESCE((SELECT MAX("log_id") FROM settings."log"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."lunch_menu_master"', 'lunch_menu_master_id'), COALESCE((SELECT MAX("lunch_menu_master_id") FROM academic."lunch_menu_master"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."mail_attachments"', 'mail_attachments_id'), COALESCE((SELECT MAX("mail_attachments_id") FROM communication."mail_attachments"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."mail_details"', 'mail_details_id'), COALESCE((SELECT MAX("mail_details_id") FROM communication."mail_details"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."mail_group"', 'mail_group_id'), COALESCE((SELECT MAX("mail_group_id") FROM communication."mail_group"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."mail_settings"', 'mail_settings_id'), COALESCE((SELECT MAX("mail_settings_id") FROM communication."mail_settings"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."mailinsert"', 'mailinsert_id'), COALESCE((SELECT MAX("mailinsert_id") FROM communication."mailinsert"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."master_lesson_plan"', 'master_lesson_plan_id'), COALESCE((SELECT MAX("master_lesson_plan_id") FROM academic."master_lesson_plan"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."master_skills"', 'master_skills_id'), COALESCE((SELECT MAX("master_skills_id") FROM academic."master_skills"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('settings."module_info"', 'mod_id'), COALESCE((SELECT MAX("mod_id") FROM settings."module_info"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('settings."settings_modules"', 'modules_id'), COALESCE((SELECT MAX("modules_id") FROM settings."settings_modules"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('settings."settings_modules_parents"', 'modules_p_id'), COALESCE((SELECT MAX("modules_p_id") FROM settings."settings_modules_parents"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."msg"', 'msg_id'), COALESCE((SELECT MAX("msg_id") FROM communication."msg"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."msp_unit"', 'msp_unit_id'), COALESCE((SELECT MAX("msp_unit_id") FROM academic."msp_unit"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('settings."nationality"', 'nationality_id'), COALESCE((SELECT MAX("nationality_id") FROM settings."nationality"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."exam_online"', 'online_exam_det_id'), COALESCE((SELECT MAX("online_exam_det_id") FROM academic."exam_online"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."online_exam_sel_questions"', 'online_exam_sel_questions_id'), COALESCE((SELECT MAX("online_exam_sel_questions_id") FROM academic."online_exam_sel_questions"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('settings."settings_parentmenu"', 'row_id'), COALESCE((SELECT MAX("row_id") FROM settings."settings_parentmenu"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."point_master"', 'point_master_id'), COALESCE((SELECT MAX("point_master_id") FROM academic."point_master"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."pyp_subskills"', 'pyp_subskills_id'), COALESCE((SELECT MAX("pyp_subskills_id") FROM academic."pyp_subskills"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('settings."rfid_enrolment_user"', 'rfid_enrolment_user_id'), COALESCE((SELECT MAX("rfid_enrolment_user_id") FROM settings."rfid_enrolment_user"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('settings."rfid_new_aug15"', 'rfid_new_aug15_id'), COALESCE((SELECT MAX("rfid_new_aug15_id") FROM settings."rfid_new_aug15"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."skill_grade"', 'skill_grade_id'), COALESCE((SELECT MAX("skill_grade_id") FROM academic."skill_grade"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."sta"', 'sta_id'), COALESCE((SELECT MAX("sta_id") FROM hr."sta"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."staff_att_updt"', 'staff_att_updt_id'), COALESCE((SELECT MAX("staff_att_updt_id") FROM hr."staff_att_updt"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."staff_calenders"', 'staff_calenders_id'), COALESCE((SELECT MAX("staff_calenders_id") FROM hr."staff_calenders"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."staff_class_group"', 'staff_class_group_id'), COALESCE((SELECT MAX("staff_class_group_id") FROM hr."staff_class_group"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."staff_default"', 'staff_default_id'), COALESCE((SELECT MAX("staff_default_id") FROM hr."staff_default"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."staff_default_status"', 'staff_default_status_id'), COALESCE((SELECT MAX("staff_default_status_id") FROM hr."staff_default_status"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."staff_des"', 'd_id'), COALESCE((SELECT MAX("d_id") FROM hr."staff_des"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."employee_details"', 'employee_details_id'), COALESCE((SELECT MAX("employee_details_id") FROM hr."employee_details"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."staff_group"', 'staff_group_id'), COALESCE((SELECT MAX("staff_group_id") FROM hr."staff_group"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."staff_groupnames"', 'staff_groupnames_id'), COALESCE((SELECT MAX("staff_groupnames_id") FROM hr."staff_groupnames"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."staff_hr_grup"', 'staff_hr_grup_id'), COALESCE((SELECT MAX("staff_hr_grup_id") FROM hr."staff_hr_grup"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."employee_leave"', 'employee_leave_id'), COALESCE((SELECT MAX("employee_leave_id") FROM hr."employee_leave"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."employee_leave_hr"', 'employee_leave_hr_id'), COALESCE((SELECT MAX("employee_leave_hr_id") FROM hr."employee_leave_hr"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."employee_leave_manger"', 'employee_leave_manger_id'), COALESCE((SELECT MAX("employee_leave_manger_id") FROM hr."employee_leave_manger"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."employee_leave_type"', 'employee_leave_type_id'), COALESCE((SELECT MAX("employee_leave_type_id") FROM hr."employee_leave_type"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."employee_leave_type_group"', 'employee_leave_type_group_id'), COALESCE((SELECT MAX("employee_leave_type_group_id") FROM hr."employee_leave_type_group"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."staff_lv_data_feb19"', 'staff_lv_data_feb19_id'), COALESCE((SELECT MAX("staff_lv_data_feb19_id") FROM hr."staff_lv_data_feb19"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."staff_qualification"', 'staff_qualification_id'), COALESCE((SELECT MAX("staff_qualification_id") FROM hr."staff_qualification"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."staff_rights"', 'staff_rights_id'), COALESCE((SELECT MAX("staff_rights_id") FROM hr."staff_rights"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."staff_status"', 'staff_status_id'), COALESCE((SELECT MAX("staff_status_id") FROM hr."staff_status"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."staff_termination"', 'staff_termination_id'), COALESCE((SELECT MAX("staff_termination_id") FROM hr."staff_termination"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."staff_time"', 'staff_time_id'), COALESCE((SELECT MAX("staff_time_id") FROM hr."staff_time"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student_health"', 'student_health_id'), COALESCE((SELECT MAX("student_health_id") FROM student."student_health"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."stud_sibling"', 'stud_sibling_id'), COALESCE((SELECT MAX("stud_sibling_id") FROM student."stud_sibling"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student_card_number"', 'student_card_number_id'), COALESCE((SELECT MAX("student_card_number_id") FROM student."student_card_number"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student_class"', 'student_class_id'), COALESCE((SELECT MAX("student_class_id") FROM student."student_class"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student_course"', 'student_course_id'), COALESCE((SELECT MAX("student_course_id") FROM student."student_course"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student_leavingcertificate"', 'student_leavingcertificate_id'), COALESCE((SELECT MAX("student_leavingcertificate_id") FROM student."student_leavingcertificate"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student"', 'student_m_id'), COALESCE((SELECT MAX("student_m_id") FROM student."student"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student_m_adminpack"', 'student_m_adminpack_id'), COALESCE((SELECT MAX("student_m_adminpack_id") FROM student."student_m_adminpack"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student_m_appointment"', 'student_m_appointment_id'), COALESCE((SELECT MAX("student_m_appointment_id") FROM student."student_m_appointment"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student_m_ec"', 'student_m_ec_id'), COALESCE((SELECT MAX("student_m_ec_id") FROM student."student_m_ec"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student_m_enquirystatus"', 'student_m_enquirystatus_id'), COALESCE((SELECT MAX("student_m_enquirystatus_id") FROM student."student_m_enquirystatus"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student_m_event"', 'student_m_event_id'), COALESCE((SELECT MAX("student_m_event_id") FROM student."student_m_event"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student_m_field"', 'student_m_field_id'), COALESCE((SELECT MAX("student_m_field_id") FROM student."student_m_field"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student_m_online"', 'student_m_online_id'), COALESCE((SELECT MAX("student_m_online_id") FROM student."student_m_online"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student_m_online_enquirystage"', 'student_m_online_enquirystage_id'), COALESCE((SELECT MAX("student_m_online_enquirystage_id") FROM student."student_m_online_enquirystage"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student_m_pastoral"', 'student_m_pastoral_id'), COALESCE((SELECT MAX("student_m_pastoral_id") FROM student."student_m_pastoral"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student_m_tab"', 'student_m_tab_id'), COALESCE((SELECT MAX("student_m_tab_id") FROM student."student_m_tab"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student_mail_list"', 'student_mail_list_id'), COALESCE((SELECT MAX("student_mail_list_id") FROM student."student_mail_list"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student_modify"', 'student_modify_id'), COALESCE((SELECT MAX("student_modify_id") FROM student."student_modify"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student_pt_m"', 'student_pt_m_id'), COALESCE((SELECT MAX("student_pt_m_id") FROM student."student_pt_m"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student_pt_observation"', 'student_pt_observation_id'), COALESCE((SELECT MAX("student_pt_observation_id") FROM student."student_pt_observation"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('student."student_pt_observation_m"', 'student_pt_observation_m_id'), COALESCE((SELECT MAX("student_pt_observation_m_id") FROM student."student_pt_observation_m"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('settings."settings_studentmenu"', 'row_id'), COALESCE((SELECT MAX("row_id") FROM settings."settings_studentmenu"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."style"', 'field_id'), COALESCE((SELECT MAX("field_id") FROM communication."style"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."sub_skills"', 'sub_skills_id'), COALESCE((SELECT MAX("sub_skills_id") FROM academic."sub_skills"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."subject"', 'subject_id'), COALESCE((SELECT MAX("subject_id") FROM academic."subject"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."subjecttype"', 'subtype_id'), COALESCE((SELECT MAX("subtype_id") FROM academic."subjecttype"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('settings."settings_submodules"', 'submodules_id'), COALESCE((SELECT MAX("submodules_id") FROM settings."settings_submodules"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."tabs"', 'tab_id'), COALESCE((SELECT MAX("tab_id") FROM academic."tabs"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."teacher_lesson_docments"', 'teacher_lesson_docments_id'), COALESCE((SELECT MAX("teacher_lesson_docments_id") FROM academic."teacher_lesson_docments"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."teacher_lesson_plan"', 'teacher_lesson_plan_id'), COALESCE((SELECT MAX("teacher_lesson_plan_id") FROM academic."teacher_lesson_plan"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('academic."timetable"', 'timetable_id'), COALESCE((SELECT MAX("timetable_id") FROM academic."timetable"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('hr."unpaid_leave_data_m20"', 'unpaid_leave_data_m20_id'), COALESCE((SELECT MAX("unpaid_leave_data_m20_id") FROM hr."unpaid_leave_data_m20"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('settings."settings_user_group"', 'row_id'), COALESCE((SELECT MAX("row_id") FROM settings."settings_user_group"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('settings."usermenu"', 'inc'), COALESCE((SELECT MAX("inc") FROM settings."usermenu"), 0) + 1, false);
+SELECT setval(pg_get_serial_sequence('communication."week_updates"', 'week_updates_id'), COALESCE((SELECT MAX("week_updates_id") FROM communication."week_updates"), 0) + 1, false);
